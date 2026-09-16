@@ -36,7 +36,7 @@ export function SiteFooter() {
                     href={link.href}
                     target={link.external ? '_blank' : undefined}
                     rel={link.external ? 'noopener noreferrer' : undefined}
-                    className="transition-colors duration-200 hover:text-footer-foreground"
+                    className="rounded-sm transition-colors duration-200 hover:text-footer-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current"
                   >
                     {link.label}
                   </a>
@@ -47,7 +47,7 @@ export function SiteFooter() {
 
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="group inline-flex w-fit shrink-0 items-center gap-2 rounded-full border border-footer-line px-8 py-4 text-base transition-colors duration-200 hover:border-footer-muted hover:bg-footer-foreground/5 md:mt-2"
+            className="group inline-flex w-fit shrink-0 items-center gap-2 rounded-full border border-footer-line px-8 py-4 text-base transition-colors duration-200 hover:border-footer-muted hover:bg-footer-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current md:mt-2"
           >
             Let&apos;s talk
             <span

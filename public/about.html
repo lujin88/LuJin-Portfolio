@@ -297,12 +297,6 @@
       }
     }
 
-    /* giant watermark text — solid flat tint, no gradient */
-    .giant-text {
-      color: var(--color-border-divider);
-      opacity: 1;
-    }
-
     .yoga-card {
       will-change: transform, translate, opacity, filter;
       background: var(--card-bg);
@@ -364,9 +358,11 @@
     .photo-flip__back {
       z-index: 1;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 3.25rem 2rem 2.5rem;
+      gap: 1rem;
+      padding: 2.15rem 1.85rem 5.75rem;
       background: var(--color-bg-primary);
       transform: rotateY(180deg) translateZ(1px);
     }
@@ -381,6 +377,16 @@
       letter-spacing: -0.03em;
       color: var(--color-text-1);
       text-wrap: balance;
+    }
+    .photo-flip__note {
+      width: 100%;
+      max-width: 28ch;
+      margin: 0;
+      text-align: center;
+      font-size: clamp(1rem, 2.7vw, 1.125rem);
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--color-text-2);
     }
     @media (max-width: 767px) {
       .cards-deck {
@@ -521,12 +527,6 @@
 
     <div class="w-full flex-1 flex flex-col items-center justify-center relative select-none mt-20 sm:mt-16">
 
-      <!-- giant background text -->
-      <div class="giant-text pointer-events-none uppercase text-[13.5vw] sm:text-[16.9vw] leading-none text-center
-                  w-full absolute z-10 whitespace-nowrap translate-y-4 font-sans font-extrabold tracking-tight">
-        Always Exploring
-      </div>
-
       <!-- overlapping card deck -->
       <div class="cards-deck flex items-center justify-center relative z-20 w-full max-w-5xl mt-6">
 
@@ -547,6 +547,7 @@
               </div>
               <div class="photo-flip__face photo-flip__back" aria-hidden="true">
                 <p class="photo-flip__title">No Signal</p>
+                <p class="photo-flip__note">Swimming is one of the few times I'm not making design decisions. Underwater, there's no sound — not even my phone can reach me.</p>
               </div>
             </div>
           </div>
@@ -568,6 +569,7 @@
               </div>
               <div class="photo-flip__face photo-flip__back" aria-hidden="true">
                 <p class="photo-flip__title">AI, Honestly</p>
+                <p class="photo-flip__note">I wouldn't call myself "AI native," but this portfolio itself was built with v0, Cursor, and GitHub. I've come to rely on AI as part of how I work, not just what I talk about.</p>
               </div>
             </div>
           </div>
@@ -590,6 +592,7 @@
               </div>
               <div class="photo-flip__face photo-flip__back" aria-hidden="true">
                 <p class="photo-flip__title">Build. Break. Repeat.</p>
+                <p class="photo-flip__note">No instructions, no user testing — just building until it stands up, and taking it apart when it doesn't. Turns out that's most of design too.</p>
               </div>
             </div>
           </div>

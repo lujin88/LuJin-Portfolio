@@ -13,6 +13,7 @@
   --color-header-menu-item: var(--header-menu-item);
   --color-header-accent: var(--header-accent);
   --font-sans: var(--font-poppins), 'Poppins Fallback', system-ui, sans-serif;
+  --font-serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
 }
 
 :root {
@@ -23,4 +24,8 @@
   --header-menu: oklch(0.24 0.004 264);
   --header-menu-item: oklch(0.29 0.004 264);
   --header-accent: #4a90ff;
+}
+
+.font-serif {
+  font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
 }

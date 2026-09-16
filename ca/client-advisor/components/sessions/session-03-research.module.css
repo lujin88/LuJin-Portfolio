@@ -1,0 +1,60 @@
+.photo {
+  object-position: 22% top;
+}
+
+@media (min-width: 1024px) {
+  .photo {
+    /* Same cover-scale as before; only a leftward recrop of the existing frame. */
+    object-position: 28% center;
+  }
+
+  .grid {
+    column-gap: clamp(2rem, 3.4vw, 3.75rem);
+  }
+
+  .quotesCol {
+    padding-right: clamp(0.25rem, 1vw, 0.75rem);
+  }
+
+  .copyCol {
+    /* Seat the research copy in the dark field beside the figure. */
+    padding-left: clamp(1.5rem, 3.8vw, 3.75rem);
+  }
+}
+
+@media (min-width: 1440px) {
+  .copyCol {
+    padding-left: 4.5rem;
+  }
+}
+
+.copy {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: none;
+}
+
+.copyIn {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 880ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 880ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quotes.copyIn {
+  transition-delay: 0ms;
+}
+
+.copyCol.copyIn {
+  transition-delay: 80ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copy,
+  .copyIn {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

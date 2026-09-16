@@ -21,7 +21,7 @@ export function AudienceSection() {
             emphasis="strong"
           />
 
-          <h1 className="mt-8 text-pretty text-[52px] font-bold leading-[1.04] tracking-[-0.03em] text-white sm:text-[64px] lg:text-[68px]">
+          <h1 className="mt-8 text-pretty text-[52px] font-extrabold leading-[1.04] tracking-[-0.03em] text-white sm:text-[64px] lg:text-[68px]">
             Who are we designing for?
           </h1>
 

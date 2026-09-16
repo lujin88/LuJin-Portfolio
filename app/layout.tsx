@@ -1,14 +1,17 @@
 import type { Metadata, Viewport } from 'next'
-import { Caveat, Geist, Poppins } from 'next/font/google'
-
-const geistSans = Geist({
-  subsets: ['latin'],
-  variable: '--font-geist-sans',
-})
+import { Caveat, Playfair_Display, Poppins } from 'next/font/google'
 
 const caveat = Caveat({
   subsets: ['latin'],
   variable: '--font-caveat',
+})
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['600', '700', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-playfair',
+  display: 'swap',
 })
 
 const poppins = Poppins({
@@ -42,7 +45,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${geistSans.variable} ${caveat.variable} ${poppins.variable}`}
+      className={`${caveat.variable} ${playfair.variable} ${poppins.variable}`}
       style={{ backgroundColor: '#0a0a0a', colorScheme: 'dark' }}
     >
       <body className="antialiased">{children}</body>
