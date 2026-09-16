@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lu.AI.Design</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700;1,900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: 'var(--color-bg-page)',
+          text1: 'var(--color-text-1)',
+          text2: 'var(--color-text-2)',
+          text3: 'var(--color-text-3)',
+          divider: 'var(--color-border-divider)',
+          accent: 'var(--color-theme-2)',
+          'accent-hover': 'var(--color-theme-hover)',
+        },
+        fontFamily: {
+          sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  /* ============================================================
+     DESIGN TOKENS — Kling AI Design System (Purple / Solid, dark)
+     ============================================================ */
+  :root {
+    /* brand + theme accents */
+    /* Host layer — showcase shell only. Do not merge with Header #4a90ff or case Session accents. */
+    --color-theme-1: #ffffff;
+    --color-theme-2: #8B5CF6;
+    --color-theme-3: rgba(139, 92, 246, 0.15);
+    --color-theme-hover: #A78BFA;
+    --color-bg-deepseek: #7C3AED;
+    --color-primary-solid: #8B5CF6;
+
+    /* surfaces */
+    --color-bg-page: #0a0a0a;
+    --color-bg-primary: #111214;
+    --color-bg-secondary: #1a1c1f;
+    --color-bg-elevated: #1f2124;
+
+    /* text */
+    --color-text-1: #f9fbfc;
+    --color-text-2: #b6bbc2;
+    --color-text-3: #777e85;
+    --color-text-4: #595d61;
+
+    /* borders */
+    --color-border-frame: #1a1b1f;
+    --color-border-container: #242629;
+    --color-border-divider: #343638;
+    --color-border-hover: #76787a;
+
+    /* derived helpers */
+    --hairline: rgba(255, 255, 255, 0.10);
+    --hairline-strong: rgba(255, 255, 255, 0.16);
+    --surface-raise: rgba(255, 255, 255, 0.06);
+
+    --nav-top-gradient: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+    --nav-scrolled-bg: rgba(10, 10, 10, 0.78);
+
+    --pill-text: #f9fbfc;
+    --pill-border: rgba(249, 251, 252, 0.45);
+    --pill-bg: rgba(255, 255, 255, 0.02);
+    --pill-hover-bg: #f9fbfc;
+    --pill-hover-text: #0a0a0a;
+    --pill-hover-shadow: 0 10px 30px -8px rgba(249, 251, 252, 0.35);
+
+    --panel-shadow: 0 40px 80px -30px rgba(0,0,0,0.7), 0 12px 30px -10px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06);
+
+    --card-bg: #111214;
+    --card-border: rgba(255, 255, 255, 0.07);
+    --card-border-hover: rgba(255, 255, 255, 0.16);
+    --card-glow: rgba(139, 92, 246, 0.15);
+    --card-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 24px 48px -26px rgba(139,92,246,0.14), 0 10px 28px -12px rgba(0,0,0,0.65);
+    --card-shadow-hover: 0 1px 0 rgba(255,255,255,0.06) inset, 0 32px 64px -26px rgba(139,92,246,0.24), 0 14px 34px -12px rgba(0,0,0,0.75);
+
+    --grain-opacity: 0.035;
+    --grain-blend: overlay;
+
+    --selection-bg: rgba(139, 92, 246, 0.35);
+    --selection-text: #ffffff;
+
+    /* experience timeline accent (purple trail) */
+    --exp-accent: #8B5CF6;
+    --exp-accent-bright: #A78BFA;
+    --exp-glow-wide: rgba(139, 92, 246, 0.22);
+    --exp-glow-mid: rgba(139, 92, 246, 0.34);
+    --exp-track: rgba(255, 255, 255, 0.09);
+    --exp-dot-ring: rgba(255, 255, 255, 0.35);
+    --exp-connector: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.28) 65%, rgba(255,255,255,0.5) 100%);
+    --exp-desc: rgba(249, 251, 252, 0.66);
+
+    /* shared site footer */
+    --footer-max-w: 1040px;               /* matches the .exp-contact container above the footer */
+    --color-footer-divider: rgba(255, 255, 255, 0.07);
+  }
+
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    background: var(--color-bg-page);
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* subtle film-grain texture for depth, per design guardrails */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    mix-blend-mode: var(--grain-blend);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection { background: var(--selection-bg); color: var(--selection-text); }
+
+  /* nav */
+  .nav-link {
+    position: relative;
+    color: color-mix(in srgb, var(--color-text-1) 72%, transparent);
+    transition: color 300ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    height: 1px;
+    background: var(--color-text-1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 350ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .nav-link:hover, .nav-link:focus-visible { color: var(--color-text-1); }
+  .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
+
+  #site-nav {
+    background: var(--nav-top-gradient);
+    transition: background-color 400ms ease, backdrop-filter 400ms ease, box-shadow 400ms ease;
+  }
+  #site-nav.scrolled {
+    background: var(--nav-scrolled-bg);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 var(--hairline);
+  }
+
+  /* pill button */
+  .pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--pill-border);
+    padding: 0.85rem 1.9rem;
+    font-size: 0.95rem;
+    color: var(--pill-text);
+    background: var(--pill-bg);
+    transition: transform 320ms cubic-bezier(0.22,1,0.36,1),
+                background-color 320ms cubic-bezier(0.22,1,0.36,1),
+                color 320ms cubic-bezier(0.22,1,0.36,1),
+                border-color 320ms cubic-bezier(0.22,1,0.36,1),
+                box-shadow 320ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .pill-btn:hover {
+    background: var(--pill-hover-bg);
+    color: var(--pill-hover-text);
+    border-color: var(--pill-hover-bg);
+    box-shadow: var(--pill-hover-shadow);
+    transform: translateY(-2px);
+  }
+  .pill-btn:active { transform: translateY(0) scale(0.97); }
+  .pill-btn:focus-visible {
+    outline: 2px solid #8B5CF6;
+    outline-offset: 3px;
+  }
+  .pill-btn svg { transition: transform 320ms cubic-bezier(0.22,1,0.36,1); }
+  .pill-btn:hover svg { transform: translateX(3px); }
+
+  /* language switcher */
+  .lang-switch { position: relative; }
+  .lang-trigger svg { transition: transform 300ms cubic-bezier(0.22,1,0.36,1); }
+  .lang-trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .lang-menu {
+    position: absolute;
+    top: calc(100% + 16px);
+    right: 0;
+    min-width: 224px;
+    padding: 10px;
+    border-radius: 16px;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--hairline, rgba(255,255,255,0.10));
+    box-shadow: var(--panel-shadow, 0 40px 80px -30px rgba(0,0,0,0.7), 0 12px 30px -10px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06));
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+    transform-origin: top right;
+    pointer-events: none;
+    transition: opacity 260ms cubic-bezier(0.22,1,0.36,1), transform 260ms cubic-bezier(0.22,1,0.36,1);
+    z-index: 60;
+  }
+  .lang-menu.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+  .lang-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    line-height: 1.25;
+    color: var(--color-text-2);
+    text-align: left;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+  .lang-option:hover, .lang-option:focus-visible {
+    background: var(--surface-raise, rgba(255,255,255,0.06));
+    color: var(--color-text-1);
+    outline: none;
+  }
+  .lang-option[aria-selected="true"] { color: var(--color-text-1); font-weight: 600; }
+  .lang-check { opacity: 0; flex-shrink: 0; color: var(--color-theme-2); transition: opacity 200ms ease; }
+  .lang-option[aria-selected="true"] .lang-check { opacity: 1; }
+
+  /* section media panel shadow (layered, tinted, per guardrails) */
+  .media-panel {
+    box-shadow: var(--panel-shadow);
+  }
+
+  /* accordion */
+  .accordion-item {
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1.1rem 0;
+  }
+  .accordion--end .accordion-item { flex-direction: row-reverse; text-align: right; }
+
+  .accordion-bar {
+    flex: 0 0 2px;
+    width: 2px;
+    border-radius: 2px;
+    background: transparent;
+    transition: background-color 400ms ease;
+  }
+  .accordion-item.is-active .accordion-bar { background: var(--color-text-1); }
+
+  .accordion-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-text-3);
+    transition: color 400ms ease;
+  }
+  .accordion-item.is-active .accordion-title { color: var(--color-text-1); }
+  .accordion-item:not(.is-active):hover .accordion-title { color: var(--color-text-2); }
+  .accordion-item:focus-visible { outline: 2px solid #8B5CF6; outline-offset: 4px; }
+
+  /* scroll-driven groups (inside .pin-wrap): not clickable, advance from scroll position only.
+     pointer-events stays enabled so the title/body text remains selectable/copyable; the JS
+     click-to-advance binding is what's actually skipped for these groups (see .closest('.pin-wrap') check). */
+  .pin-wrap .accordion-item {
+    cursor: default;
+  }
+  .pin-wrap .accordion-item:not(.is-active):hover .accordion-title { color: var(--color-text-3); }
+
+  .accordion-body-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 450ms cubic-bezier(0.22,1,0.36,1), opacity 350ms ease;
+  }
+  .accordion-item.is-active .accordion-body-wrap {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+  .accordion-body-inner { overflow: hidden; }
+  .accordion-body {
+    margin-top: 0.85rem;
+    color: var(--color-text-2);
+    line-height: 1.75;
+    font-size: 0.95rem;
+    font-weight: 400;
+  }
+
+  /* reveal-on-scroll (transform + opacity only) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 800ms cubic-bezier(0.22,1,0.36,1), transform 800ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  .tag-chip {
+    display: inline-flex;
+    align-items: center;
+    background: var(--surface-raise);
+    border: 1px solid var(--hairline-strong);
+    border-radius: 6px;
+    padding: 0.05rem 0.45rem;
+    font-size: 0.8rem;
+    color: var(--color-text-1);
+  }
+
+  /* LAB — quiet metadata label: a theme-aware, rounded-full echo of the
+     intro / AI Workflow metadata pills, used to mark each experiment */
+  .lab-meta {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    border-radius: 999px;
+    border: 1px solid var(--hairline-strong);
+    background: var(--surface-raise);
+    padding: 0.3rem 0.72rem;
+    font-size: 0.6875rem;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--color-text-3);
+  }
+
+  /* LAB — oversized editorial index numeral, matches the page's display serif */
+  .lab-index {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(2.5rem, 5vw, 3.25rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-text-3);
+  }
+
+  @media (min-width: 1024px) {
+    .lg-divider-l { border-left: 1px solid var(--hairline); }
+    .lg-divider-r { border-right: 1px solid var(--hairline); }
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* scroll-driven text/image swap (pinned accordion) */
+  .scroll-media {
+    transition: opacity 650ms cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .tilt-card-wrap {
+    perspective: 900px;
+  }
+  .nextgen-card {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    padding: 1.75rem 1.5rem;
+    height: 100%;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 350ms cubic-bezier(0.22,1,0.36,1), border-color 350ms ease, background-color 450ms ease;
+  }
+  .nextgen-card:hover {
+    border-color: var(--card-border-hover);
+    box-shadow: var(--card-shadow-hover);
+  }
+  .nextgen-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--card-glow), transparent 60%);
+    opacity: 0;
+    transition: opacity 350ms ease;
+    pointer-events: none;
+  }
+  .nextgen-card:hover::before { opacity: 1; }
+  .nextgen-card > * { position: relative; z-index: 1; }
+
+  .footer-link {
+    display: block;
+    font-size: 0.875rem;
+    color: #b6bbc2;
+    margin-bottom: 0.85rem;
+    transition: color 300ms ease;
+  }
+  .footer-link:hover, .footer-link:focus-visible { color: #f9fbfc; }
+  .footer-link:focus-visible { outline: 2px solid var(--color-theme-2); outline-offset: 3px; }
+
+  .social-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.06);
+    color: #b6bbc2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 300ms cubic-bezier(0.22,1,0.36,1), background-color 300ms ease, color 300ms ease;
+  }
+  .social-btn:hover { background: #f9fbfc; color: #0a0a0a; transform: translateY(-3px); }
+  .social-btn:focus-visible { outline: 2px solid var(--color-theme-2); outline-offset: 2px; }
+
+  .app-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 9999px;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.75rem;
+    color: #b6bbc2;
+  }
+
+  /* scroll-pinned zoom sections (hero, banner): the section sticks in place
+     while its wrapper scrolls past, and the media scales up underneath it */
+  .pin-wrap { position: relative; }
+  .pin-sticky {
+    position: sticky !important;
+    top: 0 !important;
+    will-change: transform;
+  }
+  .pin-media {
+    transform: scale(1);
+    will-change: transform;
+  }
+  .pin-fade {
+    will-change: transform, opacity;
+  }
+  /* hero copy sits on top of the video — keep it light against the footage */
+  .hero-pin-section h1,
+  .hero-pin-section .pill-btn { color: #f9fbfc; }
+  .hero-pin-section p { color: #d7dbe0; }
+
+  /* gentle scroll-linked zoom for inline media panels */
+  .parallax-zoom {
+    transform: scale(1.08);
+    will-change: transform;
+  }
+
+  /* ambient idle zoom on the hero video, independent of the scroll-driven pin-move on its child */
+  @keyframes heroAmbientZoom {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.09); }
+  }
+  .hero-ambient-zoom {
+    animation: heroAmbientZoom 16s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  /* ============================================================
+     EXPERIENCE TIMELINE — FXIFY-style curved-arc timeline.
+     A tall scroll track (500vh) drives a native position:sticky
+     viewport (90vh). Inside sits a relative coordinate box
+     (~46.36vw) holding a large curved SVG arc, a soft violet glow,
+     4 FIXED dots sampled onto the arc path, and 4 alternating
+     content blocks. The track's own scroll progress is the single
+     source of truth: activeIndex = clamp(floor(progress*4),0,3),
+     the arc draws to ~40% of its path length via stroke-dashoffset,
+     and every content block / dot carries
+     data-status = active | previous | hidden. Dots never move.
+     No IntersectionObserver. See expInit() / expWrite().
+     ============================================================ */
+  /* ============================================================
+     EXPERIENCE TIMELINE — FXIFY "How it works" curved-arc timeline.
+
+     Coordinate system (the whole point of this rebuild):
+       .exp-coord is ONE relative box, centred, ~1200px wide, 100vh tall.
+       Every visual — the faint background arc, the blue glow, the 4 dots
+       and the 4 content blocks — lives inside it and is positioned in the
+       SAME percentage space. A dot and its content block share an X anchor;
+       the content sits ABOVE the dot, joined by a thin vertical bar with a
+       "+" at the top and the dot at the bottom.
+
+       4 fixed anchor points (percent of the box), sampled from the
+       reference at 1280x638:
+         0  (28.1%, 33.4%)   left  side   "UBS"
+         1  (61.2%, 37.9%)   left  side   "AdNovum"
+         2  (72.5%, 74.5%)   right side   "Futurice"
+         3  (44.8%, 94.0%)   right side   "Designaffairs"
+
+     Scroll (progress of the 500vh track) drives three phases:
+       ENTER  p 0   -> 0.16 : first block sits ~45px below the About cards,
+                              then the whole box eases DOWN 71px to its rest
+                              position. Item 0 is already active + fully
+                              visible at p = 0.
+       PINNED p 0.16-> 0.86 : box frozen. The arc draws along its path, the
+                              glow fills, items activate 0 -> 1 -> 2 -> 3.
+       EXIT   p 0.86-> 1    : the whole box slides up and out.
+
+     The arc is a BACKGROUND visual only — near-invisible, masked, low
+     opacity. The reader follows the content, the "+" marker, the bar and
+     the dot, not the big curve. See expInit() / expWrite().
+     ============================================================ */
+  .exp-section {
+    position: relative;
+    /* NO z-index — a positive z-index here would paint the whole section (and
+       .exp-field inside it) ON TOP of the later transparent #contact / footer,
+       so the field covered the Contact text instead of sitting behind it. With
+       z-index:auto the field paints in normal DOM order: behind the transparent
+       Contact section, so the Contact copy floats on top of the field. */
+    padding-top: 0;
+    --exp-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --exp-blue: 122, 127, 220;          /* #7A7FDC — reference "+" / connector periwinkle */
+  }
+
+  /* header is a normal-flow sibling ABOVE the sticky track, so it scrolls
+     away as the timeline pins (reference: HowItWorks_header). */
+  .exp-header {
+    position: relative;
+    z-index: 4;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 48px 1.5rem;
+  }
+  .exp__heading { pointer-events: auto; }
+
+  /* tall scroll track */
+  .exp-track {
+    position: relative;
+    height: 500vh;
+  }
+
+  /* sticky viewport — native CSS position:sticky, NOT JS pinning.
+     NOTE: the clip that keeps the 250vh curve/glow inside one screen now lives
+     on .exp-curve-clip (a wrapper around ONLY the curve group), NOT here — so
+     .exp-field can bleed past the bottom edge and flow into the footer without
+     a visible clip seam. Do not re-add overflow:hidden here. */
+  .exp-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+
+  /* isolates the curve/glow clipping: same 100vh box the sticky used to clip,
+     but scoped to the curve group so the blue-purple field is left uncut. The
+     bottom edge is feathered (not a hard cut) so the raster never reads as a
+     horizontal seam where it meets the field / footer — matters in light mode. */
+  .exp-curve-clip {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, #000 92%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 92%, transparent 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* the single relative coordinate box — arc / glow / dots / content all
+     share this percentage space. --exp-shift is the enter/exit slide. */
+  .exp-coord {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(1200px, 100vw - 3rem);
+    height: 100vh;
+    --exp-shift: 0px;
+    --exp-f: 0;                 /* blue-purple field emergence, 0 -> 1, driven in expWrite */
+    transform: translate3d(-50%, var(--exp-shift), 0);
+    will-change: transform;
+  }
+
+  /* ── curve + glow group ─────────────────────────────────────────────
+     ONE masked wrapper holds BOTH the SVG curve and the reference's
+     pre-rendered navy raster (blue-4.webp). The group's opacity is the
+     scroll-driven fade-in; the shared mask fades the lower band away
+     (reference: HowItWorks_line__auowC). */
+  .exp-curve {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 250%;                 /* tall canvas (ref: _line box ≈ 1.8× its sticky) */
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+    will-change: opacity;
+    -webkit-mask-image: linear-gradient(0deg, transparent 40%, #000 60%);
+            mask-image: linear-gradient(0deg, transparent 40%, #000 60%);
+  }
+
+  /* reference raster: saturated deep-blue / navy atmospheric glow with the
+     curve light baked in. Positioned so its curve tracks the %-anchored
+     dots (viewBox region 0 0 1468 971 of the arc coordinate space). */
+  .exp-curve__glow {
+    position: absolute;
+    left: 10.25%;
+    top: 11.45%;
+    width: 78.35%;
+    height: 40.6%;
+    object-fit: fill;
+    /* The blue atmosphere is a TRANSITION effect, NOT a timeline background.
+       It stays fully absent while the experience entries read (--exp-f == 0)
+       and only emerges — together with .exp-field — once the timeline is done
+       and Contact is revealing. The curve LINE itself (.exp-arc__path) is a
+       separate element and is always drawn, so the timeline still has its arc. */
+    opacity: var(--exp-f);
+    pointer-events: none;
+    /* bottom fade + a soft RIGHT-edge fade so the raster's baked hard vertical
+       boundary dissolves into the blue-purple field instead of reading as a
+       clip seam once it is visible (transition/contact only). */
+    -webkit-mask-image:
+      linear-gradient(to bottom, #000 58%, transparent 100%),
+      linear-gradient(to right, #000 62%, transparent 98%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to bottom, #000 58%, transparent 100%),
+      linear-gradient(to right, #000 62%, transparent 98%);
+    mask-composite: intersect;
+  }
+
+  /* ── atmosphere carrier ────────────────────────────────────────────
+     The ONE .exp-field lives in here, NOT in #exp-coord. As a <body> child
+     this carrier's position:sticky range spans #experience + #contact +
+     footer, so the SAME field — identical geometry: 96% / -26% of this
+     100vh box, exactly as when it sat in #exp-coord — stays put behind the
+     Contact copy once the timeline's own sticky (.exp-sticky) releases.
+     margin-bottom:-100vh removes its flow height (zero space added — it just
+     overlaps the top 100vh of #experience, where --exp-f is 0 so the field
+     is invisible). isolation:isolate scopes the field's z-index:1 here so the
+     carrier still paints BEHIND #contact / footer, which float on top of it.
+     The timeline's own sticky/track/coord/dots/entries are untouched. */
+  .exp-atmos {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin-bottom: -100vh;
+    isolation: isolate;
+    pointer-events: none;
+    --exp-f: 0;                 /* default until expWrite mirrors it here */
+  }
+
+  /* ── blue-purple field ─────────────────────────────────────────────
+     The cinematic bridge from the finished timeline to Contact. Held at
+     opacity 0 for the ENTIRE timeline — it only emerges in the contact
+     phase (--exp-f, 0 until pin 0.82). As --exp-f ramps 0->1 it rises from
+     the base of the frame and fills edge to edge, so Contact reveals within
+     it. Purely --exp-f driven — no transition, the scrub is the animation. */
+  .exp-field {
+    position: absolute;
+    left: 50%;
+    bottom: -26%;               /* solid base runs past the fold so the track
+                                   release / settle never exposes a hard edge or a
+                                   black band under the field — it fades into footer */
+    width: 100vw;               /* break out of the 1200px coord box — edge to edge */
+    height: 96%;
+    z-index: 1;
+    opacity: var(--exp-f);
+    pointer-events: none;
+    background:
+      radial-gradient(125% 88% at 67% 82%,
+        rgba(58, 70, 212, 0.46) 0%,
+        rgba(43, 50, 165, 0.30) 30%,
+        rgba(26, 30, 92, 0.14) 54%,
+        transparent 78%),
+      radial-gradient(115% 82% at 26% 100%,
+        rgba(122, 127, 220, 0.24) 0%,
+        rgba(80, 84, 180, 0.12) 42%,
+        transparent 74%);
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 14%, #000 46%, rgba(0,0,0,0.5) 72%, transparent 100%);
+            mask-image: linear-gradient(to top, transparent 0%, #000 14%, #000 46%, rgba(0,0,0,0.5) 72%, transparent 100%);
+    transform: translateX(-50%) translateY(calc((1 - var(--exp-f)) * 12%)) scaleY(calc(0.82 + 0.18 * var(--exp-f)));
+    transform-origin: 50% 100%;
+    will-change: opacity, transform;
+  }
+
+  /* the large curved band: the reference closed blob path, stroked at
+     100 user units and CLIPPED to its own outline, so only the inner
+     ~half of the stroke shows as a soft luminous edge — never a hairline,
+     never blurred. viewBox is framed so a path point lands on the
+     matching %-positioned dot. */
+  .exp-arc {
+    position: absolute;
+    left: 10.24%;
+    top: 11.76%;
+    width: 78.3%;
+    height: 64.5%;             /* SVG element = ref's _line box (viewBox 0 0 1468 1555),
+                                  placed so a path point lands on its %-anchored dot */
+    z-index: 1;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .exp-arc__path {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 100;
+    stroke-linecap: butt;
+    opacity: 0.26;
+    will-change: stroke-dasharray;
+  }
+
+  /* 4 fixed dots — CSS-anchored to the same points as their content.
+     Reference: all dots are plain solid white, always visible, no glow. */
+  .exp-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    border-radius: 50%;
+    background: #fff;
+    z-index: 3;
+  }
+  .exp-dot[data-index="0"] { left: 26.7%; top: 33.4%; }
+  .exp-dot[data-index="1"] { left: 61.2%; top: 37.9%; }
+  .exp-dot[data-index="2"] { left: 72.5%; top: 74.5%; }
+  .exp-dot[data-index="3"] { left: 44.8%; top: 94.0%; }
+
+  /* content blocks — anchored to their dot's X, sitting ABOVE the dot */
+  .exp-content {
+    position: absolute;
+    z-index: 2;
+    width: min(340px, 40vw);
+    opacity: 0;
+    transition: opacity 0.9s var(--exp-ease);
+    will-change: opacity;
+  }
+  .exp-content[data-side="left"]  { text-align: left;  padding-left: 1rem; }
+  .exp-content[data-side="right"] { text-align: right; padding-right: 1rem; }
+
+  /* bottom = 100% - (dot top%) + gap, so the block floats ~42px above the dot */
+  .exp-content[data-index="0"] { left: 26.7%;  bottom: calc(66.6% + 42px); }
+  .exp-content[data-index="1"] { left: 61.2%;  bottom: calc(62.1% + 42px); }
+  .exp-content[data-index="2"] { right: 27.5%; bottom: calc(25.5% + 42px); }
+  .exp-content[data-index="3"] { right: 55.2%; bottom: calc(6.0% + 42px); }
+
+  .exp-content[data-status="hidden"]   { opacity: 0; pointer-events: none; }
+  .exp-content[data-status="active"]   { opacity: 1; pointer-events: auto; }
+  .exp-content[data-status="previous"] { opacity: 1; pointer-events: none; }
+
+  /* node decoration: ONE vertical connector + "+" crosshair at the top */
+  .exp-content__node {
+    position: absolute;
+    top: 0;
+    bottom: -42px;
+    width: 1px;
+  }
+  .exp-content[data-side="left"]  .exp-content__node { left: 0; }
+  .exp-content[data-side="right"] .exp-content__node { right: 0; }
+
+  /* THE active vertical connector — a single element (reference:
+     list-item_ListItem_line__H_5Or). 1.6875px wide; blue -> periwinkle ->
+     transparent so it is solid from the "+" down to the dot (~43% down)
+     and gone below it. No tail, no wash, no wisp. Active item only. */
+  .exp-content__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 232%;
+    width: 1.6875px;
+    margin-left: -0.84px;
+    background: linear-gradient(to bottom,
+      #3846D4 0%,
+      #7A7FDC 38%,
+      rgba(122, 127, 220, 0.85) 43%,
+      rgba(122, 127, 220, 0) 52%);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  .exp-content[data-status="active"] .exp-content__bar { opacity: 1; }
+
+  .exp-content__plus {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 11px;
+    height: 11px;
+    transform: translate(-50%, -50%) rotate(135deg);
+    opacity: 0;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out, color 1s ease-in-out;
+    color: #7A7FDC;
+  }
+  .exp-content__plus::before,
+  .exp-content__plus::after { content: ""; position: absolute; background: currentColor; }
+  .exp-content__plus::before { left: 50%; top: 0; width: 1.25px; height: 100%; transform: translateX(-50%); }
+  .exp-content__plus::after  { top: 50%; left: 0; height: 1.25px; width: 100%; transform: translateY(-50%); }
+
+  .exp-content[data-status="active"]   .exp-content__plus,
+  .exp-content[data-status="previous"] .exp-content__plus {
+    transform: translate(-50%, -50%) rotate(0deg);
+    color: #7A7FDC;
+  }
+  .exp-content[data-status="active"]   .exp-content__plus { opacity: 1; }
+  .exp-content[data-status="previous"] .exp-content__plus { opacity: 1; }
+
+  /* copy */
+  .exp-content__eyebrow {
+    display: block;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    color: var(--color-text-3);
+    margin-bottom: 0.35rem;
+  }
+  .exp-content__title {
+    display: block;
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+    color: var(--color-text-1);
+    margin-bottom: 0.3rem;
+  }
+  .exp-content__role {
+    display: block;
+    font-size: 0.86rem;
+    font-weight: 500;
+    color: var(--color-text-2);
+    margin-bottom: 0.5rem;
+  }
+  .exp-content__desc {
+    display: block;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--exp-desc);
+  }
+
+  /* previous items stay fully readable (reference does NOT ghost them) —
+     the active signal is the connector + "+" + dot, not a brightness cliff. */
+
+  /* ── contact section ───────────────────────────────────────────────
+     Its OWN normal-flow section AFTER the Experience track — not inside
+     #exp-coord, not scroll-pinned, no shared state with the timeline.
+     SEPARATE SECTION, NOT a separate background: it is transparent, so the
+     copy just floats over the page's own surface — no fill, no gradient,
+     no pseudo-element, so there is no horizontal boundary where Experience
+     ends and Contact begins. */
+  .contact-section {
+    position: relative;
+    /* no z-index — like the footer, this sits BELOW .exp-section (z-index:1)
+       so the original .exp-field bleed simply feathers out over the top of
+       Contact as it always did over the footer. */
+    background: transparent;
+    padding: clamp(6rem, 14vh, 9rem) 1.5rem clamp(4.5rem, 10vh, 7rem);
+  }
+
+  .exp-contact {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.75rem 3rem;
+  }
+
+  /* independent reveal — fade + gentle rise as the Contact section enters
+     the viewport. Toggled by the shared IntersectionObserver (.is-visible).
+     Never touches the Experience timeline. */
+  .contact-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .contact-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .exp-contact__heading {
+    font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    color: var(--color-text-1);
+  }
+  .exp-contact__links {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.75rem;
+    font-size: 15px;
+    color: var(--color-text-3);
+  }
+  .exp-contact__links a {
+    transition: color 0.3s var(--exp-ease);
+  }
+  .exp-contact__links a:hover { color: var(--color-text-1); }
+  .exp-contact__links a:focus-visible {
+    outline: 2px solid var(--color-accent, #7A7FDC);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+  .exp-contact__sep { color: var(--color-text-4, rgba(255,255,255,0.25)); }
+
+  /* transparent — no fill of its own, so Experience -> Contact -> footer are
+     one continuous surface (the page's own bg + whatever of the .exp-field
+     atmosphere reaches this far), with no horizontal boundary anywhere. */
+  .exp-footer {
+    background: transparent;
+  }
+
+  /* ── shared site footer ─────────────────────────────────────────────
+     Bottom divider + copyright. The inner container matches the same
+     max-width / horizontal padding as the "Have an opportunity in mind?"
+     block above, so the copyright's left edge aligns exactly with the
+     heading. Identical markup + rules on every page that uses the footer. */
+  .site-footer__inner {
+    max-width: var(--footer-max-w, 1440px);
+    margin: 0 auto;
+  }
+  .site-footer__bottom {
+    border-top: 1px solid var(--color-footer-divider);
+    padding-top: 2rem;
+    text-align: left;
+  }
+
+  @media (max-width: 1024px) {
+    .exp-content { width: min(320px, 44vw); }
+    .exp-dot[data-index="1"] { left: 58%; }
+    .exp-content[data-index="1"] { left: 58%; }
+  }
+
+  /* narrow screens + reduced motion: the curved-arc pin doesn't read —
+     fall back to a plain stacked list */
+  @media (max-width: 640px), (prefers-reduced-motion: reduce) {
+    .exp-track { height: auto; }
+    .exp-sticky { position: static; height: auto; display: block; overflow: visible; padding: 0 0 3rem; }
+    .exp-header { position: static; transform: none; padding: 0 1.25rem 1.75rem; }
+    .exp-coord {
+      position: relative; left: auto; transform: none !important;
+      width: 100%; max-width: 52rem; height: auto;
+      margin: 0; padding: 0 1.25rem;
+    }
+    .exp-atmos, .exp-curve-clip, .exp-curve, .exp-arc, .exp-dot, .exp-field { display: none; }
+    .exp-content,
+    .exp-content[data-side="left"],
+    .exp-content[data-side="right"],
+    .exp-content[data-index="0"],
+    .exp-content[data-index="1"],
+    .exp-content[data-index="2"],
+    .exp-content[data-index="3"] {
+      position: relative; bottom: auto; left: auto; right: auto;
+      width: 100%; max-width: none; opacity: 1 !important;
+      text-align: left; margin: 0 0 2.25rem; padding: 0 0 0 1.5rem;
+      border-left: 1px solid rgba(var(--exp-blue), 0.4);
+    }
+    .exp-content__node, .exp-content__bar, .exp-content__plus { display: none; }
+    .exp-content__eyebrow, .exp-content__title, .exp-content__role, .exp-content__desc { opacity: 1 !important; }
+
+    .exp-contact {
+      flex-direction: column; align-items: flex-start; gap: 1.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pin-wrap { height: auto !important; }
+    .pin-sticky { position: relative; height: auto !important; }
+    .pin-media, .parallax-zoom { transform: none !important; }
+    .pin-fade, .pin-move { opacity: 1 !important; transform: none !important; }
+    .contact-reveal { opacity: 1 !important; transform: none !important; }
+    .hero-ambient-zoom { animation: none !important; }
+    .hero-pin-section { display: block !important; padding-top: 5rem; padding-bottom: 3rem; }
+  }
+</style>
+</head>
+
+<body class="bg-ink text-text1 min-w-[360px]">
+
+<!-- NAV -->
+<nav id="site-nav" class="fixed top-0 inset-x-0 z-50">
+  <div class="mx-auto max-w-[1600px] flex items-center justify-between px-6 md:px-14 h-20">
+    <div class="flex items-center gap-4">
+      <a href="/index" aria-label="Lu — back to home" class="flex items-center text-text1 font-sans font-bold text-2xl tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4 rounded">
+        Lu
+      </a>
+    </div>
+
+    <div class="hidden lg:flex items-center gap-10 text-[15px]">
+      <a href="/client-advisory" class="nav-link focus-visible:outline-none">Client Advisory</a>
+      <a href="/EON" class="nav-link focus-visible:outline-none">Eon Solar</a>
+      <a href="/lab" class="nav-link focus-visible:outline-none">Lab</a>
+      <a href="/about" class="nav-link focus-visible:outline-none">About</a>
+    </div>
+
+    <div class="flex items-center gap-5">
+      <div class="lang-switch">
+        <button type="button" class="lang-trigger hidden md:flex items-center gap-1 text-[15px] text-text2 hover:text-text1 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 rounded" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language">
+          <span class="lang-current">English</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="lang-menu" role="listbox" aria-label="Language">
+          <button type="button" class="lang-option" role="option" data-lang="en" aria-selected="true">English<svg class="lang-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></button>
+          <button type="button" class="lang-option" role="option" data-lang="de" aria-selected="false">Deutsch<svg class="lang-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></button>
+        </div>
+      </div>
+      <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn !py-2.5 !px-5 text-[14px]">Contact me</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <section class="hero-pin-section relative w-full h-screen min-h-[680px] overflow-hidden flex items-center">
+    <div class="hero-ambient-zoom absolute inset-0 overflow-hidden">
+      <video src="References/Home/Hero video.mp4" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover"></video>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/10 to-black/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+
+    <!-- hero copy -->
+    <div class="relative z-10 w-full px-6 mx-auto max-w-[1440px]">
+      <div class="max-w-2xl">
+        <h1 class="font-sans font-bold text-[clamp(2.25rem,5.2vw,4rem)] leading-[1.08] tracking-tight text-text1 drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)]">
+          Simplify complexity.<br />Design with AI.
+        </h1>
+        <p class="mt-6 max-w-md text-base md:text-lg leading-relaxed text-text2">
+          Architecting scalable digital products from early-stage strategy to production-ready UI.
+        </p>
+        <a href="#" id="hero-see-how" class="pill-btn mt-9">See My Work</a>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<!-- MODEL SERIES (scroll-driven: section pins while scroll position advances the active item) -->
+<div id="model-series" class="pin-wrap" style="height:360vh;">
+  <section class="pin-sticky h-screen min-h-[680px] w-full flex items-center bg-ink px-6">
+    <div class="mx-auto max-w-[1440px] w-full">
+      <h2 class="text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-16 md:mb-20">
+        AI-powered advisor <span class="font-sans font-semibold">workflow optimization</span>
+      </h2>
+
+      <div class="grid lg:grid-cols-[minmax(0,43fr)_minmax(0,57fr)] gap-12 lg:gap-20 items-center">
+        <div class="flex flex-col">
+        <div class="accordion my-auto" data-group="1">
+          <button class="accordion-item is-active" data-index="0" type="button">
+            <span class="accordion-bar"></span>
+            <span class="flex-1">
+              <span class="accordion-title block">My role — lead service designer</span>
+              <span class="accordion-body-wrap">
+                <span class="accordion-body-inner block">
+                  <p class="accordion-body">Mapped end-to-end advisor workflows, identified key friction points, and translated insights into information architecture, user flows, and wireframes. Contributed to advisor interviews to uncover daily needs, priorities, and opportunities for AI.</p>
+                </span>
+              </span>
+            </span>
+          </button>
+
+          <button class="accordion-item" data-index="1" type="button">
+            <span class="accordion-bar"></span>
+            <span class="flex-1">
+              <span class="accordion-title block">From friction to AI</span>
+              <span class="accordion-body-wrap">
+                <span class="accordion-body-inner block">
+                  <p class="accordion-body">Embedded AI into existing workflows to help advisors prioritize tasks, surface relevant information, and respond to clients at the right moment. When a client calls, AI can also surface who they are and what they may need — giving advisors the right context immediately, without adding another tool.</p>
+                </span>
+              </span>
+            </span>
+          </button>
+
+          <button class="accordion-item" data-index="2" type="button">
+            <span class="accordion-bar"></span>
+            <span class="flex-1">
+              <span class="accordion-title block">Designed for 500+ advisors</span>
+              <span class="accordion-body-wrap">
+                <span class="accordion-body-inner block">
+                  <p class="accordion-body">The concept could save an estimated 10–15 minutes per workflow, reducing time spent searching, synthesising information, and switching between systems.</p>
+                </span>
+              </span>
+            </span>
+          </button>
+        </div>
+
+        <div class="mt-12 md:mt-14 text-left">
+          <a href="/client-advisory" class="pill-btn">
+            Explore Now
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        </div>
+
+        <div class="relative rounded-2xl overflow-hidden media-panel aspect-[16/9]">
+          <video class="absolute inset-0 w-full h-full object-cover" src="References/Client%20advisory/Client%20advsior%20hero.mp4" autoplay loop muted playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- OMNI MODEL (scroll-driven, mirrored layout: image left, accordion right) -->
+<div id="omni-model" class="pin-wrap" style="height:360vh;">
+  <section class="pin-sticky h-screen min-h-[680px] w-full flex items-center bg-ink px-6">
+    <div class="mx-auto max-w-[1440px] w-full">
+      <h2 class="text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-16 md:mb-20">
+        Solar landing page <span class="font-sans font-semibold">redesign</span>
+      </h2>
+
+      <div class="grid lg:grid-cols-[minmax(0,57fr)_minmax(0,43fr)] gap-12 lg:gap-20 items-center">
+        <div class="relative rounded-2xl overflow-hidden media-panel aspect-[16/9]">
+          <video
+            class="absolute inset-0 w-full h-full object-cover"
+            src="References/eon%20solar/solar-calculator-hero.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            disablepictureinpicture
+            aria-hidden="true"
+          ></video>
+        </div>
+
+        <div class="flex flex-col">
+        <div class="accordion my-auto" data-group="2">
+          <button class="accordion-item is-active" data-index="0" type="button">
+            <span class="accordion-bar"></span>
+            <span class="flex-1">
+              <span class="accordion-title block">My role — lead product designer</span>
+              <span class="accordion-body-wrap">
+                <span class="accordion-body-inner block">
+                  <p class="accordion-body">Led the end-to-end product design process, from research and journey mapping through information architecture, UX/UI design, prototyping, and implementation. Collaborated closely with developers to bring the experience to life and iterated based on user testing and data.</p>
+                </span>
+              </span>
+            </span>
+          </button>
+
+          <button class="accordion-item" data-index="1" type="button">
+            <span class="accordion-bar"></span>
+            <span class="flex-1">
+              <span class="accordion-title block">From complexity to conversion</span>
+              <span class="accordion-body-wrap">
+                <span class="accordion-body-inner block">
+                  <p class="accordion-body">Redesigned the solar purchase journey to make a complex investment easier to understand, personalize, and trust. Progressive input and a more transparent calculator helped users move from initial interest to a meaningful, personalized offer with less friction.</p>
+                </span>
+              </span>
+            </span>
+          </button>
+
+          <button class="accordion-item" data-index="2" type="button">
+            <span class="accordion-bar"></span>
+            <span class="flex-1">
+              <span class="accordion-title block">300% higher conversion</span>
+              <span class="accordion-body-wrap">
+                <span class="accordion-body-inner block">
+                  <p class="accordion-body">The redesigned experience increased solar purchase conversion by 300% within two months, reaching a 16.8% conversion rate across Germany. The experience was later adapted for the UK market.</p>
+                </span>
+              </span>
+            </span>
+          </button>
+        </div>
+
+        <div class="mt-12 md:mt-14 text-left">
+          <a href="/EON" class="pill-btn">
+            Explore Now
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     LAB — a third content section in the SAME visual language as the
+     two case study video sections above: same 1440px container, same
+     centred typographic hierarchy, same media-panel treatment / 16:9
+     proportion / border-radius, same grid column ratio + gap, same
+     pill-btn CTA and hover. Framed as experimentation, not another
+     client case study — the difference is content and labelling only.
+     01 mirrors Client Advisory (text / media); 02 mirrors Eon Solar
+     (media / text).
+
+     Intentionally hidden on Index via `showExperimentsSection` in
+     app/index/page.tsx. Flip that flag to true to restore. Do not delete.
+     ============================================================ -->
+<section id="lab" class="relative bg-ink pt-24 md:pt-32 pb-8 md:pb-12 px-6">
+  <div class="mx-auto max-w-[1440px] w-full">
+
+    <!-- section header: same centred hierarchy as the intro / case study
+         headings. Headline typography matches the "Solar Landing Page Redesign"
+         hero H1 exactly — font-sans (Poppins) / bold / upright, tight tracking,
+         1.1 line-height. Size and centred alignment unchanged. -->
+    <h2 class="reveal text-center text-[1.9rem] md:text-4xl font-sans font-bold tracking-tight leading-[1.1] text-text1 mb-4">
+      Design beyond the brief.
+    </h2>
+    <p class="reveal text-center text-text2 max-w-2xl mx-auto mb-12 md:mb-16 text-[15px] leading-relaxed">
+      Experiments in systems, AI, and new ways of making.
+    </p>
+
+    <!-- the two experiments: same grid, column ratio, gap, media proportion,
+         border-radius and CTA as the two case study sections above.
+         (The large LAB hero visual that used to sit here has been removed;
+         the subtitle's margin-bottom now carries the gap to the first experiment.) -->
+    <div class="mt-0 flex flex-col gap-16 md:gap-24">
+
+      <article class="reveal grid lg:grid-cols-[minmax(0,43fr)_minmax(0,57fr)] gap-12 lg:gap-20 items-center">
+        <div class="flex flex-col">
+          <span class="lab-index">01</span>
+          <h3 class="mt-4 text-xl md:text-2xl font-semibold text-text1">Design System</h3>
+          <p class="mt-3 max-w-md text-[15px] leading-relaxed text-text2">Designing for scale, not just consistency.</p>
+          <span class="lab-meta mt-5">Independent concept</span>
+          <div class="mt-12 md:mt-14 text-left">
+            <a href="/lab" class="pill-btn">
+              Explore Now
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- concept visual: no shipped artefact yet, so a quiet modular-system
+             motif rather than a screenshot — same panel treatment as the videos -->
+        <div class="relative rounded-2xl overflow-hidden media-panel aspect-[16/9] bg-black">
+          <div class="absolute inset-0" style="background:
+              radial-gradient(120% 90% at 18% 12%, rgba(139,92,246,0.28), transparent 55%),
+              radial-gradient(90% 80% at 88% 90%, rgba(124,58,237,0.22), transparent 60%),
+              linear-gradient(180deg, #101014 0%, #0b0b0d 100%);"></div>
+          <svg class="absolute inset-0 h-full w-full" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+            <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
+              <path d="M0 60H320M0 120H320M80 0V180M160 0V180M240 0V180"/>
+            </g>
+            <g stroke="rgba(167,139,250,0.55)" stroke-width="1.5">
+              <rect x="24" y="26" width="44" height="28" rx="6" fill="rgba(139,92,246,0.10)"/>
+              <rect x="24" y="66" width="44" height="16" rx="5" fill="rgba(139,92,246,0.06)"/>
+              <rect x="24" y="94" width="72" height="16" rx="5" fill="rgba(139,92,246,0.06)"/>
+              <rect x="120" y="30" width="80" height="52" rx="8" fill="rgba(139,92,246,0.12)"/>
+              <rect x="120" y="98" width="36" height="36" rx="18" fill="rgba(139,92,246,0.08)"/>
+              <rect x="168" y="98" width="32" height="36" rx="8" fill="rgba(139,92,246,0.06)"/>
+              <rect x="232" y="26" width="64" height="20" rx="10" fill="rgba(139,92,246,0.10)"/>
+              <rect x="232" y="58" width="64" height="76" rx="8" fill="rgba(139,92,246,0.06)"/>
+            </g>
+            <g fill="rgba(167,139,250,0.9)">
+              <circle cx="24" cy="26" r="2"/><circle cx="120" cy="30" r="2"/><circle cx="232" cy="26" r="2"/><circle cx="296" cy="134" r="2"/>
+            </g>
+          </svg>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent pointer-events-none"></div>
+        </div>
+      </article>
+
+      <article class="reveal grid lg:grid-cols-[minmax(0,57fr)_minmax(0,43fr)] gap-12 lg:gap-20 items-center">
+        <div class="relative rounded-2xl overflow-hidden media-panel aspect-[16/9] bg-black">
+          <video class="absolute inset-0 h-full w-full object-cover" src="assets/ai-workflow-hero.mp4" autoplay loop muted playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video>
+        </div>
+
+        <div class="flex flex-col">
+          <span class="lab-index">02</span>
+          <h3 class="mt-4 text-xl md:text-2xl font-semibold text-text1">AI Design Workflow</h3>
+          <p class="mt-3 max-w-md text-[15px] leading-relaxed text-text2">Exploring how AI changes the way products are designed.</p>
+          <span class="lab-meta mt-5">Experiment</span>
+          <div class="mt-12 md:mt-14 text-left">
+            <a href="/ai-workflow-case" class="pill-btn">
+              Explore Now
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- NEXTGEN INITIATIVE -->
+<section id="nextgen" class="relative bg-ink pt-24 md:pt-32 pb-0 px-6">
+  <div class="mx-auto max-w-[1440px]">
+    <h2 class="reveal text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-5">About me</h2>
+    <p class="reveal text-center text-text2 max-w-3xl mx-auto mb-0 text-[15px] leading-relaxed">
+      I'm Lu, an <strong class="text-text1 font-semibold">AI-native Product Designer</strong> with 10+ years of experience turning <strong class="text-text1 font-semibold">complex systems and workflows into clear, useful products</strong>.<br /><br />
+      I work end-to-end across <strong class="text-text1 font-semibold">product, service, and UI design</strong> — from framing problems to prototyping and implementation. I use AI as part of my everyday design process to explore faster, prototype boldly, and turn ideas into working experiences.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     EXPERIENCE TIMELINE — FXIFY "How it works" curved-arc timeline.
+     section -> header -> 500vh scroll track -> native position:sticky
+     viewport -> ONE relative coordinate box holding { background arc |
+     blue glow | 4 dots | 4 content blocks }. Dots and their content
+     share an X anchor; the content sits ABOVE the dot on a thin bar
+     with a "+" at the top. Scroll progress drives an enter/exit slide
+     (--exp-shift), the arc draw, the glow fill and data-status.
+     See .exp-section / expInit() / expWrite().
+     ============================================================ -->
+
+<!-- ATMOSPHERE CARRIER — the ONE .exp-field, lifted out of #exp-coord into its
+     own 100vh position:sticky carrier. As a <body> child its sticky range
+     covers #experience + #contact + footer, so the SAME field (identical
+     geometry, mask, gradient, opacity) keeps sitting behind the page as the
+     Contact copy scrolls up over it — after the timeline's own sticky releases.
+     margin-bottom:-100vh (in CSS) cancels its flow height. --exp-f is mirrored
+     onto it by expWrite(); it is 0 through the whole timeline. -->
+<div class="exp-atmos" aria-hidden="true">
+  <div class="exp-field" aria-hidden="true"></div>
+</div>
+
+<section id="experience" class="exp-section relative bg-ink">
+
+  <div class="exp-track" id="exp-track">
+    <div class="exp-sticky">
+
+      <div class="exp-coord" id="exp-coord">
+
+        <div class="exp-curve-clip" aria-hidden="true">
+        <div class="exp-curve" id="exp-curve" aria-hidden="true">
+          <img class="exp-curve__glow" src="assets/experience/blue-glow.webp" alt="" decoding="async" />
+          <svg class="exp-arc" viewBox="0 0 1468 1555" fill="none" preserveAspectRatio="none">
+            <defs>
+              <clipPath id="exp-arc-clip">
+                <path d="M1366.32 295.46C1420.23 86.8392 644.588 38.2593 250.028 40.047C1448.11 56.8065 1425.07 264.488 1319.08 357.804C1186.6 474.45 724.986 547.971 412.486 735.914C147.019 895.571 80.492 1104.38 84.14 1195.77C85.292 1432.19 93.7016 1766.8 118.124 1213.87C148.652 522.716 1298.92 556.235 1366.32 295.46Z"></path>
+              </clipPath>
+            </defs>
+            <path class="exp-arc__path" id="exp-arc-path" clip-path="url(#exp-arc-clip)" d="M1366.32 295.46C1420.23 86.8392 644.588 38.2593 250.028 40.047C1448.11 56.8065 1425.07 264.488 1319.08 357.804C1186.6 474.45 724.986 547.971 412.486 735.914C147.019 895.571 80.492 1104.38 84.14 1195.77C85.292 1432.19 93.7016 1766.8 118.124 1213.87C148.652 522.716 1298.92 556.235 1366.32 295.46Z"></path>
+          </svg>
+        </div>
+        </div>
+
+        <span class="exp-dot" data-index="0" data-status="active" aria-hidden="true"></span>
+        <span class="exp-dot" data-index="1" data-status="hidden" aria-hidden="true"></span>
+        <span class="exp-dot" data-index="2" data-status="hidden" aria-hidden="true"></span>
+        <span class="exp-dot" data-index="3" data-status="hidden" aria-hidden="true"></span>
+
+        <article class="exp-content" data-index="0" data-side="left" data-status="active">
+          <span class="exp-content__node" aria-hidden="true">
+            <span class="exp-content__bar"></span>
+            <span class="exp-content__plus"></span>
+          </span>
+          <span class="exp-content__eyebrow">Oct 2022 — Present</span>
+          <span class="exp-content__title">UBS · Zurich</span>
+          <span class="exp-content__role">Senior Service Designer / UX Designer</span>
+          <span class="exp-content__desc">Designed for complex wealth-management workflows — balancing user needs with business goals and regulation.</span>
+        </article>
+
+        <article class="exp-content" data-index="1" data-side="left" data-status="hidden">
+          <span class="exp-content__node" aria-hidden="true">
+            <span class="exp-content__bar"></span>
+            <span class="exp-content__plus"></span>
+          </span>
+          <span class="exp-content__eyebrow">Oct 2020 — Sep 2022</span>
+          <span class="exp-content__title">AdNovum · Bern</span>
+          <span class="exp-content__role">Senior Product Designer</span>
+          <span class="exp-content__desc">Complex enterprise interfaces — data tables, filtering and bulk operations for a nationwide Swiss platform.</span>
+        </article>
+
+        <article class="exp-content" data-index="2" data-side="right" data-status="hidden">
+          <span class="exp-content__node" aria-hidden="true">
+            <span class="exp-content__bar"></span>
+            <span class="exp-content__plus"></span>
+          </span>
+          <span class="exp-content__eyebrow">Jun 2016 — Jul 2020</span>
+          <span class="exp-content__title">Futurice · Munich</span>
+          <span class="exp-content__role">Senior Product Designer</span>
+          <span class="exp-content__desc">Launched digital products from research and concept through implementation. Led a six-person design team.</span>
+        </article>
+
+        <article class="exp-content" data-index="3" data-side="right" data-status="hidden">
+          <span class="exp-content__node" aria-hidden="true">
+            <span class="exp-content__bar"></span>
+            <span class="exp-content__plus"></span>
+          </span>
+          <span class="exp-content__eyebrow">Sep 2014 — Jun 2016</span>
+          <span class="exp-content__title">Designaffairs (Accenture) · Munich</span>
+          <span class="exp-content__role">Usability Engineer</span>
+          <span class="exp-content__desc">UX concepts and interactive prototypes for connected products, plus scalable UI components and B2B design systems.</span>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT — its OWN normal-flow section, fully independent of the
+     Experience sticky/scroll timeline. It occupies its own vertical space
+     after Experience and reveals with a fade + upward rise as it enters
+     the viewport (.contact-reveal + the shared IntersectionObserver). It
+     never hides, unmounts, or overlays the Experience content. -->
+<section id="contact" class="contact-section">
+  <div class="exp-contact contact-reveal">
+    <div class="exp-contact__lead">
+      <h2 class="exp-contact__heading">Have an opportunity in mind?</h2>
+      <p class="exp-contact__links">
+        <a href="mailto:lu.jin.ixd@gmail.com">lu.jin.ixd@gmail.com</a>
+        <span class="exp-contact__sep" aria-hidden="true">·</span>
+        <a href="https://www.linkedin.com/in/lu-jin-28008689/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <span class="exp-contact__sep" aria-hidden="true">·</span>
+        <a href="https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Download CV</a>
+      </p>
+    </div>
+    <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn shrink-0">
+      Let's talk
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER — shared across every page (identical markup + .site-footer rules) -->
+<footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
+  <div class="site-footer__inner">
+    <div class="site-footer__bottom">
+      <p class="text-xs text-text3">© 2026 Lu Jin. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // nav background on scroll
+  const nav = document.getElementById('site-nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Hero CTA: smooth-scroll into the first content section below the hero
+  // rather than navigating.
+  (function () {
+    const cta = document.getElementById('hero-see-how');
+    const target = document.getElementById('model-series');
+    if (!cta || !target) return;
+
+    cta.addEventListener('click', (e) => {
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    });
+  })();
+
+  // accordion groups: one open item per group (click-to-toggle).
+  // Groups inside a .pin-wrap are scroll-driven instead — skip click binding there.
+  document.querySelectorAll('.accordion').forEach((group) => {
+    if (group.closest('.pin-wrap')) return;
+    const items = group.querySelectorAll('.accordion-item');
+    items.forEach((item) => {
+      item.addEventListener('click', () => {
+        if (item.classList.contains('is-active')) return;
+        items.forEach((i) => i.classList.remove('is-active'));
+        item.classList.add('is-active');
+      });
+    });
+  });
+
+  // reveal-on-scroll
+  const revealEls = document.querySelectorAll('.reveal, .contact-reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach((el) => io.observe(el));
+
+  // tilt-on-hover cards (About Me) — mouse-driven 3D tilt with spring-like easing
+  const tiltReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!tiltReduceMotion) {
+    document.querySelectorAll('[data-tilt]').forEach((card) => {
+      const amplitude = 10;
+      let targetX = 0, targetY = 0, targetS = 1;
+      let curX = 0, curY = 0, curS = 1;
+      let rafId = null;
+
+      function tick() {
+        curX += (targetX - curX) * 0.15;
+        curY += (targetY - curY) * 0.15;
+        curS += (targetS - curS) * 0.15;
+        card.style.transform = `rotateX(${curX}deg) rotateY(${curY}deg) scale(${curS})`;
+
+        if (Math.abs(targetX - curX) > 0.01 || Math.abs(targetY - curY) > 0.01 || Math.abs(targetS - curS) > 0.001) {
+          rafId = requestAnimationFrame(tick);
+        } else {
+          rafId = null;
+        }
+      }
+
+      function start() {
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      }
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left - rect.width / 2;
+        const offsetY = e.clientY - rect.top - rect.height / 2;
+
+        targetY = (offsetX / (rect.width / 2)) * amplitude;
+        targetX = (offsetY / (rect.height / 2)) * -amplitude;
+        targetS = 1.03;
+
+        card.style.setProperty('--mx', `${((e.clientX - rect.left) / rect.width) * 100}%`);
+        card.style.setProperty('--my', `${((e.clientY - rect.top) / rect.height) * 100}%`);
+        start();
+      });
+
+      card.addEventListener('mouseleave', () => {
+        targetX = 0;
+        targetY = 0;
+        targetS = 1;
+        start();
+      });
+    });
+  }
+
+  // scroll-pinned zoom (hero, banner) + gentle parallax zoom on inline media panels
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reduceMotion) {
+    // Cache every scroll-driven element ONCE. Nothing below queries the DOM
+    // inside the rAF loop — repeated querySelectorAll on every frame (≈36 calls
+    // across all .pin-wrap groups) was a large part of the scroll jank.
+    const pinData = Array.from(document.querySelectorAll('.pin-wrap')).map((wrap) => ({
+      wrap,
+      medias:  Array.from(wrap.querySelectorAll('.pin-media')),
+      fades:   Array.from(wrap.querySelectorAll('.pin-fade')),
+      moves:   Array.from(wrap.querySelectorAll('.pin-move')),
+      darkens: Array.from(wrap.querySelectorAll('.pin-darken')),
+      reveals: Array.from(wrap.querySelectorAll('.pin-reveal')),
+      scrollItems:  Array.from(wrap.querySelectorAll('.accordion-item[data-index]')),
+      scrollMedias: Array.from(wrap.querySelectorAll('.scroll-media[data-index]')),
+      progress: 0,
+      lastAccordion: -1,
+    }));
+    const parallaxEls = Array.from(document.querySelectorAll('.parallax-zoom'));
+    const parallaxProg = new Array(parallaxEls.length).fill(0);
+    let ticking = false;
+
+    const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+
+    // ---- EXPERIENCE TIMELINE — FXIFY "How it works" curved-arc timeline.
+    // The 500vh track's scroll progress is the single source of truth. Three
+    // phases:
+    //   ENTER  p 0    -> 0.16 : first block starts ~45px below the About cards,
+    //                           coord box then eases DOWN 71px to its rest spot
+    //   PINNED p 0.16 -> 0.86 : box frozen; arc draws, glow fills, items 0..3
+    //                           activate in turn (thresholds below)
+    //   EXIT   p 0.86 -> 1    : coord box slides up and out
+    // Dots are CSS-anchored (percent) to the same points as their content, so
+    // the two always share a coordinate. No IntersectionObserver.
+    const expTrack = document.getElementById('exp-track');
+    const expCoord = document.getElementById('exp-coord');
+    const expAtmos = document.querySelector('.exp-atmos');   // carrier for .exp-field — needs --exp-f mirrored onto it
+    const expArcPath = document.getElementById('exp-arc-path');
+    const expCurve = document.getElementById('exp-curve');
+    const expDots = expCoord ? Array.from(expCoord.querySelectorAll('.exp-dot')) : [];
+    const expContents = expCoord ? Array.from(expCoord.querySelectorAll('.exp-content')) : [];
+    const EXP_ENTER = 0.16;                 // enter slide completes here
+    const EXP_EXIT = 0.86;                  // pinned phase ends here (no exit slide —
+                                            // the box holds until the track releases and
+                                            // the whole section scrolls away)
+    const EXP_ENTER_PX = -71;              // first block enters ~45px below the About cards, then eases DOWN to its rest position
+    const EXP_TH = [0.24, 0.42, 0.60];      // item activation thresholds (pinned phase)
+    // EXP_TIMELINE_END — past the last entry, where the blue-purple transition
+    // (--exp-f, the field + curve glow) starts ramping from 0. The timeline
+    // entries and dots are NOT hidden here — Contact is a separate normal-flow
+    // section (#contact) with its own reveal, fully decoupled from the timeline.
+    const EXP_TIMELINE_END = 0.82;
+    let expLen = 0;
+    let expActive = -1;                     // last integer activeIndex written to the DOM
+    let expLastShift = null;                // last --exp-shift written (px, 1dp)
+    let expProgress = 0;                    // track progress, set in the READ phase
+    let expLastArcOff = null;               // last strokeDashoffset written
+    let expLastCurve = null;                // last curve-group opacity written
+    let expLastField = null;                // last --exp-f (blue-purple field) written
+
+    function expInit() {
+      if (!expArcPath) return;
+      expLen = expArcPath.getTotalLength();
+      // reference behaviour: the bright part of the curve GROWS along the path
+      // from a fixed anchor — stroke-dashoffset is fixed, only the visible dash
+      // length animates (compositor-friendly, quantised in expWrite).
+      // 0.20 = the path fraction of dot 0 (UBS), so the visible curve starts
+      // AT the first timeline point and grows forward through dots 1 -> 2 -> 3.
+      expArcPath.style.strokeDashoffset = (-expLen * 0.20).toFixed(1);
+      expArcPath.style.strokeDasharray = (expLen * 0.02).toFixed(1) + ' ' + expLen.toFixed(1);
+      expReadProgress();
+      expWrite();
+    }
+
+    // READ PHASE — one getBoundingClientRect, no writes. Called from the
+    // rAF loop's read block so the exp read never follows a style write
+    // (which would force a synchronous layout).
+    function expReadProgress() {
+      if (!expTrack) return;
+      const r = expTrack.getBoundingClientRect();
+      const scrollable = r.height - window.innerHeight;
+      expProgress = scrollable > 0 ? clamp(-r.top / scrollable, 0, 1) : 0;
+    }
+
+    // WRITE PHASE — transform / opacity / stroke-dashoffset only, every value
+    // guarded so an unchanged number never touches the DOM: the SVG hairline
+    // is quantised to 1% of its length and the atmospheric opacities to
+    // coarse steps, so a slow / paused scroll stops re-rasterising the arc.
+    // data-status is written ONLY when the integer activeIndex changes — 4
+    // times over the whole section, so there is no per-frame attribute churn.
+    function expWrite() {
+      if (!expTrack || !expArcPath) return;
+      const progress = expProgress;
+
+      // enter slide — the whole coordinate box, dots and arc included. The
+      // first block enters just below the About cards (EXP_ENTER_PX is
+      // negative) and the box eases DOWN to its rest position; the timeline
+      // and contact card hold as one block; only a small drift in the last
+      // few percent eases the box up to meet the footer as the track
+      // releases (no hard "slide out" like the old version).
+      let shift = 0;
+      if (progress < EXP_ENTER) {
+        // the first block rides in ~45px below the About cards; once the section
+        // pins it eases DOWN to its rest spot over a short window (well under
+        // EXP_ENTER, so the top line never lingers beneath the fixed nav).
+        const t = clamp(progress / 0.02, 0, 1);
+        shift = EXP_ENTER_PX * (1 - t * (2 - t));
+      } else if (progress > 0.94) {
+        // barely-there settle as the track releases — Contact stays seated inside
+        // the blue-purple field rather than being yanked up into black.
+        shift = -16 * ((progress - 0.94) / 0.06);
+      }
+      shift = Math.round(shift * 10) / 10;
+      if (shift !== expLastShift) {
+        expCoord.style.setProperty('--exp-shift', shift + 'px');
+        expLastShift = shift;
+      }
+
+      // pinned-phase progress 0 -> 1 drives the arc draw + glow fill. The big
+      // arc + glow are atmospheric only — low peak opacity so the curve sinks
+      // behind the content, the connector and the "+" markers.
+      const pin = clamp((progress - EXP_ENTER) / (EXP_EXIT - EXP_ENTER), 0, 1);
+
+      // the bright luminous segment GROWS along the big curve as it scrubs
+      // (ref: visible dash ~2% -> ~47% of path length; offset fixed). Quantised.
+      const step = expLen * 0.01;
+      const seg = Math.round((expLen * (0.02 + pin * 0.62)) / step) * step;
+      if (seg !== expLastArcOff) { expArcPath.style.strokeDasharray = seg.toFixed(1) + ' ' + expLen.toFixed(1); expLastArcOff = seg; }
+
+      // curve + glow group fades in as the section pins — fast ramp so the
+      // mid-scroll states are not washed out (ref img opacity ~0.78 by mid).
+      if (expCurve) {
+        const cOpa = Math.round(clamp(pin * 2.6, 0, 1) * 200) / 200;
+        if (cOpa !== expLastCurve) { expCurve.style.opacity = cOpa.toFixed(3); expLastCurve = cOpa; }
+      }
+
+      // blue-purple transition — its OWN progress track (field + curve glow, both
+      // `opacity: var(--exp-f)`). EXACTLY 0 for the whole timeline (every entry,
+      // incl. the last, active up to EXP_TIMELINE_END) so the experience reads on
+      // the plain dark surface. Ramps 0 -> EXP_F_PEAK across EXP_TIMELINE_END -> ~0.98,
+      // i.e. it emerges AFTER the final experience and BEFORE the contact copy.
+      // EXP_F_PEAK caps it well below full strength so the end-state reads as a
+      // subtle lower-right atmospheric glow, never a solid blue/purple wash.
+      const EXP_F_PEAK = 0.5;
+      const fieldRaw = clamp((pin - EXP_TIMELINE_END) / (0.98 - EXP_TIMELINE_END), 0, 1);
+      const fieldEased = fieldRaw * fieldRaw * (3 - 2 * fieldRaw);
+      const field = Math.round(fieldEased * EXP_F_PEAK * 50) / 50;
+      if (field !== expLastField) {
+        expCoord.style.setProperty('--exp-f', field);            // .exp-curve__glow (inside #exp-coord)
+        if (expAtmos) expAtmos.style.setProperty('--exp-f', field); // .exp-field (now in the carrier)
+        expLastField = field;
+      }
+
+      // state machine — one active item, earlier ones "previous", later "hidden"
+      let activeIndex = 0;
+      for (let i = 0; i < EXP_TH.length; i++) if (pin >= EXP_TH[i]) activeIndex = i + 1;
+      if (activeIndex !== expActive) {
+        expActive = activeIndex;
+        const statusFor = (i) => (i < activeIndex ? 'previous' : i === activeIndex ? 'active' : 'hidden');
+        for (let i = 0; i < expContents.length; i++) expContents[i].dataset.status = statusFor(i);
+        for (let i = 0; i < expDots.length; i++) expDots[i].dataset.status = statusFor(i);
+      }
+    }
+
+    function updateScrollEffects() {
+      const vh = window.innerHeight;
+
+      // ---- READ PHASE: every layout read first, no writes in between, so the
+      // browser does at most one forced layout per frame instead of one per
+      // element (the old read-write-read-write interleave was layout thrash).
+      for (let i = 0; i < pinData.length; i++) {
+        const rect = pinData[i].wrap.getBoundingClientRect();
+        const scrollable = rect.height - vh;
+        pinData[i].progress = scrollable > 0 ? clamp(-rect.top / scrollable, 0, 1) : 0;
+      }
+      for (let i = 0; i < parallaxEls.length; i++) {
+        const rect = parallaxEls[i].getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        parallaxProg[i] = clamp(Math.abs(center - vh / 2) / (vh / 2 + rect.height / 2), 0, 1);
+      }
+      expReadProgress();
+
+      // ---- WRITE PHASE: transform / opacity only.
+      for (let d = 0; d < pinData.length; d++) {
+        const grp = pinData[d];
+        const progress = grp.progress;
+
+        for (const media of grp.medias) {
+          const amount = parseFloat(media.dataset.zoom || '0.15');
+          media.style.transform = `scale(${(1 + progress * amount).toFixed(4)})`;
+        }
+        for (const el of grp.fades) {
+          const speed = parseFloat(el.dataset.fade || '1');
+          const fadeProgress = clamp(progress * speed, 0, 1);
+          el.style.opacity = (1 - fadeProgress).toFixed(3);
+          el.style.transform = `translateY(${(fadeProgress * 30).toFixed(2)}px)`;
+        }
+        // video + hero copy: drift up and scale down together as the hero pins
+        for (const el of grp.moves) {
+          const move = parseFloat(el.dataset.move || '0');
+          const scaleAmt = parseFloat(el.dataset.moveScale || '0');
+          el.style.transform = `translateY(${(-progress * move).toFixed(2)}px) scale(${(1 - progress * scaleAmt).toFixed(4)})`;
+        }
+        // darken overlay: fades in to black as the hero pins
+        for (const el of grp.darkens) {
+          const speed = parseFloat(el.dataset.darken || '1');
+          el.style.opacity = clamp(progress * speed, 0, 1).toFixed(3);
+        }
+        // staged content reveal: opacity + gentle rise/scale-in, gated by a start point
+        for (const el of grp.reveals) {
+          const start = parseFloat(el.dataset.revealStart || '0');
+          const speed = parseFloat(el.dataset.revealSpeed || '2');
+          const revealProgress = clamp((progress - start) * speed, 0, 1);
+          const scaleFrom = parseFloat(el.dataset.revealScale || '1');
+          const scale = scaleFrom + (1 - scaleFrom) * revealProgress;
+          el.style.opacity = revealProgress.toFixed(3);
+          el.style.transform = `translateY(${((1 - revealProgress) * 20).toFixed(2)}px) scale(${scale.toFixed(4)})`;
+        }
+        // scroll-driven accordion: switch active item + paired image ONLY when
+        // the index changes (class toggles otherwise fire every frame).
+        if (grp.scrollItems.length) {
+          const count = grp.scrollItems.length;
+          const activeIndex = Math.min(count - 1, Math.floor(progress * count));
+          if (activeIndex !== grp.lastAccordion) {
+            grp.lastAccordion = activeIndex;
+            for (const item of grp.scrollItems) {
+              item.classList.toggle('is-active', Number(item.dataset.index) === activeIndex);
+            }
+            for (const img of grp.scrollMedias) {
+              img.classList.toggle('opacity-0', Number(img.dataset.index) !== activeIndex);
+            }
+          }
+        }
+      }
+
+      for (let i = 0; i < parallaxEls.length; i++) {
+        parallaxEls[i].style.transform = `scale(${(1.08 - parallaxProg[i] * 0.08).toFixed(4)})`;
+      }
+
+      expWrite();
+
+      ticking = false;
+    }
+
+    function onScrollOrResize() {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollEffects);
+        ticking = true;
+      }
+    }
+
+    function onResize() {
+      onScrollOrResize();
+    }
+
+    // re-run once fonts/layout settle
+    window.addEventListener('load', () => { expInit(); onResize(); });
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onResize);
+    expInit();
+    updateScrollEffects();
+  }
+</script>
+
+<script>
+  // language switcher — dropdown open/close, keyboard nav, selection persistence
+  (function initLangSwitch() {
+    const sw = document.querySelector('.lang-switch');
+    if (!sw) return;
+    const trigger = sw.querySelector('.lang-trigger');
+    const menu = sw.querySelector('.lang-menu');
+    const current = sw.querySelector('.lang-current');
+    const options = Array.from(menu.querySelectorAll('.lang-option'));
+    const isOpen = () => menu.classList.contains('open');
+
+    const open = () => {
+      menu.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+      (options.find(o => o.getAttribute('aria-selected') === 'true') || options[0]).focus();
+    };
+    const close = (focusTrigger) => {
+      menu.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+      if (focusTrigger) trigger.focus();
+    };
+
+    const applyLang = (opt) => {
+      options.forEach(o => o.setAttribute('aria-selected', String(o === opt)));
+      current.textContent = opt.textContent.trim();
+      document.documentElement.setAttribute('lang', opt.dataset.lang);
+    };
+    const select = (opt) => {
+      applyLang(opt);
+      try { localStorage.setItem('site-lang', opt.dataset.lang); } catch (e) {}
+      close(true);
+    };
+
+    trigger.addEventListener('click', () => isOpen() ? close() : open());
+
+    options.forEach((opt, i) => {
+      opt.addEventListener('click', () => select(opt));
+      opt.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') { e.preventDefault(); options[(i + 1) % options.length].focus(); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); options[(i - 1 + options.length) % options.length].focus(); }
+        else if (e.key === 'Home') { e.preventDefault(); options[0].focus(); }
+        else if (e.key === 'End') { e.preventDefault(); options[options.length - 1].focus(); }
+        else if (e.key === 'Escape') { e.preventDefault(); close(true); }
+        else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(opt); }
+      });
+    });
+
+    document.addEventListener('click', (e) => { if (isOpen() && !sw.contains(e.target)) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen()) close(true); });
+
+    try {
+      const saved = localStorage.getItem('site-lang');
+      if (saved) {
+        const opt = options.find(o => o.dataset.lang === saved);
+        if (opt) applyLang(opt);
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<script>
+  // Ensure the Solar redesign hero video autoplays reliably on load.
+  (function () {
+    document.querySelectorAll('#omni-model video').forEach((v) => {
+      v.muted = true;
+      const kick = () => v.play().catch(() => {});
+      kick();
+      v.addEventListener('canplay', kick, { once: true });
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) kick();
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

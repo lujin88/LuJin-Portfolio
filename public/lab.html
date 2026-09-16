@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lab — lu.design</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700;1,900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: 'var(--color-bg-page)',
+          text1: 'var(--color-text-1)',
+          text2: 'var(--color-text-2)',
+          text3: 'var(--color-text-3)',
+          divider: 'var(--color-border-divider)',
+          accent: 'var(--color-theme-2)',
+          'accent-hover': 'var(--color-theme-hover)',
+        },
+        fontFamily: {
+          sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  /* ============================================================
+     DESIGN TOKENS — Kling AI Design System (dark)
+     ============================================================ */
+  :root {
+    /* brand + theme accents */
+    --color-theme-1: #ffffff;
+    --color-theme-2: #8B5CF6;
+    --color-theme-3: rgba(139, 92, 246, 0.15);
+    --color-theme-hover: #A78BFA;
+    --color-bg-deepseek: #7C3AED;
+    --color-primary-solid: #8B5CF6;
+
+    /* surfaces */
+    --color-bg-page: #0a0a0a;
+    --color-bg-primary: #111214;
+    --color-bg-secondary: #1a1c1f;
+    --color-bg-elevated: #1f2124;
+
+    /* text */
+    --color-text-1: #f9fbfc;
+    --color-text-2: #b6bbc2;
+    --color-text-3: #777e85;
+    --color-text-4: #595d61;
+
+    /* borders */
+    --color-border-frame: #1a1b1f;
+    --color-border-container: #242629;
+    --color-border-divider: #343638;
+    --color-border-hover: #76787a;
+    --color-footer-divider: rgba(255, 255, 255, 0.07);
+    --footer-max-w: 1040px;               /* matches the .exp-contact container above the footer (canonical: index.html) */
+
+    /* derived helpers */
+    --hairline: rgba(255, 255, 255, 0.10);
+    --hairline-strong: rgba(255, 255, 255, 0.16);
+    --surface-raise: rgba(255, 255, 255, 0.06);
+
+    --nav-top-gradient: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+    --nav-scrolled-bg: rgba(10, 10, 10, 0.78);
+
+    --pill-text: #f9fbfc;
+    --pill-border: rgba(249, 251, 252, 0.45);
+    --pill-bg: rgba(255, 255, 255, 0.02);
+    --pill-hover-bg: #f9fbfc;
+    --pill-hover-text: #0a0a0a;
+    --pill-hover-shadow: 0 10px 30px -8px rgba(249, 251, 252, 0.35);
+
+    --panel-shadow: 0 40px 80px -30px rgba(0,0,0,0.7), 0 12px 30px -10px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06);
+
+    --card-bg: #111214;
+    --card-border: rgba(255, 255, 255, 0.07);
+    --card-border-hover: rgba(255, 255, 255, 0.16);
+    --card-glow: rgba(139, 92, 246, 0.15);
+    --card-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 24px 48px -26px rgba(139,92,246,0.14), 0 10px 28px -12px rgba(0,0,0,0.65);
+    --card-shadow-hover: 0 1px 0 rgba(255,255,255,0.06) inset, 0 32px 64px -26px rgba(139,92,246,0.24), 0 14px 34px -12px rgba(0,0,0,0.75);
+
+    --pin-darken: #000000;
+
+    --grain-opacity: 0.035;
+    --grain-blend: overlay;
+
+    --selection-bg: rgba(139, 92, 246, 0.35);
+    --selection-text: #ffffff;
+
+    /* experience timeline accent (purple trail) */
+    --exp-accent: #8B5CF6;
+    --exp-accent-bright: #A78BFA;
+    --exp-glow-wide: rgba(139, 92, 246, 0.22);
+    --exp-glow-mid: rgba(139, 92, 246, 0.34);
+    --exp-track: rgba(255, 255, 255, 0.09);
+    --exp-dot-ring: rgba(255, 255, 255, 0.35);
+    --exp-connector: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.28) 65%, rgba(255,255,255,0.5) 100%);
+  }
+
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    background: var(--color-bg-page);
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* subtle film-grain texture for depth, per design guardrails */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    mix-blend-mode: var(--grain-blend);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection { background: var(--selection-bg); color: var(--selection-text); }
+
+  /* nav */
+  .nav-link {
+    position: relative;
+    color: color-mix(in srgb, var(--color-text-1) 72%, transparent);
+    transition: color 300ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    height: 1px;
+    background: var(--color-text-1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 350ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .nav-link:hover, .nav-link:focus-visible { color: var(--color-text-1); }
+  .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
+
+  #site-nav {
+    background: var(--nav-top-gradient);
+    transition: background-color 400ms ease, backdrop-filter 400ms ease, box-shadow 400ms ease;
+  }
+  #site-nav.scrolled {
+    background: var(--nav-scrolled-bg);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 var(--hairline);
+  }
+
+  /* pill button */
+  .pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--pill-border);
+    padding: 0.85rem 1.9rem;
+    font-size: 0.95rem;
+    color: var(--pill-text);
+    background: var(--pill-bg);
+    transition: transform 320ms cubic-bezier(0.22,1,0.36,1),
+                background-color 320ms cubic-bezier(0.22,1,0.36,1),
+                color 320ms cubic-bezier(0.22,1,0.36,1),
+                border-color 320ms cubic-bezier(0.22,1,0.36,1),
+                box-shadow 320ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .pill-btn:hover {
+    background: var(--pill-hover-bg);
+    color: var(--pill-hover-text);
+    border-color: var(--pill-hover-bg);
+    box-shadow: var(--pill-hover-shadow);
+    transform: translateY(-2px);
+  }
+  .pill-btn:active { transform: translateY(0) scale(0.97); }
+  .pill-btn:focus-visible {
+    outline: 2px solid #8B5CF6;
+    outline-offset: 3px;
+  }
+  .pill-btn svg { transition: transform 320ms cubic-bezier(0.22,1,0.36,1); }
+  .pill-btn:hover svg { transform: translateX(3px); }
+
+  /* language switcher */
+  .lang-switch { position: relative; }
+  .lang-trigger svg { transition: transform 300ms cubic-bezier(0.22,1,0.36,1); }
+  .lang-trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .lang-menu {
+    position: absolute;
+    top: calc(100% + 16px);
+    right: 0;
+    min-width: 224px;
+    padding: 10px;
+    border-radius: 16px;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--hairline, rgba(255,255,255,0.10));
+    box-shadow: var(--panel-shadow, 0 40px 80px -30px rgba(0,0,0,0.7), 0 12px 30px -10px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06));
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+    transform-origin: top right;
+    pointer-events: none;
+    transition: opacity 260ms cubic-bezier(0.22,1,0.36,1), transform 260ms cubic-bezier(0.22,1,0.36,1);
+    z-index: 60;
+  }
+  .lang-menu.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+  .lang-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    line-height: 1.25;
+    color: var(--color-text-2);
+    text-align: left;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+  .lang-option:hover, .lang-option:focus-visible {
+    background: var(--surface-raise, rgba(255,255,255,0.06));
+    color: var(--color-text-1);
+    outline: none;
+  }
+  .lang-option[aria-selected="true"] { color: var(--color-text-1); font-weight: 600; }
+  .lang-check { opacity: 0; flex-shrink: 0; color: var(--color-theme-2); transition: opacity 200ms ease; }
+  .lang-option[aria-selected="true"] .lang-check { opacity: 1; }
+
+  /* section media panel shadow (layered, tinted, per guardrails) */
+  .media-panel {
+    box-shadow: var(--panel-shadow);
+  }
+
+  /* theme-aware placeholder surface for media panels (stands in for imagery,
+     reads as intentional in both light and dark) */
+  .ph-media {
+    background:
+      radial-gradient(80% 70% at var(--ph-x, 20%) var(--ph-y, 15%), var(--color-theme-3) 0%, transparent 55%),
+      radial-gradient(90% 90% at 85% 92%, var(--surface-raise) 0%, transparent 60%),
+      var(--color-bg-secondary);
+  }
+
+  /* accordion */
+  .accordion-item {
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1.1rem 0;
+  }
+  .accordion--end .accordion-item { flex-direction: row-reverse; text-align: right; }
+
+  .accordion-bar {
+    flex: 0 0 2px;
+    width: 2px;
+    border-radius: 2px;
+    background: transparent;
+    transition: background-color 400ms ease;
+  }
+  .accordion-item.is-active .accordion-bar { background: var(--color-text-1); }
+
+  .accordion-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-text-3);
+    transition: color 400ms ease;
+  }
+  .accordion-item.is-active .accordion-title { color: var(--color-text-1); }
+  .accordion-item:not(.is-active):hover .accordion-title { color: var(--color-text-2); }
+  .accordion-item:focus-visible { outline: 2px solid #8B5CF6; outline-offset: 4px; }
+
+  /* scroll-driven groups (inside .pin-wrap): not clickable, advance from scroll position only.
+     pointer-events stays enabled so the title/body text remains selectable/copyable; the JS
+     click-to-advance binding is what's actually skipped for these groups (see .closest('.pin-wrap') check). */
+  .pin-wrap .accordion-item {
+    cursor: default;
+  }
+  .pin-wrap .accordion-item:not(.is-active):hover .accordion-title { color: var(--color-text-3); }
+
+  .accordion-body-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 450ms cubic-bezier(0.22,1,0.36,1), opacity 350ms ease;
+  }
+  .accordion-item.is-active .accordion-body-wrap {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+  .accordion-body-inner { overflow: hidden; }
+  .accordion-body {
+    margin-top: 0.85rem;
+    color: var(--color-text-2);
+    line-height: 1.75;
+    font-size: 0.95rem;
+    font-weight: 400;
+  }
+
+  /* reveal-on-scroll (transform + opacity only) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 800ms cubic-bezier(0.22,1,0.36,1), transform 800ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  .tag-chip {
+    display: inline-flex;
+    align-items: center;
+    background: var(--surface-raise);
+    border: 1px solid var(--hairline-strong);
+    border-radius: 6px;
+    padding: 0.05rem 0.45rem;
+    font-size: 0.8rem;
+    color: var(--color-text-1);
+  }
+
+  @media (min-width: 1024px) {
+    .lg-divider-l { border-left: 1px solid var(--hairline); }
+    .lg-divider-r { border-right: 1px solid var(--hairline); }
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* scroll-driven text/image swap (pinned accordion) */
+  .scroll-media {
+    transition: opacity 650ms cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .tilt-card-wrap {
+    perspective: 900px;
+  }
+  .nextgen-card {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    padding: 1.75rem 1.5rem;
+    height: 100%;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 350ms cubic-bezier(0.22,1,0.36,1), border-color 350ms ease, background-color 450ms ease;
+  }
+  .nextgen-card:hover {
+    border-color: var(--card-border-hover);
+    box-shadow: var(--card-shadow-hover);
+  }
+  .nextgen-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--card-glow), transparent 60%);
+    opacity: 0;
+    transition: opacity 350ms ease;
+    pointer-events: none;
+  }
+  .nextgen-card:hover::before { opacity: 1; }
+  .nextgen-card > * { position: relative; z-index: 1; }
+
+  .footer-link {
+    display: block;
+    font-size: 0.875rem;
+    color: #b6bbc2;
+    margin-bottom: 0.85rem;
+    transition: color 300ms ease;
+  }
+  .footer-link:hover, .footer-link:focus-visible { color: #f9fbfc; }
+  .footer-link:focus-visible { outline: 2px solid var(--color-theme-2); outline-offset: 3px; }
+
+  .social-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.06);
+    color: #b6bbc2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 300ms cubic-bezier(0.22,1,0.36,1), background-color 300ms ease, color 300ms ease;
+  }
+  .social-btn:hover { background: #f9fbfc; color: #0a0a0a; transform: translateY(-3px); }
+  .social-btn:focus-visible { outline: 2px solid var(--color-theme-2); outline-offset: 2px; }
+
+  .app-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 9999px;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.75rem;
+    color: #b6bbc2;
+  }
+
+  /* scroll-pinned zoom sections (hero, banner): the section sticks in place
+     while its wrapper scrolls past, and the media scales up underneath it */
+  .pin-wrap { position: relative; }
+  .pin-sticky {
+    position: sticky !important;
+    top: 0 !important;
+    will-change: transform;
+  }
+  .pin-media {
+    transform: scale(1);
+    will-change: transform;
+  }
+  .pin-fade {
+    will-change: transform, opacity;
+  }
+  /* hero video + copy: drift/scale together as one plane while the section pins */
+  .pin-move {
+    will-change: transform;
+  }
+  /* darken overlay: fades in to black as the pinned hero scrolls.
+     pointer-events:none so it never blocks selecting the hero copy underneath, even while transparent. */
+  .pin-darken {
+    opacity: 0;
+    background: var(--pin-darken);
+    will-change: opacity;
+    pointer-events: none;
+  }
+
+  /* hero copy sits on top of the video — keep it light against the footage */
+  .hero-pin-section .pin-move h1,
+  .hero-pin-section .pin-move .pill-btn { color: #f9fbfc; }
+  .hero-pin-section .pin-move p { color: #d7dbe0; }
+  /* staged content reveal (heading / paragraph / media) inside a pin-wrap */
+  .pin-reveal {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+  /* intro-overlay stays pointer-events:none (so hero content beneath keeps working while it fades in),
+     but its own text needs pointer-events:auto restored so it's selectable/copyable. */
+  .intro-overlay {
+    pointer-events: none;
+  }
+  .intro-overlay h2,
+  .intro-overlay p {
+    pointer-events: auto;
+  }
+
+  /* gentle scroll-linked zoom for inline media panels */
+  .parallax-zoom {
+    transform: scale(1.08);
+    will-change: transform;
+  }
+
+  /* ambient idle zoom on the hero video, independent of the scroll-driven pin-move on its child */
+  @keyframes heroAmbientZoom {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.09); }
+  }
+  .hero-ambient-zoom {
+    animation: heroAmbientZoom 16s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  /* EXPERIENCE TIMELINE — a winding, scroll-drawn road with milestone steps that
+     light up as the trail of light reaches them (see .exp-canvas / .exp-step / the drawTrail loop) */
+  .exp-canvas {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    /* keep the drawing surface and the absolutely-placed steps locked to one aspect box */
+    aspect-ratio: 1100 / 2900;
+  }
+
+  .exp-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    --p: 0; /* 0 → 1 draw progress, set from scroll */
+  }
+
+  .exp-track,
+  .exp-line,
+  .exp-glow-mid,
+  .exp-glow-wide {
+    fill: none;
+    stroke-linecap: round;
+  }
+  /* faint full route, always visible so the path ahead reads */
+  .exp-track {
+    stroke: var(--exp-track);
+    stroke-width: 1;
+  }
+  /* the three revealed layers share the same dash geometry (pathLength normalised to 1).
+     --p is written from scroll every frame; the short linear transition only smooths the
+     gap between rAF samples so fast flings / jumps don't look stepped (it still tracks scroll). */
+  .exp-line,
+  .exp-glow-mid,
+  .exp-glow-wide {
+    stroke-dasharray: 1 2;
+    stroke-dashoffset: calc(1 - var(--p));
+    transition: stroke-dashoffset 0.12s linear;
+  }
+  .exp-glow-wide {
+    stroke: var(--exp-glow-wide);
+    stroke-width: 26;
+    filter: blur(26px);
+  }
+  .exp-glow-mid {
+    stroke: var(--exp-glow-mid);
+    stroke-width: 5;
+    filter: blur(5px);
+  }
+  .exp-line {
+    stroke: url(#expLineGrad);
+    stroke-width: 1.75;
+  }
+
+  .exp-head { opacity: 0; transition: opacity 0.25s ease; }
+  .exp-svg.is-drawing .exp-head { opacity: 1; }
+  .exp-head-core { fill: var(--exp-accent-bright); }
+  .exp-head-glow { fill: var(--exp-glow-mid); filter: blur(4px); }
+
+  /* shared easing for every step state change — a calm, slightly-overshoot-free expo-out curve */
+  .exp-canvas { --exp-ease: cubic-bezier(0.16, 1, 0.3, 1); }
+
+  /* ---- milestone steps: 0-size anchor sits on the road at (--x%, --y%) ----
+     The anchor itself never transforms (that would drift the dot off the path);
+     only its child content translates. */
+  .exp-step {
+    position: absolute;
+    left: calc(var(--x) * 1%);
+    top: calc(var(--y) * 1%);
+    --conn: 118px;
+    opacity: 0.42;
+    filter: saturate(0.55);
+    transition: opacity 0.55s var(--exp-ease), filter 0.55s var(--exp-ease);
+  }
+  .exp-step.is-lit { opacity: 1; filter: saturate(1); }
+
+  .exp-step__dot {
+    position: absolute;
+    left: -7px;
+    top: -7px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--color-bg-page);
+    border: 1.5px solid var(--exp-dot-ring);
+    z-index: 2;
+    /* inactive: sits a touch smaller, then pops to full size when the trail arrives */
+    transform: scale(0.66);
+    transition: transform 0.45s var(--exp-ease),
+                background-color 0.4s ease,
+                border-color 0.4s ease,
+                box-shadow 0.5s ease;
+  }
+  .exp-step.is-lit .exp-step__dot {
+    transform: scale(1);
+    background: var(--exp-accent-bright);
+    border-color: var(--exp-accent-bright);
+    box-shadow: 0 0 0 3px var(--exp-glow-wide), 0 0 18px 2px var(--exp-glow-mid);
+  }
+
+  .exp-step__connector {
+    position: absolute;
+    left: -0.5px;
+    top: calc(-1 * var(--conn));
+    width: 1px;
+    height: var(--conn);
+    background: var(--exp-connector);
+    /* grows up from the dot toward the copy as the step activates */
+    transform: scaleY(0.72);
+    transform-origin: bottom;
+    transition: transform 0.5s var(--exp-ease), background 0.5s ease;
+  }
+  .exp-step.is-lit .exp-step__connector {
+    transform: scaleY(1);
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--exp-accent) 0%, transparent) 0%, color-mix(in srgb, var(--exp-accent) 55%, transparent) 60%, var(--exp-accent-bright) 100%);
+  }
+
+  .exp-step__inner {
+    position: absolute;
+    bottom: var(--conn);
+    width: 360px;
+    padding-bottom: 0.9rem;
+    /* pre-reveal: a few px low and dimmed (still faintly legible); eases into
+       place ~80ms after the node pops */
+    opacity: 0.6;
+    transform: translateY(9px);
+    transition: opacity 0.5s var(--exp-ease) 0.08s, transform 0.55s var(--exp-ease) 0.08s;
+  }
+  .exp-step.is-lit .exp-step__inner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* left steps sit to the LEFT of the road (text ends at the connector); right steps to the right */
+  .exp-step[data-side="left"] .exp-step__inner { right: 0; padding-right: 1.9rem; text-align: right; }
+  .exp-step[data-side="right"] .exp-step__inner { left: 0; padding-left: 1.9rem; text-align: left; }
+
+  .exp-step__head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 0.55rem;
+  }
+  .exp-step[data-side="left"] .exp-step__head { flex-direction: row-reverse; }
+  .exp-step__plus {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem;
+    line-height: 1;
+    color: var(--exp-accent);
+    flex: 0 0 auto;
+    /* position stays fixed (translateY constant); only colour + a hair of scale animate */
+    transform: translateY(1px) scale(1);
+    transition: color 0.45s var(--exp-ease), transform 0.45s var(--exp-ease);
+  }
+  .exp-step:not(.is-lit) .exp-step__plus {
+    color: var(--color-text-3);
+    transform: translateY(1px) scale(0.88);
+  }
+  .exp-step__company {
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--color-text-1);
+    line-height: 1.3;
+  }
+  .exp-step__years {
+    display: block;
+    margin-top: 0.15rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--color-text-3);
+  }
+  .exp-step__role {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-text-1);
+    margin-bottom: 0.7rem;
+    line-height: 1.4;
+  }
+  .exp-step__list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .exp-step__list li {
+    position: relative;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--color-text-2);
+    padding-left: 0.95rem;
+  }
+  .exp-step[data-side="left"] .exp-step__list li { padding-left: 0; padding-right: 0.95rem; }
+  .exp-step__list li::before {
+    content: "";
+    position: absolute;
+    top: 0.52rem;
+    width: 4px;
+    height: 4px;
+    background: var(--exp-accent);
+    opacity: 0.7;
+  }
+  .exp-step[data-side="right"] .exp-step__list li::before { left: 0; }
+  .exp-step[data-side="left"] .exp-step__list li::before { right: 0; }
+
+  /* ---- compact fallback: narrow screens get a straight left-rail timeline that
+     still draws with scroll (--p) and lights each step as it is reached ---- */
+  @media (max-width: 899px) {
+    .exp-canvas {
+      aspect-ratio: auto;
+      max-width: 460px;
+      padding-left: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      position: relative;
+    }
+    /* full faint rail */
+    .exp-canvas::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.35rem;
+      bottom: 0.35rem;
+      width: 1px;
+      background: var(--exp-track);
+    }
+    /* the drawn portion — GPU-friendly scaleY driven by scroll progress */
+    .exp-canvas::after {
+      content: "";
+      position: absolute;
+      left: -0.5px;
+      top: 0.35rem;
+      bottom: 0.35rem;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--exp-accent-bright) 0%, color-mix(in srgb, var(--exp-accent) 35%, transparent) 100%);
+      transform: scaleY(var(--p, 0));
+      transform-origin: top;
+      transition: transform 0.12s linear;
+      will-change: transform;
+    }
+    .exp-svg { display: none; }
+    .exp-step {
+      position: relative;
+      left: auto;
+      top: auto;
+      filter: none;
+    }
+    .exp-step__connector { display: none; }
+    .exp-step__dot {
+      left: calc(-1.4rem - 7px);
+      top: 0.3rem;
+    }
+    .exp-step__inner {
+      position: relative;
+      bottom: auto;
+      width: auto;
+      padding: 0 !important;
+      text-align: left !important;
+    }
+    .exp-step__head { flex-direction: row !important; }
+    .exp-step__list li {
+      padding-left: 0.95rem !important;
+      padding-right: 0 !important;
+    }
+    .exp-step__list li::before { left: 0 !important; right: auto !important; }
+  }
+
+  /* ============================================================
+     LIQUID GLASS — frosted panel adapted from the React "liquid-glass"
+     component for this project's dark hero. Layers: warped backdrop
+     (see #glass-distortion filter) · translucent tint · inset edge
+     highlight · content. Only the tint swaps between themes.
+     ============================================================ */
+  .liquid-glass {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.75rem;
+    isolation: isolate;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28), 0 0 40px rgba(0, 0, 0, 0.18);
+    transition: box-shadow 700ms cubic-bezier(0.175, 0.885, 0.32, 2.2);
+  }
+  .liquid-glass__warp {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    filter: url(#glass-distortion);
+    isolation: isolate;
+  }
+  .liquid-glass__tint {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    /* translucent white frost + a soft dark wash so light text always reads
+       over whatever the video is doing behind the panel */
+    background:
+      linear-gradient(115deg, rgba(10, 12, 20, 0.30), rgba(10, 12, 20, 0.14) 55%, rgba(10, 12, 20, 0.28)),
+      rgba(255, 255, 255, 0.12);
+  }
+  .liquid-glass__edge {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.45),
+                inset -1px -1px 1px 1px rgba(255, 255, 255, 0.30);
+  }
+  .liquid-glass__content { position: relative; z-index: 3; }
+
+  /* Role / Focus panel — Kling-inspired glass treatment: wide rounded
+     rectangle, translucent charcoal fill, subtle backdrop blur, a hairline
+     semi-transparent white border and a soft layered shadow lifting it off
+     the hero video. Pinned to the dark treatment (not theme-swapped) since
+     the hero copy sits on the video and is always light. */
+  .overview-card {
+    position: relative;
+    width: 100%;
+    max-width: 34rem;
+    background: rgba(16, 18, 22, 0.55);
+    backdrop-filter: blur(16px) saturate(1.15);
+    -webkit-backdrop-filter: blur(16px) saturate(1.15);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1.5rem;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset,
+                0 24px 48px -26px rgba(139,92,246,0.15),
+                0 14px 40px -14px rgba(0,0,0,0.55);
+  }
+  @media (min-width: 768px) {
+    .overview-card { padding: 1.75rem 2rem; border-radius: 1.75rem; }
+  }
+  /* Quiet metadata labels — small, light, soft cool lavender; refined via
+     weight, colour and a hair of tracking rather than uppercase. */
+  .overview-card__label {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: rgba(199, 195, 230, 0.68);
+    margin-bottom: 0.375rem;
+  }
+  .overview-card__value {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    color: rgba(249, 251, 252, 0.9);
+  }
+  .overview-card__value--focus {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(249, 251, 252, 0.8);
+  }
+  .overview-card__group { margin-top: 1.75rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* no scroll animation runs — show every step in its final, reached state */
+    .exp-step { opacity: 1 !important; filter: none !important; }
+    .exp-step__inner { opacity: 1 !important; transform: none !important; }
+    .exp-step__dot {
+      transform: scale(1) !important;
+      background: var(--exp-accent-bright) !important;
+      border-color: var(--exp-accent-bright) !important;
+      box-shadow: 0 0 0 3px var(--exp-glow-wide), 0 0 18px 2px var(--exp-glow-mid) !important;
+    }
+    .exp-step__connector {
+      transform: scaleY(1) !important;
+      background: linear-gradient(to bottom, color-mix(in srgb, var(--exp-accent) 0%, transparent) 0%, color-mix(in srgb, var(--exp-accent) 55%, transparent) 60%, var(--exp-accent-bright) 100%) !important;
+    }
+    .exp-step__plus { transform: translateY(1px) !important; color: var(--exp-accent) !important; }
+    .exp-canvas::after { transform: scaleY(1) !important; }
+    .exp-line, .exp-glow-mid, .exp-glow-wide { stroke-dashoffset: 0 !important; }
+    .pin-wrap { height: auto !important; }
+    .pin-sticky { position: relative; height: auto !important; }
+    .pin-media, .parallax-zoom { transform: none !important; }
+    .pin-fade, .pin-move { opacity: 1 !important; transform: none !important; }
+    .pin-darken { display: none !important; }
+    .pin-reveal { opacity: 1 !important; transform: none !important; }
+    .hero-ambient-zoom { animation: none !important; }
+    /* hero + intro overlay stack vertically instead of cross-fading in place */
+    .hero-pin-section { display: block !important; padding-top: 5rem; padding-bottom: 3rem; }
+    .intro-overlay { position: static !important; padding-top: 3rem; padding-bottom: 4rem; }
+  }
+
+  /* ── contact section ───────────────────────────────────────────────
+     Shared global component — identical markup + rules on every page
+     (canonical version lives in index.html). Its OWN normal-flow section:
+     transparent, with no fill, gradient, border-top or pseudo-element, so
+     there is NO horizontal divider where the previous section ends and
+     Contact begins — the transition is spacing only. */
+  .contact-section {
+    position: relative;
+    background: transparent;
+    padding: clamp(6rem, 14vh, 9rem) 1.5rem clamp(4.5rem, 10vh, 7rem);
+  }
+  .exp-contact {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.75rem 3rem;
+  }
+  /* independent reveal — fade + gentle rise as the section enters the
+     viewport, toggled by the shared IntersectionObserver (.is-visible). */
+  .contact-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .contact-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .exp-contact__heading {
+    font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    color: var(--color-text-1);
+  }
+  .exp-contact__links {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.75rem;
+    font-size: 15px;
+    color: var(--color-text-3);
+  }
+  .exp-contact__links a { transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  .exp-contact__links a:hover { color: var(--color-text-1); }
+  .exp-contact__links a:focus-visible {
+    outline: 2px solid var(--color-accent, #7A7FDC);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+  .exp-contact__sep { color: var(--color-text-4, rgba(255,255,255,0.25)); }
+
+  @media (max-width: 640px), (prefers-reduced-motion: reduce) {
+    .exp-contact { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .contact-reveal { opacity: 1 !important; transform: none !important; }
+  }
+
+  /* ── shared site footer ─────────────────────────────────────────────
+     Bottom divider + copyright. The inner container matches the same
+     max-width / horizontal padding as the "Have an opportunity in mind?"
+     block above, so the copyright's left edge aligns exactly with the
+     heading. Identical markup + rules on every page that uses the footer. */
+  .site-footer__inner {
+    max-width: var(--footer-max-w, 1440px);
+    margin: 0 auto;
+  }
+  .site-footer__bottom {
+    border-top: 1px solid var(--color-footer-divider);
+    padding-top: 2rem;
+    text-align: left;
+  }
+</style>
+</head>
+
+
+<body class="bg-ink text-text1 min-w-[360px]">
+
+<!-- NAV — shared global component (canonical markup in index.html) -->
+<nav id="site-nav" class="fixed top-0 inset-x-0 z-50">
+  <div class="mx-auto max-w-[1600px] flex items-center justify-between px-6 md:px-14 h-20">
+    <div class="flex items-center gap-4">
+      <a href="/index" aria-label="Lu — back to home" class="flex items-center text-text1 font-sans font-bold text-2xl tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4 rounded">
+        Lu
+      </a>
+    </div>
+
+    <div class="hidden lg:flex items-center gap-10 text-[15px]">
+      <a href="/client-advisory" class="nav-link focus-visible:outline-none">Client Advisory</a>
+      <a href="/EON" class="nav-link focus-visible:outline-none">Eon Solar</a>
+      <a href="/lab" class="nav-link is-current text-text1 focus-visible:outline-none" aria-current="page">Lab</a>
+      <a href="/about" class="nav-link focus-visible:outline-none">About</a>
+    </div>
+
+    <div class="flex items-center gap-5">
+      <div class="lang-switch">
+        <button type="button" class="lang-trigger hidden md:flex items-center gap-1 text-[15px] text-text2 hover:text-text1 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 rounded" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language">
+          <span class="lang-current">English</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="lang-menu" role="listbox" aria-label="Language">
+          <button type="button" class="lang-option" role="option" data-lang="en" aria-selected="true">English<svg class="lang-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></button>
+          <button type="button" class="lang-option" role="option" data-lang="de" aria-selected="false">Deutsch<svg class="lang-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></button>
+        </div>
+      </div>
+      <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn !py-2.5 !px-5 text-[14px]">Contact me</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO — placeholder -->
+<section id="lab-hero" class="relative min-h-screen flex items-center bg-ink px-6 pt-32 pb-24">
+  <div class="mx-auto w-full max-w-[1040px]">
+    <p class="reveal text-[13px] font-sans font-semibold uppercase tracking-[0.28em] text-accent mb-6">Lab</p>
+    <h1 class="reveal font-serif font-bold text-text1 text-[clamp(2.4rem,6vw,4.75rem)] leading-[1.05] tracking-[-0.03em] max-w-3xl">
+      Experiments in progress
+    </h1>
+    <p class="reveal mt-8 max-w-2xl text-text2 text-[17px] leading-[1.7]">
+      A space for prototypes, motion studies, and design tooling explorations. New pieces
+      are being assembled here — check back soon, or reach out if you'd like a walkthrough
+      of what's currently in the works.
+    </p>
+    <div class="reveal mt-10">
+      <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn">
+        Get in touch
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT — shared global component (canonical markup in index.html) -->
+<section id="contact" class="contact-section">
+  <div class="exp-contact contact-reveal">
+    <div class="exp-contact__lead">
+      <h2 class="exp-contact__heading">Have an opportunity in mind?</h2>
+      <p class="exp-contact__links">
+        <a href="mailto:lu.jin.ixd@gmail.com">lu.jin.ixd@gmail.com</a>
+        <span class="exp-contact__sep" aria-hidden="true">·</span>
+        <a href="https://www.linkedin.com/in/lu-jin-28008689/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <span class="exp-contact__sep" aria-hidden="true">·</span>
+        <a href="https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Download CV</a>
+      </p>
+    </div>
+    <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn shrink-0">
+      Let's talk
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER — shared across every page (identical markup + .site-footer rules) -->
+<footer class="site-footer relative bg-[#0d0e10] pt-16 pb-8 px-6">
+  <div class="site-footer__inner">
+    <div class="site-footer__bottom">
+      <p class="text-xs text-text3">© 2026 Lu Jin. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // nav background on scroll
+  const nav = document.getElementById('site-nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // reveal-on-scroll
+  const revealEls = document.querySelectorAll('.reveal, .contact-reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach((el) => io.observe(el));
+</script>
+
+<script>
+  // language switcher — dropdown open/close, keyboard nav, selection persistence
+  (function initLangSwitch() {
+    const sw = document.querySelector('.lang-switch');
+    if (!sw) return;
+    const trigger = sw.querySelector('.lang-trigger');
+    const menu = sw.querySelector('.lang-menu');
+    const current = sw.querySelector('.lang-current');
+    const options = Array.from(menu.querySelectorAll('.lang-option'));
+    const isOpen = () => menu.classList.contains('open');
+
+    const open = () => {
+      menu.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+      (options.find(o => o.getAttribute('aria-selected') === 'true') || options[0]).focus();
+    };
+    const close = (focusTrigger) => {
+      menu.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+      if (focusTrigger) trigger.focus();
+    };
+
+    const applyLang = (opt) => {
+      options.forEach(o => o.setAttribute('aria-selected', String(o === opt)));
+      current.textContent = opt.textContent.trim();
+      document.documentElement.setAttribute('lang', opt.dataset.lang);
+    };
+    const select = (opt) => {
+      applyLang(opt);
+      try { localStorage.setItem('site-lang', opt.dataset.lang); } catch (e) {}
+      close(true);
+    };
+
+    trigger.addEventListener('click', () => isOpen() ? close() : open());
+
+    options.forEach((opt, i) => {
+      opt.addEventListener('click', () => select(opt));
+      opt.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') { e.preventDefault(); options[(i + 1) % options.length].focus(); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); options[(i - 1 + options.length) % options.length].focus(); }
+        else if (e.key === 'Home') { e.preventDefault(); options[0].focus(); }
+        else if (e.key === 'End') { e.preventDefault(); options[options.length - 1].focus(); }
+        else if (e.key === 'Escape') { e.preventDefault(); close(true); }
+        else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(opt); }
+      });
+    });
+
+    document.addEventListener('click', (e) => { if (isOpen() && !sw.contains(e.target)) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen()) close(true); });
+
+    try {
+      const saved = localStorage.getItem('site-lang');
+      if (saved) {
+        const opt = options.find(o => o.dataset.lang === saved);
+        if (opt) applyLang(opt);
+      }
+    } catch (e) {}
+  })();
+</script>
+
+</body>
+</html>

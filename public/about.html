@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>About — Lu.AI.Design</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700;1,900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: 'var(--color-bg-page)',
+            text1: 'var(--color-text-1)',
+            text2: 'var(--color-text-2)',
+            text3: 'var(--color-text-3)',
+            text4: 'var(--color-text-4)',
+            surface: 'var(--color-bg-secondary)',
+            divider: 'var(--color-border-divider)',
+            accent: 'var(--color-theme-2)',
+            'accent-hover': 'var(--color-theme-hover)',
+          },
+          fontFamily: {
+            sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — Kling AI Design System (Purple / Solid, dark)
+       Copied verbatim from index.html so this page matches the rest
+       of the site.
+       ============================================================ */
+    :root {
+      /* brand + theme accents (solid purple — no gradients) */
+      --color-theme-1: #ffffff;
+      --color-theme-2: #8B5CF6;
+      --color-theme-3: rgba(139, 92, 246, 0.15);
+      --color-theme-hover: #A78BFA;
+      --color-bg-deepseek: #7C3AED;
+      --color-primary-solid: #8B5CF6;
+
+      /* surfaces */
+      --color-bg-page: #0a0a0a;
+      --color-bg-primary: #111214;
+      --color-bg-secondary: #1a1c1f;
+      --color-bg-elevated: #1f2124;
+
+      /* text */
+      --color-text-1: #f9fbfc;
+      --color-text-2: #b6bbc2;
+      --color-text-3: #777e85;
+      --color-text-4: #595d61;
+
+      /* borders */
+      --color-border-frame: #1a1b1f;
+      --color-border-container: #242629;
+      --color-border-divider: #343638;
+      --color-border-hover: #76787a;
+
+      --hairline: rgba(255, 255, 255, 0.10);
+
+      --nav-top-gradient: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+      --nav-scrolled-bg: rgba(10, 10, 10, 0.78);
+
+      --pill-text: #f9fbfc;
+      --pill-border: rgba(249, 251, 252, 0.45);
+      --pill-bg: rgba(255, 255, 255, 0.02);
+      --pill-hover-bg: #f9fbfc;
+      --pill-hover-text: #0a0a0a;
+      --pill-hover-shadow: 0 10px 30px -8px rgba(249, 251, 252, 0.35);
+
+      --card-bg: #111214;
+      --card-border: rgba(255, 255, 255, 0.07);
+      --card-border-hover: rgba(255, 255, 255, 0.16);
+      --card-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 24px 48px -26px rgba(139,92,246,0.14), 0 10px 28px -12px rgba(0,0,0,0.65);
+      --card-shadow-hover: 0 1px 0 rgba(255,255,255,0.06) inset, 0 32px 64px -26px rgba(139,92,246,0.24), 0 14px 34px -12px rgba(0,0,0,0.75);
+
+      --grain-opacity: 0.035;
+      --grain-blend: overlay;
+
+      --selection-bg: rgba(139, 92, 246, 0.35);
+      --selection-text: #ffffff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--color-bg-page);
+      overscroll-behavior-x: none;
+      font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    /* lock scrolling only while the intro video overlay owns the screen */
+    body.intro-lock { overflow: hidden; }
+    * { -webkit-tap-highlight-color: transparent; }
+    ::selection { background: var(--selection-bg); color: var(--selection-text); }
+
+    /* subtle film-grain texture for depth, matching the other pages */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: var(--grain-opacity);
+      mix-blend-mode: var(--grain-blend);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ---- hero background video — mouse-scrubbed, never plays ---- */
+    #bgVideo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* keep the head/upper body framed; person sits centre, slightly high */
+      object-position: 50% 32%;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1000ms ease-in-out;
+    }
+    #bgVideo.is-loaded { opacity: 1; }
+
+    /* ============================================================
+       TOP MENU BAR — copied verbatim from index.html so this page's
+       nav matches the rest of the site. Fixed to the viewport and
+       kept above every layer, including the intro video overlay.
+       ============================================================ */
+    .nav-link {
+      position: relative;
+      color: color-mix(in srgb, var(--color-text-1) 88%, transparent);
+      text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.4);
+      transition: color 300ms cubic-bezier(0.22,1,0.36,1);
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -6px;
+      height: 1px;
+      background: var(--color-text-1);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 350ms cubic-bezier(0.22,1,0.36,1);
+    }
+    .nav-link:hover, .nav-link:focus-visible { color: var(--color-text-1); }
+    .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
+
+    #site-nav {
+      background: var(--nav-top-gradient);
+      transition: background-color 400ms ease;
+    }
+    #site-nav.scrolled {
+      background: var(--nav-scrolled-bg);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 var(--hairline);
+    }
+    /* pill button — copied from index.html */
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      border: 1px solid var(--pill-border);
+      padding: 0.85rem 1.9rem;
+      font-size: 0.95rem;
+      color: var(--pill-text);
+      background: var(--pill-bg);
+      transition: transform 320ms cubic-bezier(0.22,1,0.36,1),
+                  background-color 320ms cubic-bezier(0.22,1,0.36,1),
+                  color 320ms cubic-bezier(0.22,1,0.36,1),
+                  border-color 320ms cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 320ms cubic-bezier(0.22,1,0.36,1);
+    }
+    .pill-btn:hover {
+      background: var(--pill-hover-bg);
+      color: var(--pill-hover-text);
+      border-color: var(--pill-hover-bg);
+      box-shadow: var(--pill-hover-shadow);
+      transform: translateY(-2px);
+    }
+    .pill-btn:active { transform: translateY(0) scale(0.97); }
+    .pill-btn:focus-visible { outline: 2px solid #8B5CF6; outline-offset: 3px; }
+
+    /* language switcher */
+    .lang-switch { position: relative; }
+    .lang-trigger svg { transition: transform 300ms cubic-bezier(0.22,1,0.36,1); }
+    .lang-trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+    .lang-menu {
+      position: absolute;
+      top: calc(100% + 16px);
+      right: 0;
+      min-width: 224px;
+      padding: 10px;
+      border-radius: 16px;
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--hairline, rgba(255,255,255,0.10));
+      box-shadow: var(--panel-shadow, 0 40px 80px -30px rgba(0,0,0,0.7), 0 12px 30px -10px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06));
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(-8px) scale(0.97);
+      transform-origin: top right;
+      pointer-events: none;
+      transition: opacity 260ms cubic-bezier(0.22,1,0.36,1), transform 260ms cubic-bezier(0.22,1,0.36,1);
+      z-index: 60;
+    }
+    .lang-menu.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    .lang-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 15px;
+      line-height: 1.25;
+      color: var(--color-text-2);
+      text-align: left;
+      transition: background-color 200ms ease, color 200ms ease;
+    }
+    .lang-option:hover, .lang-option:focus-visible {
+      background: var(--surface-raise, rgba(255,255,255,0.06));
+      color: var(--color-text-1);
+      outline: none;
+    }
+    .lang-option[aria-selected="true"] { color: var(--color-text-1); font-weight: 600; }
+    .lang-check { opacity: 0; flex-shrink: 0; color: var(--color-theme-2); transition: opacity 200ms ease; }
+    .lang-option[aria-selected="true"] .lang-check { opacity: 1; }
+
+    /* Kling primary action — flat solid purple, no gradient */
+    .btn-primary-kling {
+      background-color: var(--color-primary-solid);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 8px 20px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    }
+    .btn-primary-kling:hover { background-color: var(--color-theme-hover); box-shadow: 0 0 12px var(--color-theme-3); }
+    .btn-primary-kling:active { transform: scale(0.97); }
+    .btn-primary-kling:focus-visible { outline: 2px solid var(--color-theme-2); outline-offset: 2px; }
+
+    /* ---- second screen — normal page flow, sits directly below the hero
+       and is reached by ordinary scrolling. Same black surface as the
+       Index page (var(--color-bg-page), i.e. Tailwind `bg-ink`). ---- */
+    #second {
+      background: var(--color-bg-page);
+    }
+
+    /* ---- three-card cinematic reveal ----------------------------------
+       When #second scrolls into view the cards rise up, fade in, and
+       come into focus (blur -> sharp). The rise uses the INDEPENDENT
+       `translate` property — NOT `transform` — so each card's resting
+       `transform: rotate()/scale()` and the motion-lib hover animation
+       are left completely intact. Stagger: left 0ms · centre 120ms ·
+       right 240ms. Purely visual — never captures scroll. */
+    .cards-deck .yoga-card {
+      opacity: 0.001;
+      translate: 0 64px;
+      filter: blur(16px) saturate(0.8);
+      transition: opacity 1100ms cubic-bezier(0.22, 1, 0.36, 1),
+                  translate 1100ms cubic-bezier(0.22, 1, 0.36, 1),
+                  filter 1100ms cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.3s ease,
+                  border-color 0.3s ease;
+    }
+    .cards-deck.revealed .yoga-card {
+      opacity: 1;
+      translate: 0 0;
+      filter: blur(0) saturate(1);
+    }
+    .cards-deck .yoga-card:nth-child(2) { transition-delay: 120ms; }
+    .cards-deck .yoga-card:nth-child(3) { transition-delay: 240ms; }
+    @media (prefers-reduced-motion: reduce) {
+      .cards-deck .yoga-card {
+        opacity: 1; translate: none; filter: none; transition: none;
+      }
+    }
+
+    /* giant watermark text — solid flat tint, no gradient */
+    .giant-text {
+      color: var(--color-border-divider);
+      opacity: 1;
+    }
+
+    .yoga-card {
+      will-change: transform, translate, opacity, filter;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .yoga-card:hover { border-color: var(--card-border-hover); box-shadow: var(--card-shadow-hover); }
+    .yoga-card video { pointer-events: none; }
+    .yoga-card:focus-visible {
+      outline: 2px solid var(--color-theme-2);
+      outline-offset: 4px;
+    }
+
+    /* 3D photo flip — same structure as FlippablePhotoCard:
+       perspective on the wrapper, preserve-3d on the inner, both faces
+       backface-hidden, back pre-rotated 180deg. Hover on fine pointers,
+       tap/click toggles .is-flipped as a touch fallback. */
+    .photo-flip {
+      width: 100%;
+      height: 100%;
+      perspective: 1000px;
+    }
+    .photo-flip__inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .yoga-card:hover .photo-flip__inner,
+      .yoga-card:focus-visible .photo-flip__inner {
+        transform: rotateY(180deg);
+      }
+    }
+    .yoga-card.is-flipped .photo-flip__inner {
+      transform: rotateY(180deg);
+    }
+    .photo-flip__face {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border-radius: 0.75rem;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .photo-flip__front {
+      z-index: 2;
+      transform: translateZ(1px);
+    }
+    .photo-flip__front img,
+    .photo-flip__front video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .photo-flip__back {
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3.25rem 2rem 2.5rem;
+      background: var(--color-bg-primary);
+      transform: rotateY(180deg) translateZ(1px);
+    }
+    .photo-flip__title {
+      margin: 0;
+      max-width: 11ch;
+      text-align: center;
+      font-family: inherit;
+      font-size: clamp(1.75rem, 4.8vw, 2.125rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--color-text-1);
+      text-wrap: balance;
+    }
+    @media (max-width: 767px) {
+      .cards-deck {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .cards-deck .yoga-card {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: min(18rem, 100%);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .photo-flip__inner { transition: none; }
+    }
+
+    /* ---- "A Quick Hi" — TRUE full-viewport intro video ----
+       Fixed to the viewport, edge to edge. Sits above the whole page
+       (z 40) but BELOW the global top menu bar (#site-nav, z 50) so the
+       nav stays visible over it. Optional layer — not part of the
+       scroll flow. */
+    #introOverlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 40;
+      background: #000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 480ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #introOverlay.active { opacity: 1; pointer-events: auto; }
+
+    #introVideo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #000;
+    }
+
+    .intro-close {
+      position: fixed;
+      top: 104px;
+      right: 24px;
+      z-index: 45;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      transition: background-color 200ms ease, box-shadow 200ms ease, transform 150ms ease;
+    }
+    .intro-close:hover { background: rgba(255, 255, 255, 0.18); box-shadow: 0 0 16px rgba(139, 92, 246, 0.35); }
+    .intro-close:focus-visible { outline: 2px solid var(--color-theme-2); outline-offset: 3px; }
+    .intro-close:active { transform: scale(0.94); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      #bgVideo, #site-nav { transition-duration: 0.001ms; }
+    }
+  </style>
+</head>
+
+<body class="font-sans bg-ink text-text2">
+
+  <!-- ============ TOP MENU BAR — same global nav as index.html, fixed
+       to the viewport and above every layer (including the video overlay) ============ -->
+  <nav id="site-nav" class="fixed top-0 inset-x-0 z-50">
+      <div class="mx-auto max-w-[1600px] flex items-center justify-between px-6 md:px-14 h-20">
+        <div class="flex items-center gap-4 pointer-events-auto">
+          <a href="/index" aria-label="Lu — back to home" class="flex items-center text-text1 font-sans font-bold text-2xl tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4 rounded">
+            Lu
+          </a>
+        </div>
+
+        <div class="hidden lg:flex items-center gap-10 text-[15px] pointer-events-auto">
+          <a href="/client-advisory" class="nav-link focus-visible:outline-none">Client Advisory</a>
+          <a href="/EON" class="nav-link focus-visible:outline-none">Eon Solar</a>
+          <a href="/lab" class="nav-link focus-visible:outline-none">Lab</a>
+          <a href="/about" class="nav-link is-current text-text1 focus-visible:outline-none" aria-current="page">About</a>
+        </div>
+
+        <div class="flex items-center gap-5 pointer-events-auto">
+          <div class="lang-switch">
+            <button type="button" class="lang-trigger hidden md:flex items-center gap-1 text-[15px] text-text2 hover:text-text1 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 rounded" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language">
+              <span class="lang-current">English</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="lang-menu" role="listbox" aria-label="Language">
+              <button type="button" class="lang-option" role="option" data-lang="en" aria-selected="true">English<svg class="lang-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></button>
+              <button type="button" class="lang-option" role="option" data-lang="de" aria-selected="false">Deutsch<svg class="lang-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></button>
+            </div>
+          </div>
+          <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn !py-2.5 !px-5 text-[14px]">Contact me</a>
+        </div>
+      </div>
+    </nav>
+
+  <!-- ============ SECTION 1 — HERO (normal page flow, one viewport tall) ============ -->
+  <section id="hero" class="hero relative w-full h-screen bg-ink overflow-hidden select-none">
+
+    <!-- background video layer — scrubbed by horizontal mouse movement (see script) -->
+    <video
+      id="bgVideo"
+      src="References/About%20me/Turn%20head.mp4"
+      poster="References/About%20me/Reference%20image/Lu%20static/Middle%20wave%20hand.jpeg"
+      muted playsinline preload="auto"
+    ></video>
+    <div class="absolute inset-0 bg-black/25 pointer-events-none z-[1]"></div>
+
+    <!-- UI overlay -->
+    <div class="absolute inset-0 z-10 flex items-center pointer-events-none">
+
+      <!-- hero copy — same type treatment, inset and vertical placement as the index page hero -->
+      <div class="w-full px-6 mx-auto max-w-[1440px]">
+        <div class="title-wrap pointer-events-auto max-w-2xl mt-[6vh]">
+          <h1 class="text-text1 font-sans font-bold text-[clamp(2.25rem,5.2vw,4rem)] leading-[1.08] tracking-tight drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)]">
+            Hey, I am<br />Lu
+          </h1>
+          <button id="startBtn" type="button" class="pill-btn mt-9 cursor-pointer">
+            A Quick Hi
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 2 — COLLECTION (black surface, matches Index) ============ -->
+  <section
+    id="second"
+    class="relative w-full min-h-screen z-20 flex flex-col items-center justify-start p-6 pt-24 sm:p-12 md:p-16 text-text2">
+
+    <div class="w-full flex-1 flex flex-col items-center justify-center relative select-none mt-20 sm:mt-16">
+
+      <!-- giant background text -->
+      <div class="giant-text pointer-events-none uppercase text-[13.5vw] sm:text-[16.9vw] leading-none text-center
+                  w-full absolute z-10 whitespace-nowrap translate-y-4 font-sans font-extrabold tracking-tight">
+        Always Exploring
+      </div>
+
+      <!-- overlapping card deck -->
+      <div class="cards-deck flex items-center justify-center relative z-20 w-full max-w-5xl mt-6">
+
+        <div
+          class="yoga-card relative aspect-[9/16] w-72 sm:w-[21rem] md:w-[24rem]
+                 rounded-2xl cursor-pointer origin-bottom select-none z-20 hover:z-40
+                 -mr-[3.5rem] sm:-mr-[5.5rem] md:-mr-[7rem] lg:-mr-[8rem]"
+          data-src="References/About%20me/Swimming%20video.mp4"
+          data-title="No Signal"
+          data-init-rotate="-8"
+          data-hover-x="-18" data-hover-y="-10" data-hover-rotate="-8" data-hover-scale="1.03"
+          style="transform: rotate(-8deg);"
+          role="button" tabindex="0" aria-pressed="false" aria-label="No Signal. Show title.">
+          <div class="photo-flip">
+            <div class="photo-flip__inner">
+              <div class="photo-flip__face photo-flip__front">
+                <video class="w-full h-full object-cover rounded-xl" autoplay muted loop playsinline preload="auto"></video>
+              </div>
+              <div class="photo-flip__face photo-flip__back" aria-hidden="true">
+                <p class="photo-flip__title">No Signal</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="yoga-card relative aspect-[9/16] w-72 sm:w-[21rem] md:w-[24rem]
+                 rounded-2xl cursor-pointer origin-bottom select-none z-30 hover:z-40"
+          data-src="References/About%20me/Walk%26talk.mp4"
+          data-title="AI, Honestly"
+          data-init-rotate="0"
+          data-hover-x="0" data-hover-y="-8" data-hover-rotate="0" data-hover-scale="1.05"
+          style="transform: rotate(0deg) scale(1.05);"
+          role="button" tabindex="0" aria-pressed="false" aria-label="AI, Honestly. Show title.">
+          <div class="photo-flip">
+            <div class="photo-flip__inner">
+              <div class="photo-flip__face photo-flip__front">
+                <video class="w-full h-full object-cover rounded-xl" autoplay muted loop playsinline preload="auto"></video>
+              </div>
+              <div class="photo-flip__face photo-flip__back" aria-hidden="true">
+                <p class="photo-flip__title">AI, Honestly</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="yoga-card relative aspect-[9/16] w-72 sm:w-[21rem] md:w-[24rem]
+                 rounded-2xl cursor-pointer origin-bottom select-none z-20 hover:z-40
+                 -ml-[3.5rem] sm:-ml-[5.5rem] md:-ml-[7rem] lg:-ml-[8rem]"
+          data-src="References/About%20me/Magnetic%20Tiles.mp4"
+          data-title="Build. Break. Repeat."
+          data-init-rotate="8"
+          data-hover-x="18" data-hover-y="-10" data-hover-rotate="8" data-hover-scale="1.03"
+          style="transform: rotate(8deg);"
+          role="button" tabindex="0" aria-pressed="false" aria-label="Build. Break. Repeat. Show title.">
+          <div class="photo-flip">
+            <div class="photo-flip__inner">
+              <div class="photo-flip__face photo-flip__front">
+                <video class="w-full h-full object-cover rounded-xl" autoplay muted loop playsinline preload="auto"></video>
+              </div>
+              <div class="photo-flip__face photo-flip__back" aria-hidden="true">
+                <p class="photo-flip__title">Build. Break. Repeat.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ "A QUICK HI" — optional full-screen intro video overlay.
+       Click-triggered only. Lives at the document root, fixed to the
+       viewport, above the page but below the global nav. Never a scroll
+       section — scrolling can neither reach it nor pass back through it. ============ -->
+  <div id="introOverlay" aria-hidden="true">
+    <video
+      id="introVideo"
+      src="References/About%20me/Lu%20Intro.mp4?v=20260830"
+      playsinline
+      controls
+      preload="auto"></video>
+    <button id="introClose" type="button" class="intro-close" aria-label="Close video">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+  </div>
+
+  <script type="module">
+    import { animate } from 'https://cdn.jsdelivr.net/npm/motion@11.15.0/+esm';
+
+    const bgVideo = document.getElementById('bgVideo');
+    const startBtn = document.getElementById('startBtn');
+    const second = document.getElementById('second');
+
+    /* ============================================================
+       HERO — mouse-scrubbed head-turn video.
+
+       "Turn head.mp4" is authored end-to-end for this interaction:
+         t = 0            she looks off to screen-left   (cursor far left)
+         t = duration/2   she faces you and waves hi     (cursor centre)
+         t = duration     she looks off to screen-right  (cursor far right)
+
+       Horizontal cursor position maps straight onto the timeline, so
+       her head follows the pointer left / centre / right. The rendered
+       time eases toward the pointer target for a smooth, film-like
+       scrub. The video never plays — every frame is a seek — and a
+       seek lock keeps fast pointer movement from flooding the decoder.
+       ============================================================ */
+    function createMouseScrubVideo(video, {
+      sensitivity = 0.8,   // 1 = pointer spans the whole clip; <1 keeps a margin
+      ease = 0.16,         // rendered-time follow speed (spring-like lerp)
+      initialFraction = 0.5,
+      reduceMotion = false,
+    } = {}) {
+      let duration = 0;
+      let ready = false;
+      let targetTime = 0;      // where the pointer wants the playhead
+      let renderedTime = 0;    // eased value actually seeked to
+      let targetTime_seek = 0; // latest value handed to the decoder
+      let isSeeking = false;
+      let rafId = 0;
+
+      const clamp = (t) => Math.max(0, Math.min(duration || 0, t));
+
+      function performSeek() {
+        if (!ready) return;
+        isSeeking = true;
+        targetTime_seek = renderedTime;
+        video.currentTime = renderedTime;
+      }
+      function requestSeek() {
+        if (!isSeeking) performSeek();
+      }
+      function handleSeeked() {
+        isSeeking = false;
+        // if the pointer moved on while we were seeking, chase the latest value
+        if (Math.abs(renderedTime - targetTime_seek) > 0.01) performSeek();
+      }
+
+      function tick() {
+        rafId = 0;
+        const next = renderedTime + (targetTime - renderedTime) * ease;
+        const done = Math.abs(targetTime - renderedTime) < 0.004;
+        renderedTime = done ? targetTime : next;
+        if (Math.abs(renderedTime - targetTime_seek) > 0.012) requestSeek();
+        if (!done) rafId = requestAnimationFrame(tick);
+      }
+      function schedule() {
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      }
+
+      function pointerToTime(clientX) {
+        const frac = Math.min(1, Math.max(0, clientX / window.innerWidth));
+        // centre the usable band so sensitivity<1 still reaches the mid frame
+        // (sign inverted so pointer-right → head-right, pointer-left → head-left)
+        const centered = 0.5 - (frac - 0.5) * sensitivity;
+        return clamp(centered * duration);
+      }
+
+      function onMouseMove(e) {
+        if (!ready) return;
+        targetTime = pointerToTime(e.clientX);
+        schedule();
+      }
+
+      function onMetadata() {
+        if (ready) return;
+        duration = video.duration || 0;
+        ready = true;
+        renderedTime = targetTime = targetTime_seek = clamp(duration * initialFraction);
+        try { video.currentTime = renderedTime; } catch (e) {}
+      }
+
+      // fade the layer in as soon as there's something to show (a decoded
+      // frame, or failing that the poster) so the hero never sits black
+      const reveal = () => video.classList.add('is-loaded');
+      video.addEventListener('loadeddata', reveal, { once: true });
+      video.addEventListener('loadedmetadata', reveal, { once: true });
+      window.setTimeout(reveal, 1800);
+
+      video.addEventListener('seeked', handleSeeked);
+      if (video.readyState >= 1) onMetadata();
+      else video.addEventListener('loadedmetadata', onMetadata, { once: true });
+
+      if (!reduceMotion) window.addEventListener('mousemove', onMouseMove, { passive: true });
+
+      return {
+        reset() {
+          targetTime = clamp(duration * initialFraction);
+          schedule();
+        },
+        destroy() {
+          if (rafId) cancelAnimationFrame(rafId);
+          video.removeEventListener('seeked', handleSeeked);
+          window.removeEventListener('mousemove', onMouseMove);
+        },
+      };
+    }
+
+    const prefersReducedMotion =
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    createMouseScrubVideo(bgVideo, {
+      sensitivity: 0.9,      // near edge-to-edge, with a hair of margin
+      ease: 0.16,
+      initialFraction: 0.5,  // rest facing the visitor until the pointer moves
+      reduceMotion: prefersReducedMotion,
+    });
+
+    /* ---------- "A Quick Hi" — optional full-screen intro video ----------
+       The video is never part of the scroll flow. Clicking the button
+       opens it as a fixed overlay; when it ends (or is dismissed) the
+       overlay closes and the page is exactly where it was. The three-card
+       section is always reachable by plain scrolling, with or without
+       ever opening the video. */
+    const introOverlay = document.getElementById('introOverlay');
+    const introVideo   = document.getElementById('introVideo');
+    const introClose   = document.getElementById('introClose');
+    const cardsDeck    = document.querySelector('.cards-deck');
+
+    const revealCards = () => cardsDeck && cardsDeck.classList.add('revealed');
+
+    const closeIntro = () => {
+      introOverlay.classList.remove('active');
+      introOverlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('intro-lock');
+      introVideo.pause();
+      introVideo.currentTime = 0;
+    };
+
+    startBtn.addEventListener('click', () => {
+      if (introOverlay.classList.contains('active')) return;
+      introOverlay.classList.add('active');
+      introOverlay.setAttribute('aria-hidden', 'false');
+      // freeze page scroll only while the overlay owns the screen
+      document.body.classList.add('intro-lock');
+      // play straight from the click gesture so audio playback is allowed
+      introVideo.currentTime = 0;
+      introVideo.muted = false;
+      introVideo.volume = 1;
+      const p = introVideo.play();
+      if (p && p.catch) p.catch(() => {});
+    });
+
+    // manual dismiss (X / Esc) — just close, leave the page untouched
+    introClose.addEventListener('click', closeIntro);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && introOverlay.classList.contains('active')) closeIntro();
+    });
+
+    // natural end — close the overlay, then glide down to the three cards
+    introVideo.addEventListener('ended', () => {
+      closeIntro();
+      revealCards();
+      second.scrollIntoView({
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        block: 'start',
+      });
+    });
+
+    // reveal the card deck when the #second section scrolls into view.
+    // Observe the SECTION (not the deck) with a negative bottom rootMargin
+    // so the trigger fires reliably once the section's top edge is ~20%
+    // into the viewport — while the cards are still below the fold, so the
+    // rise/fade/focus is fully visible as the user keeps scrolling.
+    if (cardsDeck) {
+      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        revealCards();
+      } else {
+        const io = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) { revealCards(); io.disconnect(); return; }
+          }
+        }, { threshold: 0, rootMargin: '0px 0px -20% 0px' });
+        io.observe(second);
+        // last-resort safety net — only if the observer never fires at all
+        window.setTimeout(revealCards, 8000);
+      }
+    }
+
+    /* ---------- photo cards: fan hover + tap-to-flip ---------- */
+    const canHoverFlip = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const isNarrow = window.matchMedia('(max-width: 767px)').matches;
+
+    document.querySelectorAll('.yoga-card').forEach((card) => {
+      const front = card.querySelector('.photo-flip__front');
+      const back = card.querySelector('.photo-flip__back');
+      const video = card.querySelector('video');
+      const url = card.dataset.src;
+      const title = card.dataset.title || 'Card';
+      const initRotate = isNarrow ? 0 : (parseFloat(card.dataset.initRotate) || 0);
+      const baseScale = isNarrow ? 1 : (card.style.transform.includes('scale(1.05)') ? 1.05 : 1);
+      const hover = {
+        x: parseFloat(card.dataset.hoverX) || 0,
+        y: parseFloat(card.dataset.hoverY) || 0,
+        rotate: parseFloat(card.dataset.hoverRotate) || 0,
+        scale: parseFloat(card.dataset.hoverScale) || 1,
+      };
+
+      if (video && url) {
+        video.src = url;
+        const startVideo = () => {
+          const p = video.play();
+          if (p && p.catch) p.catch(() => {});
+        };
+        startVideo();
+        video.addEventListener('canplay', startVideo, { once: true });
+      }
+
+      if (isNarrow) card.style.transform = 'none';
+
+      const setFlipped = (next) => {
+        card.classList.toggle('is-flipped', next);
+        card.setAttribute('aria-pressed', String(next));
+        card.setAttribute('aria-label', `${title}. ${next ? 'Show photo' : 'Show title'}.`);
+        if (front) front.setAttribute('aria-hidden', String(next));
+        if (back) back.setAttribute('aria-hidden', String(!next));
+      };
+
+      card.addEventListener('click', () => {
+        if (canHoverFlip) return;
+        setFlipped(!card.classList.contains('is-flipped'));
+      });
+      card.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        setFlipped(!card.classList.contains('is-flipped'));
+      });
+
+      if (canHoverFlip && !prefersReducedMotion) {
+        const springOpts = { type: 'spring', stiffness: 200, damping: 20 };
+        card.addEventListener('mouseenter', () => {
+          animate(card, { x: hover.x, y: hover.y, rotate: hover.rotate, scale: hover.scale }, springOpts);
+        });
+        card.addEventListener('mouseleave', () => {
+          animate(card, { x: 0, y: 0, rotate: initRotate, scale: baseScale }, springOpts);
+        });
+      }
+    });
+  </script>
+
+  <script>
+    // nav background on scroll (parity with index.html / subpages)
+    const siteNav = document.getElementById('site-nav');
+    if (siteNav) {
+      const onNavScroll = () => siteNav.classList.toggle('scrolled', window.scrollY > 40);
+      onNavScroll();
+      window.addEventListener('scroll', onNavScroll, { passive: true });
+    }
+
+    // language switcher — dropdown open/close, keyboard nav, selection persistence
+    (function initLangSwitch() {
+      const sw = document.querySelector('.lang-switch');
+      if (!sw) return;
+      const trigger = sw.querySelector('.lang-trigger');
+      const menu = sw.querySelector('.lang-menu');
+      const current = sw.querySelector('.lang-current');
+      const options = Array.from(menu.querySelectorAll('.lang-option'));
+      const isOpen = () => menu.classList.contains('open');
+
+      const open = () => {
+        menu.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+        (options.find(o => o.getAttribute('aria-selected') === 'true') || options[0]).focus();
+      };
+      const close = (focusTrigger) => {
+        menu.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+        if (focusTrigger) trigger.focus();
+      };
+
+      const applyLang = (opt) => {
+        options.forEach(o => o.setAttribute('aria-selected', String(o === opt)));
+        current.textContent = opt.textContent.trim();
+        document.documentElement.setAttribute('lang', opt.dataset.lang);
+      };
+      const select = (opt) => {
+        applyLang(opt);
+        try { localStorage.setItem('site-lang', opt.dataset.lang); } catch (e) {}
+        close(true);
+      };
+
+      trigger.addEventListener('click', () => isOpen() ? close() : open());
+
+      options.forEach((opt, i) => {
+        opt.addEventListener('click', () => select(opt));
+        opt.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowDown') { e.preventDefault(); options[(i + 1) % options.length].focus(); }
+          else if (e.key === 'ArrowUp') { e.preventDefault(); options[(i - 1 + options.length) % options.length].focus(); }
+          else if (e.key === 'Home') { e.preventDefault(); options[0].focus(); }
+          else if (e.key === 'End') { e.preventDefault(); options[options.length - 1].focus(); }
+          else if (e.key === 'Escape') { e.preventDefault(); close(true); }
+          else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(opt); }
+        });
+      });
+
+      document.addEventListener('click', (e) => { if (isOpen() && !sw.contains(e.target)) close(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen()) close(true); });
+
+      try {
+        const saved = localStorage.getItem('site-lang');
+        if (saved) {
+          const opt = options.find(o => o.dataset.lang === saved);
+          if (opt) applyLang(opt);
+        }
+      } catch (e) {}
+    })();
+
+  </script>
+</body>
+</html>

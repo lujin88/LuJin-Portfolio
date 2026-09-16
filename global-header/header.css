@@ -1,0 +1,26 @@
+@import 'tailwindcss/theme.css';
+@import 'tailwindcss/utilities.css';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-header-scrim: var(--header-scrim);
+  --color-header-foreground: var(--header-foreground);
+  --color-header-line: var(--header-line);
+  --color-header-glass: var(--header-glass);
+  --color-header-menu: var(--header-menu);
+  --color-header-menu-item: var(--header-menu-item);
+  --color-header-accent: var(--header-accent);
+  --font-sans: var(--font-poppins), 'Poppins Fallback', system-ui, sans-serif;
+}
+
+:root {
+  --header-scrim: oklch(0.15 0.012 264);
+  --header-foreground: oklch(0.985 0 0);
+  --header-line: oklch(1 0 0 / 28%);
+  --header-glass: rgb(3 10 24);
+  --header-menu: oklch(0.24 0.004 264);
+  --header-menu-item: oklch(0.29 0.004 264);
+  --header-accent: #4a90ff;
+}

@@ -1,0 +1,284 @@
+.section {
+  --s05-bg: var(--ca-bg, #06101f);
+  --s05-bg-deep: #040b1a;
+  --s05-text: var(--ca-text, #f3f6fa);
+  --s05-text-muted: var(--ca-text-2, #a9b8cc);
+  --s05-label: var(--ca-text-2, #a9b8cc);
+  --s05-line: var(--ca-line, rgb(169 184 204 / 0.22));
+
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(3.5rem, 7svh, 5.5rem) var(--ca-page-pad, clamp(1.5rem, 4vw, 4rem));
+  background:
+    radial-gradient(60% 45% at 50% 20%, rgba(28, 74, 150, 0.32), transparent 70%),
+    radial-gradient(70% 40% at 50% 100%, rgba(12, 40, 92, 0.38), transparent 70%),
+    linear-gradient(180deg, var(--s05-bg-deep) 0%, var(--s05-bg) 45%, var(--s05-bg-deep) 100%);
+  color: var(--s05-text);
+}
+
+.inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4.5svh, 3.25rem);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.headline {
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--s05-text);
+  text-wrap: balance;
+  margin: var(--ca-heading-gap, 1.75rem) 0 0;
+}
+
+.intro {
+  max-width: 60ch;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--s05-text-muted);
+  text-wrap: pretty;
+  margin: var(--ca-body-gap, 1.5rem) 0 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 1.6vw, 1.5rem);
+}
+
+/*
+ * The extracted assets are full-card artworks (~3:2, artwork on the right,
+ * empty dark field on the left). The card keeps the same ratio so the image
+ * fills it edge to edge with no meaningful cropping, and the copy sits over
+ * the empty left field exactly as in the original composition.
+ *
+ * Each card is a 3D flip card: .card is the perspective box (and defines the
+ * shared dimensions all three cards share), .cardInner rotates on click, and
+ * the two .face elements occupy the exact same area so the back can never
+ * change the card size.
+ */
+.card {
+  position: relative;
+  aspect-ratio: 6 / 5;
+  perspective: 1600px;
+}
+
+.cardInner {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cardInner:focus-visible {
+  outline: 2px solid rgba(140, 180, 240, 0.9);
+  outline-offset: 3px;
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Both sides share the identical card shell so front/back look the same. */
+.face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid var(--s05-line);
+  background: #05122d;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 18px 40px -30px rgba(0, 0, 0, 0.65);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/*
+ * Both faces use the IDENTICAL padding and top-anchored flow so the shared
+ * .cardHeader (number + title) lands in the exact same X/Y position on the
+ * front and the back of every card. Only the content below the header differs.
+ */
+.faceFront,
+.faceBack {
+  padding: clamp(1.5rem, 2.2vw, 2.25rem);
+}
+
+.faceBack {
+  transform: rotateY(180deg);
+}
+
+.artwork {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/*
+ * Full asset, uncropped, sitting flush to the bottom-right. The source PNGs
+ * carry their own baked-in 1px card border, so the image is scaled slightly
+ * past the container (anchored bottom-right) to push that edge outside the
+ * clipped area, and the top/left edges are feathered into the card field so
+ * no image boundary is ever visible.
+ */
+.artworkImg {
+  object-fit: contain;
+  object-position: right bottom;
+  transform: scale(1.03);
+  transform-origin: right bottom;
+  mask-image:
+    linear-gradient(180deg, transparent 0%, transparent 24%, rgba(0, 0, 0, 0.35) 38%, rgba(0, 0, 0, 0.8) 50%, #000 62%),
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 6%, #000 14%);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+}
+
+/*
+ * Fixed header region. One shared rule for all three cards and both faces —
+ * same width, same gap, same position. The title container is wide enough for
+ * "Surface what matters" / "Explain with context" / "Support judgement"
+ * without changing the type scale.
+ */
+.cardHeader {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  max-width: 64%;
+}
+
+.cardNum {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--s05-label);
+  margin: 0;
+}
+
+.cardTitle {
+  display: block;
+  font-size: clamp(1.5rem, 2vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--s05-text);
+  text-wrap: balance;
+  margin: 0;
+}
+
+/* ---------- Back face content (sits below the shared header) ---------- */
+
+.cardText {
+  display: block;
+  position: relative;
+  z-index: 1;
+  max-width: 42ch;
+  margin: clamp(0.875rem, 1.4vw, 1.25rem) 0 0;
+  font-size: clamp(0.875rem, 0.95vw, 1rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--s05-text-muted);
+  text-wrap: pretty;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (min-width: 640px) {
+  .headline {
+    font-size: 2.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .headline {
+    font-size: clamp(2.75rem, 3.6vw, 3.25rem);
+  }
+}
+
+@media (min-width: 1280px) {
+  .intro {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* All three stacked cards keep an identical, consistent height. */
+  .card {
+    aspect-ratio: 16 / 9;
+  }
+
+  .artworkImg {
+    object-fit: cover;
+    object-position: right center;
+    transform: scale(1.03);
+    transform-origin: right center;
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 6%, #000 14%);
+    mask-composite: add;
+    -webkit-mask-composite: source-over;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    justify-content: flex-start;
+  }
+
+  .card {
+    aspect-ratio: 4 / 5;
+  }
+
+  .cardHeader {
+    max-width: 78%;
+  }
+
+  .artworkImg {
+    object-fit: cover;
+    object-position: right bottom;
+    transform: scale(1.03);
+    transform-origin: right bottom;
+    mask-image:
+      linear-gradient(180deg, transparent 0%, transparent 28%, rgba(0, 0, 0, 0.5) 46%, #000 64%),
+      linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 8%, #000 18%);
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+  }
+}

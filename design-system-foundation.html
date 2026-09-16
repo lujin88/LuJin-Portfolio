@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design System Foundation — Lu.AI.Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700;1,900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="design-system-foundation.css" />
+</head>
+<body>
+  <header class="ds-header" id="ds-header">
+    <div class="ds-header__scrim" aria-hidden="true"></div>
+    <div class="ds-header__glass" aria-hidden="true"></div>
+    <div class="ds-header__inner">
+      <a class="ds-wordmark" href="#top">Lu<span>System</span></a>
+      <nav class="ds-header__nav" aria-label="Foundation sections">
+        <a href="#foundation">Foundation</a>
+        <a href="#typography">Type</a>
+        <a href="#color">Color</a>
+        <a href="#spacing">Layout</a>
+        <a href="#components">Components</a>
+        <a href="#motion">Motion</a>
+        <a href="#responsive">Responsive</a>
+      </nav>
+      <a class="ds-header__cta" href="#audit">Audit notes</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="ds-hero">
+      <div class="ds-hero__media" aria-hidden="true"></div>
+      <div class="ds-hero__inner">
+        <p class="ds-kicker">Portfolio design system</p>
+        <h1>Simplify complexity.<br />Document what exists.</h1>
+        <p class="ds-hero__lede">
+          A reverse-engineered foundation of the live Lu.AI.Design portfolio.
+          Tokens, type, components, and motion as they already ship. Nothing redesigned.
+        </p>
+        <div class="ds-hero__meta">
+          <p><strong>Source of truth</strong>public/home.html, about, lab, ai-workflow-case, Client Advisory, E.ON Solar</p>
+          <p><strong>Live chrome</strong>global-header SiteHeader + shared contact/footer</p>
+          <p><strong>Accent</strong>#8B5CF6 blue-violet, used as signal not fill</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 FOUNDATION -->
+    <section class="ds-section" id="foundation">
+      <div class="ds-wrap">
+        <p class="ds-section__index">01 / Foundation</p>
+        <h2 class="ds-title">The language already on the site</h2>
+        <p class="ds-section__intro">
+          The HTML islands still label this the Kling AI Design System. The live shell is a
+          near-black surface with a blue-violet signal, not a solid purple fill.
+          Poppins carries the product voice. Playfair Display appears where the work turns editorial.
+          Film grain, hairline borders, and inverted pills do the rest.
+        </p>
+
+        <div class="ds-grid-2">
+          <div>
+            <p class="ds-note">
+              <strong>Scope.</strong> Global Foundation describes the shared portfolio shell:
+              Index, About, Lab, and AI Workflow. Client Advisory and E.ON Solar inherit that
+              foundation as Theme Layers. They share the React header. Their palettes must not
+              be replaced by the global blue-violet.
+            </p>
+          </div>
+          <div>
+            <p class="ds-note">
+              <strong>Rule of extraction.</strong> A value becomes a token only when it repeats
+              across pages. One-off leftovers (unused <code>.tag-chip</code>, unused
+              <code>.btn-primary-kling</code>, unused <code>--color-bg-deepseek</code>) stay out of
+              Global Foundation, Theme Layer, and component tokens.
+            </p>
+          </div>
+        </div>
+
+        <div class="ds-grid-2" style="margin-top: 2.5rem;">
+          <div>
+            <p class="ds-note">
+              <strong>Global Foundation controls</strong>
+              typography, font weights, spacing, layout, containers, radius, borders,
+              shared components, interaction principles, motion, responsive behavior,
+              and the global shell.
+            </p>
+          </div>
+          <div>
+            <p class="ds-note">
+              <strong>Theme Layer may control</strong>
+              case-specific palettes, section colors, illustration and media treatments,
+              storytelling motifs, case-specific UI, editorial treatments, and contained
+              light/dark surfaces.
+            </p>
+          </div>
+        </div>
+        <p class="ds-note" style="margin-top: 1.75rem;">
+          <strong>Theme layers inherit the Global Foundation but are not flattened into it.</strong>
+        </p>
+
+        <div style="height: 3.5rem;"></div>
+
+        <article class="ds-principle">
+          <h3>Near-black atmosphere, not a UI canvas</h3>
+          <p>
+            The page is <code>#0a0a0a</code> with a 3.5% overlay grain. Heroes sit on video with
+            stacked black scrims. Contact and the HTML footer stay transparent so Experience,
+            Contact, and copyright read as one continuous surface.
+          </p>
+        </article>
+        <article class="ds-principle">
+          <h3>Type does hierarchy. Color does signaling.</h3>
+          <p>
+            Weight, size, and tracking separate display from body. Blue-violet is reserved for
+            text selection, focus rings, Lab eyebrow, AI Workflow eyebrow / arrows / accents / media wash,
+            card glow, and selected or related shared-shell states. It is not a universal page fill.
+            Body stays cool grey <code>#b6bbc2</code>. Emphasis inside paragraphs is the same family,
+            semibold, in primary white.
+          </p>
+        </article>
+        <article class="ds-principle">
+          <h3>Two display voices, one product family</h3>
+          <p>
+            Index and About heroes are Poppins bold, clamp 2.25rem to 4rem, tracking tight.
+            Lab and AI Workflow heroes switch to Playfair Display, slightly larger, tracking
+            -0.03em. Italic Playfair is the timeline eyebrow and the Lab index numeral.
+          </p>
+        </article>
+        <article class="ds-principle">
+          <h3>Image-led, 16:9, 43 / 57</h3>
+          <p>
+            Case-study sections pin a full viewport, then split copy and a rounded media panel
+            at 43fr / 57fr with 48px to 80px gutters. The next case study mirrors the columns.
+            Media is object-cover video inside <code>rounded-2xl</code> with a layered panel shadow.
+          </p>
+        </article>
+        <article class="ds-principle">
+          <h3>Invert on interaction, glow only on cards</h3>
+          <p>
+            Primary actions are hollow pills that invert to white fill on hover and lift 2px.
+            Cards keep a 1px hairline and a blue-violet-tinted shadow that strengthens on hover,
+            with a cursor-following glow. No glassmorphism on the shell except the scrolled header blur.
+          </p>
+        </article>
+        <article class="ds-principle">
+          <h3>Scroll tells the story. Reduced motion opts out.</h3>
+          <p>
+            Pin-and-scrub case studies, IntersectionObserver reveals (28px rise, 800ms),
+            a 16s ambient hero zoom, and the experience arc are the motion system.
+            At 640px or <code>prefers-reduced-motion</code>, pins collapse to static stacks.
+          </p>
+        </article>
+        <article class="ds-principle">
+          <h3>Accent can change. The underlying visual world should remain continuous.</h3>
+          <p>
+            Continuity includes background tone, surface depth, grain / texture, pattern language,
+            spacing rhythm, section transitions, and overall atmosphere. This does not mean every
+            page uses the same background. Client Advisory navy and E.ON light sections are authored
+            Theme Layer surfaces sitting in the same portfolio world, not a hard cut into another site.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 02 TYPOGRAPHY -->
+    <section class="ds-section ds-section--tight" id="typography">
+      <div class="ds-wrap">
+        <p class="ds-section__index">02 / Typography</p>
+        <h2 class="ds-title">Poppins for product. Playfair for editorial.</h2>
+        <p class="ds-section__intro">
+          Loaded on every HTML page: Poppins 400-800 and Playfair Display 600-700 plus italic 600-900.
+          The live Next.js header also binds <code>--font-poppins</code>. Geist and Caveat load in the
+          root layout but do not set the portfolio voice. Caveat is an E.ON case-study hand font.
+        </p>
+
+        <div class="ds-type-stack">
+          <div class="ds-type-row">
+            <div class="ds-type-meta">
+              <span>Display / Index + About hero</span>
+              <code>--font-size-display</code>
+              <code>Poppins 700 · clamp(2.25rem, 5.2vw, 4rem) · leading 1.08 · tracking-tight</code>
+            </div>
+            <p class="spec-display">Simplify complexity.</p>
+          </div>
+
+          <div class="ds-type-row">
+            <div class="ds-type-meta">
+              <span>Display / Lab + AI Workflow</span>
+              <code>--font-size-display-editorial</code>
+              <code>Playfair Display 700 · clamp(2.4rem, 6vw, 4.75rem) · leading 1.05 · tracking -0.03em</code>
+            </div>
+            <p class="spec-editorial">Experiments in progress</p>
+          </div>
+
+          <div class="ds-type-row">
+            <div class="ds-type-meta">
+              <span>Section heading</span>
+              <code>--font-size-heading</code>
+              <code>Poppins 600 · 1.9rem / md:text-4xl (2.25rem) · leading 1.1</code>
+            </div>
+            <p class="spec-heading">AI-powered advisor workflow optimization</p>
+          </div>
+
+          <div class="ds-type-row">
+            <div class="ds-type-meta">
+              <span>Subhead / card title</span>
+              <code>text-xl md:text-2xl · font-semibold</code>
+            </div>
+            <p class="spec-subhead">Design System</p>
+          </div>
+
+          <div class="ds-type-row">
+            <div class="ds-type-meta">
+              <span>Body</span>
+              <code>--font-size-body 15px · leading 1.75 / relaxed · --color-text-2</code>
+            </div>
+            <p class="spec-body">
+              I'm Lu, an <strong>AI-native Product Designer</strong> with 10+ years of experience turning
+              <strong>complex systems and workflows into clear, useful products</strong>.
+              Lab body copy steps up to 17px / 1.7. Accordion body stays 0.95rem / 1.75.
+            </p>
+          </div>
+
+          <div class="ds-type-row">
+            <div class="ds-type-meta">
+              <span>Eyebrow / Lab kicker</span>
+              <code>13px · semibold · uppercase · tracking 0.28em · accent</code>
+            </div>
+            <p class="spec-eyebrow">Lab</p>
+          </div>
+
+          <div class="ds-type-row">
+            <div class="ds-type-meta">
+              <span>Timeline eyebrow</span>
+              <code>Playfair italic 0.8rem · --color-text-3</code>
+            </div>
+            <p class="spec-caption">Oct 2022 - Present</p>
+          </div>
+
+          <div class="ds-type-row">
+            <div class="ds-type-meta">
+              <span>Metadata label</span>
+              <code>11px · bold · uppercase · tracking 0.14em</code>
+            </div>
+            <p class="spec-meta">Role</p>
+          </div>
+        </div>
+
+        <div style="height: 3rem;"></div>
+        <p class="ds-section__index">Weights in use</p>
+        <div class="ds-weight-row">
+          <span class="w-400">Aa<small>400 body</small></span>
+          <span class="w-500">Aa<small>500 role lines</small></span>
+          <span class="w-600">Aa<small>600 headings, logo live</small></span>
+          <span class="w-700">Aa<small>700 display, HTML logo</small></span>
+          <span class="w-800">Aa<small>800 About watermark</small></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 COLOR -->
+    <section class="ds-section" id="color">
+      <div class="ds-wrap">
+        <p class="ds-section__index">03 / Color</p>
+        <h2 class="ds-title">Ink, cool grey, one blue-violet.</h2>
+        <p class="ds-section__intro">
+          Copied from the <code>:root</code> block shared by home, about, lab, and ai-workflow-case.
+          Official name: <strong>Blue-violet</strong>. Live tokens:
+          <code>--color-theme-2</code> / Tailwind <code>accent</code> <code>#8B5CF6</code>,
+          hover <code>--color-theme-hover</code> <code>#A78BFA</code>,
+          soft <code>--color-theme-3</code> <code>rgba(139,92,246,0.15)</code>.
+          Soft accent is a signal / glow treatment, not a general background fill.
+          Blue-violet is never a fill gradient on chrome.
+        </p>
+
+        <p class="ds-section__index">Backgrounds</p>
+        <div class="ds-swatch-grid">
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:#0a0a0a"></div>
+            <div class="ds-swatch__meta"><strong>Page</strong><code>--color-bg-page / --color-bg<br>#0a0a0a</code></div>
+          </article>
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:#111214"></div>
+            <div class="ds-swatch__meta"><strong>Surface</strong><code>--color-bg-primary / --color-surface<br>#111214</code></div>
+          </article>
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:#1a1c1f"></div>
+            <div class="ds-swatch__meta"><strong>Secondary</strong><code>--color-bg-secondary<br>#1a1c1f</code></div>
+          </article>
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:#1f2124"></div>
+            <div class="ds-swatch__meta"><strong>Elevated</strong><code>--color-bg-elevated<br>#1f2124 · lang menu</code></div>
+          </article>
+        </div>
+
+        <div style="height: 2.5rem;"></div>
+        <p class="ds-section__index">Text</p>
+        <div class="ds-swatch-grid">
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:#f9fbfc"></div>
+            <div class="ds-swatch__meta"><strong>Primary</strong><code>--color-text-1<br>#f9fbfc</code></div>
+          </article>
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:#b6bbc2"></div>
+            <div class="ds-swatch__meta"><strong>Secondary</strong><code>--color-text-2<br>#b6bbc2</code></div>
+          </article>
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:#777e85"></div>
+            <div class="ds-swatch__meta"><strong>Muted</strong><code>--color-text-3<br>#777e85</code></div>
+          </article>
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:#595d61"></div>
+            <div class="ds-swatch__meta"><strong>Faint</strong><code>--color-text-4<br>#595d61</code></div>
+          </article>
+        </div>
+
+        <div style="height: 2.5rem;"></div>
+        <p class="ds-section__index">Accent, border, effect</p>
+        <div class="ds-swatch-grid">
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:#8B5CF6"></div>
+            <div class="ds-swatch__meta"><strong>Blue-violet</strong><code>--color-theme-2 / Tailwind accent<br>#8B5CF6</code></div>
+          </article>
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:#A78BFA"></div>
+            <div class="ds-swatch__meta"><strong>Blue-violet hover</strong><code>--color-theme-hover<br>#A78BFA</code></div>
+          </article>
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:#343638"></div>
+            <div class="ds-swatch__meta"><strong>Divider</strong><code>--color-border-divider<br>#343638</code></div>
+          </article>
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip ds-swatch--hair">
+              <div style="height:100%;background:rgba(255,255,255,0.10)"></div>
+            </div>
+            <div class="ds-swatch__meta"><strong>Hairline</strong><code>--hairline rgba(255,255,255,0.10)<br>--hairline-strong 0.16</code></div>
+          </article>
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:rgba(139,92,246,0.15)"></div>
+            <div class="ds-swatch__meta"><strong>Soft accent / glow</strong><code>--color-theme-3<br>rgba(139,92,246,0.15) · signal, not fill</code></div>
+          </article>
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:#4a90ff"></div>
+            <div class="ds-swatch__meta"><strong>Header-local accent</strong><code>--header-accent #4a90ff<br>SiteHeader language check only</code></div>
+          </article>
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:#7A7FDC"></div>
+            <div class="ds-swatch__meta"><strong>Index experience motif</strong><code>#7A7FDC / #3846D4<br>storytelling / connector only</code></div>
+          </article>
+          <article class="ds-swatch">
+            <div class="ds-swatch__chip" style="background:linear-gradient(135deg,#1a1c1f,#0a0a0a)"></div>
+            <div class="ds-swatch__meta"><strong>Selection</strong><code>rgba(139,92,246,0.35) on white text</code></div>
+          </article>
+        </div>
+
+        <div style="height: 3rem;"></div>
+        <p class="ds-section__index">Verified blue-violet usage</p>
+        <p class="ds-section__intro" style="margin-bottom: 1.5rem;">
+          Type does hierarchy. Color does signaling. Blue-violet is not a universal page fill.
+        </p>
+        <table class="bp-table">
+          <thead><tr><th>Surface</th><th>Where it actually paints</th></tr></thead>
+          <tbody>
+            <tr><td>Index, About, Lab, AI Workflow</td><td>Text selection</td></tr>
+            <tr><td>Shared HTML shell</td><td>Focus rings on pills, accordion, contact/footer links</td></tr>
+            <tr><td>Lab</td><td>Eyebrow <code>text-accent</code></td></tr>
+            <tr><td>AI Workflow</td><td>Eyebrow, arrows, accents, media wash via <code>--color-theme-3</code></td></tr>
+            <tr><td>Cards / panels</td><td>Restrained card glow; selected and related shared-shell interaction states</td></tr>
+            <tr><td>Not used as</td><td>Universal page fill; Client Advisory content; E.ON content; header check; Index experience connectors</td></tr>
+          </tbody>
+        </table>
+
+        <div style="height: 3rem;"></div>
+        <p class="ds-section__index">Scoped colors — not global brand, not case themes</p>
+        <p class="ds-section__intro" style="margin-bottom: 1.5rem;">
+          Do not merge these with blue-violet, and do not treat them as Client Advisory or E.ON tokens.
+        </p>
+        <table class="bp-table">
+          <thead><tr><th>Scope</th><th>Value</th><th>Rule</th></tr></thead>
+          <tbody>
+            <tr><td>Header-local accent</td><td><code>--header-accent #4a90ff</code></td><td>React SiteHeader selected-language Check interaction only. Not the global brand accent. Not a case-study theme.</td></tr>
+            <tr><td>Index Experience storytelling / connector motif</td><td><code>#7A7FDC / #3846D4</code></td><td>Index experience timeline active connector and plus only. Periwinkle stays periwinkle.</td></tr>
+          </tbody>
+        </table>
+
+        <div style="height: 3.5rem;"></div>
+        <p class="ds-section__index">Theme Layer → Client Advisory</p>
+        <p class="ds-section__intro" style="margin-bottom: 1.5rem;">
+          These are Client Advisory Theme Layer values and must never be replaced by the global blue-violet.
+        </p>
+        <table class="bp-table">
+          <thead><tr><th>Group</th><th>Token</th><th>Verified value</th></tr></thead>
+          <tbody>
+            <tr><td>Background</td><td><code>--ca-bg</code></td><td><code>#06101f</code></td></tr>
+            <tr><td>Background</td><td><code>--ca-bg-2</code></td><td><code>#0a1729</code></td></tr>
+            <tr><td>Text</td><td><code>--ca-text</code></td><td><code>#f3f6fa</code></td></tr>
+            <tr><td>Text</td><td><code>--ca-text-2</code></td><td><code>#a9b8cc</code></td></tr>
+            <tr><td>Text</td><td><code>--ca-text-3</code></td><td><code>#71839a</code></td></tr>
+            <tr><td>Signal</td><td><code>--color-signal</code></td><td><code>#4da3ff</code></td></tr>
+            <tr><td>Signal</td><td><code>--color-signal-bright</code></td><td><code>#7cc4ff</code></td></tr>
+            <tr><td>Case accent</td><td><code>--ca-accent</code></td><td><code>#2f7cff</code></td></tr>
+            <tr><td>Line</td><td><code>--ca-line</code></td><td><code>rgb(169 184 204 / 0.22)</code></td></tr>
+          </tbody>
+        </table>
+
+        <div style="height: 3.5rem;"></div>
+        <p class="ds-section__index">Theme Layer → E.ON Solar</p>
+        <p class="ds-section__intro" style="margin-bottom: 1.5rem;">
+          These are E.ON Theme Layer values and must never be replaced by global blue-violet.
+          Lavender stays lavender. Light sections, Caveat handwriting via <code>--font-hand</code>,
+          and the authored navy / mint / red direction stay inside the case.
+          There is no single Caveat color token; live hand copy inherits the containing surface.
+        </p>
+        <table class="bp-table">
+          <thead><tr><th>Group</th><th>Token</th><th>Verified value</th></tr></thead>
+          <tbody>
+            <tr><td>Base</td><td><code>--navy-950</code></td><td><code>#07151f</code></td></tr>
+            <tr><td>Base</td><td><code>--off-white</code></td><td><code>#f8f8f6</code></td></tr>
+            <tr><td>Lavender</td><td><code>--lavender</code></td><td><code>#c9b5f4</code></td></tr>
+            <tr><td>Lavender</td><td><code>--lavender-light</code></td><td><code>#e8e1ff</code></td></tr>
+            <tr><td>Lavender</td><td><code>--lavender-marker</code></td><td><code>#9284d7</code></td></tr>
+            <tr><td>Lavender</td><td><code>--lavender-insight</code></td><td><code>#9b90c5</code></td></tr>
+            <tr><td>Mint</td><td><code>--mint</code></td><td><code>#b9f4d8</code></td></tr>
+            <tr><td>Mint</td><td><code>--mint-light</code></td><td><code>#e5f9ee</code></td></tr>
+            <tr><td>Brand red</td><td><code>--eon-red</code></td><td><code>#f32717</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 04 SPACING -->
+    <section class="ds-section" id="spacing">
+      <div class="ds-wrap">
+        <p class="ds-section__index">04 / Spacing and layout</p>
+        <h2 class="ds-title">Three content widths. One page pad.</h2>
+        <p class="ds-section__intro">
+          Horizontal padding is <code>px-6</code> (24px) almost everywhere. The system is not a
+          strict 8-point grid. These are the lengths that actually repeat.
+        </p>
+
+        <div class="ds-grid-2">
+          <div>
+            <p class="ds-section__index">Spacing scale</p>
+            <div class="ds-space-scale">
+              <div class="ds-space-row"><span>--space-xs 8px</span><div class="ds-space-bar" style="width:8px"></div><code>chip gaps</code></div>
+              <div class="ds-space-row"><span>--space-sm 16px</span><div class="ds-space-bar" style="width:16px"></div><code>lang menu offset</code></div>
+              <div class="ds-space-row"><span>--space-md 24px</span><div class="ds-space-bar" style="width:24px"></div><code>page pad px-6</code></div>
+              <div class="ds-space-row"><span>--space-lg 48px</span><div class="ds-space-bar" style="width:48px"></div><code>gap-12, title mb</code></div>
+              <div class="ds-space-row"><span>--space-xl 80px</span><div class="ds-space-bar" style="width:80px"></div><code>lg:gap-20, nav h-20</code></div>
+              <div class="ds-space-row"><span>--space-2xl 96px</span><div class="ds-space-bar" style="width:96px"></div><code>pt-24 sections</code></div>
+              <div class="ds-space-row"><span>--space-3xl 128px</span><div class="ds-space-bar" style="width:128px"></div><code>pt-32 sections</code></div>
+            </div>
+          </div>
+          <div>
+            <p class="ds-section__index">Containers</p>
+            <table class="bp-table">
+              <thead><tr><th>Token</th><th>Value</th><th>Where</th></tr></thead>
+              <tbody>
+                <tr><td>--container-max</td><td>1440px</td><td>heroes, case studies, about bio</td></tr>
+                <tr><td>--container-editorial</td><td>1040px</td><td>Lab/AI heroes, contact, HTML footer</td></tr>
+                <tr><td>--container-nav</td><td>1600px</td><td>HTML #site-nav (hidden in Next)</td></tr>
+                <tr><td>--container-chrome</td><td>1800px</td><td>live React SiteHeader</td></tr>
+                <tr><td>page pad</td><td>24px / md 56px nav</td><td>React header also 48 / 80 / 112px</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="height: 3.5rem;"></div>
+        <p class="ds-section__index">Case-study grid</p>
+        <div class="ds-layout-demo">
+          <p class="ds-layout-demo__label">lg:grid-cols-[43fr_57fr] · gap-12 / lg:gap-20 · items-center</p>
+          <div class="ds-split">
+            <div>
+              <p class="spec-eyebrow" style="margin-bottom:1rem">Section heading is centered on Index. Copy in the column is left.</p>
+              <p class="spec-heading" style="font-size:1.5rem">From friction to AI</p>
+              <p class="spec-body" style="margin-top:1rem">Accordion + pill CTA sit in the 43 column. Media takes 57. The following case study flips the tracks.</p>
+            </div>
+            <div class="media-panel">
+              <div class="media-panel__fill"></div>
+              <div class="media-panel__grid"></div>
+              <div class="media-panel__scrim"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 COMPONENTS -->
+    <section class="ds-section" id="components">
+      <div class="ds-wrap">
+        <p class="ds-section__index">05 / Components</p>
+        <h2 class="ds-title">Only what the portfolio actually repeats.</h2>
+        <p class="ds-section__intro">
+          Live site chrome is the React header. Page content still uses the HTML pill, media panel,
+          accordion, metadata, and contact block. Next.js strips <code>#site-nav</code> via
+          <code>read-public-html.ts</code> so the two headers never stack.
+        </p>
+
+        <article class="ds-comp">
+          <p class="component-label">Global header · live SiteHeader</p>
+          <div class="header-stage">
+            <div class="fake-header">
+              <span class="fake-header__logo">Lu</span>
+              <nav class="fake-header__links">
+                <a class="is-on" href="#">Client Advisory</a>
+                <a href="#">Eon Solar</a>
+                <a href="#">Lab</a>
+                <a href="#">About</a>
+              </nav>
+              <span class="header-contact">Contact me</span>
+            </div>
+          </div>
+          <p class="spec-body" style="margin-top:1rem">
+            Anatomy: wordmark 1.75rem / 600 · centered nav 1.0625rem at 72% white · language
+            dropdown · pill outline CTA. Height 80px, 96px from md. Scrim until scrollY &gt; 12,
+            then glass <code>backdrop-blur-xl</code> with a fade mask. Mobile: hamburger, stacked links,
+            language as a split pair. Hover 200ms. Menu 150ms fade/zoom.
+          </p>
+        </article>
+
+        <article class="ds-comp">
+          <p class="component-label">Text links · HTML nav-link (still in page CSS)</p>
+          <div class="component-stage" style="display:flex;gap:2.5rem;align-items:center">
+            <a class="nav-link" href="#components">Client Advisory</a>
+            <a class="nav-link" href="#components">Eon Solar</a>
+            <a class="footer-text-link" href="mailto:lu.jin.ixd@gmail.com">lu.jin.ixd@gmail.com</a>
+          </div>
+          <p class="spec-body" style="margin-top:1rem">
+            Nav links draw a 1px underline from the left over 350ms. Contact links only change
+            color, 300ms. Focus rings are 2px accent, 3px offset.
+          </p>
+        </article>
+
+        <article class="ds-comp">
+          <p class="component-label">Buttons · .pill-btn</p>
+          <div class="component-stage" style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center">
+            <a class="pill-btn" href="#components">
+              See My Work
+            </a>
+            <a class="pill-btn" href="#components">
+              Explore Now
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="pill-btn pill-btn--compact" href="#components">Contact me</a>
+          </div>
+          <p class="spec-body" style="margin-top:1rem">
+            Radius 999px. Border <code>rgba(249,251,252,0.45)</code>. Padding 0.85rem 1.9rem,
+            compact header variant 0.625rem 1.25rem / 14px. Hover: invert to
+            <code>#f9fbfc</code> fill, text <code>#0a0a0a</code>, lift -2px, white glow.
+            Active: scale 0.97. Arrow translates 3px. This is the only primary button on the shell.
+          </p>
+        </article>
+
+        <article class="ds-comp">
+          <p class="component-label">Section heading · Index / case study</p>
+          <div class="component-stage" style="text-align:center">
+            <h3 class="spec-heading">Solar landing page redesign</h3>
+            <p class="spec-body" style="margin:1.25rem auto 0;text-align:center">Experiments in systems, AI, and new ways of making.</p>
+          </div>
+          <p class="spec-body" style="margin-top:1rem">
+            Centered on Index. 1.9rem / 2.25rem, semibold or bold, 16-20 spacing below before media.
+            Lab adds a serif italic index numeral and a 15px body cap at max-width 42rem.
+          </p>
+        </article>
+
+        <article class="ds-comp">
+          <p class="component-label">Project / case study card · split + media panel</p>
+          <div class="ds-split">
+            <div>
+              <span class="lab-index">01</span>
+              <h3 class="spec-subhead" style="margin-top:1rem">Design System</h3>
+              <p class="spec-body" style="margin-top:0.75rem">Designing for scale, not just consistency.</p>
+              <span class="lab-meta" style="margin-top:1.25rem">Independent concept</span>
+              <div style="margin-top:2.5rem">
+                <a class="pill-btn" href="#components">
+                  Explore Now
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="media-panel">
+              <div class="media-panel__fill"></div>
+              <div class="media-panel__grid"></div>
+              <div class="media-panel__scrim"></div>
+            </div>
+          </div>
+          <p class="spec-body" style="margin-top:1.25rem">
+            Image frame: 16:9, <code>rounded-2xl</code>, overflow hidden, <code>--panel-shadow</code>,
+            video object-cover. Label: 11px pill, hairline-strong, tracking 0.04em, not uppercase.
+            Index: Playfair italic, muted.
+          </p>
+        </article>
+
+        <article class="ds-comp">
+          <p class="component-label">Accordion · scroll-driven on Index, click elsewhere</p>
+          <div class="component-stage">
+            <div class="accordion" data-group="demo">
+              <button class="accordion-item is-active" type="button">
+                <span class="accordion-bar"></span>
+                <span class="flex-1" style="flex:1">
+                  <span class="accordion-title block">My role - lead service designer</span>
+                  <span class="accordion-body-wrap">
+                    <span class="accordion-body-inner">
+                      <p class="accordion-body">Mapped end-to-end advisor workflows, identified friction, and translated insights into architecture, flows, and wireframes.</p>
+                    </span>
+                  </span>
+                </span>
+              </button>
+              <button class="accordion-item" type="button">
+                <span class="accordion-bar"></span>
+                <span style="flex:1">
+                  <span class="accordion-title">From friction to AI</span>
+                  <span class="accordion-body-wrap">
+                    <span class="accordion-body-inner">
+                      <p class="accordion-body">Embedded AI into existing workflows so advisors get context without another tool.</p>
+                    </span>
+                  </span>
+                </span>
+              </button>
+              <button class="accordion-item" type="button">
+                <span class="accordion-bar"></span>
+                <span style="flex:1">
+                  <span class="accordion-title">Designed for 500+ advisors</span>
+                  <span class="accordion-body-wrap">
+                    <span class="accordion-body-inner">
+                      <p class="accordion-body">Estimated 10-15 minutes saved per workflow.</p>
+                    </span>
+                  </span>
+                </span>
+              </button>
+            </div>
+          </div>
+          <p class="spec-body" style="margin-top:1rem">
+            2px active bar. Title 1.15rem / 600, muted until active. Body 0.95rem / 1.75.
+            Open state animates grid-template-rows 450ms. Inside <code>.pin-wrap</code>, click is disabled
+            and scroll position chooses the index.
+          </p>
+        </article>
+
+        <article class="ds-comp">
+          <p class="component-label">Metadata · AI Workflow definition list</p>
+          <dl class="meta-row">
+            <div>
+              <dt>Role</dt>
+              <dd>Product Designer - self-directed</dd>
+            </div>
+            <div>
+              <dt>Focus</dt>
+              <dd>AI-native design process</dd>
+            </div>
+            <div>
+              <dt>Methods</dt>
+              <dd>Research · Generation · Prototyping</dd>
+            </div>
+            <div>
+              <dt>Stage</dt>
+              <dd>Ongoing - evolves with the tools</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="ds-comp">
+          <p class="component-label">Tilt card · .nextgen-card on AI Workflow</p>
+          <div class="ds-grid-3">
+            <div class="nextgen-card">
+              <h3>4 stages</h3>
+              <p>Explore, generate, prototype, iterate. The loop is the product.</p>
+            </div>
+            <div class="nextgen-card">
+              <h3>Days, not weeks</h3>
+              <p>Generation compresses exploration. Judgment still decides.</p>
+            </div>
+            <div class="nextgen-card">
+              <h3>Always on</h3>
+              <p>Hairline, inset highlight, blue-violet bloom on hover. Tilt via mouse if motion is allowed.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="ds-comp">
+          <p class="component-label">About collection cards · page-specific, same card tokens</p>
+          <div class="component-stage">
+            <div class="yoga-row">
+              <div class="yoga-card"><span style="background:linear-gradient(160deg,#1f2124,#111214 60%,#2a1f3d)"></span></div>
+              <div class="yoga-card"><span style="background:linear-gradient(200deg,#1a1c1f,#0a0a0a 50%,#243044)"></span></div>
+              <div class="yoga-card"><span style="background:linear-gradient(180deg,#222,#111 70%,#1a1428)"></span></div>
+            </div>
+          </div>
+          <p class="spec-body" style="margin-top:1rem">
+            9:16, rounded-2xl, overlapping with 8deg fan. Enter: 64px rise, blur 16px to sharp,
+            1100ms, stagger 0 / 120 / 240ms. Hover fans them apart via Motion. Giant watermark
+            behind: Poppins 800, uppercase, <code>--color-border-divider</code> at 65% opacity.
+          </p>
+        </article>
+
+        <article class="ds-comp">
+          <p class="component-label">Contact + footer · shared HTML block</p>
+          <div class="contact-demo">
+            <div>
+              <h3 class="exp-contact__heading">Have an opportunity in mind?</h3>
+              <p class="exp-contact__links">
+                <a class="footer-text-link" href="mailto:lu.jin.ixd@gmail.com">lu.jin.ixd@gmail.com</a>
+                <span class="exp-contact__sep">·</span>
+                <a class="footer-text-link" href="https://www.linkedin.com/in/lu-jin-28008689/">LinkedIn</a>
+                <span class="exp-contact__sep">·</span>
+                <a class="footer-text-link" href="https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view">Download CV</a>
+              </p>
+            </div>
+            <a class="pill-btn" href="mailto:lu.jin.ixd@gmail.com">
+              Let's talk
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+          <div class="site-footer-demo">© 2026 Lu Jin. All rights reserved.</div>
+          <p class="spec-body" style="margin-top:1rem">
+            Contact max-width 1040px, heading clamp 1.6-2.4rem / 600. Footer is a hairline plus
+            12px muted copyright. Case studies replace this with the React SiteFooter
+            (dark oklch footer, larger type, glow wash). Same words, different chrome.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 06 MOTION -->
+    <section class="ds-section" id="motion">
+      <div class="ds-wrap">
+        <p class="ds-section__index">06 / Motion</p>
+        <h2 class="ds-title">Ease out, then stop.</h2>
+        <p class="ds-section__intro">
+          The house curve is <code>cubic-bezier(0.22, 1, 0.36, 1)</code>. Experience and intro overlays
+          also use <code>cubic-bezier(0.16, 1, 0.3, 1)</code>. Animate transform and opacity.
+        </p>
+
+        <div class="motion-grid">
+          <article class="motion-tile">
+            <h3>Pill hover</h3>
+            <p>320ms. Invert fill, -2px, arrow +3px. Active scale 0.97.</p>
+            <a class="pill-btn" href="#motion">Hover me</a>
+          </article>
+          <article class="motion-tile">
+            <h3>Link underline</h3>
+            <p>Color 300ms. Underline scaleX 350ms from the left.</p>
+            <a class="nav-link" href="#motion">Eon Solar</a>
+          </article>
+          <article class="motion-tile">
+            <h3>Entrance reveal</h3>
+            <p><code>.reveal</code> 0 → 1 opacity, +28px → 0, 800ms, IO threshold 0.15, once.</p>
+            <div class="reveal is-visible spec-subhead">About me</div>
+          </article>
+          <article class="motion-tile">
+            <h3>Ambient hero zoom</h3>
+            <p>16s ease-in-out infinite, scale 1 → 1.09. Independent of the scroll pin.</p>
+            <div class="zoom-frame"><div></div></div>
+          </article>
+          <article class="motion-tile">
+            <h3>Card glow</h3>
+            <p>Border and shadow 350ms. Radial glow follows <code>--mx / --my</code>.</p>
+            <div class="pulse-dot" aria-hidden="true"></div>
+          </article>
+          <article class="motion-tile">
+            <h3>Header glass</h3>
+            <p>React header: opacity 500ms ease-out at scrollY &gt; 12. HTML nav: blur 14px at &gt; 40.</p>
+            <code>duration-500 ease-out</code>
+          </article>
+        </div>
+
+        <div style="height: 3rem;"></div>
+        <p class="ds-section__index">Timing</p>
+        <div class="motion-tile">
+          <div class="timing-row"><code>--transition-fast 150-200ms</code><div class="timing-bar fast"><span></span></div><span>menus, colors</span></div>
+          <div class="timing-row"><code>pill / card 320-350ms</code><div class="timing-bar"><span></span></div><span>hover physics</span></div>
+          <div class="timing-row"><code>--transition-slow 800ms</code><div class="timing-bar base"><span></span></div><span>reveal</span></div>
+          <div class="timing-row"><code>about cards 1100ms</code><div class="timing-bar slow"><span></span></div><span>blur rise</span></div>
+        </div>
+
+        <div style="height: 2.5rem;"></div>
+        <p class="ds-section__intro" style="margin:0">
+          Scroll-triggered, not demoed here as full-page hijacks: Index pin-wraps at 360vh with
+          sticky 100vh stages (min-height 680px); experience track 500vh with a sticky 100vh
+          coordinate box; contact fade + 20px rise. All of that becomes a stacked list at
+          max-width 640px or reduced motion.
+        </p>
+      </div>
+    </section>
+
+    <!-- 07 RESPONSIVE -->
+    <section class="ds-section" id="responsive">
+      <div class="ds-wrap">
+        <p class="ds-section__index">07 / Responsive</p>
+        <h2 class="ds-title">Collapse the cinema. Keep the type.</h2>
+        <p class="ds-section__intro">
+          The site is built desktop-first for pinned storytelling, then stripped back.
+          Minimum width 360px. No separate tablet art direction beyond the existing Tailwind steps.
+        </p>
+
+        <div class="vp-row">
+          <article class="vp-frame vp-desktop">
+            <div class="vp-frame__bar"><span>Desktop ≥ 1024</span><span>43 / 57</span></div>
+            <div class="vp-skeleton">
+              <div>
+                <div class="vp-skel" style="width:80%"></div>
+                <div class="vp-skel" style="width:60%;margin-top:8px"></div>
+              </div>
+              <div class="vp-skel media"></div>
+            </div>
+          </article>
+          <article class="vp-frame">
+            <div class="vp-frame__bar"><span>Tablet ≥ 768</span><span>stack + type up</span></div>
+            <div class="vp-skeleton">
+              <div class="vp-skel media"></div>
+              <div class="vp-skel" style="width:70%"></div>
+              <div class="vp-skel" style="width:50%"></div>
+            </div>
+          </article>
+          <article class="vp-frame">
+            <div class="vp-frame__bar"><span>Mobile &lt; 640</span><span>no pin, no arc</span></div>
+            <div class="vp-skeleton">
+              <div class="vp-skel" style="width:90%"></div>
+              <div class="vp-skel" style="width:70%"></div>
+              <div class="vp-skel media"></div>
+            </div>
+          </article>
+        </div>
+
+        <div style="height: 2.5rem;"></div>
+        <table class="bp-table">
+          <thead>
+            <tr><th>Breakpoint</th><th>What changes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>360px min</td><td>Body min-width. Horizontal overflow hidden.</td></tr>
+            <tr><td>640px (sm)</td><td>Experience arc becomes a left-bordered list. Contact stacks. About watermark scales.</td></tr>
+            <tr><td>768px (md)</td><td>React header 96px. Section padding pt-32. Language trigger visible. Heading → text-4xl. Compact cards grow.</td></tr>
+            <tr><td>899px</td><td>Lab-only layout tweak in page CSS.</td></tr>
+            <tr><td>1024px (lg)</td><td>HTML nav links appear. 43/57 grids. Hairline column dividers. lg:gap-20.</td></tr>
+            <tr><td>1280px (xl)</td><td>React header padding 7rem (xl:px-28).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- AUDIT -->
+    <section class="ds-section" id="audit">
+      <div class="ds-wrap ds-wrap--narrow">
+        <p class="ds-section__index">Audit</p>
+        <h2 class="ds-title">What is inconsistent on purpose, and what is leftover.</h2>
+        <ul class="audit-list">
+          <li>
+            <strong>Two headers.</strong> HTML pages still contain <code>#site-nav</code>
+            (1600px, 80px, 15px links, Poppins 700 wordmark). Next.js hides it and mounts
+            SiteHeader (1800px, 80/96px, 17px links, Poppins 600 wordmark, #4a90ff check).
+            The live product is the React header.
+          </li>
+          <li>
+            <strong>Layered accents, not one brand blue.</strong> Global shell is blue-violet
+            <code>#8B5CF6</code>. Header-local accent is <code>#4a90ff</code> (selected-language
+            Check only). Index Experience connectors are periwinkle <code>#7A7FDC / #3846D4</code>.
+            Do not collapse these; they are different layers.
+          </li>
+          <li>
+            <strong>Two footers.</strong> Index / About / Lab / AI Workflow use the compact HTML
+            copyright. Client Advisory and E.ON use React SiteFooter with a glow field and
+            larger contact heading. Copy is shared. Chrome is not.
+          </li>
+          <li>
+            <strong>Two display families.</strong> Index/About = Poppins. Lab/AI Workflow = Playfair.
+            That split is authored, not an accident.
+          </li>
+          <li>
+            <strong>Case-study palettes are Theme Layers.</strong> Client Advisory ice / signal / navy
+            and E.ON navy / lavender / mint / red / light sections inherit Global Foundation but
+            must never be replaced by global blue-violet. Their tokens are recorded in Color.
+          </li>
+          <li>
+            <strong>Leftover CSS, not tokens.</strong>
+            <code>--color-bg-deepseek</code> and <code>.btn-primary-kling</code> are unused
+            implementation leftovers. Also unused unless markup proves otherwise:
+            <code>.tag-chip</code>, <code>.social-btn</code>, <code>.app-badge</code>.
+            They are not part of Global Foundation, Theme Layer, or component tokens.
+          </li>
+          <li>
+            <strong>Nav current-state contrast.</strong> About HTML nav-link default is 88% white
+            with a text-shadow; other pages use 72% and no shadow. Live React header has no underline.
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ds-end">
+    <div class="ds-wrap">
+      Reverse-engineered from the existing portfolio. No pages were modified.
+      Open this file directly in a browser.
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const header = document.getElementById('ds-header');
+      const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 12);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      const links = Array.from(document.querySelectorAll('.ds-header__nav a'));
+      const ids = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+      const spy = () => {
+        const y = window.scrollY + 120;
+        let current = ids[0];
+        ids.forEach((el) => { if (el.offsetTop <= y) current = el; });
+        links.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href') === '#' + current.id));
+      };
+      window.addEventListener('scroll', spy, { passive: true });
+      spy();
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+      document.querySelectorAll('.accordion').forEach((group) => {
+        const items = group.querySelectorAll('.accordion-item');
+        items.forEach((item) => {
+          item.addEventListener('click', () => {
+            if (item.classList.contains('is-active')) return;
+            items.forEach((i) => i.classList.remove('is-active'));
+            item.classList.add('is-active');
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
