@@ -48,7 +48,7 @@ export default function RootLayout({
       className={`${caveat.variable} ${playfair.variable} ${poppins.variable}`}
       style={{ backgroundColor: '#0a0a0a', colorScheme: 'dark' }}
     >
-      <body className="antialiased">{children}</body>
+      <body className="min-w-[360px] overflow-x-hidden antialiased">{children}</body>
     </html>
   )
 }

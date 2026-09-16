@@ -109,11 +109,12 @@
     --color-footer-divider: rgba(255, 255, 255, 0.07);
   }
 
-  html { scroll-behavior: smooth; overflow-x: hidden; }
+  html { scroll-behavior: smooth; overflow-x: hidden; min-width: 360px; }
   body {
     background: var(--color-bg-page);
     font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
+    min-width: 360px;
   }
 
   /* subtle film-grain texture for depth, per design guardrails */

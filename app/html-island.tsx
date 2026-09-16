@@ -124,7 +124,7 @@ export function HtmlIsland({ head, body }: { head: string; body: string }) {
   return (
     <div
       ref={bodyRef}
-      className="min-h-svh min-w-[360px]"
+      className="min-h-svh min-w-[360px] overflow-x-hidden"
       style={{ background: '#0a0a0a', color: '#f9fbfc' }}
     />
   )

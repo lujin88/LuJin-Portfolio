@@ -90,14 +90,19 @@
 
       --selection-bg: rgba(139, 92, 246, 0.35);
       --selection-text: #ffffff;
+
+      --footer-max-w: 1040px;
+      --color-footer-divider: rgba(255, 255, 255, 0.07);
     }
 
     html {
       scroll-behavior: smooth;
       overflow-x: hidden;
+      min-width: 360px;
     }
     body {
       margin: 0;
+      min-width: 360px;
       overflow-x: hidden;
       background: var(--color-bg-page);
       overscroll-behavior-x: none;
@@ -452,11 +457,75 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       #bgVideo, #site-nav { transition-duration: 0.001ms; }
+      .contact-reveal { opacity: 1 !important; transform: none !important; }
+    }
+
+    .contact-section {
+      position: relative;
+      background: transparent;
+      padding: clamp(6rem, 14vh, 9rem) 1.5rem clamp(4.5rem, 10vh, 7rem);
+    }
+    .exp-contact {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.75rem 3rem;
+    }
+    .contact-reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .contact-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .exp-contact__heading {
+      font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      color: var(--color-text-1);
+    }
+    .exp-contact__links {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.25rem 0.75rem;
+      font-size: 15px;
+      color: var(--color-text-3);
+    }
+    .exp-contact__links a {
+      transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .exp-contact__links a:hover { color: var(--color-text-1); }
+    .exp-contact__links a:focus-visible {
+      outline: 2px solid var(--color-theme-2);
+      outline-offset: 2px;
+      border-radius: 3px;
+    }
+    .exp-contact__sep { color: var(--color-text-4, rgba(255, 255, 255, 0.25)); }
+    @media (max-width: 640px) {
+      .exp-contact { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    }
+    .exp-footer { background: transparent; }
+    .site-footer__inner {
+      max-width: var(--footer-max-w, 1040px);
+      margin: 0 auto;
+    }
+    .site-footer__bottom {
+      border-top: 1px solid var(--color-footer-divider);
+      padding-top: 2rem;
+      text-align: left;
     }
   </style>
 </head>
 
-<body class="font-sans bg-ink text-text2">
+<body class="font-sans bg-ink text-text2 min-w-[360px]">
 
   <!-- ============ TOP MENU BAR — same global nav as index.html, fixed
        to the viewport and above every layer (including the video overlay) ============ -->
@@ -600,6 +669,33 @@
       </div>
     </div>
   </section>
+
+  <section id="contact" class="contact-section">
+    <div class="exp-contact contact-reveal">
+      <div class="exp-contact__lead">
+        <h2 class="exp-contact__heading">Have an opportunity in mind?</h2>
+        <p class="exp-contact__links">
+          <a href="mailto:lu.jin.ixd@gmail.com">lu.jin.ixd@gmail.com</a>
+          <span class="exp-contact__sep" aria-hidden="true">·</span>
+          <a href="https://www.linkedin.com/in/lu-jin-28008689/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <span class="exp-contact__sep" aria-hidden="true">·</span>
+          <a href="https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Download CV</a>
+        </p>
+      </div>
+      <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn shrink-0">
+        Let's talk
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
+    <div class="site-footer__inner">
+      <div class="site-footer__bottom">
+        <p class="text-xs text-text3">© 2026 Lu Jin. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
   <!-- ============ "A QUICK HI" — optional full-screen intro video overlay.
        Click-triggered only. Lives at the document root, fixed to the
@@ -809,6 +905,24 @@
         io.observe(second);
         // last-resort safety net — only if the observer never fires at all
         window.setTimeout(revealCards, 8000);
+      }
+    }
+
+    const contactReveal = document.querySelector('.contact-reveal');
+    if (contactReveal) {
+      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        contactReveal.classList.add('is-visible');
+      } else {
+        const contactIo = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              contactReveal.classList.add('is-visible');
+              contactIo.disconnect();
+              return;
+            }
+          }
+        }, { threshold: 0.2 });
+        contactIo.observe(contactReveal);
       }
     }
 

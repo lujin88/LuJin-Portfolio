@@ -13,6 +13,10 @@ const NAV_ITEMS = [
   { label: 'About', href: '/about' },
 ] as const
 
+const FOCUS_RING =
+  'focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current'
+const MOTION_SAFE = 'motion-reduce:transition-none motion-reduce:animate-none'
+
 const LANGUAGES = [
   { code: 'en', label: 'English' },
   { code: 'de', label: 'Deutsch' },
@@ -98,6 +102,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
         aria-hidden="true"
         className={cn(
           'pointer-events-none absolute inset-x-0 top-0 h-[220%] bg-gradient-to-b from-header-scrim/70 via-header-scrim/35 to-transparent transition-opacity duration-500 ease-out',
+          MOTION_SAFE,
           glassActive ? 'opacity-0' : 'opacity-100',
         )}
       />
@@ -105,6 +110,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
         aria-hidden="true"
         className={cn(
           'pointer-events-none absolute inset-x-0 top-0 h-[160%] bg-header-glass/80 backdrop-blur-lg transition-opacity duration-500 ease-out md:backdrop-blur-xl',
+          MOTION_SAFE,
           '[mask-image:linear-gradient(to_bottom,black_0%,black_62%,transparent_100%)]',
           glassActive ? 'opacity-100' : 'opacity-0',
         )}
@@ -113,7 +119,11 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       <div className="relative mx-auto flex h-20 max-w-[1800px] items-center justify-between px-6 md:h-24 md:px-12 lg:px-20 xl:px-28">
         <Link
           href="/index"
-          className="text-[1.75rem] font-semibold leading-none tracking-tight text-header-foreground transition-opacity hover:opacity-80"
+          className={cn(
+            'rounded-sm text-[1.75rem] font-semibold leading-none tracking-tight text-header-foreground transition-opacity hover:opacity-80',
+            FOCUS_RING,
+            MOTION_SAFE,
+          )}
         >
           Lu
         </Link>
@@ -128,7 +138,9 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                     href={item.href}
                     aria-current={isActive ? 'page' : undefined}
                     className={cn(
-                      'text-[1.0625rem] leading-none transition-colors duration-200',
+                      'rounded-sm text-[1.0625rem] leading-none transition-colors duration-200',
+                      FOCUS_RING,
+                      MOTION_SAFE,
                       isActive
                         ? 'text-header-foreground'
                         : 'text-header-foreground/72 hover:text-header-foreground',
@@ -153,13 +165,18 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
               aria-label={`语言：${language.label}`}
               onClick={() => setLangOpen((open) => !open)}
               onKeyDown={onTriggerKeyDown}
-              className="flex items-center gap-1.5 text-[1.0625rem] leading-none text-header-foreground/72 transition-colors duration-200 hover:text-header-foreground focus-visible:text-header-foreground focus-visible:outline-none"
+              className={cn(
+                'flex items-center gap-1.5 rounded-sm text-[1.0625rem] leading-none text-header-foreground/72 transition-colors duration-200 hover:text-header-foreground focus-visible:text-header-foreground',
+                FOCUS_RING,
+                MOTION_SAFE,
+              )}
             >
               {language.label}
               <ChevronDown
                 aria-hidden="true"
                 className={cn(
                   'size-3.5 transition-transform duration-300 ease-out',
+                  MOTION_SAFE,
                   langOpen && 'rotate-180',
                 )}
                 strokeWidth={1.75}
@@ -173,6 +190,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                 className={cn(
                   'absolute right-0 top-full z-10 mt-4 flex w-60 max-w-[calc(100vw-3rem)] origin-top-right flex-col gap-1 rounded-[22px] border border-header-line/40 bg-header-menu p-2 shadow-[0_18px_48px_-12px_rgba(0,0,0,0.65)]',
                   'animate-in fade-in-0 zoom-in-[0.98] slide-in-from-top-1 duration-150 ease-out',
+                  MOTION_SAFE,
                 )}
               >
                 {LANGUAGES.map((lang, index) => {
@@ -190,7 +208,9 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                         onClick={() => selectLanguage(lang)}
                         onKeyDown={(event) => onOptionKeyDown(event, index)}
                         className={cn(
-                          'group flex w-full items-center justify-between rounded-2xl px-5 py-4 text-left text-[1.0625rem] leading-none transition-colors duration-150 focus-visible:outline-none',
+                          'group flex w-full items-center justify-between rounded-2xl px-5 py-4 text-left text-[1.0625rem] leading-none transition-colors duration-150',
+                          FOCUS_RING,
+                          MOTION_SAFE,
                           'hover:bg-header-menu-item focus-visible:bg-header-menu-item',
                           isSelected
                             ? 'font-semibold text-header-foreground'
@@ -201,7 +221,10 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                         {isSelected && (
                           <Check
                             aria-hidden="true"
-                            className="size-[18px] shrink-0 text-header-accent opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100"
+                            className={cn(
+                              'size-[18px] shrink-0 text-header-accent opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100',
+                              MOTION_SAFE,
+                            )}
                             strokeWidth={2.5}
                           />
                         )}
@@ -215,7 +238,11 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
 
           <a
             href="mailto:lu.jin.ixd@gmail.com"
-            className="rounded-full border border-header-line px-6 py-3 text-[1.0625rem] leading-none text-header-foreground transition-colors duration-200 hover:border-header-foreground/70 hover:bg-header-foreground/6 md:px-7 md:py-3.5"
+            className={cn(
+              'rounded-full border border-header-line px-6 py-3 text-[1.0625rem] leading-none text-header-foreground transition-colors duration-200 hover:border-header-foreground/70 hover:bg-header-foreground/6 md:px-7 md:py-3.5',
+              FOCUS_RING,
+              MOTION_SAFE,
+            )}
           >
             Contact me
           </a>
@@ -226,7 +253,10 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             onClick={() => setMenuOpen((open) => !open)}
-            className="-mr-2 flex size-10 items-center justify-center text-header-foreground md:hidden"
+            className={cn(
+              '-mr-2 flex size-10 items-center justify-center rounded-sm text-header-foreground md:hidden',
+              FOCUS_RING,
+            )}
           >
             {menuOpen ? (
               <X className="size-6" strokeWidth={1.5} />
@@ -240,7 +270,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       <div
         id="mobile-nav"
         className={cn(
-          'relative overflow-hidden bg-header-scrim/95 transition-[max-height,opacity] duration-300 md:hidden',
+          'relative overflow-hidden bg-header-scrim/95 transition-[max-height,opacity] duration-300 motion-reduce:transition-none md:hidden',
           menuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0',
         )}
       >
@@ -255,7 +285,9 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                     aria-current={isActive ? 'page' : undefined}
                     onClick={() => setMenuOpen(false)}
                     className={cn(
-                      'text-lg transition-colors',
+                      'rounded-sm text-lg transition-colors',
+                      FOCUS_RING,
+                      MOTION_SAFE,
                       isActive ? 'text-header-foreground' : 'text-header-foreground/72',
                     )}
                   >
@@ -272,7 +304,9 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                 type="button"
                 onClick={() => setLanguage(lang)}
                 className={cn(
-                  'transition-colors',
+                  'rounded-sm transition-colors',
+                  FOCUS_RING,
+                  MOTION_SAFE,
                   lang.code === language.code
                     ? 'text-header-foreground'
                     : 'text-header-foreground/60',

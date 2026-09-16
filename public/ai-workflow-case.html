@@ -108,11 +108,12 @@
     --exp-connector: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.28) 65%, rgba(255,255,255,0.5) 100%);
   }
 
-  html { scroll-behavior: smooth; overflow-x: hidden; }
+  html { scroll-behavior: smooth; overflow-x: hidden; min-width: 360px; }
   body {
     background: var(--color-bg-page);
     font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
+    min-width: 360px;
   }
 
   /* subtle film-grain texture for depth, per design guardrails */
@@ -128,6 +129,8 @@
   }
 
   ::selection { background: var(--selection-bg); color: var(--selection-text); }
+
+  .shell-accent { color: var(--color-theme-2); }
 
   /* nav */
   .nav-link {
@@ -891,6 +894,9 @@
     max-width: var(--footer-max-w, 1440px);
     margin: 0 auto;
   }
+  .exp-footer {
+    background: transparent;
+  }
   .site-footer__bottom {
     border-top: 1px solid var(--color-footer-divider);
     padding-top: 2rem;
@@ -950,7 +956,7 @@
      spacing tokens. No pinned scroll here — the hero is a calm entry point. -->
 <section id="aiw-hero" class="relative min-h-screen flex items-center bg-ink px-6 pt-32 pb-24">
   <div class="mx-auto w-full max-w-[1040px]">
-    <p class="reveal text-[13px] font-sans font-semibold uppercase tracking-[0.28em] text-accent mb-6">Lab &mdash; Experiment</p>
+    <p class="reveal text-[13px] font-sans font-semibold uppercase tracking-[0.28em] shell-accent mb-6">Lab &mdash; Experiment</p>
     <h1 class="reveal font-serif font-bold text-text1 text-[clamp(2.4rem,6vw,4.75rem)] leading-[1.05] tracking-[-0.03em] max-w-3xl">
       Explore more.<br />Think deeper.
     </h1>
@@ -961,9 +967,9 @@
     </p>
 
     <p class="reveal mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] font-semibold uppercase tracking-[0.12em] text-text3">
-      <span>Explore</span><span class="text-accent" aria-hidden="true">&rarr;</span>
-      <span>Generate</span><span class="text-accent" aria-hidden="true">&rarr;</span>
-      <span>Prototype</span><span class="text-accent" aria-hidden="true">&rarr;</span>
+      <span>Explore</span><span class="shell-accent" aria-hidden="true">&rarr;</span>
+      <span>Generate</span><span class="shell-accent" aria-hidden="true">&rarr;</span>
+      <span>Prototype</span><span class="shell-accent" aria-hidden="true">&rarr;</span>
       <span>Iterate</span>
     </p>
 
@@ -1036,9 +1042,9 @@
         One loop. <span class="font-bold">Four moves.</span>
       </h2>
       <p class="text-center flex flex-wrap justify-center items-center gap-x-2 gap-y-1 text-[13px] font-medium uppercase tracking-[0.12em] text-text3 mb-16 md:mb-20">
-        <span>Explore</span><span class="text-accent" aria-hidden="true">&rarr;</span>
-        <span>Generate</span><span class="text-accent" aria-hidden="true">&rarr;</span>
-        <span>Prototype</span><span class="text-accent" aria-hidden="true">&rarr;</span>
+        <span>Explore</span><span class="shell-accent" aria-hidden="true">&rarr;</span>
+        <span>Generate</span><span class="shell-accent" aria-hidden="true">&rarr;</span>
+        <span>Prototype</span><span class="shell-accent" aria-hidden="true">&rarr;</span>
         <span>Iterate</span>
       </p>
 
@@ -1110,7 +1116,7 @@
   <div class="mx-auto max-w-[1440px] grid gap-14 lg:grid-cols-[minmax(0,43fr)_minmax(0,57fr)] lg:gap-20 items-center">
     <div class="reveal">
       <h2 class="text-[1.9rem] md:text-[2.4rem] font-semibold text-text1 tracking-tight mb-6">
-        Where I come in<span class="text-accent">.</span>
+        Where I come in<span class="shell-accent">.</span>
       </h2>
       <p class="text-[15px] text-text2 leading-[1.75] mb-5">
         AI can produce a hundred directions in an afternoon. It can't tell you
@@ -1214,7 +1220,7 @@
 </section>
 
 <!-- FOOTER — shared across every page (identical markup + .site-footer rules) -->
-<footer class="site-footer relative bg-[#0d0e10] pt-16 pb-8 px-6">
+<footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
   <div class="site-footer__inner">
     <div class="site-footer__bottom">
       <p class="text-xs text-text3">© 2026 Lu Jin. All rights reserved.</p>

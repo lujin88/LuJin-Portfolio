@@ -12,6 +12,8 @@
   --color-header-menu: var(--header-menu);
   --color-header-menu-item: var(--header-menu-item);
   --color-header-accent: var(--header-accent);
+  /* HTML shell only — maps Tailwind `accent` to blue-violet. Not loaded on CA / E.ON. */
+  --color-accent: #8B5CF6;
   --font-sans: var(--font-poppins), 'Poppins Fallback', system-ui, sans-serif;
   --font-serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
 }
@@ -28,4 +30,9 @@
 
 .font-serif {
   font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
+}
+
+header :is(a, button):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
