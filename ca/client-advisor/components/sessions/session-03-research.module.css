@@ -1,11 +1,53 @@
+.section {
+  --s3-photo-h: 112svh;
+}
+
+.photoFrame {
+  position: absolute;
+  inset: 0;
+}
+
 .photo {
   object-position: 22% top;
 }
 
 @media (min-width: 1024px) {
+  .photoFrame {
+    /*
+     * Height-locked crop of session-03-advisor.png (1708×921).
+     * Source x≈200px is the window just left of her profile; pinning that
+     * edge to the viewport puts her head and shoulder on the left edge.
+     * 112svh gives a little bleed so the frame still covers the section.
+     */
+    inset: auto;
+    top: 50%;
+    height: var(--s3-photo-h);
+    width: calc(var(--s3-photo-h) * 1708 / 921);
+    left: calc(var(--s3-photo-h) * -200 / 921);
+    transform: translateY(-50%);
+  }
+
   .photo {
-    /* Same cover-scale as before; only a leftward recrop of the existing frame. */
-    object-position: 28% center;
+    object-position: left center;
+  }
+
+  .quoteA,
+  .quoteB {
+    /*
+     * Her face ends near (554-200)/921 of the photo height. Park the quotes
+     * to the right of that edge, and keep them out of the research column.
+     */
+    margin-left: min(
+      calc(100% - 24ch + 2rem),
+      calc(var(--s3-photo-h) * (554 - 200) / 921 + 4.75rem - var(--ca-rail, 4.125rem))
+    );
+  }
+
+  .quoteB {
+    margin-left: min(
+      calc(100% - 24ch + 3.5rem),
+      calc(var(--s3-photo-h) * (554 - 200) / 921 + 7.25rem - var(--ca-rail, 4.125rem))
+    );
   }
 
   .grid {
@@ -18,43 +60,80 @@
 
   .copyCol {
     /* Seat the research copy in the dark field beside the figure. */
-    padding-left: clamp(1.5rem, 3.8vw, 3.75rem);
+    padding-left: clamp(1.25rem, 3.2vw, 3rem);
+  }
+}
+
+/*
+ * Below 1280 the research column starts sooner. Crop a little further
+ * into the photo and keep the quotes narrower so they still clear her face.
+ */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .photoFrame {
+    left: calc(var(--s3-photo-h) * -250 / 921);
+  }
+
+  .quoteA,
+  .quoteB {
+    max-width: 18ch;
+    margin-left: min(
+      calc(100% - 18ch),
+      calc(var(--s3-photo-h) * (554 - 250) / 921 + 4rem - var(--ca-rail, 4.125rem))
+    );
+  }
+
+  .quoteB {
+    margin-left: min(
+      calc(100% - 18ch + 1.5rem),
+      calc(var(--s3-photo-h) * (554 - 250) / 921 + 6rem - var(--ca-rail, 4.125rem))
+    );
   }
 }
 
 @media (min-width: 1440px) {
   .copyCol {
-    padding-left: 4.5rem;
+    padding-left: 3.25rem;
   }
 }
 
-.copy {
+/*
+ * Restored from the original VS Code Client Advisory page:
+ * /Users/lu/Desktop/Portfolio Website/client-advisory.html
+ * (.reveal / .reveal.is-visible / data-delay, 03 — THE RESEARCH)
+ */
+.reveal {
   opacity: 0;
-  transform: translate3d(0, 26px, 0);
-  transition: none;
-}
-
-.copyIn {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
+  transform: translateY(28px);
   transition:
-    opacity 880ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 880ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.quotes.copyIn {
-  transition-delay: 0ms;
+.reveal.isVisible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.copyCol.copyIn {
-  transition-delay: 80ms;
+.reveal[data-delay='1'] {
+  transition-delay: 90ms;
+}
+
+.reveal[data-delay='2'] {
+  transition-delay: 180ms;
+}
+
+.reveal[data-delay='3'] {
+  transition-delay: 270ms;
+}
+
+.reveal[data-delay='4'] {
+  transition-delay: 360ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .copy,
-  .copyIn {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

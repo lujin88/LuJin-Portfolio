@@ -124,7 +124,10 @@ export function HtmlIsland({ head, body }: { head: string; body: string }) {
   return (
     <div
       ref={bodyRef}
-      className="min-h-svh min-w-[360px] overflow-x-hidden"
+      // Horizontal clip lives on <html>, not here. overflow-x-hidden on this
+      // wrapper creates a scroll container and kills Index pin-wrap sticky.
+      data-html-island=""
+      className="min-h-svh min-w-[360px]"
       style={{ background: '#0a0a0a', color: '#f9fbfc' }}
     />
   )

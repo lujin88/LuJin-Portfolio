@@ -6,7 +6,9 @@ import { HtmlTheme } from '../html-theme'
 import '@eon/app/globals.css'
 
 export const metadata: Metadata = {
-  title: 'E.ON Solar - Turning paid traffic into solar leads',
+  title: {
+    absolute: 'Lu — E.ON Solar',
+  },
   description:
     'Case study: redesigning a high-friction solar calculator journey to turn existing traffic into qualified leads.',
 }

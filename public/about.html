@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>About — Lu.AI.Design</title>
+  <title>Lu — About</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700;1,900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -18,82 +18,20 @@
             ink: 'var(--color-bg-page)',
             text1: 'var(--color-text-1)',
             text2: 'var(--color-text-2)',
-            text3: 'var(--color-text-3)',
-            text4: 'var(--color-text-4)',
-            surface: 'var(--color-bg-secondary)',
-            divider: 'var(--color-border-divider)',
-            accent: 'var(--color-theme-2)',
-            'accent-hover': 'var(--color-theme-hover)',
           },
           fontFamily: {
             sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-            serif: ['"Playfair Display"', 'Georgia', 'serif'],
           },
         },
       },
     };
   </script>
 
+  <link rel="stylesheet" href="/styles/shell-tokens.css" />
+  <link rel="stylesheet" href="/styles/shell-components.css" />
+
   <style>
-    /* ============================================================
-       DESIGN TOKENS — Kling AI Design System (Purple / Solid, dark)
-       Copied verbatim from index.html so this page matches the rest
-       of the site.
-       ============================================================ */
-    :root {
-      /* brand + theme accents (solid purple — no gradients) */
-      --color-theme-1: #ffffff;
-      --color-theme-2: #8B5CF6;
-      --color-theme-3: rgba(139, 92, 246, 0.15);
-      --color-theme-hover: #A78BFA;
-      --color-bg-deepseek: #7C3AED;
-      --color-primary-solid: #8B5CF6;
-
-      /* surfaces */
-      --color-bg-page: #0a0a0a;
-      --color-bg-primary: #111214;
-      --color-bg-secondary: #1a1c1f;
-      --color-bg-elevated: #1f2124;
-
-      /* text */
-      --color-text-1: #f9fbfc;
-      --color-text-2: #b6bbc2;
-      --color-text-3: #777e85;
-      --color-text-4: #595d61;
-
-      /* borders */
-      --color-border-frame: #1a1b1f;
-      --color-border-container: #242629;
-      --color-border-divider: #343638;
-      --color-border-hover: #76787a;
-
-      --hairline: rgba(255, 255, 255, 0.10);
-
-      --nav-top-gradient: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
-      --nav-scrolled-bg: rgba(10, 10, 10, 0.78);
-
-      --pill-text: #f9fbfc;
-      --pill-border: rgba(249, 251, 252, 0.45);
-      --pill-bg: rgba(255, 255, 255, 0.02);
-      --pill-hover-bg: #f9fbfc;
-      --pill-hover-text: #0a0a0a;
-      --pill-hover-shadow: 0 10px 30px -8px rgba(249, 251, 252, 0.35);
-
-      --card-bg: #111214;
-      --card-border: rgba(255, 255, 255, 0.07);
-      --card-border-hover: rgba(255, 255, 255, 0.16);
-      --card-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 24px 48px -26px rgba(139,92,246,0.14), 0 10px 28px -12px rgba(0,0,0,0.65);
-      --card-shadow-hover: 0 1px 0 rgba(255,255,255,0.06) inset, 0 32px 64px -26px rgba(139,92,246,0.24), 0 14px 34px -12px rgba(0,0,0,0.75);
-
-      --grain-opacity: 0.035;
-      --grain-blend: overlay;
-
-      --selection-bg: rgba(139, 92, 246, 0.35);
-      --selection-text: #ffffff;
-
-      --footer-max-w: 1040px;
-      --color-footer-divider: rgba(255, 255, 255, 0.07);
-    }
+    /* Page-local About styles. Shared pills, grain, contact, footer: shell-components.css */
 
     html {
       scroll-behavior: smooth;
@@ -115,18 +53,6 @@
     * { -webkit-tap-highlight-color: transparent; }
     ::selection { background: var(--selection-bg); color: var(--selection-text); }
 
-    /* subtle film-grain texture for depth, matching the other pages */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      opacity: var(--grain-opacity);
-      mix-blend-mode: var(--grain-blend);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
     /* ---- hero background video — mouse-scrubbed, never plays ---- */
     #bgVideo {
       position: absolute;
@@ -142,275 +68,507 @@
     }
     #bgVideo.is-loaded { opacity: 1; }
 
-    /* ============================================================
-       TOP MENU BAR — copied verbatim from index.html so this page's
-       nav matches the rest of the site. Fixed to the viewport and
-       kept above every layer, including the intro video overlay.
-       ============================================================ */
-    .nav-link {
+    /* ---- About Me — lower scene. Hero video above is untouched. ---- */
+    #second {
       position: relative;
-      color: color-mix(in srgb, var(--color-text-1) 88%, transparent);
-      text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.4);
-      transition: color 300ms cubic-bezier(0.22,1,0.36,1);
+      z-index: 20;
+      margin-top: -5.25rem;
+      background: transparent;
+      color: var(--color-text-2);
     }
-    .nav-link::after {
-      content: "";
+    .about-sheet {
+      position: relative;
+      border-radius: 50% 50% 0 0 / 5.75rem 5.75rem 0 0;
+      background:
+        radial-gradient(ellipse 46% 38% at 50% 46%, rgba(109, 76, 214, 0.22), transparent 68%),
+        radial-gradient(ellipse 28% 22% at 82% 38%, rgba(139, 92, 246, 0.08), transparent 70%),
+        var(--color-bg-page);
+      box-shadow:
+        0 -1px 0 rgba(198, 186, 255, 0.42),
+        0 -28px 70px -20px rgba(88, 58, 190, 0.28);
+      padding: 4.75rem 1.5rem 3.25rem;
+    }
+    .about-scrolls {
       position: absolute;
-      left: 0; right: 0; bottom: -6px;
-      height: 1px;
-      background: var(--color-text-1);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 350ms cubic-bezier(0.22,1,0.36,1);
-    }
-    .nav-link:hover, .nav-link:focus-visible { color: var(--color-text-1); }
-    .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
-
-    #site-nav {
-      background: var(--nav-top-gradient);
-      transition: background-color 400ms ease;
-    }
-    #site-nav.scrolled {
-      background: var(--nav-scrolled-bg);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 1px 0 var(--hairline);
-    }
-    /* pill button — copied from index.html */
-    .pill-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border-radius: 999px;
-      border: 1px solid var(--pill-border);
-      padding: 0.85rem 1.9rem;
-      font-size: 0.95rem;
-      color: var(--pill-text);
-      background: var(--pill-bg);
-      transition: transform 320ms cubic-bezier(0.22,1,0.36,1),
-                  background-color 320ms cubic-bezier(0.22,1,0.36,1),
-                  color 320ms cubic-bezier(0.22,1,0.36,1),
-                  border-color 320ms cubic-bezier(0.22,1,0.36,1),
-                  box-shadow 320ms cubic-bezier(0.22,1,0.36,1);
-    }
-    .pill-btn:hover {
-      background: var(--pill-hover-bg);
-      color: var(--pill-hover-text);
-      border-color: var(--pill-hover-bg);
-      box-shadow: var(--pill-hover-shadow);
-      transform: translateY(-2px);
-    }
-    .pill-btn:active { transform: translateY(0) scale(0.97); }
-    .pill-btn:focus-visible { outline: 2px solid #8B5CF6; outline-offset: 3px; }
-
-    /* language switcher */
-    .lang-switch { position: relative; }
-    .lang-trigger svg { transition: transform 300ms cubic-bezier(0.22,1,0.36,1); }
-    .lang-trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
-    .lang-menu {
-      position: absolute;
-      top: calc(100% + 16px);
-      right: 0;
-      min-width: 224px;
-      padding: 10px;
-      border-radius: 16px;
-      background: var(--color-bg-elevated);
-      border: 1px solid var(--hairline, rgba(255,255,255,0.10));
-      box-shadow: var(--panel-shadow, 0 40px 80px -30px rgba(0,0,0,0.7), 0 12px 30px -10px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06));
+      left: 1.5rem;
+      top: 0.35rem;
+      z-index: 3;
       display: flex;
       flex-direction: column;
-      opacity: 0;
-      transform: translateY(-8px) scale(0.97);
-      transform-origin: top right;
-      pointer-events: none;
-      transition: opacity 260ms cubic-bezier(0.22,1,0.36,1), transform 260ms cubic-bezier(0.22,1,0.36,1);
-      z-index: 60;
-    }
-    .lang-menu.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
-    .lang-option {
-      display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1.25rem;
-      width: 100%;
-      padding: 12px 16px;
-      border-radius: 10px;
-      font-size: 15px;
-      line-height: 1.25;
-      color: var(--color-text-2);
-      text-align: left;
-      transition: background-color 200ms ease, color 200ms ease;
+      gap: 0.45rem;
+      margin: 0;
+      color: rgba(232, 236, 244, 0.62);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      pointer-events: none;
     }
-    .lang-option:hover, .lang-option:focus-visible {
-      background: var(--surface-raise, rgba(255,255,255,0.06));
-      color: var(--color-text-1);
-      outline: none;
+    .about-scrolls::before {
+      content: "";
+      width: 1px;
+      height: 2.4rem;
+      background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.55));
     }
-    .lang-option[aria-selected="true"] { color: var(--color-text-1); font-weight: 600; }
-    .lang-check { opacity: 0; flex-shrink: 0; color: var(--color-theme-2); transition: opacity 200ms ease; }
-    .lang-option[aria-selected="true"] .lang-check { opacity: 1; }
+    .about-scrolls span {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
 
-    /* Kling primary action — flat solid purple, no gradient */
-    .btn-primary-kling {
-      background-color: var(--color-primary-solid);
-      color: #ffffff;
+    .about-me__inner {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .about-layout {
+      display: grid;
+      gap: 2.5rem;
+    }
+    .about-copy { max-width: 34rem; }
+    .about-copy__eyebrow {
+      margin: 0 0 0.95rem;
+      font-size: 12px;
       font-weight: 600;
-      font-size: 14px;
-      padding: 8px 20px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #8d95a2;
     }
-    .btn-primary-kling:hover { background-color: var(--color-theme-hover); box-shadow: 0 0 12px var(--color-theme-3); }
-    .btn-primary-kling:active { transform: scale(0.97); }
-    .btn-primary-kling:focus-visible { outline: 2px solid var(--color-theme-2); outline-offset: 2px; }
-
-    /* ---- second screen — normal page flow, sits directly below the hero
-       and is reached by ordinary scrolling. Same black surface as the
-       Index page (var(--color-bg-page), i.e. Tailwind `bg-ink`). ---- */
-    #second {
-      background: var(--color-bg-page);
+    .about-copy__title {
+      margin: 0;
+      font-size: clamp(2.4rem, 3.7vw, 3.65rem);
+      font-weight: 700;
+      line-height: 0.98;
+      letter-spacing: -0.038em;
+      color: #f7f8fa;
     }
-
-    /* ---- three-card cinematic reveal ----------------------------------
-       When #second scrolls into view the cards rise up, fade in, and
-       come into focus (blur -> sharp). The rise uses the INDEPENDENT
-       `translate` property — NOT `transform` — so each card's resting
-       `transform: rotate()/scale()` and the motion-lib hover animation
-       are left completely intact. Stagger: left 0ms · centre 120ms ·
-       right 240ms. Purely visual — never captures scroll. */
-    .cards-deck .yoga-card {
-      opacity: 0.001;
-      translate: 0 64px;
-      filter: blur(16px) saturate(0.8);
-      transition: opacity 1100ms cubic-bezier(0.22, 1, 0.36, 1),
-                  translate 1100ms cubic-bezier(0.22, 1, 0.36, 1),
-                  filter 1100ms cubic-bezier(0.22, 1, 0.36, 1),
-                  box-shadow 0.3s ease,
-                  border-color 0.3s ease;
+    .about-copy__body {
+      margin: 1.2rem 0 0;
+      max-width: 36em;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: #b7bdc6;
     }
-    .cards-deck.revealed .yoga-card {
-      opacity: 1;
-      translate: 0 0;
-      filter: blur(0) saturate(1);
-    }
-    .cards-deck .yoga-card:nth-child(2) { transition-delay: 120ms; }
-    .cards-deck .yoga-card:nth-child(3) { transition-delay: 240ms; }
-    @media (prefers-reduced-motion: reduce) {
-      .cards-deck .yoga-card {
-        opacity: 1; translate: none; filter: none; transition: none;
-      }
-    }
-
-    .yoga-card {
-      will-change: transform, translate, opacity, filter;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      box-shadow: var(--card-shadow);
-      transition: box-shadow 0.3s ease, border-color 0.3s ease;
-    }
-    .yoga-card:hover { border-color: var(--card-border-hover); box-shadow: var(--card-shadow-hover); }
-    .yoga-card video { pointer-events: none; }
-    .yoga-card:focus-visible {
-      outline: 2px solid var(--color-theme-2);
-      outline-offset: 4px;
-    }
-
-    /* 3D photo flip — same structure as FlippablePhotoCard:
-       perspective on the wrapper, preserve-3d on the inner, both faces
-       backface-hidden, back pre-rotated 180deg. Hover on fine pointers,
-       tap/click toggles .is-flipped as a touch fallback. */
-    .photo-flip {
-      width: 100%;
-      height: 100%;
-      perspective: 1000px;
-    }
-    .photo-flip__inner {
+    .about-scribble {
       position: relative;
+      margin: 1.45rem 0 0 0.2rem;
+      max-width: 16rem;
+      font-family: Caveat, cursive;
+      font-weight: 600;
+      font-size: 1.72rem;
+      line-height: 1.12;
+      color: #b7c2ff;
+      transform: rotate(-7deg);
+      transform-origin: left center;
+    }
+    .about-scribble__line {
+      display: block;
+      width: 9.5rem;
+      height: 0.7rem;
+      margin-top: 0.1rem;
+      margin-left: 0.15rem;
+      overflow: visible;
+    }
+
+    .about-collage {
+      position: relative;
+      isolation: isolate;
       width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-      transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+      height: 34rem;
+      min-width: 0;
+      justify-self: stretch;
+      overflow-x: clip;
     }
-    @media (hover: hover) and (pointer: fine) {
-      .yoga-card:hover .photo-flip__inner,
-      .yoga-card:focus-visible .photo-flip__inner {
-        transform: rotateY(180deg);
-      }
+    .about-collage__glow,
+    .about-collage__ring {
+      position: absolute;
+      left: 50%;
+      bottom: 7%;
+      transform: translateX(-50%);
+      pointer-events: none;
     }
-    .yoga-card.is-flipped .photo-flip__inner {
-      transform: rotateY(180deg);
+    .about-collage__glow {
+      z-index: 1;
+      width: 78%;
+      height: 26%;
+      background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.62), rgba(99, 70, 210, 0.12) 52%, transparent 72%);
+      filter: blur(6px);
     }
-    .photo-flip__face {
+    .about-collage__ring {
+      z-index: 1;
+      width: 72%;
+      height: 16%;
+      border: 1px solid rgba(186, 170, 255, 0.42);
+      border-radius: 50%;
+      box-shadow: 0 0 22px rgba(139, 92, 246, 0.35), inset 0 0 18px rgba(139, 92, 246, 0.18);
+    }
+    .about-float {
+      position: absolute;
+      z-index: 1;
+      margin: 0;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.88);
+      background: #12141a;
+      box-shadow:
+        0 18px 36px -12px rgba(0, 0, 0, 0.78),
+        0 8px 22px rgba(0, 0, 0, 0.42),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+    .about-float img {
       position: absolute;
       inset: 0;
-      overflow: hidden;
-      border-radius: 0.75rem;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-    .photo-flip__front {
-      z-index: 2;
-      transform: translateZ(1px);
-    }
-    .photo-flip__front img,
-    .photo-flip__front video {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      opacity: 0.7;
+      filter: brightness(0.7) contrast(0.9);
+      transition:
+        opacity var(--duration-interaction) ease,
+        filter var(--duration-interaction) ease;
     }
-    .photo-flip__back {
-      z-index: 1;
+    .about-float:hover img {
+      opacity: 1;
+      filter: brightness(1) contrast(1);
+    }
+    .about-float--travel {
+      width: 42%;
+      aspect-ratio: 4 / 3;
+      left: 1%;
+      top: 6%;
+      transform: rotate(-8deg);
+      animation: about-bob 7.5s ease-in-out infinite;
+    }
+    .about-float--design {
+      width: 38%;
+      aspect-ratio: 4 / 3;
+      right: 0;
+      top: 1%;
+      transform: rotate(7deg);
+      animation: about-bob 8.2s ease-in-out 0.6s infinite;
+    }
+    .about-float--kids {
+      width: 34%;
+      aspect-ratio: 4 / 3;
+      left: 0;
+      top: 44%;
+      transform: rotate(-5deg);
+      animation: about-bob 6.8s ease-in-out 0.3s infinite;
+    }
+    .about-float--coffee {
+      width: 29%;
+      aspect-ratio: 1;
+      right: 1%;
+      top: 47%;
+      transform: rotate(8deg);
+      animation: about-bob 7.8s ease-in-out 1s infinite;
+    }
+    @keyframes about-bob {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -8px; }
+    }
+    .about-note {
+      position: absolute;
+      z-index: 5;
+      margin: 0;
+      font-family: Caveat, cursive;
+      font-weight: 600;
+      font-size: 1.55rem;
+      line-height: 1;
+      color: #f4f7fb;
+      text-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+      pointer-events: none;
+    }
+    .about-note--travel { left: 3%; top: 0; transform: rotate(-11deg); }
+    .about-note--design { right: 1%; top: 33%; transform: rotate(9deg); }
+    .about-note--kids { left: 1%; bottom: 7%; transform: rotate(-7deg); }
+    .about-note--coffee { right: 0; bottom: 9%; transform: rotate(5deg); }
+    .about-arc {
+      position: absolute;
+      z-index: 5;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .about-arc path {
+      fill: none;
+      stroke: rgba(244, 247, 251, 0.72);
+      stroke-width: 1.25;
+      stroke-linecap: round;
+      stroke-dasharray: 1.2 3.2;
+    }
+    .about-arc--travel { left: 20%; top: 6%; width: 4.2rem; height: 2.4rem; }
+    .about-arc--design { right: 10%; top: 26%; width: 3.6rem; height: 2.2rem; }
+    .about-arc--kids { left: 14%; bottom: 18%; width: 3.4rem; height: 2rem; }
+    .about-arc--coffee { right: 8%; bottom: 20%; width: 3.2rem; height: 1.8rem; }
+
+    .about-avatar {
+      position: absolute;
+      z-index: 4;
+      left: 16%;
+      right: 12%;
+      bottom: -2%;
+      cursor: pointer;
+      outline: none;
+    }
+    .about-avatar:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring);
+      outline-offset: 6px;
+      border-radius: 1.25rem;
+    }
+    .about-avatar__still,
+    .about-avatar__motion {
+      display: block;
+      width: 100%;
+      height: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 84%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 0%, #000 84%, transparent 100%);
+    }
+    .about-avatar__motion {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .about-avatar.is-live .about-avatar__still { opacity: 0; }
+    .about-avatar.is-live .about-avatar__motion { opacity: 1; }
+    .about-avatar__still,
+    .about-avatar__motion {
+      transition: opacity 160ms ease;
+    }
+
+    .about-features {
       display: flex;
       flex-direction: column;
+      gap: 0.85rem;
+    }
+    .about-feature {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 0.85rem;
+      align-items: center;
+      margin: 0;
+      padding: 0.95rem 1rem 0.95rem 0.8rem;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        0 18px 40px -26px rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: border-color var(--duration-fast) ease, transform var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+    }
+    .about-feature:hover {
+      border-color: rgba(176, 156, 255, 0.45);
+      transform: translateY(-2px);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 20px 46px -22px rgba(139, 92, 246, 0.38);
+    }
+    .about-feature__icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      color: #e4dcff;
+      background: radial-gradient(circle at 40% 30%, rgba(186, 164, 255, 0.42), rgba(88, 60, 180, 0.2));
+      border: 1px solid rgba(198, 186, 255, 0.4);
+      box-shadow: 0 0 16px rgba(139, 92, 246, 0.32);
+    }
+    .about-feature__icon svg,
+    .about-feature__arrow,
+    .about-stats__place svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+    .about-feature strong {
+      display: block;
+      color: #f7f8fa;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.25;
+    }
+    .about-feature p {
+      margin: 0.22rem 0 0;
+      color: #9aa1ab;
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+    .about-feature__arrow {
+      color: rgba(255, 255, 255, 0.58);
+      transition: transform var(--duration-fast) ease;
+    }
+    .about-feature:hover .about-feature__arrow { transform: translateX(3px); }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.35rem 0.75rem;
+      margin: 2.75rem auto 0;
+      padding: 0;
+      max-width: 980px;
+      list-style: none;
+    }
+    .about-stats li { min-width: 0; text-align: center; }
+    .about-stats strong {
+      display: block;
+      color: #f7f8fa;
+      font-size: clamp(1.45rem, 2vw, 1.85rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .about-stats span {
+      display: block;
+      margin-top: 0.28rem;
+      color: #8b939e;
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+    .about-stats__place {
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
-      padding: 2.15rem 1.85rem 5.75rem;
-      background: var(--color-bg-primary);
-      transform: rotateY(180deg) translateZ(1px);
+      gap: 0.7rem;
+      text-align: left;
     }
-    .photo-flip__title {
-      margin: 0;
-      max-width: 11ch;
-      text-align: center;
-      font-family: inherit;
-      font-size: clamp(1.75rem, 4.8vw, 2.125rem);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      color: var(--color-text-1);
-      text-wrap: balance;
+    .about-stats__place svg {
+      flex: none;
+      width: 22px;
+      height: 22px;
+      color: rgba(247, 248, 250, 0.86);
     }
-    .photo-flip__note {
-      width: 100%;
-      max-width: 28ch;
-      margin: 0;
-      text-align: center;
-      font-size: clamp(1rem, 2.7vw, 1.125rem);
-      font-weight: 400;
-      line-height: 1.55;
-      color: var(--color-text-2);
+    .about-stats__place span { margin: 0; }
+    .about-stats__place em {
+      display: block;
+      font-style: normal;
+      font-size: 0.72rem;
+      color: #8b939e;
     }
-    @media (max-width: 767px) {
-      .cards-deck {
-        flex-direction: column;
-        gap: 1.5rem;
+    .about-stats__place b {
+      display: block;
+      margin-top: 0.12rem;
+      color: #f7f8fa;
+      font-weight: 500;
+      font-size: 0.92rem;
+    }
+
+    .about-reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity var(--duration-reveal) cubic-bezier(0.22, 1, 0.36, 1),
+        transform var(--duration-reveal) cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .about-reveal.is-visible { opacity: 1; transform: none; }
+    .about-collage.about-reveal { transition-delay: 90ms; }
+    .about-features.about-reveal { transition-delay: 150ms; }
+    .about-stats.about-reveal { transition-delay: 180ms; }
+
+    @media (min-width: 720px) {
+      .about-stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0;
       }
-      .cards-deck .yoga-card {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        width: min(18rem, 100%);
+      .about-stats li {
+        padding: 0 1.15rem;
+        border-left: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .about-stats li:first-child { border-left: 0; padding-left: 0; }
+    }
+
+    /* iPad portrait / landscape: collage stays a stacked scene until the
+       1100px three-column layout. Keep the avatar inside the frame so it
+       cannot collide with the copy above. */
+    @media (min-width: 720px) and (max-width: 1099px) {
+      .about-layout { gap: 3rem; }
+      .about-collage {
+        height: min(42rem, 70svh);
+        overflow-x: clip;
+      }
+      .about-float--travel { width: 36%; left: 2%; top: 8%; }
+      .about-float--design { width: 33%; right: 2%; top: 4%; }
+      .about-float--kids { width: 30%; left: 2%; top: 46%; }
+      .about-float--coffee { width: 26%; right: 3%; top: 48%; }
+      .about-note { font-size: 1.38rem; }
+      .about-note--travel { left: 4%; top: 2%; }
+      .about-note--design { right: 3%; top: 34%; }
+      .about-note--kids { left: 3%; bottom: 8%; }
+      .about-note--coffee { right: 2%; bottom: 10%; }
+      .about-avatar {
+        left: 20%;
+        right: 16%;
+        bottom: 0;
+        height: 88%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .about-avatar__still,
+      .about-avatar__motion {
+        width: auto;
+        height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        object-position: bottom center;
       }
     }
+
+    @media (min-width: 1100px) {
+      .about-sheet { padding: 5.25rem 1.5rem 3.5rem; }
+      .about-layout {
+        grid-template-columns: minmax(220px, 0.86fr) minmax(420px, 1.28fr) minmax(270px, 0.92fr);
+        column-gap: clamp(1rem, 2vw, 2.4rem);
+        align-items: center;
+      }
+      .about-copy { max-width: none; }
+      .about-collage { height: 36rem; }
+      .about-scribble { margin-left: 0.4rem; }
+    }
+
+    @media (max-width: 719px) {
+      #second { margin-top: -3.25rem; }
+      .about-sheet {
+        border-radius: 50% 50% 0 0 / 2.6rem 2.6rem 0 0;
+        padding: 3.4rem 1.15rem 2.75rem;
+      }
+      .about-scrolls { display: none; }
+      .about-collage { height: 28rem; }
+      .about-note { font-size: 1.3rem; }
+      .about-scribble { font-size: 1.5rem; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .photo-flip__inner { transition: none; }
+      .about-reveal,
+      .about-collage.about-reveal,
+      .about-features.about-reveal,
+      .about-stats.about-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .about-float { animation: none; }
+      .about-float img { transition: none; }
+      .about-avatar__still,
+      .about-avatar__motion,
+      .about-feature,
+      .about-feature__arrow { transition: none; }
     }
+
 
     /* ---- "A Quick Hi" — TRUE full-viewport intro video ----
        Fixed to the viewport, edge to edge. Sits above the whole page
-       (z 40) but BELOW the global top menu bar (#site-nav, z 50) so the
+       (z 40) but BELOW the React header (z 50) so the
        nav stays visible over it. Optional layer — not part of the
        scroll flow. */
     #introOverlay {
@@ -451,114 +609,20 @@
       transition: background-color 200ms ease, box-shadow 200ms ease, transform 150ms ease;
     }
     .intro-close:hover { background: rgba(255, 255, 255, 0.18); box-shadow: 0 0 16px rgba(139, 92, 246, 0.35); }
-    .intro-close:focus-visible { outline: 2px solid var(--color-theme-2); outline-offset: 3px; }
+    .intro-close:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring);
+      outline-offset: var(--focus-ring-offset);
+    }
     .intro-close:active { transform: scale(0.94); }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      #bgVideo, #site-nav { transition-duration: 0.001ms; }
-      .contact-reveal { opacity: 1 !important; transform: none !important; }
-    }
-
-    .contact-section {
-      position: relative;
-      background: transparent;
-      padding: clamp(6rem, 14vh, 9rem) 1.5rem clamp(4.5rem, 10vh, 7rem);
-    }
-    .exp-contact {
-      max-width: 1040px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.75rem 3rem;
-    }
-    .contact-reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .contact-reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .exp-contact__heading {
-      font-size: clamp(1.6rem, 2.6vw, 2.4rem);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.12;
-      color: var(--color-text-1);
-    }
-    .exp-contact__links {
-      margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.25rem 0.75rem;
-      font-size: 15px;
-      color: var(--color-text-3);
-    }
-    .exp-contact__links a {
-      transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .exp-contact__links a:hover { color: var(--color-text-1); }
-    .exp-contact__links a:focus-visible {
-      outline: 2px solid var(--color-theme-2);
-      outline-offset: 2px;
-      border-radius: 3px;
-    }
-    .exp-contact__sep { color: var(--color-text-4, rgba(255, 255, 255, 0.25)); }
-    @media (max-width: 640px) {
-      .exp-contact { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-    }
-    .exp-footer { background: transparent; }
-    .site-footer__inner {
-      max-width: var(--footer-max-w, 1040px);
-      margin: 0 auto;
-    }
-    .site-footer__bottom {
-      border-top: 1px solid var(--color-footer-divider);
-      padding-top: 2rem;
-      text-align: left;
+      #bgVideo { transition-duration: 0.001ms; }
     }
   </style>
 </head>
 
 <body class="font-sans bg-ink text-text2 min-w-[360px]">
-
-  <!-- ============ TOP MENU BAR — same global nav as index.html, fixed
-       to the viewport and above every layer (including the video overlay) ============ -->
-  <nav id="site-nav" class="fixed top-0 inset-x-0 z-50">
-      <div class="mx-auto max-w-[1600px] flex items-center justify-between px-6 md:px-14 h-20">
-        <div class="flex items-center gap-4 pointer-events-auto">
-          <a href="/index" aria-label="Lu — back to home" class="flex items-center text-text1 font-sans font-bold text-2xl tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4 rounded">
-            Lu
-          </a>
-        </div>
-
-        <div class="hidden lg:flex items-center gap-10 text-[15px] pointer-events-auto">
-          <a href="/client-advisory" class="nav-link focus-visible:outline-none">Client Advisory</a>
-          <a href="/EON" class="nav-link focus-visible:outline-none">Eon Solar</a>
-          <a href="/lab" class="nav-link focus-visible:outline-none">Lab</a>
-          <a href="/about" class="nav-link is-current text-text1 focus-visible:outline-none" aria-current="page">About</a>
-        </div>
-
-        <div class="flex items-center gap-5 pointer-events-auto">
-          <div class="lang-switch">
-            <button type="button" class="lang-trigger hidden md:flex items-center gap-1 text-[15px] text-text2 hover:text-text1 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 rounded" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language">
-              <span class="lang-current">English</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-            <div class="lang-menu" role="listbox" aria-label="Language">
-              <button type="button" class="lang-option" role="option" data-lang="en" aria-selected="true">English<svg class="lang-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></button>
-              <button type="button" class="lang-option" role="option" data-lang="de" aria-selected="false">Deutsch<svg class="lang-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></button>
-            </div>
-          </div>
-          <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn !py-2.5 !px-5 text-[14px]">Contact me</a>
-        </div>
-      </div>
-    </nav>
 
   <!-- ============ SECTION 1 — HERO (normal page flow, one viewport tall) ============ -->
   <section id="hero" class="hero relative w-full h-screen bg-ink overflow-hidden select-none">
@@ -566,8 +630,8 @@
     <!-- background video layer — scrubbed by horizontal mouse movement (see script) -->
     <video
       id="bgVideo"
-      src="References/About%20me/Turn%20head.mp4"
-      poster="References/About%20me/Reference%20image/Lu%20static/Middle%20wave%20hand.jpeg"
+      src="/assets/videos/about/turn-head.mp4"
+      poster="/assets/images/about/middle-wave-hand.jpeg"
       muted playsinline preload="auto"
     ></video>
     <div class="absolute inset-0 bg-black/25 pointer-events-none z-[1]"></div>
@@ -578,10 +642,10 @@
       <!-- hero copy — same type treatment, inset and vertical placement as the index page hero -->
       <div class="w-full px-6 mx-auto max-w-[1440px]">
         <div class="title-wrap pointer-events-auto max-w-2xl mt-[6vh]">
-          <h1 class="text-text1 font-sans font-bold text-[clamp(2.25rem,5.2vw,4rem)] leading-[1.08] tracking-tight drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)]">
+          <h1 class="text-text1 font-sans font-bold text-[clamp(2.25rem,5.2vw,4rem)] leading-[1.08] tracking-tight drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)]" data-i18n="page.heroTitle">
             Hey, I am<br />Lu
           </h1>
-          <button id="startBtn" type="button" class="pill-btn mt-9 cursor-pointer">
+          <button id="startBtn" type="button" class="pill-btn mt-9 cursor-pointer" data-i18n="page.startBtn">
             A Quick Hi
           </button>
         </div>
@@ -589,101 +653,128 @@
     </div>
   </section>
 
-  <!-- ============ SECTION 2 — COLLECTION (black surface, matches Index) ============ -->
-  <section
-    id="second"
-    class="relative w-full min-h-screen z-20 flex flex-col items-center justify-start p-6 pt-24 sm:p-12 md:p-16 text-text2">
+  <!-- ============ SECTION 2 — ABOUT ME ============ -->
+  <section id="second" aria-labelledby="about-title">
+    <div class="about-sheet">
+      <p class="about-scrolls" aria-hidden="true"><span data-i18n="page.scrolls">Scrolls</span></p>
+      <div class="about-me__inner">
+        <div class="about-layout">
 
-    <div class="w-full flex-1 flex flex-col items-center justify-center relative select-none mt-20 sm:mt-16">
+          <div class="about-copy about-reveal">
+            <p class="about-copy__eyebrow" data-i18n="page.eyebrow">About me</p>
+            <h2 id="about-title" class="about-copy__title" data-i18n="mainHeading">
+              Designer.<br />
+              Builder.<br />
+              Explorer.
+            </h2>
+            <p class="about-copy__body" data-i18n="subtext">I focus on harnessing AI to make everyday life more effortless, efficient, and fulfilling for everyone.</p>
+            <p class="about-scribble">
+              <span data-i18n="annotations.curious">Curious by nature,<br />Always in progress.</span>
+              <svg class="about-scribble__line" viewBox="0 0 160 18" aria-hidden="true">
+                <path d="M2 11 C 36 4, 78 16, 154 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </p>
+          </div>
 
-      <!-- overlapping card deck -->
-      <div class="cards-deck flex items-center justify-center relative z-20 w-full max-w-5xl mt-6">
+          <div class="about-collage about-reveal">
+            <div class="about-collage__glow" aria-hidden="true"></div>
+            <div class="about-collage__ring" aria-hidden="true"></div>
 
-        <div
-          class="yoga-card relative aspect-[9/16] w-72 sm:w-[21rem] md:w-[24rem]
-                 rounded-2xl cursor-pointer origin-bottom select-none z-20 hover:z-40
-                 -mr-[3.5rem] sm:-mr-[5.5rem] md:-mr-[7rem] lg:-mr-[8rem]"
-          data-src="References/About%20me/Swimming%20video.mp4"
-          data-title="No Signal"
-          data-init-rotate="-8"
-          data-hover-x="-18" data-hover-y="-10" data-hover-rotate="-8" data-hover-scale="1.03"
-          style="transform: rotate(-8deg);"
-          role="button" tabindex="0" aria-pressed="false" aria-label="No Signal. Show title.">
-          <div class="photo-flip">
-            <div class="photo-flip__inner">
-              <div class="photo-flip__face photo-flip__front">
-                <video class="w-full h-full object-cover rounded-xl" autoplay muted loop playsinline preload="auto"></video>
-              </div>
-              <div class="photo-flip__face photo-flip__back" aria-hidden="true">
-                <p class="photo-flip__title">No Signal</p>
-                <p class="photo-flip__note">Swimming is one of the few times I'm not making design decisions. Underwater, there's no sound — not even my phone can reach me.</p>
-              </div>
+            <p class="about-note about-note--travel" data-i18n="annotations.travel">Travel</p>
+            <svg class="about-arc about-arc--travel" viewBox="0 0 80 40" aria-hidden="true"><path d="M6 8 C 28 6, 46 30, 74 34"/></svg>
+            <figure class="about-float about-float--travel">
+              <img src="/assets/images/about/travel.png" alt="Alpine lake between forested mountains" data-i18n="page.altTravel" />
+            </figure>
+
+            <p class="about-note about-note--design" data-i18n="annotations.design">Design</p>
+            <svg class="about-arc about-arc--design" viewBox="0 0 80 40" aria-hidden="true"><path d="M74 8 C 50 6, 34 28, 6 34"/></svg>
+            <figure class="about-float about-float--design">
+              <img src="/assets/images/about/tee.png" alt="Printed wireframe sketches of mobile and web layouts" data-i18n="page.altDesign" />
+            </figure>
+
+            <p class="about-note about-note--kids" data-i18n="annotations.kids">My kids</p>
+            <svg class="about-arc about-arc--kids" viewBox="0 0 70 36" aria-hidden="true"><path d="M8 28 C 24 30, 40 10, 64 8"/></svg>
+            <figure class="about-float about-float--kids">
+              <img src="/assets/images/about/Swim.png" alt="A child swimming underwater in a blue pool" data-i18n="page.altKids" />
+            </figure>
+
+            <p class="about-note about-note--coffee" data-i18n="annotations.coffee">Good Coffee</p>
+            <svg class="about-arc about-arc--coffee" viewBox="0 0 70 36" aria-hidden="true"><path d="M62 28 C 44 30, 28 12, 6 8"/></svg>
+            <figure class="about-float about-float--coffee">
+              <img src="/assets/images/about/Vide%20coding.png" alt="A latte with heart-shaped foam art" data-i18n="page.altCoffee" />
+            </figure>
+
+            <div class="about-avatar" tabindex="0" aria-label="Illustrated Lu at her desk. Hover to play a short animation." data-i18n="page.avatarLabel">
+              <img class="about-avatar__still" src="/assets/images/about/lu-desk-still.png" alt="Illustrated portrait of Lu working at a laptop, with books and coffee." data-i18n="page.altAvatar" />
+              <img class="about-avatar__motion" alt="" aria-hidden="true" data-src="/assets/images/about/lu-desk-motion.webp" />
             </div>
           </div>
+
+          <div class="about-features about-reveal">
+            <article class="about-feature">
+              <span class="about-feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 5V16H20V5H4ZM2 4.00748C2 3.45107 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44892 22 4.00748V18H2V4.00748ZM1 19H23V21H1V19Z"/></svg>
+              </span>
+              <div>
+                <strong data-i18n="cards.card1Title">AI for Everyday Well-Being</strong>
+                <p data-i18n="cards.card1Desc">Exploring how AI can make technology feel more human, turning complex intelligence into simple daily joy and peace of mind.</p>
+              </div>
+              <svg class="about-feature__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>
+            </article>
+
+            <article class="about-feature">
+              <span class="about-feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.97308 18H11V13H13V18H14.0269C14.1589 16.7984 14.7721 15.8065 15.7676 14.7226C15.8797 14.6006 16.5988 13.8564 16.6841 13.7501C17.5318 12.6931 18 11.385 18 10C18 6.68629 15.3137 4 12 4C8.68629 4 6 6.68629 6 10C6 11.3843 6.46774 12.6917 7.31462 13.7484C7.40004 13.855 8.12081 14.6012 8.23154 14.7218C9.22766 15.8064 9.84103 16.7984 9.97308 18ZM10 20V21H14V20H10ZM5.75395 14.9992C4.65645 13.6297 4 11.8915 4 10C4 5.58172 7.58172 2 12 2C16.4183 2 20 5.58172 20 10C20 11.8925 19.3428 13.6315 18.2443 15.0014C17.624 15.7748 16 17 16 18.5V21C16 22.1046 15.1046 23 14 23H10C8.89543 23 8 22.1046 8 21V18.5C8 17 6.37458 15.7736 5.75395 14.9992Z"/></svg>
+              </span>
+              <div>
+                <strong data-i18n="cards.card2Title">Effortless Productivity</strong>
+                <p data-i18n="cards.card2Desc">Designing intelligent workflows that reduce cognitive load, so people can spend less time doing friction work and more time living.</p>
+              </div>
+              <svg class="about-feature__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>
+            </article>
+
+            <article class="about-feature">
+              <span class="about-feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM9.71002 19.6674C8.74743 17.6259 8.15732 15.3742 8.02731 13H4.06189C4.458 16.1765 6.71639 18.7747 9.71002 19.6674ZM10.0307 13C10.1811 15.4388 10.8778 17.7297 12 19.752C13.1222 17.7297 13.8189 15.4388 13.9693 13H10.0307ZM19.9381 13H15.9727C15.8427 15.3742 15.2526 17.6259 14.29 19.6674C17.2836 18.7747 19.542 16.1765 19.9381 13ZM4.06189 11H8.02731C8.15732 8.62577 8.74743 6.37407 9.71002 4.33256C6.71639 5.22533 4.458 7.8235 4.06189 11ZM10.0307 11H13.9693C13.8189 8.56122 13.1222 6.27025 12 4.24799C10.8778 6.27025 10.1811 8.56122 10.0307 11ZM14.29 4.33256C15.2526 6.37407 15.8427 8.62577 15.9727 11H19.9381C19.542 7.8235 17.2836 5.22533 14.29 4.33256Z"/></svg>
+              </span>
+              <div>
+                <strong data-i18n="cards.card3Title">Human-First Innovation</strong>
+                <p data-i18n="cards.card3Desc">Building AI products that empower real people — focusing on real-world impact, ethical design, and happier everyday lives.</p>
+              </div>
+              <svg class="about-feature__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>
+            </article>
+          </div>
+
         </div>
 
-        <div
-          class="yoga-card relative aspect-[9/16] w-72 sm:w-[21rem] md:w-[24rem]
-                 rounded-2xl cursor-pointer origin-bottom select-none z-30 hover:z-40"
-          data-src="References/About%20me/Walk%26talk.mp4"
-          data-title="AI, Honestly"
-          data-init-rotate="0"
-          data-hover-x="0" data-hover-y="-8" data-hover-rotate="0" data-hover-scale="1.05"
-          style="transform: rotate(0deg) scale(1.05);"
-          role="button" tabindex="0" aria-pressed="false" aria-label="AI, Honestly. Show title.">
-          <div class="photo-flip">
-            <div class="photo-flip__inner">
-              <div class="photo-flip__face photo-flip__front">
-                <video class="w-full h-full object-cover rounded-xl" autoplay muted loop playsinline preload="auto"></video>
-              </div>
-              <div class="photo-flip__face photo-flip__back" aria-hidden="true">
-                <p class="photo-flip__title">AI, Honestly</p>
-                <p class="photo-flip__note">I wouldn't call myself "AI native," but this portfolio itself was built with v0, Cursor, and GitHub. I've come to rely on AI as part of how I work, not just what I talk about.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="yoga-card relative aspect-[9/16] w-72 sm:w-[21rem] md:w-[24rem]
-                 rounded-2xl cursor-pointer origin-bottom select-none z-20 hover:z-40
-                 -ml-[3.5rem] sm:-ml-[5.5rem] md:-ml-[7rem] lg:-ml-[8rem]"
-          data-src="References/About%20me/Magnetic%20Tiles.mp4"
-          data-title="Build. Break. Repeat."
-          data-init-rotate="8"
-          data-hover-x="18" data-hover-y="-10" data-hover-rotate="8" data-hover-scale="1.03"
-          style="transform: rotate(8deg);"
-          role="button" tabindex="0" aria-pressed="false" aria-label="Build. Break. Repeat. Show title.">
-          <div class="photo-flip">
-            <div class="photo-flip__inner">
-              <div class="photo-flip__face photo-flip__front">
-                <video class="w-full h-full object-cover rounded-xl" autoplay muted loop playsinline preload="auto"></video>
-              </div>
-              <div class="photo-flip__face photo-flip__back" aria-hidden="true">
-                <p class="photo-flip__title">Build. Break. Repeat.</p>
-                <p class="photo-flip__note">No instructions, no user testing — just building until it stands up, and taking it apart when it doesn't. Turns out that's most of design too.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ul class="about-stats about-reveal">
+          <li><strong>10+</strong><span data-i18n="stats.years">Years in Design</span></li>
+          <li><strong>10+</strong><span data-i18n="stats.products">Products &amp; Services</span></li>
+          <li><strong>500+</strong><span data-i18n="stats.advisors">Client Advisors</span></li>
+          <li class="about-stats__place">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM9.71002 19.6674C8.74743 17.6259 8.15732 15.3742 8.02731 13H4.06189C4.458 16.1765 6.71639 18.7747 9.71002 19.6674ZM10.0307 13C10.1811 15.4388 10.8778 17.7297 12 19.752C13.1222 17.7297 13.8189 15.4388 13.9693 13H10.0307ZM19.9381 13H15.9727C15.8427 15.3742 15.2526 17.6259 14.29 19.6674C17.2836 18.7747 19.542 16.1765 19.9381 13ZM4.06189 11H8.02731C8.15732 8.62577 8.74743 6.37407 9.71002 4.33256C6.71639 5.22533 4.458 7.8235 4.06189 11ZM10.0307 11H13.9693C13.8189 8.56122 13.1222 6.27025 12 4.24799C10.8778 6.27025 10.1811 8.56122 10.0307 11ZM14.29 4.33256C15.2526 6.37407 15.8427 8.62577 15.9727 11H19.9381C19.542 7.8235 17.2836 5.22533 14.29 4.33256Z"/></svg>
+            <span><em data-i18n="stats.locationLead">Based in</em><b data-i18n="stats.locationPlace">Zurich, Switzerland</b></span>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
 
+
   <section id="contact" class="contact-section">
     <div class="exp-contact contact-reveal">
       <div class="exp-contact__lead">
-        <h2 class="exp-contact__heading">Have an opportunity in mind?</h2>
+        <h2 class="exp-contact__heading" data-i18n="page.contactHeading">Have an opportunity in mind?</h2>
         <p class="exp-contact__links">
           <a href="mailto:lu.jin.ixd@gmail.com">lu.jin.ixd@gmail.com</a>
           <span class="exp-contact__sep" aria-hidden="true">·</span>
           <a href="https://www.linkedin.com/in/lu-jin-28008689/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <span class="exp-contact__sep" aria-hidden="true">·</span>
-          <a href="https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Download CV</a>
+          <a href="https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-i18n="page.downloadCv">Download CV</a>
         </p>
       </div>
       <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn shrink-0">
-        Let's talk
+        <span data-i18n="page.letsTalk">Let's talk</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -692,7 +783,7 @@
   <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
     <div class="site-footer__inner">
       <div class="site-footer__bottom">
-        <p class="text-xs text-text3">© 2026 Lu Jin. All rights reserved.</p>
+        <p class="text-xs"><span data-i18n="page.footerRights">© 2026 Lu Jin. All rights reserved.</span> <span class="site-footer__credit" data-i18n="page.footerCredit">Designed with vibe coding, tailored in Cursor.</span></p>
       </div>
     </div>
   </footer>
@@ -704,11 +795,11 @@
   <div id="introOverlay" aria-hidden="true">
     <video
       id="introVideo"
-      src="References/About%20me/Lu%20Intro.mp4?v=20260830"
+      src="/assets/videos/about/lu-intro.mp4"
       playsinline
       controls
       preload="auto"></video>
-    <button id="introClose" type="button" class="intro-close" aria-label="Close video">
+    <button id="introClose" type="button" class="intro-close" aria-label="Close video" data-i18n="page.closeVideo">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
         <path d="M6 6l12 12M18 6L6 18" />
       </svg>
@@ -716,8 +807,6 @@
   </div>
 
   <script type="module">
-    import { animate } from 'https://cdn.jsdelivr.net/npm/motion@11.15.0/+esm';
-
     const bgVideo = document.getElementById('bgVideo');
     const startBtn = document.getElementById('startBtn');
     const second = document.getElementById('second');
@@ -725,7 +814,7 @@
     /* ============================================================
        HERO — mouse-scrubbed head-turn video.
 
-       "Turn head.mp4" is authored end-to-end for this interaction:
+       "turn-head.mp4" is authored end-to-end for this interaction:
          t = 0            she looks off to screen-left   (cursor far left)
          t = duration/2   she faces you and waves hi     (cursor centre)
          t = duration     she looks off to screen-right  (cursor far right)
@@ -813,18 +902,6 @@
       else video.addEventListener('loadedmetadata', onMetadata, { once: true });
 
       if (!reduceMotion) window.addEventListener('mousemove', onMouseMove, { passive: true });
-
-      return {
-        reset() {
-          targetTime = clamp(duration * initialFraction);
-          schedule();
-        },
-        destroy() {
-          if (rafId) cancelAnimationFrame(rafId);
-          video.removeEventListener('seeked', handleSeeked);
-          window.removeEventListener('mousemove', onMouseMove);
-        },
-      };
     }
 
     const prefersReducedMotion =
@@ -840,15 +917,17 @@
     /* ---------- "A Quick Hi" — optional full-screen intro video ----------
        The video is never part of the scroll flow. Clicking the button
        opens it as a fixed overlay; when it ends (or is dismissed) the
-       overlay closes and the page is exactly where it was. The three-card
+       overlay closes and the page is exactly where it was. The About
        section is always reachable by plain scrolling, with or without
        ever opening the video. */
     const introOverlay = document.getElementById('introOverlay');
     const introVideo   = document.getElementById('introVideo');
     const introClose   = document.getElementById('introClose');
-    const cardsDeck    = document.querySelector('.cards-deck');
+    const aboutReveals = second ? second.querySelectorAll('.about-reveal') : [];
 
-    const revealCards = () => cardsDeck && cardsDeck.classList.add('revealed');
+    const revealAbout = () => {
+      aboutReveals.forEach((el) => el.classList.add('is-visible'));
+    };
 
     const closeIntro = () => {
       introOverlay.classList.remove('active');
@@ -878,35 +957,48 @@
       if (e.key === 'Escape' && introOverlay.classList.contains('active')) closeIntro();
     });
 
-    // natural end — close the overlay, then glide down to the three cards
+    // natural end — close the overlay, then glide down to About
     introVideo.addEventListener('ended', () => {
       closeIntro();
-      revealCards();
+      revealAbout();
       second.scrollIntoView({
         behavior: prefersReducedMotion ? 'auto' : 'smooth',
         block: 'start',
       });
     });
 
-    // reveal the card deck when the #second section scrolls into view.
-    // Observe the SECTION (not the deck) with a negative bottom rootMargin
-    // so the trigger fires reliably once the section's top edge is ~20%
-    // into the viewport — while the cards are still below the fold, so the
-    // rise/fade/focus is fully visible as the user keeps scrolling.
-    if (cardsDeck) {
+    if (aboutReveals.length) {
       if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-        revealCards();
+        revealAbout();
       } else {
         const io = new IntersectionObserver((entries) => {
           for (const entry of entries) {
-            if (entry.isIntersecting) { revealCards(); io.disconnect(); return; }
+            if (entry.isIntersecting) { revealAbout(); io.disconnect(); return; }
           }
-        }, { threshold: 0, rootMargin: '0px 0px -20% 0px' });
+        }, { threshold: 0, rootMargin: '0px 0px -18% 0px' });
         io.observe(second);
-        // last-resort safety net — only if the observer never fires at all
-        window.setTimeout(revealCards, 8000);
+        window.setTimeout(revealAbout, 8000);
       }
     }
+
+    const avatar = document.querySelector('.about-avatar');
+    const motion = avatar ? avatar.querySelector('.about-avatar__motion') : null;
+    if (avatar && motion && !prefersReducedMotion) {
+      const motionSrc = motion.dataset.src;
+      const play = () => {
+        if (!motion.getAttribute('src')) motion.src = motionSrc;
+        avatar.classList.add('is-live');
+      };
+      const stop = () => {
+        avatar.classList.remove('is-live');
+        motion.removeAttribute('src');
+      };
+      avatar.addEventListener('mouseenter', play);
+      avatar.addEventListener('mouseleave', stop);
+      avatar.addEventListener('focus', play);
+      avatar.addEventListener('blur', stop);
+    }
+
 
     const contactReveal = document.querySelector('.contact-reveal');
     if (contactReveal) {
@@ -925,135 +1017,172 @@
         contactIo.observe(contactReveal);
       }
     }
-
-    /* ---------- photo cards: fan hover + tap-to-flip ---------- */
-    const canHoverFlip = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    const isNarrow = window.matchMedia('(max-width: 767px)').matches;
-
-    document.querySelectorAll('.yoga-card').forEach((card) => {
-      const front = card.querySelector('.photo-flip__front');
-      const back = card.querySelector('.photo-flip__back');
-      const video = card.querySelector('video');
-      const url = card.dataset.src;
-      const title = card.dataset.title || 'Card';
-      const initRotate = isNarrow ? 0 : (parseFloat(card.dataset.initRotate) || 0);
-      const baseScale = isNarrow ? 1 : (card.style.transform.includes('scale(1.05)') ? 1.05 : 1);
-      const hover = {
-        x: parseFloat(card.dataset.hoverX) || 0,
-        y: parseFloat(card.dataset.hoverY) || 0,
-        rotate: parseFloat(card.dataset.hoverRotate) || 0,
-        scale: parseFloat(card.dataset.hoverScale) || 1,
-      };
-
-      if (video && url) {
-        video.src = url;
-        const startVideo = () => {
-          const p = video.play();
-          if (p && p.catch) p.catch(() => {});
-        };
-        startVideo();
-        video.addEventListener('canplay', startVideo, { once: true });
-      }
-
-      if (isNarrow) card.style.transform = 'none';
-
-      const setFlipped = (next) => {
-        card.classList.toggle('is-flipped', next);
-        card.setAttribute('aria-pressed', String(next));
-        card.setAttribute('aria-label', `${title}. ${next ? 'Show photo' : 'Show title'}.`);
-        if (front) front.setAttribute('aria-hidden', String(next));
-        if (back) back.setAttribute('aria-hidden', String(!next));
-      };
-
-      card.addEventListener('click', () => {
-        if (canHoverFlip) return;
-        setFlipped(!card.classList.contains('is-flipped'));
-      });
-      card.addEventListener('keydown', (e) => {
-        if (e.key !== 'Enter' && e.key !== ' ') return;
-        e.preventDefault();
-        setFlipped(!card.classList.contains('is-flipped'));
-      });
-
-      if (canHoverFlip && !prefersReducedMotion) {
-        const springOpts = { type: 'spring', stiffness: 200, damping: 20 };
-        card.addEventListener('mouseenter', () => {
-          animate(card, { x: hover.x, y: hover.y, rotate: hover.rotate, scale: hover.scale }, springOpts);
-        });
-        card.addEventListener('mouseleave', () => {
-          animate(card, { x: 0, y: 0, rotate: initRotate, scale: baseScale }, springOpts);
-        });
-      }
-    });
   </script>
-
   <script>
-    // nav background on scroll (parity with index.html / subpages)
-    const siteNav = document.getElementById('site-nav');
-    if (siteNav) {
-      const onNavScroll = () => siteNav.classList.toggle('scrolled', window.scrollY > 40);
-      onNavScroll();
-      window.addEventListener('scroll', onNavScroll, { passive: true });
+    const aboutMeTranslations = {
+      en: {
+        mainHeading: "Designer. Builder. Explorer.",
+        subtext: "I focus on harnessing AI to make everyday life more effortless, efficient, and fulfilling for everyone.",
+        annotations: {
+          curious: "Curious by nature, Always in progress.",
+          travel: "Travel",
+          design: "Design",
+          kids: "My kids",
+          coffee: "Good Coffee"
+        },
+        cards: {
+          card1Title: "AI for Everyday Well-Being",
+          card1Desc: "Exploring how AI can make technology feel more human, turning complex intelligence into simple daily joy and peace of mind.",
+          card2Title: "Effortless Productivity",
+          card2Desc: "Designing intelligent workflows that reduce cognitive load, so people can spend less time doing friction work and more time living.",
+          card3Title: "Human-First Innovation",
+          card3Desc: "Building AI products that empower real people — focusing on real-world impact, ethical design, and happier everyday lives."
+        },
+        stats: {
+          years: "Years in Design",
+          products: "Products & Services",
+          advisors: "Client Advisors",
+          location: "Based in Zurich, Switzerland"
+        }
+      },
+      de: {
+        mainHeading: "Gestalterin. Entwicklerin. Entdeckerin.",
+        subtext: "Ich konzentriere mich darauf, KI so einzusetzen, dass der Alltag für alle müheloser, effizienter und erfüllender wird.",
+        annotations: {
+          curious: "Von Natur aus neugierig, Immer im Wandel.",
+          travel: "Reisen",
+          design: "Design",
+          kids: "Meine Kinder",
+          coffee: "Guter Kaffee"
+        },
+        cards: {
+          card1Title: "KI für alltägliches Wohlbefinden",
+          card1Desc: "Erforschung, wie KI Technologie menschlicher gestalten kann – für mehr einfache Freude und Gelassenheit im Alltag.",
+          card2Title: "Mühelose Produktivität",
+          card2Desc: "Gestaltung intelligenter Workflows, die die kognitive Belastung reduzieren, damit Menschen weniger Zeit mit Routineaufgaben verbringen.",
+          card3Title: "Menschzentrierte Innovation",
+          card3Desc: "Entwicklung von KI-Produkten, die echte Menschen stärken – mit Fokus auf echte Wirkung, ethisches Design und mehr Lebensfreude."
+        },
+        stats: {
+          years: "Jahre im Design",
+          products: "Produkte & Services",
+          advisors: "Kundenberater",
+          location: "Wohnhaft in Zürich, Schweiz"
+        }
+      }
+    };
+
+    const aboutPageTranslations = {
+      en: {
+        documentTitle: "Lu — About",
+        heroTitleHtml: "Hey, I am<br />Lu",
+        startBtn: "A Quick Hi",
+        eyebrow: "About me",
+        scrolls: "Scrolls",
+        contactHeading: "Have an opportunity in mind?",
+        letsTalk: "Let's talk",
+        downloadCv: "Download CV",
+        footerRights: "© 2026 Lu Jin. All rights reserved.",
+        footerCredit: "Designed with vibe coding, tailored in Cursor.",
+        closeVideo: "Close video",
+        avatarLabel: "Illustrated Lu at her desk. Hover to play a short animation.",
+        altTravel: "Alpine lake between forested mountains",
+        altDesign: "Printed wireframe sketches of mobile and web layouts",
+        altKids: "A child swimming underwater in a blue pool",
+        altCoffee: "A latte with heart-shaped foam art",
+        altAvatar: "Illustrated portrait of Lu working at a laptop, with books and coffee."
+      },
+      de: {
+        documentTitle: "Lu — Über mich",
+        heroTitleHtml: "Hey, ich bin<br />Lu",
+        startBtn: "Ein kurzes Hi",
+        eyebrow: "Über mich",
+        scrolls: "Scrollen",
+        contactHeading: "Haben Sie ein Vorhaben im Kopf?",
+        letsTalk: "Lass uns sprechen",
+        downloadCv: "Lebenslauf",
+        footerRights: "© 2026 Lu Jin. Alle Rechte vorbehalten.",
+        footerCredit: "Gestaltet mit Vibe Coding, verfeinert in Cursor.",
+        closeVideo: "Video schließen",
+        avatarLabel: "Illustrierte Lu an ihrem Schreibtisch. Darüberfahren, um eine kurze Animation abzuspielen.",
+        altTravel: "Alpiner See zwischen bewaldeten Bergen",
+        altDesign: "Gedruckte Wireframe-Skizzen von Mobile- und Web-Layouts",
+        altKids: "Ein Kind schwimmt unter Wasser in einem blauen Pool",
+        altCoffee: "Ein Latte mit herzförmiger Milchschaumkunst",
+        altAvatar: "Illustriertes Porträt von Lu an einem Laptop, mit Büchern und Kaffee."
+      }
+    };
+
+    function applyAboutMeLanguage(currentLang) {
+      const lang = currentLang === 'de' ? 'de' : 'en';
+      const t = aboutMeTranslations[lang];
+      const page = aboutPageTranslations[lang];
+      const location = lang === 'de'
+        ? { lead: 'Wohnhaft in', place: 'Zürich, Schweiz' }
+        : { lead: 'Based in', place: 'Zurich, Switzerland' };
+
+      const setText = (key, value) => {
+        document.querySelectorAll('[data-i18n="' + key + '"]').forEach((el) => {
+          el.textContent = value;
+        });
+      };
+      const setHtml = (key, value) => {
+        const el = document.querySelector('[data-i18n="' + key + '"]');
+        if (el) el.innerHTML = value;
+      };
+      const setAttr = (key, attr, value) => {
+        const el = document.querySelector('[data-i18n="' + key + '"]');
+        if (el) el.setAttribute(attr, value);
+      };
+
+      setHtml('mainHeading', t.mainHeading.replace(/\. /g, '.<br />'));
+      setText('subtext', t.subtext);
+      setHtml('annotations.curious', t.annotations.curious.replace(', ', ',<br />'));
+      setText('annotations.travel', t.annotations.travel);
+      setText('annotations.design', t.annotations.design);
+      setText('annotations.kids', t.annotations.kids);
+      setText('annotations.coffee', t.annotations.coffee);
+      setText('cards.card1Title', t.cards.card1Title);
+      setText('cards.card1Desc', t.cards.card1Desc);
+      setText('cards.card2Title', t.cards.card2Title);
+      setText('cards.card2Desc', t.cards.card2Desc);
+      setText('cards.card3Title', t.cards.card3Title);
+      setText('cards.card3Desc', t.cards.card3Desc);
+      setText('stats.years', t.stats.years);
+      setText('stats.products', t.stats.products);
+      setText('stats.advisors', t.stats.advisors);
+      setText('stats.locationLead', location.lead);
+      setText('stats.locationPlace', location.place);
+      setHtml('page.heroTitle', page.heroTitleHtml);
+      setText('page.startBtn', page.startBtn);
+      setText('page.eyebrow', page.eyebrow);
+      setText('page.scrolls', page.scrolls);
+      setText('page.contactHeading', page.contactHeading);
+      setText('page.letsTalk', page.letsTalk);
+      setText('page.downloadCv', page.downloadCv);
+      setText('page.footerRights', page.footerRights);
+      setText('page.footerCredit', page.footerCredit);
+      setAttr('page.closeVideo', 'aria-label', page.closeVideo);
+      setAttr('page.avatarLabel', 'aria-label', page.avatarLabel);
+      setAttr('page.altTravel', 'alt', page.altTravel);
+      setAttr('page.altDesign', 'alt', page.altDesign);
+      setAttr('page.altKids', 'alt', page.altKids);
+      setAttr('page.altCoffee', 'alt', page.altCoffee);
+      setAttr('page.altAvatar', 'alt', page.altAvatar);
+      document.title = page.documentTitle;
+      document.documentElement.lang = lang;
     }
 
-    // language switcher — dropdown open/close, keyboard nav, selection persistence
-    (function initLangSwitch() {
-      const sw = document.querySelector('.lang-switch');
-      if (!sw) return;
-      const trigger = sw.querySelector('.lang-trigger');
-      const menu = sw.querySelector('.lang-menu');
-      const current = sw.querySelector('.lang-current');
-      const options = Array.from(menu.querySelectorAll('.lang-option'));
-      const isOpen = () => menu.classList.contains('open');
+    try {
+      const saved = localStorage.getItem('site-lang');
+      applyAboutMeLanguage(saved === 'de' ? 'de' : 'en');
+    } catch (e) {
+      applyAboutMeLanguage('en');
+    }
 
-      const open = () => {
-        menu.classList.add('open');
-        trigger.setAttribute('aria-expanded', 'true');
-        (options.find(o => o.getAttribute('aria-selected') === 'true') || options[0]).focus();
-      };
-      const close = (focusTrigger) => {
-        menu.classList.remove('open');
-        trigger.setAttribute('aria-expanded', 'false');
-        if (focusTrigger) trigger.focus();
-      };
-
-      const applyLang = (opt) => {
-        options.forEach(o => o.setAttribute('aria-selected', String(o === opt)));
-        current.textContent = opt.textContent.trim();
-        document.documentElement.setAttribute('lang', opt.dataset.lang);
-      };
-      const select = (opt) => {
-        applyLang(opt);
-        try { localStorage.setItem('site-lang', opt.dataset.lang); } catch (e) {}
-        close(true);
-      };
-
-      trigger.addEventListener('click', () => isOpen() ? close() : open());
-
-      options.forEach((opt, i) => {
-        opt.addEventListener('click', () => select(opt));
-        opt.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowDown') { e.preventDefault(); options[(i + 1) % options.length].focus(); }
-          else if (e.key === 'ArrowUp') { e.preventDefault(); options[(i - 1 + options.length) % options.length].focus(); }
-          else if (e.key === 'Home') { e.preventDefault(); options[0].focus(); }
-          else if (e.key === 'End') { e.preventDefault(); options[options.length - 1].focus(); }
-          else if (e.key === 'Escape') { e.preventDefault(); close(true); }
-          else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(opt); }
-        });
-      });
-
-      document.addEventListener('click', (e) => { if (isOpen() && !sw.contains(e.target)) close(); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen()) close(true); });
-
-      try {
-        const saved = localStorage.getItem('site-lang');
-        if (saved) {
-          const opt = options.find(o => o.dataset.lang === saved);
-          if (opt) applyLang(opt);
-        }
-      } catch (e) {}
-    })();
-
+    window.addEventListener('site-lang-change', (event) => {
+      applyAboutMeLanguage(event && event.detail && event.detail.lang);
+    });
   </script>
 </body>
 </html>

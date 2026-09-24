@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lu — Work in Progress</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700;1,900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: 'var(--color-bg-page)',
+          text1: 'var(--color-text-1)',
+          text2: 'var(--color-text-2)',
+        },
+        fontFamily: {
+          sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<link rel="stylesheet" href="/styles/shell-tokens.css" />
+<link rel="stylesheet" href="/styles/shell-components.css" />
+
+<style>
+  html { scroll-behavior: smooth; overflow-x: hidden; min-width: 360px; }
+  body {
+    background: var(--color-bg-page);
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-width: 360px;
+  }
+
+  .wip-page {
+    position: relative;
+    z-index: 2;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wip-hero {
+    position: relative;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 1.5rem 5rem;
+  }
+
+  .wip-hero::before {
+    content: "";
+    position: absolute;
+    inset: 18% 12% auto;
+    height: min(42vh, 420px);
+    background:
+      radial-gradient(ellipse at 50% 40%, var(--color-theme-3) 0%, transparent 68%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wip-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 36rem;
+    text-align: center;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1.5rem;
+    padding: 2.5rem 1.75rem 2.25rem;
+    box-shadow: var(--card-shadow);
+  }
+
+  @media (min-width: 768px) {
+    .wip-card {
+      padding: 3.25rem 3rem 2.75rem;
+      border-radius: 1.75rem;
+    }
+  }
+</style>
+</head>
+
+
+<body class="bg-ink text-text1 min-w-[360px]">
+
+<main class="wip-page">
+  <!-- --- Section 01: Hero --- -->
+  <section class="wip-hero" aria-labelledby="wip-title">
+    <div class="wip-card reveal">
+      <p class="text-[13px] font-sans font-semibold uppercase tracking-[0.28em] shell-accent mb-5" data-i18n="wip.eyebrow">Lab</p>
+      <h1 id="wip-title" class="font-serif font-bold text-text1 text-[clamp(2.25rem,5vw,3.25rem)] leading-[1.08] tracking-[-0.03em]" data-i18n="wip.title">
+        Work in Progress
+      </h1>
+      <p class="mt-5 text-text2 text-[17px] leading-[1.7]" data-i18n="wip.body">
+        This page is currently under development. Check back soon for updates!
+      </p>
+      <div class="mt-9">
+        <a href="/index" class="pill-btn">
+          <span data-i18n="common.backHomepage">Back to Homepage</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer exp-footer relative pt-8 pb-8 px-6">
+    <div class="site-footer__inner">
+      <div class="site-footer__bottom">
+        <p class="text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span> <span class="site-footer__credit" data-i18n="common.footerCredit">Designed with vibe coding, tailored in Cursor.</span></p>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach((el) => io.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,7 +1,12 @@
+'use client'
+
 import type { CSSProperties, ReactNode } from 'react'
 import Image from 'next/image'
 import { BarChart3, Clock, Users } from 'lucide-react'
+import { ProcessJourney } from './process-journey'
 import { TiltCard } from './tilt-card'
+import { ScrollReveal } from '@/components/motion/scroll-reveal'
+import { useTranslation } from '@i18n/use-translation'
 
 // Scoped palette for this session only — keeps the section self-contained.
 const tokens = {
@@ -20,7 +25,7 @@ export function Session07Outcome() {
       id="session-07"
       aria-labelledby="session-07-title"
       style={tokens}
-      className="relative isolate flex min-h-svh w-full flex-col justify-center overflow-hidden bg-[var(--ca-bg)] font-sans text-[var(--ca-text)]"
+      className="relative isolate flex h-auto min-h-svh w-full flex-col justify-center overflow-x-clip overflow-y-visible bg-[var(--ca-bg)] font-sans text-[var(--ca-text)]"
     >
       <div
         aria-hidden="true"
@@ -31,7 +36,7 @@ export function Session07Outcome() {
         className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-[linear-gradient(180deg,transparent_0%,var(--ca-bg)_100%)]"
       />
 
-      <div className="relative mx-auto flex w-full max-w-[1440px] flex-col gap-12 px-6 py-16 sm:px-10 lg:mx-0 lg:max-w-none lg:py-20 lg:pl-[var(--ca-rail)] lg:pr-16 xl:flex-row xl:items-center xl:gap-20 xl:pr-20">
+      <div className="relative mx-auto flex h-auto w-full max-w-[1440px] flex-col gap-12 overflow-visible px-6 pt-16 pb-32 sm:px-10 lg:mx-0 lg:max-w-none lg:pt-20 lg:pb-40 lg:pl-[var(--ca-rail)] lg:pr-16 xl:flex-row xl:items-center xl:gap-20 xl:pr-20">
         <Editorial />
         <Outcomes />
       </div>
@@ -40,83 +45,75 @@ export function Session07Outcome() {
 }
 
 function Editorial() {
+  const { t } = useTranslation()
   return (
-    <div className="flex w-full max-w-[560px] shrink-0 flex-col xl:w-[38%]">
-      <p className="ca-eyebrow">
-        <span className="ca-eyebrow-index">07</span>
-        <span aria-hidden="true" className="ca-eyebrow-rule" />
-        <span>The Outcome</span>
-      </p>
+    <div className="flex w-full max-w-[560px] shrink-0 flex-col overflow-visible xl:w-[38%]">
+      <ScrollReveal>
+        <p className="ca-eyebrow">
+          <span className="ca-eyebrow-index">07</span>
+          <span aria-hidden="true" className="ca-eyebrow-rule" />
+          <span>{t('ca.outcome.eyebrow')}</span>
+        </p>
 
-      <h2 id="session-07-title" className="ca-h2 mt-[var(--ca-heading-gap)] text-balance">
-        The outcome.
-      </h2>
+        <div className="flex min-w-0 w-full max-w-[46ch] flex-col">
+          <h2 id="session-07-title" className="ca-h2 mt-[var(--ca-heading-gap)] text-balance">
+            {t('ca.outcome.title')}
+          </h2>
 
-      <p className="mt-[var(--ca-body-gap)] text-pretty text-[24px] font-semibold leading-[1.2] tracking-[-0.01em] sm:text-[28px]">
-        A tested concept for more focused advisory.
-      </p>
+          <p className="mt-[var(--ca-body-gap)] text-pretty text-[24px] font-semibold leading-[1.2] tracking-[-0.01em] sm:text-[28px]">
+            {t('ca.outcome.subhead')}
+          </p>
 
-      <p className="mt-6 max-w-[46ch] text-pretty text-[15px] leading-[1.6] text-[var(--ca-muted)] xl:text-base">
-        I led concept testing with advisors — including the stakeholder who&apos;d pushed for the dashboard — to see how
-        the model held up against real workflows.
-      </p>
+          <p className="mt-6 text-pretty text-[15px] leading-[1.6] text-[var(--ca-muted)] xl:text-base">
+            {t('ca.outcome.body')}
+          </p>
+        </div>
+      </ScrollReveal>
 
-      <p className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-[16px] font-medium text-[var(--ca-accent-soft)] sm:text-[18px]">
-        <span>Concept</span>
-        <Arrow />
-        <span>Mockup</span>
-        <Arrow />
-        <span>Test</span>
-      </p>
+      <div className="mt-8 w-full min-w-0 overflow-visible">
+        <ProcessJourney />
+      </div>
     </div>
-  )
-}
-
-function Arrow() {
-  return (
-    <span aria-hidden="true" className="text-[var(--ca-accent)]">
-      →
-    </span>
   )
 }
 
 function Outcomes() {
+  const { t } = useTranslation()
   return (
-    <div className="flex w-full flex-col gap-5 xl:w-[62%]">
+    <ScrollReveal className="flex h-auto w-full flex-col gap-5 overflow-visible xl:w-[62%]">
       <div className="flex items-baseline justify-between gap-6 px-1 text-[12px] font-medium uppercase tracking-[0.18em] text-[var(--ca-muted)]">
-        <span>Average feedback from testing</span>
-        <span className="hidden sm:block">Reach</span>
+        <span>{t('ca.outcome.avgFeedback')}</span>
+        <span className="hidden xl:block">{t('ca.outcome.reach')}</span>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5">
+      <div className="grid h-auto grid-cols-1 gap-4 overflow-visible md:grid-cols-2 md:gap-5 xl:grid-cols-3">
         <MetricCard
           icon={<Clock className="size-5" strokeWidth={2.2} />}
-          value="5–10 min"
-          label="Saved per client from information gathering."
-          image="/images/sessions/07/card-01.png"
+          value={t('ca.outcome.m1Value')}
+          label={t('ca.outcome.m1Label')}
+          image="/assets/images/client-advisory/sessions/07/card-01.png"
         />
 
         <MetricCard
           icon={<BarChart3 className="size-5" strokeWidth={2.2} />}
-          value="Up to 30 min"
-          label="Saved on more complex proposals."
-          image="/images/sessions/07/card-02.png"
+          value={t('ca.outcome.m2Value')}
+          label={t('ca.outcome.m2Label')}
+          image="/assets/images/client-advisory/sessions/07/card-02.png"
         />
 
         <MetricCard
           icon={<Users className="size-5" strokeWidth={2.2} />}
-          value="500+"
-          label="Advisors in trials / target user base."
-          eyebrow="Reach"
-          image="/images/sessions/07/card-03.png"
+          value={t('ca.outcome.m3Value')}
+          label={t('ca.outcome.m3Label')}
+          eyebrow={t('ca.outcome.reach')}
+          image="/assets/images/client-advisory/sessions/07/card-03.png"
         />
       </div>
 
       <p className="max-w-[720px] text-pretty px-1 pt-1 text-[14px] leading-relaxed text-[var(--ca-dim)]">
-        Feedback was consistent across EMEA and CH, where the concept was primarily scoped. APAC leaned toward speed
-        over the signal-and-context flow — a nuance noted for future markets, outside this project&apos;s core focus.
+        {t('ca.outcome.footnote')}
       </p>
-    </div>
+    </ScrollReveal>
   )
 }
 
@@ -139,7 +136,7 @@ function MetricCard({ icon, value, label, eyebrow, image }: MetricCardProps) {
           src={image}
           alt=""
           fill
-          sizes="(min-width: 1280px) 30vw, (min-width: 640px) 33vw, 100vw"
+          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw"
           className="object-cover object-bottom"
         />
       </div>

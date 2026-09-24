@@ -22,6 +22,10 @@ const nextConfig = {
       { source: '/client-advisor', destination: '/client-advisory', permanent: false },
       { source: '/client-advisory.html', destination: '/client-advisory', permanent: false },
       { source: '/lab.html', destination: '/lab', permanent: false },
+      { source: '/wip.html', destination: '/wip', permanent: false },
+      { source: '/lab/way-of-work', destination: '/wip', permanent: false },
+      { source: '/lab/off-we-go-workbench', destination: '/wip', permanent: false },
+      { source: '/lab/party-planner', destination: '/wip', permanent: false },
       { source: '/about.html', destination: '/about', permanent: false },
       { source: '/ai-workflow-case.html', destination: '/ai-workflow-case', permanent: false },
       { source: '/3000', destination: '/index', permanent: false },
@@ -34,6 +38,11 @@ const nextConfig = {
       { source: '/3000/about', destination: '/about', permanent: false },
       { source: '/3000/About', destination: '/about', permanent: false },
       { source: '/3000/ai-workflow-case', destination: '/ai-workflow-case', permanent: false },
+      { source: '/References/Home/Hero video.mp4', destination: '/assets/videos/home/hero.mp4', permanent: false },
+      { source: '/References/Client advisory/Client advsior hero.mp4', destination: '/assets/videos/client-advisory/hero.mp4', permanent: false },
+      { source: '/References/eon solar/solar-calculator-hero.mp4', destination: '/assets/videos/eon/solar-calculator-hero.mp4', permanent: false },
+      { source: '/References/About me/Turn head.mp4', destination: '/assets/videos/about/turn-head.mp4', permanent: false },
+      { source: '/References/About me/Lu Intro.mp4', destination: '/assets/videos/about/lu-intro.mp4', permanent: false },
     ]
   },
 }

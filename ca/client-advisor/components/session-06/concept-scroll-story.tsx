@@ -56,7 +56,7 @@ export function ConceptScrollStory({
       const rect = wrap.getBoundingClientRect()
       const scrollable = rect.height - window.innerHeight
       const progress = scrollable > 0 ? clamp(-rect.top / scrollable, 0, 1) : 0
-      // Drives the left visual's parallax drift (GhostPanel reads var(--p)).
+      // Scroll progress 0–1, published for any visual that wants to read var(--p).
       wrap.style.setProperty('--p', String(progress))
       const idx = Math.min(count - 1, Math.floor(progress * count))
       if (idx !== last) {
@@ -117,7 +117,7 @@ export function ConceptScrollStory({
         className={
           enabled
             ? 'sticky top-0 flex h-svh w-full items-center overflow-x-clip'
-            : 'flex min-h-svh w-full items-center overflow-x-clip py-24 md:py-28'
+            : 'flex w-full items-center overflow-x-clip py-24 md:py-28'
         }
       >
         {/* Atmospheric glow — kept inside the sticky stage so it stays fixed during the pin */}

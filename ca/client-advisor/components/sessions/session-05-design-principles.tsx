@@ -3,50 +3,34 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import styles from './session-05-design-principles.module.css'
+import { ScrollReveal } from '@/components/motion/scroll-reveal'
+import { useTranslation } from '@i18n/use-translation'
 
-const copy = {
-  labelNumber: '05',
-  labelTitle: 'Design Principles',
-  headline: 'Turning the model into design decisions.',
-  intro:
-    "The direction was already decided. It came with one constraint: it couldn't feel like another tool. Signal → Context → Act became the model for how it earned its place — three principles for every moment.",
-  principles: [
-    {
-      number: '01',
-      title: 'Surface what matters',
-      body: 'Not everything worth knowing deserves a place on screen. A signal earned its spot by urgency and stakes — a portfolio shift, a compliance flag — not by being one more thing to scroll past.',
-      artwork: '/images/ca-05-card-01.png',
-    },
-    {
-      number: '02',
-      title: 'Explain with context',
-      body: 'A signal without a reason is just noise. Every one had to answer "why now," in the time it takes to glance — using the same research, market insights, and client notes the advisor would otherwise have to dig for.',
-      artwork: '/images/ca-05-card-02.png',
-    },
-    {
-      number: '03',
-      title: 'Support judgement',
-      body: 'AI surfaces, it never decides. Every signal is a suggestion — the trade, the allocation, the response to the client stays entirely with the advisor.',
-      artwork: '/images/ca-05-card-03.png',
-    },
-  ],
-}
+const principleArt = [
+  '/assets/images/client-advisory/ca-05-card-01.png',
+  '/assets/images/client-advisory/ca-05-card-02.png',
+  '/assets/images/client-advisory/ca-05-card-03.png',
+] as const
 
 function PrincipleCard({
   principle,
+  showFront,
+  revealPrinciple,
 }: {
-  principle: (typeof copy.principles)[number]
+  principle: { number: string; title: string; body: string; artwork: string }
+  showFront: string
+  revealPrinciple: string
 }) {
   const [isFlipped, setIsFlipped] = useState(false)
 
   return (
-    <li className={styles.card}>
+    <ScrollReveal as="li" fadeOnly className={styles.card}>
       <button
         type="button"
         className={`${styles.cardInner} ${isFlipped ? styles.flipped : ''}`}
         aria-pressed={isFlipped}
         aria-label={`${principle.title}. ${
-          isFlipped ? 'Show front' : 'Reveal the principle'
+          isFlipped ? showFront : revealPrinciple
         }`}
         onClick={() => setIsFlipped((prev) => !prev)}
       >
@@ -75,11 +59,33 @@ function PrincipleCard({
           <span className={styles.cardText}>{principle.body}</span>
         </span>
       </button>
-    </li>
+    </ScrollReveal>
   )
 }
 
 export function Session05DesignPrinciples() {
+  const { t } = useTranslation()
+  const principles = [
+    {
+      number: '01',
+      title: t('ca.principles.p1Title'),
+      body: t('ca.principles.p1Body'),
+      artwork: principleArt[0],
+    },
+    {
+      number: '02',
+      title: t('ca.principles.p2Title'),
+      body: t('ca.principles.p2Body'),
+      artwork: principleArt[1],
+    },
+    {
+      number: '03',
+      title: t('ca.principles.p3Title'),
+      body: t('ca.principles.p3Body'),
+      artwork: principleArt[2],
+    },
+  ]
+
   return (
     <section
       id="design-principles"
@@ -87,21 +93,26 @@ export function Session05DesignPrinciples() {
       aria-labelledby="s05-headline"
     >
       <div className={styles.inner}>
-        <header className={styles.header}>
+        <ScrollReveal as="header" className={styles.header}>
           <p className="ca-eyebrow">
-            <span className="ca-eyebrow-index">{copy.labelNumber}</span>
+            <span className="ca-eyebrow-index">05</span>
             <span className="ca-eyebrow-rule" aria-hidden="true" />
-            <span>{copy.labelTitle}</span>
+            <span>{t('ca.principles.eyebrow')}</span>
           </p>
           <h2 id="s05-headline" className={styles.headline}>
-            {copy.headline}
+            {t('ca.principles.headline')}
           </h2>
-          <p className={styles.intro}>{copy.intro}</p>
-        </header>
+          <p className={styles.intro}>{t('ca.principles.intro')}</p>
+        </ScrollReveal>
 
         <ul className={styles.grid} role="list">
-          {copy.principles.map((principle) => (
-            <PrincipleCard key={principle.number} principle={principle} />
+          {principles.map((principle) => (
+            <PrincipleCard
+              key={principle.number}
+              principle={principle}
+              showFront={t('ca.principles.showFront')}
+              revealPrinciple={t('ca.principles.revealPrinciple')}
+            />
           ))}
         </ul>
       </div>

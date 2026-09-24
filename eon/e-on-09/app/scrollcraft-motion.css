@@ -1,0 +1,71 @@
+/* Isolated Scrollcraft motion overlay for the locked E.ON case study.
+   Device mechanics only. Does not import the engine taste floor. */
+
+:root {
+  --sc-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --sc-d-in: 620ms;
+  --sc-d-reveal: 700ms;
+  --sc-d-kinetic: 620ms;
+}
+
+.sc-once {
+  opacity: var(--sc-from-opacity, 0);
+  transform: translate3d(0, var(--sc-from-y, 14px), 0);
+  transition:
+    opacity var(--sc-d-in) var(--sc-ease-out),
+    transform var(--sc-d-in) var(--sc-ease-out);
+  transition-delay: var(--sc-delay, 0ms);
+}
+
+.sc-once.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.sc-kinetic-line {
+  display: block;
+  overflow: hidden;
+}
+
+.sc-kinetic-line__i {
+  display: block;
+  opacity: 0.35;
+  transform: translate3d(0, 20px, 0);
+  transition:
+    opacity var(--sc-d-kinetic) var(--sc-ease-out),
+    transform var(--sc-d-kinetic) var(--sc-ease-out);
+  transition-delay: var(--sc-delay, 0ms);
+}
+
+.sc-kinetic-line.is-in .sc-kinetic-line__i {
+  opacity: 1;
+  transform: none;
+}
+
+.sc-count {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-once,
+  .sc-once.is-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .sc-kinetic-line__i,
+  .sc-kinetic-line.is-in .sc-kinetic-line__i {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .sc-challenge-photo,
+  .sc-journey-node {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    filter: none !important;
+  }
+}

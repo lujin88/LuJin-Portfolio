@@ -411,15 +411,18 @@
   right: 0;
   top: -18vh;
   height: 58vh;
+  /* Fade in over empty Outcome padding — opaque navy on the first stops
+     was painting a hard chop across the cards and process icons. */
   background: linear-gradient(
     180deg,
-    #06101f 0%,
-    #06101f 14%,
-    rgb(6 16 31 / 0.96) 26%,
-    rgb(5 14 32 / 0.82) 40%,
-    rgb(6 18 42 / 0.55) 54%,
-    rgb(8 28 62 / 0.25) 70%,
-    rgb(10 36 78 / 0.08) 84%,
+    transparent 0%,
+    rgb(6 16 31 / 0.28) 12%,
+    rgb(6 16 31 / 0.72) 22%,
+    #06101f 34%,
+    rgb(5 14 32 / 0.82) 46%,
+    rgb(6 18 42 / 0.55) 58%,
+    rgb(8 28 62 / 0.25) 72%,
+    rgb(10 36 78 / 0.08) 86%,
     transparent 100%
   );
 }
@@ -437,6 +440,269 @@
 }
 
 /*
+ * 01 → 02 sit on one solid navy field. Sections stack: 01 finishes, then 02
+ * begins. Shared canvas only — no negative-margin overlap of content.
+ */
+.ca-s01-s02 {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--ca-bg, #06101f);
+}
+
+.ca-s01-photo-shift {
+  position: absolute;
+  top: -4%;
+  left: -6%;
+  width: 112%;
+  height: 104%;
+}
+
+.ca-s02-curve {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  mix-blend-mode: screen;
+  opacity: 0.9;
+}
+
+@media (min-width: 1024px) {
+  .ca-s01 {
+    z-index: 1;
+    /* Clip sideways only. A vertical clip slices the figure and the arc
+       on a straight edge where 01 meets 02. */
+    overflow-x: clip;
+    overflow-y: visible;
+    background-color: transparent;
+  }
+
+  .ca-s01-photo {
+    /* Bleed past the section so the figure can fade into 02
+       instead of ending on the section box. */
+    bottom: -8rem;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 6%,
+      #fff 28%,
+      #fff 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 6%,
+      #fff 28%,
+      #fff 100%
+    );
+  }
+
+  .ca-s01-photo-shift {
+    top: 0;
+    left: -4%;
+    width: 108%;
+    height: 100%;
+  }
+
+  /*
+   * The fade starts over the lower figure and keeps going into 02.
+   * It reaches solid navy only after the laptop and the arc have
+   * already dissolved, so the section box never draws a hard edge.
+   */
+  .ca-s01-photo-fade {
+    bottom: -14rem;
+    height: calc(46% + 14rem);
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgb(6 16 31 / 0.03) 14%,
+      rgb(6 16 31 / 0.1) 30%,
+      rgb(6 16 31 / 0.22) 46%,
+      rgb(6 16 31 / 0.4) 62%,
+      rgb(6 16 31 / 0.62) 78%,
+      rgb(6 16 31 / 0.84) 90%,
+      var(--ca-bg, #06101f) 100%
+    );
+  }
+
+  .ca-s01-scope {
+    max-width: 30rem;
+  }
+
+  .ca-s01-photo-shift img {
+    object-position: 62% 100%;
+  }
+
+  .ca-s02 {
+    z-index: 2;
+    overflow: visible;
+    margin-top: 0;
+    background-color: transparent;
+  }
+
+  .ca-s02-curve {
+    z-index: 1;
+    top: -20%;
+    left: 8%;
+    right: -4%;
+    width: auto;
+    height: 132%;
+    transform: none;
+    object-fit: cover;
+    object-position: 6% 10%;
+    mix-blend-mode: screen;
+    opacity: 0.95;
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent 0%, #000 14%, #000 100%),
+      linear-gradient(180deg, transparent 0%, #000 28%, #000 100%);
+    mask-image:
+      linear-gradient(90deg, transparent 0%, #000 14%, #000 100%),
+      linear-gradient(180deg, transparent 0%, #000 28%, #000 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+
+  .ca-s02-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 30rem) minmax(12rem, 1fr) 9.25rem;
+    column-gap: 2.5rem;
+    row-gap: var(--ca-body-gap);
+    align-items: start;
+    padding-top: 4.5rem;
+  }
+
+  .ca-s02-intro {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .ca-s02-body {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .ca-s02-ui-slot {
+    grid-column: 2;
+    grid-row: 2;
+    z-index: 3;
+    justify-self: end;
+    width: min(100%, 30rem);
+    margin-top: 0;
+    aspect-ratio: 828 / 698;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .ca-s02-ui {
+    position: absolute;
+    width: calc(1888 / 828 * 100%);
+    height: auto;
+    max-width: none;
+    left: calc(-887 / 828 * 100%);
+    top: calc(-76 / 698 * 100%);
+    background: transparent;
+    /* Hide the raster's opaque navy timeline plate; the glow is CSS. */
+    -webkit-mask-image: linear-gradient(90deg, #000 87%, transparent 87.55%);
+    mask-image: linear-gradient(90deg, #000 87%, transparent 87.55%);
+  }
+
+  .ca-s02-note {
+    grid-column: 3;
+    grid-row: 2;
+    margin-top: 0.25rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .ca-s02-layout {
+    grid-template-columns: minmax(0, 32rem) minmax(16rem, 1fr) 9.5rem;
+    column-gap: 4.5rem;
+  }
+
+  .ca-s01-photo-shift img {
+    object-position: 66% 100%;
+  }
+}
+
+.ca-s02-note-rule {
+  display: block;
+  width: 2.75rem;
+  height: 1px;
+  margin: 1.25rem 0;
+  background: var(--ca-line, rgb(169 184 204 / 0.45));
+}
+
+.ca-s02-ui-slot {
+  background: transparent;
+}
+
+.ca-s02-ui-indicator {
+  position: absolute;
+  left: 92.39%;
+  top: 8.9%;
+  bottom: 7.7%;
+  width: 2.75rem;
+  transform: translateX(-50%);
+  background: transparent;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ca-s02-ui-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgb(59 130 246 / 0.3) 14%,
+    rgb(191 219 254 / 0.9) 50%,
+    rgb(59 130 246 / 0.3) 86%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgb(59 130 246 / 0.45);
+}
+
+.ca-s02-ui-node {
+  position: absolute;
+  left: 50%;
+  top: 43.6%;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #93c5fd;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 12px #3b82f6,
+    0 0 24px rgb(59 130 246 / 0.55);
+}
+
+@media (max-width: 1023px) {
+  .ca-s02-ui-slot {
+    position: relative;
+    width: min(100%, 28rem);
+    aspect-ratio: 828 / 698;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .ca-s02-ui {
+    position: absolute;
+    width: calc(1888 / 828 * 100%);
+    height: auto;
+    max-width: none;
+    left: calc(-887 / 828 * 100%);
+    top: calc(-76 / 698 * 100%);
+    background: transparent;
+    -webkit-mask-image: linear-gradient(90deg, #000 87%, transparent 87.55%);
+    mask-image: linear-gradient(90deg, #000 87%, transparent 87.55%);
+  }
+}
+
+/*
  * Shared editorial rail (lg+).
  * Midpoint between the hero's current left edge (centered 1520px well + 3rem)
  * and the too-left full-bleed gutter marked by the red guide (5.25rem).
@@ -448,11 +714,25 @@
     --ca-rail: calc((var(--ca-hero-rail) + var(--ca-red-rail)) / 2);
   }
 
-  /* 01 Overview — left editorial column */
-  [aria-labelledby='hero-heading'] > .relative.mx-auto {
+  /*
+   * 01 Overview stays an authored composition. The copy keeps the centered
+   * 1520px well. The glance column caps its right inset at the full-bleed
+   * gutter so it sits on the page edge instead of inside that well.
+   */
+  .ca-s01-grid {
     max-width: none;
-    margin-inline: 0;
-    padding-left: var(--ca-rail);
+    padding-left: max(3rem, calc((100% - 1520px) / 2 + 3rem));
+    padding-right: min(5.25rem, max(3rem, calc((100% - 1520px) / 2 + 3rem)));
+  }
+
+  /*
+   * Fill a typical desktop view so 02 does not peek through, but do not
+   * lock height on short / rotated viewports — content must be able to grow.
+   */
+  @media (min-height: 44rem) {
+    .ca-s01-grid {
+      min-height: 100svh;
+    }
   }
 
   /* 02 Mandate — left editorial column; UI overlay stays absolutely placed */
@@ -491,5 +771,32 @@
   [aria-labelledby='closing-statement'] {
     padding-left: var(--ca-rail);
     padding-right: var(--ca-rail);
+  }
+}
+
+/* Index reveal-on-scroll: fade + 28px rise, once, transform and opacity only. */
+.ca-scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ca-scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ca-scroll-reveal.ca-scroll-reveal--fade,
+.ca-scroll-reveal.ca-scroll-reveal--fade.is-visible {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ca-scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

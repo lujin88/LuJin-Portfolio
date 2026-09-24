@@ -10,8 +10,10 @@ import { ClosingSection } from '@/components/closing-section'
 export function ClientAdvisorCaseStudy() {
   return (
     <main>
-      <HeroSection />
-      <SessionMandate />
+      <div className="ca-s01-s02">
+        <HeroSection />
+        <SessionMandate />
+      </div>
       <Session03Research />
       <Session04TheShift />
       <Session05DesignPrinciples />

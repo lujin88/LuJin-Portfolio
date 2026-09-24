@@ -1,22 +1,6 @@
-const navItems = ['Clients', 'Clients', 'Research', 'Opportunities', 'Tools']
+'use client'
 
-const options = [
-  {
-    title: 'Option 1',
-    points: ['1.0% return', 'Lower risk profile'],
-    bars: { return: [0.02, 0.28], risk: [0.55, 0.9], liquidity: [0.5, 0.7] },
-  },
-  {
-    title: 'Option 2',
-    points: ['1.8% return', 'Balanced approach'],
-    bars: { return: [0.02, 0.3], risk: [0.6, 0.85], liquidity: [0.5, 0.75] },
-  },
-  {
-    title: 'Option 3',
-    points: ['2.8% return', 'Higher growth potential'],
-    bars: { return: [0.02, 0.28], risk: [0.6, 0.85], liquidity: [0.5, 0.75] },
-  },
-]
+import { useTranslation } from '@i18n/use-translation'
 
 function Meter({ label, range }: { label: string; range: number[] }) {
   const [start, end] = range
@@ -56,10 +40,36 @@ function UbsMark() {
 }
 
 export function AdvisoryInterface() {
+  const { t } = useTranslation()
+  const navItems = [
+    t('ca.ui.navClients'),
+    t('ca.ui.navClients'),
+    t('ca.ui.navResearch'),
+    t('ca.ui.navOpportunities'),
+    t('ca.ui.navTools'),
+  ]
+  const options = [
+    {
+      title: t('ca.ui.option1'),
+      points: [t('ca.ui.option1a'), t('ca.ui.option1b')],
+      bars: { return: [0.02, 0.28], risk: [0.55, 0.9], liquidity: [0.5, 0.7] },
+    },
+    {
+      title: t('ca.ui.option2'),
+      points: [t('ca.ui.option2a'), t('ca.ui.option2b')],
+      bars: { return: [0.02, 0.3], risk: [0.6, 0.85], liquidity: [0.5, 0.75] },
+    },
+    {
+      title: t('ca.ui.option3'),
+      points: [t('ca.ui.option3a'), t('ca.ui.option3b')],
+      bars: { return: [0.02, 0.28], risk: [0.6, 0.85], liquidity: [0.5, 0.75] },
+    },
+  ]
+
   return (
     <div
       role="img"
-      aria-label="UBS advisory workflow interface showing a portfolio review and proposal with three investment options"
+      aria-label={t('ca.ui.aria')}
       className="flex aspect-[1270/640] w-full overflow-hidden rounded-[0.8em] border border-[#1d3a66]/70 bg-[#0a1c3a] shadow-[0_40px_90px_-30px_rgba(0,0,0,0.85),0_0_60px_-10px_rgba(37,99,235,0.18)]"
     >
       {/* Sidebar */}
@@ -77,15 +87,15 @@ export function AdvisoryInterface() {
 
       {/* Main panel */}
       <div className="m-[0.35em] flex flex-1 flex-col rounded-[0.55em] bg-[#f7f9fc] px-[2.3em] pt-[1.7em] pb-[1.9em]">
-        <h3 className="text-[1.05em] font-semibold tracking-tight text-[#0b2a55]">Portfolio review &amp; proposal</h3>
+        <h3 className="text-[1.05em] font-semibold tracking-tight text-[#0b2a55]">{t('ca.ui.heading')}</h3>
 
         <div className="mt-[1.3em] flex border-b border-[#d5deeb] text-[0.66em]">
-          <span className="border-b-[2px] border-[#e8552a] pb-[0.7em] pr-[7em] text-[#e8552a]">Create proposal</span>
-          <span className="pb-[0.7em] pr-[9em] text-[#5a7aa8]">Review &amp; execute</span>
-          <span className="pb-[0.7em] text-[#5a7aa8]">Transaction summary</span>
+          <span className="border-b-[2px] border-[#e8552a] pb-[0.7em] pr-[7em] text-[#e8552a]">{t('ca.ui.tabCreate')}</span>
+          <span className="pb-[0.7em] pr-[9em] text-[#5a7aa8]">{t('ca.ui.tabReview')}</span>
+          <span className="pb-[0.7em] text-[#5a7aa8]">{t('ca.ui.tabSummary')}</span>
         </div>
 
-        <p className="mt-[1.6em] text-[0.66em] text-[#7a94bd]">Select an option</p>
+        <p className="mt-[1.6em] text-[0.66em] text-[#7a94bd]">{t('ca.ui.selectOption')}</p>
 
         <div className="mt-[1.1em] grid flex-1 grid-cols-3 gap-x-[3.2em]">
           {options.map((opt, i) => (
@@ -105,9 +115,9 @@ export function AdvisoryInterface() {
               </ul>
 
               <div className="mt-auto flex flex-col gap-[0.7em] pt-[1.6em]">
-                <Meter label="Return" range={opt.bars.return} />
-                <Meter label="Risk" range={opt.bars.risk} />
-                <Meter label="Liquidity" range={opt.bars.liquidity} />
+                <Meter label={t('ca.ui.meterReturn')} range={opt.bars.return} />
+                <Meter label={t('ca.ui.meterRisk')} range={opt.bars.risk} />
+                <Meter label={t('ca.ui.meterLiquidity')} range={opt.bars.liquidity} />
                 <span aria-hidden="true" className="-mt-[0.35em] h-[3px] w-[0.55em] rounded-full bg-[#e8552a]" />
               </div>
 
@@ -115,7 +125,7 @@ export function AdvisoryInterface() {
                 aria-hidden="true"
                 className="mt-[1.1em] flex h-[2.3em] items-center justify-center rounded-[0.35em] bg-[#123a72] text-[0.66em] font-semibold text-[#e6eefc]"
               >
-                Select
+                {t('ca.ui.select')}
               </span>
             </div>
           ))}

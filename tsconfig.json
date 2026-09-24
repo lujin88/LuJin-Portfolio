@@ -21,7 +21,9 @@
     "paths": {
       "@/*": ["./ca/client-advisor/*"],
       "@eon/*": ["./eon/e-on-09/*"],
-      "@header/*": ["./global-header/*"]
+      "@header/*": ["./global-header/*"],
+      "@i18n": ["./app/i18n"],
+      "@i18n/*": ["./app/i18n/*"]
     }
   },
   "include": [

@@ -3,5 +3,9 @@ import { readPublicHtmlPage } from '../read-public-html'
 
 export default async function AboutPage() {
   const { head, body } = await readPublicHtmlPage('about.html')
-  return <HtmlIsland head={head} body={body} />
+  return (
+    <div id="about-page-root">
+      <HtmlIsland head={head} body={body} />
+    </div>
+  )
 }

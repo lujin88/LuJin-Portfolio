@@ -89,7 +89,7 @@
   </style>
 </head>
 <body>
-  <header class="header"><div class="header-in"><a class="brand" href="#top">Lu<span>System</span></a><nav aria-label="Sections"><a href="#principles">Principles</a><a href="#foundation">Foundation</a><a href="#page-frame">Page Frame</a><a href="#themes">Themes</a><a href="#components">Components</a><a href="#motion">Motion</a><a href="#implementation">Implementation</a><a href="#audit">Audit</a></nav></div></header>
+  <header class="header"><div class="header-in"><a class="brand" href="#top">Lu<span>System</span></a><nav aria-label="Sections"><a href="#principles">Principles</a><a href="#foundation">Foundation</a><a href="#page-frame">Page Frame</a><a href="#text-measure">Text Measure</a><a href="#themes">Themes</a><a href="#components">Components</a><a href="#motion">Motion</a><a href="#implementation">Implementation</a><a href="#audit">Audit</a></nav></div></header>
   <main id="top">
     <section class="hero"><div class="wrap">
       <p class="kicker">Portfolio master design system</p>
@@ -123,6 +123,7 @@
             <li>Typography and font weights</li>
             <li>Spacing and layout</li>
             <li>Global Page Frame (content alignment and starting rhythm)</li>
+            <li>Content Width / Text Measure (copy width inside a well)</li>
             <li>Containers, radius, borders</li>
             <li>Shared components</li>
             <li>Interaction principles</li>
@@ -239,7 +240,7 @@
       <p class="intro">These values already exist in the container system and spacing scale. The frame names their relationship so future work can audit alignment without copying one page’s pixel coordinates.</p>
       <table class="table"><thead><tr><th>Rule</th><th>Existing value</th><th>Role</th></tr></thead><tbody>
         <tr><td>Desktop horizontal page padding</td><td><code>24px</code> (<code>px-6</code>)</td><td>Shared content inset. Not the React header’s stepped chrome padding.</td></tr>
-        <tr><td>Maximum content width</td><td><code>1440px</code> main · <code>1040px</code> editorial</td><td>The two content wells. Choose one; do not invent a third global max-width.</td></tr>
+        <tr><td>Maximum content width</td><td><code>1440px</code> main · <code>1040px</code> editorial</td><td>The two content wells. Choose one; do not invent a third global max-width. Inner text measures sit inside a well — see <a href="#text-measure">Content Width / Text Measure</a>.</td></tr>
         <tr><td>Chrome widths — not content</td><td><code>1600px</code> HTML nav · <code>1800px</code> React header</td><td>Shell chrome only. Not the content X-anchor.</td></tr>
         <tr><td>Primary content X-axis anchor</td><td>Centered well: <code>mx-auto</code> + chosen max-width + <code>24px</code> pad</td><td>Left (and mirrored right) edge of the 1440 or 1040 well. Header logo/nav edges are not the content origin.</td></tr>
         <tr><td>Header-to-content vertical rhythm</td><td>Header <code>80px</code> / <code>96px</code> from 768px; first-block pair <code>96px</code> (<code>pt-24</code>) / <code>128px</code> (<code>pt-32</code>)</td><td>Standard clearance from the live header using the spacing scale. Not a shared absolute Y.</td></tr>
@@ -282,6 +283,45 @@
         <li><strong>About video composition.</strong> Full-viewport video, mouse-scrub, copy inset in the 1440 well. Vertical seating is compositional.</li>
         <li><strong>Artwork overlap and storytelling treatments.</strong> Arcs, fans, overflowing media, decorative shapes. These may break the grid by design.</li>
       </ul>
+
+      <h3 class="sub" id="text-measure">Content Width / Text Measure</h3>
+      <p class="intro">The Global Page Frame defines <strong>where</strong> content sits (24px pad + 1440 or 1040 well). It does not define how wide a <em>text block</em> may run inside that well. Text-block width / reading measure was described conceptually (“controlled maximum width”, “controlled text width”, editorial text treatment) but was not numerically defined. This section records the three measures already used in the live portfolio. It does not add a third global container and it does not replace 1440 / 1040.</p>
+
+      <div class="callout">
+        <strong>Wells vs measures.</strong> A well is a page/layout container. A text measure is a nested max-width on copy inside a well.
+        <ul>
+          <li><strong>1440px main well</strong> — media-led sections, 43/57 case rows, Index pin stages, About video inset. Not a reading measure.</li>
+          <li><strong>1040px editorial well</strong> — Lab / AI page frame, contact, HTML footer alignment, standalone editorial sections. May itself be the text block (Editorial Wide) or may contain a tighter nested measure.</li>
+          <li><strong>Do not</strong> introduce a local arbitrary max-width (<code>max-w-3xl</code> as a page well, one-off pixel values, extra nested pads) without a documented reason in this section or a Theme Layer exception.</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">Text-measure levels</h3>
+      <p class="intro">Three levels. Values are taken from existing live usage, not invented for this document.</p>
+      <table class="table"><thead><tr><th>Level</th><th>Existing value</th><th>When to use</th><th>Content</th></tr></thead><tbody>
+        <tr><td>Editorial Wide</td><td><code>1040px</code> — the editorial well as the text block. No extra nested max-width on the copy.</td><td>Standalone editorial sections whose heading + body should occupy the editorial frame. Desktop: well is 1040, centered, with the shared 24px page pad. Below 1040 the block is the remaining width minus that pad.</td><td>Multi-paragraph editorial bios, page-level editorial intros that fill the well, contact row, HTML footer inner. Index “About me” belongs here.</td></tr>
+        <tr><td>Body / Standard</td><td><code>672px</code> (<code>max-w-2xl</code> / <code>42rem</code>)</td><td>Running body copy nested inside a 1440 or 1040 well when the well is wider than a comfortable line length. Left-aligned unless the section is already authored centered. Below 672px, 100% of the parent well.</td><td>Lab / AI Workflow hero body, Index Lab section subtitle, Index and About hero title wrap on media.</td></tr>
+        <tr><td>Reading / Narrow</td><td><code>448px</code> (<code>max-w-md</code> / <code>28rem</code>)</td><td>Short supporting copy. Nested inside a well or a 43/57 column. Below 448px, 100% of the parent.</td><td>Index hero lede, Index case/experiment one-line blurbs, short captions. Not multi-paragraph editorial.</td></tr>
+      </tbody></table>
+
+      <h3 class="sub">Heading wrap — not a well, not a body measure</h3>
+      <p class="intro">Display and section headings may use <code>768px</code> (<code>max-w-3xl</code> / <code>48rem</code>) as a <strong>line-wrap limit</strong> inside a well (Lab / AI Workflow <code>h1</code>). That value is not a fourth container and must not be used as a substitute for the 1040px editorial well. A two-paragraph editorial block constrained only to 768px inside a 1440 well is a missing-rule implementation, not a documented measure.</p>
+
+      <h3 class="sub">Relationship to the Global Page Frame</h3>
+      <table class="table"><thead><tr><th>Frame piece</th><th>Text Measure role</th></tr></thead><tbody>
+        <tr><td>24px page padding</td><td>Unchanged. Measures do not add a second horizontal pad.</td></tr>
+        <tr><td>1440px main well</td><td>Layout for media-led and mixed sections. Copy inside it uses Body / Standard or Reading / Narrow, or a documented hero wrap — not a one-off 768px page well.</td></tr>
+        <tr><td>1040px editorial well</td><td>Either the text block itself (Editorial Wide) or the parent of Body / Standard. Prefer this well for standalone editorial sections.</td></tr>
+        <tr><td>Centered X-anchor</td><td>The well stays centered. Nested measures inherit the section’s alignment (left on Lab/AI heroes; centered on Index “About me” and matching centered intros).</td></tr>
+      </tbody></table>
+
+      <h3 class="sub">Responsive behavior</h3>
+      <p class="intro">No new breakpoints. When the viewport is narrower than the chosen measure, the text is the width of the parent well minus the 24px page pad. Do not switch measures at 768px. The Lab / AI <code>899px</code> timeline fallback does not change text-measure values.</p>
+
+      <div class="rule" style="margin-top:24px">
+        <h3>Theme Layer and authored exceptions</h3>
+        <p>Client Advisory (for example <code>46ch</code>, <code>38rem</code>, rail inset) and E.ON Solar (for example <code>520px</code> / <code>560px</code> / <code>720px</code> inside the 1440 well, plus theme-only extra pad) keep their composition-specific measures. Do not flatten them into 672 / 448 / 1040. Index hero <code>max-w-2xl</code> wrap + <code>max-w-md</code> lede on the video stage remains the Index storytelling pattern.</p>
+      </div>
     </div></section>
 
     <section id="themes"><div class="wrap">
@@ -387,6 +427,7 @@
           <ul>
             <li>Repeated spacing, container and grid usage</li>
             <li>Global Page Frame: shared content alignment and header-to-content rhythm</li>
+            <li>Content Width / Text Measure: Editorial Wide, Body / Standard, Reading / Narrow</li>
             <li>Shared Poppins roles and global text contrast</li>
             <li>Shared hairlines, radii, pill behavior and focus treatment</li>
             <li>Global motion timing and reduced-motion fallbacks</li>
@@ -431,6 +472,7 @@
         <li><strong>HTML footer vs React footer.</strong> Compact HTML copyright on Index/About/Lab/AI Workflow; Client Advisory and E.ON use React SiteFooter with glow field. Shared copy; different chrome.</li>
         <li><strong>HTML navigation vs React SiteHeader.</strong> HTML pages retain <code>#site-nav</code> (1600px / 80px / Poppins 700); Next.js hides it and mounts the 1800px React SiteHeader (Poppins 600, 80/96px). The React header is the live source of truth. Header chrome padding is not the content X-anchor; body copy follows the Global Page Frame.</li>
         <li><strong>Global Page Frame vs authored compositions.</strong> Text/UI align to the 24px + 1440/1040 well. Client Advisory, E.ON, Lab/AI, Index and About hero/artwork treatments may extend beyond that well. Different first-block Y positions are not automatically defects.</li>
+        <li><strong>Wells vs text measure.</strong> 1440 / 1040 are containers. Nested copy uses Editorial Wide (1040 as the text block), Body / Standard (672), or Reading / Narrow (448). <code>max-w-3xl</code> (768) is a heading wrap limit, not a third well. Theme Layer ch/px measures on Client Advisory and E.ON stay authored.</li>
       </ul>
 
       <h3 class="sub">Page-level implementation detail</h3>

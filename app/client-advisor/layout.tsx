@@ -6,7 +6,9 @@ import { HtmlTheme } from '../html-theme'
 import '@/app/globals.css'
 
 export const metadata: Metadata = {
-  title: 'Client Advisory — Wealth Understood',
+  title: {
+    absolute: 'Lu — Client Advisory',
+  },
   description:
     'Less searching. More advising. An AI-powered advisory case study by Lu, Lead Service Designer — surfacing what matters to each client, exactly when it matters.',
 }

@@ -1,8 +1,11 @@
 import type { Metadata } from 'next'
 import { HtmlChrome } from '../html-chrome'
+import { AboutLanguageSync } from './about-language-sync'
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: {
+    absolute: 'Lu — About',
+  },
 }
 
 export default function AboutLayout({
@@ -10,5 +13,10 @@ export default function AboutLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <HtmlChrome activeHref="/about">{children}</HtmlChrome>
+  return (
+    <HtmlChrome activeHref="/about">
+      {children}
+      <AboutLanguageSync />
+    </HtmlChrome>
+  )
 }
