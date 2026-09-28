@@ -20,6 +20,24 @@ export function ConceptMockupStack() {
       if (event.key === 'Escape') {
         setActiveId(null)
         openerRef.current?.focus()
+        return
+      }
+      if (event.key !== 'Tab') return
+      const dialog = closeRef.current?.closest('[role="dialog"]')
+      if (!dialog) return
+      const focusable = Array.from(
+        dialog.querySelectorAll<HTMLElement>('button, [href], input, select, textarea'),
+      ).filter((el) => !el.hasAttribute('disabled'))
+      if (focusable.length === 0) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      const active = document.activeElement
+      if (event.shiftKey && (active === first || !dialog.contains(active))) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && (active === last || !dialog.contains(active))) {
+        event.preventDefault()
+        first.focus()
       }
     }
     const previousOverflow = document.body.style.overflow

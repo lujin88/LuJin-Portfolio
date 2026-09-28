@@ -28,9 +28,9 @@ export function ComparisonCardHeader({
       >
         {tone === 'before' ? t('eon.ui.before') : t('eon.ui.after')}
       </span>
-      <h3 className="flex min-h-8 min-w-0 items-center self-center text-xl font-bold leading-none text-foreground">
+      <h4 className="flex min-h-8 min-w-0 items-center self-center text-xl font-bold leading-none text-foreground">
         {title}
-      </h3>
+      </h4>
       <div
         className={cn(
           'flex h-full min-h-0 min-w-0 flex-col',

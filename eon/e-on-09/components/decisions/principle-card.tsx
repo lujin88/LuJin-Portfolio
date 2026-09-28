@@ -31,7 +31,7 @@ export function PrincipleCard({
       tabIndex={isActive ? 0 : -1}
       onClick={onSelect}
       className={cn(
-        'box-border flex w-full cursor-pointer items-center gap-3 rounded-2xl border px-4 py-3 text-left md:px-5 md:py-3.5',
+        'box-border flex min-h-11 w-full cursor-pointer items-center gap-3 rounded-2xl border px-4 py-3 text-left md:px-5 md:py-3.5',
         'shadow-none ring-0',
         'focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current',
         isActive ? 'border-lavender-marker bg-primary/20' : 'border-navy-950/8 bg-card',

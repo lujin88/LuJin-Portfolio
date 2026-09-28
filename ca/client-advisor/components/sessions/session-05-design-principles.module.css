@@ -172,6 +172,12 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .cardInner {
+    transition: none;
+  }
+}
+
 /*
  * Fixed header region. One shared rule for all three cards and both faces —
  * same width, same gap, same position. The title container is wide enough for

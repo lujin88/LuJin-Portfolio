@@ -1,6 +1,7 @@
 @import 'tailwindcss/theme.css';
 @import 'tailwindcss/utilities.css';
 @import 'tw-animate-css';
+@import './header-skip.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -30,32 +31,4 @@
 
 .font-serif {
   font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
-}
-
-/* Light ring on the dark chrome. currentColor fails when the control's text is dark. */
-header :is(a, button):focus-visible {
-  outline: 2px solid var(--header-foreground);
-  outline-offset: 3px;
-}
-
-.header-skip {
-  position: absolute;
-  left: 1.5rem;
-  top: 1rem;
-  z-index: 60;
-  display: inline-flex;
-  align-items: center;
-  height: 2.75rem;
-  padding: 0 1rem;
-  border-radius: 999px;
-  background: var(--header-foreground);
-  color: var(--header-glass);
-  font-size: 0.95rem;
-  line-height: 1;
-  text-decoration: none;
-  transform: translateY(-200%);
-}
-
-.header-skip:focus {
-  transform: translateY(0);
 }

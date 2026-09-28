@@ -1,0 +1,35 @@
+/* Skip link + header focus. Loaded on the HTML shell and on CA / E.ON.
+   Does not set --color-accent. That mapping stays in header.css for the shell only. */
+
+header :is(a, button):focus-visible {
+  outline: 2px solid var(--header-foreground);
+  outline-offset: 3px;
+}
+
+.header-skip {
+  position: absolute;
+  left: 1.5rem;
+  top: 1rem;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  height: 2.75rem;
+  padding: 0 1rem;
+  border-radius: 999px;
+  background: var(--header-foreground);
+  color: var(--header-glass);
+  font-size: 0.95rem;
+  line-height: 1;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.header-skip:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--header-glass);
+  outline-offset: 3px;
+}
+
+#site-content:focus {
+  outline: none;
+}

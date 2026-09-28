@@ -121,7 +121,15 @@ body::before {
 }
 
 .exp-contact__links a {
+  position: relative;
   transition: color var(--duration-fast) cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.exp-contact__links a::before {
+  content: "";
+  position: absolute;
+  inset-block: -0.75rem;
+  inset-inline: -0.2rem;
 }
 
 .exp-contact__links a:hover {
