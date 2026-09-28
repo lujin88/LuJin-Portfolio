@@ -183,6 +183,8 @@
     border: none;
     cursor: pointer;
     padding: 1.1rem 0;
+    font: inherit;
+    color: inherit;
   }
   .accordion--end .accordion-item { flex-direction: row-reverse; text-align: right; }
 
@@ -206,14 +208,6 @@
   .accordion-item:not(.is-active):hover .accordion-title { color: var(--color-text-2); }
   .accordion-item:focus-visible { outline: 2px solid var(--color-theme-2); outline-offset: 4px; }
 
-  /* scroll-driven groups (inside .pin-wrap): not clickable, advance from scroll position only.
-     pointer-events stays enabled so the title/body text remains selectable/copyable; the JS
-     click-to-advance binding is what's actually skipped for these groups (see .closest('.pin-wrap') check). */
-  .pin-wrap .accordion-item {
-    cursor: default;
-  }
-  .pin-wrap .accordion-item:not(.is-active):hover .accordion-title { color: var(--color-text-3); }
-
   .accordion-body-wrap {
     display: grid;
     grid-template-rows: 0fr;
@@ -226,6 +220,7 @@
   }
   .accordion-body-inner { overflow: hidden; }
   .accordion-body {
+    display: block;
     margin-top: 0.85rem;
     color: var(--color-text-2);
     line-height: 1.75;
@@ -992,7 +987,8 @@
     .pill-btn svg,
     .accordion-body-wrap,
     .accordion-title,
-    .accordion-bar {
+    .accordion-bar,
+    .scroll-media {
       transition: none;
     }
     .pill-btn:hover,
@@ -1268,41 +1264,41 @@
       <div class="grid lg:grid-cols-[minmax(0,43fr)_minmax(0,57fr)] gap-12 lg:gap-20 items-center">
         <div class="flex flex-col">
         <div class="accordion my-auto" data-group="1">
-          <div class="accordion-item is-active" data-index="0">
-            <span class="accordion-bar"></span>
+          <button type="button" class="accordion-item is-active" data-index="0" aria-expanded="true" aria-controls="ca-step-0" aria-labelledby="ca-step-0-label">
+            <span class="accordion-bar" aria-hidden="true"></span>
             <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.ca.roleTitle">My role — Lead Service Designer</span>
-              <span class="accordion-body-wrap">
+              <span class="accordion-title block" id="ca-step-0-label" data-i18n="home.ca.roleTitle">My role — Lead Service Designer</span>
+              <span class="accordion-body-wrap" id="ca-step-0">
                 <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.ca.roleBody">Mapped end-to-end advisor workflows, identified key friction points, and translated insights into information architecture, user flows, and wireframes. Contributed to advisor interviews to uncover daily needs, priorities, and opportunities for AI.</p>
+                  <span class="accordion-body" data-i18n="home.ca.roleBody">Mapped end-to-end advisor workflows, identified key friction points, and translated insights into information architecture, user flows, and wireframes. Contributed to advisor interviews to uncover daily needs, priorities, and opportunities for AI.</span>
                 </span>
               </span>
             </span>
-          </div>
+          </button>
 
-          <div class="accordion-item" data-index="1">
-            <span class="accordion-bar"></span>
+          <button type="button" class="accordion-item" data-index="1" aria-expanded="false" aria-controls="ca-step-1" aria-labelledby="ca-step-1-label">
+            <span class="accordion-bar" aria-hidden="true"></span>
             <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.ca.frictionTitle">From friction to AI</span>
-              <span class="accordion-body-wrap">
+              <span class="accordion-title block" id="ca-step-1-label" data-i18n="home.ca.frictionTitle">From friction to AI</span>
+              <span class="accordion-body-wrap" id="ca-step-1">
                 <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.ca.frictionBody">Embedded AI into existing workflows to help advisors prioritize tasks, surface relevant information, and respond to clients at the right moment. When a client calls, AI can also surface who they are and what they may need — giving advisors the right context immediately, without adding another tool.</p>
+                  <span class="accordion-body" data-i18n="home.ca.frictionBody">Embedded AI into existing workflows to help advisors prioritize tasks, surface relevant information, and respond to clients at the right moment. When a client calls, AI can also surface who they are and what they may need — giving advisors the right context immediately, without adding another tool.</span>
                 </span>
               </span>
             </span>
-          </div>
+          </button>
 
-          <div class="accordion-item" data-index="2">
-            <span class="accordion-bar"></span>
+          <button type="button" class="accordion-item" data-index="2" aria-expanded="false" aria-controls="ca-step-2" aria-labelledby="ca-step-2-label">
+            <span class="accordion-bar" aria-hidden="true"></span>
             <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.ca.scaleTitle">Designed for 500+ advisors</span>
-              <span class="accordion-body-wrap">
+              <span class="accordion-title block" id="ca-step-2-label" data-i18n="home.ca.scaleTitle">Designed for 500+ advisors</span>
+              <span class="accordion-body-wrap" id="ca-step-2">
                 <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.ca.scaleBody">The concept could save an estimated 10–15 minutes per workflow, reducing time spent searching, synthesising information, and switching between systems.</p>
+                  <span class="accordion-body" data-i18n="home.ca.scaleBody">The concept could save an estimated 10–15 minutes per workflow, reducing time spent searching, synthesising information, and switching between systems.</span>
                 </span>
               </span>
             </span>
-          </div>
+          </button>
         </div>
 
         <div class="mt-12 md:mt-14 text-left">
@@ -1346,41 +1342,41 @@
 
         <div class="flex flex-col">
         <div class="accordion my-auto" data-group="2">
-          <div class="accordion-item is-active" data-index="0">
-            <span class="accordion-bar"></span>
+          <button type="button" class="accordion-item is-active" data-index="0" aria-expanded="true" aria-controls="eon-step-0" aria-labelledby="eon-step-0-label">
+            <span class="accordion-bar" aria-hidden="true"></span>
             <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.eon.roleTitle">My role — Lead Product Designer</span>
-              <span class="accordion-body-wrap">
+              <span class="accordion-title block" id="eon-step-0-label" data-i18n="home.eon.roleTitle">My role — Lead Product Designer</span>
+              <span class="accordion-body-wrap" id="eon-step-0">
                 <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.eon.roleBody">Led the end-to-end product design process, from research and journey mapping through information architecture, UX/UI design, prototyping, and implementation. Collaborated closely with developers to bring the experience to life and iterated based on user testing and data.</p>
+                  <span class="accordion-body" data-i18n="home.eon.roleBody">Led the end-to-end product design process, from research and journey mapping through information architecture, UX/UI design, prototyping, and implementation. Collaborated closely with developers to bring the experience to life and iterated based on user testing and data.</span>
                 </span>
               </span>
             </span>
-          </div>
+          </button>
 
-          <div class="accordion-item" data-index="1">
-            <span class="accordion-bar"></span>
+          <button type="button" class="accordion-item" data-index="1" aria-expanded="false" aria-controls="eon-step-1" aria-labelledby="eon-step-1-label">
+            <span class="accordion-bar" aria-hidden="true"></span>
             <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.eon.conversionTitle">From complexity to conversion</span>
-              <span class="accordion-body-wrap">
+              <span class="accordion-title block" id="eon-step-1-label" data-i18n="home.eon.conversionTitle">From complexity to conversion</span>
+              <span class="accordion-body-wrap" id="eon-step-1">
                 <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.eon.conversionBody">Redesigned the solar purchase journey to make a complex investment easier to understand, personalize, and trust. Progressive input and a more transparent calculator helped users move from initial interest to a meaningful, personalized offer with less friction.</p>
+                  <span class="accordion-body" data-i18n="home.eon.conversionBody">Redesigned the solar purchase journey to make a complex investment easier to understand, personalize, and trust. Progressive input and a more transparent calculator helped users move from initial interest to a meaningful, personalized offer with less friction.</span>
                 </span>
               </span>
             </span>
-          </div>
+          </button>
 
-          <div class="accordion-item" data-index="2">
-            <span class="accordion-bar"></span>
+          <button type="button" class="accordion-item" data-index="2" aria-expanded="false" aria-controls="eon-step-2" aria-labelledby="eon-step-2-label">
+            <span class="accordion-bar" aria-hidden="true"></span>
             <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.eon.impactTitle">300% higher conversion</span>
-              <span class="accordion-body-wrap">
+              <span class="accordion-title block" id="eon-step-2-label" data-i18n="home.eon.impactTitle">300% higher conversion</span>
+              <span class="accordion-body-wrap" id="eon-step-2">
                 <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.eon.impactBody">The redesigned experience increased solar purchase conversion by 300% within two months, reaching a 16.8% conversion rate across Germany. The experience was later adapted for the UK market.</p>
+                  <span class="accordion-body" data-i18n="home.eon.impactBody">The redesigned experience increased solar purchase conversion by 300% within two months, reaching a 16.8% conversion rate across Germany. The experience was later adapted for the UK market.</span>
                 </span>
               </span>
             </span>
-          </div>
+          </button>
         </div>
 
         <div class="mt-12 md:mt-14 text-left">
@@ -1659,19 +1655,80 @@
     });
   })();
 
-  // accordion groups: one open item per group (click-to-toggle).
-  // Groups inside a .pin-wrap are scroll-driven instead — skip click binding there.
-  document.querySelectorAll('.accordion').forEach((group) => {
-    if (group.closest('.pin-wrap')) return;
-    const items = group.querySelectorAll('.accordion-item');
+  // Accordion: one open step per group. Steps are <button>s, so click, Enter,
+  // and Space all activate. Pin-wrap groups are also driven by scroll progress.
+  // A click sets the active index (and paired .scroll-media) immediately. Scroll
+  // keeps driving again once progress enters a different step than the one in
+  // view at click time, so the in-flight scroll frame does not undo the click.
+  const accordionReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const accordionStacked = window.matchMedia('(max-width: 1023px)');
+
+  function accordionNaturalIndex(progress, count) {
+    return Math.min(count - 1, Math.floor(progress * count));
+  }
+
+  function syncAccordion(items, medias, activeIndex) {
+    for (const item of items) {
+      const on = Number(item.dataset.index) === activeIndex;
+      item.classList.toggle('is-active', on);
+      item.setAttribute('aria-expanded', on ? 'true' : 'false');
+    }
+    for (const media of medias) {
+      media.classList.toggle('opacity-0', Number(media.dataset.index) !== activeIndex);
+    }
+  }
+
+  const accordionStates = Array.from(document.querySelectorAll('.accordion')).map((group) => {
+    const wrap = group.closest('.pin-wrap');
+    const items = Array.from(group.querySelectorAll('.accordion-item[data-index]'));
+    const medias = wrap ? Array.from(wrap.querySelectorAll('.scroll-media[data-index]')) : [];
+    const current = items.find((item) => item.classList.contains('is-active'));
+    const state = {
+      wrap,
+      items,
+      medias,
+      last: current ? Number(current.dataset.index) : 0,
+      clickLock: null,
+      progress: 0,
+    };
+
     items.forEach((item) => {
       item.addEventListener('click', () => {
-        if (item.classList.contains('is-active')) return;
-        items.forEach((i) => i.classList.remove('is-active'));
-        item.classList.add('is-active');
+        const index = Number(item.dataset.index);
+        if (!Number.isFinite(index) || index === state.last) return;
+        const scrollDriven = Boolean(wrap) && !accordionReduceMotion && !accordionStacked.matches;
+        if (scrollDriven) {
+          const rect = wrap.getBoundingClientRect();
+          const scrollable = rect.height - window.innerHeight;
+          const progress = scrollable > 0 ? Math.max(0, Math.min(1, -rect.top / scrollable)) : 0;
+          state.progress = progress;
+          const natural = accordionNaturalIndex(progress, items.length);
+          state.clickLock = index === natural ? null : { index, natural };
+        } else {
+          state.clickLock = null;
+        }
+        state.last = index;
+        syncAccordion(items, medias, index);
       });
     });
+
+    return state;
   });
+
+  function accordionSyncFromScroll(wrap, progress) {
+    const state = accordionStates.find((entry) => entry.wrap === wrap);
+    if (!state || !state.items.length) return;
+    state.progress = progress;
+    if (accordionStacked.matches) return;
+    let activeIndex = accordionNaturalIndex(progress, state.items.length);
+    if (state.clickLock) {
+      if (activeIndex === state.clickLock.natural) activeIndex = state.clickLock.index;
+      else state.clickLock = null;
+    }
+    if (activeIndex === state.last) return;
+    state.last = activeIndex;
+    syncAccordion(state.items, state.medias, activeIndex);
+  }
 
   // reveal-on-scroll
   const revealEls = document.querySelectorAll('.reveal, .contact-reveal');
@@ -1748,10 +1805,7 @@
       moves:   Array.from(wrap.querySelectorAll('.pin-move')),
       darkens: Array.from(wrap.querySelectorAll('.pin-darken')),
       reveals: Array.from(wrap.querySelectorAll('.pin-reveal')),
-      scrollItems:  Array.from(wrap.querySelectorAll('.accordion-item[data-index]')),
-      scrollMedias: Array.from(wrap.querySelectorAll('.scroll-media[data-index]')),
       progress: 0,
-      lastAccordion: -1,
     }));
     const parallaxEls = Array.from(document.querySelectorAll('.parallax-zoom'));
     const parallaxProg = new Array(parallaxEls.length).fill(0);
@@ -1953,21 +2007,10 @@
           el.style.opacity = revealProgress.toFixed(3);
           el.style.transform = `translateY(${((1 - revealProgress) * 20).toFixed(2)}px) scale(${scale.toFixed(4)})`;
         }
-        // scroll-driven accordion: switch active item + paired image ONLY when
-        // the index changes (class toggles otherwise fire every frame).
-        if (grp.scrollItems.length && !window.matchMedia('(max-width: 1023px)').matches) {
-          const count = grp.scrollItems.length;
-          const activeIndex = Math.min(count - 1, Math.floor(progress * count));
-          if (activeIndex !== grp.lastAccordion) {
-            grp.lastAccordion = activeIndex;
-            for (const item of grp.scrollItems) {
-              item.classList.toggle('is-active', Number(item.dataset.index) === activeIndex);
-            }
-            for (const img of grp.scrollMedias) {
-              img.classList.toggle('opacity-0', Number(img.dataset.index) !== activeIndex);
-            }
-          }
-        }
+        // Scroll-driven accordion. Writes only when the index changes; a click
+        // lock (see accordionSyncFromScroll) keeps a just-chosen step in place
+        // until scroll progress enters a different step.
+        accordionSyncFromScroll(grp.wrap, progress);
       }
 
       for (let i = 0; i < parallaxEls.length; i++) {
