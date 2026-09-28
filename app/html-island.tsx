@@ -81,6 +81,21 @@ export function HtmlIsland({ head, body }: { head: string; body: string }) {
     })
 
     let cancelled = false
+    const observers: MutationObserver[] = []
+    const NativeObserver = window.MutationObserver
+    // The Tailwind CDN script keeps a document observer alive after its
+    // <script> node is removed and rewrites utilities (text-ink, borders)
+    // for whatever route mounts next. Track observers it creates so leaving
+    // the island can disconnect them.
+    const TrackingObserver = class extends NativeObserver {
+      constructor(callback: MutationCallback) {
+        super(callback)
+        observers.push(this)
+      }
+    }
+    window.MutationObserver = TrackingObserver
+    const stylesBefore = new Set(document.querySelectorAll('style'))
+
     const runScripts = async () => {
       for (const src of scripts) {
         if (cancelled) return
@@ -90,6 +105,7 @@ export function HtmlIsland({ head, body }: { head: string; body: string }) {
           await new Promise<void>((resolve) => {
             script.onload = () => resolve()
             script.onerror = () => resolve()
+            if (cancelled) return
             document.head.appendChild(script)
           })
         } else {
@@ -101,11 +117,22 @@ export function HtmlIsland({ head, body }: { head: string; body: string }) {
         }
       }
     }
-    void runScripts()
+    void runScripts().finally(() => {
+      if (window.MutationObserver === TrackingObserver) {
+        window.MutationObserver = NativeObserver
+      }
+    })
 
     return () => {
       cancelled = true
+      if (window.MutationObserver === TrackingObserver) {
+        window.MutationObserver = NativeObserver
+      }
+      observers.forEach((observer) => observer.disconnect())
       added.forEach((node) => node.remove())
+      document.querySelectorAll('style').forEach((style) => {
+        if (!stylesBefore.has(style)) style.remove()
+      })
     }
   }, [head])
 
