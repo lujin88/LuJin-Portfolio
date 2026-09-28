@@ -72,7 +72,7 @@ export const home = {
   de: {
     documentTitle: 'Lu — Produkt- & Service-Designerin',
     heroTitleHtml:
-      'Ich gestalte KI-native Produkte,<br />die komplexe Workflows durchdringen.',
+      'Ich gestalte KI-native Produkte,<br />die komplexe Workflows klären.',
     heroSubtitle: 'Von der frühen Strategie bis zur produktionsreifen Oberfläche.',
     ca: {
       titleHtml:
