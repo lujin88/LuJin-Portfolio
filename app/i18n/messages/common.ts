@@ -1,10 +1,10 @@
 export const common = {
   en: {
-    exploreNow: 'Explore Now',
+    exploreNow: 'View case',
     seeMyWork: 'See My Work',
     letsTalk: "Let's talk",
     downloadCv: 'Download CV',
-    contactHeading: 'Have an opportunity in mind?',
+    contactHeading: 'Open to new opportunities.',
     selectedExperience: 'Selected experience',
     footerRights: '© 2026 Lu Jin. All rights reserved.',
     footerCredit: 'Designed with vibe coding, tailored in Cursor.',
@@ -19,11 +19,11 @@ export const common = {
     documentTitleAbout: 'Lu — About',
   },
   de: {
-    exploreNow: 'Jetzt entdecken',
-    seeMyWork: 'Meine Arbeit',
+    exploreNow: 'Case ansehen',
+    seeMyWork: 'Arbeit ansehen',
     letsTalk: 'Lass uns sprechen',
     downloadCv: 'Lebenslauf',
-    contactHeading: 'Haben Sie ein Vorhaben im Kopf?',
+    contactHeading: 'Offen für neue Möglichkeiten.',
     selectedExperience: 'Ausgewählte Stationen',
     footerRights: '© 2026 Lu Jin. Alle Rechte vorbehalten.',
     footerCredit: 'Gestaltet mit Vibe Coding, verfeinert in Cursor.',

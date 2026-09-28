@@ -1,13 +1,13 @@
 export const home = {
   en: {
     documentTitle: 'Lu — Product & Service Designer',
-    heroTitleHtml: 'Simplify complexity.<br />Design with AI.',
-    heroSubtitle:
-      'Architecting scalable digital products from early-stage strategy to production-ready UI.',
+    heroTitleHtml:
+      'I design AI-native products<br />that cut through complex workflows.',
+    heroSubtitle: 'From early strategy to production-ready UI.',
     ca: {
       titleHtml:
         'AI-powered advisor <span class="font-sans font-semibold">workflow optimization</span>',
-      roleTitle: 'My role — lead service designer',
+      roleTitle: 'My role — Lead Service Designer',
       roleBody:
         'Mapped end-to-end advisor workflows, identified key friction points, and translated insights into information architecture, user flows, and wireframes. Contributed to advisor interviews to uncover daily needs, priorities, and opportunities for AI.',
       frictionTitle: 'From friction to AI',
@@ -19,7 +19,7 @@ export const home = {
     },
     eon: {
       titleHtml: 'Solar landing page <span class="font-sans font-semibold">redesign</span>',
-      roleTitle: 'My role — lead product designer',
+      roleTitle: 'My role — Lead Product Designer',
       roleBody:
         'Led the end-to-end product design process, from research and journey mapping through information architecture, UX/UI design, prototyping, and implementation. Collaborated closely with developers to bring the experience to life and iterated based on user testing and data.',
       conversionTitle: 'From complexity to conversion',
@@ -41,7 +41,7 @@ export const home = {
     },
     aboutHeading: 'About me',
     aboutBodyHtml:
-      'I\'m Lu, an <strong class="text-text1 font-semibold">AI-native Product Designer</strong> with 10+ years of experience turning <strong class="text-text1 font-semibold">complex systems and workflows into clear, useful products</strong>.<br /><br />I work end-to-end across <strong class="text-text1 font-semibold">product, service, and UI design</strong> — from framing problems to prototyping and implementation. I use AI as part of my everyday design process to explore faster, prototype boldly, and turn ideas into working experiences.',
+      'I\'m Lu, a <strong class="text-text1 font-semibold">Principal / Design Director–level product and service designer</strong> with 10+ years turning <strong class="text-text1 font-semibold">complex B2B workflows into clear, shipped products</strong>.<br /><br />I work at that scope end to end — <strong class="text-text1 font-semibold">strategy, service design, and production UI</strong> — across advisor and energy-style systems. AI sits in the product and in how I design it.',
     exp: {
       '0': {
         eyebrow: 'Oct 2022 — Present',
@@ -71,9 +71,9 @@ export const home = {
   },
   de: {
     documentTitle: 'Lu — Produkt- & Service-Designerin',
-    heroTitleHtml: 'Komplexität vereinfachen.<br />Mit KI gestalten.',
-    heroSubtitle:
-      'Skalierbare digitale Produkte — von der frühen Strategie bis zur produktionsreifen Oberfläche.',
+    heroTitleHtml:
+      'Ich gestalte KI-native Produkte,<br />die komplexe Workflows klären.',
+    heroSubtitle: 'Von der frühen Strategie bis zur produktionsreifen Oberfläche.',
     ca: {
       titleHtml:
         'KI-gestützte <span class="font-sans font-semibold">Workflow-Optimierung für Berater</span>',
@@ -111,7 +111,7 @@ export const home = {
     },
     aboutHeading: 'Über mich',
     aboutBodyHtml:
-      'Ich bin Lu, eine <strong class="text-text1 font-semibold">KI-native Product Designerin</strong> mit über 10 Jahren Erfahrung darin, <strong class="text-text1 font-semibold">komplexe Systeme und Workflows in klare, nützliche Produkte</strong> zu übersetzen.<br /><br />Ich arbeite Ende-zu-Ende in <strong class="text-text1 font-semibold">Produkt-, Service- und UI-Design</strong> — vom Framing bis zu Prototyp und Umsetzung. KI ist Teil meines Alltags: schneller erkunden, mutiger prototypen, Ideen in funktionierende Erlebnisse bringen.',
+      'Ich bin Lu, eine <strong class="text-text1 font-semibold">Product- und Service-Designerin auf Principal- / Design-Director-Niveau</strong> mit über 10 Jahren Erfahrung, <strong class="text-text1 font-semibold">komplexe B2B-Workflows in klare, ausgelieferte Produkte</strong> zu übersetzen.<br /><br />Ich arbeite in diesem Umfang Ende zu Ende — <strong class="text-text1 font-semibold">Strategie, Service Design und produktionsreife UI</strong> — an Berater- und Energiesystemen. KI steckt im Produkt und in der Art, wie ich gestalte.',
     exp: {
       '0': {
         eyebrow: 'Okt. 2022 — heute',
