@@ -140,7 +140,7 @@ export function DesignDecisionsSection() {
                   isActive ? 'z-10 opacity-100' : 'pointer-events-none invisible z-0 opacity-0',
                 )}
               >
-                <h2 className={tabHeadingClassName}>{principle.heading}</h2>
+                <h3 className={tabHeadingClassName}>{principle.heading}</h3>
                 <p className="w-full text-lg leading-relaxed text-muted-foreground">
                   {principle.body}
                 </p>

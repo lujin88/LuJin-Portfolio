@@ -75,6 +75,7 @@ const aboutPageTranslations = {
     footerRights: '© 2026 Lu Jin. All rights reserved.',
     footerCredit: 'Designed with AI. Refined with Cursor.',
     closeVideo: 'Close video',
+    introDialog: 'Introduction video',
     avatarLabel: 'Illustrated Lu at her desk.',
     altTravel: 'Alpine lake between forested mountains',
     altDesign: 'Glass teapot steeping tea on a wooden table',
@@ -93,6 +94,7 @@ const aboutPageTranslations = {
     footerRights: '© 2026 Lu Jin. Alle Rechte vorbehalten.',
     footerCredit: 'Gestaltet mit KI. Verfeinert mit Cursor.',
     closeVideo: 'Video schließen',
+    introDialog: 'Vorstellungsvideo',
     avatarLabel: 'Illustrierte Lu an ihrem Schreibtisch.',
     altTravel: 'Alpiner See zwischen bewaldeten Bergen',
     altDesign: 'Glaskanne mit Tee auf einem Holztisch',
@@ -190,6 +192,7 @@ export function applyAboutTranslations(currentLang: string) {
   setText(byKey('page.footerCredit'), page.footerCredit)
 
   setAttr(byKey('page.closeVideo'), 'aria-label', page.closeVideo)
+  setAttr(document.getElementById('introOverlay'), 'aria-label', page.introDialog)
   setAttr(byKey('page.avatarLabel'), 'aria-label', page.avatarLabel)
   setAttr(byKey('page.altTravel'), 'alt', page.altTravel)
   setAttr(byKey('page.altDesign'), 'alt', page.altDesign)

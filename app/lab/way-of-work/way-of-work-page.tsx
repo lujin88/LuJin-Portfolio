@@ -48,7 +48,7 @@ export function WayOfWorkPage() {
   useScrollScrub(videoRef, wrapperRef, paint)
 
   return (
-    <div className={styles.page}>
+    <main className={styles.page}>
       <section
         ref={wrapperRef}
         className={cn('relative h-[400vh]', styles.track)}
@@ -111,6 +111,6 @@ export function WayOfWorkPage() {
       </section>
 
       <SiteClosing className={styles.closing} />
-    </div>
+    </main>
   )
 }

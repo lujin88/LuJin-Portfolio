@@ -27,8 +27,10 @@ export default function ClientAdvisorLayout({
     <>
       <HtmlTheme className="dark" colorScheme="dark" />
       <SiteHeader activeHref="/client-advisory" />
-      {children}
-      <SiteFooter />
+      <div id="site-content" tabIndex={-1}>
+        {children}
+        <SiteFooter />
+      </div>
       {process.env.NODE_ENV === 'production' && <Analytics />}
     </>
   )

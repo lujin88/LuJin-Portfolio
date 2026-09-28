@@ -16,6 +16,7 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      { source: '/', destination: '/index', permanent: false },
       { source: '/index.html', destination: '/index', permanent: false },
       { source: '/eon-solar', destination: '/EON', permanent: false },
       { source: '/eon-solar.html', destination: '/EON', permanent: false },

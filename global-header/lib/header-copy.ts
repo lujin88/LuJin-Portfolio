@@ -13,6 +13,8 @@ export const headerCopy = {
       'Party Planner': 'Party Planner',
     },
     contactMe: 'Contact me',
+    email: 'Email',
+    skipToContent: 'Skip to content',
     languageAria: (label: string) => `Language: ${label}`,
     selectLanguage: 'Select language',
     closeMenu: 'Close menu',
@@ -32,6 +34,8 @@ export const headerCopy = {
       'Party Planner': 'Party Planner',
     },
     contactMe: 'Kontakt',
+    email: 'E-Mail',
+    skipToContent: 'Zum Inhalt',
     languageAria: (label: string) => `Sprache: ${label}`,
     selectLanguage: 'Sprache wählen',
     closeMenu: 'Menü schließen',
@@ -44,6 +48,8 @@ export const headerCopy = {
   {
     nav: Record<string, string>
     contactMe: string
+    email: string
+    skipToContent: string
     languageAria: (label: string) => string
     selectLanguage: string
     closeMenu: string

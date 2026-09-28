@@ -27,7 +27,9 @@ export function HtmlChrome({
         backgroundColor={backgroundColor}
       />
       <SiteHeader activeHref={activeHref} />
-      {children}
+      <div id="site-content" tabIndex={-1}>
+        {children}
+      </div>
       <HtmlLanguageSync />
     </>
   )

@@ -178,6 +178,7 @@
 
 <body class="bg-ink text-text1 min-w-[360px]">
 
+<main>
 <!-- --- Section 01: Hero --- -->
 <section id="aiw-hero" class="relative min-h-screen flex items-center bg-ink px-6 pt-32 pb-24">
   <div class="mx-auto w-full max-w-[var(--editorial)]">
@@ -201,7 +202,7 @@
     <div class="reveal mt-10">
       <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn">
         <span data-i18n="ai.cta">Walk me through it</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
 
@@ -275,7 +276,7 @@
 
       <div class="grid lg:grid-cols-[minmax(0,57fr)_minmax(0,43fr)] gap-12 lg:gap-20 items-center">
         <div class="accordion lg:order-2" data-group="1">
-          <button class="accordion-item is-active" data-index="0" type="button">
+          <div class="accordion-item is-active" data-index="0">
             <span class="accordion-bar"></span>
             <span class="flex-1">
               <span class="accordion-title block" data-i18n="ai.step1Title">01 — Explore · Start with better questions</span>
@@ -285,9 +286,9 @@
                 </span>
               </span>
             </span>
-          </button>
+          </div>
 
-          <button class="accordion-item" data-index="1" type="button">
+          <div class="accordion-item" data-index="1">
             <span class="accordion-bar"></span>
             <span class="flex-1">
               <span class="accordion-title block" data-i18n="ai.step2Title">02 — Generate · Make possibilities visible</span>
@@ -297,9 +298,9 @@
                 </span>
               </span>
             </span>
-          </button>
+          </div>
 
-          <button class="accordion-item" data-index="2" type="button">
+          <div class="accordion-item" data-index="2">
             <span class="accordion-bar"></span>
             <span class="flex-1">
               <span class="accordion-title block" data-i18n="ai.step3Title">03 — Prototype · Make it real enough to learn</span>
@@ -309,9 +310,9 @@
                 </span>
               </span>
             </span>
-          </button>
+          </div>
 
-          <button class="accordion-item" data-index="3" type="button">
+          <div class="accordion-item" data-index="3">
             <span class="accordion-bar"></span>
             <span class="flex-1">
               <span class="accordion-title block" data-i18n="ai.step4Title">04 — Iterate · Make. Test. Learn. Repeat.</span>
@@ -321,7 +322,7 @@
                 </span>
               </span>
             </span>
-          </button>
+          </div>
         </div>
 
         <div class="relative rounded-2xl overflow-hidden media-panel aspect-[16/9] lg:order-1">
@@ -436,12 +437,14 @@
     </div>
     <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn shrink-0">
       <span data-i18n="common.letsTalk">Let's talk</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
   </div>
 </section>
 
 <!-- --- Footer --- -->
+</main>
+
 <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
   <div class="site-footer__inner">
     <div class="site-footer__bottom">

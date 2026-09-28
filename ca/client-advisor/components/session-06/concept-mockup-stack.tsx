@@ -268,7 +268,10 @@ function Lightbox({
   onClose: () => void
   onStep: (direction: -1 | 1) => void
 }) {
+  const overlayRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
+    const root = overlayRef.current
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         event.preventDefault()
@@ -283,6 +286,22 @@ function Lightbox({
       if (event.key === 'ArrowRight') {
         event.preventDefault()
         onStep(1)
+        return
+      }
+      if (event.key !== 'Tab' || !root) return
+      const focusable = Array.from(
+        root.querySelectorAll<HTMLElement>('button, [href], input, select, textarea, video'),
+      ).filter((el) => !el.hasAttribute('disabled'))
+      if (focusable.length === 0) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      const active = document.activeElement
+      if (event.shiftKey && (active === first || !root.contains(active))) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && (active === last || !root.contains(active))) {
+        event.preventDefault()
+        first.focus()
       }
     }
     const previousOverflow = document.body.style.overflow
@@ -300,15 +319,16 @@ function Lightbox({
 
   return (
     <div
+      ref={overlayRef}
       className={styles.overlay}
       style={{ '--ar': aspectRatio } as CSSProperties}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={titleId}
       onClick={onClose}
     >
       <div
         className={styles.dialog}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
         onClick={(event) => event.stopPropagation()}
       >
         <p id={titleId} className={styles.srOnly}>

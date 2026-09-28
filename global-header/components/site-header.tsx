@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useId, useRef, useState } from 'react'
-import { Check, ChevronDown, Menu, X } from 'lucide-react'
+import { Check, ChevronDown, Mail, Menu, X } from 'lucide-react'
 import { headerCopy } from '../lib/header-copy'
 import { LANGUAGES, useSiteLanguage } from '../lib/language'
 import { cn } from '../lib/utils'
@@ -96,6 +96,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   const openMenu = pinnedMenu ?? hoverMenu
   const langRootRef = useRef<HTMLDivElement>(null)
   const langTriggerRef = useRef<HTMLButtonElement>(null)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
   const langOptionRefs = useRef<(HTMLButtonElement | null)[]>([])
   const desktopNavRef = useRef<HTMLElement>(null)
   const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({})
@@ -160,6 +161,29 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       document.removeEventListener('keydown', onKeyDown)
     }
   }, [langOpen, language.code])
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return
+      setMenuOpen(false)
+      setMobileSection(null)
+      if (!langOpen && !openMenu) menuButtonRef.current?.focus()
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [menuOpen, langOpen, openMenu])
+
+  useEffect(() => {
+    const desktopNav = window.matchMedia('(min-width: 64rem)')
+    const closeMobileAtDesktop = () => {
+      if (!desktopNav.matches) return
+      setMenuOpen(false)
+      setMobileSection(null)
+    }
+    desktopNav.addEventListener('change', closeMobileAtDesktop)
+    return () => desktopNav.removeEventListener('change', closeMobileAtDesktop)
+  }, [])
 
   useEffect(() => {
     if (!openMenu) return
@@ -269,6 +293,9 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       data-header-tone={partyHeader ? 'party' : undefined}
       className="fixed top-0 right-0 left-0 z-[100] isolate font-sans text-header-foreground [font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif] [&_a]:no-underline [&_li]:list-none [&_ul]:list-none"
     >
+      <a href="#site-content" className="header-skip">
+        {copy.skipToContent}
+      </a>
       <div
         aria-hidden="true"
         className={cn(
@@ -321,7 +348,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                       aria-current={isActive ? 'page' : undefined}
                       onClick={dismissMenus}
                       className={cn(
-                        'rounded-sm text-[1.0625rem] leading-none no-underline transition-colors duration-200',
+                        'inline-flex min-h-11 items-center rounded-sm text-[1.0625rem] leading-none no-underline transition-colors duration-200',
                         FOCUS_RING,
                         MOTION_SAFE,
                         isActive
@@ -376,7 +403,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
               }}
               onKeyDown={onTriggerKeyDown}
               className={cn(
-                'flex items-center gap-1.5 rounded-sm text-[1.0625rem] leading-none text-header-foreground/72 transition-colors duration-200 hover:text-header-foreground focus-visible:text-header-foreground',
+                'inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[1.0625rem] leading-none text-header-foreground/72 transition-colors duration-200 hover:text-header-foreground focus-visible:text-header-foreground',
                 PLAIN_CONTROL,
                 FOCUS_RING,
                 MOTION_SAFE,
@@ -452,7 +479,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           <a
             href="mailto:lu.jin.ixd@gmail.com"
             className={cn(
-              'rounded-full border border-header-line px-6 py-3 text-[1.0625rem] leading-none text-header-foreground no-underline transition-colors duration-200 hover:border-header-foreground/70 hover:bg-header-foreground/6 md:px-7 md:py-3.5',
+              'hidden min-h-11 items-center rounded-full border border-header-line px-6 py-3 text-[1.0625rem] leading-none text-header-foreground no-underline transition-colors duration-200 hover:border-header-foreground/70 hover:bg-header-foreground/6 md:px-7 md:py-3.5 lg:inline-flex',
               FOCUS_RING,
               MOTION_SAFE,
             )}
@@ -461,15 +488,17 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           </a>
 
           <button
+            ref={menuButtonRef}
             type="button"
             aria-label={menuOpen ? copy.closeMenu : copy.openMenu}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             onClick={openMobile}
             className={cn(
-              '-mr-2 flex size-10 items-center justify-center rounded-sm text-header-foreground lg:hidden',
+              'flex size-11 items-center justify-center rounded-sm text-header-foreground lg:hidden',
               PLAIN_CONTROL,
               FOCUS_RING,
+              MOTION_SAFE,
             )}
           >
             {menuOpen ? (
@@ -504,7 +533,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                       aria-current={isActive ? 'page' : undefined}
                       onClick={() => setMenuOpen(false)}
                       className={cn(
-                        'rounded-sm text-lg no-underline transition-colors',
+                        'inline-flex min-h-11 items-center rounded-sm text-lg no-underline transition-colors',
                         FOCUS_RING,
                         MOTION_SAFE,
                         isActive ? 'text-header-foreground' : 'text-header-foreground/72',
@@ -529,7 +558,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                       setMobileSection((current) => (current === item.label ? null : item.label))
                     }
                     className={cn(
-                      'flex w-full items-center justify-between rounded-sm text-lg transition-colors',
+                      'flex min-h-11 w-full items-center justify-between rounded-sm text-lg transition-colors',
                       PLAIN_CONTROL,
                       FOCUS_RING,
                       MOTION_SAFE,
@@ -590,6 +619,18 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
               )
             })}
           </ul>
+          <a
+            href="mailto:lu.jin.ixd@gmail.com"
+            onClick={() => setMenuOpen(false)}
+            className={cn(
+              'flex min-h-11 w-full items-center gap-3 rounded-sm text-lg text-header-foreground/72 no-underline transition-colors hover:text-header-foreground',
+              FOCUS_RING,
+              MOTION_SAFE,
+            )}
+          >
+            <Mail aria-hidden="true" className="size-5 shrink-0" strokeWidth={1.5} />
+            {copy.email}
+          </a>
           <div className="flex items-center gap-2 border-t border-header-line pt-5 text-sm">
             {LANGUAGES.map((lang, index) => (
               <button
@@ -597,7 +638,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                 type="button"
                 onClick={() => setLanguage(lang)}
                 className={cn(
-                  'appearance-none bg-transparent shadow-none outline-none transition-colors focus:outline-none focus:ring-0',
+                  'inline-flex min-h-11 items-center appearance-none bg-transparent px-1 shadow-none outline-none transition-colors focus:outline-none focus:ring-0',
                   FOCUS_RING,
                   MOTION_SAFE,
                   lang.code === language.code
@@ -703,7 +744,7 @@ function NavDropdown({
         }}
         onKeyDown={onButtonKeyDown}
         className={cn(
-          'flex items-center gap-1.5 rounded-sm text-[1.0625rem] leading-none transition-colors duration-200',
+          'inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[1.0625rem] leading-none transition-colors duration-200',
           PLAIN_CONTROL,
           FOCUS_RING,
           MOTION_SAFE,

@@ -263,6 +263,13 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .cardInner,
+  .artworkImg {
+    transition: none;
+  }
+}
+
 @media (max-width: 639px) {
   .section {
     justify-content: flex-start;

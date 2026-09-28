@@ -46,7 +46,7 @@ export function OffWeGoPage() {
   const sceneLines = ta('owg.sceneLines')
 
   return (
-    <div className={styles.page}>
+    <main className={styles.page}>
       <section className={styles.scene} aria-labelledby="owg-title">
         <div className={styles.media}>
           <div
@@ -93,6 +93,6 @@ export function OffWeGoPage() {
       </section>
 
       <SiteClosing className={styles.closing} />
-    </div>
+    </main>
   )
 }
