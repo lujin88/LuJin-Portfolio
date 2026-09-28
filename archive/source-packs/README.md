@@ -25,7 +25,10 @@ Paths below are relative to the repository root.
 ### 3. Small unique Material bits (git-suitable)
 
 - `archive/source-packs/client-advisor/CA-office-call-loop.mp4` (1.8 MB) — not previously in the repo
-- Lab project (`03_Lab project`: Way of Work md/images/videos + Off We Go Home.png) is archived separately at `archive/source-packs/lab-project-from-protoflio-material/` when that pack is added. It is not the same file as existing `public/assets/videos/lab/ai-workflow-hero.mp4`.
+- **Dir:** `archive/source-packs/lab-project-from-protoflio-material/03_Lab project/` (~45 MB unpacked, 17 files)
+- Reconstructed from the two transfer packs (part 1 + part 2). The zips themselves are not stored in git.
+- Contents: `Off We Go Home.png`, `Way of Work/Way of Work.png`, `way-of-work.md`, `agile-vibe-coding-flow-map.md`, `Image/01 .jpeg`–`07.jpeg`, and `video/01-02.mp4` through `video/06-07.mp4`
+- These Way of Work clips are not the same file as existing `public/assets/videos/lab/ai-workflow-hero.mp4`.
 
 ## B. Skipped on purpose (not in this archive)
 
@@ -59,4 +62,4 @@ The full `/Users/lu/Desktop/Protoflio Material` (~1.9 GB) was **not copied into 
 - `02_Eon` (~1.3 GB) — Eon PSD / sketch sources
 - `1st version content` (~486 MB)
 
-The smaller, git-suitable Client Advisor sources, global chrome, and the office-call loop are in this archive. The Lab project pack belongs under `archive/source-packs/lab-project-from-protoflio-material/`. The Mac source folders remain intact.
+The smaller, git-suitable Client Advisor sources, global chrome, the office-call loop, and the Lab project pack (`archive/source-packs/lab-project-from-protoflio-material/03_Lab project/`) are in this archive. The Mac source folders remain intact.
