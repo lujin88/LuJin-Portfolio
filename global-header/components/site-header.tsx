@@ -283,6 +283,9 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 font-sans text-header-foreground [font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif]">
+      <a href="#site-content" className="header-skip">
+        {copy.skipToContent}
+      </a>
       <div
         aria-hidden="true"
         className={cn(
@@ -621,7 +624,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                 type="button"
                 onClick={() => setLanguage(lang)}
                 className={cn(
-                  'rounded-sm transition-colors',
+                  'inline-flex min-h-11 items-center rounded-sm transition-colors',
                   FOCUS_RING,
                   MOTION_SAFE,
                   lang.code === language.code

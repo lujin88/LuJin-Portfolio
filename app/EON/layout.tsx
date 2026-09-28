@@ -29,7 +29,9 @@ export default function EonLayout({
       <div className="site-chrome">
         <SiteHeader activeHref="/EON" />
       </div>
-      <div className="pt-20 font-sans md:pt-24">{children}</div>
+      <div id="site-content" className="pt-20 font-sans md:pt-24">
+        {children}
+      </div>
       <div className="site-chrome">
         <SiteFooter variant="light" />
       </div>

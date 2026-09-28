@@ -27,7 +27,7 @@ export default function ClientAdvisoryLayout({
     <>
       <HtmlTheme className="dark" colorScheme="dark" />
       <SiteHeader activeHref="/client-advisory" />
-      <div className="font-sans">
+      <div id="site-content" className="font-sans">
         {children}
         <SiteFooter />
       </div>

@@ -36,7 +36,7 @@ export function SiteFooter() {
                     href={link.href}
                     target={link.external ? '_blank' : undefined}
                     rel={link.external ? 'noopener noreferrer' : undefined}
-                    className="rounded-sm transition-colors duration-200 hover:text-footer-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current motion-reduce:transition-none"
+                    className="rounded-sm transition-colors duration-200 hover:text-footer-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-footer-foreground motion-reduce:transition-none"
                   >
                     {link.label}
                   </a>
