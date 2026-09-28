@@ -1,23 +1,27 @@
 /* Session 04 · The Shift
- * Copy type stays as authored. Position, line rhythm, and the wave
- * are aligned to the section mock. Point anchors and WAVE percentages match.
+ * Left editorial column is unchanged. Right side is the connected
+ * Signal → Context → Act vector diagram from the lab.
  */
 
 .section {
-  --s04-bg: #061632;
-  --s04-bg-deep: #03101f;
+  --s04-bg: #07101c;
+  --s04-bg-deep: #06101f;
+  --s04-join: #070e1a;
   --s04-glow: #8dc0ff;
   --s04-text: var(--ca-text, #f3f6fa);
   --s04-text-muted: var(--ca-text-2, #a9b8cc);
 
   position: relative;
   isolation: isolate;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
-  z-index: 1;
-  background-color: var(--s04-bg);
+  background-color: var(--s04-join);
   color: var(--s04-text);
-  padding-top: clamp(7.25rem, 11vh, 8.25rem);
-  padding-bottom: clamp(4.5rem, 10vh, 7rem);
+  padding-top: clamp(3.25rem, 6vh, 4.75rem);
+  padding-bottom: clamp(3.25rem, 6vh, 4.75rem);
   padding-left: clamp(1.5rem, 5vw, 5.5rem);
   padding-right: clamp(1.5rem, 5vw, 5.5rem);
 }
@@ -27,10 +31,14 @@
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(ellipse 55% 60% at 38% 20%, rgba(41, 96, 190, 0.28), transparent 70%),
-    radial-gradient(ellipse 45% 55% at 62% 55%, rgba(34, 90, 180, 0.22), transparent 70%),
-    radial-gradient(ellipse 60% 45% at 90% 100%, rgba(20, 60, 130, 0.35), transparent 70%),
-    linear-gradient(180deg, #071a3a 0%, var(--s04-bg) 45%, var(--s04-bg-deep) 100%);
+    radial-gradient(ellipse 38% 42% at 76% 54%, rgba(24, 64, 132, 0.10), transparent 74%),
+    linear-gradient(
+      180deg,
+      var(--s04-join) 0%,
+      var(--s04-join) 32%,
+      var(--s04-bg) 70%,
+      var(--s04-bg-deep) 100%
+    );
 }
 
 .atmos {
@@ -40,11 +48,17 @@
   pointer-events: none;
   background: repeating-linear-gradient(
     93deg,
-    rgba(126, 164, 240, 0.04) 0 1px,
+    rgba(126, 164, 240, 0.025) 0 1px,
     transparent 1px 7px
   );
-  -webkit-mask: radial-gradient(50% 58% at 19% 33%, #000, transparent 72%);
-          mask: radial-gradient(50% 58% at 19% 33%, #000, transparent 72%);
+  -webkit-mask:
+    linear-gradient(180deg, transparent 0%, #000 18%),
+    radial-gradient(50% 58% at 19% 33%, #000, transparent 72%);
+          mask:
+    linear-gradient(180deg, transparent 0%, #000 18%),
+    radial-gradient(50% 58% at 19% 33%, #000, transparent 72%);
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
   filter: blur(0.6px);
 }
 
@@ -56,73 +70,24 @@
   margin: 0 auto;
 }
 
-.field {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  overflow: hidden;
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
 }
 
-.field svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  overflow: visible;
-}
-
-.field path {
-  fill: none;
-}
-
-.beam {
-  /* One wave, three segments. data-segment is the future active-state hook. */
-}
-
-.beamSegment {
-  /* Static view draws every segment as one continuous line. */
-}
-
-.beamLine {
-  stroke-width: 1.15;
-  stroke-linecap: butt;
-  stroke-linejoin: round;
-}
-
-.beamBloom {
-  stroke: rgba(78, 118, 226, 0.1);
-  stroke-width: 18;
-  stroke-linecap: round;
-  filter: blur(26px);
-}
-
-.beamHalo {
-  stroke: rgba(140, 186, 255, 0.42);
-  stroke-width: 6;
-  stroke-linecap: round;
-  filter: blur(6px);
-}
-
-/* Future active state: set data-active="signal|context|act" on the section. */
-.section[data-active='signal'] .beamSegment:not([data-segment='signal']),
-.section[data-active='context'] .beamSegment:not([data-segment='context']),
-.section[data-active='act'] .beamSegment:not([data-segment='act']) {
-  opacity: 0.2;
-}
-
-.section[data-active='signal'] .point:not([data-point='signal']) .pointQuestion,
-.section[data-active='context'] .point:not([data-point='context']) .pointQuestion,
-.section[data-active='act'] .point:not([data-point='act']) .pointQuestion {
-  opacity: 0.28;
+.lead {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
 }
 
 .copy {
   position: relative;
   z-index: 2;
   margin-top: clamp(1.35rem, 2.8vh, 1.85rem);
-  max-width: min(36rem, 42%);
+  max-width: 36rem;
 }
 
 .headline {
@@ -157,103 +122,44 @@
   color: var(--s04-text-muted);
 }
 
-.stage {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  pointer-events: none;
+.stageWrap {
+  position: relative;
+  min-width: 0;
+  width: 86%;
+  margin-inline: auto;
 }
 
-.point {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
-  pointer-events: auto;
-}
-
-.node {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  background: #eaf4ff;
-  box-shadow:
-    0 0 4px 0 rgba(210, 232, 255, 1),
-    0 0 12px 2px rgba(126, 176, 254, 0.85),
-    0 0 30px 8px rgba(96, 148, 250, 0.38),
-    0 0 70px 22px rgba(96, 118, 214, 0.14);
-}
-
-.pointBody {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.2rem;
-  width: max-content;
-}
-
-.pointSignal .pointBody,
-.pointAct .pointBody {
-  position: absolute;
-  left: 1.85rem;
-  top: 0;
-  transform: translateY(-1.1875rem);
-}
-
-.pointContext .pointBody {
-  position: absolute;
-  left: 0;
-  top: 1.15rem;
-  transform: translateX(-50%);
-  align-items: center;
-  text-align: center;
-}
-
-.icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.375rem;
-  height: 2.375rem;
-  margin-bottom: 0.45rem;
-  color: rgba(233, 240, 255, 0.9);
-}
-
-.icon svg {
-  width: 100%;
-  height: 100%;
-}
-
-.iconWide {
-  width: 3.1rem;
-}
-
-.pointTitle {
-  font-weight: 600;
-  font-size: 1.05rem;
-  letter-spacing: -0.005em;
-  line-height: 1.2;
-  color: var(--s04-text);
-}
-
-.pointQuestion {
+.stageWrap :global(.s04-scene) {
   display: block;
-  font-size: 0.85rem;
-  font-weight: 400;
-  line-height: 1.4;
-  color: var(--s04-text-muted);
-  white-space: nowrap;
-  transition: opacity 280ms ease;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
 }
 
-.beamSegment {
-  transition: opacity 280ms ease;
+.stageWrap :global(.s04-label) {
+  fill: #f5f5f7;
+  font: 600 16px var(--font-poppins), ui-sans-serif, sans-serif;
+  text-anchor: middle;
+}
+
+.stageWrap :global(.s04-desc) {
+  fill: #b6cae8;
+  font: 400 13px var(--font-poppins), ui-sans-serif, sans-serif;
+  text-anchor: middle;
 }
 
 .reveal {
@@ -269,12 +175,6 @@
   transform: none;
 }
 
-/* Nodes must stay on the wave while the labels fade in. */
-.stage.reveal,
-.stage.reveal.isVisible {
-  transform: none;
-}
-
 .reveal[data-delay='1'] {
   transition-delay: 90ms;
 }
@@ -287,6 +187,22 @@
   transition-delay: 270ms;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .stageWrap :global(.s04-pulse) {
+    animation: s04-node-pulse 3.2s ease-in-out infinite;
+  }
+}
+
+@keyframes s04-node-pulse {
+  0%,
+  100% {
+    opacity: 0.72;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1 !important;
@@ -294,84 +210,52 @@
     transition: none !important;
   }
 
-  .pointQuestion,
-  .beamSegment {
-    transition: none;
+  .stageWrap :global(.s04-pulse) {
+    animation: none;
   }
 }
 
 @media (min-width: 1025px) {
-  .section {
-    min-height: clamp(36rem, 46vw, 46rem);
+  .layout {
+    grid-template-columns: minmax(0, 43%) minmax(0, 57%);
+    gap: 0;
+    align-items: center;
+  }
+
+  .stageWrap {
+    margin-left: -2%;
+    margin-right: 0;
+    width: 96%;
+    justify-self: end;
   }
 }
 
 @media (max-width: 1024px) {
   .section {
-    padding-bottom: clamp(4rem, 10vh, 6rem);
+    padding-bottom: clamp(3.5rem, 8vh, 5.5rem);
   }
 
   .copy {
     max-width: 40rem;
   }
 
-  .field {
-    opacity: 0.42;
-  }
-
-  .stage {
-    position: relative;
-    inset: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.75rem;
-    margin-top: 2.5rem;
-    pointer-events: auto;
-  }
-
-  .point {
-    position: static;
-    display: grid;
-    grid-template-columns: 2.375rem 1fr;
-    column-gap: 1rem;
-    row-gap: 0.15rem;
-    align-items: center;
-  }
-
-  .node {
-    display: none;
-  }
-
-  .pointBody {
-    display: contents;
-  }
-
-  .pointSignal .pointBody,
-  .pointContext .pointBody,
-  .pointAct .pointBody {
-    position: static;
-    transform: none;
-  }
-
-  .icon {
-    grid-row: 1 / 3;
-  }
-
-  .pointQuestion {
-    white-space: normal;
+  .stageWrap {
+    width: 88%;
+    margin-inline: auto;
   }
 }
 
 @media (max-width: 560px) {
-  .field {
-    opacity: 0.3;
-  }
-
   .headline {
     font-size: clamp(1.6rem, 7vw, 2rem);
   }
 
   .headline br {
     display: none;
+  }
+
+  .stageWrap {
+    width: 96%;
+    margin-inline: auto;
   }
 }

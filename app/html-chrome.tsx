@@ -3,17 +3,29 @@ import { HtmlTheme } from './html-theme'
 import { HtmlLanguageSync } from './i18n/html-language-sync'
 import '@header/header.css'
 
+type HtmlChromeProps = {
+  activeHref: string
+  children: React.ReactNode
+  theme?: 'dark' | 'light'
+  colorScheme?: 'dark' | 'light'
+  backgroundColor?: string
+}
+
 export function HtmlChrome({
   activeHref,
   children,
-}: {
-  activeHref: string
-  children: React.ReactNode
-}) {
+  theme = 'dark',
+  colorScheme = 'dark',
+  backgroundColor,
+}: HtmlChromeProps) {
   return (
     <>
       <link rel="stylesheet" href="/styles/shell-tokens.css" />
-      <HtmlTheme className="dark" colorScheme="dark" />
+      <HtmlTheme
+        className={theme}
+        colorScheme={colorScheme}
+        backgroundColor={backgroundColor}
+      />
       <SiteHeader activeHref={activeHref} />
       {children}
       <HtmlLanguageSync />

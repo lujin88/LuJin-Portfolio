@@ -1,0 +1,360 @@
+.page {
+  position: relative;
+  z-index: 0;
+  background: #061018;
+  color: #f7fbff;
+  font-family: var(--font-poppins), Poppins, ui-sans-serif, system-ui, sans-serif;
+  min-width: 360px;
+}
+
+.page,
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.track {
+  position: relative;
+  height: 400vh;
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.layerMedia,
+.layerScrim,
+.layerCopy {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.layerMedia {
+  z-index: 1;
+}
+
+.layerScrim {
+  z-index: 2;
+  background:
+    linear-gradient(
+      180deg,
+      rgb(0 0 0 / 0.42) 0%,
+      transparent 22%,
+      transparent 78%,
+      rgb(0 0 0 / 0.4) 100%
+    ),
+    linear-gradient(90deg, rgb(0 0 0 / 0.6) 0%, transparent 42%);
+}
+
+.layerCopy {
+  z-index: 3;
+}
+
+.frame {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 100%;
+  width: min(100%, var(--wrap));
+  margin-inline: auto;
+  padding: 6.5rem var(--pad) 4rem;
+  overflow: visible;
+  text-align: left;
+}
+
+.still,
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--wow-pos, center);
+  pointer-events: none;
+}
+
+.still {
+  z-index: 1;
+}
+
+.video {
+  z-index: 2;
+}
+
+.copy {
+  position: absolute;
+  top: 46%;
+  bottom: clamp(2.5rem, 6.5vh, 4rem);
+  left: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  width: min(40rem, 100%);
+  max-width: 40rem;
+  margin: 0;
+  overflow: visible;
+  text-align: left;
+}
+
+.card {
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.heroCopy {
+  color: rgb(255 255 255 / 0.95);
+  text-align: left;
+  opacity: 1;
+  transform: none;
+  will-change: opacity;
+}
+
+.heroCopy .title,
+.heroCopy .body,
+.heroCopy .kicker,
+.heroCopy .tool {
+  opacity: 1;
+  transform: none;
+  text-align: left;
+}
+
+.heroCopy .kicker {
+  visibility: hidden;
+}
+
+.heroCopy .body {
+  max-width: none;
+  color: rgb(255 255 255 / 0.7);
+}
+
+.number {
+  position: absolute;
+  left: 0;
+  top: 1.7rem;
+  bottom: auto;
+  transform: none;
+  z-index: 0;
+  margin: 0;
+  font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  font-size: clamp(6.5rem, 17vw, 13.5rem);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.07em;
+  line-height: 0.78;
+  color: color-mix(in srgb, var(--color-text-1) 12%, transparent);
+  pointer-events: none;
+}
+
+.numberWide {
+  font-size: clamp(4.25rem, 11vw, 8.5rem);
+  letter-spacing: -0.05em;
+}
+
+.kicker {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 0 0 var(--pad);
+  font-size: 11px;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  color: rgb(125 211 252 / 0.7);
+}
+
+.title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-poppins), Poppins, ui-sans-serif, system-ui, sans-serif;
+  font-weight: var(--font-weight-semibold);
+  font-size: clamp(2.4rem, 6vw, 4.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-kerning: normal;
+  color: rgb(255 255 255 / 0.95);
+  text-align: left;
+  text-wrap: wrap;
+}
+
+.body {
+  position: relative;
+  z-index: 1;
+  margin: var(--pad) 0 0;
+  max-width: none;
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgb(255 255 255 / 0.7);
+}
+
+.tool {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  width: fit-content;
+  max-width: max-content;
+  flex: 0 0 auto;
+  margin-top: 1.5rem;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--pill-border);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--pill-text);
+  background: var(--pill-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.closing {
+  position: relative;
+  z-index: 2;
+  background: var(--color-bg-page);
+}
+
+.closing :global(.pill-btn) {
+  flex-shrink: 0;
+}
+
+.closing :global(.exp-contact__links a) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer {
+  position: relative;
+  padding: 4rem var(--pad) 2rem;
+}
+
+.footerNote {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .frame {
+    padding-inline: clamp(var(--pad), 5vw, 5rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .copy {
+    width: min(40rem, 100%);
+    max-width: 40rem;
+  }
+}
+
+@media (max-width: 899px) {
+  .copy {
+    width: min(40rem, 100%);
+    max-width: 40rem;
+  }
+
+  .number {
+    font-size: clamp(5.5rem, 20vw, 9rem);
+  }
+}
+
+@media (max-width: 639px) {
+  .frame {
+    padding-bottom: max(2.5rem, env(safe-area-inset-bottom, 0px) + 1.5rem);
+  }
+
+  .copy {
+    top: 42%;
+    bottom: max(2.5rem, env(safe-area-inset-bottom, 0px) + 1.5rem);
+  }
+
+  .number {
+    top: 1.4rem;
+    bottom: auto;
+    transform: none;
+    font-size: clamp(3.5rem, 22vw, 5.5rem);
+  }
+}
+
+@media (max-height: 760px) {
+  .frame {
+    padding-bottom: 1.25rem;
+  }
+
+  .copy {
+    top: 40%;
+    bottom: 1.25rem;
+  }
+
+  .title {
+    font-size: clamp(1.85rem, 7vw, 2.75rem);
+  }
+
+  .body {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .tool {
+    background: var(--color-bg-elevated);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    height: auto !important;
+  }
+
+  .stage {
+    position: relative !important;
+    height: auto !important;
+    min-height: 100dvh;
+    overflow: visible !important;
+  }
+
+  .layerMedia,
+  .layerScrim,
+  .layerCopy {
+    position: relative;
+    inset: auto;
+  }
+
+  .card {
+    transition: none;
+  }
+
+  .heroCopy,
+  .copy,
+  .card {
+    position: relative;
+    inset: auto;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .heroCopy .title,
+  .heroCopy .body {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .video {
+    display: none;
+  }
+}

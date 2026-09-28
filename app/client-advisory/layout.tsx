@@ -4,6 +4,7 @@ import { SiteHeader } from '@header/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { HtmlTheme } from '../html-theme'
 import '@/app/globals.css'
+import 'remixicon/fonts/remixicon.css'
 
 export const metadata: Metadata = {
   title: {

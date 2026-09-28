@@ -10,21 +10,8 @@ export type ConceptItem = {
 }
 
 /**
- * Scroll-driven accordion — technical source of truth: "Claude Working Scroll Effect Code".
- *
- * Architecture:
- *   pin-wrap (position: relative, height ≈ (N + 1) × 100svh)  → provides the scroll budget
- *     └ sticky stage (position: sticky; top: 0; height: 100svh) → stays fixed in the viewport
- *         └ accordion items → titles always present, only the ACTIVE body expands
- *
- * The scroll position (not clicks / IntersectionObserver) maps to a discrete active index:
- *   progress = clamp(-rect.top / (rect.height - innerHeight), 0, 1)
- *   activeIndex = min(count - 1, floor(progress * count))
- * State commits only when the index actually changes (the `last` guard).
- *
- * `enabled` gates the whole effect: true only on wide viewports without reduced-motion.
- * Otherwise the pin releases and every body stays open (progressive enhancement — correct
- * content is present before hydration).
+ * Scroll-driven accordion. Session 06 stays one visual page (sticky 100svh)
+ * while extra scroll height expands the right-hand items one by one.
  */
 export function ConceptScrollStory({
   visual,
@@ -56,7 +43,6 @@ export function ConceptScrollStory({
       const rect = wrap.getBoundingClientRect()
       const scrollable = rect.height - window.innerHeight
       const progress = scrollable > 0 ? clamp(-rect.top / scrollable, 0, 1) : 0
-      // Scroll progress 0–1, published for any visual that wants to read var(--p).
       wrap.style.setProperty('--p', String(progress))
       const idx = Math.min(count - 1, Math.floor(progress * count))
       if (idx !== last) {
@@ -76,7 +62,6 @@ export function ConceptScrollStory({
       const on = shouldRun()
       setEnabled(on)
       if (on) {
-        // Wait a frame so the tall wrapper height is applied before measuring.
         requestAnimationFrame(update)
       } else {
         last = 0
@@ -105,34 +90,24 @@ export function ConceptScrollStory({
       ref={wrapRef}
       id="session-06"
       aria-labelledby="session-06-heading"
-      className="relative isolate w-full bg-[var(--ca-bg)] text-[var(--ca-text)]"
+      className="ca-s06 relative isolate w-full text-[var(--ca-text)]"
       style={enabled ? { height: `${(count + 1) * 100}svh` } : undefined}
     >
-      {/*
-        Sticky stage. overflow-x-clip lives HERE (on the sticky element itself, which is
-        allowed) rather than on any ancestor of the pin wrap — a clipping ancestor would
-        break position: sticky. Vertical overflow stays visible so nothing is cut.
-      */}
       <div
         className={
           enabled
-            ? 'sticky top-0 flex h-svh w-full items-center overflow-x-clip'
-            : 'flex w-full items-center overflow-x-clip py-24 md:py-28'
+            ? 'ca-s06-stage sticky top-0 flex h-svh w-full items-center overflow-x-clip pt-[clamp(1.25rem,3.5vh,2.25rem)] pb-[clamp(4.5rem,12vh,7rem)]'
+            : 'flex min-h-svh w-full items-center overflow-x-clip py-24 md:py-28'
         }
       >
-        {/* Atmospheric glow — kept inside the sticky stage so it stays fixed during the pin */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_55%_at_30%_50%,rgba(30,74,140,0.42),transparent_70%),radial-gradient(ellipse_45%_50%_at_70%_20%,rgba(20,50,110,0.25),transparent_70%)]"
+          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_42%_at_50%_22%,rgba(28,74,150,0.3),transparent_68%),radial-gradient(ellipse_60%_55%_at_30%_52%,rgba(30,74,140,0.36),transparent_70%),radial-gradient(ellipse_45%_50%_at_72%_32%,rgba(20,50,110,0.22),transparent_70%)]"
         />
-        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-10 border-b border-[#132a4d]/60" />
-        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-10 border-t border-[#132a4d]/60" />
 
-        <div className="mx-auto grid w-full max-w-[1600px] grid-cols-1 items-center gap-14 px-6 md:px-10 lg:grid-cols-[minmax(0,1.32fr)_minmax(0,0.9fr)] lg:gap-16 lg:px-14 xl:gap-20 xl:px-20">
-          {/* Left: persistent concept visual */}
+        <div className="mx-auto grid w-full max-w-[1600px] grid-cols-1 items-center gap-10 px-6 md:px-10 lg:grid-cols-[minmax(0,1.32fr)_minmax(0,0.9fr)] lg:gap-16 lg:px-14 xl:gap-20 xl:px-20">
           <div>{visual}</div>
 
-          {/* Right: fixed header + scroll-driven accordion */}
           <div className="flex max-w-[560px] flex-col lg:max-w-none">
             {header}
 
@@ -140,25 +115,16 @@ export function ConceptScrollStory({
               {items.map((item, i) => {
                 const open = enabled ? i === activeIndex : true
                 return (
-                  // Constant left padding (pl-5) reserves the line's gutter at every state,
-                  // so titles never shift horizontally when the active item changes.
                   <div key={item.title} className="relative flex flex-col py-[1.1rem] pl-5">
-                    {/*
-                      Active indicator — rendered ONLY for the active item, never for inactive
-                      ones (not a permanent border, not a faint/transparent line). It spans the
-                      full item so it sits alongside both the title and its expanded description.
-                    */}
                     {open && (
                       <span
                         aria-hidden="true"
                         className="pointer-events-none absolute inset-y-[1.1rem] left-0 w-0.5 rounded-full bg-[var(--ca-text)]"
                       />
                     )}
-                    {/* Title stays in the layout at every state — always white, never scales, moves, or fades. */}
                     <h3 className="font-sans text-[28px] font-semibold leading-[1.15] text-[var(--ca-text)]">
                       {item.title}
                     </h3>
-                    {/* Body wrap: the proven 0fr → 1fr grid-rows animation. Only the active body expands. */}
                     <div
                       style={{
                         display: 'grid',

@@ -29,7 +29,7 @@ export function HeroSection() {
           />
         </div>
       </div>
-      <div aria-hidden="true" className="ca-s01-photo-fade pointer-events-none absolute inset-x-0 bottom-0 z-[2] hidden lg:block" />
+      <div aria-hidden="true" className="ca-s01-photo-fade pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden lg:block" />
 
       <div className="ca-s01-grid relative z-10 mx-auto grid w-full max-w-[1520px] grid-cols-1 items-start gap-12 px-6 pt-20 md:px-10 md:pt-24 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-stretch lg:gap-8 lg:pb-12 lg:pt-[6.75rem]">
         <div className="flex flex-col pb-16 lg:max-w-[42rem] lg:pb-0">

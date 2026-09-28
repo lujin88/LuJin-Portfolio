@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { HtmlChrome } from '../html-chrome'
 
 export const metadata: Metadata = {
   title: {
@@ -12,5 +11,5 @@ export default function LabLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <HtmlChrome activeHref="/lab">{children}</HtmlChrome>
+  return children
 }

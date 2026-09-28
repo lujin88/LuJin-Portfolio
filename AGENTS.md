@@ -7,3 +7,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+# Localhost
+
+This repo is the canonical site on **port 3000**.
+
+- `http://localhost:3000/` stays empty.
+- First page is `/index`. Always serve the latest full site at `http://localhost:3000/index`.
+- Do not move this app, or lu-portfolio, to 3001.

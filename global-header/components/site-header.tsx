@@ -36,9 +36,9 @@ const NAV: readonly NavEntry[] = [
     label: 'Lab',
     sectionHref: '/lab',
     children: [
-      { label: 'Way of Work', href: '/wip' },
-      { label: 'Off We Go Workbench', href: '/wip' },
-      { label: 'Party Planner', href: '/wip' },
+      { label: 'Way of Work', href: '/lab/way-of-work' },
+      { label: 'Off We Go Workbench', href: '/lab/off-we-go' },
+      { label: 'Party Planner', href: '/lab/party-planner' },
     ],
   },
   { kind: 'link', label: 'About', href: '/about' },
@@ -47,9 +47,11 @@ const NAV: readonly NavEntry[] = [
 const FOCUS_RING =
   'focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current'
 const MOTION_SAFE = 'motion-reduce:transition-none motion-reduce:animate-none'
+const PLAIN_CONTROL =
+  'appearance-none border-0 bg-transparent shadow-none outline-none focus:outline-none focus:ring-0'
 
 const MENU_PANEL = cn(
-  'flex flex-col gap-1 rounded-[22px] border border-header-line/40 bg-header-menu p-2 shadow-[0_18px_48px_-12px_rgba(0,0,0,0.65)]',
+  'm-0 flex list-none flex-col gap-1 rounded-[22px] border border-header-line/40 bg-header-menu p-2 shadow-[0_18px_48px_-12px_rgba(0,0,0,0.65)]',
 )
 
 type SiteHeaderProps = {
@@ -78,6 +80,11 @@ function navLabel(copy: (typeof headerCopy)[keyof typeof headerCopy], label: str
 export function SiteHeader({ activeHref }: SiteHeaderProps) {
   const pathname = usePathname()
   const currentHref = activeHref ?? pathname
+  const cinematicHeader =
+    pathname.startsWith('/lab/way-of-work') ||
+    pathname.startsWith('/lab/off-we-go') ||
+    pathname.startsWith('/lab/party-planner')
+  const partyHeader = pathname.startsWith('/lab/party-planner')
   const [menuOpen, setMenuOpen] = useState(false)
   const [mobileSection, setMobileSection] = useState<string | null>(null)
   const [langOpen, setLangOpen] = useState(false)
@@ -110,11 +117,11 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   }
 
   useEffect(() => {
-    const onScroll = () => setGlassActive(window.scrollY > 12)
+    const onScroll = () => setGlassActive(cinematicHeader || window.scrollY > 12)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [cinematicHeader])
 
   useEffect(() => {
     if (closeTimer.current !== null) {
@@ -257,7 +264,11 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   }
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 font-sans text-header-foreground [font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif]">
+    <header
+      data-site-header=""
+      data-header-tone={partyHeader ? 'party' : undefined}
+      className="fixed top-0 right-0 left-0 z-[100] isolate font-sans text-header-foreground [font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif] [&_a]:no-underline [&_li]:list-none [&_ul]:list-none"
+    >
       <div
         aria-hidden="true"
         className={cn(
@@ -269,7 +280,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       <div
         aria-hidden="true"
         className={cn(
-          'pointer-events-none absolute inset-x-0 top-0 h-[160%] bg-header-glass/80 backdrop-blur-lg transition-opacity duration-500 ease-out md:backdrop-blur-xl',
+          'pointer-events-none absolute inset-x-0 top-0 h-[160%] border-b border-white/5 bg-header-glass/80 backdrop-blur-lg transition-opacity duration-500 ease-out md:backdrop-blur-xl',
           MOTION_SAFE,
           '[mask-image:linear-gradient(to_bottom,black_0%,black_62%,transparent_100%)]',
           glassActive ? 'opacity-100' : 'opacity-0',
@@ -280,7 +291,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
         <Link
           href="/index"
           className={cn(
-            'inline-flex items-center rounded-sm transition-opacity hover:opacity-80',
+            'inline-flex items-center rounded-sm no-underline transition-opacity hover:opacity-80',
             FOCUS_RING,
             MOTION_SAFE,
           )}
@@ -299,18 +310,18 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           aria-label={copy.mainNav}
           className="absolute left-1/2 hidden -translate-x-1/2 lg:block"
         >
-          <ul className="flex items-center gap-8 lg:gap-12">
+          <ul className="m-0 flex list-none items-center gap-8 p-0 lg:gap-12">
             {NAV.map((item) => {
               if (item.kind === 'link') {
                 const isActive = hrefMatches(item.href, currentHref, pathname)
                 return (
-                  <li key={item.href}>
+                  <li key={item.href} className="list-none">
                     <Link
                       href={item.href}
                       aria-current={isActive ? 'page' : undefined}
                       onClick={dismissMenus}
                       className={cn(
-                        'rounded-sm text-[1.0625rem] leading-none transition-colors duration-200',
+                        'rounded-sm text-[1.0625rem] leading-none no-underline transition-colors duration-200',
                         FOCUS_RING,
                         MOTION_SAFE,
                         isActive
@@ -366,6 +377,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
               onKeyDown={onTriggerKeyDown}
               className={cn(
                 'flex items-center gap-1.5 rounded-sm text-[1.0625rem] leading-none text-header-foreground/72 transition-colors duration-200 hover:text-header-foreground focus-visible:text-header-foreground',
+                PLAIN_CONTROL,
                 FOCUS_RING,
                 MOTION_SAFE,
               )}
@@ -409,6 +421,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                         onKeyDown={(event) => onOptionKeyDown(event, index)}
                         className={cn(
                           'group flex w-full items-center justify-between rounded-2xl px-5 py-4 text-left text-[1.0625rem] leading-none transition-colors duration-150',
+                          PLAIN_CONTROL,
                           FOCUS_RING,
                           MOTION_SAFE,
                           'hover:bg-header-menu-item focus-visible:bg-header-menu-item',
@@ -439,7 +452,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           <a
             href="mailto:lu.jin.ixd@gmail.com"
             className={cn(
-              'rounded-full border border-header-line px-6 py-3 text-[1.0625rem] leading-none text-header-foreground transition-colors duration-200 hover:border-header-foreground/70 hover:bg-header-foreground/6 md:px-7 md:py-3.5',
+              'rounded-full border border-header-line px-6 py-3 text-[1.0625rem] leading-none text-header-foreground no-underline transition-colors duration-200 hover:border-header-foreground/70 hover:bg-header-foreground/6 md:px-7 md:py-3.5',
               FOCUS_RING,
               MOTION_SAFE,
             )}
@@ -455,6 +468,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
             onClick={openMobile}
             className={cn(
               '-mr-2 flex size-10 items-center justify-center rounded-sm text-header-foreground lg:hidden',
+              PLAIN_CONTROL,
               FOCUS_RING,
             )}
           >
@@ -479,18 +493,18 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
         )}
       >
         <nav aria-label={copy.mobileNav} className="flex flex-col gap-6 px-6 pb-8 pt-2">
-          <ul className="flex flex-col gap-4">
+          <ul className="m-0 flex list-none flex-col gap-4 p-0">
             {NAV.map((item) => {
               if (item.kind === 'link') {
                 const isActive = hrefMatches(item.href, currentHref, pathname)
                 return (
-                  <li key={item.href}>
+                  <li key={item.href} className="list-none">
                     <Link
                       href={item.href}
                       aria-current={isActive ? 'page' : undefined}
                       onClick={() => setMenuOpen(false)}
                       className={cn(
-                        'rounded-sm text-lg transition-colors',
+                        'rounded-sm text-lg no-underline transition-colors',
                         FOCUS_RING,
                         MOTION_SAFE,
                         isActive ? 'text-header-foreground' : 'text-header-foreground/72',
@@ -516,6 +530,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                     }
                     className={cn(
                       'flex w-full items-center justify-between rounded-sm text-lg transition-colors',
+                      PLAIN_CONTROL,
                       FOCUS_RING,
                       MOTION_SAFE,
                       isActive || expanded ? 'text-header-foreground' : 'text-header-foreground/72',
@@ -554,7 +569,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                                 aria-current={childActive ? 'page' : undefined}
                                 onClick={() => setMenuOpen(false)}
                                 className={cn(
-                                  'flex w-full items-center rounded-2xl px-5 py-4 text-left text-[1.0625rem] leading-none transition-colors duration-150',
+                                  'flex w-full items-center rounded-2xl px-5 py-4 text-left text-[1.0625rem] leading-none no-underline transition-colors duration-150',
                                   FOCUS_RING,
                                   MOTION_SAFE,
                                   'hover:bg-header-menu-item focus-visible:bg-header-menu-item',
@@ -582,7 +597,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                 type="button"
                 onClick={() => setLanguage(lang)}
                 className={cn(
-                  'rounded-sm transition-colors',
+                  'appearance-none bg-transparent shadow-none outline-none transition-colors focus:outline-none focus:ring-0',
                   FOCUS_RING,
                   MOTION_SAFE,
                   lang.code === language.code
@@ -667,7 +682,7 @@ function NavDropdown({
 
   return (
     <li
-      className="relative"
+      className="relative list-none"
       onPointerEnter={(event) => {
         if (event.pointerType === 'mouse') onHoverOpen()
       }}
@@ -689,6 +704,7 @@ function NavDropdown({
         onKeyDown={onButtonKeyDown}
         className={cn(
           'flex items-center gap-1.5 rounded-sm text-[1.0625rem] leading-none transition-colors duration-200',
+          PLAIN_CONTROL,
           FOCUS_RING,
           MOTION_SAFE,
           active || open
@@ -734,10 +750,14 @@ function NavDropdown({
                     href={child.href}
                     role="menuitem"
                     aria-current={childActive ? 'page' : undefined}
-                    onClick={onDismiss}
+                    onClick={() => {
+                      // Do not unmount this Link before Next.js handles the click.
+                      // Closing the menu here removes the <a> and the navigation never starts.
+                      if (hrefMatches(child.href, currentHref, pathname)) onDismiss()
+                    }}
                     onKeyDown={(event) => onItemKeyDown(event, index)}
                     className={cn(
-                      'flex w-full items-center whitespace-nowrap rounded-2xl px-5 py-4 text-left text-[1.0625rem] leading-none transition-colors duration-150',
+                      'flex w-full items-center whitespace-nowrap rounded-2xl px-5 py-4 text-left text-[1.0625rem] leading-none no-underline transition-colors duration-150',
                       FOCUS_RING,
                       MOTION_SAFE,
                       'hover:bg-header-menu-item focus-visible:bg-header-menu-item',

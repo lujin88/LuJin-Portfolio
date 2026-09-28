@@ -82,9 +82,25 @@ export function setSiteLanguage(next: SiteLanguage | LangCode) {
   if (changed) notify()
 }
 
+let storageBound = false
+
+function bindStorageListener() {
+  if (storageBound || typeof window === 'undefined') return
+  storageBound = true
+  window.addEventListener('storage', (event) => {
+    if (event.key !== LANG_STORAGE_KEY) return
+    if (!isLangCode(event.newValue)) return
+    if (event.newValue === current) return
+    current = event.newValue
+    applyDocumentLang(current)
+    notify()
+  })
+}
+
 export function hydrateSiteLanguage() {
   if (didHydrate || typeof window === 'undefined') return
   didHydrate = true
+  bindStorageListener()
   const stored = readStoredLang()
   applyDocumentLang(stored)
   if (stored === current) return

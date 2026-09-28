@@ -63,7 +63,7 @@
   .nav-link {
     position: relative;
     color: color-mix(in srgb, var(--color-text-1) 72%, transparent);
-    transition: color 300ms cubic-bezier(0.22,1,0.36,1);
+    transition: color 300ms var(--ease);
   }
   .nav-link::after {
     content: "";
@@ -73,7 +73,7 @@
     background: var(--color-text-1);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 350ms cubic-bezier(0.22,1,0.36,1);
+    transition: transform 350ms var(--ease);
   }
   .nav-link:hover, .nav-link:focus-visible { color: var(--color-text-1); }
   .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
@@ -99,11 +99,11 @@
     font-size: 0.95rem;
     color: var(--pill-text);
     background: var(--pill-bg);
-    transition: transform 320ms cubic-bezier(0.22,1,0.36,1),
-                background-color 320ms cubic-bezier(0.22,1,0.36,1),
-                color 320ms cubic-bezier(0.22,1,0.36,1),
-                border-color 320ms cubic-bezier(0.22,1,0.36,1),
-                box-shadow 320ms cubic-bezier(0.22,1,0.36,1);
+    transition: transform var(--duration-interaction) var(--ease),
+                background-color var(--duration-interaction) var(--ease),
+                color var(--duration-interaction) var(--ease),
+                border-color var(--duration-interaction) var(--ease),
+                box-shadow var(--duration-interaction) var(--ease);
   }
   .pill-btn:hover {
     background: var(--pill-hover-bg);
@@ -113,16 +113,12 @@
     transform: translateY(-2px);
   }
   .pill-btn:active { transform: translateY(0) scale(0.97); }
-  .pill-btn:focus-visible {
-    outline: 2px solid #8B5CF6;
-    outline-offset: 3px;
-  }
-  .pill-btn svg { transition: transform 320ms cubic-bezier(0.22,1,0.36,1); }
+  .pill-btn svg { transition: transform var(--duration-interaction) var(--ease); }
   .pill-btn:hover svg { transform: translateX(3px); }
 
   /* language switcher */
   .lang-switch { position: relative; }
-  .lang-trigger svg { transition: transform 300ms cubic-bezier(0.22,1,0.36,1); }
+  .lang-trigger svg { transition: transform 300ms var(--ease); }
   .lang-trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
   .lang-menu {
     position: absolute;
@@ -140,7 +136,7 @@
     transform: translateY(-8px) scale(0.97);
     transform-origin: top right;
     pointer-events: none;
-    transition: opacity 260ms cubic-bezier(0.22,1,0.36,1), transform 260ms cubic-bezier(0.22,1,0.36,1);
+    transition: opacity 260ms var(--ease), transform 260ms var(--ease);
     z-index: 60;
   }
   .lang-menu.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
@@ -204,7 +200,10 @@
   }
   .accordion-item.is-active .accordion-title { color: var(--color-text-1); }
   .accordion-item:not(.is-active):hover .accordion-title { color: var(--color-text-2); }
-  .accordion-item:focus-visible { outline: 2px solid #8B5CF6; outline-offset: 4px; }
+  .accordion-item:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+  }
 
   /* scroll-driven groups (inside .pin-wrap): not clickable, advance from scroll position only.
      pointer-events stays enabled so the title/body text remains selectable/copyable; the JS
@@ -218,7 +217,7 @@
     display: grid;
     grid-template-rows: 0fr;
     opacity: 0;
-    transition: grid-template-rows 450ms cubic-bezier(0.22,1,0.36,1), opacity 350ms ease;
+    transition: grid-template-rows 450ms var(--ease), opacity 350ms ease;
   }
   .accordion-item.is-active .accordion-body-wrap {
     grid-template-rows: 1fr;
@@ -237,20 +236,9 @@
   .reveal {
     opacity: 0;
     transform: translateY(28px);
-    transition: opacity 800ms cubic-bezier(0.22,1,0.36,1), transform 800ms cubic-bezier(0.22,1,0.36,1);
+    transition: opacity var(--duration-reveal) var(--ease), transform var(--duration-reveal) var(--ease);
   }
   .reveal.is-visible { opacity: 1; transform: translateY(0); }
-
-  .tag-chip {
-    display: inline-flex;
-    align-items: center;
-    background: var(--surface-raise);
-    border: 1px solid var(--hairline-strong);
-    border-radius: 6px;
-    padding: 0.05rem 0.45rem;
-    font-size: 0.8rem;
-    color: var(--color-text-1);
-  }
 
   /* LAB — quiet metadata label: a theme-aware, rounded-full echo of the
      intro / AI Workflow metadata pills, used to mark each experiment */
@@ -288,7 +276,7 @@
 
   /* scroll-driven text/image swap (pinned accordion) */
   .scroll-media {
-    transition: opacity 650ms cubic-bezier(0.22,1,0.36,1);
+    transition: opacity 650ms var(--ease);
   }
 
   .tilt-card-wrap {
@@ -305,7 +293,7 @@
     transform-style: preserve-3d;
     will-change: transform;
     box-shadow: var(--card-shadow);
-    transition: box-shadow 350ms cubic-bezier(0.22,1,0.36,1), border-color 350ms ease, background-color 450ms ease;
+    transition: box-shadow 350ms var(--ease), border-color 350ms ease, background-color 450ms ease;
   }
   .nextgen-card:hover {
     border-color: var(--card-border-hover);
@@ -323,42 +311,6 @@
   }
   .nextgen-card:hover::before { opacity: 1; }
   .nextgen-card > * { position: relative; z-index: 1; }
-
-  .footer-link {
-    display: block;
-    font-size: 0.875rem;
-    color: #b6bbc2;
-    margin-bottom: 0.85rem;
-    transition: color 300ms ease;
-  }
-  .footer-link:hover, .footer-link:focus-visible { color: #f9fbfc; }
-  .footer-link:focus-visible { outline: 2px solid var(--color-theme-2); outline-offset: 3px; }
-
-  .social-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 9999px;
-    background: rgba(255,255,255,0.06);
-    color: #b6bbc2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 300ms cubic-bezier(0.22,1,0.36,1), background-color 300ms ease, color 300ms ease;
-  }
-  .social-btn:hover { background: #f9fbfc; color: #0a0a0a; transform: translateY(-3px); }
-  .social-btn:focus-visible { outline: 2px solid var(--color-theme-2); outline-offset: 2px; }
-
-  .app-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 9999px;
-    padding: 0.35rem 0.8rem;
-    font-size: 0.75rem;
-    color: #b6bbc2;
-  }
 
   /* scroll-pinned zoom sections (hero, banner): the section sticks in place
      while its wrapper scrolls past, and the media scales up underneath it */
@@ -390,14 +342,14 @@
     padding-bottom: var(--logo-overlay-space);
   }
   .hero-pin-section h1,
-  .hero-pin-section .pill-btn { color: #f9fbfc; }
+  .hero-pin-section .pill-btn { color: var(--color-text-1); }
   .hero-pin-section .z-10 p { color: #d7dbe0; }
   .hero-media {
     position: absolute;
     inset: 0;
     z-index: 0;
     overflow: hidden;
-    background: #05060a;
+    background: var(--color-bg-page);
     pointer-events: none;
   }
   .hero-media__video {
@@ -822,11 +774,11 @@
        so the original .exp-field bleed simply feathers out over the top of
        Contact as it always did over the footer. */
     background: transparent;
-    padding: clamp(6rem, 14vh, 9rem) 1.5rem clamp(4.5rem, 10vh, 7rem);
+    padding: clamp(6rem, 14vh, 9rem) var(--pad) clamp(4.5rem, 10vh, 7rem);
   }
 
   .exp-contact {
-    max-width: 1040px;
+    max-width: var(--editorial);
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -841,7 +793,7 @@
   .contact-reveal {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity var(--duration-reveal) var(--ease), transform var(--duration-reveal) var(--ease);
   }
   .contact-reveal.is-visible {
     opacity: 1;
@@ -882,16 +834,30 @@
   }
 
   /* ── shared site footer ─────────────────────────────────────────────
-     Bottom divider + copyright. The inner container matches the same
-     max-width / horizontal padding as the "Have an opportunity in mind?"
-     block above, so the copyright's left edge aligns exactly with the
-     heading. Identical markup + rules on every page that uses the footer. */
+     Full-bleed divider, then copyright. The inner container matches the
+     "Have an opportunity in mind?" block so the copyright's left edge
+     aligns with the heading. Identical markup + rules on every page
+     that uses the footer. */
   .site-footer__inner {
-    max-width: var(--footer-max-w, 1440px);
+    max-width: var(--footer-max-w);
     margin: 0 auto;
   }
-  .site-footer__bottom {
+  .exp-footer {
+    --footer-rule-inset: 4rem;
+    background: transparent;
+    position: relative;
+  }
+  .exp-footer::before {
+    content: "";
+    position: absolute;
+    top: var(--footer-rule-inset);
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
     border-top: 1px solid var(--color-footer-divider);
+    pointer-events: none;
+  }
+  .site-footer__bottom {
     padding-top: 2rem;
     text-align: left;
     color: var(--color-text-3);
@@ -1007,9 +973,9 @@
   }
   .logo-bar__frame {
     position: relative;
-    max-width: 1440px;
+    max-width: var(--wrap);
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 var(--pad);
   }
   .logo-bar__label {
     margin: 0 0 16px;
@@ -1050,7 +1016,7 @@
     min-width: 0;
     opacity: 0.45;
     color: var(--color-text-1);
-    transition: opacity var(--duration-interaction) cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity var(--duration-interaction) var(--ease);
   }
   .logo-bar__item:hover,
   .logo-bar__item:focus-within {
@@ -1172,7 +1138,7 @@
     <div class="hero-scrim"></div>
 
     <!-- hero copy -->
-    <div class="relative z-10 w-full px-6 mx-auto max-w-[1440px]">
+    <div class="relative z-10 w-full px-6 mx-auto max-w-[var(--wrap)]">
       <div class="max-w-2xl">
         <h1 class="font-sans font-bold text-[clamp(2.25rem,5.2vw,4rem)] leading-[1.08] tracking-tight text-text1 drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)]" data-i18n-html="home.heroTitleHtml">
           Simplify complexity.<br />Design with AI.
@@ -1235,7 +1201,7 @@
 <!-- MODEL SERIES (scroll-driven: section pins while scroll position advances the active item) -->
 <div id="model-series" class="pin-wrap" style="height:360vh;">
   <section class="pin-sticky h-screen min-h-[680px] w-full flex items-center bg-ink px-6">
-    <div class="mx-auto max-w-[1440px] w-full">
+    <div class="mx-auto max-w-[var(--wrap)] w-full">
       <h2 class="text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-16 md:mb-20" data-i18n-html="home.ca.titleHtml">
         AI-powered advisor <span class="font-sans font-semibold">workflow optimization</span>
       </h2>
@@ -1289,7 +1255,7 @@
         </div>
 
         <div class="relative rounded-2xl overflow-hidden media-panel aspect-[16/9]">
-          <video class="absolute inset-0 w-full h-full object-cover" src="/assets/videos/client-advisory/hero.mp4" autoplay loop muted playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video>
+          <video class="absolute inset-0 w-full h-full object-cover" src="/assets/videos/client-advisory/CA-office-call-loop.mp4" autoplay loop muted playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video>
         </div>
       </div>
     </div>
@@ -1299,7 +1265,7 @@
 <!-- OMNI MODEL (scroll-driven, mirrored layout: image left, accordion right) -->
 <div id="omni-model" class="pin-wrap" style="height:360vh;">
   <section class="pin-sticky h-screen min-h-[680px] w-full flex items-center bg-ink px-6">
-    <div class="mx-auto max-w-[1440px] w-full">
+    <div class="mx-auto max-w-[var(--wrap)] w-full">
       <h2 class="text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-16 md:mb-20" data-i18n-html="home.eon.titleHtml">
         Solar landing page <span class="font-sans font-semibold">redesign</span>
       </h2>
@@ -1384,7 +1350,7 @@
      app/index/page.tsx. Flip that flag to true to restore. Do not delete.
      ============================================================ -->
 <section id="lab" class="relative bg-ink pt-24 md:pt-32 pb-8 md:pb-12 px-6">
-  <div class="mx-auto max-w-[1440px] w-full">
+  <div class="mx-auto max-w-[var(--wrap)] w-full">
 
     <!-- section header: same centred hierarchy as the intro / case study
          headings. Headline typography matches the "Solar Landing Page Redesign"
@@ -1471,7 +1437,7 @@
 
 <!-- NEXTGEN INITIATIVE -->
 <section id="nextgen" class="relative bg-ink pt-24 px-6">
-  <div class="mx-auto max-w-[1040px]">
+  <div class="mx-auto max-w-[var(--editorial)]">
     <h2 class="reveal text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-5" data-i18n="home.aboutHeading">About me</h2>
     <p class="reveal text-center text-text2 mx-auto mb-0 text-[15px] leading-relaxed" data-i18n-html="home.aboutBodyHtml">
       I'm Lu, an <strong class="text-text1 font-semibold">AI-native Product Designer</strong> with 10+ years of experience turning <strong class="text-text1 font-semibold">complex systems and workflows into clear, useful products</strong>.<br /><br />
@@ -1605,7 +1571,7 @@
 <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
   <div class="site-footer__inner">
     <div class="site-footer__bottom">
-      <p class="text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span> <span class="site-footer__credit" data-i18n="common.footerCredit">Designed with vibe coding, tailored in Cursor.</span></p>
+      <p class="text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span> <span class="site-footer__credit" data-i18n="common.footerCredit">Designed with AI. Refined with Cursor.</span></p>
     </div>
   </div>
 </footer>

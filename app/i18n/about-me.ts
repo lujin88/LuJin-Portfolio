@@ -8,26 +8,27 @@ export const aboutMeTranslations = {
     annotations: {
       curious: 'Curious by nature, Always in progress.',
       travel: 'Travel',
-      design: 'Design',
-      kids: 'My kids',
-      coffee: 'Good Coffee',
+      design: 'Tea Time',
+      kids: 'Swim to Reset',
+      coffee: 'Vibe Coding',
     },
     cards: {
-      card1Title: 'AI for Everyday Well-Being',
-      card1Desc:
-        'Exploring how AI can make technology feel more human, turning complex intelligence into simple daily joy and peace of mind.',
-      card2Title: 'Effortless Productivity',
-      card2Desc:
-        'Designing intelligent workflows that reduce cognitive load, so people can spend less time doing friction work and more time living.',
-      card3Title: 'Human-First Innovation',
-      card3Desc:
-        'Building AI products that empower real people — focusing on real-world impact, ethical design, and happier everyday lives.',
+      card1Label: 'How I work',
+      card1Title: 'Connect the dots.',
+      card1Desc: 'Turn complex problems into clear direction.',
+      card2Label: 'What I care about',
+      card2Title: 'Better work. More life.',
+      card2Desc: 'Less friction, more time for what matters.',
+      card3Label: 'What keeps me curious',
+      card3Title: 'Always exploring.',
+      card3Desc: 'Vibe coding, new tools, hardware and small experiments.',
     },
     stats: {
       years: 'Years in Design',
-      products: 'Products & Services',
-      advisors: 'Client Advisors',
-      location: 'Based in Zurich, Switzerland',
+      cases: 'Cases',
+      events: 'Events Co-Hosted',
+      locationLead: 'CH base',
+      locationPlace: 'Location',
     },
   },
   de: {
@@ -37,26 +38,27 @@ export const aboutMeTranslations = {
     annotations: {
       curious: 'Von Natur aus neugierig, Immer im Wandel.',
       travel: 'Reisen',
-      design: 'Design',
-      kids: 'Meine Kinder',
-      coffee: 'Guter Kaffee',
+      design: 'Teezeit',
+      kids: 'Schwimmen zum Reset',
+      coffee: 'Vibe Coding',
     },
     cards: {
-      card1Title: 'KI für alltägliches Wohlbefinden',
-      card1Desc:
-        'Erforschung, wie KI Technologie menschlicher gestalten kann – für mehr einfache Freude und Gelassenheit im Alltag.',
-      card2Title: 'Mühelose Produktivität',
-      card2Desc:
-        'Gestaltung intelligenter Workflows, die die kognitive Belastung reduzieren, damit Menschen weniger Zeit mit Routineaufgaben verbringen.',
-      card3Title: 'Menschzentrierte Innovation',
-      card3Desc:
-        'Entwicklung von KI-Produkten, die echte Menschen stärken – mit Fokus auf echte Wirkung, ethisches Design und mehr Lebensfreude.',
+      card1Label: 'So arbeite ich',
+      card1Title: 'Punkte verbinden.',
+      card1Desc: 'Komplexe Probleme in klare Richtung übersetzen.',
+      card2Label: 'Was mir wichtig ist',
+      card2Title: 'Bessere Arbeit. Mehr Leben.',
+      card2Desc: 'Weniger Reibung, mehr Zeit für das Wesentliche.',
+      card3Label: 'Was mich neugierig hält',
+      card3Title: 'Immer am Entdecken.',
+      card3Desc: 'Vibe Coding, neue Tools, Hardware und kleine Experimente.',
     },
     stats: {
       years: 'Jahre im Design',
-      products: 'Produkte & Services',
-      advisors: 'Kundenberater',
-      location: 'Wohnhaft in Zürich, Schweiz',
+      cases: 'Cases',
+      events: 'Co-gehostete Events',
+      locationLead: 'CH-Base',
+      locationPlace: 'Standort',
     },
   },
 } as const
@@ -67,18 +69,17 @@ const aboutPageTranslations = {
     heroTitleHtml: 'Hey, I am<br />Lu',
     startBtn: 'A Quick Hi',
     eyebrow: 'About me',
-    scrolls: 'Scrolls',
     contactHeading: 'Have an opportunity in mind?',
     letsTalk: "Let's talk",
     downloadCv: 'Download CV',
     footerRights: '© 2026 Lu Jin. All rights reserved.',
-    footerCredit: 'Designed with vibe coding, tailored in Cursor.',
+    footerCredit: 'Designed with AI. Refined with Cursor.',
     closeVideo: 'Close video',
-    avatarLabel: 'Illustrated Lu at her desk. Hover to play a short animation.',
+    avatarLabel: 'Illustrated Lu at her desk.',
     altTravel: 'Alpine lake between forested mountains',
-    altDesign: 'Printed wireframe sketches of mobile and web layouts',
+    altDesign: 'Glass teapot steeping tea on a wooden table',
     altKids: 'A child swimming underwater in a blue pool',
-    altCoffee: 'A latte with heart-shaped foam art',
+    altCoffee: 'Laptop on a desk by a window, used for hobby vibe coding',
     altAvatar: 'Illustrated portrait of Lu working at a laptop, with books and coffee.',
   },
   de: {
@@ -86,18 +87,17 @@ const aboutPageTranslations = {
     heroTitleHtml: 'Hey, ich bin<br />Lu',
     startBtn: 'Ein kurzes Hi',
     eyebrow: 'Über mich',
-    scrolls: 'Scrollen',
     contactHeading: 'Haben Sie ein Vorhaben im Kopf?',
     letsTalk: 'Lass uns sprechen',
     downloadCv: 'Lebenslauf',
     footerRights: '© 2026 Lu Jin. Alle Rechte vorbehalten.',
-    footerCredit: 'Gestaltet mit Vibe Coding, verfeinert in Cursor.',
+    footerCredit: 'Gestaltet mit KI. Verfeinert mit Cursor.',
     closeVideo: 'Video schließen',
-    avatarLabel: 'Illustrierte Lu an ihrem Schreibtisch. Darüberfahren, um eine kurze Animation abzuspielen.',
+    avatarLabel: 'Illustrierte Lu an ihrem Schreibtisch.',
     altTravel: 'Alpiner See zwischen bewaldeten Bergen',
-    altDesign: 'Gedruckte Wireframe-Skizzen von Mobile- und Web-Layouts',
+    altDesign: 'Glaskanne mit Tee auf einem Holztisch',
     altKids: 'Ein Kind schwimmt unter Wasser in einem blauen Pool',
-    altCoffee: 'Ein Latte mit herzförmiger Milchschaumkunst',
+    altCoffee: 'Laptop auf einem Schreibtisch am Fenster, für Hobby-Vibe-Coding',
     altAvatar: 'Illustriertes Porträt von Lu an einem Laptop, mit Büchern und Kaffee.',
   },
 } as const
@@ -110,11 +110,9 @@ function formatScribble(value: string) {
   return value.replace(', ', ',<br />')
 }
 
-function splitLocation(location: string, lang: LangCode) {
-  if (lang === 'de' || location.startsWith('Wohnhaft')) {
-    return { lead: 'Wohnhaft in', place: 'Zürich, Schweiz' }
-  }
-  return { lead: 'Based in', place: 'Zurich, Switzerland' }
+function splitLocation(lang: LangCode) {
+  const t = aboutMeTranslations[lang]
+  return { lead: t.stats.locationLead, place: t.stats.locationPlace }
 }
 
 function setText(el: Element | null, value: string) {
@@ -136,7 +134,7 @@ export function aboutCopyFor(currentLang: string) {
   const lang: LangCode = currentLang === 'de' ? 'de' : 'en'
   const t = aboutMeTranslations[lang]
   const page = aboutPageTranslations[lang]
-  const location = splitLocation(t.stats.location, lang)
+  const location = splitLocation(lang)
   return {
     lang,
     t,
@@ -167,22 +165,24 @@ export function applyAboutTranslations(currentLang: string) {
   setText(byKey('annotations.design'), t.annotations.design)
   setText(byKey('annotations.kids'), t.annotations.kids)
   setText(byKey('annotations.coffee'), t.annotations.coffee)
+  setText(byKey('cards.card1Label'), t.cards.card1Label)
   setText(byKey('cards.card1Title'), t.cards.card1Title)
   setText(byKey('cards.card1Desc'), t.cards.card1Desc)
+  setText(byKey('cards.card2Label'), t.cards.card2Label)
   setText(byKey('cards.card2Title'), t.cards.card2Title)
   setText(byKey('cards.card2Desc'), t.cards.card2Desc)
+  setText(byKey('cards.card3Label'), t.cards.card3Label)
   setText(byKey('cards.card3Title'), t.cards.card3Title)
   setText(byKey('cards.card3Desc'), t.cards.card3Desc)
   setText(byKey('stats.years'), t.stats.years)
-  setText(byKey('stats.products'), t.stats.products)
-  setText(byKey('stats.advisors'), t.stats.advisors)
+  setText(byKey('stats.cases'), t.stats.cases)
+  setText(byKey('stats.events'), t.stats.events)
   setText(byKey('stats.locationLead'), locationLead)
   setText(byKey('stats.locationPlace'), locationPlace)
 
   setHtml(byKey('page.heroTitle'), page.heroTitleHtml)
   setText(byKey('page.startBtn'), page.startBtn)
   setText(byKey('page.eyebrow'), page.eyebrow)
-  setText(byKey('page.scrolls'), page.scrolls)
   setText(byKey('page.contactHeading'), page.contactHeading)
   setText(byKey('page.letsTalk'), page.letsTalk)
   setText(byKey('page.downloadCv'), page.downloadCv)

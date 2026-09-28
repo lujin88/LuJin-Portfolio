@@ -1,5 +1,20 @@
 .section {
-  --s3-photo-h: 112svh;
+  --s3-photo-h: 100svh;
+  --s3-join: #070e1a;
+  background: linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 5.5rem,
+    var(--s3-bg, #0b1220) 11rem,
+    var(--s3-bg, #0b1220) 100%
+  );
+}
+
+.photoStack {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
 }
 
 .photoFrame {
@@ -11,82 +26,115 @@
   object-position: 22% top;
 }
 
+.joinCeiling {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 6.5rem;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgb(11 18 32 / 0.55) 0%,
+    rgb(9 19 38 / 0.18) 48%,
+    transparent 100%
+  );
+}
+
+.joinFloor {
+  position: absolute;
+  inset: auto 0 0;
+  height: 12rem;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgb(7 26 58 / 0.28) 40%,
+    var(--s3-join) 100%
+  );
+}
+
 @media (min-width: 1024px) {
+  .section {
+    /* Photo rises into 02's last empty navy so the window dissolves in. */
+    margin-top: -5rem;
+    min-height: 100svh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .photoStack {
+    right: auto;
+    width: 58%;
+  }
+
   .photoFrame {
     /*
      * Height-locked crop of session-03-advisor.png (1708×921).
-     * Source x≈200px is the window just left of her profile; pinning that
-     * edge to the viewport puts her head and shoulder on the left edge.
-     * 112svh gives a little bleed so the frame still covers the section.
+     * Shift left so her head sits on the left edge of the photo pane.
      */
     inset: auto;
-    top: 50%;
+    top: 0;
     height: var(--s3-photo-h);
     width: calc(var(--s3-photo-h) * 1708 / 921);
-    left: calc(var(--s3-photo-h) * -200 / 921);
-    transform: translateY(-50%);
+    left: calc(var(--s3-photo-h) * -180 / 921);
+    transform: none;
+  }
+
+  .joinCeiling {
+    height: 7.5rem;
+  }
+
+  .joinFloor {
+    height: 14rem;
   }
 
   .photo {
-    object-position: left center;
+    object-position: left 22%;
   }
 
   .quoteA,
   .quoteB {
-    /*
-     * Her face ends near (554-200)/921 of the photo height. Park the quotes
-     * to the right of that edge, and keep them out of the research column.
-     */
-    margin-left: min(
-      calc(100% - 24ch + 2rem),
-      calc(var(--s3-photo-h) * (554 - 200) / 921 + 4.75rem - var(--ca-rail, 4.125rem))
-    );
+    /* Sit over the window, to the right of her profile. */
+    margin-left: min(calc(100% - 24ch + 2rem), 40%);
   }
 
   .quoteB {
-    margin-left: min(
-      calc(100% - 24ch + 3.5rem),
-      calc(var(--s3-photo-h) * (554 - 200) / 921 + 7.25rem - var(--ca-rail, 4.125rem))
-    );
+    margin-left: min(calc(100% - 24ch + 3.5rem), 46%);
   }
 
   .grid {
+    min-height: 100svh;
     column-gap: clamp(2rem, 3.4vw, 3.75rem);
   }
 
   .quotesCol {
     padding-right: clamp(0.25rem, 1vw, 0.75rem);
+    min-height: calc(var(--s3-photo-h) - 4rem);
+    justify-content: center;
   }
 
   .copyCol {
-    /* Seat the research copy in the dark field beside the figure. */
     padding-left: clamp(1.25rem, 3.2vw, 3rem);
   }
 }
 
-/*
- * Below 1280 the research column starts sooner. Crop a little further
- * into the photo and keep the quotes narrower so they still clear her face.
- */
 @media (min-width: 1024px) and (max-width: 1279px) {
+  .photoStack {
+    width: 54%;
+  }
+
   .photoFrame {
-    left: calc(var(--s3-photo-h) * -250 / 921);
+    left: calc(var(--s3-photo-h) * -220 / 921);
   }
 
   .quoteA,
   .quoteB {
     max-width: 18ch;
-    margin-left: min(
-      calc(100% - 18ch),
-      calc(var(--s3-photo-h) * (554 - 250) / 921 + 4rem - var(--ca-rail, 4.125rem))
-    );
+    margin-left: min(calc(100% - 18ch), 36%);
   }
 
   .quoteB {
-    margin-left: min(
-      calc(100% - 18ch + 1.5rem),
-      calc(var(--s3-photo-h) * (554 - 250) / 921 + 6rem - var(--ca-rail, 4.125rem))
-    );
+    margin-left: min(calc(100% - 18ch + 1.5rem), 42%);
   }
 }
 

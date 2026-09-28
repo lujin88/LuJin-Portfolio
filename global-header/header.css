@@ -32,7 +32,26 @@
   font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
 }
 
-header :is(a, button):focus-visible {
+/* Self-contained chrome. Pages without Tailwind Preflight (Way of Work)
+   otherwise keep browser disc markers and link underlines. Do not reset
+   ul padding here — dropdown panels own their own spacing. */
+[data-site-header] :is(ul, li) {
+  list-style: none;
+}
+
+[data-site-header] a {
+  text-decoration: none;
+}
+
+[data-site-header] :is(a, button):focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
+}
+
+[data-site-header][data-header-tone='party'] {
+  --header-scrim: rgb(23 104 232);
+  --header-glass: rgb(15 62 170);
+  --header-menu: rgb(18 52 140);
+  --header-menu-item: rgb(24 64 160);
+  --header-line: oklch(1 0 0 / 38%);
 }

@@ -128,7 +128,7 @@ export function HtmlIsland({ head, body }: { head: string; body: string }) {
       // wrapper creates a scroll container and kills Index pin-wrap sticky.
       data-html-island=""
       className="min-h-svh min-w-[360px]"
-      style={{ background: '#0a0a0a', color: '#f9fbfc' }}
+      style={{ background: 'var(--color-bg-page)', color: 'var(--color-text-1)' }}
     />
   )
 }

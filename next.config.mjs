@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   agentRules: false,
+  allowedDevOrigins: ['127.0.0.1', 'localhost'],
   turbopack: {
     root: fileURLToPath(new URL('.', import.meta.url)),
   },
@@ -15,7 +16,6 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      { source: '/', destination: '/index', permanent: false },
       { source: '/index.html', destination: '/index', permanent: false },
       { source: '/eon-solar', destination: '/EON', permanent: false },
       { source: '/eon-solar.html', destination: '/EON', permanent: false },
@@ -23,9 +23,8 @@ const nextConfig = {
       { source: '/client-advisory.html', destination: '/client-advisory', permanent: false },
       { source: '/lab.html', destination: '/lab', permanent: false },
       { source: '/wip.html', destination: '/wip', permanent: false },
-      { source: '/lab/way-of-work', destination: '/wip', permanent: false },
-      { source: '/lab/off-we-go-workbench', destination: '/wip', permanent: false },
-      { source: '/lab/party-planner', destination: '/wip', permanent: false },
+      { source: '/way-of-work', destination: '/lab/way-of-work', permanent: false },
+      { source: '/lab/off-we-go-workbench', destination: '/lab/off-we-go', permanent: false },
       { source: '/about.html', destination: '/about', permanent: false },
       { source: '/ai-workflow-case.html', destination: '/ai-workflow-case', permanent: false },
       { source: '/3000', destination: '/index', permanent: false },

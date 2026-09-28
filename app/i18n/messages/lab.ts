@@ -1,6 +1,7 @@
 export const lab = {
   en: {
     documentTitle: 'Lu — Lab',
+    partyPlannerTitle: 'Lu — Party Planner',
     eyebrow: 'Lab',
     title: 'Experiments in progress',
     body: "A space for prototypes, motion studies, and design tooling explorations. New pieces are being assembled here — check back soon, or reach out if you'd like a walkthrough of what's currently in the works.",
@@ -8,6 +9,7 @@ export const lab = {
   },
   de: {
     documentTitle: 'Lu — Lab',
+    partyPlannerTitle: 'Lu — Party Planner',
     eyebrow: 'Lab',
     title: 'Experimente in Arbeit',
     body: 'Ein Raum für Prototypen, Motion Studies und Design-Tooling. Neue Stücke entstehen hier — schauen Sie bald wieder vorbei, oder schreiben Sie, wenn Sie einen Einblick in die laufende Arbeit möchten.',

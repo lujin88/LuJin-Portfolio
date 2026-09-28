@@ -4,6 +4,8 @@ import { useLayoutEffect } from 'react'
 import { useSiteLanguage } from '@header/lib/language'
 import { applyAboutTranslations } from '../i18n/about-me'
 
+// Force HMR after About Me card copy update.
+
 export function AboutLanguageSync() {
   const { langCode } = useSiteLanguage()
 

@@ -1,0 +1,606 @@
+/* Standalone Mandate composition, ported from ai-mandate-refined.html. */
+
+.mandate {
+  --md-text: var(--ca-text, #f3f6fa);
+  --md-body: var(--ca-text-2, #a9b8cc);
+  --md-accent: var(--mandate-accent, #7cc4ff);
+  --md-label: var(--ca-text-2, #a9b8cc);
+  position: relative;
+  container-type: inline-size;
+  width: 100%;
+  aspect-ratio: 1738 / 905;
+  overflow: visible;
+  color: var(--md-text);
+  font-family: inherit;
+  -webkit-font-smoothing: antialiased;
+}
+
+.atmosphere,
+.orbit {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.atmosphere {
+  background:
+    radial-gradient(ellipse 24% 40% at 56% 106%, #003975 0%, #00346cda 27%, #00295155 53%, transparent 95%),
+    radial-gradient(ellipse 45% 52% at 55% 68%, #001b3440 0%, transparent 80%);
+}
+
+.atmosphere::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.13;
+  background: repeating-linear-gradient(110deg, transparent 0 3px, #7dc8ff05 4px, transparent 5px);
+}
+
+.orbit {
+  z-index: 1;
+}
+
+.copy {
+  position: relative;
+  width: min(46%, 32rem);
+  margin-left: var(--ca-rail, clamp(1.5rem, 4vw, 4rem));
+  padding-top: clamp(5rem, 7vw, 6.75rem);
+  z-index: 2;
+}
+
+.copy :global(.ca-eyebrow-accent) {
+  color: var(--md-accent, #7cc4ff);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1.5535cqw;
+  margin: 0;
+  font-size: 1.3809cqw;
+  font-weight: 500;
+  line-height: 1.6686cqw;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--md-label);
+}
+
+.number {
+  color: var(--md-text);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.eyebrowRule {
+  width: 1.5px;
+  height: 1.3234cqw;
+  background: var(--ca-line, rgb(169 184 204 / 0.22));
+  margin-left: 0.4603cqw;
+}
+
+.title {
+  margin: 1.7837cqw 0 1.611cqw;
+  max-width: 18ch;
+  font-size: 2.9919cqw;
+  line-height: 3.4522cqw;
+  font-weight: 600;
+  letter-spacing: -0.055cqw;
+  color: var(--md-text);
+  text-wrap: pretty;
+}
+
+.intro,
+.closing {
+  margin: 0;
+  max-width: 46ch;
+  color: var(--md-body);
+  font-size: 1.4959cqw;
+  line-height: 2.2439cqw;
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+.question {
+  margin-top: 4rem;
+}
+
+.questionLabel {
+  margin: 0 0 0.748cqw;
+  color: var(--md-accent);
+  font-size: 1.3809cqw;
+  font-weight: 400;
+  line-height: 1.7837cqw;
+  letter-spacing: 0.23cqw;
+  text-transform: uppercase;
+}
+
+.questionTitle {
+  margin: 0 0 1.8987cqw;
+  font-weight: 600;
+  font-size: 3.3372cqw;
+  line-height: 3.6824cqw;
+  letter-spacing: -0.065cqw;
+  color: var(--md-text);
+  text-wrap: pretty;
+}
+
+.accent {
+  color: var(--md-accent);
+}
+
+.keepLine {
+  white-space: nowrap;
+}
+
+.toolStack {
+  position: absolute;
+  left: 50.1726%;
+  top: 26.6298%;
+  width: 30.6674%;
+  height: 43.0939%;
+  margin: 0;
+  z-index: 3;
+}
+
+.toolPanel {
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid #007bcc;
+  border-radius: 0.6904cqw;
+}
+
+.front {
+  left: 19.8874%;
+  width: 59.6623%;
+  top: 0;
+  height: 100%;
+  padding: 0.748cqw 0.8055cqw 0.1726cqw;
+  background:
+    radial-gradient(ellipse 44% 90% at 0% 48%, #00396a36, transparent 90%),
+    radial-gradient(ellipse 70% 30% at 68% 110%, #00447829, transparent 100%),
+    linear-gradient(105deg, #00182dfc, #001225fc 52%, #001a32fc);
+  border-color: #004b8070;
+  border-top-color: #07558ca8;
+  border-left-color: #0878bbab;
+  border-bottom-color: #065c9b85;
+  z-index: 2;
+  box-shadow: inset 0 1px 2px #71baff14, 0 0.6cqw 1.8cqw #0008;
+}
+
+.front::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 1px 0 7px #0078c910;
+}
+
+.clientHeader {
+  height: 2.8769cqw;
+  display: flex;
+  align-items: center;
+  gap: 1.2658cqw;
+  padding: 0 0.8631cqw;
+  border: 1px solid #007de029;
+  border-radius: 0.6329cqw;
+  background: linear-gradient(102deg, #004789 0%, #00274b 41%, #003a73 100%);
+  box-shadow: inset 0 1px 2px #478dd618;
+  color: var(--md-text);
+  font-size: 1.1507cqw;
+  letter-spacing: -0.025cqw;
+  white-space: nowrap;
+}
+
+.searchIcon {
+  flex: none;
+  width: 1.4384cqw;
+  height: 1.4384cqw;
+  font-size: 1.4384cqw;
+  line-height: 1;
+  color: inherit;
+}
+
+.toolList {
+  list-style: none;
+  margin: 0.5754cqw 0 0;
+  padding: 0;
+}
+
+.toolRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.9206cqw;
+  min-height: 3.5673cqw;
+  padding-left: 0.4603cqw;
+  font-size: 1.1507cqw;
+  line-height: 1.4;
+  letter-spacing: -0.018cqw;
+  white-space: nowrap;
+  color: var(--md-text);
+}
+
+.toolRow:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #155279a6, #0c395678);
+}
+
+.iconDisc {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.3015cqw;
+  height: 2.3015cqw;
+  border-radius: 50%;
+  background: radial-gradient(circle, #07558738, #003b6315 64%, transparent 73%);
+  color: var(--md-accent);
+}
+
+.iconDisc svg {
+  width: 1.9563cqw;
+  height: 1.9563cqw;
+  overflow: visible;
+}
+
+.rear {
+  top: 16.6667%;
+  width: 58.5366%;
+  height: 71.7949%;
+  padding: 0.6329cqw;
+  isolation: isolate;
+  border-color: #076eb37a;
+  background: linear-gradient(105deg, #003c7d, #002b59);
+  box-shadow: inset 0 1px 2px #388fbd22;
+  z-index: 0;
+}
+
+.rear::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgb(0 12 26 / 18%) 0%,
+    rgb(0 10 22 / 56%) 16%,
+    rgb(0 10 22 / 88%) 34%,
+    rgb(0 8 18 / 93%) 60%
+  );
+  mix-blend-mode: darken;
+  pointer-events: none;
+}
+
+.rearLeft {
+  left: 0;
+}
+
+.rearRight {
+  right: 0;
+  background: linear-gradient(90deg, #00386d, #003369);
+}
+
+.rearRight::after {
+  background: linear-gradient(
+    90deg,
+    rgb(0 8 18 / 94%) 0%,
+    rgb(0 10 22 / 84%) 62%,
+    rgb(0 12 26 / 55%) 81%,
+    rgb(0 14 28 / 18%) 100%
+  );
+}
+
+.rearHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.8055cqw;
+  height: 2.5892cqw;
+  padding: 0 0.4603cqw;
+  border-radius: 0.4603cqw;
+  background: #064782;
+}
+
+.rearHeader .searchIcon {
+  color: var(--md-label);
+}
+
+.rearRow {
+  display: flex;
+  align-items: center;
+  gap: 0.8055cqw;
+  min-height: 2.9919cqw;
+  padding: 0 0.3452cqw;
+  border-top: 1px solid #073260;
+}
+
+.rearOrb {
+  flex: none;
+  width: 1.7261cqw;
+  height: 1.7261cqw;
+  border-radius: 50%;
+  background: #045086;
+  border: 1px solid #14669c;
+  box-shadow: inset 0 0 0 0.4028cqw #003b71;
+}
+
+.placeholderLines {
+  flex: 1;
+}
+
+.placeholder {
+  display: block;
+  width: 74%;
+  height: 0.3452cqw;
+  border-radius: 0.1726cqw;
+  background: #23547d;
+}
+
+.placeholderShort {
+  width: 43%;
+  height: 0.2301cqw;
+  margin-top: 0.3452cqw;
+  background: #1a4268;
+}
+
+.rearRow:nth-child(3) .placeholder {
+  width: 62%;
+}
+
+.rearRow:nth-child(4) .placeholder {
+  width: 85%;
+}
+
+.rearRight .rearRow {
+  border: 0;
+  margin-top: 0.2301cqw;
+  min-height: 2.7618cqw;
+  border-radius: 0.5754cqw;
+  background: #084478;
+}
+
+.annotation {
+  z-index: 3;
+  position: absolute;
+  left: 83.0265%;
+  top: 23.3149%;
+  width: 15%;
+  height: 55.2486%;
+  padding: 6.3867cqw 0 0 2.2439cqw;
+  color: color-mix(in srgb, var(--md-text) 90%, transparent);
+  font-size: 1.4959cqw;
+  line-height: 2.1289cqw;
+  font-weight: 400;
+}
+
+.annotation::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: linear-gradient(transparent, #105a7a 15%, #e6eef0 41%, #c2e4f1 66%, #0084c5 91%, transparent);
+  box-shadow: 0 0 4px #38aef72e;
+}
+
+.annotation::after {
+  content: '';
+  position: absolute;
+  top: 40.6%;
+  left: -0.4603cqw;
+  width: 0.9206cqw;
+  height: 0.9206cqw;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 1px solid #4bd7ff99;
+  background: #00bfee;
+  box-shadow: 0 0 4px #00bffa29;
+}
+
+.annotation p {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.svgLibrary {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 1023px) {
+  .mandate {
+    aspect-ratio: auto;
+    padding: 36px 24px 42px;
+  }
+
+  .copy {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .eyebrow {
+    gap: 17px;
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .eyebrowRule {
+    height: 15px;
+    margin-left: 4px;
+  }
+
+  .title {
+    margin: 25px 0 22px;
+    max-width: none;
+    font-size: 34px;
+    line-height: 1.17;
+    letter-spacing: -0.7px;
+  }
+
+  .intro,
+  .closing {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .question {
+    margin-top: 34px;
+  }
+
+  .questionLabel {
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 2px;
+  }
+
+  .questionTitle {
+    margin-bottom: 25px;
+    font-size: 36px;
+    line-height: 1.13;
+    letter-spacing: -0.8px;
+  }
+
+  .keepLine {
+    white-space: normal;
+  }
+
+  .toolStack {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: 470px;
+    height: 340px;
+    margin: 38px auto 0;
+  }
+
+  .toolPanel {
+    border-radius: 10px;
+  }
+
+  .front {
+    width: 70%;
+    left: 15%;
+    height: 340px;
+    padding: 12px 10px 6px;
+  }
+
+  .clientHeader {
+    height: 42px;
+    gap: 10px;
+    padding: 0 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    letter-spacing: -0.2px;
+  }
+
+  .searchIcon {
+    width: 19px;
+    height: 19px;
+    font-size: 19px;
+  }
+
+  .toolList {
+    margin-top: 9px;
+  }
+
+  .toolRow {
+    min-height: 53px;
+    gap: 11px;
+    padding-left: 4px;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+  }
+
+  .iconDisc {
+    width: 32px;
+    height: 32px;
+  }
+
+  .iconDisc svg {
+    width: 29px;
+    height: 29px;
+  }
+
+  .rear {
+    top: 16.6667%;
+    width: 61.6601%;
+    height: 71.7949%;
+    padding: 8px;
+  }
+
+  .rearHeader {
+    height: 36px;
+    gap: 12px;
+    padding: 0 5px;
+    border-radius: 6px;
+  }
+
+  .rearRow {
+    min-height: 43px;
+    gap: 10px;
+    padding: 0 4px;
+  }
+
+  .rearOrb {
+    width: 23px;
+    height: 23px;
+    box-shadow: inset 0 0 0 5px #003b71;
+  }
+
+  .placeholder {
+    height: 4px;
+    border-radius: 2px;
+  }
+
+  .placeholderShort {
+    height: 3px;
+    margin-top: 4px;
+  }
+
+  .rearRight .rearRow {
+    margin-top: 4px;
+    min-height: 39px;
+    border-radius: 7px;
+  }
+
+  .annotation {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: auto;
+    margin: 28px 0 0;
+    padding: 0 0 0 20px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .annotation::before {
+    background: linear-gradient(#009cff, #86ddff, #009cff);
+  }
+
+  .annotation::after {
+    width: 8px;
+    height: 8px;
+    left: -3.5px;
+    top: 50%;
+  }
+
+  .orbit {
+    opacity: 0.65;
+  }
+}

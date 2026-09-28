@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
+@import '../../../node_modules/remixicon/fonts/remixicon.css';
 
 @source '../../ca-session-01-hero/components';
 @source '../../ca-session-02-mandate/components';
@@ -244,12 +245,12 @@
 @layer base {
   html {
     /* Session layer — navy/ice canvas + story accent. Do not replace with Host or Header blues. */
-    --ca-bg: #06101f;
-    --ca-bg-2: #0a1729;
+    --ca-bg: #0b1220;
+    --ca-bg-2: #0d1526;
     --ca-text: #f3f6fa;
     --ca-text-2: #a9b8cc;
     --ca-text-3: #71839a;
-    --ca-accent: #2f7cff;
+    --ca-accent: #8aa3c7;
     --ca-line: rgb(169 184 204 / 0.22);
     --ca-page-max: 80rem;
     --ca-page-pad: clamp(1.5rem, 4vw, 4rem);
@@ -333,7 +334,15 @@
 }
 
 .ca-eyebrow-accent {
-  color: var(--ca-accent, #2f7cff);
+  color: var(--ca-accent, #8aa3c7);
+}
+
+.ca-s02-copy .ca-eyebrow-accent {
+  margin-top: 2.5rem;
+}
+
+.ca-s02-copy h3 {
+  margin-top: 0.9rem;
 }
 
 .ca-h1 {
@@ -377,6 +386,10 @@
   --s3-body: var(--ca-text-2);
   --s3-muted: var(--ca-text-2);
   --s3-rule: var(--ca-line);
+}
+
+#session-06 {
+  background-color: var(--ca-bg, #0b1220);
 }
 
 .ca-font-poppins {
@@ -440,13 +453,49 @@
 }
 
 /*
- * 01 → 02 sit on one solid navy field. Sections stack: 01 finishes, then 02
- * begins. Shared canvas only — no negative-margin overlap of content.
+ * 01 → 02 → 03 sit on one navy field so the mockup arc can span them
+ * without being clipped at section boxes.
  */
-.ca-s01-s02 {
+.ca-s01-s03 {
   position: relative;
-  isolation: isolate;
-  background-color: var(--ca-bg, #06101f);
+  overflow-x: clip;
+  overflow-y: visible;
+  width: 100%;
+  background:
+    linear-gradient(
+      180deg,
+      var(--ca-bg, #0b1220) 0%,
+      #0c1424 52%,
+      var(--ca-bg-2, #0d1526) 100%
+    );
+}
+
+.ca-s01-s03::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image:
+    url('/assets/images/client-advisory/ca-atmosphere.svg'),
+    radial-gradient(circle, rgb(155 176 208 / 0.5) 0.55px, transparent 0.7px);
+  background-size: min(1400px, 92vw) auto, 34px 34px;
+  background-repeat: no-repeat, repeat;
+  background-position: 6% 12%, 0 0;
+}
+
+.ca-story-connector-svg {
+  position: absolute;
+  top: -18%;
+  left: -18%;
+  width: 136%;
+  height: 136%;
+  overflow: visible;
+}
+
+.ca-s02-trail-node {
+  display: none;
 }
 
 .ca-s01-photo-shift {
@@ -457,19 +506,9 @@
   height: 104%;
 }
 
-.ca-s02-curve {
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  mix-blend-mode: screen;
-  opacity: 0.9;
-}
-
 @media (min-width: 1024px) {
   .ca-s01 {
-    z-index: 1;
+    z-index: 0;
     /* Clip sideways only. A vertical clip slices the figure and the arc
        on a straight edge where 01 meets 02. */
     overflow-x: clip;
@@ -480,21 +519,39 @@
   .ca-s01-photo {
     /* Bleed past the section so the figure can fade into 02
        instead of ending on the section box. */
-    bottom: -8rem;
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      transparent 6%,
-      #fff 28%,
-      #fff 100%
-    );
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      transparent 6%,
-      #fff 28%,
-      #fff 100%
-    );
+    bottom: -7rem;
+    -webkit-mask-image:
+      linear-gradient(
+        to right,
+        transparent 0%,
+        transparent 6%,
+        #fff 28%,
+        #fff 100%
+      ),
+      linear-gradient(
+        to bottom,
+        #fff 0%,
+        #fff 48%,
+        rgb(255 255 255 / 0.62) 68%,
+        transparent 100%
+      );
+    mask-image:
+      linear-gradient(
+        to right,
+        transparent 0%,
+        transparent 6%,
+        #fff 28%,
+        #fff 100%
+      ),
+      linear-gradient(
+        to bottom,
+        #fff 0%,
+        #fff 48%,
+        rgb(255 255 255 / 0.62) 68%,
+        transparent 100%
+      );
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
   }
 
   .ca-s01-photo-shift {
@@ -510,18 +567,16 @@
    * already dissolved, so the section box never draws a hard edge.
    */
   .ca-s01-photo-fade {
-    bottom: -14rem;
-    height: calc(46% + 14rem);
+    bottom: -7rem;
+    height: calc(42% + 7rem);
     background: linear-gradient(
       180deg,
       transparent 0%,
-      rgb(6 16 31 / 0.03) 14%,
-      rgb(6 16 31 / 0.1) 30%,
-      rgb(6 16 31 / 0.22) 46%,
-      rgb(6 16 31 / 0.4) 62%,
-      rgb(6 16 31 / 0.62) 78%,
-      rgb(6 16 31 / 0.84) 90%,
-      var(--ca-bg, #06101f) 100%
+      rgb(6 16 31 / 0.04) 28%,
+      rgb(6 16 31 / 0.16) 50%,
+      rgb(6 16 31 / 0.36) 72%,
+      rgb(6 16 31 / 0.16) 88%,
+      transparent 100%
     );
   }
 
@@ -534,89 +589,123 @@
   }
 
   .ca-s02 {
-    z-index: 2;
     overflow: visible;
     margin-top: 0;
+    width: 100%;
     background-color: transparent;
-  }
-
-  .ca-s02-curve {
     z-index: 1;
-    top: -20%;
-    left: 8%;
-    right: -4%;
-    width: auto;
-    height: 132%;
-    transform: none;
-    object-fit: cover;
-    object-position: 6% 10%;
-    mix-blend-mode: screen;
-    opacity: 0.95;
-    -webkit-mask-image:
-      linear-gradient(90deg, transparent 0%, #000 14%, #000 100%),
-      linear-gradient(180deg, transparent 0%, #000 28%, #000 100%);
-    mask-image:
-      linear-gradient(90deg, transparent 0%, #000 14%, #000 100%),
-      linear-gradient(180deg, transparent 0%, #000 28%, #000 100%);
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #fff 0%,
+      #fff calc(100% - 6.5rem),
+      rgb(255 255 255 / 0.45) calc(100% - 2.75rem),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #fff 0%,
+      #fff calc(100% - 6.5rem),
+      rgb(255 255 255 / 0.45) calc(100% - 2.75rem),
+      transparent 100%
+    );
   }
 
   .ca-s02-layout {
     display: grid;
-    grid-template-columns: minmax(0, 30rem) minmax(12rem, 1fr) 9.25rem;
-    column-gap: 2.5rem;
+    grid-template-columns: minmax(0, 30rem) minmax(0, 1fr);
+    column-gap: 2.25rem;
     row-gap: var(--ca-body-gap);
-    align-items: start;
-    padding-top: 4.5rem;
+    align-items: center;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    padding-top: 8rem;
+    padding-bottom: 4.5rem;
+    padding-left: var(--ca-rail);
+    padding-right: 5.25rem;
   }
 
-  .ca-s02-intro {
+  .ca-s02-copy {
     grid-column: 1;
     grid-row: 1;
+    position: relative;
+    z-index: 2;
+    align-self: center;
   }
 
-  .ca-s02-body {
-    grid-column: 1;
-    grid-row: 2;
+  .ca-s02-visual {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.45rem;
+    min-width: 0;
+    margin-top: 0;
   }
 
   .ca-s02-ui-slot {
-    grid-column: 2;
-    grid-row: 2;
-    z-index: 3;
-    justify-self: end;
-    width: min(100%, 30rem);
+    z-index: 4;
+    position: relative;
+    flex: 0 1 31rem;
+    width: min(100%, 31rem);
+    min-width: 0;
     margin-top: 0;
-    aspect-ratio: 828 / 698;
-    overflow: hidden;
+    padding: 0;
+    overflow: visible;
     background: transparent;
   }
 
-  .ca-s02-ui {
-    position: absolute;
-    width: calc(1888 / 828 * 100%);
-    height: auto;
-    max-width: none;
-    left: calc(-887 / 828 * 100%);
-    top: calc(-76 / 698 * 100%);
-    background: transparent;
-    /* Hide the raster's opaque navy timeline plate; the glow is CSS. */
-    -webkit-mask-image: linear-gradient(90deg, #000 87%, transparent 87.55%);
-    mask-image: linear-gradient(90deg, #000 87%, transparent 87.55%);
+  .ca-s02-ui-compose {
+    position: relative;
+    width: 100%;
+    min-height: 0;
+    padding: 0;
   }
 
   .ca-s02-note {
-    grid-column: 3;
-    grid-row: 2;
-    margin-top: 0.25rem;
+    flex: 0 0 11rem;
+    width: 11rem;
+    max-width: 11rem;
+    margin-top: 0;
+    position: relative;
+    z-index: 2;
+    align-self: center;
+  }
+
+  .ca-s02-trail-node {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    width: 11px;
+    height: 11px;
+    margin: -5.5px 0 0 -5.5px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: #f7fcff;
+    box-shadow:
+      0 0 6px 1px #fff,
+      0 0 16px 6px rgb(160 228 255 / 0.95),
+      0 0 36px 14px rgb(56 168 255 / 0.75),
+      0 0 72px 24px rgb(30 110 255 / 0.4);
   }
 }
 
 @media (min-width: 1280px) {
   .ca-s02-layout {
-    grid-template-columns: minmax(0, 32rem) minmax(16rem, 1fr) 9.5rem;
-    column-gap: 4.5rem;
+    grid-template-columns: minmax(0, 32rem) minmax(0, 1fr);
+    column-gap: 2.75rem;
+  }
+
+  .ca-s02-ui-slot {
+    flex-basis: 31rem;
+    width: min(100%, 31rem);
+  }
+
+  .ca-s02-note {
+    flex-basis: 11rem;
+    width: 11rem;
+    max-width: 11rem;
   }
 
   .ca-s01-photo-shift img {
@@ -632,73 +721,124 @@
   background: var(--ca-line, rgb(169 184 204 / 0.45));
 }
 
+.ca-s02-visual {
+  position: relative;
+  margin-top: 2.5rem;
+}
+
 .ca-s02-ui-slot {
   background: transparent;
 }
 
-.ca-s02-ui-indicator {
-  position: absolute;
-  left: 92.39%;
-  top: 8.9%;
-  bottom: 7.7%;
-  width: 2.75rem;
-  transform: translateX(-50%);
-  background: transparent;
+.ca-s02-ui-compose {
+  position: relative;
+  width: 100%;
+}
+
+.ca-s02-ui-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+/* Marker only — StoryConnector measures this node. Layout lives in the mandate module. */
+.ca-s02-ui-card--front {
   pointer-events: none;
-  z-index: 2;
 }
 
-.ca-s02-ui-line {
+.ca-s02-note-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05em;
+  margin: 0;
+  white-space: pre-line;
+  text-wrap: pretty;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--ca-text, #f3f6fa);
+}
+
+.ca-s02-title {
+  max-width: 7.8em;
+  font-size: clamp(3.5rem, 4.5vw, 4rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--ca-text, #f3f6fa);
+}
+
+.ca-s02-key {
+  font-weight: 500;
+  color: var(--mandate-accent, var(--color-signal-bright, #7cc4ff));
+}
+
+.ca-s02-network {
   position: absolute;
-  left: 50%;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.ca-s02-curve,
+.ca-s02-card-art {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: screen;
+}
+
+.ca-s02-curve {
   top: 0;
-  bottom: 0;
-  width: 2px;
-  transform: translateX(-50%);
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgb(59 130 246 / 0.3) 14%,
-    rgb(191 219 254 / 0.9) 50%,
-    rgb(59 130 246 / 0.3) 86%,
-    transparent 100%
-  );
-  box-shadow: 0 0 10px rgb(59 130 246 / 0.45);
 }
 
-.ca-s02-ui-node {
+.ca-s02-arc {
   position: absolute;
-  left: 50%;
-  top: 43.6%;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: #93c5fd;
-  transform: translate(-50%, -50%);
-  box-shadow:
-    0 0 12px #3b82f6,
-    0 0 24px rgb(59 130 246 / 0.55);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1024 / 1100;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.ca-s02-card-art {
+  top: 16%;
+  left: -4%;
+  width: 92%;
 }
 
 @media (max-width: 1023px) {
+  .ca-s02-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
   .ca-s02-ui-slot {
     position: relative;
-    width: min(100%, 28rem);
-    aspect-ratio: 828 / 698;
-    overflow: hidden;
+    width: min(100%, 22.5rem);
+    padding: 0;
+    overflow: visible;
     background: transparent;
   }
 
-  .ca-s02-ui {
-    position: absolute;
-    width: calc(1888 / 828 * 100%);
-    height: auto;
-    max-width: none;
-    left: calc(-887 / 828 * 100%);
-    top: calc(-76 / 698 * 100%);
-    background: transparent;
-    -webkit-mask-image: linear-gradient(90deg, #000 87%, transparent 87.55%);
-    mask-image: linear-gradient(90deg, #000 87%, transparent 87.55%);
+  .ca-s02-ui-compose {
+    width: 100%;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .ca-s02-note {
+    max-width: 11rem;
+    margin-top: 0;
   }
 }
 
@@ -708,6 +848,32 @@
  * and the too-left full-bleed gutter marked by the red guide (5.25rem).
  */
 @media (min-width: 1024px) {
+  html:has(.ca-s01-s03) {
+    scroll-snap-type: y proximity;
+  }
+
+  .ca-s01,
+  .ca-s02,
+  #session-03-research,
+  #session-04,
+  #design-principles,
+  #session-07 {
+    scroll-snap-align: start;
+  }
+
+  #session-04,
+  #design-principles,
+  #session-07 {
+    height: 100svh;
+    min-height: 100svh;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html:has(.ca-s01-s03) {
+      scroll-snap-type: none;
+    }
+  }
+
   main {
     --ca-hero-rail: calc((100vw - min(100vw, 1520px)) / 2 + 3rem);
     --ca-red-rail: 5.25rem;
@@ -733,13 +899,18 @@
     .ca-s01-grid {
       min-height: 100svh;
     }
+
+    .ca-s02-layout {
+      min-height: 100svh;
+    }
   }
 
-  /* 02 Mandate — left editorial column; UI overlay stays absolutely placed */
-  [aria-labelledby='mandate-heading'] > .relative.z-20 {
+  /* 02 Mandate — full-bleed visual; copy sits on the shared rail */
+  .ca-s02-layout {
     max-width: none;
     margin-inline: 0;
     padding-left: var(--ca-rail);
+    padding-right: 5.25rem;
   }
 
   /* 03 Research — keep photo/text split; seat the grid on the shared rail */
@@ -758,6 +929,23 @@
   #design-principles > div {
     max-width: none;
     margin-inline: 0;
+  }
+
+  /*
+   * 05 → 06 join. Pull The Concept into the principles floor and keep the
+   * first 06 band transparent so the cards dissolve instead of hitting a
+   * second empty navy page. 06 content is biased upward in .ca-s06-stage
+   * so the heading arrives as the cards leave, without peeking into 05.
+   */
+  #session-06 {
+    margin-top: -6.25rem;
+    background: linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 3.25rem,
+      var(--ca-bg, #0b1220) 7.5rem,
+      var(--ca-bg, #0b1220) 100%
+    );
   }
 
   /* 06 Concept — keep visual/copy split; seat the grid on the shared rail */

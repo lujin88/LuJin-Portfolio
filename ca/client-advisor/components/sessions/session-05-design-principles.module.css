@@ -8,15 +8,19 @@
 
   position: relative;
   isolation: isolate;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-x: clip;
-  padding: clamp(4.5rem, 8vw, 7rem) var(--ca-page-pad, clamp(1.5rem, 4vw, 4rem));
+  overflow: hidden;
+  padding-top: clamp(4.5rem, 8vw, 7rem);
+  padding-bottom: clamp(4.5rem, 8vw, 7rem);
+  padding-left: var(--ca-page-pad, clamp(1.5rem, 4vw, 4rem));
+  padding-right: var(--ca-page-pad, clamp(1.5rem, 4vw, 4rem));
   background:
     radial-gradient(60% 45% at 50% 20%, rgba(28, 74, 150, 0.32), transparent 70%),
-    radial-gradient(70% 40% at 50% 100%, rgba(12, 40, 92, 0.38), transparent 70%),
-    linear-gradient(180deg, var(--s05-bg-deep) 0%, var(--s05-bg) 45%, var(--s05-bg-deep) 100%);
+    radial-gradient(70% 48% at 50% 100%, rgba(18, 56, 120, 0.26), transparent 72%),
+    linear-gradient(180deg, var(--s05-bg-deep) 0%, var(--s05-bg) 42%, var(--ca-bg, #0b1220) 100%);
   color: var(--s05-text);
 }
 
@@ -26,7 +30,18 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: clamp(2rem, 4.5svh, 3.25rem);
+  gap: clamp(1.25rem, 2.4vh, 1.75rem);
+}
+
+/*
+ * One composition: title and cards stay grouped. Bottom pad stays short
+ * so the block sits slightly toward The Concept without stretching a
+ * dead gap through the middle of the page.
+ */
+@media (min-width: 1024px) {
+  .section {
+    padding-bottom: clamp(2rem, 4.2vh, 3rem);
+  }
 }
 
 .header {

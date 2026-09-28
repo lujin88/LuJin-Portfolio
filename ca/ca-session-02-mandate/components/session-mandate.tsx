@@ -7,23 +7,6 @@ export function SessionMandate() {
     >
       {/* Layer 1 + 2: dark navy canvas + background asset (navy gradient with the blue
           curved light + glow node baked in). Full-section cover, responsive, undistorted. */}
-      <img
-        src="/images/ca-02-bg.png"
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 h-full w-full select-none object-cover object-center"
-      />
-
-      {/* Layer 4: large transparent UI visual (interface panels + white vertical line +
-          node). Sits above the background/light, anchored to the right half and vertically
-          centered. Aspect ratio preserved; entire visual stays visible. */}
-      <img
-        src="/images/ca-02-ui.png"
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute right-[7%] top-1/2 z-10 hidden h-auto w-[64%] max-w-[1040px] -translate-y-1/2 select-none mix-blend-screen lg:block xl:w-[60%]"
-      />
-
       <div className="relative z-20 mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
         <div className="max-w-[540px] lg:max-w-[760px]">
           <div className="flex items-center gap-4 text-xs font-medium tracking-[0.2em] text-mandate-muted">

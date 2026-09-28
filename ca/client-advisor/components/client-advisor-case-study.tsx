@@ -6,15 +6,17 @@ import { Session05DesignPrinciples } from '@/components/sessions/session-05-desi
 import { SessionConcept } from '@/components/session-06/session-concept'
 import { Session07Outcome } from '@/components/sessions/session-07-outcome'
 import { ClosingSection } from '@/components/closing-section'
+import { StoryConnector } from '@/components/sessions/story-connector'
 
 export function ClientAdvisorCaseStudy() {
   return (
     <main>
-      <div className="ca-s01-s02">
+      <div className="ca-s01-s03">
+        <StoryConnector />
         <HeroSection />
         <SessionMandate />
+        <Session03Research />
       </div>
-      <Session03Research />
       <Session04TheShift />
       <Session05DesignPrinciples />
       <SessionConcept />

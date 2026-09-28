@@ -64,7 +64,7 @@ export function SiteFooter() {
 
       <div className="relative mx-auto w-full max-w-6xl px-6 py-5 md:px-10 md:py-6">
         <p className="text-sm text-footer-muted/80">
-          © 2026 Lu Jin. All rights reserved.  ·  Designed in Figma, built with Cursor
+          © 2026 Lu Jin. All rights reserved.  ·  Designed with AI. Refined with Cursor.
         </p>
       </div>
     </footer>

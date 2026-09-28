@@ -3,12 +3,12 @@
    --color-bg-deepseek is a leftover and is intentionally absent. */
 
 :root {
-  /* Host layer — showcase shell only. */
+  /* Host layer — showcase shell only. Hex casing matches Master DS. */
   --color-theme-1: #ffffff;
-  --color-theme-2: #8b5cf6;
+  --color-theme-2: #8B5CF6;
   --color-theme-3: rgba(139, 92, 246, 0.15);
-  --color-theme-hover: #a78bfa;
-  --color-primary-solid: #8b5cf6;
+  --color-theme-hover: #A78BFA;
+  --color-primary-solid: #8B5CF6;
 
   --color-bg-page: #0a0a0a;
   --color-bg-primary: #111214;
@@ -63,8 +63,8 @@
   --selection-bg: rgba(139, 92, 246, 0.35);
   --selection-text: #ffffff;
 
-  --exp-accent: #8b5cf6;
-  --exp-accent-bright: #a78bfa;
+  --exp-accent: #8B5CF6;
+  --exp-accent-bright: #A78BFA;
   --exp-glow-wide: rgba(139, 92, 246, 0.22);
   --exp-glow-mid: rgba(139, 92, 246, 0.34);
   --exp-track: rgba(255, 255, 255, 0.09);
@@ -77,7 +77,12 @@
   );
   --exp-desc: rgba(249, 251, 252, 0.66);
 
-  --footer-max-w: 1040px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --wrap: 1440px;
+  --editorial: 1040px;
+  --pad: 24px;
+
+  --footer-max-w: var(--editorial);
   --color-footer-divider: rgba(255, 255, 255, 0.07);
 
   --focus-ring: var(--color-theme-2);

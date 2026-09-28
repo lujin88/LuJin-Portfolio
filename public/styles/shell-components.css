@@ -33,11 +33,11 @@ body::before {
   color: var(--pill-text);
   background: var(--pill-bg);
   transition:
-    transform var(--duration-interaction) cubic-bezier(0.22, 1, 0.36, 1),
-    background-color var(--duration-interaction) cubic-bezier(0.22, 1, 0.36, 1),
-    color var(--duration-interaction) cubic-bezier(0.22, 1, 0.36, 1),
-    border-color var(--duration-interaction) cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow var(--duration-interaction) cubic-bezier(0.22, 1, 0.36, 1);
+    transform var(--duration-interaction) var(--ease),
+    background-color var(--duration-interaction) var(--ease),
+    color var(--duration-interaction) var(--ease),
+    border-color var(--duration-interaction) var(--ease),
+    box-shadow var(--duration-interaction) var(--ease);
 }
 
 .pill-btn:hover {
@@ -53,7 +53,7 @@ body::before {
 }
 
 .pill-btn svg {
-  transition: transform var(--duration-interaction) cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--duration-interaction) var(--ease);
 }
 
 .pill-btn:hover svg {
@@ -64,8 +64,8 @@ body::before {
   opacity: 0;
   transform: translateY(28px);
   transition:
-    opacity var(--duration-reveal) cubic-bezier(0.22, 1, 0.36, 1),
-    transform var(--duration-reveal) cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--duration-reveal) var(--ease),
+    transform var(--duration-reveal) var(--ease);
 }
 
 .reveal.is-visible {
@@ -76,11 +76,11 @@ body::before {
 .contact-section {
   position: relative;
   background: transparent;
-  padding: clamp(6rem, 14vh, 9rem) 1.5rem clamp(4.5rem, 10vh, 7rem);
+  padding: clamp(6rem, 14vh, 9rem) var(--pad) clamp(4.5rem, 10vh, 7rem);
 }
 
 .exp-contact {
-  max-width: 1040px;
+  max-width: var(--editorial);
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -93,8 +93,8 @@ body::before {
   opacity: 0;
   transform: translateY(20px);
   transition:
-    opacity var(--duration-reveal) cubic-bezier(0.22, 1, 0.36, 1),
-    transform var(--duration-reveal) cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--duration-reveal) var(--ease),
+    transform var(--duration-reveal) var(--ease);
 }
 
 .contact-reveal.is-visible {
@@ -121,7 +121,7 @@ body::before {
 }
 
 .exp-contact__links a {
-  transition: color var(--duration-fast) cubic-bezier(0.22, 1, 0.36, 1);
+  transition: color var(--duration-fast) var(--ease);
 }
 
 .exp-contact__links a:hover {
@@ -144,11 +144,30 @@ body::before {
 }
 
 .exp-footer {
+  --footer-rule-inset: 4rem;
   background: transparent;
+  position: relative;
+  padding: var(--footer-rule-inset) var(--pad) 2rem;
+}
+
+.exp-footer::before {
+  content: "";
+  position: absolute;
+  top: var(--footer-rule-inset);
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  border-top: 1px solid var(--color-footer-divider);
+  pointer-events: none;
+}
+
+.site-footer__note {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.6;
 }
 
 .site-footer__bottom {
-  border-top: 1px solid var(--color-footer-divider);
   padding-top: 2rem;
   text-align: left;
   color: var(--color-text-3);
