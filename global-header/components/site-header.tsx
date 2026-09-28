@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useId, useRef, useState } from 'react'
-import { Check, ChevronDown, Menu, X } from 'lucide-react'
+import { Check, ChevronDown, Mail, Menu, X } from 'lucide-react'
 import { headerCopy } from '../lib/header-copy'
 import { LANGUAGES, useSiteLanguage } from '../lib/language'
 import { cn } from '../lib/utils'
@@ -606,12 +606,13 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
             href="mailto:lu.jin.ixd@gmail.com"
             onClick={() => setMenuOpen(false)}
             className={cn(
-              buttonVariants({ variant: 'headerPrimary', size: 'md' }),
-              'self-start',
+              'flex min-h-11 w-full items-center gap-3 rounded-sm text-lg text-header-foreground/72 transition-colors hover:text-header-foreground',
+              FOCUS_RING,
               MOTION_SAFE,
             )}
           >
-            {copy.contactMe}
+            <Mail aria-hidden="true" className="size-5 shrink-0" strokeWidth={1.5} />
+            {copy.email}
           </a>
           <div className="flex items-center gap-2 border-t border-header-line pt-5 text-sm">
             {LANGUAGES.map((lang, index) => (
