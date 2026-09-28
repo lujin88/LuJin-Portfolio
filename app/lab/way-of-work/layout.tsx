@@ -25,7 +25,6 @@ export default function WayOfWorkLayout({
 }>) {
   return (
     <HtmlChrome activeHref="/lab/way-of-work" backgroundColor={MIST}>
-      <style>{`html,body{background-color:${MIST} !important}`}</style>
       <link rel="stylesheet" href="/styles/shell-components.css" />
       {CHAPTERS.map((chapter) => (
         <link

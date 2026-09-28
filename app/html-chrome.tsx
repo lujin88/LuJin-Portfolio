@@ -20,6 +20,11 @@ export function HtmlChrome({
 }: HtmlChromeProps) {
   return (
     <>
+      {backgroundColor && (
+        // Rendered before the render-blocking <link> so the background colour
+        // is applied before the browser commits its first paint frame.
+        <style>{`html,body{background-color:${backgroundColor}!important;color-scheme:${colorScheme}}`}</style>
+      )}
       <link rel="stylesheet" href="/styles/shell-tokens.css" />
       <HtmlTheme
         className={theme}

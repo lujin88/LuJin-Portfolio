@@ -1,6 +1,6 @@
 html:has(.pp-landing),
 html:has(.pp-landing) body {
-  background: #1768e8;
+  background: #1768e8 !important;
   color-scheme: light;
 }
 

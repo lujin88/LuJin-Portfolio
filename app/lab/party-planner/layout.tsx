@@ -43,7 +43,6 @@ export default function PartyPlannerLayout({
       colorScheme="light"
       backgroundColor="#1768e8"
     >
-      <style>{'html,body{background-color:#1768e8 !important;color-scheme:light}'}</style>
       <link rel="stylesheet" href="/styles/shell-components.css" />
       <div className={`${inter.variable} ${patrickHand.variable} pp-landing`}>
         {children}
