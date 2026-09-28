@@ -298,16 +298,26 @@ img {
 .ds-header__cta {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 3rem;
   border-radius: var(--radius-pill);
   border: 1px solid var(--header-line);
-  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--header-foreground);
+  padding: 0 1.5rem;
   font-size: 1.0625rem;
+  font-weight: 400;
   line-height: 1;
   transition: border-color 200ms ease, background-color 200ms ease;
 }
 .ds-header__cta:hover {
   border-color: color-mix(in srgb, var(--header-foreground) 70%, transparent);
   background: color-mix(in srgb, var(--header-foreground) 6%, transparent);
+}
+.ds-header__cta:focus-visible {
+  outline: 2px solid var(--header-foreground);
+  outline-offset: 3px;
 }
 
 .ds-hero {
@@ -1099,10 +1109,18 @@ img {
 }
 
 .header-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 3rem;
   border-radius: var(--radius-pill);
   border: 1px solid var(--header-line);
-  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--header-foreground);
+  padding: 0 1.5rem;
   font-size: 1.0625rem;
+  font-weight: 400;
   line-height: 1;
 }
 
