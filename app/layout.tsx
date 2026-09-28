@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: 'Lu — %s',
   },
   description:
-    'Architecting scalable digital products from early-stage strategy to production-ready UI.',
+    'From early strategy to production-ready UI.',
   icons: {
     icon: [{ url: '/assets/images/brand/lu-logo.png', type: 'image/png' }],
     shortcut: '/assets/images/brand/lu-logo.png',

@@ -2,9 +2,9 @@ import type { LangCode } from '@header/lib/language'
 
 export const aboutMeTranslations = {
   en: {
-    mainHeading: 'Designer. Builder. Explorer.',
+    mainHeading: 'Strategy. Systems. Product.',
     subtext:
-      'I focus on harnessing AI to make everyday life more effortless, efficient, and fulfilling for everyone.',
+      'I turn complex systems into clear products, with AI inside the workflows people actually use.',
     annotations: {
       curious: 'Curious by nature, Always in progress.',
       travel: 'Travel',
@@ -13,15 +13,15 @@ export const aboutMeTranslations = {
       coffee: 'Good Coffee',
     },
     cards: {
-      card1Title: 'AI for Everyday Well-Being',
+      card1Title: 'Complex systems, clear product',
       card1Desc:
-        'Exploring how AI can make technology feel more human, turning complex intelligence into simple daily joy and peace of mind.',
-      card2Title: 'Effortless Productivity',
+        'Advisor, energy, and other B2B workflows, structured and turned into products people can understand and use.',
+      card2Title: 'AI inside real workflows',
       card2Desc:
-        'Designing intelligent workflows that reduce cognitive load, so people can spend less time doing friction work and more time living.',
-      card3Title: 'Human-First Innovation',
+        'AI placed where the work already happens — context, priority, and the next step — without another tool to learn.',
+      card3Title: 'From research to shipped UI',
       card3Desc:
-        'Building AI products that empower real people — focusing on real-world impact, ethical design, and happier everyday lives.',
+        'Research, information architecture, prototyping, and production UI, carried through with engineering to release.',
     },
     stats: {
       years: 'Years in Design',
@@ -31,9 +31,9 @@ export const aboutMeTranslations = {
     },
   },
   de: {
-    mainHeading: 'Gestalterin. Entwicklerin. Entdeckerin.',
+    mainHeading: 'Strategie. Systeme. Produkt.',
     subtext:
-      'Ich konzentriere mich darauf, KI so einzusetzen, dass der Alltag für alle müheloser, effizienter und erfüllender wird.',
+      'Ich übersetze komplexe Systeme in klare Produkte — mit KI in echten Workflows.',
     annotations: {
       curious: 'Von Natur aus neugierig, Immer im Wandel.',
       travel: 'Reisen',
@@ -42,15 +42,15 @@ export const aboutMeTranslations = {
       coffee: 'Guter Kaffee',
     },
     cards: {
-      card1Title: 'KI für alltägliches Wohlbefinden',
+      card1Title: 'Komplexe Systeme, klares Produkt',
       card1Desc:
-        'Erforschung, wie KI Technologie menschlicher gestalten kann – für mehr einfache Freude und Gelassenheit im Alltag.',
-      card2Title: 'Mühelose Produktivität',
+        'Berater-, Energie- und weitere B2B-Workflows — strukturiert und in Produkte übersetzt, die sich verstehen und nutzen lassen.',
+      card2Title: 'KI in echten Workflows',
       card2Desc:
-        'Gestaltung intelligenter Workflows, die die kognitive Belastung reduzieren, damit Menschen weniger Zeit mit Routineaufgaben verbringen.',
-      card3Title: 'Menschzentrierte Innovation',
+        'KI dort, wo die Arbeit schon stattfindet — Kontext, Priorität und der nächste Schritt — ohne ein weiteres Tool.',
+      card3Title: 'Von Research zur ausgelieferten UI',
       card3Desc:
-        'Entwicklung von KI-Produkten, die echte Menschen stärken – mit Fokus auf echte Wirkung, ethisches Design und mehr Lebensfreude.',
+        'Research, Informationsarchitektur, Prototyping und produktionsreife UI — gemeinsam mit der Entwicklung bis zum Release.',
     },
     stats: {
       years: 'Jahre im Design',
@@ -68,7 +68,7 @@ const aboutPageTranslations = {
     startBtn: 'A Quick Hi',
     eyebrow: 'About me',
     scrolls: 'Scrolls',
-    contactHeading: 'Have an opportunity in mind?',
+    contactHeading: 'Open to new opportunities.',
     letsTalk: "Let's talk",
     downloadCv: 'Download CV',
     footerRights: '© 2026 Lu Jin. All rights reserved.',
@@ -87,7 +87,7 @@ const aboutPageTranslations = {
     startBtn: 'Ein kurzes Hi',
     eyebrow: 'Über mich',
     scrolls: 'Scrollen',
-    contactHeading: 'Haben Sie ein Vorhaben im Kopf?',
+    contactHeading: 'Offen für neue Möglichkeiten.',
     letsTalk: 'Lass uns sprechen',
     downloadCv: 'Lebenslauf',
     footerRights: '© 2026 Lu Jin. Alle Rechte vorbehalten.',
