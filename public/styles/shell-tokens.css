@@ -83,7 +83,7 @@
   --pad: 24px;
 
   --footer-max-w: var(--editorial);
-  --color-footer-divider: rgba(255, 255, 255, 0.07);
+  --color-footer-divider: rgba(255, 255, 255, 0.045);
 
   --focus-ring: var(--color-theme-2);
   --focus-ring-width: 2px;

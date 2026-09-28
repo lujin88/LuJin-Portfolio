@@ -27,7 +27,7 @@
   --color-border-container: #242629;
   --color-border-divider: #343638;
   --color-border-hover: #76787a;
-  --color-footer-divider: rgba(255, 255, 255, 0.07);
+  --color-footer-divider: rgba(255, 255, 255, 0.045);
 
   --hairline: rgba(255, 255, 255, 0.1);
   --hairline-strong: rgba(255, 255, 255, 0.16);

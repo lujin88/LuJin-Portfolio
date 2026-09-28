@@ -104,7 +104,7 @@
   --footer: oklch(0.13 0.008 265);
   --footer-foreground: oklch(0.985 0 0);
   --footer-muted: oklch(0.6 0.012 265);
-  --footer-line: oklch(1 0 0 / 12%);
+  --footer-line: oklch(1 0 0 / 6%);
   --footer-glow: oklch(0.22 0.05 265);
   --mandate-bg: oklch(0.19 0.035 249);
   --mandate-fg: oklch(0.98 0.005 250);
@@ -158,7 +158,7 @@
   --footer: oklch(0.13 0.008 265);
   --footer-foreground: oklch(0.985 0 0);
   --footer-muted: oklch(0.6 0.012 265);
-  --footer-line: oklch(1 0 0 / 12%);
+  --footer-line: oklch(1 0 0 / 6%);
   --footer-glow: oklch(0.22 0.05 265);
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -206,7 +206,7 @@
     --footer: oklch(0.13 0.008 265);
     --footer-foreground: oklch(0.985 0 0);
     --footer-muted: oklch(0.6 0.012 265);
-    --footer-line: oklch(1 0 0 / 12%);
+    --footer-line: oklch(1 0 0 / 6%);
     --footer-glow: oklch(0.22 0.05 265);
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
@@ -849,7 +849,17 @@
  */
 @media (min-width: 1024px) {
   html:has(.ca-s01-s03) {
-    scroll-snap-type: y proximity;
+    /*
+     * Session 06 is a sticky pin: the stage stays in view while extra
+     * scroll height steps the concept accordion. y-snap on this scrollport,
+     * together with scroll-behavior: smooth, swallows wheel input on each
+     * full-viewport section, so the page lands and stops instead of scrubbing
+     * the pin. Alignment stays declared on the sections; the type stays off.
+     * overflow-x: clip avoids a hidden-overflow scrollport around the pin.
+     */
+    overflow-x: clip;
+    scroll-behavior: auto;
+    scroll-snap-type: none;
   }
 
   .ca-s01,
@@ -987,4 +997,13 @@
     transform: none;
     transition: none;
   }
+}
+
+/*
+ * Footer rule. Unlayered so it wins over base `* { border-color: var(--border) }`.
+ * That light-gray border (oklch 0.922) paints as a near-white line on navy when
+ * the footer-line utility does not override it. The token itself is a 6% hairline.
+ */
+footer > hr {
+  border-top-color: var(--footer-line);
 }

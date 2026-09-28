@@ -108,7 +108,7 @@
   --footer: oklch(0.13 0.008 265);
   --footer-foreground: oklch(0.985 0 0);
   --footer-muted: oklch(0.6 0.012 265);
-  --footer-line: oklch(1 0 0 / 12%);
+  --footer-line: oklch(1 0 0 / 6%);
   --footer-glow: oklch(0.22 0.05 265);
   --navy-950: #07151f;
   --navy-900: #0a1822;
@@ -322,6 +322,11 @@ footer[data-variant='light'] {
   --footer: #ffffff;
   --footer-foreground: #07151f;
   --footer-muted: #5c6b7a;
-  --footer-line: rgb(7 21 31 / 12%);
+  --footer-line: rgb(7 21 31 / 8%);
   --footer-glow: transparent;
+}
+
+/* Unlayered so the rule stays a hairline and does not fall back to the light --border gray. */
+footer > hr {
+  border-top-color: var(--footer-line);
 }
