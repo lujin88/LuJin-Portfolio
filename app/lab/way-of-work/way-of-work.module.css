@@ -26,6 +26,7 @@
   height: 100vh;
   height: 100dvh;
   overflow: hidden;
+  background: #587894;
 }
 
 .layerMedia,
@@ -86,6 +87,12 @@
 
 .video {
   z-index: 2;
+  opacity: 0;
+  background: #587894;
+}
+
+.video[data-synced] {
+  opacity: 1;
 }
 
 .copy {

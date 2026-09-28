@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, Patrick_Hand } from 'next/font/google'
 import 'remixicon/fonts/remixicon.css'
 
@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     'Party Planner turns four practical details into one calm plan for a child’s birthday — invitations, RSVPs, local suppliers and the party-day schedule.',
 }
 
+export const viewport: Viewport = {
+  colorScheme: 'light',
+  themeColor: '#1768e8',
+}
+
 export default function PartyPlannerLayout({
   children,
 }: Readonly<{
@@ -38,6 +43,7 @@ export default function PartyPlannerLayout({
       colorScheme="light"
       backgroundColor="#1768e8"
     >
+      <style>{'html,body{background-color:#1768e8 !important;color-scheme:light}'}</style>
       <link rel="stylesheet" href="/styles/shell-components.css" />
       <div className={`${inter.variable} ${patrickHand.variable} pp-landing`}>
         {children}

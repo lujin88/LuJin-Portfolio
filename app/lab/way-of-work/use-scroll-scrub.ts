@@ -14,6 +14,17 @@ function motionOk() {
   return !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
+/** True when `time` sits inside an already-downloaded range. */
+function timeBuffered(video: HTMLVideoElement, time: number) {
+  const buffered = video.buffered
+  for (let i = 0; i < buffered.length; i += 1) {
+    const start = buffered.start(i)
+    const end = buffered.end(i)
+    if (time >= start && time <= end - 0.04) return true
+  }
+  return false
+}
+
 /**
  * Maps wrapper scroll progress onto a paused video's currentTime.
  * `progressRef` is written every frame. Do not copy it into React state.
@@ -118,6 +129,7 @@ export function useScrollScrub(
       onFrameRef.current?.(progress)
 
       if (reduced) {
+        delete video.dataset.synced
         if (video.readyState >= 1 && video.currentTime > SEEK_EPSILON) {
           try {
             video.currentTime = 0
@@ -131,13 +143,27 @@ export function useScrollScrub(
           const target = progress * duration
           const dt = Math.min(0.1, (now - last) / 1000)
           const smoothing = 1 - Math.exp(-dt * SMOOTHING)
-          smoothed += (target - smoothed) * smoothing
+          // A fast first scroll can jump seconds ahead of the eased time.
+          // Snap instead of easing through every unbuffered frame.
+          if (Math.abs(target - smoothed) > 0.35) smoothed = target
+          else smoothed += (target - smoothed) * smoothing
           if (Math.abs(target - smoothed) < SETTLE) smoothed = target
 
+          const buffered = timeBuffered(video, smoothed)
+          const frameMatches = Math.abs(video.currentTime - smoothed) <= SEEK_EPSILON
+          const synced =
+            video.readyState >= 2 && !video.seeking && buffered && frameMatches
+          if (synced) video.dataset.synced = 'true'
+          else delete video.dataset.synced
+
+          // Seeking into a range that is still downloading paints black and
+          // blocks later seeks. Leave the poster still in place until the
+          // target time is already in `buffered`.
           if (
+            buffered &&
             video.readyState >= 2 &&
             !pendingSeek &&
-            Math.abs(video.currentTime - smoothed) > SEEK_EPSILON
+            !frameMatches
           ) {
             pendingSeek = true
             seekWatch = window.setTimeout(releaseSeek, 80)
@@ -147,6 +173,8 @@ export function useScrollScrub(
               releaseSeek()
             }
           }
+        } else {
+          delete video.dataset.synced
         }
       }
 

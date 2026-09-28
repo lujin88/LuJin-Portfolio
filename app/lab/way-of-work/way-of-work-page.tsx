@@ -14,6 +14,7 @@ export function WayOfWorkPage() {
   const { t } = useTranslation()
   const wrapperRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const stillRef = useRef<HTMLImageElement>(null)
   const heroRef = useRef<HTMLElement>(null)
   const cardRefs = useRef<(HTMLElement | null)[]>([])
   const cards = CHAPTERS.slice(1)
@@ -24,6 +25,19 @@ export function WayOfWorkPage() {
       hero.style.opacity = String(Math.max(0, 1 - progress * 8))
       hero.style.transform = 'none'
     }
+
+    const stillIndex = Math.min(
+      CHAPTERS.length - 1,
+      Math.round(progress * (CHAPTERS.length - 1)),
+    )
+    const chapter = CHAPTERS[stillIndex]
+    const still = stillRef.current
+    if (still) {
+      if (still.getAttribute('src') !== chapter.still) still.src = chapter.still
+      still.style.objectPosition = chapter.objectPosition
+    }
+    const video = videoRef.current
+    if (video) video.style.objectPosition = chapter.objectPosition
 
     const count = cards.length
     const inCards = progress > CARD_START
@@ -56,7 +70,15 @@ export function WayOfWorkPage() {
       >
         <div className={cn('sticky top-0 h-screen w-full overflow-hidden', styles.stage)}>
           <div className={styles.layerMedia} aria-hidden="true">
-            <img className={styles.still} src={CHAPTERS[0].still} alt="" />
+            <img
+              ref={stillRef}
+              className={styles.still}
+              src={CHAPTERS[0].still}
+              alt=""
+              fetchPriority="high"
+              decoding="async"
+              style={{ objectPosition: CHAPTERS[0].objectPosition }}
+            />
             <video
               ref={videoRef}
               className={cn(styles.video, 'absolute inset-0 h-full w-full object-cover')}
@@ -66,6 +88,7 @@ export function WayOfWorkPage() {
               playsInline
               preload="auto"
               autoPlay={false}
+              style={{ objectPosition: CHAPTERS[0].objectPosition }}
               disablePictureInPicture
             />
           </div>
