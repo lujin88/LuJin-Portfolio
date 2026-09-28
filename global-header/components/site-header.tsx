@@ -466,6 +466,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
               href="mailto:lu.jin.ixd@gmail.com"
               className={cn(
                 buttonVariants({ variant: 'headerPrimary', size: 'md' }),
+                'hidden lg:inline-flex',
                 MOTION_SAFE,
               )}
             >
@@ -601,6 +602,17 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
               )
             })}
           </ul>
+          <a
+            href="mailto:lu.jin.ixd@gmail.com"
+            onClick={() => setMenuOpen(false)}
+            className={cn(
+              buttonVariants({ variant: 'headerPrimary', size: 'md' }),
+              'self-start',
+              MOTION_SAFE,
+            )}
+          >
+            {copy.contactMe}
+          </a>
           <div className="flex items-center gap-2 border-t border-header-line pt-5 text-sm">
             {LANGUAGES.map((lang, index) => (
               <button
