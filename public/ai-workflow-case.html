@@ -69,6 +69,8 @@
     border: none;
     cursor: pointer;
     padding: 1.1rem 0;
+    font: inherit;
+    color: inherit;
   }
 
   .accordion-bar {
@@ -89,14 +91,7 @@
   }
   .accordion-item.is-active .accordion-title { color: var(--color-text-1); }
   .accordion-item:not(.is-active):hover .accordion-title { color: var(--color-text-2); }
-
-  /* scroll-driven groups (inside .pin-wrap): not clickable, advance from scroll position only.
-     pointer-events stays enabled so the title/body text remains selectable/copyable; the JS
-     click-to-advance binding is what's actually skipped for these groups (see .closest('.pin-wrap') check). */
-  .pin-wrap .accordion-item {
-    cursor: default;
-  }
-  .pin-wrap .accordion-item:not(.is-active):hover .accordion-title { color: var(--color-text-3); }
+  .accordion-item:focus-visible { outline: 2px solid var(--color-theme-2); outline-offset: 4px; }
 
   .accordion-body-wrap {
     display: grid;
@@ -110,6 +105,7 @@
   }
   .accordion-body-inner { overflow: hidden; }
   .accordion-body {
+    display: block;
     margin-top: 0.85rem;
     color: var(--color-text-2);
     line-height: 1.75;
@@ -169,8 +165,14 @@
 
   @media (prefers-reduced-motion: reduce) {
     .pin-wrap { height: auto !important; }
-    .pin-sticky { position: relative; height: auto !important; }
+    .pin-sticky { position: relative !important; height: auto !important; }
     .pin-media { transform: none !important; }
+    .accordion-body-wrap,
+    .accordion-title,
+    .accordion-bar,
+    .scroll-media {
+      transition: none;
+    }
   }
 </style>
 </head>
@@ -276,53 +278,53 @@
 
       <div class="grid lg:grid-cols-[minmax(0,57fr)_minmax(0,43fr)] gap-12 lg:gap-20 items-center">
         <div class="accordion lg:order-2" data-group="1">
-          <div class="accordion-item is-active" data-index="0">
-            <span class="accordion-bar"></span>
+          <button type="button" class="accordion-item is-active" data-index="0" aria-expanded="true" aria-controls="ai-step-0" aria-labelledby="ai-step-0-label">
+            <span class="accordion-bar" aria-hidden="true"></span>
             <span class="flex-1">
-              <span class="accordion-title block" data-i18n="ai.step1Title">01 — Explore · Start with better questions</span>
-              <span class="accordion-body-wrap">
+              <span class="accordion-title block" id="ai-step-0-label" data-i18n="ai.step1Title">01 — Explore · Start with better questions</span>
+              <span class="accordion-body-wrap" id="ai-step-0">
                 <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n-html="ai.step1BodyHtml">Research, challenge assumptions, connect signals, and explore beyond the obvious. AI compresses the reading, but the framing &mdash; which questions are worth asking &mdash; stays the designer's call.<br /><span class="text-text3">ChatGPT · Claude · Gemini · Perplexity</span></p>
+                  <span class="accordion-body" data-i18n-html="ai.step1BodyHtml">Research, challenge assumptions, connect signals, and explore beyond the obvious. AI compresses the reading, but the framing &mdash; which questions are worth asking &mdash; stays the designer's call.<br /><span class="text-text3">ChatGPT · Claude · Gemini · Perplexity</span></span>
                 </span>
               </span>
             </span>
-          </div>
+          </button>
 
-          <div class="accordion-item" data-index="1">
-            <span class="accordion-bar"></span>
+          <button type="button" class="accordion-item" data-index="1" aria-expanded="false" aria-controls="ai-step-1" aria-labelledby="ai-step-1-label">
+            <span class="accordion-bar" aria-hidden="true"></span>
             <span class="flex-1">
-              <span class="accordion-title block" data-i18n="ai.step2Title">02 — Generate · Make possibilities visible</span>
-              <span class="accordion-body-wrap">
+              <span class="accordion-title block" id="ai-step-1-label" data-i18n="ai.step2Title">02 — Generate · Make possibilities visible</span>
+              <span class="accordion-body-wrap" id="ai-step-1">
                 <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n-html="ai.step2BodyHtml">Turn ideas into visuals, motion, and directions &mdash; making abstract thinking tangible early, while it's still cheap to change your mind.<br /><span class="text-text3">Kling · Seedance · MiniMax · Jimeng</span></p>
+                  <span class="accordion-body" data-i18n-html="ai.step2BodyHtml">Turn ideas into visuals, motion, and directions &mdash; making abstract thinking tangible early, while it's still cheap to change your mind.<br /><span class="text-text3">Kling · Seedance · MiniMax · Jimeng</span></span>
                 </span>
               </span>
             </span>
-          </div>
+          </button>
 
-          <div class="accordion-item" data-index="2">
-            <span class="accordion-bar"></span>
+          <button type="button" class="accordion-item" data-index="2" aria-expanded="false" aria-controls="ai-step-2" aria-labelledby="ai-step-2-label">
+            <span class="accordion-bar" aria-hidden="true"></span>
             <span class="flex-1">
-              <span class="accordion-title block" data-i18n="ai.step3Title">03 — Prototype · Make it real enough to learn</span>
-              <span class="accordion-body-wrap">
+              <span class="accordion-title block" id="ai-step-2-label" data-i18n="ai.step3Title">03 — Prototype · Make it real enough to learn</span>
+              <span class="accordion-body-wrap" id="ai-step-2">
                 <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n-html="ai.step3BodyHtml">Turn promising directions into working experiences and see what holds up under real interaction, not just in a static frame.<br /><span class="text-text3">Figma · Canva · Paico</span></p>
+                  <span class="accordion-body" data-i18n-html="ai.step3BodyHtml">Turn promising directions into working experiences and see what holds up under real interaction, not just in a static frame.<br /><span class="text-text3">Figma · Canva · Paico</span></span>
                 </span>
               </span>
             </span>
-          </div>
+          </button>
 
-          <div class="accordion-item" data-index="3">
-            <span class="accordion-bar"></span>
+          <button type="button" class="accordion-item" data-index="3" aria-expanded="false" aria-controls="ai-step-3" aria-labelledby="ai-step-3-label">
+            <span class="accordion-bar" aria-hidden="true"></span>
             <span class="flex-1">
-              <span class="accordion-title block" data-i18n="ai.step4Title">04 — Iterate · Make. Test. Learn. Repeat.</span>
-              <span class="accordion-body-wrap">
+              <span class="accordion-title block" id="ai-step-3-label" data-i18n="ai.step4Title">04 — Iterate · Make. Test. Learn. Repeat.</span>
+              <span class="accordion-body-wrap" id="ai-step-3">
                 <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n-html="ai.step4BodyHtml">Push ideas through scenarios and edge cases, then rethink what doesn't work. The loop tightens each pass until the direction earns its place.<br /><span class="text-text3">Claude · Codex</span></p>
+                  <span class="accordion-body" data-i18n-html="ai.step4BodyHtml">Push ideas through scenarios and edge cases, then rethink what doesn't work. The loop tightens each pass until the direction earns its place.<br /><span class="text-text3">Claude · Codex</span></span>
                 </span>
               </span>
             </span>
-          </div>
+          </button>
         </div>
 
         <div class="relative rounded-2xl overflow-hidden media-panel aspect-[16/9] lg:order-1">
@@ -453,7 +455,79 @@
 </footer>
 
 <script>
-  // Accordion inside .pin-wrap is scroll-driven (see updateScrollEffects).
+  // Accordion steps are buttons: click, Enter, and Space activate that step
+  // and the paired .scroll-media, the same swap scroll uses. Scroll keeps
+  // driving once progress enters a different step than the one in view at
+  // click time, so a click is not undone by the in-flight scroll frame.
+  // prefers-reduced-motion skips the scroll driver; click still works.
+  const accordionReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function accordionClamp(v, min, max) {
+    return Math.max(min, Math.min(max, v));
+  }
+
+  function accordionNaturalIndex(progress, count) {
+    return Math.min(count - 1, Math.floor(progress * count));
+  }
+
+  function accordionProgress(wrap) {
+    const rect = wrap.getBoundingClientRect();
+    const scrollable = rect.height - window.innerHeight;
+    return scrollable > 0 ? accordionClamp(-rect.top / scrollable, 0, 1) : 0;
+  }
+
+  function syncAccordion(wrap, activeIndex) {
+    wrap.querySelectorAll('.accordion-item[data-index]').forEach((item) => {
+      const on = Number(item.dataset.index) === activeIndex;
+      item.classList.toggle('is-active', on);
+      item.setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+    wrap.querySelectorAll('.scroll-media[data-index]').forEach((img) => {
+      img.classList.toggle('opacity-0', Number(img.dataset.index) !== activeIndex);
+    });
+  }
+
+  const accordionStates = new Map();
+  document.querySelectorAll('.pin-wrap').forEach((wrap) => {
+    const items = Array.from(wrap.querySelectorAll('.accordion-item[data-index]'));
+    if (!items.length) return;
+    const current = items.find((item) => item.classList.contains('is-active'));
+    const state = {
+      last: current ? Number(current.dataset.index) : 0,
+      clickLock: null,
+    };
+    accordionStates.set(wrap, state);
+    items.forEach((item) => {
+      item.addEventListener('click', () => {
+        const index = Number(item.dataset.index);
+        if (!Number.isFinite(index) || index === state.last) return;
+        if (!accordionReduceMotion) {
+          const natural = accordionNaturalIndex(accordionProgress(wrap), items.length);
+          state.clickLock = index === natural ? null : { index, natural };
+        } else {
+          state.clickLock = null;
+        }
+        state.last = index;
+        syncAccordion(wrap, index);
+      });
+    });
+  });
+
+  function accordionSyncFromScroll(wrap, progress) {
+    const state = accordionStates.get(wrap);
+    if (!state) return;
+    const count = wrap.querySelectorAll('.accordion-item[data-index]').length;
+    if (!count) return;
+    let activeIndex = accordionNaturalIndex(progress, count);
+    if (state.clickLock) {
+      if (activeIndex === state.clickLock.natural) activeIndex = state.clickLock.index;
+      else state.clickLock = null;
+    }
+    if (activeIndex === state.last) return;
+    state.last = activeIndex;
+    syncAccordion(wrap, activeIndex);
+  }
+
   const revealEls = document.querySelectorAll('.reveal, .contact-reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -535,17 +609,7 @@
           media.style.transform = `scale(${1 + progress * amount})`;
         });
 
-        const scrollItems = Array.from(wrap.querySelectorAll('.accordion-item[data-index]'));
-        if (scrollItems.length) {
-          const count = scrollItems.length;
-          const activeIndex = Math.min(count - 1, Math.floor(progress * count));
-          scrollItems.forEach((item) => {
-            item.classList.toggle('is-active', Number(item.dataset.index) === activeIndex);
-          });
-          wrap.querySelectorAll('.scroll-media[data-index]').forEach((img) => {
-            img.classList.toggle('opacity-0', Number(img.dataset.index) !== activeIndex);
-          });
-        }
+        accordionSyncFromScroll(wrap, progress);
       });
 
       ticking = false;
