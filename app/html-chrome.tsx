@@ -15,7 +15,9 @@ export function HtmlChrome({
       <link rel="stylesheet" href="/styles/shell-tokens.css" />
       <HtmlTheme className="dark" colorScheme="dark" />
       <SiteHeader activeHref={activeHref} />
-      <div id="site-content">{children}</div>
+      <div id="site-content" tabIndex={-1}>
+        {children}
+      </div>
       <HtmlLanguageSync />
     </>
   )

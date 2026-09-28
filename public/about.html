@@ -618,12 +618,16 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       #bgVideo { transition-duration: 0.001ms; }
+      #introOverlay,
+      .intro-close { transition: none; }
+      .intro-close:active { transform: none; }
     }
   </style>
 </head>
 
 <body class="font-sans bg-ink text-text2 min-w-[360px]">
 
+<main>
   <!-- ============ SECTION 1 — HERO (normal page flow, one viewport tall) ============ -->
   <section id="hero" class="hero relative w-full h-screen bg-ink overflow-hidden select-none">
 
@@ -633,6 +637,7 @@
       src="/assets/videos/about/turn-head.mp4"
       poster="/assets/images/about/middle-wave-hand.jpeg"
       muted playsinline preload="auto"
+      aria-hidden="true"
     ></video>
     <div class="absolute inset-0 bg-black/25 pointer-events-none z-[1]"></div>
 
@@ -779,6 +784,7 @@
       </a>
     </div>
   </section>
+</main>
 
   <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
     <div class="site-footer__inner">
@@ -792,13 +798,15 @@
        Click-triggered only. Lives at the document root, fixed to the
        viewport, above the page but below the global nav. Never a scroll
        section — scrolling can neither reach it nor pass back through it. ============ -->
-  <div id="introOverlay" aria-hidden="true">
+  <div id="introOverlay" role="dialog" aria-modal="true" aria-labelledby="introTitle" aria-hidden="true" inert>
+    <p id="introTitle" class="sr-only" data-i18n="page.startBtn">A Quick Hi</p>
     <video
       id="introVideo"
       src="/assets/videos/about/lu-intro.mp4"
       playsinline
       controls
-      preload="auto"></video>
+      preload="auto"
+      aria-labelledby="introTitle"></video>
     <button id="introClose" type="button" class="intro-close" aria-label="Close video" data-i18n="page.closeVideo">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
         <path d="M6 6l12 12M18 6L6 18" />
@@ -929,37 +937,60 @@
       aboutReveals.forEach((el) => el.classList.add('is-visible'));
     };
 
-    const closeIntro = () => {
+    const closeIntro = (restoreFocus) => {
+      const wasOpen = introOverlay.classList.contains('active');
       introOverlay.classList.remove('active');
       introOverlay.setAttribute('aria-hidden', 'true');
+      introOverlay.setAttribute('inert', '');
       document.body.classList.remove('intro-lock');
       introVideo.pause();
       introVideo.currentTime = 0;
+      if (wasOpen && restoreFocus) startBtn.focus();
     };
 
-    startBtn.addEventListener('click', () => {
+    const openIntro = () => {
       if (introOverlay.classList.contains('active')) return;
       introOverlay.classList.add('active');
       introOverlay.setAttribute('aria-hidden', 'false');
+      introOverlay.removeAttribute('inert');
       // freeze page scroll only while the overlay owns the screen
       document.body.classList.add('intro-lock');
       // play straight from the click gesture so audio playback is allowed
       introVideo.currentTime = 0;
       introVideo.muted = false;
       introVideo.volume = 1;
+      introClose.focus();
       const p = introVideo.play();
       if (p && p.catch) p.catch(() => {});
-    });
+    };
+
+    startBtn.addEventListener('click', openIntro);
 
     // manual dismiss (X / Esc) — just close, leave the page untouched
-    introClose.addEventListener('click', closeIntro);
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && introOverlay.classList.contains('active')) closeIntro();
+    introClose.addEventListener('click', () => closeIntro(true));
+    introOverlay.addEventListener('keydown', (e) => {
+      if (!introOverlay.classList.contains('active')) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeIntro(true);
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      const focusable = [introVideo, introClose];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     });
 
     // natural end — close the overlay, then glide down to About
     introVideo.addEventListener('ended', () => {
-      closeIntro();
+      closeIntro(false);
       revealAbout();
       second.scrollIntoView({
         behavior: prefersReducedMotion ? 'auto' : 'smooth',

@@ -114,8 +114,8 @@
   }
   .pill-btn:active { transform: translateY(0) scale(0.97); }
   .pill-btn:focus-visible {
-    outline: 2px solid #8B5CF6;
-    outline-offset: 3px;
+    outline: 2px solid var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
   }
   .pill-btn svg { transition: transform 320ms cubic-bezier(0.22,1,0.36,1); }
   .pill-btn:hover svg { transform: translateX(3px); }
@@ -204,7 +204,7 @@
   }
   .accordion-item.is-active .accordion-title { color: var(--color-text-1); }
   .accordion-item:not(.is-active):hover .accordion-title { color: var(--color-text-2); }
-  .accordion-item:focus-visible { outline: 2px solid #8B5CF6; outline-offset: 4px; }
+  .accordion-item:focus-visible { outline: 2px solid var(--color-theme-2); outline-offset: 4px; }
 
   /* scroll-driven groups (inside .pin-wrap): not clickable, advance from scroll position only.
      pointer-events stays enabled so the title/body text remains selectable/copyable; the JS
@@ -390,7 +390,7 @@
     padding-bottom: var(--logo-overlay-space);
   }
   .hero-pin-section h1,
-  .hero-pin-section .pill-btn { color: #f9fbfc; }
+  .hero-pin-section .pill-btn { color: var(--color-text-1); }
   .hero-pin-section .z-10 p { color: #d7dbe0; }
   .hero-media {
     position: absolute;
@@ -864,7 +864,14 @@
     color: var(--color-text-3);
   }
   .exp-contact__links a {
+    position: relative;
     transition: color 0.3s var(--exp-ease);
+  }
+  .exp-contact__links a::before {
+    content: "";
+    position: absolute;
+    inset-block: -0.75rem;
+    inset-inline: -0.2rem;
   }
   .exp-contact__links a:hover { color: var(--color-text-1); }
   .exp-contact__links a:focus-visible {
@@ -975,6 +982,23 @@
       display: flex !important;
       min-height: 100dvh;
       height: 100dvh;
+    }
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .pill-btn,
+    .pill-btn svg,
+    .accordion-body-wrap,
+    .accordion-title,
+    .accordion-bar {
+      transition: none;
+    }
+    .pill-btn:hover,
+    .pill-btn:active,
+    .pill-btn:hover svg {
+      transform: none;
     }
   }
 
@@ -1152,6 +1176,7 @@
   </div>
 </nav>
 
+<main>
 <!-- HERO — full-viewport video stage with logo overlay docked to the bottom -->
 <div id="hero">
   <section class="hero-pin-section relative w-full min-h-[100dvh] h-[100dvh] overflow-hidden flex items-center pt-20 md:pt-24">
@@ -1600,6 +1625,7 @@
     </a>
   </div>
 </section>
+</main>
 
 <!-- FOOTER — shared across every page (identical markup + .site-footer rules) -->
 <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">

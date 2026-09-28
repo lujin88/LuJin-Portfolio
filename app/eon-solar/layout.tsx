@@ -29,7 +29,7 @@ export default function EonSolarLayout({
       <div className="site-chrome">
         <SiteHeader activeHref="/EON" />
       </div>
-      <div id="site-content" className="pt-20 md:pt-24">
+      <div id="site-content" tabIndex={-1} className="pt-20 md:pt-24">
         {children}
       </div>
       <div className="site-chrome">

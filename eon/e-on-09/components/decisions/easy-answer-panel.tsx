@@ -1,5 +1,6 @@
 'use client'
 
+import { useRef } from 'react'
 import { User, Users } from 'lucide-react'
 import { ComparisonCardHeader } from '@eon/components/decisions/comparison-card-header'
 import { PanelArrow } from '@eon/components/decisions/panel-arrow'
@@ -41,6 +42,14 @@ export function EasyAnswerPanel({
   onSelect: (id: HouseholdId) => void
 }) {
   const { t } = useTranslation()
+  const optionRefs = useRef<(HTMLButtonElement | null)[]>([])
+
+  const moveOccupancy = (from: number, delta: number) => {
+    const next = (from + delta + occupancyOptions.length) % occupancyOptions.length
+    onSelect(occupancyOptions[next].value)
+    optionRefs.current[next]?.focus()
+  }
+
   return (
     <div className="relative z-10 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:gap-x-6">
       <div className={cardClassName}>
@@ -67,17 +76,31 @@ export function EasyAnswerPanel({
             <p className="mt-1 text-xs text-muted-foreground">{t('eon.ui.occupancyHint')}</p>
 
             <div className="mt-5 grid w-[78%] grid-cols-5 gap-3" role="radiogroup" aria-label={t('eon.ui.occupancyAria')}>
-              {occupancyOptions.map(({ value, icon: Icon }) => {
+              {occupancyOptions.map(({ value, icon: Icon }, index) => {
                 const selected = value === household.id
                 return (
                   <button
                     key={value}
+                    ref={(node) => {
+                      optionRefs.current[index] = node
+                    }}
                     type="button"
                     role="radio"
                     aria-checked={selected}
+                    tabIndex={selected ? 0 : -1}
                     onClick={() => onSelect(value)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+                        event.preventDefault()
+                        moveOccupancy(index, 1)
+                      } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+                        event.preventDefault()
+                        moveOccupancy(index, -1)
+                      }
+                    }}
                     className={cn(
-                      'flex cursor-pointer flex-col items-center gap-1 rounded-2xl py-2.5',
+                      'flex min-h-11 cursor-pointer flex-col items-center justify-center gap-1 rounded-2xl py-2.5',
+                      'focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current',
                       selected ? 'bg-primary/20' : 'border border-navy-950/8 bg-card',
                     )}
                   >

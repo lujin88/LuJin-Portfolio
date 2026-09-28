@@ -154,10 +154,14 @@
   cursor: pointer;
 }
 
-.close:hover,
+.close:hover {
+  background: rgba(22, 52, 104, 0.96);
+}
+
 .close:focus-visible {
   background: rgba(22, 52, 104, 0.96);
-  outline: none;
+  outline: 2px solid #f4f7fb;
+  outline-offset: 3px;
 }
 
 .srOnly {
