@@ -851,11 +851,13 @@
   html:has(.ca-s01-s03) {
     /*
      * Session 06 is a sticky pin: the stage stays in view while extra
-     * scroll height steps the concept accordion. y-snap on this scrollport,
-     * together with scroll-behavior: smooth, swallows wheel input on each
-     * full-viewport section, so the page lands and stops instead of scrubbing
-     * the pin. Alignment stays declared on the sections; the type stays off.
-     * overflow-x: clip avoids a hidden-overflow scrollport around the pin.
+     * scroll height scrubs the concept steps. Morning y-proximity snap on
+     * this scrollport pulls small wheel deltas back onto the hero and the
+     * full-viewport sections, so the pin is never scrubbed — the page lands
+     * and stops. Alignment stays declared on those sections; the type stays
+     * off. overflow-x: clip keeps the document as the scrollport (hidden
+     * would promote the other axis and can drop the sticky stage).
+     * scroll-behavior stays auto so each wheel delta moves --p directly.
      */
     overflow-x: clip;
     scroll-behavior: auto;

@@ -1,8 +1,28 @@
 'use client'
 
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 
 const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v))
+
+/**
+ * Body openness for step i across the pin.
+ * Steps still split the scroll into equal slices. The next body grows through
+ * the slice before its boundary, and the previous body closes just after, so
+ * the handoff tracks the wheel instead of popping on one threshold.
+ */
+function openAmount(i: number, progress: number, count: number) {
+  const pos = progress * count
+  const lead = 0.72
+  const openStart = i === 0 ? -1 : i - lead
+  const openEnd = i === 0 ? 0 : i
+  const closeStart = i + 1
+  const closeEnd = i + 1 + lead * 0.35
+  if (pos <= openStart) return 0
+  if (pos < openEnd) return clamp((pos - openStart) / (openEnd - openStart), 0, 1)
+  if (pos < closeStart) return 1
+  if (pos < closeEnd) return clamp(1 - (pos - closeStart) / (closeEnd - closeStart), 0, 1)
+  return 0
+}
 
 export type ConceptItem = {
   title: string
@@ -11,7 +31,8 @@ export type ConceptItem = {
 
 /**
  * Scroll-driven accordion. Session 06 stays one visual page (sticky 100svh)
- * while extra scroll height expands the right-hand items one by one.
+ * while extra scroll height scrubs the right-hand items open one by one.
+ * `--p` also drifts the concept stack so the pin keeps moving between steps.
  */
 export function ConceptScrollStory({
   visual,
@@ -24,31 +45,30 @@ export function ConceptScrollStory({
 }) {
   const count = items.length
   const wrapRef = useRef<HTMLElement>(null)
-  const [activeIndex, setActiveIndex] = useState(0)
+  const bodyRefs = useRef<(HTMLDivElement | null)[]>([])
   const [enabled, setEnabled] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const motionMq = window.matchMedia('(prefers-reduced-motion: reduce)')
     const wideMq = window.matchMedia('(min-width: 1024px)')
 
     let ticking = false
-    let last = -1
 
     const shouldRun = () => !motionMq.matches && wideMq.matches
 
     const update = () => {
       ticking = false
       const wrap = wrapRef.current
-      if (!wrap) return
+      if (!wrap || !shouldRun()) return
       const rect = wrap.getBoundingClientRect()
       const scrollable = rect.height - window.innerHeight
       const progress = scrollable > 0 ? clamp(-rect.top / scrollable, 0, 1) : 0
-      wrap.style.setProperty('--p', String(progress))
-      const idx = Math.min(count - 1, Math.floor(progress * count))
-      if (idx !== last) {
-        last = idx
-        setActiveIndex(idx)
-      }
+      wrap.style.setProperty('--p', progress.toFixed(4))
+      bodyRefs.current.forEach((node, i) => {
+        if (!node) return
+        wrap.style.setProperty(`--s06-h-${i}`, `${node.scrollHeight}px`)
+        wrap.style.setProperty(`--s06-o-${i}`, openAmount(i, progress, count).toFixed(4))
+      })
     }
 
     const onScrollOrResize = () => {
@@ -58,16 +78,21 @@ export function ConceptScrollStory({
       }
     }
 
+    const clearScrub = () => {
+      const wrap = wrapRef.current
+      if (!wrap) return
+      wrap.style.removeProperty('--p')
+      for (let i = 0; i < count; i += 1) {
+        wrap.style.removeProperty(`--s06-h-${i}`)
+        wrap.style.removeProperty(`--s06-o-${i}`)
+      }
+    }
+
     const applyMode = () => {
       const on = shouldRun()
       setEnabled(on)
-      if (on) {
-        requestAnimationFrame(update)
-      } else {
-        last = 0
-        setActiveIndex(0)
-        wrapRef.current?.style.removeProperty('--p')
-      }
+      if (on) update()
+      else clearScrub()
     }
 
     applyMode()
@@ -106,35 +131,44 @@ export function ConceptScrollStory({
         />
 
         <div className="mx-auto grid w-full max-w-[1600px] grid-cols-1 items-center gap-10 px-6 md:px-10 lg:grid-cols-[minmax(0,1.32fr)_minmax(0,0.9fr)] lg:gap-16 lg:px-14 xl:gap-20 xl:px-20">
-          <div>{visual}</div>
+          <div
+            style={
+              enabled
+                ? { transform: 'translate3d(0, calc(var(--p, 0) * -72px), 0)' }
+                : undefined
+            }
+          >
+            {visual}
+          </div>
 
           <div className="flex max-w-[560px] flex-col lg:max-w-none">
             {header}
 
             <div className="mt-10 flex flex-col">
               {items.map((item, i) => {
-                const open = enabled ? i === activeIndex : true
+                const open = `var(--s06-o-${i}, ${i === 0 ? 1 : 0})`
                 return (
                   <div key={item.title} className="relative flex flex-col py-[1.1rem] pl-5">
-                    {open && (
-                      <span
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-y-[1.1rem] left-0 w-0.5 rounded-full bg-[var(--ca-text)]"
-                      />
-                    )}
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-y-[1.1rem] left-0 w-0.5 rounded-full bg-[var(--ca-text)]"
+                      style={{ opacity: enabled ? open : 1 }}
+                    />
                     <h3 className="font-sans text-[28px] font-semibold leading-[1.15] text-[var(--ca-text)]">
                       {item.title}
                     </h3>
                     <div
                       style={{
-                        display: 'grid',
-                        gridTemplateRows: open ? '1fr' : '0fr',
-                        opacity: open ? 1 : 0,
-                        transition:
-                          'grid-template-rows 450ms cubic-bezier(0.22, 1, 0.36, 1), opacity 350ms ease',
+                        overflow: 'hidden',
+                        maxHeight: enabled ? `calc(${open} * var(--s06-h-${i}, 280px))` : 'none',
+                        opacity: enabled ? open : 1,
                       }}
                     >
-                      <div style={{ overflow: 'hidden' }}>
+                      <div
+                        ref={(node) => {
+                          bodyRefs.current[i] = node
+                        }}
+                      >
                         {typeof item.body === 'string' ? (
                           <p className="mt-[0.85rem] max-w-[34rem] text-pretty text-[15px] font-normal leading-[1.6] text-[var(--ca-text-2)] xl:text-base">
                             {item.body}
