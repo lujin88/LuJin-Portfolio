@@ -36,6 +36,11 @@ const NAV: readonly NavEntry[] = [
     label: 'Lab',
     sectionHref: '/lab',
     children: [
+      { label: 'Lab home', href: '/lab' },
+      { label: 'The Mandate', href: '/ca/the-mandate' },
+      { label: 'The Shift', href: '/ca/the-shift' },
+      { label: 'The Concept', href: '/ca/the-concept' },
+      { label: 'All CA sessions', href: '/lab#client-advisory' },
       { label: 'Way of Work', href: '/lab/way-of-work' },
       { label: 'Off We Go Workbench', href: '/lab/off-we-go' },
       { label: 'Party Planner', href: '/lab/party-planner' },

@@ -40,30 +40,166 @@
     -webkit-font-smoothing: antialiased;
     min-width: 360px;
   }
+  .lab-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  @media (min-width: 720px) {
+    .lab-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1100px) {
+    .lab-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  .lab-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--color-divider, #343638);
+    border-radius: 1rem;
+    background: #111214;
+    color: inherit;
+    text-decoration: none;
+  }
+  .lab-card:hover,
+  .lab-card:focus-visible {
+    border-color: var(--color-theme-2, #8B5CF6);
+  }
+  .lab-card__media {
+    aspect-ratio: 16 / 9;
+    background:
+      radial-gradient(90% 80% at 20% 10%, rgba(77, 163, 255, 0.22), transparent 55%),
+      #0b1220;
+  }
+  .lab-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .lab-card__body { padding: 1.1rem 1.15rem 1.25rem; }
+  .lab-card__index {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-theme-2, #8B5CF6);
+  }
+  .lab-card h3 {
+    margin: 0.45rem 0 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
 </style>
 </head>
 
 
 <body class="bg-ink text-text1 min-w-[360px]">
 
-<!-- --- Section 01: Hero --- -->
-<section id="lab-hero" class="relative min-h-screen flex items-center bg-ink px-6 pt-32 pb-24">
+<!-- --- Section 01: Lab hub --- -->
+<section id="lab-hero" class="relative bg-ink px-6 pt-32 pb-8">
   <div class="mx-auto w-full max-w-[var(--editorial)]">
     <p class="reveal text-[13px] font-sans font-semibold uppercase tracking-[0.28em] shell-accent mb-6" data-i18n="lab.eyebrow">Lab</p>
     <h1 class="reveal font-serif font-bold text-text1 text-[clamp(2.4rem,6vw,4.75rem)] leading-[1.05] tracking-[-0.03em] max-w-3xl" data-i18n="lab.title">
-      Experiments in progress
+      Client Advisory, session by session
     </h1>
     <p class="reveal mt-8 max-w-2xl text-text2 text-[17px] leading-[1.7]" data-i18n="lab.body">
-      A space for prototypes, motion studies, and design tooling explorations. New pieces
-      are being assembled here — check back soon, or reach out if you'd like a walkthrough
-      of what's currently in the works.
+      The live advisory case, opened one chapter at a time, plus the lab experiments already built beside it.
     </p>
-    <div class="reveal mt-10">
-      <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn">
-        <span data-i18n="lab.cta">Get in touch</span>
+  </div>
+</section>
+
+<section id="client-advisory" class="bg-ink px-6 pb-8" aria-labelledby="lab-sessions-heading">
+  <div class="mx-auto w-full max-w-[1040px]">
+    <h2 id="lab-sessions-heading" class="reveal font-serif text-[1.75rem] font-bold text-text1" data-i18n="lab.sessionsHeading">Client Advisory sessions</h2>
+    <p class="reveal mt-3 max-w-2xl text-text2 text-[15px] leading-relaxed" data-i18n="lab.sessionsNote">Each card opens that chapter from the case already running in this site.</p>
+    <ul class="lab-grid">
+      <li class="reveal">
+        <a class="lab-card" href="/ca/the-overview">
+          <div class="lab-card__media"><img src="/assets/images/client-advisory/hero-advisor.png" alt=""></div>
+          <div class="lab-card__body"><span class="lab-card__index">01</span><h3>The Overview</h3></div>
+        </a>
+      </li>
+      <li class="reveal">
+        <a class="lab-card" href="/ca/the-mandate">
+          <div class="lab-card__media"><img src="/assets/images/client-advisory/mandate-tools.png" alt=""></div>
+          <div class="lab-card__body"><span class="lab-card__index">02</span><h3>The Mandate</h3></div>
+        </a>
+      </li>
+      <li class="reveal">
+        <a class="lab-card" href="/ca/the-research">
+          <div class="lab-card__media"><img src="/assets/images/client-advisory/session-03-advisor.png" alt=""></div>
+          <div class="lab-card__body"><span class="lab-card__index">03</span><h3>The Research</h3></div>
+        </a>
+      </li>
+      <li class="reveal">
+        <a class="lab-card" href="/ca/the-shift">
+          <div class="lab-card__media"><img src="/assets/images/client-advisory/icons/signal-icon.png" alt="" style="object-fit:contain;padding:1.5rem"></div>
+          <div class="lab-card__body"><span class="lab-card__index">04</span><h3>The Shift</h3></div>
+        </a>
+      </li>
+      <li class="reveal">
+        <a class="lab-card" href="/ca/design-principles">
+          <div class="lab-card__media"><img src="/assets/images/client-advisory/ca-05-card-01.png" alt=""></div>
+          <div class="lab-card__body"><span class="lab-card__index">05</span><h3>Design Principles</h3></div>
+        </a>
+      </li>
+      <li class="reveal">
+        <a class="lab-card" href="/ca/the-concept">
+          <div class="lab-card__media"><img src="/assets/images/client-advisory/source/CA_Create%20proposal.jpg" alt=""></div>
+          <div class="lab-card__body"><span class="lab-card__index">06</span><h3>The Concept</h3></div>
+        </a>
+      </li>
+      <li class="reveal">
+        <a class="lab-card" href="/ca/the-outcome">
+          <div class="lab-card__media"><img src="/assets/images/client-advisory/sessions/07/card-01.png" alt=""></div>
+          <div class="lab-card__body"><span class="lab-card__index">07</span><h3>The Outcome</h3></div>
+        </a>
+      </li>
+      <li class="reveal">
+        <a class="lab-card" href="/ca/closing">
+          <div class="lab-card__media"><img src="/assets/images/client-advisory/closing-earth.png" alt=""></div>
+          <div class="lab-card__body"><span class="lab-card__index">08</span><h3>Closing</h3></div>
+        </a>
+      </li>
+    </ul>
+    <div class="reveal mt-8">
+      <a href="/client-advisory" class="pill-btn">
+        <span data-i18n="lab.fullCase">Open the full case</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
+  </div>
+</section>
+
+<section id="lab-experiments" class="bg-ink px-6 pt-12 pb-20" aria-labelledby="lab-experiments-heading">
+  <div class="mx-auto w-full max-w-[1040px]">
+    <h2 id="lab-experiments-heading" class="reveal font-serif text-[1.75rem] font-bold text-text1" data-i18n="lab.experimentsHeading">Lab experiments</h2>
+    <ul class="lab-grid">
+      <li class="reveal">
+        <a class="lab-card" href="/lab/way-of-work">
+          <div class="lab-card__media"><img src="/assets/images/lab/way-of-work/01.jpg" alt=""></div>
+          <div class="lab-card__body"><span class="lab-card__index">Lab</span><h3>Way of Work</h3></div>
+        </a>
+      </li>
+      <li class="reveal">
+        <a class="lab-card" href="/lab/off-we-go">
+          <div class="lab-card__media"><img src="/assets/images/lab/off-we-go/lakeside-hero.jpg" alt=""></div>
+          <div class="lab-card__body"><span class="lab-card__index">Lab</span><h3>Off We Go Workbench</h3></div>
+        </a>
+      </li>
+      <li class="reveal">
+        <a class="lab-card" href="/lab/party-planner">
+          <div class="lab-card__media"><img src="/assets/images/lab/party-planner/phone.png" alt=""></div>
+          <div class="lab-card__body"><span class="lab-card__index">Lab</span><h3>Party Planner</h3></div>
+        </a>
+      </li>
+    </ul>
   </div>
 </section>
 
