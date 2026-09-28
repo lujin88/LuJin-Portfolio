@@ -18,10 +18,10 @@ const buttonVariants = cva(
         destructive:
           'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40',
         link: 'text-primary underline-offset-4 hover:underline',
-        // Filled CTA for the always-dark header. `default` follows page `--primary`,
-        // which flips on light case-study themes and loses contrast on this chrome.
+        // Outline pill on the always-dark header. `outline` follows page theme
+        // tokens and does not stay a thin light stroke on this chrome.
         headerPrimary:
-          'rounded-full border-header-foreground bg-header-foreground font-medium text-header-glass no-underline transition-[background-color,border-color,opacity] duration-200 hover:border-header-foreground/90 hover:bg-header-foreground/90 focus-visible:border-header-foreground focus-visible:ring-0',
+          'rounded-full border-header-line bg-transparent font-normal text-header-foreground no-underline transition-[background-color,border-color,opacity] duration-200 hover:border-header-foreground/70 hover:bg-header-foreground/6 focus-visible:border-header-line focus-visible:ring-0',
         headerGhost:
           'rounded-full border-transparent bg-transparent text-header-foreground transition-[background-color,border-color,opacity] duration-200 hover:bg-header-foreground/10 aria-expanded:bg-header-foreground/10 focus-visible:ring-0',
       },
