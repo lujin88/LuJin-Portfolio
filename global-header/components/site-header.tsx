@@ -7,6 +7,7 @@ import { Check, ChevronDown, Menu, X } from 'lucide-react'
 import { headerCopy } from '../lib/header-copy'
 import { LANGUAGES, useSiteLanguage } from '../lib/language'
 import { cn } from '../lib/utils'
+import { Button, buttonVariants } from './ui/button'
 
 type NavLink = {
   label: string
@@ -89,6 +90,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   const openMenu = pinnedMenu ?? hoverMenu
   const langRootRef = useRef<HTMLDivElement>(null)
   const langTriggerRef = useRef<HTMLButtonElement>(null)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
   const langOptionRefs = useRef<(HTMLButtonElement | null)[]>([])
   const desktopNavRef = useRef<HTMLElement>(null)
   const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({})
@@ -153,6 +155,29 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       document.removeEventListener('keydown', onKeyDown)
     }
   }, [langOpen, language.code])
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return
+      setMenuOpen(false)
+      setMobileSection(null)
+      if (!langOpen && !openMenu) menuButtonRef.current?.focus()
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [menuOpen, langOpen, openMenu])
+
+  useEffect(() => {
+    const desktopNav = window.matchMedia('(min-width: 64rem)')
+    const closeMobileAtDesktop = () => {
+      if (!desktopNav.matches) return
+      setMenuOpen(false)
+      setMobileSection(null)
+    }
+    desktopNav.addEventListener('change', closeMobileAtDesktop)
+    return () => desktopNav.removeEventListener('change', closeMobileAtDesktop)
+  }, [])
 
   useEffect(() => {
     if (!openMenu) return
@@ -436,34 +461,35 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
             )}
           </div>
 
-          <a
-            href="mailto:lu.jin.ixd@gmail.com"
-            className={cn(
-              'rounded-full border border-header-line px-6 py-3 text-[1.0625rem] leading-none text-header-foreground transition-colors duration-200 hover:border-header-foreground/70 hover:bg-header-foreground/6 md:px-7 md:py-3.5',
-              FOCUS_RING,
-              MOTION_SAFE,
-            )}
-          >
-            {copy.contactMe}
-          </a>
+          <div className="flex items-center gap-4">
+            <a
+              href="mailto:lu.jin.ixd@gmail.com"
+              className={cn(
+                buttonVariants({ variant: 'headerPrimary', size: 'md' }),
+                MOTION_SAFE,
+              )}
+            >
+              {copy.contactMe}
+            </a>
 
-          <button
-            type="button"
-            aria-label={menuOpen ? copy.closeMenu : copy.openMenu}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-nav"
-            onClick={openMobile}
-            className={cn(
-              '-mr-2 flex size-10 items-center justify-center rounded-sm text-header-foreground lg:hidden',
-              FOCUS_RING,
-            )}
-          >
-            {menuOpen ? (
-              <X className="size-6" strokeWidth={1.5} />
-            ) : (
-              <Menu className="size-6" strokeWidth={1.5} />
-            )}
-          </button>
+            <Button
+              ref={menuButtonRef}
+              type="button"
+              variant="headerGhost"
+              size="icon-md"
+              aria-label={menuOpen ? copy.closeMenu : copy.openMenu}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
+              onClick={openMobile}
+              className={cn('lg:hidden', FOCUS_RING, MOTION_SAFE)}
+            >
+              {menuOpen ? (
+                <X className="size-6" strokeWidth={1.5} />
+              ) : (
+                <Menu className="size-6" strokeWidth={1.5} />
+              )}
+            </Button>
+          </div>
         </div>
       </div>
 
