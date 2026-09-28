@@ -14,6 +14,7 @@ export const headerCopy = {
     },
     contactMe: 'Contact me',
     email: 'Email',
+    skipToContent: 'Skip to content',
     languageAria: (label: string) => `Language: ${label}`,
     selectLanguage: 'Select language',
     closeMenu: 'Close menu',
@@ -34,6 +35,7 @@ export const headerCopy = {
     },
     contactMe: 'Kontakt',
     email: 'E-Mail',
+    skipToContent: 'Zum Inhalt springen',
     languageAria: (label: string) => `Sprache: ${label}`,
     selectLanguage: 'Sprache wählen',
     closeMenu: 'Menü schließen',
@@ -47,6 +49,7 @@ export const headerCopy = {
     nav: Record<string, string>
     contactMe: string
     email: string
+    skipToContent: string
     languageAria: (label: string) => string
     selectLanguage: string
     closeMenu: string

@@ -50,7 +50,7 @@ export default function RootLayout({
     <html lang="en" className={`dark ${poppins.variable}`}>
       <body className="font-sans antialiased">
         <SiteHeader activeHref="/client-advisory" />
-        {children}
+        <div id="site-content">{children}</div>
         <SiteFooter />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
