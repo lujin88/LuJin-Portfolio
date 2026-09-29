@@ -3,6 +3,56 @@
 import Image from 'next/image'
 import { useTranslation } from '@i18n/use-translation'
 
+const HERO_VIDEO = '/assets/videos/client-advisory/hero-advisor-loop.mp4'
+const HERO_POSTER = '/assets/images/client-advisory/hero-advisor-loop-poster.jpg'
+
+function HeroLoop({
+  alt,
+  className,
+  priority = false,
+  sizes,
+  sourceMedia,
+}: {
+  alt: string
+  className: string
+  priority?: boolean
+  sizes: string
+  sourceMedia: string
+}) {
+  return (
+    <>
+      <Image
+        src={HERO_POSTER}
+        alt={alt}
+        fill
+        priority={priority}
+        sizes={sizes}
+        className={className}
+      />
+      <video
+        className={`ca-s01-hero-video ${className}`}
+        poster={HERO_POSTER}
+        muted
+        loop
+        playsInline
+        autoPlay
+        preload="auto"
+        disablePictureInPicture
+        aria-hidden="true"
+        ref={(node) => {
+          if (node) node.muted = true
+        }}
+      >
+        <source
+          src={HERO_VIDEO}
+          type="video/mp4"
+          media={`(prefers-reduced-motion: no-preference) and ${sourceMedia}`}
+        />
+      </video>
+    </>
+  )
+}
+
 export function HeroSection() {
   const { t, ta } = useTranslation()
   const scope = ta('ca.hero.scopeItems')
@@ -11,6 +61,7 @@ export function HeroSection() {
     { value: t('ca.hero.glance2Value'), label: t('ca.hero.glance2Label'), kind: 'plain' as const },
     { value: t('ca.hero.glance3Value'), label: t('ca.hero.glance3Label'), kind: '30' as const },
   ]
+  const photoAlt = t('ca.hero.photoAlt')
 
   return (
     <section
@@ -19,16 +70,16 @@ export function HeroSection() {
     >
       <div className="ca-s01-photo pointer-events-none absolute inset-0 hidden lg:block">
         <div className="ca-s01-photo-shift">
-          <Image
-            src="/assets/images/client-advisory/hero-background.png"
-            alt={t('ca.hero.photoAlt')}
-            fill
+          <HeroLoop
+            alt={photoAlt}
             priority
             sizes="100vw"
             className="object-cover"
+            sourceMedia="(min-width: 1024px)"
           />
         </div>
       </div>
+      <div aria-hidden="true" className="ca-s01-photo-scrim pointer-events-none absolute inset-0 z-[1] hidden lg:block" />
       <div aria-hidden="true" className="ca-s01-photo-fade pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden lg:block" />
 
       <div className="ca-s01-grid relative z-10 mx-auto grid w-full max-w-[1520px] grid-cols-1 items-start gap-12 px-6 pt-20 md:px-10 md:pt-24 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-stretch lg:gap-8 lg:pb-12 lg:pt-[6.75rem]">
@@ -84,12 +135,11 @@ export function HeroSection() {
         </div>
 
         <div className="relative -mx-6 aspect-[4/3] overflow-hidden md:-mx-10 lg:hidden">
-          <Image
-            src="/assets/images/client-advisory/hero-background.png"
-            alt={t('ca.hero.photoAlt')}
-            fill
+          <HeroLoop
+            alt={photoAlt}
             sizes="100vw"
-            className="object-cover object-[50%_25%]"
+            className="object-cover object-[center_32%]"
+            sourceMedia="(max-width: 1023px)"
           />
           <div
             aria-hidden="true"

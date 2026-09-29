@@ -584,8 +584,26 @@
     max-width: 30rem;
   }
 
-  .ca-s01-photo-shift img {
-    object-position: 62% 100%;
+  .ca-s01-photo-shift img,
+  .ca-s01-photo-shift video {
+    object-fit: cover;
+    object-position: center 18%;
+  }
+
+  /*
+   * The loop is square and brighter on the left than the old wide still.
+   * Hold navy over the copy, then open onto the advisor.
+   */
+  .ca-s01-photo-scrim {
+    background: linear-gradient(
+      100deg,
+      #0b1220 0%,
+      rgb(11 18 32 / 0.96) 16%,
+      rgb(11 18 32 / 0.82) 32%,
+      rgb(11 18 32 / 0.42) 46%,
+      rgb(11 18 32 / 0.12) 58%,
+      transparent 70%
+    );
   }
 
   .ca-s02 {
@@ -708,8 +726,9 @@
     max-width: 11rem;
   }
 
-  .ca-s01-photo-shift img {
-    object-position: 66% 100%;
+  .ca-s01-photo-shift img,
+  .ca-s01-photo-shift video {
+    object-position: center 16%;
   }
 }
 
@@ -999,6 +1018,19 @@
     transform: none;
     transition: none;
   }
+
+  .ca-s01-hero-video {
+    display: none;
+  }
+}
+
+.ca-s01-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
 }
 
 /*
