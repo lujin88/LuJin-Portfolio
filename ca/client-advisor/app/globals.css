@@ -524,8 +524,8 @@
       linear-gradient(
         to right,
         transparent 0%,
-        transparent 4%,
-        #fff 22%,
+        transparent 40%,
+        #fff 54%,
         #fff 100%
       ),
       linear-gradient(
@@ -539,8 +539,8 @@
       linear-gradient(
         to right,
         transparent 0%,
-        transparent 4%,
-        #fff 22%,
+        transparent 40%,
+        #fff 54%,
         #fff 100%
       ),
       linear-gradient(
@@ -555,13 +555,13 @@
   }
 
   /*
-   * Shift the media container RIGHT so the advisor face lands at ~57% from left,
-   * matching the reference split (left ~43% navy copy, right ~57% advisor visual).
-   * The left gap (0..14%) is filled by --ca-bg via the section background + scrim.
+   * Shift the container right so the advisor face (~31% x in the 1440×1440 source)
+   * lands at ~56% of the viewport — matching production's face position (56.2%).
+   * Measured from screenshots: left=15%→face@51%; +4% shift to land at ~55%.
    */
   .ca-s01-photo-shift {
     top: 0;
-    left: 14%;
+    left: 26%;
     width: 108%;
     height: 100%;
   }
@@ -593,26 +593,12 @@
   .ca-s01-photo-shift video {
     object-fit: cover;
     /*
-     * Vertical: show video from y≈40 at top of viewport so the headset
-     * appears around vp_y=54px, matching the reference.
+     * Y=0%: anchor top of video so the headset arc appears just below the nav
+     * bar (~y=27px rendered), matching production framing.
+     * X=50%: no horizontal excess on a square video in a wider container — the
+     * face position is controlled by the container's left offset above.
      */
-    object-position: center 8%;
-  }
-
-  /*
-   * Scrim: hold solid navy from the left edge to the copy column boundary
-   * (~46%), then fade out so the advisor/lake fills the right panel naturally.
-   */
-  .ca-s01-photo-scrim {
-    background: linear-gradient(
-      100deg,
-      #0b1220 0%,
-      rgb(11 18 32 / 0.98) 22%,
-      rgb(11 18 32 / 0.90) 36%,
-      rgb(11 18 32 / 0.55) 46%,
-      rgb(11 18 32 / 0.14) 56%,
-      transparent 66%
-    );
+    object-position: 50% 0%;
   }
 
   .ca-s02 {
@@ -737,7 +723,7 @@
 
   .ca-s01-photo-shift img,
   .ca-s01-photo-shift video {
-    object-position: center 6%;
+    object-position: 50% 0%;
   }
 }
 
