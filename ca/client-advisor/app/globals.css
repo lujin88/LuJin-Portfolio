@@ -524,8 +524,8 @@
       linear-gradient(
         to right,
         transparent 0%,
-        transparent 6%,
-        #fff 28%,
+        transparent 4%,
+        #fff 22%,
         #fff 100%
       ),
       linear-gradient(
@@ -539,8 +539,8 @@
       linear-gradient(
         to right,
         transparent 0%,
-        transparent 6%,
-        #fff 28%,
+        transparent 4%,
+        #fff 22%,
         #fff 100%
       ),
       linear-gradient(
@@ -554,9 +554,14 @@
     mask-composite: intersect;
   }
 
+  /*
+   * Shift the media container RIGHT so the advisor face lands at ~57% from left,
+   * matching the reference split (left ~43% navy copy, right ~57% advisor visual).
+   * The left gap (0..14%) is filled by --ca-bg via the section background + scrim.
+   */
   .ca-s01-photo-shift {
     top: 0;
-    left: -4%;
+    left: 14%;
     width: 108%;
     height: 100%;
   }
@@ -587,22 +592,26 @@
   .ca-s01-photo-shift img,
   .ca-s01-photo-shift video {
     object-fit: cover;
-    object-position: center 18%;
+    /*
+     * Vertical: show video from y≈40 at top of viewport so the headset
+     * appears around vp_y=54px, matching the reference.
+     */
+    object-position: center 8%;
   }
 
   /*
-   * The loop is square and brighter on the left than the old wide still.
-   * Hold navy over the copy, then open onto the advisor.
+   * Scrim: hold solid navy from the left edge to the copy column boundary
+   * (~46%), then fade out so the advisor/lake fills the right panel naturally.
    */
   .ca-s01-photo-scrim {
     background: linear-gradient(
       100deg,
       #0b1220 0%,
-      rgb(11 18 32 / 0.96) 16%,
-      rgb(11 18 32 / 0.82) 32%,
-      rgb(11 18 32 / 0.42) 46%,
-      rgb(11 18 32 / 0.12) 58%,
-      transparent 70%
+      rgb(11 18 32 / 0.98) 22%,
+      rgb(11 18 32 / 0.90) 36%,
+      rgb(11 18 32 / 0.55) 46%,
+      rgb(11 18 32 / 0.14) 56%,
+      transparent 66%
     );
   }
 
@@ -728,7 +737,7 @@
 
   .ca-s01-photo-shift img,
   .ca-s01-photo-shift video {
-    object-position: center 16%;
+    object-position: center 6%;
   }
 }
 
