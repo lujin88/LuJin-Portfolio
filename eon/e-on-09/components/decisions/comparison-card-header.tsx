@@ -23,7 +23,7 @@ export function ComparisonCardHeader({
           'inline-flex h-8 w-[5.25rem] shrink-0 items-center justify-center self-center rounded-full text-sm font-semibold leading-none',
           tone === 'before'
             ? 'bg-lavender-light/30 text-foreground'
-            : 'bg-accent text-accent-foreground',
+            : 'bg-mint text-navy-950',
         )}
       >
         {tone === 'before' ? t('eon.ui.before') : t('eon.ui.after')}
