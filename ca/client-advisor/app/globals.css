@@ -524,8 +524,8 @@
       linear-gradient(
         to right,
         transparent 0%,
-        transparent 40%,
-        #fff 54%,
+        transparent 31%,
+        #fff 47%,
         #fff 100%
       ),
       linear-gradient(
@@ -539,8 +539,8 @@
       linear-gradient(
         to right,
         transparent 0%,
-        transparent 40%,
-        #fff 54%,
+        transparent 31%,
+        #fff 47%,
         #fff 100%
       ),
       linear-gradient(
@@ -561,8 +561,8 @@
    */
   .ca-s01-photo-shift {
     top: 0;
-    left: 26%;
-    width: 108%;
+    left: 33%;
+    width: 76%;
     height: 100%;
   }
 
