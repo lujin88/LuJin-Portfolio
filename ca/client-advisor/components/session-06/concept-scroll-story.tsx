@@ -121,8 +121,8 @@ export function ConceptScrollStory({
       <div
         className={
           enabled
-            ? 'ca-s06-stage sticky top-0 flex h-svh w-full items-center overflow-x-clip pt-[clamp(1.25rem,3.5vh,2.25rem)] pb-[clamp(4.5rem,12vh,7rem)]'
-            : 'flex min-h-svh w-full items-center overflow-x-clip py-24 md:py-28'
+            ? 'ca-s06-stage sticky top-0 flex h-svh w-full items-center pt-[clamp(1.25rem,3.5vh,2.25rem)] pb-[clamp(4.5rem,12vh,7rem)]'
+            : 'flex min-h-svh w-full items-center py-24 md:py-28'
         }
       >
         <div
