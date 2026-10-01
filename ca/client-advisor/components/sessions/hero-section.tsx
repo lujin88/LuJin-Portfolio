@@ -1,7 +1,69 @@
 'use client'
 
+import { useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { useTranslation } from '@i18n/use-translation'
+
+const HERO_VIDEO = '/assets/videos/client-advisory/hero-advisor-loop.mp4'
+const HERO_POSTER = '/assets/images/client-advisory/hero-advisor-loop-poster.jpg'
+
+function HeroLoop({
+  alt,
+  className,
+  priority = false,
+  sizes,
+}: {
+  alt: string
+  className: string
+  priority?: boolean
+  sizes: string
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    // Respect OS/browser reduce-motion preference — hide and bail early
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      video.style.display = 'none'
+      return
+    }
+    video.muted = true
+    // Explicit play() call is more reliable than the autoPlay attribute alone:
+    // browsers may suppress the attribute when the element was previously
+    // in a display:none parent or when autoplay policy is conservative.
+    video.play().catch(() => {
+      // Silently swallow AbortError / NotAllowedError; poster remains visible.
+    })
+  }, [])
+
+  return (
+    <>
+      <Image
+        src={HERO_POSTER}
+        alt={alt}
+        fill
+        priority={priority}
+        sizes={sizes}
+        className={className}
+      />
+      <video
+        ref={videoRef}
+        className={`ca-s01-hero-video ${className}`}
+        poster={HERO_POSTER}
+        muted
+        loop
+        playsInline
+        autoPlay
+        preload="auto"
+        disablePictureInPicture
+        aria-hidden="true"
+      >
+        <source src={HERO_VIDEO} type="video/mp4" />
+      </video>
+    </>
+  )
+}
 
 export function HeroSection() {
   const { t, ta } = useTranslation()
@@ -11,6 +73,7 @@ export function HeroSection() {
     { value: t('ca.hero.glance2Value'), label: t('ca.hero.glance2Label'), kind: 'plain' as const },
     { value: t('ca.hero.glance3Value'), label: t('ca.hero.glance3Label'), kind: '30' as const },
   ]
+  const photoAlt = t('ca.hero.photoAlt')
 
   return (
     <section
@@ -19,10 +82,8 @@ export function HeroSection() {
     >
       <div className="ca-s01-photo pointer-events-none absolute inset-0 hidden lg:block">
         <div className="ca-s01-photo-shift">
-          <Image
-            src="/assets/images/client-advisory/hero-background.png"
-            alt={t('ca.hero.photoAlt')}
-            fill
+          <HeroLoop
+            alt={photoAlt}
             priority
             sizes="100vw"
             className="object-cover"
@@ -84,12 +145,10 @@ export function HeroSection() {
         </div>
 
         <div className="relative -mx-6 aspect-[4/3] overflow-hidden md:-mx-10 lg:hidden">
-          <Image
-            src="/assets/images/client-advisory/hero-background.png"
-            alt={t('ca.hero.photoAlt')}
-            fill
+          <HeroLoop
+            alt={photoAlt}
             sizes="100vw"
-            className="object-cover object-[50%_25%]"
+            className="object-cover object-[center_32%]"
           />
           <div
             aria-hidden="true"
