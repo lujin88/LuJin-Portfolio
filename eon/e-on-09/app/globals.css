@@ -252,6 +252,9 @@
   --accent: var(--mint);
   --accent-foreground: var(--ink);
   --border: rgb(7 21 31 / 8%);
+  /* Section number badge: override lavender → mint */
+  --section-marker-purple: var(--mint-light);
+  --section-marker-number: #166534;
 }
 
 @layer base {

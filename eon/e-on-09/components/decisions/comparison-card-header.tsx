@@ -22,7 +22,7 @@ export function ComparisonCardHeader({
         className={cn(
           'inline-flex h-8 w-[5.25rem] shrink-0 items-center justify-center self-center rounded-full text-sm font-semibold leading-none',
           tone === 'before'
-            ? 'bg-lavender-light/30 text-foreground'
+            ? 'bg-navy-950/8 text-foreground'
             : 'bg-mint text-navy-950',
         )}
       >
