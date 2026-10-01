@@ -440,7 +440,9 @@
        so the field covered the Contact text instead of sitting behind it. With
        z-index:auto the field paints in normal DOM order: behind the transparent
        Contact section, so the Contact copy floats on top of the field. */
-    padding-top: 0;
+    /* 8rem runway before the sticky viewport so the first timeline entry
+       never enters the screen while the About body copy is still visible. */
+    padding-top: 8rem;
     --exp-ease: cubic-bezier(0.16, 1, 0.3, 1);
     --exp-blue: 122, 127, 220;          /* #7A7FDC — reference "+" / connector periwinkle */
   }
@@ -1444,7 +1446,7 @@
 </section>
 
 <!-- NEXTGEN INITIATIVE -->
-<section id="nextgen" class="relative bg-ink pt-24 px-6">
+<section id="nextgen" class="relative bg-ink pt-24 pb-24 md:pb-32 px-6">
   <div class="mx-auto max-w-[var(--editorial)]">
     <h2 class="reveal text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-5" data-i18n="home.aboutHeading">About me</h2>
     <p class="reveal text-center text-text2 mx-auto mb-0 text-[15px] leading-relaxed" data-i18n-html="home.aboutBodyHtml">
@@ -1712,8 +1714,9 @@
     // ---- EXPERIENCE TIMELINE — FXIFY "How it works" curved-arc timeline.
     // The 500vh track's scroll progress is the single source of truth. Three
     // phases:
-    //   ENTER  p 0    -> 0.16 : first block starts ~45px below the About cards,
-    //                           coord box then eases DOWN 71px to its rest spot
+    //   ENTER  p 0    -> 0.16 : first block enters with ~190px clearance below
+    //                           the About copy (8rem section padding-top + coord
+    //                           settle); box eases DOWN 71px to its rest spot
     //   PINNED p 0.16 -> 0.86 : box frozen; arc draws, glow fills, items 0..3
     //                           activate in turn (thresholds below)
     //   EXIT   p 0.86 -> 1    : coord box slides up and out
