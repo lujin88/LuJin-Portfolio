@@ -368,37 +368,44 @@ html:has(.pp-landing) body {
   height:652px;background:var(--cream);overflow:hidden
 }
 .pp-landing .plan-copy {
-  position:absolute;left:72px;top:108px;width:430px
+  position:absolute;left:72px;top:58px;width:430px
 }
 .pp-landing .plan .eyebrow {
   position:static
 }
-.pp-landing .plan-headline {
-  margin:22px 0 0;font-family:var(--display);font-size:54px;line-height:1.04;letter-spacing:-.05em;font-weight:800;color:var(--navy)
+.pp-landing .plan-facts {
+  display:grid;gap:18px;margin:45px 0 0;padding:0 0 36px;list-style:none;border-bottom:2px solid #d8dee7
 }
-.pp-landing .plan-meta {
-  margin:28px 0 0;display:flex;align-items:center;gap:12px;font-size:18px;line-height:1.3;font-weight:500;color:#31457a
+.pp-landing .plan-facts li {
+  display:grid;grid-template-columns:58px 1fr;align-items:center;min-height:56px;color:var(--navy)
 }
-.pp-landing .plan-meta svg {
-  font-size:28px;color:#1f6cf0;stroke-width:1.7
+.pp-landing .plan-facts svg {
+  width:48px;height:48px;color:#1f6cf0;stroke-width:1.65
+}
+.pp-landing .plan-facts li > div {
+  display:flex;align-items:baseline;gap:7px;min-width:0;line-height:1.1
+}
+.pp-landing .plan-facts small,
+.pp-landing .plan-facts b {
+  font-size:25px;color:var(--navy)
+}
+.pp-landing .plan-facts small {
+  font-weight:700
+}
+.pp-landing .plan-facts small::after {
+  content:"·";margin-left:7px
+}
+.pp-landing .plan-facts b {
+  font-weight:500
+}
+.pp-landing .plan-summary {
+  margin:38px 0 0;font-size:31px;line-height:1.12;letter-spacing:-.035em;font-weight:800;color:var(--navy)
 }
 .pp-landing .invite-stage {
-  position:absolute;right:28px;top:50%;width:560px;height:600px;transform:translateY(-50%)
+  position:absolute;right:28px;top:50%;width:590px;height:600px;transform:translateY(-50%)
 }
 .pp-landing .invite-card {
-  position:absolute;left:36px;top:24px;width:372px;height:536px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;background:linear-gradient(180deg,#fff7f9 0%,#ffe4ed 100%);border:8px solid #fff;border-radius:18px;transform:rotate(6.5deg);box-shadow:0 22px 44px rgba(9,26,87,.18);text-align:center;padding:6px 16px 22px;z-index:5
-}
-.pp-landing .invite-edit {
-  position:absolute;right:28px;top:148px;z-index:6;width:58px;height:58px;border-radius:16px;background:#fff;color:#1f6cf0;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 10px 24px rgba(9,26,87,.12);transition:transform .15s cubic-bezier(.32,.72,0,1),box-shadow .15s cubic-bezier(.32,.72,0,1)
-}
-.pp-landing .invite-edit i {
-  font-size:22px;line-height:1
-}
-.pp-landing .invite-edit:hover {
-  transform:translateY(-1px);box-shadow:0 14px 28px rgba(9,26,87,.16)
-}
-.pp-landing .invite-edit:active {
-  transform:scale(.98)
+  position:absolute;left:28px;top:24px;width:390px;height:548px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;background:linear-gradient(180deg,#fff7f9 0%,#ffe4ed 100%);border:8px solid #fff;border-radius:18px;transform:rotate(-6.5deg);box-shadow:0 22px 44px rgba(9,26,87,.18);text-align:center;padding:6px 16px 22px;z-index:5
 }
 .pp-landing .invite-arc {
   display:block;width:100%;height:64px;flex-shrink:0
@@ -462,82 +469,65 @@ html:has(.pp-landing) body {
   position:absolute;left:78px;top:122px;margin:0;font-size:24px;color:#1c2e6a
 }
 .pp-landing .guest-card {
-  position:absolute;left:82px;top:190px;width:584px;height:404px;border-radius:18px;background:#fff;box-shadow:0 14px 36px rgba(9,26,87,.10);padding:26px 26px 0;color:var(--navy)
+  position:absolute;left:82px;top:190px;width:584px;height:404px;overflow:hidden;border-radius:18px;background:#fbf8f3;box-shadow:0 14px 36px rgba(9,26,87,.10);padding:22px 24px 0;color:#0b1a3b
 }
 .pp-landing .guest-head {
-  height:44px;display:grid;grid-template-columns:40px 1fr 40px;align-items:center;text-align:center;font-size:20px;font-weight:700
+  height:34px;display:grid;grid-template-columns:34px 1fr 34px;align-items:center;text-align:center;font-size:20px;font-weight:800
 }
-.pp-landing .guest-head svg {
-  font-size:26px;color:#1d3170
+.pp-landing .guest-head svg,
+.pp-landing .guest-head i {
+  font-size:24px;color:#0b1a3b
 }
-.pp-landing .guest-head .more {
-  justify-self:end;display:flex;gap:4px
+.pp-landing .guest-head i {
+  justify-self:end;font-style:normal
 }
-.pp-landing .guest-head .more span {
-  width:5px;height:5px;border-radius:50%;background:#1d3170
+.pp-landing .guest-intro {
+  width:410px;margin:10px 0 12px;font-size:14px;line-height:1.35;color:#74777f
 }
-.pp-landing .guest-tabs {
-  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:14px 12px 16px
+.pp-landing .guest-counts {
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px
 }
-.pp-landing .guest-tab {
-  height:40px;border-radius:99px;display:flex;align-items:center;justify-content:center;color:#5a6a8f;font-size:16px
+.pp-landing .guest-count {
+  height:58px;display:flex;flex-direction:column;justify-content:center;border:1px solid #dddcd9;border-radius:12px;background:#fff;padding:0 14px
 }
-.pp-landing .guest-tab.active {
-  background:#e3eeff;color:#1d5fd2;font-weight:600
+.pp-landing .guest-count b {
+  font-size:24px;line-height:1;font-weight:800
 }
-.pp-landing .guest-stats {
-  height:104px;display:grid;grid-template-columns:1fr 1fr;align-items:center;border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line)
+.pp-landing .guest-count span {
+  margin-top:4px;font-size:12px;color:#73777e
 }
-.pp-landing .guest-stat {
-  display:flex;align-items:center;justify-content:center;gap:18px
+.pp-landing .guest-count.coming b {
+  color:#16875d
 }
-.pp-landing .guest-stat svg {
-  font-size:44px;stroke-width:1.7
+.pp-landing .guest-count.waiting b {
+  color:#0b1a3b
 }
-.pp-landing .guest-stat b {
-  display:block;font-size:32px;line-height:1;font-weight:800
+.pp-landing .guest-count.declined b {
+  color:#bd442e
 }
-.pp-landing .guest-stat small {
-  font-size:15px;font-weight:500
+.pp-landing .guest-caption {
+  margin:14px 0 8px;font-size:12px;line-height:1.35;color:#777a80
 }
-.pp-landing .guest-stat.coming {
-  color:var(--green)
-}
-.pp-landing .guest-stat.waiting {
-  color:var(--amber)
-}
-.pp-landing .guest-stat.waiting svg {
-  color:#f3b41b
+.pp-landing .guest-list {
+  overflow:hidden;border:1px solid #deddd9;border-radius:12px;background:#fff;padding:0 14px
 }
 .pp-landing .guest-person {
-  height:82px;display:flex;align-items:center;gap:16px;border-bottom:1.5px solid var(--line)
+  height:58px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #e2e0dc
 }
 .pp-landing .guest-person:last-child {
   border-bottom:0
 }
 .pp-landing .avatar {
-  width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700;background:#edf3ff;color:#245fcf;flex-shrink:0
+  width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;background:#edf3ff;color:#245fcf;flex-shrink:0
 }
 .pp-landing .guest-name {
-  font-size:18px;font-weight:600;min-width:120px
+  font-size:14px;font-weight:700;min-width:90px
 }
 .pp-landing .tag {
-  height:34px;padding:0 16px;border-radius:99px;display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:500
+  height:26px;margin-left:auto;padding:0 10px;border-radius:99px;display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600
 }
 .pp-landing .tag.coming {
   background:#e4f6ee;color:#147951;font-weight:600
-}
-.pp-landing .tag.waiting {
-  background:#eef0f4;color:#666b78;font-weight:600
-}
-.pp-landing .tag.allergy {
-  background:#fff5da;color:#8a6300;font-weight:600
-}
-.pp-landing .tag.allergy svg {
-  font-size:15px
-}
-.pp-landing .guest-person .go {
-  margin-left:auto;font-size:26px;color:#1f6cf0
 }
 .pp-landing .sync {
   position:absolute;left:760px;top:214px;width:260px;margin:0;padding:0;list-style:none
@@ -797,7 +787,7 @@ html:has(.pp-landing) body {
   --color-text-1: #fff;
   --color-text-3: rgba(255, 255, 255, 0.78);
   --color-text-4: rgba(255, 255, 255, 0.42);
-  --color-footer-divider: rgba(255, 255, 255, 0.22);
+  --color-footer-divider: rgba(255, 255, 255, 0.07);
   --pill-text: #fff;
   --pill-border: rgba(255, 255, 255, 0.5);
   --pill-bg: transparent;

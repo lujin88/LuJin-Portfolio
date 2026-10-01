@@ -73,9 +73,7 @@ const aboutPageTranslations = {
     letsTalk: "Let's talk",
     downloadCv: 'Download CV',
     footerRights: '© 2026 Lu Jin. All rights reserved.',
-    footerCredit: 'Designed with vibe coding, tailored in Cursor.',
     closeVideo: 'Close video',
-    introDialog: 'Introduction video',
     avatarLabel: 'Illustrated Lu at her desk.',
     altTravel: 'Alpine lake between forested mountains',
     altDesign: 'Glass teapot steeping tea on a wooden table',
@@ -92,9 +90,7 @@ const aboutPageTranslations = {
     letsTalk: 'Lass uns sprechen',
     downloadCv: 'Lebenslauf',
     footerRights: '© 2026 Lu Jin. Alle Rechte vorbehalten.',
-    footerCredit: 'Gestaltet mit Vibe Coding, verfeinert in Cursor.',
     closeVideo: 'Video schließen',
-    introDialog: 'Vorstellungsvideo',
     avatarLabel: 'Illustrierte Lu an ihrem Schreibtisch.',
     altTravel: 'Alpiner See zwischen bewaldeten Bergen',
     altDesign: 'Glaskanne mit Tee auf einem Holztisch',
@@ -189,10 +185,8 @@ export function applyAboutTranslations(currentLang: string) {
   setText(byKey('page.letsTalk'), page.letsTalk)
   setText(byKey('page.downloadCv'), page.downloadCv)
   setText(byKey('page.footerRights'), page.footerRights)
-  setText(byKey('page.footerCredit'), page.footerCredit)
 
   setAttr(byKey('page.closeVideo'), 'aria-label', page.closeVideo)
-  setAttr(document.getElementById('introOverlay'), 'aria-label', page.introDialog)
   setAttr(byKey('page.avatarLabel'), 'aria-label', page.avatarLabel)
   setAttr(byKey('page.altTravel'), 'alt', page.altTravel)
   setAttr(byKey('page.altDesign'), 'alt', page.altDesign)

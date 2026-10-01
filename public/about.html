@@ -635,7 +635,6 @@
 
 <body class="font-sans bg-ink text-text2 min-w-[360px]">
 
-<main>
   <!-- ============ SECTION 1 — HERO (normal page flow, one viewport tall) ============ -->
   <section id="hero" class="hero relative w-full h-screen min-h-[100dvh] bg-ink overflow-hidden select-none">
 
@@ -770,17 +769,15 @@
       </div>
       <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn shrink-0">
         <span data-i18n="page.letsTalk">Let's talk</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
   </section>
 
-</main>
-
   <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
     <div class="site-footer__inner">
       <div class="site-footer__bottom">
-        <p class="text-xs"><span data-i18n="page.footerRights">© 2026 Lu Jin. All rights reserved.</span> <span class="site-footer__credit" data-i18n="page.footerCredit">Designed with vibe coding, tailored in Cursor.</span></p>
+        <p class="text-xs"><span data-i18n="page.footerRights">© 2026 Lu Jin. All rights reserved.</span></p>
       </div>
     </div>
   </footer>
@@ -789,7 +786,7 @@
        Click-triggered only. Lives at the document root, fixed to the
        viewport, above the page but below the global nav. Never a scroll
        section — scrolling can neither reach it nor pass back through it. ============ -->
-  <div id="introOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Introduction video">
+  <div id="introOverlay" aria-hidden="true">
     <video
       id="introVideo"
       src="/assets/videos/about/lu-intro.mp4"
@@ -926,18 +923,13 @@
       aboutReveals.forEach((el) => el.classList.add('is-visible'));
     };
 
-    const closeIntro = (restoreFocus) => {
+    const closeIntro = () => {
       introOverlay.classList.remove('active');
       introOverlay.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('intro-lock');
       introVideo.pause();
       introVideo.currentTime = 0;
-      if (restoreFocus) startBtn.focus();
     };
-
-    const introFocusable = () =>
-      Array.from(introOverlay.querySelectorAll('button, video, a, [href], input, select, textarea'))
-        .filter((el) => !el.hasAttribute('disabled'));
 
     startBtn.addEventListener('click', () => {
       if (introOverlay.classList.contains('active')) return;
@@ -951,31 +943,12 @@
       introVideo.volume = 1;
       const p = introVideo.play();
       if (p && p.catch) p.catch(() => {});
-      introClose.focus();
     });
 
     // manual dismiss (X / Esc) — just close, leave the page untouched
-    introClose.addEventListener('click', () => closeIntro(true));
+    introClose.addEventListener('click', closeIntro);
     document.addEventListener('keydown', (e) => {
-      if (!introOverlay.classList.contains('active')) return;
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        closeIntro(true);
-        return;
-      }
-      if (e.key !== 'Tab') return;
-      const focusable = introFocusable();
-      if (!focusable.length) return;
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      const active = document.activeElement;
-      if (e.shiftKey && (active === first || !introOverlay.contains(active))) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && (active === last || !introOverlay.contains(active))) {
-        e.preventDefault();
-        first.focus();
-      }
+      if (e.key === 'Escape' && introOverlay.classList.contains('active')) closeIntro();
     });
 
     // natural end — close the overlay, then glide down to About
@@ -1092,7 +1065,6 @@
         letsTalk: "Let's talk",
         downloadCv: "Download CV",
         footerRights: "© 2026 Lu Jin. All rights reserved.",
-        footerCredit: "Designed with vibe coding, tailored in Cursor.",
         closeVideo: "Close video",
         avatarLabel: "Illustrated Lu at her desk.",
         altTravel: "Alpine lake between forested mountains",
@@ -1110,7 +1082,6 @@
         letsTalk: "Lass uns sprechen",
         downloadCv: "Lebenslauf",
         footerRights: "© 2026 Lu Jin. Alle Rechte vorbehalten.",
-        footerCredit: "Gestaltet mit Vibe Coding, verfeinert in Cursor.",
         closeVideo: "Video schließen",
         avatarLabel: "Illustrierte Lu an ihrem Schreibtisch.",
         altTravel: "Alpiner See zwischen bewaldeten Bergen",
@@ -1169,7 +1140,6 @@
       setText('page.letsTalk', page.letsTalk);
       setText('page.downloadCv', page.downloadCv);
       setText('page.footerRights', page.footerRights);
-      setText('page.footerCredit', page.footerCredit);
       setAttr('page.closeVideo', 'aria-label', page.closeVideo);
       setAttr('page.avatarLabel', 'aria-label', page.avatarLabel);
       setAttr('page.altTravel', 'alt', page.altTravel);

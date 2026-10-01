@@ -36,7 +36,7 @@ const NAV: readonly NavEntry[] = [
     label: 'Lab',
     sectionHref: '/lab',
     children: [
-      { label: 'Way of Work', href: '/lab/way-of-work' },
+      { label: 'Action Center', href: '/lab/action-center' },
       { label: 'Off We Go Workbench', href: '/lab/off-we-go' },
       { label: 'Party Planner', href: '/lab/party-planner' },
     ],
@@ -81,6 +81,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   const pathname = usePathname()
   const currentHref = activeHref ?? pathname
   const cinematicHeader =
+    pathname.startsWith('/lab/action-center') ||
     pathname.startsWith('/lab/way-of-work') ||
     pathname.startsWith('/lab/off-we-go') ||
     pathname.startsWith('/lab/party-planner')

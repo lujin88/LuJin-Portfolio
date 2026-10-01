@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { useTranslation } from '@i18n/use-translation'
 
 export function HeroSection() {
@@ -19,14 +18,18 @@ export function HeroSection() {
     >
       <div className="ca-s01-photo pointer-events-none absolute inset-0 hidden lg:block">
         <div className="ca-s01-photo-shift">
-          <Image
-            src="/assets/images/client-advisory/hero-background.png"
-            alt={t('ca.hero.photoAlt')}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
+          <video
+            className="ca-s01-video h-full w-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            disablePictureInPicture
+            aria-hidden="true"
+          >
+            <source src="/assets/videos/client-advisory/hero.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
       <div aria-hidden="true" className="ca-s01-photo-fade pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden lg:block" />
@@ -84,13 +87,18 @@ export function HeroSection() {
         </div>
 
         <div className="relative -mx-6 aspect-[4/3] overflow-hidden md:-mx-10 lg:hidden">
-          <Image
-            src="/assets/images/client-advisory/hero-background.png"
-            alt={t('ca.hero.photoAlt')}
-            fill
-            sizes="100vw"
-            className="object-cover object-[50%_25%]"
-          />
+          <video
+            className="h-full w-full object-cover object-center"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            disablePictureInPicture
+            aria-hidden="true"
+          >
+            <source src="/assets/videos/client-advisory/hero.mp4" type="video/mp4" />
+          </video>
           <div
             aria-hidden="true"
             className="absolute inset-0 bg-[linear-gradient(180deg,var(--ca-bg)_0%,transparent_30%,transparent_70%,var(--ca-bg)_100%)]"

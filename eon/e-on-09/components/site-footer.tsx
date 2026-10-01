@@ -76,7 +76,7 @@ export function SiteFooter({ variant }: SiteFooterProps) {
 
       <div className="relative mx-auto w-full max-w-[1040px] px-6 py-5 md:py-6">
         <p className="text-sm text-footer-muted/80">
-          {t('common.footerRights')}  ·  {t('common.footerCreditCase')}
+          {t('common.footerRights')}
         </p>
       </div>
     </footer>

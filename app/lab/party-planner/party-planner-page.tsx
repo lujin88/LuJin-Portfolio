@@ -140,11 +140,6 @@ export function PartyPlannerPage() {
             <div className="panel plan">
               <div className="plan-copy">
                 <div className="eyebrow">Your party plan</div>
-                <h3 className="plan-headline">
-                  Everything
-                  <br />
-                  for Mia’s day.
-                </h3>
                 <ul className="plan-facts" aria-label="Party details">
                   <li>
                     <Icon name="i-palette" />
@@ -175,6 +170,11 @@ export function PartyPlannerPage() {
                     </div>
                   </li>
                 </ul>
+                <p className="plan-summary">
+                  The practical details become
+                  <br />
+                  a plan you can actually use.
+                </p>
               </div>
 
               <div className="invite-stage">
@@ -209,29 +209,6 @@ export function PartyPlannerPage() {
                   </div>
                   <div className="invite-rsvp">RSVP</div>
                 </article>
-                <a
-                  className="invite-notes"
-                  href={prototypeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Edit invitation in Party Planner (opens in a new tab)"
-                >
-                  <span className="postit p1" aria-hidden="true">
-                    <i className="ri-image-line" />
-                    Photos
-                  </span>
-                  <span className="postit p3" aria-hidden="true">
-                    <i className="ri-star-line" />
-                    Stickers
-                  </span>
-                  <span className="postit p2" aria-hidden="true">
-                    <i className="ri-text" />
-                    Text
-                  </span>
-                  <span className="invite-edit">
-                    <i className="ri-pencil-line" aria-hidden="true" />
-                  </span>
-                </a>
               </div>
             </div>
           </section>
@@ -245,48 +222,44 @@ export function PartyPlannerPage() {
                 <div className="guest-head">
                   <Icon name="i-back" />
                   <span>Guests &amp; RSVPs</span>
-                  <span className="more" aria-hidden="true">
-                    <span />
-                    <span />
-                    <span />
-                  </span>
+                  <i className="ri-add-line" aria-hidden="true" />
                 </div>
-                <div className="guest-tabs">
-                  <span className="guest-tab active">All (15)</span>
-                  <span className="guest-tab">Coming (12)</span>
-                  <span className="guest-tab">Waiting (3)</span>
-                </div>
-                <div className="guest-stats">
-                  <div className="guest-stat coming">
-                    <Icon name="i-users" />
-                    <div>
-                      <b>12</b>
-                      <small>coming</small>
-                    </div>
+                <p className="guest-intro">
+                  Replies from the RSVP link and guests you add yourself, in one list.
+                </p>
+                <div className="guest-counts" aria-label="RSVP summary">
+                  <div className="guest-count coming">
+                    <b>4</b>
+                    <span>Coming</span>
                   </div>
-                  <div className="guest-stat waiting">
-                    <Icon name="i-clock" />
-                    <div>
-                      <b>3</b>
-                      <small>waiting</small>
-                    </div>
+                  <div className="guest-count waiting">
+                    <b>3</b>
+                    <span>Waiting</span>
+                  </div>
+                  <div className="guest-count declined">
+                    <b>1</b>
+                    <span>Not coming</span>
                   </div>
                 </div>
-                <div className="guest-person">
-                  <span className="avatar e">E</span>
-                  <span className="guest-name">Emma Weber</span>
-                  <span className="tag coming">Coming</span>
-                  <span className="tag allergy">
-                    <Icon name="i-warn" />
-                    Nut allergy
-                  </span>
-                  <Icon name="i-right" className="go" />
-                </div>
-                <div className="guest-person">
-                  <span className="avatar l">L</span>
-                  <span className="guest-name">Liam Schmid</span>
-                  <span className="tag waiting">Waiting</span>
-                  <Icon name="i-right" className="go" />
+                <p className="guest-caption">
+                  About 5 kids including Emma — no need to count siblings or parents.
+                </p>
+                <div className="guest-list">
+                  <div className="guest-person">
+                    <span className="avatar">N</span>
+                    <span className="guest-name">Noah</span>
+                    <span className="tag coming">Coming</span>
+                  </div>
+                  <div className="guest-person">
+                    <span className="avatar">M</span>
+                    <span className="guest-name">Mia</span>
+                    <span className="tag coming">Coming</span>
+                  </div>
+                  <div className="guest-person">
+                    <span className="avatar">L</span>
+                    <span className="guest-name">Luca</span>
+                    <span className="tag coming">Coming</span>
+                  </div>
                 </div>
               </div>
 

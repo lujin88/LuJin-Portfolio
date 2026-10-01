@@ -501,9 +501,28 @@
 .ca-s01-photo-shift {
   position: absolute;
   top: -4%;
-  left: -6%;
-  width: 112%;
+  right: 0;
+  width: 56%;
   height: 104%;
+}
+
+.ca-s01-photo-shift::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    var(--ca-bg, #0b1220) 0%,
+    rgb(11 18 32 / 0.92) 10%,
+    rgb(11 18 32 / 0.58) 22%,
+    rgb(11 18 32 / 0.18) 34%,
+    transparent 46%
+  );
+}
+
+.ca-s01-video {
+  object-position: center center;
 }
 
 @media (min-width: 1024px) {
@@ -556,8 +575,8 @@
 
   .ca-s01-photo-shift {
     top: 0;
-    left: -4%;
-    width: 108%;
+    right: 0;
+    width: 56%;
     height: 100%;
   }
 
@@ -582,10 +601,6 @@
 
   .ca-s01-scope {
     max-width: 30rem;
-  }
-
-  .ca-s01-photo-shift img {
-    object-position: 62% 100%;
   }
 
   .ca-s02 {
@@ -708,9 +723,6 @@
     max-width: 11rem;
   }
 
-  .ca-s01-photo-shift img {
-    object-position: 66% 100%;
-  }
 }
 
 .ca-s02-note-rule {

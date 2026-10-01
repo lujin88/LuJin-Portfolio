@@ -68,8 +68,7 @@ export function SiteClosing({ className }: { className?: string }) {
         <div className="site-footer__inner">
           <div className="site-footer__bottom">
             <p className="site-footer__note">
-              <span>{t('common.footerRights')}</span>{' '}
-              <span className="site-footer__credit">{t('common.footerCredit')}</span>
+              <span>{t('common.footerRights')}</span>
             </p>
           </div>
         </div>
