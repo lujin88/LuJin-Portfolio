@@ -241,12 +241,12 @@
 }
 
 .theme-decisions {
-  --background: #f5f4fd;
+  --background: #f2fbf5;
   --foreground: var(--ink);
   --card: #fdfdff;
   --card-foreground: var(--ink);
-  --primary: var(--lavender-marker);
-  --primary-foreground: #ffffff;
+  --primary: var(--mint);
+  --primary-foreground: var(--ink);
   --muted: var(--soft-white);
   --muted-foreground: var(--ink-muted);
   --accent: var(--mint);
