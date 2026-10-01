@@ -45,16 +45,24 @@ export function ConceptScrollStory({
 }) {
   const count = items.length
   const wrapRef = useRef<HTMLElement>(null)
-  const bodyRefs = useRef<(HTMLDivElement | null)[]>([])
+  // Refs on the outer overflow:hidden panel divs (not the inner bodyRef). The
+  // outer div is the BFC that captures the first-child top-margin which collapses
+  // out of the inner div's scrollHeight, so measuring it here gives the correct
+  // full height needed by the maxHeight animation.
+  const panelRefs = useRef<(HTMLDivElement | null)[]>([])
   const [enabled, setEnabled] = useState(false)
 
   useLayoutEffect(() => {
     const motionMq = window.matchMedia('(prefers-reduced-motion: reduce)')
     const wideMq = window.matchMedia('(min-width: 1024px)')
+    // The sticky accordion requires a minimum viewport height to fit the
+    // tallest expanded panel (item 1 body) without overflow clipping.
+    // Below 900 px the section falls back to the fully-expanded static layout.
+    const tallMq = window.matchMedia('(min-height: 900px)')
 
     let ticking = false
 
-    const shouldRun = () => !motionMq.matches && wideMq.matches
+    const shouldRun = () => !motionMq.matches && wideMq.matches && tallMq.matches
 
     const update = () => {
       ticking = false
@@ -64,7 +72,7 @@ export function ConceptScrollStory({
       const scrollable = rect.height - window.innerHeight
       const progress = scrollable > 0 ? clamp(-rect.top / scrollable, 0, 1) : 0
       wrap.style.setProperty('--p', progress.toFixed(4))
-      bodyRefs.current.forEach((node, i) => {
+      panelRefs.current.forEach((node, i) => {
         if (!node) return
         wrap.style.setProperty(`--s06-h-${i}`, `${node.scrollHeight}px`)
         wrap.style.setProperty(`--s06-o-${i}`, openAmount(i, progress, count).toFixed(4))
@@ -101,12 +109,14 @@ export function ConceptScrollStory({
     window.addEventListener('resize', onScrollOrResize)
     motionMq.addEventListener('change', applyMode)
     wideMq.addEventListener('change', applyMode)
+    tallMq.addEventListener('change', applyMode)
 
     return () => {
       window.removeEventListener('scroll', onScrollOrResize)
       window.removeEventListener('resize', onScrollOrResize)
       motionMq.removeEventListener('change', applyMode)
       wideMq.removeEventListener('change', applyMode)
+      tallMq.removeEventListener('change', applyMode)
     }
   }, [count])
 
@@ -121,7 +131,7 @@ export function ConceptScrollStory({
       <div
         className={
           enabled
-            ? 'ca-s06-stage sticky top-0 flex h-svh w-full items-center pt-[clamp(1.25rem,3.5vh,2.25rem)] pb-[clamp(4.5rem,12vh,7rem)]'
+            ? 'ca-s06-stage sticky top-0 flex h-svh w-full items-center pt-[clamp(1.25rem,3.5svh,2.25rem)] pb-[clamp(3rem,8svh,5rem)]'
             : 'flex min-h-svh w-full items-center py-24 md:py-28'
         }
       >
@@ -144,31 +154,33 @@ export function ConceptScrollStory({
           <div className="flex max-w-[560px] flex-col lg:max-w-none">
             {header}
 
-            <div className="mt-10 flex flex-col">
+            <div className={enabled ? 'mt-8 flex flex-col' : 'mt-10 flex flex-col'}>
               {items.map((item, i) => {
                 const open = `var(--s06-o-${i}, ${i === 0 ? 1 : 0})`
                 return (
-                  <div key={item.title} className="relative flex flex-col py-[1.1rem] pl-5">
+                  <div
+                    key={item.title}
+                    className={`relative flex flex-col pl-5 ${enabled ? 'py-[0.8rem]' : 'py-[1.1rem]'}`}
+                  >
                     <span
                       aria-hidden="true"
-                      className="pointer-events-none absolute inset-y-[1.1rem] left-0 w-0.5 rounded-full bg-[var(--ca-text)]"
+                      className={`pointer-events-none absolute left-0 w-0.5 rounded-full bg-[var(--ca-text)] ${enabled ? 'inset-y-[0.8rem]' : 'inset-y-[1.1rem]'}`}
                       style={{ opacity: enabled ? open : 1 }}
                     />
                     <h3 className="font-sans text-[28px] font-semibold leading-[1.15] text-[var(--ca-text)]">
                       {item.title}
                     </h3>
                     <div
+                      ref={(node) => {
+                        panelRefs.current[i] = node
+                      }}
                       style={{
                         overflow: 'hidden',
-                        maxHeight: enabled ? `calc(${open} * var(--s06-h-${i}, 280px))` : 'none',
+                        maxHeight: enabled ? `calc(${open} * var(--s06-h-${i}, 600px))` : 'none',
                         opacity: enabled ? open : 1,
                       }}
                     >
-                      <div
-                        ref={(node) => {
-                          bodyRefs.current[i] = node
-                        }}
-                      >
+                      <div>
                         {typeof item.body === 'string' ? (
                           <p className="mt-[0.85rem] max-w-[34rem] text-pretty text-[15px] font-normal leading-[1.6] text-[var(--ca-text-2)] xl:text-base">
                             {item.body}
