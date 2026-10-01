@@ -11,13 +11,11 @@ function HeroLoop({
   className,
   priority = false,
   sizes,
-  sourceMedia,
 }: {
   alt: string
   className: string
   priority?: boolean
   sizes: string
-  sourceMedia: string
 }) {
   return (
     <>
@@ -29,6 +27,7 @@ function HeroLoop({
         sizes={sizes}
         className={className}
       />
+      {/* Video is always sourced; CSS hides it when prefers-reduced-motion:reduce */}
       <video
         className={`ca-s01-hero-video ${className}`}
         poster={HERO_POSTER}
@@ -43,11 +42,7 @@ function HeroLoop({
           if (node) node.muted = true
         }}
       >
-        <source
-          src={HERO_VIDEO}
-          type="video/mp4"
-          media={`(prefers-reduced-motion: no-preference) and ${sourceMedia}`}
-        />
+        <source src={HERO_VIDEO} type="video/mp4" />
       </video>
     </>
   )
@@ -75,7 +70,6 @@ export function HeroSection() {
             priority
             sizes="100vw"
             className="object-cover"
-            sourceMedia="(min-width: 1024px)"
           />
         </div>
       </div>
@@ -138,7 +132,6 @@ export function HeroSection() {
             alt={photoAlt}
             sizes="100vw"
             className="object-cover object-[center_32%]"
-            sourceMedia="(max-width: 1023px)"
           />
           <div
             aria-hidden="true"

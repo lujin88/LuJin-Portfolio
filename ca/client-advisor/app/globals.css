@@ -555,13 +555,15 @@
   }
 
   /*
-   * Shift the container right so the advisor face (~31% x in the 1440×1440 source)
-   * lands at ~56% of the viewport — matching production's face position (56.2%).
-   * Measured from screenshots: left=15%→face@51%; +4% shift to land at ~55%.
+   * Face is at source x≈520/1440 (36%). width:76% → scale 0.76, no horizontal
+   * overflow so object-position X has no effect. left:29% places face at
+   * 29%×1440 + 520×0.76 = 418+395 = 813px = 56.5% of viewport, matching
+   * Image 1 reference. Fade zone (31→47%) shows source x=38–342 = dark
+   * window frame + suit jacket → blends with navy, no sky bleed.
    */
   .ca-s01-photo-shift {
     top: 0;
-    left: 33%;
+    left: 29%;
     width: 76%;
     height: 100%;
   }
