@@ -44,7 +44,7 @@ export const home = {
       'I\'m Lu, an <strong class="text-text1 font-semibold">AI-native Product Designer</strong> with 10+ years of experience turning <strong class="text-text1 font-semibold">complex systems and workflows into clear, useful products</strong>.<br /><br />I work end-to-end across <strong class="text-text1 font-semibold">product, service, and UI design</strong> — from framing problems to prototyping and implementation. I use AI as part of my everyday design process to explore faster, prototype boldly, and turn ideas into working experiences.',
     exp: {
       '0': {
-        eyebrow: 'Oct 2022 — Present',
+        eyebrow: 'Oct 2022 — Sep 2026',
         title: 'UBS · Zurich',
         role: 'Senior Service Designer / UX Designer',
         desc: 'Designed for complex wealth-management workflows — balancing user needs with business goals and regulation.',
@@ -114,7 +114,7 @@ export const home = {
       'Ich bin Lu, eine <strong class="text-text1 font-semibold">KI-native Product Designerin</strong> mit über 10 Jahren Erfahrung darin, <strong class="text-text1 font-semibold">komplexe Systeme und Workflows in klare, nützliche Produkte</strong> zu übersetzen.<br /><br />Ich arbeite Ende-zu-Ende in <strong class="text-text1 font-semibold">Produkt-, Service- und UI-Design</strong> — vom Framing bis zu Prototyp und Umsetzung. KI ist Teil meines Alltags: schneller erkunden, mutiger prototypen, Ideen in funktionierende Erlebnisse bringen.',
     exp: {
       '0': {
-        eyebrow: 'Okt. 2022 — heute',
+        eyebrow: 'Okt. 2022 — Sep. 2026',
         title: 'UBS · Zürich',
         role: 'Senior Service Designer / UX Designer',
         desc: 'Komplexe Wealth-Management-Workflows — Nutzerbedürfnisse, Geschäftsziele und Regulation im Gleichgewicht.',

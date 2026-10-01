@@ -421,12 +421,11 @@
          3  (44.8%, 94.0%)   right side   "Designaffairs"
 
      Scroll (progress of the 500vh track) drives three phases:
-       ENTER  p 0   -> 0.16 : first block sits ~45px below the About cards,
-                              then the whole box eases DOWN 71px to its rest
-                              position. Item 0 is already active + fully
-                              visible at p = 0.
-       PINNED p 0.16-> 0.86 : box frozen. The arc draws along its path, the
-                              glow fills, items activate 0 -> 1 -> 2 -> 3.
+       HOLD   p 0   -> 0.22 : About + UBS stay fixed as one composition.
+       ENTER  p 0.22-> 0.34 : About leaves upward and the timeline settles
+                              into its normal coordinate system.
+       PINNED p 0.34-> 0.86 : the arc draws along its path, the glow fills,
+                              and items activate 0 -> 1 -> 2 -> 3.
        EXIT   p 0.86-> 1    : the whole box slides up and out.
 
      The arc is a BACKGROUND visual only — near-invisible, masked, low
@@ -462,6 +461,16 @@
     height: 500vh;
   }
 
+  /* Catch fast wheel/trackpad gestures at the opening composition instead of
+     letting momentum skip past the intended About + UBS pause. */
+  @media (min-width: 641px) and (prefers-reduced-motion: no-preference) {
+    html { scroll-snap-type: y proximity; }
+    .exp-track {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+  }
+
   /* sticky viewport — native CSS position:sticky, NOT JS pinning.
      NOTE: the clip that keeps the 250vh curve/glow inside one screen now lives
      on .exp-curve-clip (a wrapper around ONLY the curve group), NOT here — so
@@ -471,6 +480,22 @@
     position: sticky;
     top: 0;
     height: 100vh;
+  }
+
+  /* Keep the About + first-experience composition on screen before the
+     timeline advances. It holds at full opacity, then leaves upward as the
+     user continues scrolling. */
+  .exp-intro {
+    position: absolute;
+    top: var(--exp-stage-drop, 0px);
+    left: 0;
+    right: 0;
+    z-index: 4;
+    padding: 6rem 1.5rem 0;
+    opacity: var(--exp-intro-opacity, 1);
+    transform: translate3d(0, var(--exp-intro-shift, 0px), 0);
+    will-change: opacity, transform;
+    pointer-events: none;
   }
 
   /* isolates the curve/glow clipping: same 100vh box the sticky used to clip,
@@ -816,14 +841,7 @@
     color: var(--color-text-3);
   }
   .exp-contact__links a {
-    position: relative;
     transition: color 0.3s var(--exp-ease);
-  }
-  .exp-contact__links a::before {
-    content: "";
-    position: absolute;
-    inset-block: -0.75rem;
-    inset-inline: -0.2rem;
   }
   .exp-contact__links a:hover { color: var(--color-text-1); }
   .exp-contact__links a:focus-visible {
@@ -910,6 +928,15 @@
   @media (max-width: 640px), (prefers-reduced-motion: reduce) {
     .exp-track { height: auto; }
     .exp-sticky { position: static; height: auto; display: block; overflow: visible; padding: 0 0 3rem; }
+    .exp-intro {
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      padding: 6rem 1.25rem 4rem;
+      opacity: 1 !important;
+      transform: none !important;
+    }
     .exp-header { position: static; transform: none; padding: 0 1.25rem 1.75rem; }
     .exp-coord {
       position: relative; left: auto; transform: none !important;
@@ -1125,7 +1152,6 @@
   </div>
 </nav>
 
-<main>
 <!-- HERO — full-viewport video stage with logo overlay docked to the bottom -->
 <div id="hero">
   <section class="hero-pin-section relative w-full min-h-[100dvh] h-[100dvh] overflow-hidden flex items-center pt-20 md:pt-24">
@@ -1154,7 +1180,7 @@
         <p class="mt-6 max-w-md text-base md:text-lg leading-relaxed text-text2" data-i18n="home.heroSubtitle">
           Architecting scalable digital products from early-stage strategy to production-ready UI.
         </p>
-        <a href="#model-series" id="hero-see-how" class="pill-btn mt-9" data-i18n="common.seeMyWork">See My Work</a>
+        <a href="#" id="hero-see-how" class="pill-btn mt-9" data-i18n="common.seeMyWork">See My Work</a>
       </div>
     </div>
 
@@ -1217,7 +1243,7 @@
       <div class="grid lg:grid-cols-[minmax(0,43fr)_minmax(0,57fr)] gap-12 lg:gap-20 items-center">
         <div class="flex flex-col">
         <div class="accordion my-auto" data-group="1">
-          <div class="accordion-item is-active" data-index="0">
+          <button class="accordion-item is-active" data-index="0" type="button">
             <span class="accordion-bar"></span>
             <span class="flex-1">
               <span class="accordion-title block" data-i18n="home.ca.roleTitle">My role — lead service designer</span>
@@ -1227,9 +1253,9 @@
                 </span>
               </span>
             </span>
-          </div>
+          </button>
 
-          <div class="accordion-item" data-index="1">
+          <button class="accordion-item" data-index="1" type="button">
             <span class="accordion-bar"></span>
             <span class="flex-1">
               <span class="accordion-title block" data-i18n="home.ca.frictionTitle">From friction to AI</span>
@@ -1239,9 +1265,9 @@
                 </span>
               </span>
             </span>
-          </div>
+          </button>
 
-          <div class="accordion-item" data-index="2">
+          <button class="accordion-item" data-index="2" type="button">
             <span class="accordion-bar"></span>
             <span class="flex-1">
               <span class="accordion-title block" data-i18n="home.ca.scaleTitle">Designed for 500+ advisors</span>
@@ -1251,13 +1277,13 @@
                 </span>
               </span>
             </span>
-          </div>
+          </button>
         </div>
 
         <div class="mt-12 md:mt-14 text-left">
           <a href="/client-advisory" class="pill-btn">
             <span data-i18n="common.exploreNow">Explore Now</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
         </div>
@@ -1295,7 +1321,7 @@
 
         <div class="flex flex-col">
         <div class="accordion my-auto" data-group="2">
-          <div class="accordion-item is-active" data-index="0">
+          <button class="accordion-item is-active" data-index="0" type="button">
             <span class="accordion-bar"></span>
             <span class="flex-1">
               <span class="accordion-title block" data-i18n="home.eon.roleTitle">My role — lead product designer</span>
@@ -1305,9 +1331,9 @@
                 </span>
               </span>
             </span>
-          </div>
+          </button>
 
-          <div class="accordion-item" data-index="1">
+          <button class="accordion-item" data-index="1" type="button">
             <span class="accordion-bar"></span>
             <span class="flex-1">
               <span class="accordion-title block" data-i18n="home.eon.conversionTitle">From complexity to conversion</span>
@@ -1317,9 +1343,9 @@
                 </span>
               </span>
             </span>
-          </div>
+          </button>
 
-          <div class="accordion-item" data-index="2">
+          <button class="accordion-item" data-index="2" type="button">
             <span class="accordion-bar"></span>
             <span class="flex-1">
               <span class="accordion-title block" data-i18n="home.eon.impactTitle">300% higher conversion</span>
@@ -1329,13 +1355,13 @@
                 </span>
               </span>
             </span>
-          </div>
+          </button>
         </div>
 
         <div class="mt-12 md:mt-14 text-left">
           <a href="/EON" class="pill-btn">
             <span data-i18n="common.exploreNow">Explore Now</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
         </div>
@@ -1386,7 +1412,7 @@
           <div class="mt-12 md:mt-14 text-left">
             <a href="/lab" class="pill-btn">
               <span data-i18n="common.exploreNow">Explore Now</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
           </div>
         </div>
@@ -1433,24 +1459,13 @@
           <div class="mt-12 md:mt-14 text-left">
             <a href="/ai-workflow-case" class="pill-btn">
               <span data-i18n="common.exploreNow">Explore Now</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
           </div>
         </div>
       </article>
 
     </div>
-  </div>
-</section>
-
-<!-- NEXTGEN INITIATIVE -->
-<section id="nextgen" class="relative bg-ink pt-24 px-6">
-  <div class="mx-auto max-w-[var(--editorial)]">
-    <h2 class="reveal text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-5" data-i18n="home.aboutHeading">About me</h2>
-    <p class="reveal text-center text-text2 mx-auto mb-0 text-[15px] leading-relaxed" data-i18n-html="home.aboutBodyHtml">
-      I'm Lu, an <strong class="text-text1 font-semibold">AI-native Product Designer</strong> with 10+ years of experience turning <strong class="text-text1 font-semibold">complex systems and workflows into clear, useful products</strong>.<br /><br />
-      I work end-to-end across <strong class="text-text1 font-semibold">product, service, and UI design</strong> — from framing problems to prototyping and implementation. I use AI as part of my everyday design process to explore faster, prototype boldly, and turn ideas into working experiences.
-    </p>
   </div>
 </section>
 
@@ -1481,6 +1496,16 @@
   <div class="exp-track" id="exp-track">
     <div class="exp-sticky">
 
+      <section id="nextgen" class="exp-intro">
+        <div class="mx-auto max-w-[var(--editorial)]">
+          <h2 class="reveal text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-5" data-i18n="home.aboutHeading">About me</h2>
+          <p class="reveal text-center text-text2 mx-auto mb-0 text-[15px] leading-relaxed" data-i18n-html="home.aboutBodyHtml">
+            I'm Lu, an <strong class="text-text1 font-semibold">AI-native Product Designer</strong> with 10+ years of experience turning <strong class="text-text1 font-semibold">complex systems and workflows into clear, useful products</strong>.<br /><br />
+            I work end-to-end across <strong class="text-text1 font-semibold">product, service, and UI design</strong> — from framing problems to prototyping and implementation. I use AI as part of my everyday design process to explore faster, prototype boldly, and turn ideas into working experiences.
+          </p>
+        </div>
+      </section>
+
       <div class="exp-coord" id="exp-coord">
 
         <div class="exp-curve-clip" aria-hidden="true">
@@ -1507,7 +1532,7 @@
             <span class="exp-content__bar"></span>
             <span class="exp-content__plus"></span>
           </span>
-          <span class="exp-content__eyebrow" data-i18n="home.exp.0.eyebrow">Oct 2022 — Present</span>
+          <span class="exp-content__eyebrow" data-i18n="home.exp.0.eyebrow">Oct 2022 — Sep 2026</span>
           <span class="exp-content__title" data-i18n="home.exp.0.title">UBS · Zurich</span>
           <span class="exp-content__role" data-i18n="home.exp.0.role">Senior Service Designer / UX Designer</span>
           <span class="exp-content__desc" data-i18n="home.exp.0.desc">Designed for complex wealth-management workflows — balancing user needs with business goals and regulation.</span>
@@ -1570,18 +1595,16 @@
     </div>
     <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn shrink-0">
       <span data-i18n="common.letsTalk">Let's talk</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
   </div>
 </section>
-
-</main>
 
 <!-- FOOTER — shared across every page (identical markup + .site-footer rules) -->
 <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
   <div class="site-footer__inner">
     <div class="site-footer__bottom">
-      <p class="text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span> <span class="site-footer__credit" data-i18n="common.footerCredit">Designed with vibe coding, tailored in Cursor.</span></p>
+      <p class="text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span></p>
     </div>
   </div>
 </footer>
@@ -1589,11 +1612,9 @@
 <script>
   // nav background on scroll
   const nav = document.getElementById('site-nav');
-  if (nav && !nav.hasAttribute('hidden')) {
-    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-  }
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 
   // Hero CTA: smooth-scroll into the first content section below the hero
   // rather than navigating.
@@ -1603,7 +1624,6 @@
     if (!cta || !target) return;
 
     cta.addEventListener('click', (e) => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
@@ -1712,25 +1732,27 @@
     // ---- EXPERIENCE TIMELINE — FXIFY "How it works" curved-arc timeline.
     // The 500vh track's scroll progress is the single source of truth. Three
     // phases:
-    //   ENTER  p 0    -> 0.16 : first block starts ~45px below the About cards,
-    //                           coord box then eases DOWN 71px to its rest spot
-    //   PINNED p 0.16 -> 0.86 : box frozen; arc draws, glow fills, items 0..3
-    //                           activate in turn (thresholds below)
+    //   HOLD   p 0    -> 0.22 : About + UBS remain fixed as one composition
+    //   ENTER  p 0.22 -> 0.34 : About exits and the timeline settles upward
+    //   PINNED p 0.34 -> 0.86 : arc draws, glow fills, items 0..3 activate
+    //                           in turn (thresholds below)
     //   EXIT   p 0.86 -> 1    : coord box slides up and out
     // Dots are CSS-anchored (percent) to the same points as their content, so
     // the two always share a coordinate. No IntersectionObserver.
     const expTrack = document.getElementById('exp-track');
     const expCoord = document.getElementById('exp-coord');
+    const expIntro = document.getElementById('nextgen');
     const expAtmos = document.querySelector('.exp-atmos');   // carrier for .exp-field — needs --exp-f mirrored onto it
     const expArcPath = document.getElementById('exp-arc-path');
     const expCurve = document.getElementById('exp-curve');
     const expDots = expCoord ? Array.from(expCoord.querySelectorAll('.exp-dot')) : [];
     const expContents = expCoord ? Array.from(expCoord.querySelectorAll('.exp-content')) : [];
-    const EXP_ENTER = 0.16;                 // enter slide completes here
+    const INTRO_HOLD = 0.22;                // hold About + UBS for almost one full viewport of scrolling
+    const INTRO_EXIT = 0.34;                // then move/fade About away over roughly half a viewport
+    const EXP_ENTER = INTRO_EXIT;            // timeline motion begins only after the opening composition exits
     const EXP_EXIT = 0.86;                  // pinned phase ends here (no exit slide —
                                             // the box holds until the track releases and
                                             // the whole section scrolls away)
-    const EXP_ENTER_PX = -71;              // first block enters ~45px below the About cards, then eases DOWN to its rest position
     const EXP_TH = [0.24, 0.42, 0.60];      // item activation thresholds (pinned phase)
     // EXP_TIMELINE_END — past the last entry, where the blue-purple transition
     // (--exp-f, the field + curve glow) starts ramping from 0. The timeline
@@ -1744,10 +1766,26 @@
     let expLastArcOff = null;               // last strokeDashoffset written
     let expLastCurve = null;                // last curve-group opacity written
     let expLastField = null;                // last --exp-f (blue-purple field) written
+    let expLastIntroOpacity = null;
+    let expLastIntroShift = null;
+    let expIntroOffset = 0;
+    let expStageDrop = 0;
+
+    function expMeasureIntroOffset() {
+      if (!expIntro || !expContents[0]) return;
+      expStageDrop = window.matchMedia('(max-width: 640px)').matches ? 0 : 140;
+      expIntro.style.setProperty('--exp-stage-drop', expStageDrop + 'px');
+      // Keep a consistent visual gap regardless of viewport height or copy
+      // wrapping. offsetTop is measured in the untransformed coordinate box.
+      expIntroOffset = Math.max(0, expIntro.offsetHeight + 32 - expContents[0].offsetTop);
+      expLastShift = null;
+      expLastIntroShift = null;
+    }
 
     function expInit() {
       if (!expArcPath) return;
       expLen = expArcPath.getTotalLength();
+      expMeasureIntroOffset();
       // reference behaviour: the bright part of the curve GROWS along the path
       // from a fixed anchor — stroke-dashoffset is fixed, only the visible dash
       // length animates (compositor-friendly, quantised in expWrite).
@@ -1779,19 +1817,36 @@
       if (!expTrack || !expArcPath) return;
       const progress = expProgress;
 
-      // enter slide — the whole coordinate box, dots and arc included. The
-      // first block enters just below the About cards (EXP_ENTER_PX is
-      // negative) and the box eases DOWN to its rest position; the timeline
-      // and contact card hold as one block; only a small drift in the last
+      // Hold the opening About + UBS composition, then let the About copy
+      // leave upward before the second experience becomes active.
+      if (expIntro) {
+        const introExit = clamp((progress - INTRO_HOLD) / (INTRO_EXIT - INTRO_HOLD), 0, 1);
+        const introEased = introExit * introExit * (3 - 2 * introExit);
+        const introOpacity = Math.round((1 - introEased) * 100) / 100;
+        const introShift = Math.round(-(expIntroOffset + expStageDrop) * introEased * 10) / 10;
+        if (introOpacity !== expLastIntroOpacity) {
+          expIntro.style.setProperty('--exp-intro-opacity', introOpacity);
+          expLastIntroOpacity = introOpacity;
+        }
+        if (introShift !== expLastIntroShift) {
+          expIntro.style.setProperty('--exp-intro-shift', introShift + 'px');
+          expLastIntroShift = introShift;
+        }
+      }
+
+      // opening hold/settle — the whole coordinate box, dots and arc included.
+      // About and UBS stay seated as one block before the timeline moves into
+      // its normal coordinates; only a small drift in the last
       // few percent eases the box up to meet the footer as the track
       // releases (no hard "slide out" like the old version).
       let shift = 0;
-      if (progress < EXP_ENTER) {
-        // the first block rides in ~45px below the About cards; once the section
-        // pins it eases DOWN to its rest spot over a short window (well under
-        // EXP_ENTER, so the top line never lingers beneath the fixed nav).
-        const t = clamp(progress / 0.02, 0, 1);
-        shift = EXP_ENTER_PX * (1 - t * (2 - t));
+      if (progress < INTRO_EXIT) {
+        // Seat UBS below the sticky About copy, hold that opening composition,
+        // then bring the timeline into its normal coordinate system as About
+        // leaves the viewport.
+        const t = clamp((progress - INTRO_HOLD) / (INTRO_EXIT - INTRO_HOLD), 0, 1);
+        const eased = t * t * (3 - 2 * t);
+        shift = (expIntroOffset + expStageDrop) * (1 - eased);
       } else if (progress > 0.94) {
         // barely-there settle as the track releases — Contact stays seated inside
         // the blue-purple field rather than being yanked up into black.
@@ -1937,6 +1992,7 @@
     }
 
     function onResize() {
+      expMeasureIntroOffset();
       onScrollOrResize();
     }
 
