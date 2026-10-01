@@ -1,5 +1,6 @@
 'use client'
 
+import { useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { useTranslation } from '@i18n/use-translation'
 
@@ -17,6 +18,25 @@ function HeroLoop({
   priority?: boolean
   sizes: string
 }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    // Respect OS/browser reduce-motion preference — hide and bail early
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      video.style.display = 'none'
+      return
+    }
+    video.muted = true
+    // Explicit play() call is more reliable than the autoPlay attribute alone:
+    // browsers may suppress the attribute when the element was previously
+    // in a display:none parent or when autoplay policy is conservative.
+    video.play().catch(() => {
+      // Silently swallow AbortError / NotAllowedError; poster remains visible.
+    })
+  }, [])
+
   return (
     <>
       <Image
@@ -27,8 +47,8 @@ function HeroLoop({
         sizes={sizes}
         className={className}
       />
-      {/* Video is always sourced; CSS hides it when prefers-reduced-motion:reduce */}
       <video
+        ref={videoRef}
         className={`ca-s01-hero-video ${className}`}
         poster={HERO_POSTER}
         muted
@@ -38,9 +58,6 @@ function HeroLoop({
         preload="auto"
         disablePictureInPicture
         aria-hidden="true"
-        ref={(node) => {
-          if (node) node.muted = true
-        }}
       >
         <source src={HERO_VIDEO} type="video/mp4" />
       </video>
