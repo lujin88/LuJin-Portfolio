@@ -1,14 +1,7 @@
 import type { Metadata } from 'next'
-import { Plus_Jakarta_Sans } from 'next/font/google'
 import 'remixicon/fonts/remixicon.css'
 
 import { HtmlChrome } from '../../html-chrome'
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-plus-jakarta',
-})
 
 export const metadata: Metadata = {
   title: {
@@ -25,11 +18,9 @@ export default function OffWeGoLayout({
 }>) {
   return (
     <HtmlChrome activeHref="/lab/off-we-go">
-      <div className={plusJakarta.variable}>
-        <link rel="stylesheet" href="/styles/shell-components.css" />
-        <link rel="preload" as="image" href="/assets/images/lab/off-we-go/lakeside-hero.jpg" />
-        {children}
-      </div>
+      <link rel="stylesheet" href="/styles/shell-components.css" />
+      <link rel="preload" as="image" href="/assets/images/lab/off-we-go/lakeside-hero.jpg" />
+      {children}
     </HtmlChrome>
   )
 }

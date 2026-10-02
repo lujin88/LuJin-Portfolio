@@ -7,7 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700;1,900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
 
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -24,7 +24,7 @@
         },
         fontFamily: {
           sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-          serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          serif: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'], /* alias: Display is Poppins */
         },
       },
     },
@@ -81,8 +81,8 @@
   .accordion-item.is-active .accordion-bar { background: var(--color-text-1); }
 
   .accordion-title {
-    font-size: 1.15rem;
-    font-weight: 600;
+    font-size: var(--font-size-h3); /* H3 accordion */
+    font-weight: var(--font-weight-semibold);
     line-height: 1.4;
     color: var(--color-text-3);
     transition: color 400ms ease;
@@ -112,9 +112,9 @@
   .accordion-body {
     margin-top: 0.85rem;
     color: var(--color-text-2);
-    line-height: 1.75;
-    font-size: 0.95rem;
-    font-weight: 400;
+    line-height: var(--leading-body);
+    font-size: var(--font-size-body); /* Body R */
+    font-weight: var(--font-weight-regular);
   }
 
   /* --- Scroll-driven media --- */
@@ -181,8 +181,8 @@
 <!-- --- Section 01: Hero --- -->
 <section id="aiw-hero" class="relative min-h-screen flex items-center bg-ink px-6 pt-32 pb-24">
   <div class="mx-auto w-full max-w-[var(--editorial)]">
-    <p class="reveal text-[13px] font-sans font-semibold uppercase tracking-[0.28em] shell-accent mb-6" data-i18n="ai.eyebrow">Lab &mdash; Experiment</p>
-    <h1 class="reveal font-serif font-bold text-text1 text-[clamp(2.4rem,6vw,4.75rem)] leading-[1.05] tracking-[-0.03em] max-w-3xl" data-i18n-html="ai.titleHtml">
+    <p class="reveal text-[13px] font-sans font-semibold uppercase tracking-[0.28em] shell-accent mb-6" data-i18n="ai.eyebrow">Playground &mdash; Experiment</p>
+    <h1 class="reveal font-sans font-bold text-text1 text-[clamp(2.4rem,6vw,4.75rem)] leading-[1.05] tracking-[-0.03em] max-w-3xl" data-i18n-html="ai.titleHtml">
       Explore more.<br />Think deeper.
     </h1>
     <p class="reveal mt-8 max-w-2xl text-text2 text-[17px] leading-[1.7]" data-i18n="ai.intro">
@@ -409,7 +409,7 @@
       <div data-zoom="0.14" class="pin-media ph-media absolute inset-0" style="--ph-x:15%; --ph-y:8%;"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/25"></div>
       <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-14">
-        <p class="font-serif italic font-bold text-[clamp(1.35rem,2.6vw,2.4rem)] leading-[1.3] text-white max-w-2xl" data-i18n="ai.bannerQuote">
+        <p class="font-sans italic font-bold text-[clamp(1.35rem,2.6vw,2.4rem)] leading-[1.3] text-white max-w-2xl" data-i18n="ai.bannerQuote">
           Where thinking becomes experience.
         </p>
         <div class="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-[13px] text-white/75">
@@ -434,8 +434,8 @@
         <a href="https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-i18n="common.downloadCv">Download CV</a>
       </p>
     </div>
-    <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn shrink-0">
-      <span data-i18n="common.letsTalk">Let's talk</span>
+    <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn pill-btn--l shrink-0">
+      <span data-i18n="common.letsTalk">Let's Talk</span>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
   </div>
@@ -445,7 +445,7 @@
 <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
   <div class="site-footer__inner">
     <div class="site-footer__bottom">
-      <p class="text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span></p>
+      <p class="site-footer__note text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span><span aria-hidden="true">·</span><a href="/lab" class="site-footer__lab">Playground</a></p>
     </div>
   </div>
 </footer>

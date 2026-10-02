@@ -1,4 +1,4 @@
-/* Shell tokens for Index, About, Lab, and AI Workflow.
+/* Shell tokens for Index, About, Playground, and AI Workflow.
    Host layer only. Do not merge with header accent #4a90ff or case-study palettes.
    --color-bg-deepseek is a leftover and is intentionally absent. */
 
@@ -95,6 +95,47 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   --tracking-meta: 0.14em;
+
+  /* Type scale — Master DS + portfolio-consistency-guide §2.2
+     Roles: Display / H1–H3 / Body / Caption / Pill (+ shared leading/tracking). */
+  --font-size-display: clamp(2.25rem, 5.2vw, 4rem); /* Display / H1 Index+About */
+  --font-size-display-editorial: clamp(2.4rem, 6vw, 4.75rem); /* Display large — Poppins (same face as UI) */
+  --font-size-heading: 1.9rem; /* H2 */
+  --font-size-heading-lg: 2.25rem; /* H2 md:text-4xl */
+  --font-size-h3: 1.15rem; /* H3 accordion */
+  --font-size-h3-card: 1.75rem; /* H3 card title ~28px */
+  --font-size-contact: clamp(1.6rem, 2.6vw, 2.4rem); /* H3 contact heading */
+  --font-size-subhead: 1.25rem;
+  --font-size-subhead-lg: 1.5rem;
+  --font-size-body: 0.9375rem; /* Body R 15px */
+  --font-size-body-lg: 1.0625rem; /* Body L 17px */
+  --font-size-caption: 0.8125rem; /* Caption / eyebrow 13px; pill S */
+  --font-size-meta: 0.6875rem; /* Meta 11px */
+  --font-size-pill: 0.95rem; /* Pill M */
+  --font-size-footer-note: 0.75rem; /* Footer note 12px */
+
+  --leading-display: 1.08;
+  --leading-editorial: 1.05;
+  --leading-heading: 1.1;
+  --leading-body: 1.75;
+  --leading-relaxed: 1.625;
+  --tracking-display: -0.025em;
+  --tracking-editorial: -0.03em;
+  --tracking-eyebrow: 0.28em;
+
+  /* Recurring space / radius (foundation; used by Playground host + shell) */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 3rem;
+  --space-xl: 5rem;
+  --space-2xl: 6rem;
+  --space-3xl: 8rem;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-pill: 999px;
 
   --duration-fast: 200ms;
   --duration-interaction: 320ms;

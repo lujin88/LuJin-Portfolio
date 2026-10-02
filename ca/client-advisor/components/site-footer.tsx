@@ -67,10 +67,17 @@ export function SiteFooter() {
 
       <hr className="relative w-full border-0 border-t border-footer-line" />
 
-      <div className="relative mx-auto w-full max-w-[1040px] px-6 py-5 md:py-6">
-        <p className="text-sm text-footer-muted/80">
-          {t('common.footerRights')}
-        </p>
+      <div className="relative mx-auto flex w-full max-w-[1040px] flex-wrap items-center gap-x-3 gap-y-1 px-6 py-5 md:py-6">
+        <p className="text-xs text-footer-muted/80">{t('common.footerRights')}</p>
+        <span aria-hidden="true" className="text-xs text-footer-muted/50">
+          ·
+        </span>
+        <a
+          href="/lab"
+          className="text-xs text-footer-muted/80 transition-colors duration-200 hover:text-footer-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current motion-reduce:transition-none"
+        >
+          Playground
+        </a>
       </div>
     </footer>
   )

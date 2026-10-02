@@ -109,7 +109,8 @@ export function PartyPlannerPage() {
                 rel="noopener noreferrer"
                 aria-label="Start a party, open Party Planner prototype (opens in a new tab)"
               >
-                START A PARTY
+                <span>Start A Party</span>
+                <i className="ri-arrow-right-line" aria-hidden="true" />
               </a>
             </div>
             <a
@@ -431,7 +432,8 @@ export function PartyPlannerPage() {
               rel="noopener noreferrer"
               aria-label="Start planning, open Party Planner prototype (opens in a new tab)"
             >
-              START PLANNING
+              <span>Start Planning</span>
+              <i className="ri-arrow-right-line" aria-hidden="true" />
             </a>
             <div className="closing-footer">Happier planning. Brighter childhoods.</div>
           </section>

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-const CANVAS_WIDTH = 1200
+const CANVAS_WIDTH = 1440
 
 export function PartyPlannerCanvas({ children }: { children: React.ReactNode }) {
   const pageRef = useRef<HTMLDivElement>(null)

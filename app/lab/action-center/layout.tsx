@@ -21,12 +21,13 @@ export default function ActionCenterLayout({
       activeHref="/lab/action-center"
       theme="light"
       colorScheme="light"
-      backgroundColor="#f1ece6"
+      backgroundColor="#f2efec"
     >
+      <link rel="stylesheet" href="/styles/shell-components.css" />
       <link
         rel="preload"
         as="image"
-        href="/assets/images/lab/action-center/monitor-hero-8k-v2.png"
+        href="/assets/images/lab/action-center/monitor-hero-bg.png"
       />
       {children}
     </HtmlChrome>

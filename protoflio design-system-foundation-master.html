@@ -6,7 +6,7 @@
   <title>Portfolio Master Design System Foundation — Lu.AI.Design</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700;1,900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
   <style>
     :root{--bg:#0a0a0a;--surface:#111214;--surface-2:#1a1c1f;--elevated:#1f2124;--text:#f9fbfc;--text-2:#b6bbc2;--text-3:#777e85;--text-4:#595d61;--accent:#8B5CF6;--accent-hover:#A78BFA;--border:#343638;--hair:rgba(255,255,255,.10);--hair-strong:rgba(255,255,255,.16);--ease:cubic-bezier(.22,1,.36,1);--wrap:1440px;--editorial:1040px;--pad:24px}
     *{box-sizing:border-box}html{scroll-behavior:smooth}
@@ -107,7 +107,7 @@
       <h2>One portfolio world. Multiple authored voices.</h2>
       <p class="intro">This document is an evolution of the reverse-engineered foundation—not a redesign brief. Existing values remain evidence. The added rules prevent a future implementation from mistaking visual variety or legacy code for a mandate to flatten the work.</p>
       <div class="grid2">
-        <article class="rule"><h3>Type does hierarchy. Color does signaling.</h3><p>Poppins carries the product voice. Playfair Display carries Lab and AI Workflow’s editorial voice. Blue-violet guides focus, labels, glows and selection; it does not erase hierarchy or become a blanket fill.</p></article>
+        <article class="rule"><h3>Type does hierarchy. Color does signaling.</h3><p>Poppins carries the product voice for Display, headings, body, and UI site-wide. There is no second decorative display face. Blue-violet guides focus, labels, glows and selection; it does not erase hierarchy or become a blanket fill.</p></article>
         <article class="rule"><h3>Image-led, 16:9, 43 / 57</h3><p>Existing case-study sections use a full-viewport story stage, then a 43fr / 57fr copy-to-media split with 48–80px gutters; following sections may mirror the columns.</p></article>
         <article class="rule"><h3>Motion explains, then stops</h3><p>Pin-and-scrub storytelling, reveals and ambient movement support the narrative. At 640px or with reduced motion, pinning collapses to static stacks.</p></article>
         <article class="rule"><h3>Theme layers inherit; they are not flattened</h3><p>Case studies inherit Global Foundation rhythm, shell, interaction and motion. Their palettes, media and storytelling stay authored. Do not “correct” a theme with the global blue-violet.</p></article>
@@ -173,7 +173,7 @@
       <h3 style="margin-top:38px">Typography</h3>
       <table class="table"><thead><tr><th>Role</th><th>Existing specification</th><th>Scope</th></tr></thead><tbody>
         <tr><td>Display / Index + About</td><td><code>Poppins 700 · clamp(2.25rem, 5.2vw, 4rem) · 1.08 · tight</code></td><td>Global product expression</td></tr>
-        <tr><td>Display / Lab + AI Workflow</td><td><code>Playfair Display 700 · clamp(2.4rem, 6vw, 4.75rem) · 1.05 · -0.03em</code></td><td>Authored editorial exception; preserve</td></tr>
+        <tr><td>Display / Lab + AI Workflow</td><td><code>Poppins 700 · clamp(2.4rem, 6vw, 4.75rem) · 1.05 · -0.03em</code></td><td>Same face, larger editorial size token</td></tr>
         <tr><td>Heading</td><td><code>Poppins 600 · 1.9rem / md:text-4xl (2.25rem) · 1.1</code></td><td>Shared sections</td></tr>
         <tr><td>Body</td><td><code>15px · 1.75 · #b6bbc2</code>; Lab <code>17px / 1.7</code></td><td>Lab adjustment is intentional</td></tr>
         <tr><td>Eyebrow / metadata</td><td><code>13px semibold uppercase .28em</code> / <code>11px bold uppercase .14em</code></td><td>Shared supporting hierarchy</td></tr>
@@ -278,7 +278,7 @@
       <ul class="steps">
         <li><strong>Client Advisory hero composition.</strong> Full-bleed photography, authored rail, 01→02 overlap and arc. UI may sit in the frame while artwork extends beyond it.</li>
         <li><strong>E.ON Solar hero composition.</strong> Full-bleed navy stage, illustration and theme-only interior inset. Content well remains 1440; extra inset stays in the E.ON Theme Layer.</li>
-        <li><strong>Lab / AI editorial composition.</strong> Editorial <code>1040px</code> well, Playfair, and the <code>899px</code> timeline fallback. Not a sitewide breakpoint or a 1440 rewrite.</li>
+        <li><strong>Lab / AI editorial composition.</strong> Editorial <code>1040px</code> well, Poppins Display at the editorial size token, and the <code>899px</code> timeline fallback. Not a sitewide breakpoint or a 1440 rewrite.</li>
         <li><strong>Index-specific experience layout.</strong> Pin-scroll stages, viewport-centered hero copy, centered section headings, periwinkle connectors.</li>
         <li><strong>About video composition.</strong> Full-viewport video, mouse-scrub, copy inset in the 1440 well. Vertical seating is compositional.</li>
         <li><strong>Artwork overlap and storytelling treatments.</strong> Arcs, fans, overflowing media, decorative shapes. These may break the grid by design.</li>
@@ -331,18 +331,19 @@
       <div class="grid3">
         <article class="theme"><h3>Client Advisory</h3><p>Ice / signal blue on deep navy. Case-study meaning. Must not be overwritten by global blue-violet.</p></article>
         <article class="theme"><h3>E.ON Solar</h3><p>Navy, lavender, mint, E.ON red and light sections—including the Caveat hand expression. Lavender stays lavender.</p></article>
-        <article class="theme"><h3>Lab + AI Workflow</h3><p>Editorial expression of the global blue-violet plus Playfair Display. Preserve the more visible use of the token and the authored type direction.</p></article>
+        <article class="theme"><h3>Playground + AI Workflow</h3><p>Editorial expression of the global blue-violet with Poppins Display at the larger editorial size. Outward label is Playground; URL <code>/lab/*</code> may remain. Preserve the more visible use of the accent token.</p></article>
       </div>
 
       <h3 class="sub">Theme Layer → Client Advisory</h3>
       <p class="intro">Client Advisory colors belong to the Client Advisory Theme Layer and must not be replaced by the global blue-violet.</p>
       <table class="table"><thead><tr><th>Group</th><th>Token</th><th>Verified value</th></tr></thead><tbody>
-        <tr><td>Background</td><td><code>--ca-bg</code></td><td><code>#06101f</code></td></tr>
-        <tr><td>Background</td><td><code>--ca-bg-2</code></td><td><code>#0a1729</code></td></tr>
+        <tr><td>Background</td><td><code>--ca-bg</code></td><td><code>#0b1220</code></td></tr>
+        <tr><td>Background</td><td><code>--ca-bg-2</code></td><td><code>#0d1526</code></td></tr>
         <tr><td>Text</td><td><code>--ca-text</code></td><td><code>#f3f6fa</code></td></tr>
         <tr><td>Text</td><td><code>--ca-text-2</code></td><td><code>#a9b8cc</code></td></tr>
         <tr><td>Text</td><td><code>--ca-text-3</code></td><td><code>#71839a</code></td></tr>
-        <tr><td>Case accent</td><td><code>--ca-accent</code></td><td><code>#2f7cff</code></td></tr>
+        <tr><td>Case accent</td><td><code>--ca-accent</code></td><td><code>#8aa3c7</code></td></tr>
+        <tr><td>Signal</td><td><code>--color-signal</code></td><td><code>#4da3ff</code></td></tr>
         <tr><td>Line</td><td><code>--ca-line</code></td><td><code>rgb(169 184 204 / 0.22)</code></td></tr>
       </tbody></table>
       <p class="note">Source: <code>ca/client-advisor/app/globals.css</code>. Do not flatten these into Global Foundation.</p>
@@ -386,7 +387,7 @@
         <tr><td>Pill button</td><td><code>999px</code> radius; <code>.85rem 1.9rem</code> padding; white-outline to white-fill hover; <code>-2px</code> lift, 0.97 active scale, arrow +3px. Pills are not filled with blue-violet.</td></tr>
         <tr><td>Accordion</td><td>2px active bar; 1.15rem / 600 title; 0.95rem / 1.75 body; grid-row open transition 450ms; in pin-wrap scroll chooses item.</td></tr>
         <tr><td>Cards / panels</td><td>Hairline border, restrained blue-violet card glow, rounded-2xl media. About collection cards retain 9:16 format and authored fan motion.</td></tr>
-        <tr><td>Footer</td><td>Compact HTML copyright on Index/About/Lab/AI Workflow; Client Advisory and E.ON use React SiteFooter with glow field. Shared copy; intentionally different chrome.</td></tr>
+        <tr><td>Footer</td><td>Compact HTML copyright on Index/About/Playground/AI Workflow; Client Advisory and E.ON use React SiteFooter with glow field. Shared copy (Playground link); intentionally different chrome.</td></tr>
       </tbody></table>
     </div></section>
 
@@ -439,7 +440,7 @@
           <ul>
             <li>Client Advisory Theme Layer (ice / signal / navy tokens above)</li>
             <li>E.ON Solar Theme Layer (navy, lavender, mint, red, light sections, Caveat)</li>
-            <li>Lab / AI Workflow blue-violet signaling and Playfair editorial exception</li>
+            <li>Lab / AI Workflow blue-violet signaling and Poppins Display (editorial size)</li>
             <li>Index experience periwinkle connectors and header-local <code>#4a90ff</code></li>
             <li>Continuous underlying world across accents and transitions</li>
             <li>Case-specific footer and display-family differences recorded in the audit</li>
@@ -468,8 +469,8 @@
         <li><strong>Global blue-violet vs Index periwinkle.</strong> Experience timeline connectors use <code>#7A7FDC</code> / <code>#3846D4</code> as an Index storytelling motif. Do not replace with <code>#8B5CF6</code>.</li>
         <li><strong>Global shell vs Client Advisory theme.</strong> CA navy, ice, signal and <code>--ca-accent</code> are Theme Layer tokens. They are not defects in the Global Foundation.</li>
         <li><strong>Global shell vs E.ON Solar theme.</strong> E.ON navy, lavender, mint, red and light sections are Theme Layer tokens. Local CSS names that contain “purple” still mean lavender.</li>
-        <li><strong>Poppins vs Playfair.</strong> Index/About use Poppins; Lab/AI Workflow use Playfair Display. Authored editorial exception.</li>
-        <li><strong>HTML footer vs React footer.</strong> Compact HTML copyright on Index/About/Lab/AI Workflow; Client Advisory and E.ON use React SiteFooter with glow field. Shared copy; different chrome.</li>
+        <li><strong>One Display face.</strong> Index, About, Lab, AI Workflow, and Party Planner titles all use Poppins. Size tokens differ; the family does not. Theme hand accents (Caveat / Patrick Hand) stay local and are not Display.</li>
+        <li><strong>HTML footer vs React footer.</strong> Compact HTML copyright on Index/About/Playground/AI Workflow; Client Advisory and E.ON use React SiteFooter with glow field. Shared copy (Playground link); different chrome.</li>
         <li><strong>HTML navigation vs React SiteHeader.</strong> HTML pages retain <code>#site-nav</code> (1600px / 80px / Poppins 700); Next.js hides it and mounts the 1800px React SiteHeader (Poppins 600, 80/96px). The React header is the live source of truth. Header chrome padding is not the content X-anchor; body copy follows the Global Page Frame.</li>
         <li><strong>Global Page Frame vs authored compositions.</strong> Text/UI align to the 24px + 1440/1040 well. Client Advisory, E.ON, Lab/AI, Index and About hero/artwork treatments may extend beyond that well. Different first-block Y positions are not automatically defects.</li>
         <li><strong>Wells vs text measure.</strong> 1440 / 1040 are containers. Nested copy uses Editorial Wide (1040 as the text block), Body / Standard (672), or Reading / Narrow (448). <code>max-w-3xl</code> (768) is a heading wrap limit, not a third well. Theme Layer ch/px measures on Client Advisory and E.ON stay authored.</li>

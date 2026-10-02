@@ -56,7 +56,7 @@ export function SiteClosing({ className }: { className?: string }) {
               </a>
             </p>
           </div>
-          <a href={`mailto:${EMAIL}`} className="pill-btn">
+          <a href={`mailto:${EMAIL}`} className="pill-btn pill-btn--l">
             <span>{t('common.letsTalk')}</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M13 6l6 6-6 6" />

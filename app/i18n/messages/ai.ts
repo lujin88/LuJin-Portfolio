@@ -1,7 +1,7 @@
 export const ai = {
   en: {
     documentTitle: 'AI Design Workflow — lu.design',
-    eyebrow: 'Lab — Experiment',
+    eyebrow: 'Playground — Experiment',
     titleHtml: 'Explore more.<br />Think deeper.',
     intro:
       'AI expands the possibilities. I bring the strategy, judgment, and systems thinking to shape what comes next — a working study of how an AI-native process actually changes the way products get designed.',
@@ -65,7 +65,7 @@ export const ai = {
   },
   de: {
     documentTitle: 'KI-Design-Workflow — lu.design',
-    eyebrow: 'Lab — Experiment',
+    eyebrow: 'Playground — Experiment',
     titleHtml: 'Weiter erkunden.<br />Tiefer denken.',
     intro:
       'KI erweitert den Möglichkeitsraum. Ich bringe Strategie, Urteilskraft und Systemdenken — eine Arbeitsstudie, wie ein KI-nativer Prozess tatsächlich verändert, wie Produkte gestaltet werden.',

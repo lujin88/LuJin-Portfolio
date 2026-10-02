@@ -25,15 +25,15 @@ type NavEntry = ({ kind: 'link' } & NavLink) | ({ kind: 'group' } & NavGroup)
 const NAV: readonly NavEntry[] = [
   {
     kind: 'group',
-    label: 'Project',
+    label: 'Projects',
     children: [
       { label: 'Client Advisory', href: '/client-advisory' },
-      { label: 'Eon', href: '/EON' },
+      { label: 'E.ON', href: '/EON' },
     ],
   },
   {
     kind: 'group',
-    label: 'Lab',
+    label: 'Playground',
     sectionHref: '/lab',
     children: [
       { label: 'Action Center', href: '/lab/action-center' },
@@ -51,7 +51,7 @@ const PLAIN_CONTROL =
   'appearance-none border-0 bg-transparent shadow-none outline-none focus:outline-none focus:ring-0'
 
 const MENU_PANEL = cn(
-  'm-0 flex list-none flex-col gap-1 rounded-[22px] border border-header-line/40 bg-header-menu p-2 shadow-[0_18px_48px_-12px_rgba(0,0,0,0.65)]',
+  'm-0 flex list-none flex-col items-stretch gap-1 rounded-[22px] border border-header-line/40 bg-header-menu p-2 shadow-[0_18px_48px_-12px_rgba(0,0,0,0.65)]',
 )
 
 type SiteHeaderProps = {
@@ -480,7 +480,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           <a
             href="mailto:lu.jin.ixd@gmail.com"
             className={cn(
-              'hidden min-h-11 items-center rounded-full border border-header-line px-6 py-3 text-[1.0625rem] leading-none text-header-foreground no-underline transition-colors duration-200 hover:border-header-foreground/70 hover:bg-header-foreground/6 md:px-7 md:py-3.5 lg:inline-flex',
+              'hidden min-h-12 items-center rounded-full border border-header-line px-9 py-4 text-[1.0625rem] leading-none text-header-foreground no-underline transition-colors duration-200 hover:border-header-foreground/70 hover:bg-header-foreground/6 lg:inline-flex',
               FOCUS_RING,
               MOTION_SAFE,
             )}
@@ -784,7 +784,7 @@ function NavDropdown({
               const childActive =
                 uniqueHref && hrefMatches(child.href, currentHref, pathname)
               return (
-                <li key={child.label} role="none">
+                <li key={child.label} role="none" className="w-full">
                   <Link
                     ref={(node) => {
                       itemRefs.current[index] = node

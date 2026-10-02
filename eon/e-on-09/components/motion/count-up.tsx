@@ -21,12 +21,19 @@ function visibleRatio(el: HTMLElement) {
 
 export function CountUp({ className }: { className?: string }) {
   const ref = useRef<HTMLParagraphElement>(null)
+  // Keep the final value until animation starts — avoids a +0% flash on load
+  // or while the metric is still below the fold.
   const [value, setValue] = useState(TARGET)
+  const [revealed, setRevealed] = useState(true)
 
   useLayoutEffect(() => {
     const el = ref.current
     if (!el) return
-    if (prefersReducedMotion() || typeof IntersectionObserver === 'undefined') return
+    if (prefersReducedMotion() || typeof IntersectionObserver === 'undefined') {
+      setValue(TARGET)
+      setRevealed(true)
+      return
+    }
 
     let played = false
     let raf = 0
@@ -34,13 +41,16 @@ export function CountUp({ className }: { className?: string }) {
     const play = () => {
       if (played) return
       played = true
+      // Hide for one frame while resetting to 0, then count up.
+      setRevealed(false)
+      setValue(0)
       const origin = performance.now()
       const frame = (now: number) => {
         const t = Math.min((now - origin) / DURATION_MS, 1)
+        setRevealed(true)
         setValue(t >= 1 ? TARGET : Math.round(TARGET * easeOutCubic(t)))
         if (t < 1) raf = requestAnimationFrame(frame)
       }
-      setValue(0)
       raf = requestAnimationFrame(frame)
     }
 
@@ -49,7 +59,8 @@ export function CountUp({ className }: { className?: string }) {
       return () => cancelAnimationFrame(raf)
     }
 
-    setValue(0)
+    setValue(TARGET)
+    setRevealed(true)
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -70,7 +81,7 @@ export function CountUp({ className }: { className?: string }) {
   return (
     <p ref={ref} className={cn('sc-count relative', className)}>
       <span className="sr-only">+{TARGET}%</span>
-      <span aria-hidden="true">
+      <span aria-hidden="true" style={{ opacity: revealed ? 1 : 0 }}>
         +<span className="tabular-nums">{value}</span>%
       </span>
     </p>

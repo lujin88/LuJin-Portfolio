@@ -3,17 +3,17 @@ import type { LangCode } from './language'
 export const headerCopy = {
   en: {
     nav: {
-      Project: 'Project',
-      Lab: 'Lab',
+      Projects: 'Projects',
+      'Playground': 'Playground',
       About: 'About',
       'Client Advisory': 'Client Advisory',
-      Eon: 'Eon',
+      'E.ON': 'E.ON',
       'Action Center': 'Action Center',
       'Way of Work': 'Way of Work',
       'Off We Go Workbench': 'Off We Go Workbench',
       'Party Planner': 'Party Planner',
     },
-    contactMe: 'Contact me',
+    contactMe: 'Contact Me',
     email: 'Email',
     skipToContent: 'Skip to content',
     languageAria: (label: string) => `Language: ${label}`,
@@ -25,11 +25,11 @@ export const headerCopy = {
   },
   de: {
     nav: {
-      Project: 'Projekt',
-      Lab: 'Lab',
+      Projects: 'Projekte',
+      'Playground': 'Playground',
       About: 'Über mich',
       'Client Advisory': 'Client Advisory',
-      Eon: 'Eon',
+      'E.ON': 'E.ON',
       'Action Center': 'Action Center',
       'Way of Work': 'Way of Work',
       'Off We Go Workbench': 'Off We Go Workbench',

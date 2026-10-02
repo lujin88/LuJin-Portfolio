@@ -3,7 +3,7 @@ export const home = {
     documentTitle: 'Lu — Product & Service Designer',
     heroTitleHtml: 'Simplify complexity.<br />Design with AI.',
     heroSubtitle:
-      'Architecting scalable digital products from early-stage strategy to production-ready UI.',
+      'Design leadership across product and service — from early-stage strategy to production-ready systems.',
     ca: {
       titleHtml:
         'AI-powered advisor <span class="font-sans font-semibold">workflow optimization</span>',
@@ -15,7 +15,7 @@ export const home = {
         'Embedded AI into existing workflows to help advisors prioritize tasks, surface relevant information, and respond to clients at the right moment. When a client calls, AI can also surface who they are and what they may need — giving advisors the right context immediately, without adding another tool.',
       scaleTitle: 'Designed for 500+ advisors',
       scaleBody:
-        'The concept could save an estimated 10–15 minutes per workflow, reducing time spent searching, synthesising information, and switching between systems.',
+        'Concept testing pointed to 5–10 minutes saved per workflow — less time searching, synthesising information, and switching between systems.',
     },
     eon: {
       titleHtml: 'Solar landing page <span class="font-sans font-semibold">redesign</span>',
@@ -27,21 +27,11 @@ export const home = {
         'Redesigned the solar purchase journey to make a complex investment easier to understand, personalize, and trust. Progressive input and a more transparent calculator helped users move from initial interest to a meaningful, personalized offer with less friction.',
       impactTitle: '300% higher conversion',
       impactBody:
-        'The redesigned experience increased solar purchase conversion by 300% within two months, reaching a 16.8% conversion rate across Germany. The experience was later adapted for the UK market.',
-    },
-    lab: {
-      heading: 'Design beyond the brief.',
-      sub: 'Experiments in systems, AI, and new ways of making.',
-      dsTitle: 'Design System',
-      dsBody: 'Designing for scale, not just consistency.',
-      dsMeta: 'Independent concept',
-      aiTitle: 'AI Design Workflow',
-      aiBody: 'Exploring how AI changes the way products are designed.',
-      aiMeta: 'Experiment',
+        'The redesigned experience increased solar lead conversion by 300% within two months — from a ~5.1% baseline across Germany. Later adapted for the UK market.',
     },
     aboutHeading: 'About me',
     aboutBodyHtml:
-      'I\'m Lu, an <strong class="text-text1 font-semibold">AI-native Product Designer</strong> with 10+ years of experience turning <strong class="text-text1 font-semibold">complex systems and workflows into clear, useful products</strong>.<br /><br />I work end-to-end across <strong class="text-text1 font-semibold">product, service, and UI design</strong> — from framing problems to prototyping and implementation. I use AI as part of my everyday design process to explore faster, prototype boldly, and turn ideas into working experiences.',
+      'I\'m Lu, a <strong class="text-text1 font-semibold">product &amp; service design lead</strong> with 10+ years turning <strong class="text-text1 font-semibold">complex systems and workflows into clear, useful products</strong>.<br /><br />I lead end-to-end across <strong class="text-text1 font-semibold">product, service, and UI design</strong> — from framing problems to prototyping and implementation. I use AI as part of my everyday design process to explore faster, prototype boldly, and turn ideas into working experiences.',
     exp: {
       '0': {
         eyebrow: 'Oct 2022 — Sep 2026',
@@ -73,7 +63,7 @@ export const home = {
     documentTitle: 'Lu — Produkt- & Service-Designerin',
     heroTitleHtml: 'Komplexität vereinfachen.<br />Mit KI gestalten.',
     heroSubtitle:
-      'Skalierbare digitale Produkte — von der frühen Strategie bis zur produktionsreifen Oberfläche.',
+      'Design-Leadership in Produkt und Service — von der frühen Strategie bis zu produktionsreifen Systemen.',
     ca: {
       titleHtml:
         'KI-gestützte <span class="font-sans font-semibold">Workflow-Optimierung für Berater</span>',
@@ -85,7 +75,7 @@ export const home = {
         'KI in bestehende Workflows eingebettet, damit Berater Aufgaben priorisieren, relevante Informationen einblenden und Kunden im richtigen Moment antworten können. Bei einem Kundenanruf zeigt die KI, wer anruft und was benötigt werden könnte — der richtige Kontext sofort, ohne ein weiteres Tool.',
       scaleTitle: 'Entwickelt für 500+ Berater',
       scaleBody:
-        'Das Konzept könnte schätzungsweise 10–15 Minuten pro Workflow einsparen — weniger Zeit für Suche, Synthese von Informationen und Wechsel zwischen Systemen.',
+        'Im Konzepttest zeigten sich 5–10 Minuten Ersparnis pro Workflow — weniger Zeit für Suche, Synthese von Informationen und Wechsel zwischen Systemen.',
     },
     eon: {
       titleHtml: 'Solar-Landingpage <span class="font-sans font-semibold">Neugestaltung</span>',
@@ -97,21 +87,11 @@ export const home = {
         'Die Solar-Kaufstrecke so gestaltet, dass eine komplexe Investition leichter verständlich, personalisierbar und vertrauenswürdig wird. Progressive Eingaben und ein transparenterer Rechner führten mit weniger Reibung vom Interesse zum personalisierten Angebot.',
       impactTitle: '300% höhere Conversion',
       impactBody:
-        'Die neu gestaltete Strecke steigerte die Solar-Conversion innerhalb von zwei Monaten um 300% — auf 16,8% in Deutschland. Anschließend Anpassung für den britischen Markt.',
-    },
-    lab: {
-      heading: 'Design jenseits des Briefings.',
-      sub: 'Experimente zu Systemen, KI und neuen Arten des Machens.',
-      dsTitle: 'Design System',
-      dsBody: 'Gestalten für Skalierung, nicht nur für Konsistenz.',
-      dsMeta: 'Unabhängiges Konzept',
-      aiTitle: 'KI-Design-Workflow',
-      aiBody: 'Wie KI die Art verändert, wie Produkte gestaltet werden.',
-      aiMeta: 'Experiment',
+        'Die neu gestaltete Strecke steigerte die Solar-Lead-Conversion innerhalb von zwei Monaten um 300% — ausgehend von rund 5,1% Baseline in Deutschland. Anschließend Anpassung für den britischen Markt.',
     },
     aboutHeading: 'Über mich',
     aboutBodyHtml:
-      'Ich bin Lu, eine <strong class="text-text1 font-semibold">KI-native Product Designerin</strong> mit über 10 Jahren Erfahrung darin, <strong class="text-text1 font-semibold">komplexe Systeme und Workflows in klare, nützliche Produkte</strong> zu übersetzen.<br /><br />Ich arbeite Ende-zu-Ende in <strong class="text-text1 font-semibold">Produkt-, Service- und UI-Design</strong> — vom Framing bis zu Prototyp und Umsetzung. KI ist Teil meines Alltags: schneller erkunden, mutiger prototypen, Ideen in funktionierende Erlebnisse bringen.',
+      'Ich bin Lu, eine <strong class="text-text1 font-semibold">Lead für Produkt- &amp; Service-Design</strong> mit über 10 Jahren Erfahrung darin, <strong class="text-text1 font-semibold">komplexe Systeme und Workflows in klare, nützliche Produkte</strong> zu übersetzen.<br /><br />Ich führe Ende-zu-Ende in <strong class="text-text1 font-semibold">Produkt-, Service- und UI-Design</strong> — vom Framing bis zu Prototyp und Umsetzung. KI ist Teil meines Alltags: schneller erkunden, mutiger prototypen, Ideen in funktionierende Erlebnisse bringen.',
     exp: {
       '0': {
         eyebrow: 'Okt. 2022 — Sep. 2026',

@@ -7,7 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700;1,900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -21,7 +21,7 @@
         },
         fontFamily: {
           sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-          serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          serif: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'], /* alias: Display is Poppins */
         },
       },
     },
@@ -97,7 +97,7 @@
   <!-- --- Section 01: Hero --- -->
   <section class="wip-hero" aria-labelledby="wip-title">
     <div class="wip-card reveal">
-      <p class="text-[13px] font-sans font-semibold uppercase tracking-[0.28em] shell-accent mb-5" data-i18n="wip.eyebrow">Lab</p>
+      <p class="text-[13px] font-sans font-semibold uppercase tracking-[0.28em] shell-accent mb-5" data-i18n="wip.eyebrow">Playground</p>
       <h1 id="wip-title" class="font-serif font-bold text-text1 text-[clamp(2.25rem,5vw,3.25rem)] leading-[1.08] tracking-[-0.03em]" data-i18n="wip.title">
         Work in Progress
       </h1>
@@ -126,8 +126,8 @@
           <a href="https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-i18n="common.downloadCv">Download CV</a>
         </p>
       </div>
-      <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn shrink-0">
-        <span data-i18n="common.letsTalk">Let's talk</span>
+      <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn pill-btn--l shrink-0">
+        <span data-i18n="common.letsTalk">Let's Talk</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -136,7 +136,7 @@
   <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
     <div class="site-footer__inner">
       <div class="site-footer__bottom">
-        <p class="text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span></p>
+        <p class="site-footer__note text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span><span aria-hidden="true">·</span><a href="/lab" class="site-footer__lab">Playground</a></p>
       </div>
     </div>
   </footer>

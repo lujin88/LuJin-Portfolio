@@ -6,7 +6,7 @@
   <title>Design System Foundation — Lu.AI.Design</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700;1,900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="design-system-foundation.css" />
 </head>
 <body>
@@ -54,7 +54,7 @@
         <p class="ds-section__intro">
           The HTML islands still label this the Kling AI Design System. The live shell is a
           near-black surface with a blue-violet signal, not a solid purple fill.
-          Poppins carries the product voice. Playfair Display appears where the work turns editorial.
+          Poppins carries the product voice for Display, headings, body, and UI site-wide — no second decorative display face.
           Film grain, hairline borders, and inverted pills do the rest.
         </p>
 
@@ -120,11 +120,11 @@
           </p>
         </article>
         <article class="ds-principle">
-          <h3>Two display voices, one product family</h3>
+          <h3>One display face, two size tokens</h3>
           <p>
             Index and About heroes are Poppins bold, clamp 2.25rem to 4rem, tracking tight.
-            Lab and AI Workflow heroes switch to Playfair Display, slightly larger, tracking
-            -0.03em. Italic Playfair is the timeline eyebrow and the Lab index numeral.
+            Lab and AI Workflow heroes use the same Poppins face at the larger editorial size token,
+            tracking -0.03em. Timeline eyebrows and Lab index numerals stay Poppins (italic weight where authored).
           </p>
         </article>
         <article class="ds-principle">
@@ -167,11 +167,11 @@
     <section class="ds-section ds-section--tight" id="typography">
       <div class="ds-wrap">
         <p class="ds-section__index">02 / Typography</p>
-        <h2 class="ds-title">Poppins for product. Playfair for editorial.</h2>
+        <h2 class="ds-title">Poppins for product and Display.</h2>
         <p class="ds-section__intro">
-          Loaded on every HTML page: Poppins 400-800 and Playfair Display 600-700 plus italic 600-900.
-          The live Next.js header also binds <code>--font-poppins</code>. Geist and Caveat load in the
-          root layout but do not set the portfolio voice. Caveat is an E.ON case-study hand font.
+          Loaded on every HTML page: Poppins 400-800 (italic available for motifs).
+          The live Next.js header also binds <code>--font-poppins</code>. Caveat loads in the
+          root layout as an E.ON case-study hand font only — not a global Display face.
         </p>
 
         <div class="ds-type-stack">
@@ -188,7 +188,7 @@
             <div class="ds-type-meta">
               <span>Display / Lab + AI Workflow</span>
               <code>--font-size-display-editorial</code>
-              <code>Playfair Display 700 · clamp(2.4rem, 6vw, 4.75rem) · leading 1.05 · tracking -0.03em</code>
+              <code>Poppins 700 · clamp(2.4rem, 6vw, 4.75rem) · leading 1.05 · tracking -0.03em</code>
             </div>
             <p class="spec-editorial">Experiments in progress</p>
           </div>
@@ -233,7 +233,7 @@
           <div class="ds-type-row">
             <div class="ds-type-meta">
               <span>Timeline eyebrow</span>
-              <code>Playfair italic 0.8rem · --color-text-3</code>
+              <code>Poppins italic 0.8rem · --color-text-3</code>
             </div>
             <p class="spec-caption">Oct 2022 - Present</p>
           </div>
@@ -589,7 +589,7 @@
           <p class="spec-body" style="margin-top:1.25rem">
             Image frame: 16:9, <code>rounded-2xl</code>, overflow hidden, <code>--panel-shadow</code>,
             video object-cover. Label: 11px pill, hairline-strong, tracking 0.04em, not uppercase.
-            Index: Playfair italic, muted.
+            Index: Poppins italic, muted.
           </p>
         </article>
 
@@ -865,8 +865,8 @@
             larger contact heading. Copy is shared. Chrome is not.
           </li>
           <li>
-            <strong>Two display families.</strong> Index/About = Poppins. Lab/AI Workflow = Playfair.
-            That split is authored, not an accident.
+            <strong>One Display family.</strong> Index/About/Lab/AI Workflow = Poppins.
+            Size tokens differ; the face does not.
           </li>
           <li>
             <strong>Case-study palettes are Theme Layers.</strong> Client Advisory ice / signal / navy
