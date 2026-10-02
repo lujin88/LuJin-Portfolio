@@ -72,8 +72,8 @@ export function ComparisonPanel() {
                     <Icon className="size-5 shrink-0 text-foreground" strokeWidth={1.75} aria-hidden="true" />
                     <span className="text-base font-medium text-foreground">{label}</span>
                   </span>
-                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-accent">
-                    <Check className="size-3.5 text-accent-foreground" strokeWidth={3} aria-hidden="true" />
+                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-mint">
+                    <Check className="size-3.5 text-navy-950" strokeWidth={3} aria-hidden="true" />
                   </span>
                 </li>
               ))}
