@@ -2,7 +2,7 @@ export const common = {
   en: {
     exploreNow: 'Explore Now',
     seeMyWork: 'See My Work',
-    letsTalk: "Let's talk",
+    letsTalk: "Let's Talk",
     downloadCv: 'Download CV',
     contactHeading: 'Have an opportunity in mind?',
     selectedExperience: 'Selected experience',

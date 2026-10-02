@@ -7,7 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700;1,900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -25,7 +25,7 @@
         },
         fontFamily: {
           sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-          serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          serif: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'], /* alias: Display is Poppins */
         },
       },
     },
@@ -78,16 +78,6 @@
   .nav-link:hover, .nav-link:focus-visible { color: var(--color-text-1); }
   .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
 
-  #site-nav {
-    background: var(--nav-top-gradient);
-    transition: background-color 400ms ease, backdrop-filter 400ms ease, box-shadow 400ms ease;
-  }
-  #site-nav.scrolled {
-    background: var(--nav-scrolled-bg);
-    backdrop-filter: blur(14px);
-    box-shadow: 0 1px 0 var(--hairline);
-  }
-
   /* pill button */
   .pill-btn {
     display: inline-flex;
@@ -96,7 +86,7 @@
     border-radius: 999px;
     border: 1px solid var(--pill-border);
     padding: 0.85rem 1.9rem;
-    font-size: 0.95rem;
+    font-size: var(--font-size-pill); /* Pill M */
     color: var(--pill-text);
     background: var(--pill-bg);
     transition: transform var(--duration-interaction) var(--ease),
@@ -115,6 +105,18 @@
   .pill-btn:active { transform: translateY(0) scale(0.97); }
   .pill-btn svg { transition: transform var(--duration-interaction) var(--ease); }
   .pill-btn:hover svg { transform: translateX(3px); }
+
+  /* Pill size matrix (Consistency Guide) — structure shared; padding/type only */
+  .pill-btn--s {
+    padding: 0.55rem 1.25rem;
+    font-size: var(--font-size-caption); /* Pill S */
+    min-height: 36px;
+  }
+  .pill-btn--l {
+    padding: 1rem 2.25rem;
+    font-size: var(--font-size-body-lg); /* Pill L */
+    min-height: 48px;
+  }
 
   /* language switcher */
   .lang-switch { position: relative; }
@@ -147,8 +149,8 @@
     gap: 1.25rem;
     width: 100%;
     padding: 12px 16px;
-    border-radius: 10px;
-    font-size: 15px;
+    border-radius: var(--radius-md, 10px);
+    font-size: var(--font-size-body); /* Body R */
     line-height: 1.25;
     color: var(--color-text-2);
     text-align: left;
@@ -192,7 +194,7 @@
   .accordion-item.is-active .accordion-bar { background: var(--color-text-1); }
 
   .accordion-title {
-    font-size: 1.15rem;
+    font-size: var(--font-size-h3); /* H3 accordion */
     font-weight: 600;
     line-height: 1.4;
     color: var(--color-text-3);
@@ -227,9 +229,9 @@
   .accordion-body {
     margin-top: 0.85rem;
     color: var(--color-text-2);
-    line-height: 1.75;
-    font-size: 0.95rem;
-    font-weight: 400;
+    line-height: var(--leading-body);
+    font-size: var(--font-size-body); /* Body R (was 0.95≈pill; align to body) */
+    font-weight: var(--font-weight-regular);
   }
 
   /* reveal-on-scroll (transform + opacity only) */
@@ -250,15 +252,15 @@
     border: 1px solid var(--hairline-strong);
     background: var(--surface-raise);
     padding: 0.3rem 0.72rem;
-    font-size: 0.6875rem;
+    font-size: var(--font-size-meta); /* Meta */
     line-height: 1;
     letter-spacing: 0.04em;
     color: var(--color-text-3);
   }
 
-  /* LAB — oversized editorial index numeral, matches the page's display serif */
+  /* LAB — oversized editorial index numeral (Poppins italic; Display is Poppins site-wide) */
   .lab-index {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
     font-style: italic;
     font-size: clamp(2.5rem, 5vw, 3.25rem);
     line-height: 1;
@@ -343,6 +345,8 @@
   }
   .hero-pin-section h1,
   .hero-pin-section .pill-btn { color: var(--color-text-1); }
+  /* Keep default light on video; restore black label on filled hover */
+  .hero-pin-section .pill-btn:hover { color: var(--pill-hover-text); }
   .hero-pin-section .z-10 p { color: #d7dbe0; }
   .hero-media {
     position: absolute;
@@ -754,7 +758,7 @@
   /* copy */
   .exp-content__eyebrow {
     display: block;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
     font-style: italic;
     font-size: 0.8rem;
     color: var(--color-text-3);
@@ -825,7 +829,7 @@
     transform: translateY(0);
   }
   .exp-contact__heading {
-    font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+    font-size: var(--font-size-contact); /* H3 contact */
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.12;
@@ -837,7 +841,7 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 0.25rem 0.75rem;
-    font-size: 15px;
+    font-size: var(--font-size-body); /* Body R */
     color: var(--color-text-3);
   }
   .exp-contact__links a {
@@ -889,6 +893,22 @@
   }
   .site-footer__credit {
     margin-inline-start: 0.5em;
+  }
+  .site-footer__note {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .site-footer__lab {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.85;
+  }
+  .site-footer__lab:hover,
+  .site-footer__lab:focus-visible {
+    opacity: 1;
+    text-decoration: underline;
   }
 
   @media (max-width: 1024px) {
@@ -1120,37 +1140,6 @@
 
 <body class="bg-ink text-text1 min-w-[360px]">
 
-<!-- NAV -->
-<nav id="site-nav" class="fixed top-0 inset-x-0 z-50">
-  <div class="mx-auto max-w-[1600px] flex items-center justify-between px-6 md:px-14 h-20">
-    <div class="flex items-center gap-4">
-      <a href="/index" aria-label="Lu — back to home" class="flex items-center text-text1 font-sans font-bold text-2xl tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4 rounded">
-        Lu
-      </a>
-    </div>
-
-    <div class="hidden lg:flex items-center gap-10 text-[15px]">
-      <a href="/client-advisory" class="nav-link focus-visible:outline-none">Client Advisory</a>
-      <a href="/EON" class="nav-link focus-visible:outline-none">Eon Solar</a>
-      <a href="/lab" class="nav-link focus-visible:outline-none">Lab</a>
-      <a href="/about" class="nav-link focus-visible:outline-none">About</a>
-    </div>
-
-    <div class="flex items-center gap-5">
-      <div class="lang-switch">
-        <button type="button" class="lang-trigger hidden md:flex items-center gap-1 text-[15px] text-text2 hover:text-text1 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 rounded" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language">
-          <span class="lang-current">English</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="lang-menu" role="listbox" aria-label="Language">
-          <button type="button" class="lang-option" role="option" data-lang="en" aria-selected="true">English<svg class="lang-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></button>
-          <button type="button" class="lang-option" role="option" data-lang="de" aria-selected="false">Deutsch<svg class="lang-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></button>
-        </div>
-      </div>
-      <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn !py-2.5 !px-5 text-[14px]">Contact me</a>
-    </div>
-  </div>
-</nav>
 
 <!-- HERO — full-viewport video stage with logo overlay docked to the bottom -->
 <div id="hero">
@@ -1178,7 +1167,7 @@
           Simplify complexity.<br />Design with AI.
         </h1>
         <p class="mt-6 max-w-md text-base md:text-lg leading-relaxed text-text2" data-i18n="home.heroSubtitle">
-          Architecting scalable digital products from early-stage strategy to production-ready UI.
+          Design leadership across product and service — from early-stage strategy to production-ready systems.
         </p>
         <a href="#" id="hero-see-how" class="pill-btn mt-9" data-i18n="common.seeMyWork">See My Work</a>
       </div>
@@ -1273,7 +1262,7 @@
               <span class="accordion-title block" data-i18n="home.ca.scaleTitle">Designed for 500+ advisors</span>
               <span class="accordion-body-wrap">
                 <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.ca.scaleBody">The concept could save an estimated 10–15 minutes per workflow, reducing time spent searching, synthesising information, and switching between systems.</p>
+                  <p class="accordion-body" data-i18n="home.ca.scaleBody">Concept testing pointed to 5–10 minutes saved per workflow — less time searching, synthesising information, and switching between systems.</p>
                 </span>
               </span>
             </span>
@@ -1351,7 +1340,7 @@
               <span class="accordion-title block" data-i18n="home.eon.impactTitle">300% higher conversion</span>
               <span class="accordion-body-wrap">
                 <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.eon.impactBody">The redesigned experience increased solar purchase conversion by 300% within two months, reaching a 16.8% conversion rate across Germany. The experience was later adapted for the UK market.</p>
+                  <p class="accordion-body" data-i18n="home.eon.impactBody">The redesigned experience increased solar lead conversion by 300% within two months — from a ~5.1% baseline across Germany. Later adapted for the UK market.</p>
                 </span>
               </span>
             </span>
@@ -1369,105 +1358,6 @@
     </div>
   </section>
 </div>
-
-<!-- ============================================================
-     LAB — a third content section in the SAME visual language as the
-     two case study video sections above: same 1440px container, same
-     centred typographic hierarchy, same media-panel treatment / 16:9
-     proportion / border-radius, same grid column ratio + gap, same
-     pill-btn CTA and hover. Framed as experimentation, not another
-     client case study — the difference is content and labelling only.
-     01 mirrors Client Advisory (text / media); 02 mirrors Eon Solar
-     (media / text).
-
-     Intentionally hidden on Index via `showExperimentsSection` in
-     app/index/page.tsx. Flip that flag to true to restore. Do not delete.
-     ============================================================ -->
-<section id="lab" class="relative bg-ink pt-24 md:pt-32 pb-8 md:pb-12 px-6">
-  <div class="mx-auto max-w-[var(--wrap)] w-full">
-
-    <!-- section header: same centred hierarchy as the intro / case study
-         headings. Headline typography matches the "Solar Landing Page Redesign"
-         hero H1 exactly — font-sans (Poppins) / bold / upright, tight tracking,
-         1.1 line-height. Size and centred alignment unchanged. -->
-    <h2 class="reveal text-center text-[1.9rem] md:text-4xl font-sans font-bold tracking-tight leading-[1.1] text-text1 mb-4" data-i18n="home.lab.heading">
-      Design beyond the brief.
-    </h2>
-    <p class="reveal text-center text-text2 max-w-2xl mx-auto mb-12 md:mb-16 text-[15px] leading-relaxed" data-i18n="home.lab.sub">
-      Experiments in systems, AI, and new ways of making.
-    </p>
-
-    <!-- the two experiments: same grid, column ratio, gap, media proportion,
-         border-radius and CTA as the two case study sections above.
-         (The large LAB hero visual that used to sit here has been removed;
-         the subtitle's margin-bottom now carries the gap to the first experiment.) -->
-    <div class="mt-0 flex flex-col gap-16 md:gap-24">
-
-      <article class="reveal grid lg:grid-cols-[minmax(0,43fr)_minmax(0,57fr)] gap-12 lg:gap-20 items-center">
-        <div class="flex flex-col">
-          <span class="lab-index">01</span>
-          <h3 class="mt-4 text-xl md:text-2xl font-semibold text-text1" data-i18n="home.lab.dsTitle">Design System</h3>
-          <p class="mt-3 max-w-md text-[15px] leading-relaxed text-text2" data-i18n="home.lab.dsBody">Designing for scale, not just consistency.</p>
-          <span class="lab-meta mt-5" data-i18n="home.lab.dsMeta">Independent concept</span>
-          <div class="mt-12 md:mt-14 text-left">
-            <a href="/lab" class="pill-btn">
-              <span data-i18n="common.exploreNow">Explore Now</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- concept visual: no shipped artefact yet, so a quiet modular-system
-             motif rather than a screenshot — same panel treatment as the videos -->
-        <div class="relative rounded-2xl overflow-hidden media-panel aspect-[16/9] bg-black">
-          <div class="absolute inset-0" style="background:
-              radial-gradient(120% 90% at 18% 12%, rgba(139,92,246,0.28), transparent 55%),
-              radial-gradient(90% 80% at 88% 90%, rgba(124,58,237,0.22), transparent 60%),
-              linear-gradient(180deg, #101014 0%, #0b0b0d 100%);"></div>
-          <svg class="absolute inset-0 h-full w-full" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
-            <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
-              <path d="M0 60H320M0 120H320M80 0V180M160 0V180M240 0V180"/>
-            </g>
-            <g stroke="rgba(167,139,250,0.55)" stroke-width="1.5">
-              <rect x="24" y="26" width="44" height="28" rx="6" fill="rgba(139,92,246,0.10)"/>
-              <rect x="24" y="66" width="44" height="16" rx="5" fill="rgba(139,92,246,0.06)"/>
-              <rect x="24" y="94" width="72" height="16" rx="5" fill="rgba(139,92,246,0.06)"/>
-              <rect x="120" y="30" width="80" height="52" rx="8" fill="rgba(139,92,246,0.12)"/>
-              <rect x="120" y="98" width="36" height="36" rx="18" fill="rgba(139,92,246,0.08)"/>
-              <rect x="168" y="98" width="32" height="36" rx="8" fill="rgba(139,92,246,0.06)"/>
-              <rect x="232" y="26" width="64" height="20" rx="10" fill="rgba(139,92,246,0.10)"/>
-              <rect x="232" y="58" width="64" height="76" rx="8" fill="rgba(139,92,246,0.06)"/>
-            </g>
-            <g fill="rgba(167,139,250,0.9)">
-              <circle cx="24" cy="26" r="2"/><circle cx="120" cy="30" r="2"/><circle cx="232" cy="26" r="2"/><circle cx="296" cy="134" r="2"/>
-            </g>
-          </svg>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent pointer-events-none"></div>
-        </div>
-      </article>
-
-      <article class="reveal grid lg:grid-cols-[minmax(0,57fr)_minmax(0,43fr)] gap-12 lg:gap-20 items-center">
-        <div class="relative rounded-2xl overflow-hidden media-panel aspect-[16/9] bg-black">
-          <video class="absolute inset-0 h-full w-full object-cover" src="/assets/videos/lab/ai-workflow-hero.mp4" autoplay loop muted playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video>
-        </div>
-
-        <div class="flex flex-col">
-          <span class="lab-index">02</span>
-          <h3 class="mt-4 text-xl md:text-2xl font-semibold text-text1" data-i18n="home.lab.aiTitle">AI Design Workflow</h3>
-          <p class="mt-3 max-w-md text-[15px] leading-relaxed text-text2" data-i18n="home.lab.aiBody">Exploring how AI changes the way products are designed.</p>
-          <span class="lab-meta mt-5" data-i18n="home.lab.aiMeta">Experiment</span>
-          <div class="mt-12 md:mt-14 text-left">
-            <a href="/ai-workflow-case" class="pill-btn">
-              <span data-i18n="common.exploreNow">Explore Now</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
 
 <!-- ============================================================
      EXPERIENCE TIMELINE — FXIFY "How it works" curved-arc timeline.
@@ -1500,8 +1390,8 @@
         <div class="mx-auto max-w-[var(--editorial)]">
           <h2 class="reveal text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-5" data-i18n="home.aboutHeading">About me</h2>
           <p class="reveal text-center text-text2 mx-auto mb-0 text-[15px] leading-relaxed" data-i18n-html="home.aboutBodyHtml">
-            I'm Lu, an <strong class="text-text1 font-semibold">AI-native Product Designer</strong> with 10+ years of experience turning <strong class="text-text1 font-semibold">complex systems and workflows into clear, useful products</strong>.<br /><br />
-            I work end-to-end across <strong class="text-text1 font-semibold">product, service, and UI design</strong> — from framing problems to prototyping and implementation. I use AI as part of my everyday design process to explore faster, prototype boldly, and turn ideas into working experiences.
+            I'm Lu, a <strong class="text-text1 font-semibold">product &amp; service design lead</strong> with 10+ years turning <strong class="text-text1 font-semibold">complex systems and workflows into clear, useful products</strong>.<br /><br />
+            I lead end-to-end across <strong class="text-text1 font-semibold">product, service, and UI design</strong> — from framing problems to prototyping and implementation. I use AI as part of my everyday design process to explore faster, prototype boldly, and turn ideas into working experiences.
           </p>
         </div>
       </section>
@@ -1593,8 +1483,8 @@
         <a href="https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-i18n="common.downloadCv">Download CV</a>
       </p>
     </div>
-    <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn shrink-0">
-      <span data-i18n="common.letsTalk">Let's talk</span>
+    <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn pill-btn--l shrink-0">
+      <span data-i18n="common.letsTalk">Let's Talk</span>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
   </div>
@@ -1604,17 +1494,13 @@
 <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
   <div class="site-footer__inner">
     <div class="site-footer__bottom">
-      <p class="text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span></p>
+      <p class="site-footer__note text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span><span aria-hidden="true">·</span><a href="/lab" class="site-footer__lab">Playground</a></p>
     </div>
   </div>
 </footer>
 
 <script>
-  // nav background on scroll
-  const nav = document.getElementById('site-nav');
-  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+  // #site-nav removed — React SiteHeader is sole nav.
 
   // Hero CTA: smooth-scroll into the first content section below the hero
   // rather than navigating.
@@ -1777,7 +1663,7 @@
       expIntro.style.setProperty('--exp-stage-drop', expStageDrop + 'px');
       // Keep a consistent visual gap regardless of viewport height or copy
       // wrapping. offsetTop is measured in the untransformed coordinate box.
-      expIntroOffset = Math.max(0, expIntro.offsetHeight + 32 - expContents[0].offsetTop);
+      expIntroOffset = Math.max(0, expIntro.offsetHeight + 56 - expContents[0].offsetTop);
       expLastShift = null;
       expLastIntroShift = null;
     }

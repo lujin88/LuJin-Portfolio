@@ -1,15 +1,9 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Patrick_Hand } from 'next/font/google'
+import { Patrick_Hand } from 'next/font/google'
 import 'remixicon/fonts/remixicon.css'
 
 import { HtmlChrome } from '../../html-chrome'
 import './party-planner.css'
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
 
 const patrickHand = Patrick_Hand({
   subsets: ['latin'],
@@ -44,7 +38,7 @@ export default function PartyPlannerLayout({
       backgroundColor="#1768e8"
     >
       <link rel="stylesheet" href="/styles/shell-components.css" />
-      <div className={`${inter.variable} ${patrickHand.variable} pp-landing`}>
+      <div className={`${patrickHand.variable} pp-landing`}>
         {children}
       </div>
     </HtmlChrome>

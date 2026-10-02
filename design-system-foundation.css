@@ -98,7 +98,7 @@
   --color-border: var(--color-border-divider);
 
   --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-serif: 'Poppins', ui-sans-serif, system-ui, sans-serif; /* Display = Poppins; legacy alias */
   --font-family: var(--font-sans);
 
   --font-size-display: clamp(2.25rem, 5.2vw, 4rem);

@@ -12,7 +12,7 @@ This is **Lu.AI.Design**, Lu Jin’s live personal portfolio. It showcases servi
 
 - **Next.js 16.3.3** (Turbopack) + **React 19** + **Tailwind CSS v4**
 - Shared UI: `@base-ui/react`, `lucide-react`, `class-variance-authority`, `tailwind-merge`
-- Fonts via `next/font`: Poppins, Playfair Display, Caveat
+- Fonts via `next/font`: Poppins (UI + Display), Caveat (E.ON hand); PP loads Patrick Hand locally
 - Dev server: `npm run dev` → `http://localhost:3000` (already running; a second `next dev` will fail with `EADDRINUSE`)
 - This Next version has breaking changes vs older training data. Read `node_modules/next/dist/docs/` before writing Next APIs. `AGENTS.md` / `CLAUDE.md` are auto-reinserted by `next dev` — do not fight that block.
 - **Cursor** is the implementation environment. ChatGPT is used to plan, write Cursor prompts, and hold project context.
@@ -93,7 +93,7 @@ Also used in uncommitted Outcome work: `--ca-accent-soft: #7cc0ff` (CA theme, no
 
 **E.ON Solar Theme Layer:** navy `#07151f`, off-white `#f8f8f6`, lavender `#c9b5f4` / `#e8e1ff` / `#9284d7` / `#9b90c5`, mint `#b9f4d8` / `#e5f9ee`, E.ON red `#f32717`, Caveat handwriting, Geist product sans, light sections. CSS names containing “purple” still mean **lavender**. Source: `eon/e-on-09/app/globals.css`.
 
-**Lab + AI Workflow:** editorial use of global blue-violet **plus** Playfair Display. Preserve both.
+**Lab + AI Workflow:** editorial use of global blue-violet **plus** Poppins at the larger Display editorial size token. No second Display face.
 
 ### Background Continuity Principle
 
@@ -110,7 +110,7 @@ This does **not** mean every page uses the same background. CA navy and E.ON lig
 | Role | Spec | Scope |
 |---|---|---|
 | Display / Index + About | Poppins 700 · `clamp(2.25rem, 5.2vw, 4rem)` · 1.08 · tight | Global product expression |
-| Display / Lab + AI Workflow | Playfair Display 700 · `clamp(2.4rem, 6vw, 4.75rem)` · 1.05 · `-0.03em` | Authored editorial exception; preserve |
+| Display / Lab + AI Workflow | Poppins 700 · `clamp(2.4rem, 6vw, 4.75rem)` · 1.05 · `-0.03em` | Same face, larger size token |
 | Heading | Poppins 600 · 1.9rem / md 2.25rem · 1.1 | Shared sections |
 | Body | 15px · 1.75 · `#b6bbc2`; Lab 17px / 1.7 | Lab adjustment is intentional |
 | Eyebrow / metadata | 13px semibold uppercase `.28em` / 11px bold uppercase `.14em` | Shared supporting hierarchy |
@@ -154,7 +154,7 @@ At **640px** or `prefers-reduced-motion`, pinning collapses to static stacks. Mo
 - Global blue-violet vs Index periwinkle connectors
 - CA navy / ice / signal / `--ca-accent` are Theme Layer, not Global Foundation defects
 - E.ON navy / lavender / mint / red / light sections are Theme Layer
-- Poppins (Index/About) vs Playfair (Lab/AI Workflow)
+- One Display face: Poppins site-wide (size tokens may differ)
 - Compact HTML copyright footer on Index/About/Lab/AI vs React SiteFooter (glow field) on CA and E.ON — shared copy, different chrome
 - HTML `#site-nav` exists in HTML pages but Next.js **hides** it and mounts React `SiteHeader` (live source of truth: 80px / 96px from md, glass after scroll, centered nav)
 - About HTML nav contrast (88% white + text shadow) vs other HTML pages (72%) — documented, live chrome is still the React header
@@ -169,7 +169,7 @@ At **640px** or `prefers-reduced-motion`, pinning collapses to static stacks. Mo
 ### What must NOT be changed
 
 - The Master DS file itself, unless the user explicitly requests a DS edit
-- Case-specific visual identities (CA navy/ice, E.ON lavender/mint/red/Caveat, Lab/AI Playfair + blue-violet signaling)
+- Case-specific visual identities (CA navy/ice, E.ON lavender/mint/red/Caveat, Lab/AI blue-violet signaling, PP Patrick Hand accents)
 - Index periwinkle connectors and header-local `#4a90ff`
 - Unrelated case studies when the task is about one page
 - Existing uncommitted Client Advisory work (see §5)
@@ -310,7 +310,7 @@ Host app: `http://localhost:3000` (root `/` redirects to `/index`).
 |---|---|---|---|
 | **Index** | `/index` | HTML island `public/home.html` | Shared React header; Poppins; pin-scroll experience; periwinkle connectors |
 | **About** | `/about` | HTML island `public/about.html` | Same shell; Poppins; 9:16 collection cards; contact restored in global pass |
-| **Lab** | `/lab` | HTML island `public/lab.html` | Playfair editorial exception; blue-violet signaling |
+| **Lab** | `/lab` | HTML island `public/lab.html` | Poppins Display + blue-violet signaling |
 | **AI Workflow** | `/ai-workflow-case` | HTML island `public/ai-workflow-case.html` | Same Lab/AI editorial family |
 | **Client Advisory** | `/client-advisory` (alias `/client-advisor`) | React `ClientAdvisorCaseStudy` | Theme Layer navy/ice; uncommitted join + polish |
 | **E.ON Solar** | `/EON` (`/eon-solar` redirects here) | `eon/e-on-09` | Theme Layer lavender/mint/red/light; nested repo |
@@ -376,7 +376,7 @@ Do not start another global design-system pass.
 - **Audit before changing.** Classify GLOBAL / THEME / EXCEPTION / LEFTOVER first.
 - **One focused task at a time.** One page, one section, or one bug.
 - **Do not redesign when asked to fix.** Match the source of truth (live site or provided screenshot).
-- **Preserve case-specific visual identities.** CA navy/ice, E.ON lavender/mint, Lab/AI Playfair.
+- **Preserve case-specific visual identities.** CA navy/ice, E.ON lavender/mint; Lab/AI use Poppins Display (no Playfair).
 - **Do not modify the Master Design System** unless explicitly requested.
 - **Do not touch unrelated case studies.**
 - **Protect existing uncommitted work.** No reset/restore/clean of the 10 CA files.

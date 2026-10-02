@@ -132,27 +132,27 @@
     .about-copy { max-width: 34rem; }
     .about-copy__eyebrow {
       margin: 0 0 0.95rem;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.28em;
+      font-size: var(--font-size-caption); /* Caption */
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: var(--tracking-eyebrow);
       text-transform: uppercase;
-      color: #8d95a2;
+      color: #8d95a2; /* KEEP About muted paint */
     }
     .about-copy__title {
       margin: 0;
-      font-size: clamp(2.4rem, 3.7vw, 3.65rem);
-      font-weight: 700;
-      line-height: 0.98;
-      letter-spacing: -0.038em;
-      color: #f7f8fa;
+      font-size: var(--font-size-display); /* Display / H1 */
+      font-weight: var(--font-weight-bold);
+      line-height: var(--leading-display);
+      letter-spacing: var(--tracking-display);
+      color: #f7f8fa; /* KEEP About text paint */
     }
     .about-copy__body {
       margin: 1.2rem 0 0;
       max-width: 36em;
-      font-size: 15px;
-      font-weight: 400;
+      font-size: var(--font-size-body); /* Body R */
+      font-weight: var(--font-weight-regular);
       line-height: 1.65;
-      color: #b7bdc6;
+      color: #b7bdc6; /* KEEP */
     }
     .about-scribble {
       position: relative;
@@ -276,7 +276,7 @@
       margin: 0;
       font-family: Caveat, cursive;
       font-weight: 600;
-      font-size: 1.55rem;
+      font-size: var(--font-size-subhead-lg); /* H3/subhead */
       line-height: 1;
       color: #f4f7fb;
       text-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
@@ -420,17 +420,17 @@
     .about-stats li { min-width: 0; text-align: center; }
     .about-stats strong {
       display: block;
-      color: #f7f8fa;
-      font-size: clamp(1.45rem, 2vw, 1.85rem);
-      font-weight: 600;
+      color: #f7f8fa; /* KEEP About paint */
+      font-size: var(--font-size-heading); /* H2 — was clamp(1.45–1.85) */
+      font-weight: var(--font-weight-semibold);
       letter-spacing: -0.03em;
-      line-height: 1.1;
+      line-height: var(--leading-heading);
     }
     .about-stats span {
       display: block;
       margin-top: 0.28rem;
-      color: #8b939e;
-      font-size: 0.78rem;
+      color: #8b939e; /* KEEP */
+      font-size: var(--font-size-caption); /* was 0.78 → Caption 0.8125 */
       line-height: 1.35;
     }
 
@@ -525,7 +525,7 @@
         flex: 1;
         padding: 0.9rem 1.2rem 0.95rem;
       }
-      .about-feature strong { font-size: 1.42rem; }
+      .about-feature strong { font-size: var(--font-size-subhead); /* was 1.42 */ }
       .about-feature p:not(.about-feature__label) {
         font-size: 0.9rem;
         line-height: 1.52;
@@ -675,9 +675,9 @@
             <h2 id="about-title" class="about-copy__title" data-i18n="mainHeading">
               Designer.<br />
               Builder.<br />
-              Explorer.
+              Design Lead.
             </h2>
-            <p class="about-copy__body" data-i18n="subtext">I focus on harnessing AI to make everyday life more effortless, efficient, and fulfilling for everyone.</p>
+            <p class="about-copy__body" data-i18n="subtext">I lead AI-native product and service design — making complex work more effortless, efficient, and human.</p>
             <p class="about-scribble">
               <span data-i18n="annotations.curious">Curious by nature,<br />Always in progress.</span>
               <svg class="about-scribble__line" viewBox="0 0 160 18" aria-hidden="true">
@@ -708,10 +708,10 @@
               <img src="/assets/images/about/Swim.png" alt="A child swimming underwater in a blue pool" data-i18n="page.altKids" />
             </figure>
 
-            <p class="about-note about-note--coffee" data-i18n="annotations.coffee">Vibe Coding</p>
+            <p class="about-note about-note--coffee" data-i18n="annotations.coffee">Side builds</p>
             <svg class="about-arc about-arc--coffee" viewBox="0 0 120 70" aria-hidden="true"><path d="M14 10 C 44 16, 84 46, 108 62"/></svg>
             <figure class="about-float about-float--coffee">
-              <img src="/assets/images/about/Vide%20coding.png" alt="Laptop on a desk by a window, used for hobby vibe coding" data-i18n="page.altCoffee" />
+              <img src="/assets/images/about/Vide%20coding.png" alt="Laptop on a desk by a window, used for side projects" data-i18n="page.altCoffee" />
             </figure>
 
             <figure class="about-avatar">
@@ -737,8 +737,8 @@
 
             <article class="about-feature">
               <p class="about-feature__label" data-i18n="cards.card3Label">What keeps me curious</p>
-              <strong data-i18n="cards.card3Title">Always exploring.</strong>
-              <p data-i18n="cards.card3Desc">Vibe coding, new tools, hardware and small experiments.</p>
+              <strong data-i18n="cards.card3Title">Always learning.</strong>
+              <p data-i18n="cards.card3Desc">New tools, hardware, and small experiments.</p>
             </article>
           </div>
 
@@ -767,8 +767,8 @@
           <a href="https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-i18n="page.downloadCv">Download CV</a>
         </p>
       </div>
-      <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn shrink-0">
-        <span data-i18n="page.letsTalk">Let's talk</span>
+      <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn pill-btn--l shrink-0">
+        <span data-i18n="page.letsTalk">Let's Talk</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -777,7 +777,7 @@
   <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
     <div class="site-footer__inner">
       <div class="site-footer__bottom">
-        <p class="text-xs"><span data-i18n="page.footerRights">© 2026 Lu Jin. All rights reserved.</span></p>
+        <p class="site-footer__note text-xs"><span data-i18n="page.footerRights">© 2026 Lu Jin. All rights reserved.</span><span aria-hidden="true">·</span><a href="/lab" class="site-footer__lab">Playground</a></p>
       </div>
     </div>
   </footer>
@@ -996,14 +996,14 @@
   <script>
     const aboutMeTranslations = {
       en: {
-        mainHeading: "Designer. Builder. Explorer.",
-        subtext: "I focus on harnessing AI to make everyday life more effortless, efficient, and fulfilling for everyone.",
+        mainHeading: "Designer. Builder. Design Lead.",
+        subtext: "I lead AI-native product and service design — making complex work more effortless, efficient, and human.",
         annotations: {
           curious: "Curious by nature, Always in progress.",
           travel: "Travel",
           design: "Tea Time",
           kids: "Swim to Reset",
-          coffee: "Vibe Coding"
+          coffee: "Side builds"
         },
         cards: {
           card1Label: "How I work",
@@ -1013,8 +1013,8 @@
           card2Title: "Better work. More life.",
           card2Desc: "Less friction, more time for what matters.",
           card3Label: "What keeps me curious",
-          card3Title: "Always exploring.",
-          card3Desc: "Vibe coding, new tools, hardware and small experiments."
+          card3Title: "Always learning.",
+          card3Desc: "New tools, hardware, and small experiments."
         },
         stats: {
           years: "Years in Design",
@@ -1025,14 +1025,14 @@
         }
       },
       de: {
-        mainHeading: "Gestalterin. Entwicklerin. Entdeckerin.",
-        subtext: "Ich konzentriere mich darauf, KI so einzusetzen, dass der Alltag für alle müheloser, effizienter und erfüllender wird.",
+        mainHeading: "Gestalterin. Builderin. Design Lead.",
+        subtext: "Ich führe KI-natives Produkt- und Service-Design — komplexe Arbeit müheloser, effizienter und menschlicher machen.",
         annotations: {
           curious: "Von Natur aus neugierig, Immer im Wandel.",
           travel: "Reisen",
           design: "Teezeit",
           kids: "Schwimmen zum Reset",
-          coffee: "Vibe Coding"
+          coffee: "Nebenprojekte"
         },
         cards: {
           card1Label: "So arbeite ich",
@@ -1042,8 +1042,8 @@
           card2Title: "Bessere Arbeit. Mehr Leben.",
           card2Desc: "Weniger Reibung, mehr Zeit für das Wesentliche.",
           card3Label: "Was mich neugierig hält",
-          card3Title: "Immer am Entdecken.",
-          card3Desc: "Vibe Coding, neue Tools, Hardware und kleine Experimente."
+          card3Title: "Immer am Lernen.",
+          card3Desc: "Neue Tools, Hardware und kleine Experimente."
         },
         stats: {
           years: "Jahre im Design",
@@ -1062,7 +1062,7 @@
         startBtn: "A Quick Hi",
         eyebrow: "About me",
         contactHeading: "Have an opportunity in mind?",
-        letsTalk: "Let's talk",
+        letsTalk: "Let's Talk",
         downloadCv: "Download CV",
         footerRights: "© 2026 Lu Jin. All rights reserved.",
         closeVideo: "Close video",
@@ -1070,7 +1070,7 @@
         altTravel: "Alpine lake between forested mountains",
         altDesign: "Glass teapot steeping tea on a wooden table",
         altKids: "A child swimming underwater in a blue pool",
-        altCoffee: "Laptop on a desk by a window, used for hobby vibe coding",
+        altCoffee: "Laptop on a desk by a window, used for side projects",
         altAvatar: "Illustrated portrait of Lu working at a laptop, with books and coffee."
       },
       de: {
@@ -1087,7 +1087,7 @@
         altTravel: "Alpiner See zwischen bewaldeten Bergen",
         altDesign: "Glaskanne mit Tee auf einem Holztisch",
         altKids: "Ein Kind schwimmt unter Wasser in einem blauen Pool",
-        altCoffee: "Laptop auf einem Schreibtisch am Fenster, für Hobby-Vibe-Coding",
+        altCoffee: "Laptop auf einem Schreibtisch am Fenster, für Nebenprojekte",
         altAvatar: "Illustriertes Porträt von Lu an einem Laptop, mit Büchern und Kaffee."
       }
     };

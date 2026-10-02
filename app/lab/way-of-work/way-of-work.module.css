@@ -152,7 +152,7 @@
   transform: none;
   z-index: 0;
   margin: 0;
-  font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  font-family: var(--font-poppins), Poppins, ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(6.5rem, 17vw, 13.5rem);
   font-weight: var(--font-weight-bold);
   letter-spacing: -0.07em;
@@ -171,7 +171,7 @@
   z-index: 1;
   display: block;
   margin: 0 0 var(--pad);
-  font-size: 11px;
+  font-size: var(--font-size-meta); /* Caption/meta */
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--tracking-meta);
   text-transform: uppercase;
@@ -183,10 +183,10 @@
   z-index: 1;
   margin: 0;
   font-family: var(--font-poppins), Poppins, ui-sans-serif, system-ui, sans-serif;
-  font-weight: var(--font-weight-semibold);
-  font-size: clamp(2.4rem, 6vw, 4.75rem);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-display-editorial); /* Display editorial */
+  line-height: var(--leading-editorial);
+  letter-spacing: var(--tracking-editorial);
   font-kerning: normal;
   color: rgb(255 255 255 / 0.95);
   text-align: left;
@@ -198,7 +198,7 @@
   z-index: 1;
   margin: var(--pad) 0 0;
   max-width: none;
-  font-size: 17px;
+  font-size: var(--font-size-body-lg); /* Body L (Lab intentional) */
   line-height: 1.7;
   color: rgb(255 255 255 / 0.7);
 }
@@ -215,8 +215,8 @@
   margin-top: 1.5rem;
   padding: 0.25rem 0.75rem;
   border: 1px solid var(--pill-border);
-  border-radius: 999px;
-  font-size: 11px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-meta); /* meta glass pill label */
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--tracking-meta);
   text-transform: uppercase;
@@ -249,7 +249,7 @@
 
 .footerNote {
   margin: 0;
-  font-size: 0.75rem;
+  font-size: var(--font-size-footer-note);
   line-height: 1.6;
 }
 
@@ -310,7 +310,7 @@
   }
 
   .body {
-    font-size: 15px;
+    font-size: var(--font-size-body); /* Body R on small */
     line-height: 1.5;
   }
 }

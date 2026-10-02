@@ -1,18 +1,10 @@
 import type { Metadata, Viewport } from 'next'
-import { Caveat, Playfair_Display, Poppins } from 'next/font/google'
+import { Caveat, Poppins } from 'next/font/google'
 import { I18nProvider } from './i18n/use-translation'
 
 const caveat = Caveat({
   subsets: ['latin'],
   variable: '--font-caveat',
-})
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['600', '700', '900'],
-  style: ['normal', 'italic'],
-  variable: '--font-playfair',
-  display: 'swap',
 })
 
 const poppins = Poppins({
@@ -28,7 +20,7 @@ export const metadata: Metadata = {
     template: 'Lu — %s',
   },
   description:
-    'Architecting scalable digital products from early-stage strategy to production-ready UI.',
+    'Design leadership across product and service — from early-stage strategy to production-ready systems.',
   icons: {
     icon: [{ url: '/assets/images/brand/lu-logo.png', type: 'image/png' }],
     shortcut: '/assets/images/brand/lu-logo.png',
@@ -51,7 +43,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${caveat.variable} ${playfair.variable} ${poppins.variable} overflow-x-hidden`}
+      className={`${caveat.variable} ${poppins.variable} overflow-x-hidden`}
       style={{ backgroundColor: '#0a0a0a', colorScheme: 'dark' }}
     >
       <body className="min-w-[360px] antialiased">

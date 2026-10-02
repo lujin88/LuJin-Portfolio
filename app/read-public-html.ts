@@ -20,6 +20,8 @@ export async function readPublicHtmlPage(filename: string) {
   // and dump CSS into the page (breaking the experience timeline).
   const headClose = html.search(/<\/head>/i)
   const afterHead = headClose === -1 ? html : html.slice(headClose)
+  // Prefer no HTML #site-nav (React SiteHeader is sole nav). Strip if a
+  // legacy island still embeds one so it cannot fight the React header.
   const body = innerOf(afterHead, /<body\b/i, /<\/body>/i).replace(
     /<nav id="site-nav"[\s\S]*?<\/nav>/,
     '<nav id="site-nav" hidden></nav>',

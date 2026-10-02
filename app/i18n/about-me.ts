@@ -2,15 +2,15 @@ import type { LangCode } from '@header/lib/language'
 
 export const aboutMeTranslations = {
   en: {
-    mainHeading: 'Designer. Builder. Explorer.',
+    mainHeading: 'Designer. Builder. Design Lead.',
     subtext:
-      'I focus on harnessing AI to make everyday life more effortless, efficient, and fulfilling for everyone.',
+      'I lead AI-native product and service design — making complex work more effortless, efficient, and human.',
     annotations: {
       curious: 'Curious by nature, Always in progress.',
       travel: 'Travel',
       design: 'Tea Time',
       kids: 'Swim to Reset',
-      coffee: 'Vibe Coding',
+      coffee: 'Side builds',
     },
     cards: {
       card1Label: 'How I work',
@@ -20,8 +20,8 @@ export const aboutMeTranslations = {
       card2Title: 'Better work. More life.',
       card2Desc: 'Less friction, more time for what matters.',
       card3Label: 'What keeps me curious',
-      card3Title: 'Always exploring.',
-      card3Desc: 'Vibe coding, new tools, hardware and small experiments.',
+      card3Title: 'Always learning.',
+      card3Desc: 'New tools, hardware, and small experiments.',
     },
     stats: {
       years: 'Years in Design',
@@ -32,15 +32,15 @@ export const aboutMeTranslations = {
     },
   },
   de: {
-    mainHeading: 'Gestalterin. Entwicklerin. Entdeckerin.',
+    mainHeading: 'Gestalterin. Builderin. Design Lead.',
     subtext:
-      'Ich konzentriere mich darauf, KI so einzusetzen, dass der Alltag für alle müheloser, effizienter und erfüllender wird.',
+      'Ich führe KI-natives Produkt- und Service-Design — komplexe Arbeit müheloser, effizienter und menschlicher machen.',
     annotations: {
       curious: 'Von Natur aus neugierig, Immer im Wandel.',
       travel: 'Reisen',
       design: 'Teezeit',
       kids: 'Schwimmen zum Reset',
-      coffee: 'Vibe Coding',
+      coffee: 'Nebenprojekte',
     },
     cards: {
       card1Label: 'So arbeite ich',
@@ -50,8 +50,8 @@ export const aboutMeTranslations = {
       card2Title: 'Bessere Arbeit. Mehr Leben.',
       card2Desc: 'Weniger Reibung, mehr Zeit für das Wesentliche.',
       card3Label: 'Was mich neugierig hält',
-      card3Title: 'Immer am Entdecken.',
-      card3Desc: 'Vibe Coding, neue Tools, Hardware und kleine Experimente.',
+      card3Title: 'Immer am Lernen.',
+      card3Desc: 'Neue Tools, Hardware und kleine Experimente.',
     },
     stats: {
       years: 'Jahre im Design',
@@ -70,7 +70,7 @@ const aboutPageTranslations = {
     startBtn: 'A Quick Hi',
     eyebrow: 'About me',
     contactHeading: 'Have an opportunity in mind?',
-    letsTalk: "Let's talk",
+    letsTalk: "Let's Talk",
     downloadCv: 'Download CV',
     footerRights: '© 2026 Lu Jin. All rights reserved.',
     closeVideo: 'Close video',
@@ -78,7 +78,7 @@ const aboutPageTranslations = {
     altTravel: 'Alpine lake between forested mountains',
     altDesign: 'Glass teapot steeping tea on a wooden table',
     altKids: 'A child swimming underwater in a blue pool',
-    altCoffee: 'Laptop on a desk by a window, used for hobby vibe coding',
+    altCoffee: 'Laptop on a desk by a window, used for side projects',
     altAvatar: 'Illustrated portrait of Lu working at a laptop, with books and coffee.',
   },
   de: {
@@ -95,7 +95,7 @@ const aboutPageTranslations = {
     altTravel: 'Alpiner See zwischen bewaldeten Bergen',
     altDesign: 'Glaskanne mit Tee auf einem Holztisch',
     altKids: 'Ein Kind schwimmt unter Wasser in einem blauen Pool',
-    altCoffee: 'Laptop auf einem Schreibtisch am Fenster, für Hobby-Vibe-Coding',
+    altCoffee: 'Laptop auf einem Schreibtisch am Fenster, für Nebenprojekte',
     altAvatar: 'Illustriertes Porträt von Lu an einem Laptop, mit Büchern und Kaffee.',
   },
 } as const

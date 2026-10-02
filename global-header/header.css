@@ -15,7 +15,7 @@
   /* HTML shell only — maps Tailwind `accent` to blue-violet. Not loaded on CA / E.ON. */
   --color-accent: #8B5CF6;
   --font-sans: var(--font-poppins), 'Poppins Fallback', system-ui, sans-serif;
-  --font-serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  --font-serif: var(--font-poppins), 'Poppins', ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -29,12 +29,22 @@
 }
 
 .font-serif {
-  font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  /* Legacy alias — Display is Poppins site-wide; no second display face. */
+  font-family: var(--font-poppins), 'Poppins', ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Self-contained chrome. Pages without Tailwind Preflight (Way of Work)
    otherwise keep browser disc markers and link underlines. Do not reset
    ul padding here — dropdown panels own their own spacing. */
+/* Keep the shared chrome's padded full-width controls inside their panels
+   even on routes that do not load Tailwind Preflight. */
+[data-site-header],
+[data-site-header] *,
+[data-site-header] *::before,
+[data-site-header] *::after {
+  box-sizing: border-box;
+}
+
 [data-site-header] :is(ul, li) {
   list-style: none;
 }
@@ -55,19 +65,32 @@
   z-index: 60;
   display: inline-flex;
   align-items: center;
-  height: 2.75rem;
-  padding: 0 1rem;
   border-radius: 999px;
   background: var(--header-foreground);
   color: var(--header-glass);
-  font-size: 0.95rem;
+  font-size: var(--font-size-pill, 0.95rem); /* Pill M */
   line-height: 1;
   text-decoration: none;
-  transform: translateY(-200%);
+  /* Visually hidden by default; keyboard :focus only */
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.header-skip:focus {
-  transform: translateY(0);
+.header-skip:focus,
+.header-skip:focus-visible {
+  width: auto;
+  height: 2.75rem;
+  padding: 0 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
   outline: 2px solid var(--header-glass);
   outline-offset: 3px;
 }
@@ -77,9 +100,11 @@
 }
 
 [data-site-header][data-header-tone='party'] {
-  --header-scrim: rgb(23 104 232);
-  --header-glass: rgb(15 62 170);
-  --header-menu: rgb(18 52 140);
-  --header-menu-item: rgb(24 64 160);
+  /* Match Party Planner hero blue — no dark navy chrome behind Contact Me / sides. */
+  --header-scrim: #1768e8;
+  --header-glass: #1768e8;
+  --header-menu: rgb(18 70 180);
+  --header-menu-item: rgb(28 88 210);
   --header-line: oklch(1 0 0 / 38%);
+  background-color: #1768e8;
 }

@@ -1,12 +1,6 @@
-import { HtmlChrome } from '../html-chrome'
-import { HtmlIsland } from '../html-island'
-import { readPublicHtmlPage } from '../read-public-html'
+import { redirect } from 'next/navigation'
 
-export default async function LabPage() {
-  const { head, body } = await readPublicHtmlPage('lab.html')
-  return (
-    <HtmlChrome activeHref="/lab">
-      <HtmlIsland head={head} body={body} />
-    </HtmlChrome>
-  )
+/** Lab hub removed — send /lab (and /lab.html via next.config) to the first experiment. */
+export default function LabPage() {
+  redirect('/lab/action-center')
 }
