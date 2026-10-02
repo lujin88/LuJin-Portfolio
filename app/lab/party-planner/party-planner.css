@@ -103,6 +103,7 @@ html:has(.pp-landing) #site-content {
 
 .pp-landing a {
   font: inherit;
+  color: inherit;
 }
 
 .pp-landing svg.i {
@@ -487,6 +488,24 @@ html:has(.pp-landing) #site-content {
   font-weight: var(--font-weight-bold, 700);
   color: var(--navy);
 }
+.pp-landing .plan-facts {
+  list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:14px
+}
+.pp-landing .plan-facts li {
+  display:flex;align-items:center;gap:14px
+}
+.pp-landing .plan-facts li svg {
+  font-size:22px;color:#1a6cf0;flex-shrink:0;stroke-width:1.8
+}
+.pp-landing .plan-facts li > div {
+  display:flex;align-items:baseline;gap:5px
+}
+.pp-landing .plan-facts small {
+  font-size:14px;font-weight:500;color:var(--pp-muted)
+}
+.pp-landing .plan-facts b {
+  font-size:16px;font-weight:700;color:var(--pp-navy)
+}
 .pp-landing .invite-stage {
   position:absolute;right:48px;top:50%;width:590px;height:600px;transform:translateY(-50%)
 }
@@ -508,6 +527,24 @@ html:has(.pp-landing) #site-content {
   text-align: center;
   padding: 6px var(--space-sm) 22px;
   z-index: 5;
+}
+.pp-landing .invite-notes {
+  position:absolute;inset:0;z-index:7;text-decoration:none;color:inherit
+}
+.pp-landing .postit {
+  position:absolute;display:inline-flex;align-items:center;gap:5px;padding:6px 13px 6px 9px;border-radius:9px;font-size:13px;font-weight:700;letter-spacing:.01em;white-space:nowrap;box-shadow:0 3px 10px rgba(9,26,87,.12);pointer-events:none
+}
+.pp-landing .postit i {
+  font-size:14px;line-height:1
+}
+.pp-landing .postit.p1 {
+  background:#fffbcc;color:#7a5c00;left:40px;top:6px;transform:rotate(-2.5deg)
+}
+.pp-landing .postit.p3 {
+  background:#ffe0ee;color:#8a1048;left:148px;top:4px;transform:rotate(-1deg)
+}
+.pp-landing .postit.p2 {
+  background:#e0f3ff;color:#0a4a7a;left:252px;top:8px;transform:rotate(1.5deg)
 }
 .pp-landing .invite-arc {
   display:block;width:100%;height:64px;flex-shrink:0
