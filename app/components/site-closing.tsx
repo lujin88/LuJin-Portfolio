@@ -6,7 +6,7 @@ import { useTranslation } from '@i18n'
 const EMAIL = 'lu.jin.ixd@gmail.com'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lu-jin-28008689/'
 const CV_URL =
-  'https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link'
+  '/cv/lu-jin-cv.pdf'
 
 export function SiteClosing({ className }: { className?: string }) {
   const { t } = useTranslation()
