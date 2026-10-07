@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { SiteHeader } from '@header/components/site-header'
 import { SiteFooter } from '@eon/components/site-footer'
@@ -7,7 +6,7 @@ import '@eon/app/globals.css'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — E.ON Solar',
+    absolute: 'Lu Jin — E.ON Solar',
   },
   description:
     'Case study: redesigning a high-friction solar calculator journey to turn existing traffic into qualified leads.',
@@ -35,7 +34,6 @@ export default function EonSolarLayout({
       <div className="site-chrome">
         <SiteFooter variant="light" />
       </div>
-      {process.env.NODE_ENV === 'production' && <Analytics />}
     </>
   )
 }

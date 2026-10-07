@@ -1,6 +1,6 @@
 export const wow = {
   en: {
-    documentTitle: 'Lu — Way of Work',
+    documentTitle: 'Lu Jin — Way of Work',
     heroTitle: 'Way of Work',
     heroLede:
       'A more human way to build. From curiosity to impact. A structured, iterative process for complex products.',
@@ -65,7 +65,7 @@ export const wow = {
     productionAlt: 'A glowing doorway of daylight opening through dark rock and water.',
   },
   de: {
-    documentTitle: 'Lu — Way of Work',
+    documentTitle: 'Lu Jin — Way of Work',
     heroTitle: 'Way of Work',
     heroLede:
       'Ein menschlicherer Weg zu bauen. Von der Neugier zur Wirkung. Ein strukturierter, iterativer Prozess für komplexe Produkte.',

@@ -1,6 +1,6 @@
 export const ai = {
   en: {
-    documentTitle: 'AI Design Workflow — lu.design',
+    documentTitle: 'Lu Jin — AI Design Workflow',
     eyebrow: 'Playground — Experiment',
     titleHtml: 'Explore more.<br />Think deeper.',
     intro:
@@ -64,7 +64,7 @@ export const ai = {
     bannerJudgmentHtml: '<span class="text-white font-semibold">Judgment</span> shapes what comes next',
   },
   de: {
-    documentTitle: 'KI-Design-Workflow — lu.design',
+    documentTitle: 'Lu Jin — KI-Design-Workflow',
     eyebrow: 'Playground — Experiment',
     titleHtml: 'Weiter erkunden.<br />Tiefer denken.',
     intro:

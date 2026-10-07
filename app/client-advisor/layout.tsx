@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { SiteHeader } from '@header/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
@@ -7,7 +6,7 @@ import '@/app/globals.css'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — Client Advisory',
+    absolute: 'Lu Jin — Client Advisory',
   },
   description:
     'Less searching. More advising. An AI-powered advisory case study by Lu, Lead Service Designer — surfacing what matters to each client, exactly when it matters.',
@@ -31,7 +30,6 @@ export default function ClientAdvisorLayout({
         {children}
         <SiteFooter />
       </div>
-      {process.env.NODE_ENV === 'production' && <Analytics />}
     </>
   )
 }

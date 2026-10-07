@@ -1,6 +1,6 @@
 export const ca = {
   en: {
-    documentTitle: 'Lu — Client Advisory',
+    documentTitle: 'Lu Jin — Client Advisory',
     description:
       'Less searching. More advising. An AI-powered advisory case study by Lu, Lead Service Designer — surfacing what matters to each client, exactly when it matters.',
     hero: {
@@ -182,7 +182,7 @@ export const ca = {
       "Complexity doesn't disappear. It gets a place to land — so advisors spend less time managing tools, and more time with the client on the phone.",
   },
   de: {
-    documentTitle: 'Lu — Client Advisory',
+    documentTitle: 'Lu Jin — Client Advisory',
     description:
       'Weniger suchen. Mehr beraten. Eine KI-gestützte Advisory-Case-Study von Lu, Lead Service Designer — was für jeden Kunden zählt, genau dann, wenn es zählt.',
     hero: {

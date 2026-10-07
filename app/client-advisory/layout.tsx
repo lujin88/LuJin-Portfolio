@@ -1,17 +1,19 @@
-import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { SiteHeader } from '@header/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { HtmlTheme } from '../html-theme'
+import { socialMetadata } from '../seo'
 import '@/app/globals.css'
 import 'remixicon/fonts/remixicon.css'
 
+const TITLE = 'Lu Jin — Client Advisory'
+const DESCRIPTION =
+  'Less searching. More advising. An AI-powered advisory case study by Lu, Lead Service Designer — surfacing what matters to each client, exactly when it matters.'
+
 export const metadata: Metadata = {
-  title: {
-    absolute: 'Lu — Client Advisory',
-  },
-  description:
-    'Less searching. More advising. An AI-powered advisory case study by Lu, Lead Service Designer — surfacing what matters to each client, exactly when it matters.',
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/client-advisory', image: '/og/client-advisory.jpg' }),
 }
 
 export const viewport: Viewport = {
@@ -32,7 +34,6 @@ export default function ClientAdvisoryLayout({
         {children}
         <SiteFooter />
       </div>
-      {process.env.NODE_ENV === 'production' && <Analytics />}
     </>
   )
 }

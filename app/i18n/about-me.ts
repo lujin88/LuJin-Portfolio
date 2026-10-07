@@ -65,7 +65,7 @@ export const aboutMeTranslations = {
 
 const aboutPageTranslations = {
   en: {
-    documentTitle: 'Lu — About',
+    documentTitle: 'Lu Jin — About',
     heroTitleHtml: 'Hey, I am<br />Lu',
     startBtn: 'A Quick Hi',
     eyebrow: 'About me',
@@ -82,7 +82,7 @@ const aboutPageTranslations = {
     altAvatar: 'Illustrated portrait of Lu working at a laptop, with books and coffee.',
   },
   de: {
-    documentTitle: 'Lu — Über mich',
+    documentTitle: 'Lu Jin — Über mich',
     heroTitleHtml: 'Hey, ich bin<br />Lu',
     startBtn: 'Ein kurzes Hi',
     eyebrow: 'Über mich',

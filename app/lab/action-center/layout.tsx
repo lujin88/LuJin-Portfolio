@@ -2,13 +2,16 @@ import type { Metadata } from 'next'
 import 'remixicon/fonts/remixicon.css'
 
 import { HtmlChrome } from '../../html-chrome'
+import { socialMetadata } from '../../seo'
+
+const TITLE = 'Lu Jin — Action Center'
+const DESCRIPTION =
+  'A unified dashboard for monitoring AI coding agents, actions, and usage.'
 
 export const metadata: Metadata = {
-  title: {
-    absolute: 'Lu — Action Center',
-  },
-  description:
-    'A unified dashboard for monitoring AI coding agents, actions, and usage.',
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/lab/action-center' }),
 }
 
 export default function ActionCenterLayout({

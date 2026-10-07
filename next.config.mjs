@@ -7,12 +7,20 @@ const nextConfig = {
   turbopack: {
     root: fileURLToPath(new URL('.', import.meta.url)),
   },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
     unoptimized: true,
     qualities: [75, 90],
+  },
+  async headers() {
+    return [
+      {
+        // Raw source for the /index HTML island (read from disk by
+        // app/index/page.tsx). Still publicly reachable, so keep it out of
+        // search results instead of redirecting it.
+        source: '/home.html',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+    ]
   },
   async redirects() {
     return [
