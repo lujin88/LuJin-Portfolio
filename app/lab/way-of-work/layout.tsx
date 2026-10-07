@@ -1,16 +1,19 @@
 import type { Metadata, Viewport } from 'next'
 
 import { HtmlChrome } from '../../html-chrome'
+import { socialMetadata } from '../../seo'
 import { CHAPTERS } from './chapters'
 
 const MIST = '#587894'
 
+const TITLE = 'Lu Jin — Way of Work'
+const DESCRIPTION =
+  'A more human way to build. From curiosity to impact. A structured, iterative process for complex products.'
+
 export const metadata: Metadata = {
-  title: {
-    absolute: 'Lu — Way of Work',
-  },
-  description:
-    'A more human way to build. From curiosity to impact. A structured, iterative process for complex products.',
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/lab/way-of-work' }),
 }
 
 export const viewport: Viewport = {

@@ -1,6 +1,8 @@
+import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Caveat, Poppins } from 'next/font/google'
 import { I18nProvider } from './i18n/use-translation'
+import { SITE_NAME, SITE_URL, socialMetadata } from './seo'
 
 const caveat = Caveat({
   subsets: ['latin'],
@@ -14,17 +16,29 @@ const poppins = Poppins({
   display: 'swap',
 })
 
+const DEFAULT_TITLE = 'Lu Jin — Product & Service Designer'
+const DEFAULT_DESCRIPTION =
+  'Design leadership across product and service — from early-stage strategy to production-ready systems.'
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
   title: {
-    default: 'Lu — Product & Service Designer',
-    template: 'Lu — %s',
+    default: DEFAULT_TITLE,
+    template: 'Lu Jin — %s',
   },
-  description:
-    'Design leadership across product and service — from early-stage strategy to production-ready systems.',
+  description: DEFAULT_DESCRIPTION,
+  ...socialMetadata({
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+  }),
   icons: {
-    icon: [{ url: '/assets/images/brand/lu-logo.png', type: 'image/png' }],
-    shortcut: '/assets/images/brand/lu-logo.png',
-    apple: '/assets/images/brand/lu-logo.png',
+    icon: [
+      { url: '/assets/images/brand/lu-logo-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/assets/images/brand/lu-logo-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    shortcut: '/assets/images/brand/lu-logo-32.png',
+    apple: { url: '/assets/images/brand/lu-logo-180.png', sizes: '180x180', type: 'image/png' },
   },
 }
 
@@ -48,6 +62,7 @@ export default function RootLayout({
     >
       <body className="min-w-[360px] antialiased">
         <I18nProvider>{children}</I18nProvider>
+        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )
