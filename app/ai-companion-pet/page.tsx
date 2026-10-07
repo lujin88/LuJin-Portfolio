@@ -116,7 +116,7 @@ export default function CompanionPetPage() {
         <section className={styles.welcomeScreen} id="welcome">
           <div className={styles.welcomeCopy}>
             <p className={styles.eyebrow}>第一次见面</p>
-            <h1>你好，安睿。<br />我是默默。</h1>
+            <h1>你好，我是默默。</h1>
             <p className={styles.welcomeIntro}>我会陪你聊天，记住你在意的小事，也知道什么时候安静地待在你身边。</p>
             <div className={styles.welcomeActions}>
               <button className={styles.primaryButton} type="button" onClick={playWelcome} disabled={speaking}>
