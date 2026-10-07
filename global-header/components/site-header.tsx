@@ -325,7 +325,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           )}
         >
           <img
-            src="/assets/images/brand/lu-logo.png"
+            src="/assets/images/brand/lu-logo-64.webp"
             alt="Lu"
             width={32}
             height={32}

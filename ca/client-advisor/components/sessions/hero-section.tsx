@@ -24,7 +24,8 @@ export function HeroSection() {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
+            poster="/assets/images/posters/ca-hero.webp"
             disablePictureInPicture
             aria-hidden="true"
           >
@@ -94,6 +95,7 @@ export function HeroSection() {
             muted
             playsInline
             preload="metadata"
+            poster="/assets/images/posters/ca-hero.webp"
             disablePictureInPicture
             aria-hidden="true"
           >

@@ -83,7 +83,7 @@ export function ProblemSection() {
                 <AnnotationArrow className="pointer-events-none absolute left-[8.15rem] top-[2.05rem] h-[3.15rem] w-[1.95rem] text-[#3d3d3d]" />
               </OnceReveal>
               <img
-                src="/assets/images/eon/eon 04&05 floor plan.png"
+                src="/assets/images/eon/eon-04-05-floor-plan.webp"
                 alt={t('eon.problem.floorAlt')}
                 className="relative z-[2] h-auto w-full rotate-[8deg]"
                 style={{ filter: 'drop-shadow(0 18px 36px rgba(15,23,42,0.22))' }}
