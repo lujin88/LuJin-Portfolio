@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from 'next'
 import { Patrick_Hand } from 'next/font/google'
-import 'remixicon/fonts/remixicon.css'
-
 import { HtmlChrome } from '../../html-chrome'
 import './party-planner.css'
 

@@ -8,10 +8,10 @@
 :root {
   /* ---------- extracted color tokens (verbatim from HTML :root) ---------- */
   --color-theme-1: #ffffff;
-  --color-theme-2: #8b5cf6;
-  --color-theme-3: rgba(139, 92, 246, 0.15);
-  --color-theme-hover: #a78bfa;
-  --color-primary-solid: #8b5cf6;
+  --color-theme-2: #7ea2ff;
+  --color-theme-3: rgba(126, 162, 255, 0.15);
+  --color-theme-hover: #a9c4ff;
+  --color-primary-solid: #7ea2ff;
 
   --color-bg-page: #0a0a0a;
   --color-bg-primary: #111214;
@@ -37,11 +37,11 @@
   --nav-scrolled-bg: rgba(10, 10, 10, 0.78);
 
   --pill-text: #f9fbfc;
-  --pill-border: rgba(249, 251, 252, 0.45);
-  --pill-bg: rgba(255, 255, 255, 0.02);
+  --pill-border: rgba(249, 251, 252, 0.72);
+  --pill-bg: transparent;
   --pill-hover-bg: #f9fbfc;
   --pill-hover-text: #0a0a0a;
-  --pill-hover-shadow: 0 10px 30px -8px rgba(249, 251, 252, 0.35);
+  --pill-hover-shadow: none;
 
   --panel-shadow:
     0 40px 80px -30px rgba(0, 0, 0, 0.7),
@@ -51,28 +51,28 @@
   --card-bg: #111214;
   --card-border: rgba(255, 255, 255, 0.07);
   --card-border-hover: rgba(255, 255, 255, 0.16);
-  --card-glow: rgba(139, 92, 246, 0.15);
+  --card-glow: rgba(126, 162, 255, 0.15);
   --card-shadow:
     0 1px 0 rgba(255, 255, 255, 0.04) inset,
-    0 24px 48px -26px rgba(139, 92, 246, 0.14),
+    0 24px 48px -26px rgba(126, 162, 255, 0.14),
     0 10px 28px -12px rgba(0, 0, 0, 0.65);
   --card-shadow-hover:
     0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 32px 64px -26px rgba(139, 92, 246, 0.24),
+    0 32px 64px -26px rgba(126, 162, 255, 0.24),
     0 14px 34px -12px rgba(0, 0, 0, 0.75);
 
   --grain-opacity: 0.035;
   --grain-blend: overlay;
-  --selection-bg: rgba(139, 92, 246, 0.35);
+  --selection-bg: rgba(126, 162, 255, 0.35);
   --selection-text: #ffffff;
 
-  --exp-accent: #8b5cf6;
-  --exp-accent-bright: #a78bfa;
-  --exp-glow-wide: rgba(139, 92, 246, 0.22);
-  --exp-glow-mid: rgba(139, 92, 246, 0.34);
+  --exp-accent: #7ea2ff;
+  --exp-accent-bright: #a9c4ff;
+  --exp-glow-wide: rgba(126, 162, 255, 0.22);
+  --exp-glow-mid: rgba(126, 162, 255, 0.34);
   --exp-desc: rgba(249, 251, 252, 0.66);
   --exp-ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --exp-blue: 122, 127, 220;
+  --exp-blue: 126, 162, 255;
 
   /* live React header chrome (global-header/header.css) */
   --header-scrim: oklch(0.15 0.012 264);
@@ -81,7 +81,7 @@
   --header-glass: rgb(3 10 24);
   --header-menu: oklch(0.24 0.004 264);
   --header-menu-item: oklch(0.29 0.004 264);
-  --header-accent: #4a90ff;
+  --header-accent: #7ea2ff;
 
   /* ---------- semantic aliases requested for this document ---------- */
   --color-bg: var(--color-bg-page);
@@ -300,14 +300,17 @@ img {
   align-items: center;
   border-radius: var(--radius-pill);
   border: 1px solid var(--header-line);
+  color: var(--header-foreground);
+  background: transparent;
   padding: 0.75rem 1.5rem;
   font-size: 1.0625rem;
   line-height: 1;
-  transition: border-color 200ms ease, background-color 200ms ease;
+  transition: border-color 200ms ease, background-color 200ms ease, color 200ms ease;
 }
 .ds-header__cta:hover {
-  border-color: color-mix(in srgb, var(--header-foreground) 70%, transparent);
-  background: color-mix(in srgb, var(--header-foreground) 6%, transparent);
+  border-color: #f9fbfc;
+  background: #f9fbfc;
+  color: #0a0a0a;
 }
 
 .ds-hero {
@@ -323,8 +326,8 @@ img {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(90% 70% at 12% 18%, rgba(139, 92, 246, 0.22), transparent 55%),
-    radial-gradient(70% 60% at 88% 80%, rgba(58, 70, 212, 0.18), transparent 60%),
+    radial-gradient(90% 70% at 12% 18%, rgba(126, 162, 255, 0.22), transparent 55%),
+    radial-gradient(70% 60% at 88% 80%, rgba(126, 162, 255, 0.18), transparent 60%),
     linear-gradient(180deg, #101014 0%, #0a0a0a 100%);
 }
 
@@ -841,8 +844,8 @@ img {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(120% 90% at 18% 12%, rgba(139, 92, 246, 0.28), transparent 55%),
-    radial-gradient(90% 80% at 88% 90%, rgba(124, 58, 237, 0.22), transparent 60%),
+    radial-gradient(120% 90% at 18% 12%, rgba(126, 162, 255, 0.28), transparent 55%),
+    radial-gradient(90% 80% at 88% 90%, rgba(79, 120, 240, 0.22), transparent 60%),
     linear-gradient(180deg, #101014 0%, #0b0b0d 100%);
 }
 
@@ -1210,17 +1213,17 @@ img {
   height: 10px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.45);
+  box-shadow: 0 0 0 0 rgba(126, 162, 255, 0.45);
   animation: glowPulse 2.4s var(--ease-out-expo) infinite;
 }
 
 @keyframes glowPulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.35);
+    box-shadow: 0 0 0 0 rgba(126, 162, 255, 0.35);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+    box-shadow: 0 0 0 10px rgba(126, 162, 255, 0);
   }
 }
 
@@ -1235,7 +1238,7 @@ img {
   width: 100%;
   height: 100%;
   background:
-    radial-gradient(80% 70% at 30% 20%, rgba(139, 92, 246, 0.35), transparent 55%),
+    radial-gradient(80% 70% at 30% 20%, rgba(126, 162, 255, 0.35), transparent 55%),
     linear-gradient(180deg, #1a1c1f, #0a0a0a);
   animation: heroAmbientZoom 16s ease-in-out infinite;
 }

@@ -36,6 +36,7 @@ export const dictionaries = {
 export type Dictionaries = (typeof dictionaries)[LangCode]
 
 export const documentTitleKeys: Record<string, string> = {
+  '/': 'home.documentTitle',
   '/index': 'home.documentTitle',
   '/lab': 'lab.documentTitle',
   '/lab/way-of-work': 'wow.documentTitle',

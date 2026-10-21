@@ -1,6 +1,6 @@
 export const ai = {
   en: {
-    documentTitle: 'AI Design Workflow — lu.design',
+    documentTitle: 'Lu — AI Design Workflow',
     eyebrow: 'Playground — Experiment',
     titleHtml: 'Explore more.<br />Think deeper.',
     intro:
@@ -20,7 +20,7 @@ export const ai = {
     metaStageValue: 'Ongoing — evolves with the tools',
     premiseTitleHtml: 'What changes when AI enters the <span class="font-bold">process</span>?',
     premiseBody1:
-      'The tools generate options faster than any team could. The risk is speed without direction — more artefacts, less clarity.',
+      'The tools generate options faster than any team could. The risk is speed without direction — more artifacts, less clarity.',
     premiseSpeed: 'Speed',
     premiseVolume: 'Volume',
     premiseJudgment: 'Judgment',
@@ -64,16 +64,16 @@ export const ai = {
     bannerJudgmentHtml: '<span class="text-white font-semibold">Judgment</span> shapes what comes next',
   },
   de: {
-    documentTitle: 'KI-Design-Workflow — lu.design',
+    documentTitle: 'Lu — KI-Design-Workflow',
     eyebrow: 'Playground — Experiment',
     titleHtml: 'Weiter erkunden.<br />Tiefer denken.',
     intro:
-      'KI erweitert den Möglichkeitsraum. Ich bringe Strategie, Urteilskraft und Systemdenken — eine Arbeitsstudie, wie ein KI-nativer Prozess tatsächlich verändert, wie Produkte gestaltet werden.',
+      'KI erweitert den Möglichkeitsraum. Ich bringe Strategie, Urteilskraft und Systemdenken ein, um zu formen, was daraus entsteht — eine Arbeitsstudie darüber, wie ein KI-nativer Prozess die Produktgestaltung tatsächlich verändert.',
     flowExplore: 'Erkunden',
     flowGenerate: 'Generieren',
     flowPrototype: 'Prototypen',
     flowIterate: 'Iterieren',
-    cta: 'Zeig mir den Ablauf',
+    cta: 'Ablauf ansehen',
     metaRole: 'Rolle',
     metaRoleValue: 'Product Designer — eigenständig',
     metaFocus: 'Fokus',
@@ -106,7 +106,7 @@ export const ai = {
       'Ideen durch Szenarien und Grenzfälle treiben, dann überdenken, was nicht trägt. Die Schleife wird enger, bis die Richtung ihren Platz verdient.<br /><span class="text-text3">Claude · Codex</span>',
     contributionTitleHtml: 'Wo ich ansetze<span class="shell-accent">.</span>',
     contributionBody1:
-      'KI kann an einem Nachmittag hundert Richtungen erzeugen. Sie sagt nicht, welche zum Produkt, zu den Nutzern oder zu den noch ungeschriebenen Constraints passt.',
+      'KI kann an einem Nachmittag hundert Richtungen erzeugen. Sie kann nicht sagen, welche zum Produkt passt, zu den Nutzern oder zu den Rahmenbedingungen, die noch niemand aufgeschrieben hat.',
     contributionBody2:
       'Jeder Durchgang fragt: Was kann ich generieren, was wiederverwenden, und was braucht wirklich eine Entscheidung?',
     contributionGoalLabel: 'Das Ziel',
@@ -116,7 +116,7 @@ export const ai = {
     outcomeIntro:
       'Eine wiederholbare Schleife von der groben Frage zum funktionierenden Prototyp — die Tools tragen das Volumen, die Designerin die Richtung.',
     card1Title: '4 Stufen',
-    card1Body: 'Erkunden, Generieren, Prototypen, Iterieren — eine Schleife, Ende zu Ende.',
+    card1Body: 'Erkunden, Generieren, Prototypen, Iterieren — eine Schleife, end-to-end.',
     card2Title: 'Tage, nicht Wochen',
     card2Body: 'Richtungen werden in einem Bruchteil der üblichen Zeit testbar.',
     card3Title: 'Urteilsgeführt',

@@ -1,34 +1,28 @@
 import type { Metadata } from 'next'
-import 'remixicon/fonts/remixicon.css'
 
 import { HtmlChrome } from '../../html-chrome'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — Action Center',
+    absolute: 'Lu — Agent Monitor',
   },
   description:
-    'A unified dashboard for monitoring AI coding agents, actions, and usage.',
+    'Two self-built tools behind the AI workflow: Agent Monitor for usage and permissions, and an AI team for specialist work.',
 }
 
-export default function ActionCenterLayout({
+export default function AgentMonitorLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
     <HtmlChrome
-      activeHref="/lab/action-center"
+      activeHref="/lab/agent-monitor"
       theme="light"
       colorScheme="light"
-      backgroundColor="#f2efec"
+      backgroundColor="#f6f1ea"
     >
       <link rel="stylesheet" href="/styles/shell-components.css" />
-      <link
-        rel="preload"
-        as="image"
-        href="/assets/images/lab/action-center/monitor-hero-bg.png"
-      />
       {children}
     </HtmlChrome>
   )

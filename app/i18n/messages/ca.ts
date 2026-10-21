@@ -7,7 +7,7 @@ export const ca = {
       eyebrow: 'The Overview',
       title1: 'Less searching.',
       title2: 'More advising.',
-      body: 'AI-powered advisory. Surfacing what matters to each client, exactly when it matters.',
+      body: 'AI-powered advisory that surfaces what matters to each client, exactly when it matters.',
       role: 'My role',
       roleValue: 'Lead Service Designer',
       scope: 'Scope',
@@ -21,9 +21,9 @@ export const ca = {
       ],
       glance: 'At a glance',
       glance1Value: '5–10 min',
-      glance1Label: 'saved per client, information gathering',
+      glance1Label: 'saved per client on information gathering',
       glance2Value: '500+',
-      glance2Label: 'Client Advisors in trials / target base',
+      glance2Label: 'client advisors in trials and target base',
       glance3Value: '30 min',
       glance3Label: 'saved on complex proposals',
       photoAlt:
@@ -33,7 +33,7 @@ export const ca = {
       eyebrow: 'The Mandate',
       title: 'Finding where AI could make a difference.',
       body1:
-        'As AI became increasingly integrated into banking, we saw an opportunity to explore how it could improve efficiency across Advisor & Sales.',
+        'As AI moved deeper into banking, we saw a chance to explore how it could make Advisor & Sales more efficient.',
       questionEyebrow: 'The key question',
       questionBefore: 'Where could',
       questionAi: 'AI create',
@@ -41,22 +41,22 @@ export const ca = {
       questionImpact: 'meaningful',
       questionAfter: 'impact?',
       body2:
-        'Before deciding what to optimise, I needed to understand where advisors were actually losing time — and why.',
+        'Before deciding what to optimize, I needed to understand where advisors were actually losing time — and why.',
       note1: 'Multiple tools.',
       note2: 'Siloed data.',
-      note3: 'A higher cognitive\nload.',
+      note3: 'Higher cognitive\nload.',
       note4: 'Opportunity to do things differently.',
     },
     research: {
       eyebrow: 'The Research',
       quotesLabel: 'Advisor quotes',
-      quote1: '"I know the data exists — it’s just hard to find."',
+      quote1: '“I know the data exists — it’s just hard to find.”',
       quote2:
-        '"The client calls, and I have seconds to answer. Finding the data still takes time."',
+        '“The client calls, and I have seconds to answer. Finding the data still takes time.”',
       title: 'Understanding the work.',
       subhead: 'One need. A whole service behind it.',
       body1Html:
-        'I set out to understand how advisors actually work — interviewing 17 Client Advisors primarily across Switzerland Wealth Management, with EMEA and APAC<sup class="ml-px text-[0.65em] leading-none">*</sup> advisors included for comparison, to see how they moved across 10+ different tools, collaborated with others, and turned what they gathered into a decision for the client.',
+        'I set out to understand how advisors actually work. I interviewed 17 client advisors, mostly in Switzerland Wealth Management, plus EMEA and APAC<sup class="ml-px text-[0.65em] leading-none">*</sup> advisors for comparison — following how they moved across 10+ tools, worked with colleagues, and turned what they gathered into a decision for the client.',
       heading2: 'The information existed. The advisor had to connect it.',
       body2:
         'The friction wasn’t only access. It was stitching together 10+ disconnected tools — in the moment, under pressure.',
@@ -71,7 +71,7 @@ export const ca = {
       bodyInstead: 'Instead of asking',
       bodyOld: '“How might we help advisors search faster?”',
       bodyWeAsked: 'We asked:',
-      bodyAsk1: '“How might AI help advisors recognise',
+      bodyAsk1: '“How might AI help advisors recognize',
       bodyAsk2: 'what matters, understand why it matters,',
       bodyAsk3: 'and decide what to do next?”',
       closing1: 'This reframed the role of AI — from finding information',
@@ -79,7 +79,7 @@ export const ca = {
       signal: 'Signal',
       signalQ: 'What matters?',
       signalBody:
-        'Overnight, something moved. The system checks it against every book it touches — and surfaces only the clients it actually changes.',
+        'Overnight, something moved. The system checks it against every client book it touches — and surfaces only the clients it actually affects.',
       signalFlag: 'Not a search. A flag.',
       context: 'Context',
       contextQ: 'Why does it matter?',
@@ -94,14 +94,14 @@ export const ca = {
       eyebrow: 'Design Principles',
       headline: 'Turning the model into design decisions.',
       intro:
-        "The direction was already decided. It came with one constraint: it couldn't feel like another tool. Signal → Context → Act became the model for how it earned its place — three principles for every moment.",
+        "The direction was set, with one constraint: it couldn't feel like another tool. Signal → Context → Act became the model for how it earned its place — one principle for each moment.",
       p1Title: 'Surface what matters',
       p1Body:
         'Not everything worth knowing deserves a place on screen. A signal earned its spot by urgency and stakes — a portfolio shift, a compliance flag — not by being one more thing to scroll past.',
       p2Title: 'Explain with context',
       p2Body:
-        'A signal without a reason is just noise. Every one had to answer "why now," in the time it takes to glance — using the same research, market insights, and client notes the advisor would otherwise have to dig for.',
-      p3Title: 'Support judgement',
+        'A signal without a reason is just noise. Each one had to answer “why now?” at a glance — using the same research, market insights, and client notes the advisor would otherwise have to dig for.',
+      p3Title: 'Support judgment',
       p3Body:
         'AI surfaces, it never decides. Every signal is a suggestion — the trade, the allocation, the response to the client stays entirely with the advisor.',
       showFront: 'Show front',
@@ -116,14 +116,14 @@ export const ca = {
       path2Title: 'The case for less',
       whyLess: 'Why less',
       whyLessBody:
-        "A new dashboard was the easier case to make internally — it was easier to scope, own, and fund as a standalone initiative. I argued for the surface layer instead: the goal wasn't a new product to own, it was fewer tools for advisors to juggle. Advisors were already working across 10+ systems — adding one more, or asking them to relearn a new one, would cost more than it saved.",
-      buying: 'Buying + in practice',
+        "A new dashboard was the easier sell internally: simpler to scope, own, and fund as a standalone initiative. I argued for the surface layer instead. The goal wasn't a new product to own; it was fewer tools for advisors to juggle. They already worked across 10+ systems, and adding one more, or making them relearn one, would cost more than it saved.",
+      buying: 'Buy-in + in practice',
       buyingWon: 'That case won the stakeholder over.',
       buyingPractice:
-        'A prioritised overview layered on the existing dashboard, expanding into full context on click, with next steps surfaced as recommendations — the way retail apps surface related picks.',
+        'A prioritized overview layered on the existing dashboard. One click opens the full context, and next steps appear as recommendations — the way retail apps suggest related picks.',
       path3Title: 'The result',
       path3Body:
-        'One experience, unifying client context, portfolio, and research — without adding to the pile. 500+ client signals, one view.',
+        'One experience that unifies client context, portfolio, and research — without adding to the pile. 500+ client signals, one view.',
       mockups: {
         'book-view': 'UBS advisor book view with clients, opportunities, and market highlights',
         'us-tech': 'US Tech client view with CIO commentary and recommended products',
@@ -160,8 +160,8 @@ export const ca = {
     },
     outcome: {
       eyebrow: 'The Outcome',
-      title: 'The outcome.',
-      subhead: 'Validated with advisors for more focused advisory.',
+      title: 'Tested with the people it’s for.',
+      subhead: 'Validated with advisors, for more focused client conversations.',
       body: "I led concept testing with advisors — including the stakeholder who'd pushed for the dashboard — to see how the model held up against real workflows.",
       journeyAria: 'Concept, Mockup, Test',
       concept: 'Concept',
@@ -170,11 +170,11 @@ export const ca = {
       avgFeedback: 'Average feedback from testing',
       reach: 'Reach',
       m1Value: '5–10 min',
-      m1Label: 'Saved per client from information gathering.',
+      m1Label: 'Saved per client on information gathering.',
       m2Value: 'Up to 30 min',
       m2Label: 'Saved on more complex proposals.',
       m3Value: '500+',
-      m3Label: 'Advisors in trials / target user base.',
+      m3Label: 'Advisors in trials and the target user base.',
       footnote:
         "Feedback was consistent across EMEA and CH, where the concept was primarily scoped. APAC leaned toward speed over the signal-and-context flow — a nuance noted for future markets, outside this project's core focus.",
     },
@@ -184,14 +184,14 @@ export const ca = {
   de: {
     documentTitle: 'Lu — Client Advisory',
     description:
-      'Weniger suchen. Mehr beraten. Eine KI-gestützte Advisory-Case-Study von Lu, Lead Service Designer — was für jeden Kunden zählt, genau dann, wenn es zählt.',
+      'Weniger suchen. Mehr beraten. Eine Case Study zu KI-gestützter Beratung von Lu, Lead Service Designerin — was für jeden Kunden zählt, genau dann, wenn es zählt.',
     hero: {
       eyebrow: 'Der Überblick',
       title1: 'Weniger suchen.',
       title2: 'Mehr beraten.',
-      body: 'KI-gestützte Beratung. Was für jeden Kunden zählt — genau dann, wenn es zählt.',
+      body: 'KI-gestützte Beratung, die zeigt, was für jeden Kunden zählt — genau dann, wenn es zählt.',
       role: 'Meine Rolle',
-      roleValue: 'Lead Service Designer',
+      roleValue: 'Lead Service Designerin',
       scope: 'Umfang',
       scopeItems: [
         'Opportunity Framing',
@@ -203,11 +203,11 @@ export const ca = {
       ],
       glance: 'Auf einen Blick',
       glance1Value: '5–10 Min.',
-      glance1Label: 'gespart pro Kunde, Informationsbeschaffung',
+      glance1Label: 'pro Kunde bei der Informationsbeschaffung gespart',
       glance2Value: '500+',
-      glance2Label: 'Client Advisors in Trials / Zielgruppe',
+      glance2Label: 'Client Advisors in Trials und Zielgruppe',
       glance3Value: '30 Min.',
-      glance3Label: 'gespart bei komplexen Offerten',
+      glance3Label: 'bei komplexen Anlagevorschlägen gespart',
       photoAlt:
         'Ein Kundenberater mit Headset arbeitet am Laptop vor einem Fenster mit Blick auf eine Skyline in der Dämmerung',
     },
@@ -215,7 +215,7 @@ export const ca = {
       eyebrow: 'Das Mandat',
       title: 'Finden, wo KI einen Unterschied machen kann.',
       body1:
-        'Als KI zunehmend ins Banking integriert wurde, sahen wir die Chance zu erkunden, wie sie Effizienz in Advisor & Sales verbessern könnte.',
+        'Als KI im Banking immer präsenter wurde, sahen wir die Chance zu erkunden, wie sie Advisor & Sales effizienter machen könnte.',
       questionEyebrow: 'Die zentrale Frage',
       questionBefore: 'Wo könnte',
       questionAi: 'KI',
@@ -223,22 +223,22 @@ export const ca = {
       questionImpact: 'sinnvollen',
       questionAfter: 'Impact erzeugen?',
       body2:
-        'Bevor entschieden wurde, was zu optimieren ist, musste ich verstehen, wo Berater wirklich Zeit verloren – und warum.',
+        'Bevor wir entschieden, was wir optimieren, musste ich verstehen, wo Berater wirklich Zeit verloren — und warum.',
       note1: 'Viele Tools.',
-      note2: 'Silo-Daten.',
+      note2: 'Datensilos.',
       note3: 'Höhere kognitive Last.',
       note4: 'Die Chance, es anders zu machen.',
     },
     research: {
-      eyebrow: 'Die Research',
+      eyebrow: 'Die Recherche',
       quotesLabel: 'Zitate von Beratern',
-      quote1: '"Ich weiß, die Daten sind da — sie sind nur schwer zu finden."',
+      quote1: '„Ich weiß, dass die Daten da sind — sie sind nur schwer zu finden.“',
       quote2:
-        '"Der Kunde ruft an, und ich habe Sekunden zum Antworten. Die Daten zu finden dauert trotzdem."',
+        '„Der Kunde ruft an, und ich habe Sekunden für eine Antwort. Die Daten zu finden, dauert trotzdem.“',
       title: 'Die Arbeit verstehen.',
       subhead: 'Ein Bedarf. Ein ganzer Service dahinter.',
       body1Html:
-        'Ich wollte verstehen, wie Berater wirklich arbeiten — Interviews mit 17 Client Advisors, vor allem in Switzerland Wealth Management, ergänzt um Berater in EMEA und APAC<sup class="ml-px text-[0.65em] leading-none">*</sup> zum Vergleich: wie sie sich durch 10+ Tools bewegten, mit anderen zusammenarbeiteten und Gesammeltes in eine Entscheidung für den Kunden übersetzten.',
+        'Ich wollte verstehen, wie Berater wirklich arbeiten. Dafür habe ich 17 Client Advisors interviewt, vor allem aus Switzerland Wealth Management, ergänzt um Berater aus EMEA und APAC<sup class="ml-px text-[0.65em] leading-none">*</sup> zum Vergleich — und beobachtet, wie sie sich durch 10+ Tools bewegten, mit Kollegen zusammenarbeiteten und das Gesammelte in eine Entscheidung für den Kunden übersetzten.',
       heading2: 'Die Information war da. Der Berater musste sie verbinden.',
       body2:
         'Die Reibung war nicht nur der Zugang. Es war das Zusammenfügen von 10+ getrennten Tools — im Moment, unter Druck.',
@@ -246,10 +246,10 @@ export const ca = {
         'Eine Beraterin von hinten, das Kinn auf die Hand gestützt, blickt aus einem dunklen Bürofenster.',
     },
     shift: {
-      eyebrow: 'Der Shift',
+      eyebrow: 'Der Perspektivwechsel',
       headline1: 'Von der Informationssuche',
       headline2: 'zur Entscheidungsunterstützung.',
-      bodyLead: 'Die Research hat die Frage verändert.',
+      bodyLead: 'Die Recherche hat die Frage verändert.',
       bodyInstead: 'Statt zu fragen',
       bodyOld: '„Wie helfen wir Beratern, schneller zu suchen?“',
       bodyWeAsked: 'fragten wir:',
@@ -261,7 +261,7 @@ export const ca = {
       signal: 'Signal',
       signalQ: 'Was zählt?',
       signalBody:
-        'Über Nacht hat sich etwas bewegt. Das System prüft es gegen jedes Buch, das es berührt — und zeigt nur die Kunden, bei denen sich wirklich etwas ändert.',
+        'Über Nacht hat sich etwas bewegt. Das System gleicht es mit jedem betroffenen Kundenbuch ab — und zeigt nur die Kunden, bei denen sich wirklich etwas ändert.',
       signalFlag: 'Keine Suche. Ein Hinweis.',
       context: 'Kontext',
       contextQ: 'Warum zählt es?',
@@ -276,16 +276,16 @@ export const ca = {
       eyebrow: 'Design Principles',
       headline: 'Das Modell in Designentscheidungen übersetzen.',
       intro:
-        'Die Richtung stand. Mit einer Bedingung: Es durfte sich nicht wie ein weiteres Tool anfühlen. Signal → Kontext → Handeln wurde das Modell, mit dem es sich seinen Platz verdiente — drei Prinzipien für jeden Moment.',
+        'Die Richtung stand, mit einer Bedingung: Es durfte sich nicht wie ein weiteres Tool anfühlen. Signal → Kontext → Handeln wurde das Modell, mit dem es sich seinen Platz verdiente — ein Prinzip für jeden Moment.',
       p1Title: 'Zeigen, was zählt',
       p1Body:
-        'Nicht alles Wissenswerte verdient einen Platz auf dem Screen. Ein Signal verdiente seinen Platz durch Dringlichkeit und Tragweite — eine Portfolio-Verschiebung, ein Compliance-Hinweis — nicht als weitere Zeile zum Wegscrollen.',
+        'Nicht alles Wissenswerte gehört auf den Screen. Ein Signal musste sich seinen Platz durch Dringlichkeit und Tragweite verdienen — eine Portfolio-Verschiebung, ein Compliance-Hinweis — statt nur eine weitere Zeile zum Wegscrollen zu sein.',
       p2Title: 'Mit Kontext erklären',
       p2Body:
-        'Ein Signal ohne Grund ist nur Rauschen. Jedes musste „warum jetzt“ beantworten — im Blick eines Augenblicks, mit Research, Markteinschätzung und Kundennotizen, die der Berater sonst zusammensuchen müsste.',
+        'Ein Signal ohne Grund ist nur Rauschen. Jedes musste auf einen Blick beantworten: „Warum jetzt?“ — mit denselben Research-Inhalten, Markteinschätzungen und Kundennotizen, die der Berater sonst zusammensuchen müsste.',
       p3Title: 'Urteil unterstützen',
       p3Body:
-        'KI zeigt, sie entscheidet nie. Jedes Signal ist ein Vorschlag — Trade, Allokation, Antwort an den Kunden bleiben beim Berater.',
+        'KI zeigt, sie entscheidet nie. Jedes Signal ist ein Vorschlag — Transaktion, Allokation und Antwort an den Kunden bleiben vollständig beim Berater.',
       showFront: 'Vorderseite zeigen',
       revealPrinciple: 'Prinzip aufdecken',
     },
@@ -298,11 +298,11 @@ export const ca = {
       path2Title: 'Das Argument für weniger',
       whyLess: 'Warum weniger',
       whyLessBody:
-        'Ein neues Dashboard war intern der einfachere Fall — leichter zu scopen, zu besitzen und als eigenes Vorhaben zu finanzieren. Ich argumentierte für die Schicht: Das Ziel war kein neues Produkt, sondern weniger Tools für Berater. Sie arbeiteten bereits in 10+ Systemen — ein weiteres, oder eines, das sie neu lernen müssten, würde mehr kosten als es spart.',
-      buying: 'Überzeugung + in der Praxis',
+        'Ein neues Dashboard war intern leichter zu verkaufen: einfacher abzugrenzen, zu verantworten und als eigenes Vorhaben zu finanzieren. Ich argumentierte stattdessen für die Schicht. Das Ziel war kein neues Produkt, sondern weniger Tools für die Berater. Sie arbeiteten bereits in 10+ Systemen — ein weiteres oder eines, das sie neu lernen müssten, hätte mehr gekostet als gebracht.',
+      buying: 'Buy-in + in der Praxis',
       buyingWon: 'Dieses Argument hat den Stakeholder überzeugt.',
       buyingPractice:
-        'Ein priorisierter Überblick auf dem bestehenden Dashboard, der sich per Klick zum vollen Kontext öffnet, mit nächsten Schritten als Empfehlungen — so wie Retail-Apps verwandte Vorschläge zeigen.',
+        'Ein priorisierter Überblick auf dem bestehenden Dashboard. Ein Klick öffnet den vollen Kontext, nächste Schritte erscheinen als Empfehlungen — so wie Retail-Apps passende Produkte vorschlagen.',
       path3Title: 'Das Ergebnis',
       path3Body:
         'Ein Erlebnis, das Kundenkontext, Portfolio und Research verbindet — ohne den Stapel zu vergrößern. 500+ Kundensignale, eine Sicht.',
@@ -311,18 +311,18 @@ export const ca = {
         'us-tech': 'US-Tech-Kundensicht mit CIO-Kommentar und empfohlenen Produkten',
         'client-page': 'Investment-Hub-Kundenseite',
         'client-view': 'Investment-Hub-Kundenansicht',
-        'proposal-creation': 'Portfolio-Offerte mit auswählbaren Optionen',
-        'review-execute': 'Prüfen und Ausführen der zugeschnittenen Anlageofferte',
+        'proposal-creation': 'Erstellung eines Anlagevorschlags mit auswählbaren Optionen',
+        'review-execute': 'Prüfen und Ausführen des maßgeschneiderten Anlagevorschlags',
       },
     },
     ui: {
-      aria: 'UBS-Advisory-Interface mit Portfolio-Review und Offerte mit drei Anlageoptionen',
+      aria: 'UBS-Advisory-Interface mit Portfolio-Review und Anlagevorschlag mit drei Anlageoptionen',
       navClients: 'Kunden',
       navResearch: 'Research',
       navOpportunities: 'Opportunities',
       navTools: 'Tools',
-      heading: 'Portfolio-Review & Offerte',
-      tabCreate: 'Offerte erstellen',
+      heading: 'Portfolio-Review & Vorschlag',
+      tabCreate: 'Vorschlag erstellen',
       tabReview: 'Prüfen & ausführen',
       tabSummary: 'Transaktionsübersicht',
       selectOption: 'Option wählen',
@@ -342,9 +342,9 @@ export const ca = {
     },
     outcome: {
       eyebrow: 'Das Ergebnis',
-      title: 'Das Ergebnis.',
-      subhead: 'Mit Beratern validiert — für fokussiertere Beratung.',
-      body: 'Ich habe das Konzept mit Beratern getestet — einschließlich des Stakeholders, der das Dashboard gefordert hatte — um zu sehen, wie das Modell in echten Workflows trägt.',
+      title: 'Getestet mit denen, für die es gemacht ist.',
+      subhead: 'Mit Beratern validiert — für fokussiertere Kundengespräche.',
+      body: 'Ich habe Konzepttests mit Beratern geleitet — auch mit dem Stakeholder, der sich für das Dashboard starkgemacht hatte —, um zu sehen, wie das Modell in echten Workflows trägt.',
       journeyAria: 'Konzept, Mockup, Test',
       concept: 'Konzept',
       mockup: 'Mockup',
@@ -354,11 +354,11 @@ export const ca = {
       m1Value: '5–10 Min.',
       m1Label: 'Gespart pro Kunde bei der Informationsbeschaffung.',
       m2Value: 'Bis zu 30 Min.',
-      m2Label: 'Gespart bei komplexeren Offerten.',
+      m2Label: 'Gespart bei komplexeren Anlagevorschlägen.',
       m3Value: '500+',
-      m3Label: 'Berater in Trials / Zielgruppe.',
+      m3Label: 'Berater in Trials und Zielgruppe.',
       footnote:
-        'Das Feedback war in EMEA und der CH konsistent, wo das Konzept primär geschnitten war. APAC tendierte zu Tempo statt Signal-und-Kontext-Flow — eine Nuance für künftige Märkte, außerhalb des Kernfokus dieses Projekts.',
+        'Das Feedback war in EMEA und der Schweiz konsistent, wo der Schwerpunkt des Konzepts lag. APAC legte mehr Wert auf Tempo als auf den Signal-und-Kontext-Flow — eine Nuance für künftige Märkte, außerhalb des Kernfokus dieses Projekts.',
     },
     closing:
       'Komplexität verschwindet nicht. Sie bekommt einen Ort, an dem sie landen kann — damit Berater weniger Zeit mit Tools verbringen und mehr Zeit mit dem Kunden am Telefon.',

@@ -6,3 +6,6 @@ node_modules
 .review-shots/
 .cursor/
 *.tsbuildinfo
+
+# Ask Lu knowledge bundle (generated from content/ask-lu)
+app/api/ask-lu/knowledge.generated.ts

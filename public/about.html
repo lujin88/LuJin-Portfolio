@@ -9,24 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            ink: 'var(--color-bg-page)',
-            text1: 'var(--color-text-1)',
-            text2: 'var(--color-text-2)',
-          },
-          fontFamily: {
-            sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-          },
-        },
-      },
-    };
-  </script>
-
   <link rel="stylesheet" href="/styles/shell-tokens.css" />
   <link rel="stylesheet" href="/styles/shell-components.css" />
 
@@ -103,11 +85,11 @@
       min-height: 100%;
       border-radius: 0;
       background:
-        radial-gradient(ellipse 46% 38% at 50% 46%, rgba(109, 76, 214, 0.22), transparent 68%),
-        radial-gradient(ellipse 28% 22% at 82% 38%, rgba(139, 92, 246, 0.08), transparent 70%),
+        radial-gradient(ellipse 46% 38% at 50% 46%, rgba(79, 120, 240, 0.22), transparent 68%),
+        radial-gradient(ellipse 28% 22% at 82% 38%, rgba(126, 162, 255, 0.08), transparent 70%),
         var(--color-bg-page);
       box-shadow: none;
-      padding: 6.25rem 1.5rem 2rem;
+      padding: 6.25rem var(--content-inset) 2rem;
     }
     .about-me__inner {
       width: 100%;
@@ -196,16 +178,16 @@
       z-index: 1;
       width: 78%;
       height: 26%;
-      background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.62), rgba(99, 70, 210, 0.12) 52%, transparent 72%);
+      background: radial-gradient(ellipse at center, rgba(126, 162, 255, 0.62), rgba(56, 96, 210, 0.12) 52%, transparent 72%);
       filter: blur(6px);
     }
     .about-collage__ring {
       z-index: 1;
       width: 72%;
       height: 16%;
-      border: 1px solid rgba(186, 170, 255, 0.42);
+      border: 1px solid rgba(186, 206, 255, 0.42);
       border-radius: 50%;
-      box-shadow: 0 0 22px rgba(139, 92, 246, 0.35), inset 0 0 18px rgba(139, 92, 246, 0.18);
+      box-shadow: 0 0 22px rgba(126, 162, 255, 0.35), inset 0 0 18px rgba(126, 162, 255, 0.18);
     }
     .about-float {
       position: absolute;
@@ -501,7 +483,7 @@
     }
 
     @media (min-width: 1100px) {
-      .about-sheet { padding: 6.25rem 1.5rem 2rem; }
+      .about-sheet { padding: 6.25rem var(--content-inset) 2rem; }
       .about-layout {
         grid-template-columns: minmax(210px, 0.8fr) minmax(390px, 1.28fr) minmax(240px, 0.82fr);
         column-gap: clamp(2rem, 3.6vw, 4.25rem);
@@ -577,7 +559,7 @@
     }
 
 
-    /* ---- "A Quick Hi" — TRUE full-viewport intro video ----
+    /* ---- "Say hi" — TRUE full-viewport intro video ----
        Fixed to the viewport, edge to edge. Sits above the whole page
        (z 40) but BELOW the React header (z 50) so the
        nav stays visible over it. Optional layer — not part of the
@@ -619,7 +601,7 @@
       border: 1px solid rgba(255, 255, 255, 0.18);
       transition: background-color 200ms ease, box-shadow 200ms ease, transform 150ms ease;
     }
-    .intro-close:hover { background: rgba(255, 255, 255, 0.18); box-shadow: 0 0 16px rgba(139, 92, 246, 0.35); }
+    .intro-close:hover { background: rgba(255, 255, 255, 0.18); box-shadow: 0 0 16px rgba(126, 162, 255, 0.35); }
     .intro-close:focus-visible {
       outline: var(--focus-ring-width) solid var(--focus-ring);
       outline-offset: var(--focus-ring-offset);
@@ -657,7 +639,7 @@
             Hey, I am<br />Lu
           </h1>
           <button id="startBtn" type="button" class="pill-btn mt-9 cursor-pointer" data-i18n="page.startBtn">
-            A Quick Hi
+            Say hi
           </button>
         </div>
       </div>
@@ -764,11 +746,13 @@
           <span class="exp-contact__sep" aria-hidden="true">·</span>
           <a href="https://www.linkedin.com/in/lu-jin-28008689/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <span class="exp-contact__sep" aria-hidden="true">·</span>
+          <a href="https://github.com/lujin88" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <span class="exp-contact__sep" aria-hidden="true">·</span>
           <a href="https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-i18n="page.downloadCv">Download CV</a>
         </p>
       </div>
       <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn pill-btn--l shrink-0">
-        <span data-i18n="page.letsTalk">Let's Talk</span>
+        <span data-i18n="page.letsTalk">Let's talk</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -908,7 +892,7 @@
       reduceMotion: prefersReducedMotion,
     });
 
-    /* ---------- "A Quick Hi" — optional full-screen intro video ----------
+    /* ---------- "Say hi" — optional full-screen intro video ----------
        The video is never part of the scroll flow. Clicking the button
        opens it as a fixed overlay; when it ends (or is dismissed) the
        overlay closes and the page is exactly where it was. The About
@@ -1025,19 +1009,19 @@
         }
       },
       de: {
-        mainHeading: "Gestalterin. Builderin. Design Lead.",
-        subtext: "Ich führe KI-natives Produkt- und Service-Design — komplexe Arbeit müheloser, effizienter und menschlicher machen.",
+        mainHeading: "Designerin. Macherin. Design Lead.",
+        subtext: "Ich leite KI-natives Produkt- und Service-Design und mache komplexe Arbeit müheloser, effizienter und menschlicher.",
         annotations: {
-          curious: "Von Natur aus neugierig, Immer im Wandel.",
+          curious: "Von Natur aus neugierig, Immer in Bewegung.",
           travel: "Reisen",
           design: "Teezeit",
-          kids: "Schwimmen zum Reset",
+          kids: "Schwimmen zum Abschalten",
           coffee: "Nebenprojekte"
         },
         cards: {
           card1Label: "So arbeite ich",
           card1Title: "Punkte verbinden.",
-          card1Desc: "Komplexe Probleme in klare Richtung übersetzen.",
+          card1Desc: "Aus komplexen Problemen eine klare Richtung machen.",
           card2Label: "Was mir wichtig ist",
           card2Title: "Bessere Arbeit. Mehr Leben.",
           card2Desc: "Weniger Reibung, mehr Zeit für das Wesentliche.",
@@ -1047,9 +1031,9 @@
         },
         stats: {
           years: "Jahre im Design",
-          cases: "Cases",
-          events: "Co-gehostete Events",
-          locationLead: "CH-Base",
+          cases: "Case Studies",
+          events: "Mitveranstaltete Events",
+          locationLead: "Basis CH",
           locationPlace: "Standort"
         }
       }
@@ -1059,10 +1043,10 @@
       en: {
         documentTitle: "Lu — About",
         heroTitleHtml: "Hey, I am<br />Lu",
-        startBtn: "A Quick Hi",
+        startBtn: "Say hi",
         eyebrow: "About me",
         contactHeading: "Have an opportunity in mind?",
-        letsTalk: "Let's Talk",
+        letsTalk: "Let's talk",
         downloadCv: "Download CV",
         footerRights: "© 2026 Lu Jin. All rights reserved.",
         closeVideo: "Close video",
@@ -1076,11 +1060,11 @@
       de: {
         documentTitle: "Lu — Über mich",
         heroTitleHtml: "Hey, ich bin<br />Lu",
-        startBtn: "Ein kurzes Hi",
+        startBtn: "Kurz Hallo sagen",
         eyebrow: "Über mich",
-        contactHeading: "Haben Sie ein Vorhaben im Kopf?",
-        letsTalk: "Lass uns sprechen",
-        downloadCv: "Lebenslauf",
+        contactHeading: "Haben Sie eine Rolle oder ein Projekt im Blick?",
+        letsTalk: "Kontakt aufnehmen",
+        downloadCv: "Lebenslauf herunterladen",
         footerRights: "© 2026 Lu Jin. Alle Rechte vorbehalten.",
         closeVideo: "Video schließen",
         avatarLabel: "Illustrierte Lu an ihrem Schreibtisch.",

@@ -10,10 +10,10 @@ export function ClosingSection() {
       aria-labelledby="closing-statement"
       className="ca-closing relative isolate flex min-h-svh w-full items-center justify-center overflow-visible bg-[var(--ca-bg)] px-6 py-28 text-[var(--ca-text)] sm:px-10 lg:py-36"
     >
-      <div aria-hidden="true" className="ca-closing-atmosphere pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <div className="ca-closing-atmosphere pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <img
           src="/assets/images/client-advisory/closing-earth.png"
-          alt=""
+          alt={t('ca.closingAlt')}
           className="absolute inset-0 h-full w-full object-cover object-top"
         />
         <div className="ca-closing-floor" />

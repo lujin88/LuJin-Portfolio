@@ -187,6 +187,7 @@ body::before {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-start;
   gap: 0.5rem;
   font-size: var(--font-size-footer-note); /* Caption/footer note */
   line-height: 1.6;

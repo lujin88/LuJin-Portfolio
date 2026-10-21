@@ -41,7 +41,7 @@
         <div class="ds-hero__meta">
           <p><strong>Source of truth</strong>public/home.html, about, lab, ai-workflow-case, Client Advisory, E.ON Solar</p>
           <p><strong>Live chrome</strong>global-header SiteHeader + shared contact/footer</p>
-          <p><strong>Accent</strong>#8B5CF6 blue-violet, used as signal not fill</p>
+          <p><strong>Accent</strong>#7ea2ff index blue, used as signal not fill</p>
         </div>
       </div>
     </section>
@@ -53,7 +53,7 @@
         <h2 class="ds-title">The language already on the site</h2>
         <p class="ds-section__intro">
           The HTML islands still label this the Kling AI Design System. The live shell is a
-          near-black surface with a blue-violet signal, not a solid purple fill.
+          near-black surface with an index-blue signal, not a solid color fill.
           Poppins carries the product voice for Display, headings, body, and UI site-wide — no second decorative display face.
           Film grain, hairline borders, and inverted pills do the rest.
         </p>
@@ -64,7 +64,7 @@
               <strong>Scope.</strong> Global Foundation describes the shared portfolio shell:
               Index, About, Lab, and AI Workflow. Client Advisory and E.ON Solar inherit that
               foundation as Theme Layers. They share the React header. Their palettes must not
-              be replaced by the global blue-violet.
+              be replaced by the global index blue.
             </p>
           </div>
           <div>
@@ -112,7 +112,7 @@
         <article class="ds-principle">
           <h3>Type does hierarchy. Color does signaling.</h3>
           <p>
-            Weight, size, and tracking separate display from body. Blue-violet is reserved for
+            Weight, size, and tracking separate display from body. Index blue is reserved for
             text selection, focus rings, Lab eyebrow, AI Workflow eyebrow / arrows / accents / media wash,
             card glow, and selected or related shared-shell states. It is not a universal page fill.
             Body stays cool grey <code>#b6bbc2</code>. Emphasis inside paragraphs is the same family,
@@ -139,7 +139,7 @@
           <h3>Invert on interaction, glow only on cards</h3>
           <p>
             Primary actions are hollow pills that invert to white fill on hover and lift 2px.
-            Cards keep a 1px hairline and a blue-violet-tinted shadow that strengthens on hover,
+            Cards keep a 1px hairline and an index-blue-tinted shadow that strengthens on hover,
             with a cursor-following glow. No glassmorphism on the shell except the scrolled header blur.
           </p>
         </article>
@@ -263,15 +263,16 @@
     <section class="ds-section" id="color">
       <div class="ds-wrap">
         <p class="ds-section__index">03 / Color</p>
-        <h2 class="ds-title">Ink, cool grey, one blue-violet.</h2>
+        <h2 class="ds-title">Ink, cool grey, one index blue.</h2>
         <p class="ds-section__intro">
           Copied from the <code>:root</code> block shared by home, about, lab, and ai-workflow-case.
-          Official name: <strong>Blue-violet</strong>. Live tokens:
-          <code>--color-theme-2</code> / Tailwind <code>accent</code> <code>#8B5CF6</code>,
-          hover <code>--color-theme-hover</code> <code>#A78BFA</code>,
-          soft <code>--color-theme-3</code> <code>rgba(139,92,246,0.15)</code>.
+          Official name: <strong>Index blue</strong>. Live tokens:
+          <code>--color-theme-2</code> / Tailwind <code>accent</code> <code>#7ea2ff</code>,
+          hover <code>--color-theme-hover</code> <code>#a9c4ff</code>,
+          soft <code>--color-theme-3</code> <code>rgba(126,162,255,0.15)</code>.
           Soft accent is a signal / glow treatment, not a general background fill.
-          Blue-violet is never a fill gradient on chrome.
+          Index blue is never a fill gradient on chrome.
+          <code>--header-accent</code> is the same <code>#7ea2ff</code>.
         </p>
 
         <p class="ds-section__index">Backgrounds</p>
@@ -319,12 +320,12 @@
         <p class="ds-section__index">Accent, border, effect</p>
         <div class="ds-swatch-grid">
           <article class="ds-swatch">
-            <div class="ds-swatch__chip" style="background:#8B5CF6"></div>
-            <div class="ds-swatch__meta"><strong>Blue-violet</strong><code>--color-theme-2 / Tailwind accent<br>#8B5CF6</code></div>
+            <div class="ds-swatch__chip" style="background:#7ea2ff"></div>
+            <div class="ds-swatch__meta"><strong>Index blue</strong><code>--color-theme-2 / Tailwind accent<br>#7ea2ff</code></div>
           </article>
           <article class="ds-swatch">
-            <div class="ds-swatch__chip" style="background:#A78BFA"></div>
-            <div class="ds-swatch__meta"><strong>Blue-violet hover</strong><code>--color-theme-hover<br>#A78BFA</code></div>
+            <div class="ds-swatch__chip" style="background:#a9c4ff"></div>
+            <div class="ds-swatch__meta"><strong>Index blue hover</strong><code>--color-theme-hover<br>#a9c4ff</code></div>
           </article>
           <article class="ds-swatch">
             <div class="ds-swatch__chip" style="background:#343638"></div>
@@ -337,27 +338,23 @@
             <div class="ds-swatch__meta"><strong>Hairline</strong><code>--hairline rgba(255,255,255,0.10)<br>--hairline-strong 0.16</code></div>
           </article>
           <article class="ds-swatch">
-            <div class="ds-swatch__chip" style="background:rgba(139,92,246,0.15)"></div>
-            <div class="ds-swatch__meta"><strong>Soft accent / glow</strong><code>--color-theme-3<br>rgba(139,92,246,0.15) · signal, not fill</code></div>
+            <div class="ds-swatch__chip" style="background:rgba(126,162,255,0.15)"></div>
+            <div class="ds-swatch__meta"><strong>Soft accent / glow</strong><code>--color-theme-3<br>rgba(126,162,255,0.15) · signal, not fill</code></div>
           </article>
           <article class="ds-swatch">
-            <div class="ds-swatch__chip" style="background:#4a90ff"></div>
-            <div class="ds-swatch__meta"><strong>Header-local accent</strong><code>--header-accent #4a90ff<br>SiteHeader language check only</code></div>
-          </article>
-          <article class="ds-swatch">
-            <div class="ds-swatch__chip" style="background:#7A7FDC"></div>
-            <div class="ds-swatch__meta"><strong>Index experience motif</strong><code>#7A7FDC / #3846D4<br>storytelling / connector only</code></div>
+            <div class="ds-swatch__chip" style="background:#7ea2ff"></div>
+            <div class="ds-swatch__meta"><strong>Header accent</strong><code>--header-accent #7ea2ff<br>Same blue as the host accent. Language check.</code></div>
           </article>
           <article class="ds-swatch">
             <div class="ds-swatch__chip" style="background:linear-gradient(135deg,#1a1c1f,#0a0a0a)"></div>
-            <div class="ds-swatch__meta"><strong>Selection</strong><code>rgba(139,92,246,0.35) on white text</code></div>
+            <div class="ds-swatch__meta"><strong>Selection</strong><code>rgba(126,162,255,0.35) on white text</code></div>
           </article>
         </div>
 
         <div style="height: 3rem;"></div>
-        <p class="ds-section__index">Verified blue-violet usage</p>
+        <p class="ds-section__index">Verified index-blue usage</p>
         <p class="ds-section__intro" style="margin-bottom: 1.5rem;">
-          Type does hierarchy. Color does signaling. Blue-violet is not a universal page fill.
+          Type does hierarchy. Color does signaling. Index blue is not a universal page fill.
         </p>
         <table class="bp-table">
           <thead><tr><th>Surface</th><th>Where it actually paints</th></tr></thead>
@@ -367,27 +364,28 @@
             <tr><td>Lab</td><td>Eyebrow <code>text-accent</code></td></tr>
             <tr><td>AI Workflow</td><td>Eyebrow, arrows, accents, media wash via <code>--color-theme-3</code></td></tr>
             <tr><td>Cards / panels</td><td>Restrained card glow; selected and related shared-shell interaction states</td></tr>
-            <tr><td>Not used as</td><td>Universal page fill; Client Advisory content; E.ON content; header check; Index experience connectors</td></tr>
+            <tr><td>Also used as</td><td>Header language check (<code>--header-accent</code>) and Index experience connectors. Same <code>#7ea2ff</code>.</td></tr>
+            <tr><td>Not used as</td><td>Universal page fill; Client Advisory content; E.ON content</td></tr>
           </tbody>
         </table>
 
         <div style="height: 3rem;"></div>
-        <p class="ds-section__index">Scoped colors — not global brand, not case themes</p>
+        <p class="ds-section__index">One accent — header and experience included</p>
         <p class="ds-section__intro" style="margin-bottom: 1.5rem;">
-          Do not merge these with blue-violet, and do not treat them as Client Advisory or E.ON tokens.
+          Host, header check, and Index experience connectors share index blue. Do not treat that blue as a Client Advisory or E.ON token.
         </p>
         <table class="bp-table">
           <thead><tr><th>Scope</th><th>Value</th><th>Rule</th></tr></thead>
           <tbody>
-            <tr><td>Header-local accent</td><td><code>--header-accent #4a90ff</code></td><td>React SiteHeader selected-language Check interaction only. Not the global brand accent. Not a case-study theme.</td></tr>
-            <tr><td>Index Experience storytelling / connector motif</td><td><code>#7A7FDC / #3846D4</code></td><td>Index experience timeline active connector and plus only. Periwinkle stays periwinkle.</td></tr>
+            <tr><td>Header accent</td><td><code>--header-accent #7ea2ff</code></td><td>Same blue as <code>--color-theme-2</code>. React SiteHeader selected-language Check.</td></tr>
+            <tr><td>Index experience connector</td><td><code>--color-theme-2</code> / <code>--exp-blue: 126, 162, 255</code></td><td>Same host accent on the timeline bar and plus. Hover shade is <code>#a9c4ff</code>.</td></tr>
           </tbody>
         </table>
 
         <div style="height: 3.5rem;"></div>
         <p class="ds-section__index">Theme Layer → Client Advisory</p>
         <p class="ds-section__intro" style="margin-bottom: 1.5rem;">
-          These are Client Advisory Theme Layer values and must never be replaced by the global blue-violet.
+          These are Client Advisory Theme Layer values and must never be replaced by the global index blue.
         </p>
         <table class="bp-table">
           <thead><tr><th>Group</th><th>Token</th><th>Verified value</th></tr></thead>
@@ -407,7 +405,7 @@
         <div style="height: 3.5rem;"></div>
         <p class="ds-section__index">Theme Layer → E.ON Solar</p>
         <p class="ds-section__intro" style="margin-bottom: 1.5rem;">
-          These are E.ON Theme Layer values and must never be replaced by global blue-violet.
+          These are E.ON Theme Layer values and must never be replaced by the global index blue.
           Lavender stays lavender. Light sections, Caveat handwriting via <code>--font-hand</code>,
           and the authored navy / mint / red direction stay inside the case.
           There is no single Caveat color token; live hand copy inherits the containing surface.
@@ -674,7 +672,7 @@
             </div>
             <div class="nextgen-card">
               <h3>Always on</h3>
-              <p>Hairline, inset highlight, blue-violet bloom on hover. Tilt via mouse if motion is allowed.</p>
+              <p>Hairline, inset highlight, index-blue bloom on hover. Tilt via mouse if motion is allowed.</p>
             </div>
           </div>
         </article>
@@ -704,6 +702,8 @@
                 <a class="footer-text-link" href="mailto:lu.jin.ixd@gmail.com">lu.jin.ixd@gmail.com</a>
                 <span class="exp-contact__sep">·</span>
                 <a class="footer-text-link" href="https://www.linkedin.com/in/lu-jin-28008689/">LinkedIn</a>
+                <span class="exp-contact__sep">·</span>
+                <a class="footer-text-link" href="https://github.com/lujin88">GitHub</a>
                 <span class="exp-contact__sep">·</span>
                 <a class="footer-text-link" href="https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view">Download CV</a>
               </p>
@@ -850,14 +850,13 @@
           <li>
             <strong>Two headers.</strong> HTML pages still contain <code>#site-nav</code>
             (1600px, 80px, 15px links, Poppins 700 wordmark). Next.js hides it and mounts
-            SiteHeader (1800px, 80/96px, 17px links, Poppins 600 wordmark, #4a90ff check).
+            SiteHeader (1800px, 80/96px, 17px links, Poppins 600 wordmark, #7ea2ff check).
             The live product is the React header.
           </li>
           <li>
-            <strong>Layered accents, not one brand blue.</strong> Global shell is blue-violet
-            <code>#8B5CF6</code>. Header-local accent is <code>#4a90ff</code> (selected-language
-            Check only). Index Experience connectors are periwinkle <code>#7A7FDC / #3846D4</code>.
-            Do not collapse these; they are different layers.
+            <strong>One host accent.</strong> Shell, header language check, and Index experience
+            connectors share index blue <code>#7ea2ff</code> (hover <code>#a9c4ff</code>).
+            Case-study palettes stay separate.
           </li>
           <li>
             <strong>Two footers.</strong> Index / About / Lab / AI Workflow use the compact HTML
@@ -871,7 +870,7 @@
           <li>
             <strong>Case-study palettes are Theme Layers.</strong> Client Advisory ice / signal / navy
             and E.ON navy / lavender / mint / red / light sections inherit Global Foundation but
-            must never be replaced by global blue-violet. Their tokens are recorded in Color.
+            must never be replaced by the global index blue. Their tokens are recorded in Color.
           </li>
           <li>
             <strong>Leftover CSS, not tokens.</strong>

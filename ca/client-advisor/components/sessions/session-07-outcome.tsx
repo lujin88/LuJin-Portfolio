@@ -92,6 +92,7 @@ function Outcomes() {
           value={t('ca.outcome.m1Value')}
           label={t('ca.outcome.m1Label')}
           image="/assets/images/client-advisory/sessions/07/card-01.png"
+          imageAlt={t('ca.outcome.m1Alt')}
         />
 
         <MetricCard
@@ -99,6 +100,7 @@ function Outcomes() {
           value={t('ca.outcome.m2Value')}
           label={t('ca.outcome.m2Label')}
           image="/assets/images/client-advisory/sessions/07/card-02.png"
+          imageAlt={t('ca.outcome.m2Alt')}
         />
 
         <MetricCard
@@ -107,6 +109,7 @@ function Outcomes() {
           label={t('ca.outcome.m3Label')}
           eyebrow={t('ca.outcome.reach')}
           image="/assets/images/client-advisory/sessions/07/card-03.png"
+          imageAlt={t('ca.outcome.m3Alt')}
         />
       </div>
 
@@ -123,18 +126,16 @@ type MetricCardProps = {
   label: string
   eyebrow?: string
   image: string
+  imageAlt: string
 }
 
-function MetricCard({ icon, value, label, eyebrow, image }: MetricCardProps) {
+function MetricCard({ icon, value, label, eyebrow, image, imageAlt }: MetricCardProps) {
   return (
     <TiltCard className="relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl border border-[var(--ca-line)] bg-[var(--ca-card)] shadow-[0_0_0_1px_rgba(61,139,255,0.04),0_30px_60px_-40px_rgba(61,139,255,0.35)]">
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]"
-      >
+      <div className="absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]">
         <Image
           src={image}
-          alt=""
+          alt={imageAlt}
           fill
           sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw"
           className="object-cover object-bottom"

@@ -12,8 +12,8 @@
   --color-header-menu: var(--header-menu);
   --color-header-menu-item: var(--header-menu-item);
   --color-header-accent: var(--header-accent);
-  /* HTML shell only — maps Tailwind `accent` to blue-violet. Not loaded on CA / E.ON. */
-  --color-accent: #8B5CF6;
+  /* HTML shell only — maps Tailwind `accent` to the host index blue. Not a case palette. */
+  --color-accent: #7ea2ff;
   --font-sans: var(--font-poppins), 'Poppins Fallback', system-ui, sans-serif;
   --font-serif: var(--font-poppins), 'Poppins', ui-sans-serif, system-ui, sans-serif;
 }
@@ -25,7 +25,7 @@
   --header-glass: rgb(3 10 24);
   --header-menu: oklch(0.24 0.004 264);
   --header-menu-item: oklch(0.29 0.004 264);
-  --header-accent: #4a90ff;
+  --header-accent: #7ea2ff;
 }
 
 .font-serif {
@@ -56,6 +56,17 @@
 [data-site-header] :is(a, button):focus-visible:not(.header-skip) {
   outline: 2px solid var(--header-foreground);
   outline-offset: 3px;
+}
+
+/* Same horizontal frame as page content (--wrap / --pad).
+   Below the wrap the inset stays the page pad. Above it, the bar
+   centers with the page so the logo and Contact Me track the content.
+   Fallbacks keep case-study routes aligned when shell tokens are absent. */
+.header-frame {
+  box-sizing: border-box;
+  width: min(100%, var(--wrap, 1440px));
+  margin-inline: auto;
+  padding-inline: var(--pad, 24px);
 }
 
 .header-skip {

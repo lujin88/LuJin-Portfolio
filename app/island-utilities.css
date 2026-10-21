@@ -1,0 +1,19 @@
+/* Compiled stand-in for the Tailwind CDN script the HTML islands used to load. */
+@import "tailwindcss" source(none);
+
+@source "../public/home.html";
+@source "../public/about.html";
+@source "../public/wip.html";
+@source "../public/ai-workflow-case.html";
+
+@theme inline {
+  --color-ink: var(--color-bg-page);
+  --color-text1: var(--color-text-1);
+  --color-text2: var(--color-text-2);
+  --color-text3: var(--color-text-3);
+  --color-divider: var(--color-border-divider);
+  --color-accent: var(--color-theme-2);
+  --color-accent-hover: var(--color-theme-hover);
+  --font-sans: Poppins, ui-sans-serif, system-ui, sans-serif;
+  --font-serif: Poppins, ui-sans-serif, system-ui, sans-serif;
+}

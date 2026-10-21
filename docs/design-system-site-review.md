@@ -27,14 +27,14 @@
 | Playground 导航改名（原 Lab） | ✅ | Header `Playground`；子项 AC / Off We Go / Party Planner；**Way of Work 不在菜单**（经 AC CTA 进入） |
 | `/lab` hub 移除 → redirect AC | ✅ | `app/lab/page.tsx` → `/lab/action-center` |
 | AC frosted story card 下移 / fold | ✅ | `.review-shots/ac-card-lower-*.png`；玻璃卡 + 白 CTA 结构保留 |
-| PP 蓝色 hero（`--pp-blue`） | ✅ | Theme Layer；勿用 blue-violet 盖 |
+| PP 蓝色 hero（`--pp-blue`） | ✅ | Theme Layer；勿用 index blue 盖 |
 | PP phone 位置微调 | ✅ | hero/day phone 近期 diff |
 | PP pill → DS M 结构 + Title Case | ✅ | 注释已写 KEEP 白底黑字 paint |
 | CA session-06 scroll pin | ✅ | 对齐 home pin 节奏的 scrub |
 | Global Page Frame tokens | ✅ | `--pad:24px` · `--wrap:1440` · `--editorial:1040` 已在 shell-tokens |
 | Host `.pill-btn` 运动学 | ✅ | 999 · gap 8 · -2px · 0.97 · arrow +3px · reduced-motion |
 
-**Theme Layer（全站禁止抹平）：** CA ice/navy · E.ON lavender/mint/red/Caveat · PP blue/Patrick Hand · AC paper/light · Lab/AI violet 信号 · Index periwinkle motif · Header Check `#4a90ff`。Display 全站 Poppins。
+**Theme Layer（全站禁止抹平）：** CA ice/navy · E.ON lavender/mint/red/Caveat · PP blue/Patrick Hand · AC paper/light。Host、header check、Lab/AI 与 Index connector 共用 index blue `#7ea2ff`。Display 全站 Poppins。
 
 ---
 
@@ -43,7 +43,7 @@
 ### 1.1 已匹配
 
 - React `SiteHeader`：高 80 / md 96；玻璃 scrolled；Playground 分组正确；WoW 路径高亮 Playground 但不出现在下拉。
-- `shell-tokens.css`：blue-violet `#8B5CF6`、wells、pad、pill paint、focus、grain `0.035` 与 Master / Consistency Guide 一致。
+- `shell-tokens.css`：index blue `#7ea2ff`、wells、pad、pill paint、focus、grain `0.035` 与 Master / Consistency Guide 一致。
 - `.pill-btn`（`shell-components.css`）= Primary · **M** 权威实装。
 
 ### 1.2 问题清单
@@ -78,7 +78,7 @@
 | I-02 | **P1** | **FIX** | HTML nav `.pill-btn !py-2.5 !px-5 text-[14px]` — 偏离 M（0.85/1.9 · 0.95rem） | 若保留 HTML nav：改回 M 或改用 `--s` token；优先删 HTML nav |
 | I-03 | **P1** | **FIXED** | Index 内 Lab/Experience 区块原 Poppins italic → Poppins italic | Display 全站 Poppins；无第二 Display 字体 |
 | I-04 | **P2** | **KEEP** ⚑ | `.exp-header { max-width: 1600px }` | 时间线 authored composition，非第三全局 well。**KEEP** |
-| I-05 | **P2** | **KEEP** | Index periwinkle `#7A7FDC` / `#3846D4` connector | 已记 scoped；勿改名 blue-violet |
+| I-05 | **P2** | **DONE** | Index connector uses host index blue `#7ea2ff` | 与 header check 同一蓝色 |
 
 ---
 
@@ -246,7 +246,7 @@
 
 ### KEEP（保留 Theme / 有意差异）
 
-- 各页 accent 与手写例外（CA / E.ON Caveat / PP Patrick Hand / AC light / Index periwinkle）；Display=Poppins。  
+- 各页 accent 与手写例外（CA / E.ON Caveat / PP Patrick Hand / AC light）；host 与 Index connector 共用 `#7ea2ff`。Display=Poppins。  
 - 双 footer chrome（compact vs glow）。  
 - AC 加宽白 pill、PP 白底 pill paint、AC glass card。  
 - CA/EON authored pad/rail、About stats 1120（旗标）、Index 1600 timeline header。  

@@ -19,7 +19,7 @@ export const owg = {
     titleLead: 'Off We Go',
     titleAccent: 'Workbench',
     description:
-      'Ein Reiseplanungs-Workspace, der reale Daten, KI-Einblicke und persönliche Tools über APIs verbindet.',
+      'Ein Workspace für die Reiseplanung, der mit KI reale Daten über APIs verbindet. Neue Services lassen sich laufend andocken — so wird jede Reise ein Stück persönlicher.',
     openPrototype: 'Prototyp öffnen',
     openPrototypeAria: 'Off We Go Prototyp öffnen',
     sceneAlt: 'Laptop auf einem Holztisch am Bergsee im Sonnenuntergang',
