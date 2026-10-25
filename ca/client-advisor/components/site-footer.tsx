@@ -78,10 +78,12 @@ export function SiteFooter() {
         >
           Playground
         </a>
-        <span aria-hidden="true" className="text-xs text-footer-muted/50">
-          ·
-        </span>
-        <p className="text-xs text-footer-muted/80">{t('common.footerAnalytics')}</p>
+        <div className="flex items-center gap-x-3">
+          <span aria-hidden="true" className="text-xs text-footer-muted/50">
+            ·
+          </span>
+          <p className="text-xs text-footer-muted/80">{t('common.footerAnalytics')}</p>
+        </div>
       </div>
     </footer>
   )
