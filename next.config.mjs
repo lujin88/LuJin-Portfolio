@@ -7,6 +7,23 @@ const nextConfig = {
   turbopack: {
     root: fileURLToPath(new URL('.', import.meta.url)),
   },
+  // Pages that read an HTML island from public/ (see app/read-public-html.ts)
+  // use a dynamic filename, so file tracing copies ALL of public/ (~400 MB of
+  // videos/images) into each of their serverless functions. Exclude public/
+  // from those functions and include only the one HTML file each one reads.
+  // Static assets are still served from the CDN as before.
+  outputFileTracingExcludes: {
+    '/about': ['./public/**/*'],
+    '/index': ['./public/**/*'],
+    '/ai-workflow-case': ['./public/**/*'],
+    '/wip': ['./public/**/*'],
+  },
+  outputFileTracingIncludes: {
+    '/about': ['./public/about.html'],
+    '/index': ['./public/home.html'],
+    '/ai-workflow-case': ['./public/ai-workflow-case.html'],
+    '/wip': ['./public/wip.html'],
+  },
   images: {
     unoptimized: true,
     qualities: [75, 90],
