@@ -85,6 +85,10 @@ export function SiteFooter({ variant }: SiteFooterProps) {
         >
           Playground
         </a>
+        <span aria-hidden="true" className="text-xs text-footer-muted/50">
+          ·
+        </span>
+        <p className="text-xs text-footer-muted/80">{t('common.footerAnalytics')}</p>
       </div>
     </footer>
   )
