@@ -73,6 +73,7 @@ const aboutPageTranslations = {
     letsTalk: "Let's Talk",
     downloadCv: 'Download CV',
     footerRights: '© 2026 Lu Jin. All rights reserved.',
+    footerAnalytics: 'Visit statistics via PostHog (EU).',
     closeVideo: 'Close video',
     avatarLabel: 'Illustrated Lu at her desk.',
     altTravel: 'Alpine lake between forested mountains',
@@ -90,6 +91,7 @@ const aboutPageTranslations = {
     letsTalk: 'Lass uns sprechen',
     downloadCv: 'Lebenslauf',
     footerRights: '© 2026 Lu Jin. Alle Rechte vorbehalten.',
+    footerAnalytics: 'Besuchsstatistik über PostHog (EU).',
     closeVideo: 'Video schließen',
     avatarLabel: 'Illustrierte Lu an ihrem Schreibtisch.',
     altTravel: 'Alpiner See zwischen bewaldeten Bergen',
@@ -185,6 +187,7 @@ export function applyAboutTranslations(currentLang: string) {
   setText(byKey('page.letsTalk'), page.letsTalk)
   setText(byKey('page.downloadCv'), page.downloadCv)
   setText(byKey('page.footerRights'), page.footerRights)
+  setText(byKey('page.footerAnalytics'), page.footerAnalytics)
 
   setAttr(byKey('page.closeVideo'), 'aria-label', page.closeVideo)
   setAttr(byKey('page.avatarLabel'), 'aria-label', page.avatarLabel)
