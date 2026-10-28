@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lu Jin — Diandian, an AI companion</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles/shell-tokens.css" />
+
+<style>
+  /* --- Page: AI Pet (Diandian) — own palette, do not merge with shell tokens --- */
+  #pet-case {
+    --pc-bg: #061217;
+    --pc-bg-2: #0a1c22;
+    --pc-card: #0d2128;
+    --pc-line: rgba(160, 230, 228, 0.12);
+    --pc-line-strong: rgba(160, 230, 228, 0.24);
+    --pc-text-1: #f4fbfb;
+    --pc-text-2: #a9c2c4;
+    --pc-text-3: #6f8a8d;
+    --pc-teal: #5fd4cf;
+    --pc-teal-soft: rgba(95, 212, 207, 0.14);
+    --pc-warm: #ffb36b;
+    --pc-screen: #f8f7f5;
+    --pc-rainbow: linear-gradient(90deg, #ff7a8a, #ffb35c, #ffe06b, #7fe0a0, #6cc9ff, #b59cff);
+    --pc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    background: var(--pc-bg);
+    color: var(--pc-text-1);
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  html, body { background: #061217; min-width: 360px; }
+  #pet-case *, #pet-case *::before, #pet-case *::after { box-sizing: border-box; }
+  #pet-case img, #pet-case video { display: block; max-width: 100%; }
+  #pet-case p { margin: 0; }
+  #pet-case h1, #pet-case h2, #pet-case h3 { margin: 0; font-weight: 700; letter-spacing: -0.03em; }
+  #pet-case .wrap { width: min(1200px, 100% - 48px); margin-inline: auto; }
+  #pet-case section { padding: 120px 0; position: relative; }
+  #pet-case .icon { width: 20px; height: 20px; fill: currentColor; flex: none; }
+
+  /* Eyebrow: numbered chip, same pattern as the other case studies */
+  #pet-case .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pc-text-2); }
+  #pet-case .eyebrow b { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--pc-teal-soft); color: var(--pc-teal); font-size: 11px; letter-spacing: 0; }
+  #pet-case .h2 { font-size: clamp(36px, 5vw, 60px); line-height: 1.04; max-width: 14ch; }
+  #pet-case .lead { font-size: 18px; line-height: 1.65; color: var(--pc-text-2); max-width: 56ch; margin-top: 24px; }
+  #pet-case .lead strong { color: var(--pc-text-1); font-weight: 600; }
+  #pet-case .note { font-family: 'Caveat', cursive; font-size: 26px; line-height: 1.05; color: var(--pc-warm); }
+  #pet-case .rainbow-text { background: var(--pc-rainbow); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* ---------- Hero ---------- */
+  #pet-case .hero { padding-top: 150px; padding-bottom: 80px; min-height: min(100vh, 920px); display: flex; align-items: center;
+    background:
+      radial-gradient(60% 60% at 75% 45%, rgba(95, 212, 207, 0.16), transparent 70%),
+      var(--pc-bg); }
+  #pet-case .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
+  #pet-case .hero h1 { font-size: clamp(48px, 7.2vw, 96px); line-height: 0.98; }
+  #pet-case .hero .lead { font-size: 19px; }
+  #pet-case .role { margin-top: 36px; display: grid; gap: 6px; }
+  #pet-case .role small { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pc-text-3); font-weight: 600; }
+  #pet-case .role span { font-size: 15px; color: var(--pc-text-2); line-height: 1.6; max-width: 46ch; }
+  #pet-case .chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  #pet-case .chip { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-radius: 16px;
+    background: var(--pc-card); border: 1px solid var(--pc-line); }
+  #pet-case .chip strong { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+  #pet-case .chip span { font-size: 12px; line-height: 1.35; color: var(--pc-text-2); }
+
+  /* ---------- Device: 1.85" round knob screen ---------- */
+  #pet-case .device-stage { position: relative; display: grid; place-items: center; }
+  #pet-case .device { --size: min(440px, 80vw); --glow: var(--pc-teal); position: relative; width: var(--size); aspect-ratio: 1; }
+  #pet-case .device::after { content: ''; position: absolute; inset: 12% 8% -10%; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(0, 0, 0, 0.6), transparent); filter: blur(24px); z-index: -1; transform: translateY(14%); }
+  #pet-case .knob { position: absolute; inset: 0; border-radius: 50%; cursor: grab; touch-action: none;
+    background:
+      repeating-conic-gradient(from 0deg, rgba(255,255,255,0.10) 0deg 1.2deg, rgba(0,0,0,0.0) 1.2deg 6deg),
+      conic-gradient(from 210deg, #6d7b80, #c9d3d6, #5b676b, #aab6b9, #4c575b, #c4cdd0, #6d7b80);
+    box-shadow: inset 0 2px 1px rgba(255,255,255,0.35), inset 0 -6px 14px rgba(0,0,0,0.45), 0 30px 60px -20px rgba(0,0,0,0.8);
+    transform: rotate(var(--turn, 0deg)); transition: transform 420ms var(--pc-ease); }
+  #pet-case .knob.is-dragging { cursor: grabbing; transition: none; }
+  #pet-case .knob::before { /* pointer dot on the ring */
+    content: ''; position: absolute; top: 3.2%; left: 50%; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%;
+    background: var(--glow); box-shadow: 0 0 12px var(--glow); }
+  #pet-case .bezel { position: absolute; inset: 9%; border-radius: 50%; background: #0b0f11;
+    box-shadow: inset 0 0 0 2px #1b2226, 0 0 0 1px rgba(255,255,255,0.08); pointer-events: none; }
+  #pet-case .halo { position: absolute; inset: 10.5%; border-radius: 50%; pointer-events: none;
+    background: conic-gradient(var(--glow) calc(var(--arc, 0) * 1turn), transparent 0); opacity: 0.9;
+    -webkit-mask: radial-gradient(closest-side, transparent 93%, #000 94%); mask: radial-gradient(closest-side, transparent 93%, #000 94%);
+    transition: --arc 500ms var(--pc-ease); filter: drop-shadow(0 0 6px var(--glow)); }
+  #pet-case .screen { position: absolute; inset: 13%; border-radius: 50%; overflow: hidden; background: var(--pc-screen);
+    pointer-events: none; transition: filter 600ms var(--pc-ease); }
+  #pet-case .screen video { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; transform: scale(1.1); transition: opacity 260ms ease; }
+  #pet-case .screen video.is-next { opacity: 0; }
+  #pet-case .device[data-mode="sleep"] .screen { filter: brightness(0.38) saturate(0.6); }
+  #pet-case .screen-ui { position: absolute; inset: 13%; border-radius: 50%; pointer-events: none; display: grid; place-items: end center; padding-bottom: 9%; }
+  #pet-case .pill { display: flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 600;
+    background: rgba(255,255,255,0.86); color: #1f4f53; box-shadow: 0 4px 14px rgba(20,60,64,0.18); opacity: 0; transform: translateY(6px);
+    transition: opacity 260ms ease, transform 260ms var(--pc-ease); }
+  #pet-case .pill .icon { width: 14px; height: 14px; }
+  #pet-case .pill.is-on { opacity: 1; transform: none; }
+  #pet-case .screen-ui > * { grid-area: 1 / 1; }
+  #pet-case .bars { display: flex; gap: 3px; align-items: center; height: 18px; }
+  #pet-case .bars i { width: 4px; height: 30%; border-radius: 2px; background: #1f4f53; }
+  #pet-case .pill.is-on .bars i { animation: pc-bar 900ms var(--pc-ease) infinite alternate; }
+  #pet-case .bars i:nth-child(2) { animation-delay: -300ms !important; }
+  #pet-case .bars i:nth-child(3) { animation-delay: -600ms !important; }
+  #pet-case .bars i:nth-child(4) { animation-delay: -150ms !important; }
+  @keyframes pc-bar { to { height: 100%; } }
+  #pet-case .fr-flag { width: 18px; height: 12px; border-radius: 2px; background: linear-gradient(90deg, #2b4ea2 33%, #fff 33% 66%, #e1394b 66%); }
+  @property --arc { syntax: '<number>'; inherits: true; initial-value: 0; }
+
+  #pet-case .device-hint { position: absolute; right: -6%; top: 2%; transform: rotate(8deg); text-align: center; pointer-events: none; }
+  #pet-case .device-hint svg { width: 52px; height: 40px; margin: 4px auto 0; stroke: var(--pc-warm); fill: none; stroke-width: 2; }
+
+  /* ---------- Brief: rules ---------- */
+  #pet-case .split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  #pet-case .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  #pet-case .rule { padding: 24px; border-radius: 20px; background: var(--pc-card); border: 1px solid var(--pc-line); }
+  #pet-case .rule .icon { width: 28px; height: 28px; color: var(--pc-teal); }
+  #pet-case .rule h3 { font-size: 18px; letter-spacing: -0.01em; margin-top: 18px; }
+  #pet-case .rule p { font-size: 14px; line-height: 1.6; color: var(--pc-text-2); margin-top: 8px; }
+
+  /* ---------- Motions ---------- */
+  #pet-case .motions { margin-top: 56px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  #pet-case .motion { margin: 0; position: relative; border-radius: 20px; overflow: hidden; background: var(--pc-screen); aspect-ratio: 1; }
+  #pet-case .motion video { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); }
+  #pet-case .motion figcaption { position: absolute; left: 10px; bottom: 10px; padding: 4px 10px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; background: rgba(6, 18, 23, 0.72); color: #fff; backdrop-filter: blur(6px); }
+  #pet-case .sheet-note { margin-top: 32px; display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start; max-width: 820px; }
+  #pet-case .sheet-note p { font-size: 15px; line-height: 1.7; color: var(--pc-text-2); }
+
+  /* ---------- Knob section ---------- */
+  #pet-case .knob-section { background: linear-gradient(180deg, var(--pc-bg) 0%, var(--pc-bg-2) 50%, var(--pc-bg) 100%); }
+  #pet-case .knob-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; margin-top: 64px; }
+  #pet-case .modes { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  #pet-case .mode { all: unset; box-sizing: border-box; width: 100%; display: grid; grid-template-columns: 40px 1fr; gap: 16px; align-items: start;
+    padding: 16px 18px; border-radius: 18px; border: 1px solid transparent; cursor: pointer; transition: background 240ms ease, border-color 240ms ease; }
+  #pet-case .mode:hover { background: rgba(255,255,255,0.03); }
+  #pet-case .mode:focus-visible { outline: 2px solid var(--pc-teal); outline-offset: 2px; }
+  #pet-case .mode[aria-pressed="true"] { background: var(--pc-card); border-color: var(--pc-line-strong); }
+  #pet-case .mode-dot { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.05); color: var(--pc-text-2); }
+  #pet-case .mode[aria-pressed="true"] .mode-dot { background: var(--mode-color); color: #061217; }
+  #pet-case .mode strong { display: block; font-size: 16px; font-weight: 600; }
+  #pet-case .mode span:not(.mode-dot) { display: block; font-size: 14px; line-height: 1.55; color: var(--pc-text-3); margin-top: 2px; }
+  #pet-case .mode[aria-pressed="true"] span { color: var(--pc-text-2); }
+  #pet-case .spec { margin-top: 28px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pc-text-3); }
+
+  /* ---------- Phone ---------- */
+  #pet-case .phones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 64px; }
+  #pet-case .phone { margin: 0; }
+  #pet-case .phone-frame { border-radius: 40px; padding: 10px; background: #1a2a2f; box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 40px 80px -30px rgba(0,0,0,0.8); }
+  #pet-case .phone-frame img { border-radius: 31px; width: 100%; aspect-ratio: 600 / 1240; object-fit: cover; object-position: top; }
+  #pet-case .phone figcaption { margin-top: 20px; }
+  #pet-case .phone figcaption strong { display: block; font-size: 17px; font-weight: 600; }
+  #pet-case .phone figcaption span { display: block; font-size: 14px; line-height: 1.6; color: var(--pc-text-2); margin-top: 6px; }
+  #pet-case .rituals { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+  /* ---------- Voice pipeline ---------- */
+  #pet-case .pipeline { margin-top: 56px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-radius: 24px; overflow: hidden; border: 1px solid var(--pc-line); }
+  #pet-case .step { padding: 28px 24px; background: var(--pc-card); position: relative; }
+  #pet-case .step + .step { border-left: 1px solid var(--pc-line); }
+  #pet-case .step small { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pc-teal); }
+  #pet-case .step strong { display: block; font-size: 18px; margin-top: 10px; }
+  #pet-case .step span { display: block; font-size: 14px; line-height: 1.55; color: var(--pc-text-2); margin-top: 6px; }
+  #pet-case .quote { margin-top: 56px; padding: 40px; border-radius: 28px; background: var(--pc-card); border: 1px solid var(--pc-line);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  #pet-case .quote h3 { font-size: 26px; line-height: 1.2; }
+  #pet-case .quote p { font-size: 15px; line-height: 1.7; color: var(--pc-text-2); }
+  #pet-case .quote p + p { margin-top: 14px; }
+
+  /* ---------- Trust ---------- */
+  #pet-case .trust { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+  /* ---------- Team ---------- */
+  #pet-case .team { margin-top: 56px; display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: stretch; }
+  #pet-case .lead-card { padding: 28px; border-radius: 24px; background: linear-gradient(160deg, rgba(95,212,207,0.18), rgba(95,212,207,0.04)); border: 1px solid var(--pc-line-strong); }
+  #pet-case .lead-card strong { display: block; font-size: 22px; margin-top: 14px; }
+  #pet-case .lead-card p { font-size: 14px; line-height: 1.65; color: var(--pc-text-2); margin-top: 10px; }
+  #pet-case .agents { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  #pet-case .agent { padding: 18px; border-radius: 18px; background: var(--pc-card); border: 1px solid var(--pc-line); }
+  #pet-case .agent strong { display: block; font-size: 15px; font-weight: 600; }
+  #pet-case .agent span { display: block; font-size: 13px; line-height: 1.5; color: var(--pc-text-3); margin-top: 4px; }
+  #pet-case .guardrails { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; }
+  #pet-case .guardrails span { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--pc-line-strong); font-size: 13px; color: var(--pc-text-2); }
+
+  /* ---------- Closing ---------- */
+  #pet-case .closing { text-align: center; padding: 140px 0 160px; }
+  #pet-case .closing .h2 { margin-inline: auto; max-width: 16ch; }
+  #pet-case .closing .lead { margin-inline: auto; }
+  #pet-case .closing video { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; margin: 0 auto 40px; background: var(--pc-screen);
+    box-shadow: 0 0 0 8px #0b0f11, 0 0 0 10px rgba(95,212,207,0.5), 0 30px 60px -20px rgba(0,0,0,0.8); }
+
+  /* ---------- Reveal ---------- */
+  #pet-case .reveal { opacity: 0; transform: translateY(24px); transition: opacity 700ms var(--pc-ease), transform 700ms var(--pc-ease); }
+  #pet-case .reveal.is-in { opacity: 1; transform: none; }
+
+  @media (max-width: 960px) {
+    #pet-case section { padding: 88px 0; }
+    #pet-case .hero-grid, #pet-case .split, #pet-case .knob-grid, #pet-case .quote, #pet-case .team { grid-template-columns: 1fr; gap: 48px; }
+    #pet-case .hero { min-height: 0; }
+    #pet-case .motions { grid-template-columns: repeat(3, 1fr); }
+    #pet-case .phones, #pet-case .rituals, #pet-case .trust { grid-template-columns: 1fr; max-width: 420px; }
+    #pet-case .pipeline { grid-template-columns: 1fr 1fr; }
+    #pet-case .step:nth-child(3) { border-left: 0; }
+    #pet-case .step:nth-child(n+3) { border-top: 1px solid var(--pc-line); }
+    #pet-case .agents { grid-template-columns: 1fr 1fr; }
+    #pet-case .device-hint { right: 0; }
+  }
+  @media (max-width: 560px) {
+    #pet-case .rules { grid-template-columns: 1fr; }
+    #pet-case .motions { grid-template-columns: repeat(2, 1fr); }
+    #pet-case .pipeline { grid-template-columns: 1fr; }
+    #pet-case .step + .step { border-left: 0; border-top: 1px solid var(--pc-line); }
+    #pet-case .quote { padding: 28px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #pet-case .reveal { opacity: 1; transform: none; transition: none; }
+    #pet-case .knob, #pet-case .halo, #pet-case .screen video, #pet-case .pill { transition: none; }
+    #pet-case .pill.is-on .bars i { animation: none; height: 70%; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M21 16.42V19.9561C21 20.4811 20.5941 20.9167 20.0705 20.9537C19.6331 20.9846 19.2763 21 19 21C10.1634 21 3 13.8366 3 5C3 4.72371 3.01545 4.36687 3.04635 3.9295C3.08337 3.40588 3.51894 3 4.04386 3H7.5801C7.83678 3 8.05176 3.19442 8.07753 3.4498C8.10067 3.67907 8.12218 3.86314 8.14207 4.00202C8.34435 5.41472 8.75753 6.75936 9.3487 8.00303C9.44359 8.20265 9.38171 8.44159 9.20185 8.57006L7.04355 10.1118C8.35752 13.1811 10.8189 15.6425 13.8882 16.9565L15.4271 14.8019C15.5572 14.6199 15.799 14.5573 16.001 14.6532C17.2446 15.2439 18.5891 15.6566 20.0016 15.8584C20.1396 15.8782 20.3225 15.8995 20.5502 15.9225C20.8056 15.9483 21 16.1633 21 16.42Z"/></symbol>
+  <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M17.8827 19.2968C16.1814 20.3755 14.1638 21.0002 12.0003 21.0002C6.60812 21.0002 2.12215 17.1204 1.18164 12.0002C1.61832 9.62282 2.81932 7.5129 4.52047 5.93457L1.39366 2.80777L2.80788 1.39355L22.6069 21.1925L21.1927 22.6068L17.8827 19.2968ZM5.9356 7.3497C4.60673 8.56015 3.6378 10.1672 3.22278 12.0002C4.14022 16.0521 7.7646 19.0002 12.0003 19.0002C13.5997 19.0002 15.112 18.5798 16.4243 17.8384L14.396 15.8101C13.7023 16.2472 12.8808 16.5002 12.0003 16.5002C9.51498 16.5002 7.50026 14.4854 7.50026 12.0002C7.50026 11.1196 7.75317 10.2981 8.19031 9.60442L5.9356 7.3497ZM12.9139 14.328L9.67246 11.0866C9.5613 11.3696 9.50026 11.6777 9.50026 12.0002C9.50026 13.3809 10.6196 14.5002 12.0003 14.5002C12.3227 14.5002 12.6309 14.4391 12.9139 14.328ZM20.8068 16.5925L19.376 15.1617C20.0319 14.2268 20.5154 13.1586 20.7777 12.0002C19.8603 7.94818 16.2359 5.00016 12.0003 5.00016C11.1544 5.00016 10.3329 5.11773 9.55249 5.33818L7.97446 3.76015C9.22127 3.26959 10.5793 3.00016 12.0003 3.00016C17.3924 3.00016 21.8784 6.87992 22.8189 12.0002C22.5067 13.6998 21.8038 15.2628 20.8068 16.5925ZM11.7229 7.50857C11.8146 7.50299 11.9071 7.50016 12.0003 7.50016C14.4855 7.50016 16.5003 9.51488 16.5003 12.0002C16.5003 12.0933 16.4974 12.1858 16.4919 12.2775L11.7229 7.50857Z"/></symbol>
+  <symbol id="i-voice" viewBox="0 0 24 24"><path d="M5 7H7V17H5V7ZM1 10H3V14H1V10ZM9 2H11V20H9V2ZM13 4H15V22H13V4ZM17 7H19V17H17V7ZM21 10H23V14H21V10Z"/></symbol>
+  <symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="M12.0001 18C12.7144 18 13.3704 18.2497 13.8856 18.6665L12.0001 21L10.1145 18.6665C10.6297 18.2497 11.2857 18 12.0001 18ZM2.80766 1.39343L20.4853 19.0711L19.0711 20.4853L13.8913 15.3042C13.2967 15.1069 12.6609 15 12.0001 15C10.5719 15 9.26024 15.499 8.22998 16.3322L6.97363 14.7759C8.24961 13.7442 9.84925 13.0969 11.5964 13.01L9.00025 10.414C7.55273 10.8234 6.22651 11.5217 5.0878 12.4426L3.83099 10.8868C4.89946 10.0226 6.10763 9.32438 7.41633 8.83118L5.13168 6.5451C3.98878 7.08913 2.92058 7.76472 1.94666 8.55228L0.689453 6.99674C1.60358 6.25747 2.59156 5.60589 3.64058 5.05479L1.39345 2.80765L2.80766 1.39343ZM14.5004 10.2854L12.2165 8.00243L12 8C15.0947 8 17.9369 9.08141 20.1693 10.8869L18.9123 12.4426C17.6438 11.4167 16.1427 10.6672 14.5004 10.2854ZM12.0001 3.00003C16.2849 3.00003 20.22 4.49719 23.3109 6.99691L22.0534 8.55228C19.3061 6.33062 15.8085 5.00003 12.0001 5.00003C11.122 5.00003 10.2604 5.07077 9.42075 5.20685L7.72455 3.51088C9.09498 3.17702 10.5268 3.00003 12.0001 3.00003Z"/></symbol>
+  <symbol id="i-parent" viewBox="0 0 24 24"><path d="M7 9C8.38071 9 9.5 7.88071 9.5 6.5C9.5 5.11929 8.38071 4 7 4C5.61929 4 4.5 5.11929 4.5 6.5C4.5 7.88071 5.61929 9 7 9ZM7 11C4.51472 11 2.5 8.98528 2.5 6.5C2.5 4.01472 4.51472 2 7 2C9.48528 2 11.5 4.01472 11.5 6.5C11.5 8.98528 9.48528 11 7 11ZM17.5 13C18.6046 13 19.5 12.1046 19.5 11C19.5 9.89543 18.6046 9 17.5 9C16.3954 9 15.5 9.89543 15.5 11C15.5 12.1046 16.3954 13 17.5 13ZM17.5 15C15.2909 15 13.5 13.2091 13.5 11C13.5 8.79086 15.2909 7 17.5 7C19.7091 7 21.5 8.79086 21.5 11C21.5 13.2091 19.7091 15 17.5 15ZM20 21V20.5C20 19.1193 18.8807 18 17.5 18C16.1193 18 15 19.1193 15 20.5V21H13V20.5C13 18.0147 15.0147 16 17.5 16C19.9853 16 22 18.0147 22 20.5V21H20ZM10 21V17C10 15.3431 8.65685 14 7 14C5.34315 14 4 15.3431 4 17V21H2V17C2 14.2386 4.23858 12 7 12C9.76142 12 12 14.2386 12 17V21H10Z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M6 8V7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7V8H20C20.5523 8 21 8.44772 21 9V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V9C3 8.44772 3.44772 8 4 8H6ZM19 10H5V20H19V10ZM11 15.7324C10.4022 15.3866 10 14.7403 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 14.7403 13.5978 15.3866 13 15.7324V18H11V15.7324ZM8 8H16V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V8Z"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><path d="M10.7577 11.8281L18.6066 3.97919L20.0208 5.3934L18.6066 6.80761L21.0815 9.28249L19.6673 10.6967L17.1924 8.22183L15.7782 9.63604L17.8995 11.7574L16.4853 13.1716L14.364 11.0503L12.1719 13.2423C13.4581 15.1837 13.246 17.8251 11.5355 19.5355C9.58291 21.4882 6.41709 21.4882 4.46447 19.5355C2.51184 17.5829 2.51184 14.4171 4.46447 12.4645C6.17493 10.754 8.81633 10.5419 10.7577 11.8281ZM10.1213 18.1213C11.2929 16.9497 11.2929 15.0503 10.1213 13.8787C8.94975 12.7071 7.05025 12.7071 5.87868 13.8787C4.70711 15.0503 4.70711 16.9497 5.87868 18.1213C7.05025 19.2929 8.94975 19.2929 10.1213 18.1213Z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 1L20.2169 2.82598C20.6745 2.92766 21 3.33347 21 3.80217V13.7889C21 15.795 19.9974 17.6684 18.3282 18.7812L12 23L5.6718 18.7812C4.00261 17.6684 3 15.795 3 13.7889V3.80217C3 3.33347 3.32553 2.92766 3.78307 2.82598L12 1ZM12 3.04879L5 4.60434V13.7889C5 15.1263 5.6684 16.3752 6.7812 17.1171L12 20.5963L17.2188 17.1171C18.3316 16.3752 19 15.1263 19 13.7889V4.60434L12 3.04879ZM16.4524 8.22183L17.8666 9.63604L11.5026 16L7.25999 11.7574L8.67421 10.3431L11.5019 13.1709L16.4524 8.22183Z"/></symbol>
+  <symbol id="i-timer" viewBox="0 0 24 24"><path d="M17.6177 5.9681L19.0711 4.51472L20.4853 5.92893L19.0319 7.38231C20.2635 8.92199 21 10.875 21 13C21 17.9706 16.9706 22 12 22C7.02944 22 3 17.9706 3 13C3 8.02944 7.02944 4 12 4C14.125 4 16.078 4.73647 17.6177 5.9681ZM12 20C15.866 20 19 16.866 19 13C19 9.13401 15.866 6 12 6C8.13401 6 5 9.13401 5 13C5 16.866 8.13401 20 12 20ZM11 8H13V14H11V8ZM8 1H16V3H8V1Z"/></symbol>
+  <symbol id="i-eat" viewBox="0 0 24 24"><path d="M14.2683 12.1466L13.4147 13.0002L20.4858 20.0712L19.0716 21.4854L12.0005 14.4144L4.92946 21.4854L3.51525 20.0712L12.854 10.7324C12.2664 9.27549 12.8738 7.17715 14.4754 5.57554C16.428 3.62292 19.119 3.14805 20.4858 4.51488C21.8526 5.88172 21.3778 8.57267 19.4251 10.5253C17.8235 12.1269 15.7252 12.7343 14.2683 12.1466ZM4.22235 3.80777L10.9399 10.5253L8.11144 13.3537L4.22235 9.46463C2.66026 7.90253 2.66026 5.36987 4.22235 3.80777ZM18.0109 9.11107C19.2682 7.85386 19.5274 6.38488 19.0716 5.92909C18.6158 5.47331 17.1468 5.73254 15.8896 6.98975C14.6324 8.24697 14.3732 9.71595 14.829 10.1717C15.2847 10.6275 16.7537 10.3683 18.0109 9.11107Z"/></symbol>
+  <symbol id="i-translate" viewBox="0 0 24 24"><path d="M18.5 10L22.9 21H20.745L19.544 18H15.454L14.255 21H12.101L16.5 10H18.5ZM10 2V4H16V6L14.0322 6.0006C13.2425 8.36616 11.9988 10.5057 10.4115 12.301C11.1344 12.9457 11.917 13.5176 12.7475 14.0079L11.9969 15.8855C10.9237 15.2781 9.91944 14.5524 8.99961 13.7249C7.21403 15.332 5.10914 16.5553 2.79891 17.2734L2.26257 15.3442C4.2385 14.7203 6.04543 13.6737 7.59042 12.3021C6.46277 11.0281 5.50873 9.57985 4.76742 8.00028L7.00684 8.00037C7.57018 9.03885 8.23979 10.0033 8.99967 10.877C10.2283 9.46508 11.2205 7.81616 11.9095 6.00101L2 6V4H8V2H10ZM17.5 12.8852L16.253 16H18.745L17.5 12.8852Z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M10 7C10 10.866 13.134 14 17 14C18.9584 14 20.729 13.1957 21.9995 11.8995C22 11.933 22 11.9665 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C12.0335 2 12.067 2 12.1005 2.00049C10.8043 3.27098 10 5.04157 10 7ZM4 12C4 16.4183 7.58172 20 12 20C15.0583 20 17.7158 18.2839 19.062 15.7621C18.3945 15.9187 17.7035 16 17 16C12.0294 16 8 11.9706 8 7C8 6.29648 8.08133 5.60547 8.2379 4.938C5.71611 6.28423 4 8.9417 4 12Z"/></symbol>
+  <symbol id="i-volume" viewBox="0 0 24 24"><path d="M6.60282 10.0001L10 7.22056V16.7796L6.60282 14.0001H3V10.0001H6.60282ZM2 16.0001H5.88889L11.1834 20.3319C11.2727 20.405 11.3846 20.4449 11.5 20.4449C11.7761 20.4449 12 20.2211 12 19.9449V4.05519C12 3.93977 11.9601 3.8279 11.887 3.73857C11.7121 3.52485 11.3971 3.49335 11.1834 3.66821L5.88889 8.00007H2C1.44772 8.00007 1 8.44778 1 9.00007V15.0001C1 15.5524 1.44772 16.0001 2 16.0001ZM23 12C23 15.292 21.5539 18.2463 19.2622 20.2622L17.8445 18.8444C19.7758 17.1937 21 14.7398 21 12C21 9.26016 19.7758 6.80629 17.8445 5.15557L19.2622 3.73779C21.5539 5.75368 23 8.70795 23 12ZM18 12C18 10.0883 17.106 8.38548 15.7133 7.28673L14.2842 8.71584C15.3213 9.43855 16 10.64 16 12C16 13.36 15.3213 14.5614 14.2842 15.2841L15.7133 16.7132C17.106 15.6145 18 13.9116 18 12Z"/></symbol>
+</svg>
+
+<main id="pet-case">
+
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="pc-title">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow"><b>00</b>AI companion · Side project · 2026</div>
+        <h1 id="pc-title">A friend who <span class="rainbow-text">picks up.</span></h1>
+        <p class="lead">Diandian is a plush dolphin with a rainbow horn. My five-year-old calls him from an iPhone, or turns the little knob on the desk — and he answers in a warm, picture-book voice.</p>
+        <div class="role">
+          <small>My role</small>
+          <span>Concept, product design and build — leading a small team of AI agents for code, QA, motion, video and hardware.</span>
+        </div>
+        <div class="chips">
+          <div class="chip"><strong>12</strong><span>motions,<br>one character</span></div>
+          <div class="chip"><strong>1</strong><span>voice the child<br>ever hears</span></div>
+          <div class="chip"><strong>0</strong><span>words a child<br>needs to read</span></div>
+        </div>
+      </div>
+      <div class="device-stage">
+        <div class="device" data-device data-mode="idle">
+          <div class="knob" data-knob role="slider" tabindex="0" aria-label="Diandian's knob. Turn to change mode" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" aria-valuetext="Idle"></div>
+          <div class="bezel"></div>
+          <div class="halo"></div>
+          <div class="screen"><video data-screen-video src="/assets/ai-pet/motion/idle.mp4" poster="/assets/ai-pet/motion/idle.jpg" muted loop playsinline autoplay preload="auto"></video></div>
+          <div class="screen-ui" aria-hidden="true">
+            <span class="pill" data-ui="listen"><svg class="icon"><use href="#i-voice"/></svg>Listening</span>
+            <span class="pill" data-ui="talk"><span class="bars"><i></i><i></i><i></i><i></i></span></span>
+            <span class="pill" data-ui="eat"><svg class="icon"><use href="#i-eat"/></svg>Eat together</span>
+            <span class="pill" data-ui="french"><span class="fr-flag"></span>Bonjour !</span>
+            <span class="pill" data-ui="sleep"><svg class="icon"><use href="#i-moon"/></svg>Bonne nuit</span>
+          </div>
+        </div>
+        <div class="device-hint note" aria-hidden="true">turn me!
+          <svg viewBox="0 0 52 40"><path d="M6 6c14 0 34 6 36 28M42 34l-8-4M42 34l3-9" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 Brief -->
+  <section aria-labelledby="pc-brief">
+    <div class="wrap split">
+      <div class="reveal">
+        <div class="eyebrow"><b>01</b>The brief</div>
+        <h2 class="h2" id="pc-brief">Built for someone who can't read yet.</h2>
+        <p class="lead">My kid wanted a pet to talk to. I wanted something that talks back kindly, teaches a little French, and never needs a grown-up to make it work. <strong>So nothing on the child's side could be text.</strong> Every state had to read through motion, sound and colour alone.</p>
+      </div>
+      <div class="rules reveal">
+        <div class="rule"><svg class="icon"><use href="#i-eye-off"/></svg><h3>No words on screen</h3><p>One dolphin, one big button. Everything else is animation.</p></div>
+        <div class="rule"><svg class="icon"><use href="#i-volume"/></svg><h3>One voice, always</h3><p>The child only ever hears Diandian's voice. Never a robot.</p></div>
+        <div class="rule"><svg class="icon"><use href="#i-wifi-off"/></svg><h3>Works anywhere</h3><p>Outdoors on mobile data, with no laptop running at home.</p></div>
+        <div class="rule"><svg class="icon"><use href="#i-parent"/></svg><h3>Parents hold the keys</h3><p>Setup, pairing and memory live behind a parent PIN.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Character -->
+  <section aria-labelledby="pc-meet">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow"><b>02</b>Meet Diandian</div>
+        <h2 class="h2" id="pc-meet">One character. Twelve feelings.</h2>
+        <p class="lead">A five-year-old reads a face faster than any icon. Diandian has twelve short loops, and the app picks one for every moment of a call — listening, talking, nodding, comforting, even eating dinner together.</p>
+      </div>
+      <div class="motions reveal" data-motions></div>
+      <div class="sheet-note reveal">
+        <span class="note">the trick →</span>
+        <p>Every loop starts from one 4×3 character sheet with an identity lock, so the horn, eyes and fur stay the same in all twelve clips. He always lies down — never stands — so every loop sits on the same baseline and the cuts between them disappear.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Knob -->
+  <section class="knob-section" aria-labelledby="pc-knob">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow"><b>03</b>The knob</div>
+        <h2 class="h2" id="pc-knob">Turn to talk.</h2>
+        <p class="lead">A phone is a grown-up's object. So Diandian also lives in a round screen inside a knob on the desk. <strong>Turn it to choose, press it to talk.</strong> No menus, no reading — the ring of light tells you where you are.</p>
+      </div>
+      <div class="knob-grid">
+        <div class="device-stage reveal">
+          <div class="device" data-device data-mode="idle">
+            <div class="knob" data-knob role="slider" tabindex="0" aria-label="Diandian's knob. Turn to change mode" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" aria-valuetext="Idle"></div>
+            <div class="bezel"></div>
+            <div class="halo"></div>
+            <div class="screen"><video data-screen-video src="/assets/ai-pet/motion/idle.mp4" poster="/assets/ai-pet/motion/idle.jpg" muted loop playsinline preload="metadata"></video></div>
+            <div class="screen-ui" aria-hidden="true">
+              <span class="pill" data-ui="listen"><svg class="icon"><use href="#i-voice"/></svg>Listening</span>
+              <span class="pill" data-ui="talk"><span class="bars"><i></i><i></i><i></i><i></i></span></span>
+              <span class="pill" data-ui="eat"><svg class="icon"><use href="#i-eat"/></svg>Eat together</span>
+              <span class="pill" data-ui="french"><span class="fr-flag"></span>Bonjour !</span>
+              <span class="pill" data-ui="sleep"><svg class="icon"><use href="#i-moon"/></svg>Bonne nuit</span>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <ul class="modes" data-modes></ul>
+          <p class="spec">1.85" round display · 360 × 360 · ESP32-S3</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Phone -->
+  <section aria-labelledby="pc-phone">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow"><b>04</b>The call</div>
+        <h2 class="h2" id="pc-phone">Same friend, on the go.</h2>
+        <p class="lead">Away from the desk, Diandian is a phone call. The screen borrows what every child already knows about calling Grandma: a face, a timer, a red button.</p>
+      </div>
+      <div class="phones">
+        <figure class="phone reveal">
+          <div class="phone-frame"><img src="/assets/ai-pet/phone/dialing-upward-ripple-v3.jpg" alt="Phone call screen while dialing: Diandian with arcs lighting up above him" loading="lazy" /></div>
+          <figcaption><strong>Ringing</strong><span>Three arcs light up one by one. Waiting feels like something is happening.</span></figcaption>
+        </figure>
+        <figure class="phone reveal">
+          <div class="phone-frame"><img src="/assets/ai-pet/phone/dolphin-speaking-equalizer-v2.jpg" alt="Phone call screen while Diandian talks, with audio bars under him" loading="lazy" /></div>
+          <figcaption><strong>Talking</strong><span>The bars follow his real voice volume, so his mouth and the sound always agree.</span></figcaption>
+        </figure>
+        <figure class="phone reveal">
+          <div class="phone-frame"><img src="/assets/ai-pet/phone/french-mode-active-v1.jpg" alt="French mode: a speech bubble says Bonjour above Diandian" loading="lazy" /></div>
+          <figcaption><strong>French time</strong><span>One new word a day. He says it, the child repeats it — and trying counts.</span></figcaption>
+        </figure>
+      </div>
+      <div class="rituals">
+        <div class="rule reveal"><svg class="icon"><use href="#i-timer"/></svg><h3>He calls first</h3><p>Lunch, dinner and bedtime calls ring on schedule through iOS Shortcuts.</p></div>
+        <div class="rule reveal"><svg class="icon"><use href="#i-eat"/></svg><h3>Swipe up to eat together</h3><p>Diandian gets his own bowl and stays at the table until you swipe down.</p></div>
+        <div class="rule reveal"><svg class="icon"><use href="#i-voice"/></svg><h3>Tap to interrupt</h3><p>Kids don't wait for their turn. Neither does the conversation.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Voice -->
+  <section aria-labelledby="pc-voice">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow"><b>05</b>The voice</div>
+        <h2 class="h2" id="pc-voice">He never sounds like a robot.</h2>
+        <p class="lead">A character dies the moment it switches voices. That set the whole architecture.</p>
+      </div>
+      <div class="pipeline reveal">
+        <div class="step"><small>Hear</small><strong>Child speaks</strong><span>Speech recognition on the device. A short pause means "my turn is over".</span></div>
+        <div class="step"><small>Think</small><strong>Doubao chat</strong><span>A character prompt with Diandian's memory and the day's French word.</span></div>
+        <div class="step"><small>Speak</small><strong>Picture-book voice</strong><span>Doubao's children's storybook voice — the only voice the child hears.</span></div>
+        <div class="step"><small>Show</small><strong>Twelve loops</strong><span>The matching motion plays while he talks, listens or waits.</span></div>
+      </div>
+      <div class="quote reveal">
+        <h3>The decision: <span class="rainbow-text">silence over a wrong voice.</span></h3>
+        <div>
+          <p>The easy fallback was the phone's built-in speech engine. It would have made every failure "work". I removed it: if the voice service fails, Diandian waits and tries again instead of suddenly sounding like a sat-nav.</p>
+          <p>The one exception is deliberate — French words use a native French voice, because that is what a teacher would do.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Trust -->
+  <section aria-labelledby="pc-trust">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow"><b>06</b>Trust</div>
+        <h2 class="h2" id="pc-trust">Fun for the child. Boring for an attacker.</h2>
+        <p class="lead">A toy that talks to a child is a device in a child's bedroom. I designed the parent side as carefully as the dolphin.</p>
+      </div>
+      <div class="trust">
+        <div class="rule reveal"><svg class="icon"><use href="#i-lock"/></svg><h3>Parent PIN</h3><p>6–8 digits, hashed. Wrong guesses lock it for longer each time.</p></div>
+        <div class="rule reveal"><svg class="icon"><use href="#i-phone"/></svg><h3>One-time pairing</h3><p>A new device pairs with a code that works once and expires in 10 minutes.</p></div>
+        <div class="rule reveal"><svg class="icon"><use href="#i-key"/></svg><h3>Keys stay home</h3><p>AI service keys never leave the server. Devices get their own limited pass, revocable any time.</p></div>
+        <div class="rule reveal"><svg class="icon"><use href="#i-voice"/></svg><h3>No recordings</h3><p>The phone never uploads the child's voice. The knob sends speech only to recognition, and nothing is stored.</p></div>
+        <div class="rule reveal"><svg class="icon"><use href="#i-shield"/></svg><h3>Safe replies</h3><p>Every answer passes a filter. Anything unsafe becomes a gentle change of subject.</p></div>
+        <div class="rule reveal"><svg class="icon"><use href="#i-parent"/></svg><h3>Diandian's memory</h3><p>Parents can see what he remembers about the child, on their own page.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 Team -->
+  <section aria-labelledby="pc-team">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow"><b>07</b>How it was built</div>
+        <h2 class="h2" id="pc-team">One designer. A team of agents.</h2>
+        <p class="lead">I built Diandian the way I'd run a product team: clear roles, written rules, and one person who decides. The difference is that the team was AI agents working in a shared chat channel.</p>
+      </div>
+      <div class="team reveal">
+        <div class="lead-card">
+          <span class="note">me</span>
+          <strong>Design lead</strong>
+          <p>Product intent, every visual decision, and the only person who can merge. Merging ships to production.</p>
+        </div>
+        <div class="agents">
+          <div class="agent"><strong>Project manager</strong><span>Plans, assigns, tracks</span></div>
+          <div class="agent"><strong>Developer</strong><span>Call page, backend, deploy</span></div>
+          <div class="agent"><strong>Code review &amp; QA</strong><span>Full test suite on every change</span></div>
+          <div class="agent"><strong>Visual designer</strong><span>Phone and knob screens</span></div>
+          <div class="agent"><strong>Motion designer</strong><span>Which loop plays when</span></div>
+          <div class="agent"><strong>Video maker</strong><span>Cuts and exports the loops</span></div>
+          <div class="agent"><strong>Visual QA</strong><span>Checks builds against my mockups</span></div>
+          <div class="agent"><strong>Hardware advisor</strong><span>ESP32 firmware and wiring</span></div>
+        </div>
+      </div>
+      <div class="guardrails reveal">
+        <span>Full test suite before every commit</span>
+        <span>Pull requests only — I merge</span>
+        <span>Not run on a real device? Marked "untested"</span>
+        <span>Secrets never read or printed</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <section class="closing" aria-labelledby="pc-end">
+    <div class="wrap reveal">
+      <video src="/assets/ai-pet/motion/wave.mp4" poster="/assets/ai-pet/motion/wave.jpg" muted loop playsinline preload="none" data-inview aria-hidden="true"></video>
+      <h2 class="h2" id="pc-end">The best feature is that he's always the same dolphin.</h2>
+      <p class="lead">Features changed every week. What made it feel like a friend was consistency: the same face, the same voice, the same knob. That's the part I'd protect in any product.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+(() => {
+  const root = document.getElementById('pet-case');
+  if (!root) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const base = '/assets/ai-pet/motion/';
+
+  const motions = [
+    ['idle', 'Waiting'], ['listen', 'Listening'], ['talk', 'Talking'], ['happy', 'Happy'],
+    ['curious', 'Curious'], ['excited', 'Excited'], ['nod', 'Nodding'], ['wave', 'Waving'],
+    ['comfort', 'Comforting'], ['sad', 'Sad'], ['sleepy', 'Sleepy'], ['eat', 'Eating together'],
+  ];
+
+  // Knob detents, in turning order.
+  const modes = [
+    { id: 'idle', clip: 'idle', title: 'Waiting', text: 'He blinks and breathes. Press to wake him.', color: '#5fd4cf', icon: 'i-volume' },
+    { id: 'listen', clip: 'listen', title: 'Listening', text: 'Press the knob and talk. The ring glows while he listens.', color: '#6cc9ff', icon: 'i-voice' },
+    { id: 'talk', clip: 'talk', title: 'Talking', text: 'Bars bounce with his real voice.', color: '#b59cff', icon: 'i-voice' },
+    { id: 'eat', clip: 'eat', title: 'Eat together', text: 'One click to the bowl, and he joins dinner.', color: '#ffb35c', icon: 'i-eat' },
+    { id: 'french', clip: 'happy', title: 'French word', text: 'Today’s word, said slowly. Your turn!', color: '#7fe0a0', icon: 'i-translate' },
+    { id: 'sleep', clip: 'sleepy', title: 'Goodnight', text: 'Turn all the way down. The screen dims.', color: '#8a9bff', icon: 'i-moon' },
+  ];
+  const STEP = 40; // degrees per detent
+
+  // Motion grid
+  const grid = root.querySelector('[data-motions]');
+  grid.innerHTML = motions.map(([id, label]) =>
+    `<figure class="motion"><video src="${base}${id}.mp4" poster="${base}${id}.jpg" muted loop playsinline preload="none" data-inview aria-label="Diandian ${label.toLowerCase()}"></video><figcaption>${label}</figcaption></figure>`
+  ).join('');
+
+  // Mode list
+  const list = root.querySelector('[data-modes]');
+  list.innerHTML = modes.map((m, i) =>
+    `<li><button type="button" class="mode" data-index="${i}" aria-pressed="false" style="--mode-color:${m.color}"><span class="mode-dot"><svg class="icon"><use href="#${m.icon}"/></svg></span><span><strong>${m.title}</strong><span>${m.text}</span></span></button></li>`
+  ).join('');
+
+  function makeDevice(device) {
+    const knob = device.querySelector('[data-knob]');
+    const video = device.querySelector('[data-screen-video]');
+    let index = 0;
+    const set = (next, { fromDrag = false } = {}) => {
+      next = Math.max(0, Math.min(modes.length - 1, next));
+      const m = modes[next];
+      const changed = next !== index;
+      index = next;
+      device.dataset.mode = m.id;
+      device.style.setProperty('--glow', m.color);
+      device.style.setProperty('--arc', String((next + 1) / modes.length));
+      if (!fromDrag) knob.style.setProperty('--turn', `${next * STEP}deg`);
+      knob.setAttribute('aria-valuenow', String(next));
+      knob.setAttribute('aria-valuetext', m.title);
+      device.querySelectorAll('[data-ui]').forEach((el) => el.classList.toggle('is-on', el.dataset.ui === m.id));
+      const src = base + m.clip + '.mp4';
+      if (changed && !video.src.endsWith(src)) {
+        video.classList.add('is-next');
+        setTimeout(() => {
+          video.src = src;
+          video.poster = base + m.clip + '.jpg';
+          if (!reduce.matches) video.play().catch(() => {});
+          video.classList.remove('is-next');
+        }, reduce.matches ? 0 : 200);
+      }
+      device.dispatchEvent(new CustomEvent('pc-mode', { detail: next }));
+    };
+
+    // Drag to turn
+    let dragging = false, startAngle = 0, startTurn = 0;
+    const angleOf = (e) => {
+      const r = knob.getBoundingClientRect();
+      return Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2)) * 180 / Math.PI;
+    };
+    knob.addEventListener('pointerdown', (e) => {
+      dragging = true; startAngle = angleOf(e); startTurn = index * STEP;
+      knob.setPointerCapture(e.pointerId); knob.classList.add('is-dragging');
+    });
+    knob.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      let delta = angleOf(e) - startAngle;
+      if (delta > 180) delta -= 360;
+      if (delta < -180) delta += 360;
+      const turn = Math.max(-12, Math.min((modes.length - 1) * STEP + 12, startTurn + delta));
+      knob.style.setProperty('--turn', `${turn}deg`);
+      const detent = Math.round(turn / STEP);
+      if (detent !== index) set(detent, { fromDrag: true });
+    });
+    const end = () => {
+      if (!dragging) return;
+      dragging = false; knob.classList.remove('is-dragging');
+      knob.style.setProperty('--turn', `${index * STEP}deg`); // snap to detent
+    };
+    knob.addEventListener('pointerup', end);
+    knob.addEventListener('pointercancel', end);
+    knob.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); set(index + 1); }
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); set(index - 1); }
+    });
+    let wheelLock = 0;
+    knob.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const now = Date.now();
+      if (now - wheelLock < 220) return;
+      wheelLock = now;
+      set(index + (e.deltaY > 0 ? 1 : -1));
+    }, { passive: false });
+
+    set(0);
+    return { set, get index() { return index; }, device, video };
+  }
+
+  const devices = [...root.querySelectorAll('[data-device]')].map(makeDevice);
+  const [hero, main] = devices;
+
+  // Mode list drives the knob section device
+  const buttons = [...list.querySelectorAll('.mode')];
+  const syncList = (i) => buttons.forEach((b, j) => b.setAttribute('aria-pressed', String(i === j)));
+  buttons.forEach((b) => b.addEventListener('click', () => main.set(Number(b.dataset.index))));
+  main.device.addEventListener('pc-mode', (e) => syncList(e.detail));
+  syncList(0);
+
+  // Hero device: idle tour until someone touches it
+  let touched = false;
+  hero.device.addEventListener('pointerdown', () => { touched = true; });
+  hero.device.addEventListener('keydown', () => { touched = true; });
+  const tour = setInterval(() => {
+    if (touched || reduce.matches || document.hidden) return;
+    hero.set((hero.index + 1) % modes.length);
+  }, 3600);
+
+  // Play videos only while visible
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (target.tagName === 'VIDEO') {
+        if (isIntersecting && !reduce.matches) target.play().catch(() => {});
+        else target.pause();
+      } else if (isIntersecting) {
+        target.classList.add('is-in');
+        io.unobserve(target);
+      }
+    });
+  }, { threshold: 0.15 });
+  root.querySelectorAll('video[data-inview], [data-screen-video]').forEach((v) => io.observe(v));
+  root.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Stop the tour if the island is torn down (client navigation)
+  const stop = new MutationObserver(() => {
+    if (!document.body.contains(root)) { clearInterval(tour); io.disconnect(); stop.disconnect(); }
+  });
+  stop.observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+</body>
+</html>

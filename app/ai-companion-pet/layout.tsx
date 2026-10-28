@@ -1,16 +1,12 @@
 import type { Metadata } from 'next'
-import 'remixicon/fonts/remixicon.css'
+import { HtmlChrome } from '../html-chrome'
 
 export const metadata: Metadata = {
   title: {
-    absolute: '默默 | AI 陪伴宠物',
+    absolute: 'Lu — Diandian, an AI companion',
   },
-  description: '一个会记得、会倾听、也会用中文回应孩子的 AI 陪伴宠物原型。',
-  // Private prototype: keep it out of search results.
-  robots: { index: false, follow: false },
-  // Don't inherit the portfolio's English share card.
-  openGraph: null,
-  twitter: null,
+  description:
+    'Case study: an AI companion dolphin a five-year-old can call from a phone or a knob on the desk — no reading required.',
 }
 
 export default function CompanionPetLayout({
@@ -18,11 +14,9 @@ export default function CompanionPetLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  // The root <html lang> is shared with the English portfolio, so mark the
-  // Chinese prototype at the subtree level (display: contents = no layout box).
   return (
-    <div lang="zh-CN" style={{ display: 'contents' }}>
+    <HtmlChrome activeHref="/ai-companion-pet" backgroundColor="#061217">
       {children}
-    </div>
+    </HtmlChrome>
   )
 }
