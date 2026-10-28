@@ -15,7 +15,7 @@ export default function CompanionPetLayout({
   children: React.ReactNode
 }>) {
   return (
-    <HtmlChrome activeHref="/ai-companion-pet" backgroundColor="#061217">
+    <HtmlChrome activeHref="/ai-companion-pet" theme="light" colorScheme="light" backgroundColor="#f6f5f2">
       {children}
     </HtmlChrome>
   )
