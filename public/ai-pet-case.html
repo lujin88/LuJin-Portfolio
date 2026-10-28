@@ -217,16 +217,25 @@
   #pet-case .art-voice strong { font-size: clamp(20px, 2vw, 30px); letter-spacing: -0.035em; line-height: 1.05; }
   #pet-case .art-voice span { font-size: 13px; line-height: 1.45; opacity: 0.75; }
   #pet-case .art-voice .no-robot { position: absolute; right: 5%; top: 7%; font-size: 30px; color: var(--pc-yellow); transform: rotate(-6deg); }
-  #pet-case .art-parent { height: 100%; padding: 4.5%; display: grid; grid-template-rows: auto 1fr; gap: 12px; }
-  #pet-case .art-parent ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; counter-reset: step; }
-  #pet-case .art-parent li { counter-increment: step; display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,0.55); font-size: clamp(13px, 1.1vw, 16px); font-weight: 600; letter-spacing: -0.01em; color: #1f4d50; }
-  #pet-case .art-parent li::before { content: counter(step); display: grid; place-items: center; flex: none; width: 26px; height: 26px; border-radius: 50%; background: #fff; font-size: 13px; }
-  #pet-case .art-parent li.on { background: #fff; }
-  #pet-case .art-parent li.on::before { background: #4c9ea3; color: #fff; }
-  #pet-case .art-parent .panel { min-height: 0; background: #fff; border-radius: 14px; padding: 14px; display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 1fr; gap: 8px; }
-  #pet-case .art-parent figure { margin: 0; min-height: 0; display: grid; grid-template-rows: 1fr auto; gap: 4px; border: 1px solid #e3ecec; border-radius: 10px; padding: 6px; }
-  #pet-case .art-parent figure img { width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: 6px; background: var(--pc-screen); }
-  #pet-case .art-parent figcaption { font-size: 11px; font-weight: 600; text-align: center; color: #33494a; }
+  #pet-case .art-parent { height: 100%; position: relative; display: grid; grid-template-columns: repeat(3, 1fr); align-items: start; align-content: center; gap: 4%; padding: 9% 6% 5%; color: #fff; }
+  #pet-case .art-parent .pin { position: absolute; left: 5%; top: 7%; display: flex; align-items: center; gap: 8px; padding: 7px 14px 7px 10px; border-radius: 999px; background: rgba(255,255,255,0.16); font-size: 13px; font-weight: 600; }
+  #pet-case .art-parent .pin .icon { width: 16px; height: 16px; }
+  #pet-case .art-parent .note { position: absolute; right: 5%; top: 5%; font-size: clamp(22px, 2.2vw, 30px); color: var(--pc-yellow); transform: rotate(4deg); }
+  #pet-case .art-parent .step { position: relative; display: grid; justify-items: center; gap: 14px; text-align: center; }
+  #pet-case .art-parent .step > small { font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em; opacity: 0.7; }
+  #pet-case .art-parent .step > strong { font-size: clamp(15px, 1.4vw, 20px); letter-spacing: -0.02em; line-height: 1.15; }
+  #pet-case .art-parent .stage { position: relative; width: 100%; aspect-ratio: 1; display: grid; place-items: center; }
+  #pet-case .art-parent .stage img { position: absolute; width: 72%; aspect-ratio: 1; object-fit: cover; border-radius: 18px; border: 5px solid #fff; background: var(--pc-screen); box-shadow: 0 18px 30px -14px rgba(0,0,0,0.45); }
+  #pet-case .art-parent .one img { transform: rotate(-5deg); }
+  #pet-case .art-parent .fan img { width: 54%; border-width: 4px; transform: translate(var(--fx), var(--fy)) rotate(var(--fr)); }
+  #pet-case .art-parent .fan .x12 { position: absolute; right: -2%; bottom: 2%; z-index: 1; display: grid; place-items: center; width: 30%; aspect-ratio: 1; border-radius: 50%; background: var(--pc-yellow); color: var(--pc-ink); font-size: clamp(18px, 1.9vw, 26px); font-weight: 700; letter-spacing: -0.03em; transform: rotate(-8deg); }
+  #pet-case .art-parent .phone { position: absolute; top: 2%; height: 96%; aspect-ratio: 9 / 15; border-radius: 22px; background: #fff; color: var(--pc-ink); border: 5px solid #141414; display: grid; align-content: center; justify-items: center; gap: 8px; transform: rotate(5deg); box-shadow: 0 18px 30px -14px rgba(0,0,0,0.45); }
+  #pet-case .art-parent .phone small { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--pc-ink-3); }
+  #pet-case .art-parent .phone b { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: clamp(14px, 1.45vw, 21px); letter-spacing: 0.06em; }
+  #pet-case .art-parent .phone i { font-style: normal; white-space: nowrap; font-size: 11px; padding: 4px 9px; border-radius: 999px; background: var(--pc-chip); color: var(--pc-ink-2); }
+  #pet-case .art-parent .arrow { position: absolute; top: 40%; width: 7%; height: auto; stroke: #fff; stroke-width: 3; overflow: visible; }
+  #pet-case .art-parent .arrow.a1 { left: 30.5%; }
+  #pet-case .art-parent .arrow.a2 { left: 62.5%; transform: scaleY(-1); }
   #pet-case .art-trust { height: 100%; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 10px; padding: 4.5%; }
   #pet-case .art-trust div { background: rgba(255,255,255,0.9); border-radius: 14px; padding: 18px; display: grid; align-content: start; gap: 8px; }
   #pet-case .art-trust .icon { width: 22px; height: 22px; color: var(--pc-blue); }
@@ -274,6 +283,16 @@
     #pet-case .track { transform: none; flex-direction: column; gap: 56px; padding: 32px 20px 0; perspective: none; }
     #pet-case .card { width: 100%; transform: none; }
     #pet-case .card-art { aspect-ratio: 4 / 3; }
+    #pet-case .art-parent { padding: 17% 4% 4%; gap: 3%; }
+    #pet-case .art-parent .note, #pet-case .art-parent .arrow { display: none; }
+    #pet-case .art-parent .pin { font-size: 11px; padding: 5px 10px 5px 8px; }
+    #pet-case .art-parent .step { gap: 6px; }
+    #pet-case .art-parent .step > small { font-size: 9px; }
+    #pet-case .art-parent .step > strong { font-size: 13px; }
+    #pet-case .art-parent .stage img { border-width: 3px; border-radius: 10px; }
+    #pet-case .art-parent .phone { border-width: 3px; border-radius: 12px; gap: 4px; }
+    #pet-case .art-parent .phone small, #pet-case .art-parent .phone i { font-size: 7px; padding: 2px 5px; }
+    #pet-case .art-parent .phone b { font-size: 10px; }
     #pet-case .art-brief { grid-template-columns: 1fr; } #pet-case .art-brief img { display: none; }
     #pet-case .art-voice, #pet-case .art-trust { grid-template-columns: 1fr 1fr; grid-template-rows: none; overflow: auto; }
     #pet-case .doodle-sep, #pet-case .story-foot { display: none; }
@@ -467,10 +486,30 @@
           <div class="card-meta"><div><h3>Silence over a wrong voice</h3><p>The easy fallback was the phone’s built-in speech. I removed it: if the voice service fails, Diandian waits and tries again instead of sounding like a sat-nav. French words are the one deliberate exception.</p></div><svg class="icon"><use href="#i-out"/></svg></div>
         </article>
 
-        <article class="card" style="--c:#cfe6e4">
-          <div class="card-art art-parent" data-parent>
-            <ol><li>Look &amp; angles</li><li class="on">Twelve motions</li><li>Send to phone</li></ol>
-            <div class="panel"></div>
+        <article class="card" style="--c:#2f6fec">
+          <div class="card-art art-parent">
+            <span class="pin"><svg class="icon"><use href="#i-lock"/></svg>Behind the parent PIN</span>
+            <span class="note hand">the child never sees this</span>
+            <div class="step">
+              <div class="stage one"><img src="/assets/ai-pet/motion/idle.jpg" alt="Diandian's character sheet" loading="lazy" /></div>
+              <small>Step 1</small><strong>One look</strong>
+            </div>
+            <div class="step">
+              <div class="stage fan" aria-label="Motions made from the character">
+                <img src="/assets/ai-pet/motion/sleepy.jpg" alt="" loading="lazy" style="--fx:-34%;--fy:-12%;--fr:-14deg" />
+                <img src="/assets/ai-pet/motion/sad.jpg" alt="" loading="lazy" style="--fx:-12%;--fy:-22%;--fr:-5deg" />
+                <img src="/assets/ai-pet/motion/talk.jpg" alt="" loading="lazy" style="--fx:12%;--fy:-16%;--fr:6deg" />
+                <img src="/assets/ai-pet/motion/happy.jpg" alt="" loading="lazy" style="--fx:-2%;--fy:8%;--fr:-2deg" />
+                <span class="x12">×12</span>
+              </div>
+              <small>Step 2</small><strong>Twelve motions</strong>
+            </div>
+            <div class="step">
+              <div class="stage"><div class="phone"><small>Pairing code</small><b>7KQ 4MZ</b><i>works once · 10 min</i></div></div>
+              <small>Step 3</small><strong>Sent to the phone</strong>
+            </div>
+            <svg class="arrow a1 draw-host" viewBox="0 0 90 40" aria-hidden="true"><path class="draw" pathLength="1" d="M4 26 C 24 4, 52 4, 82 20 M70 8 L83 20 L67 27" /></svg>
+            <svg class="arrow a2 draw-host" viewBox="0 0 90 40" aria-hidden="true"><path class="draw" pathLength="1" d="M4 26 C 24 4, 52 4, 82 20 M70 8 L83 20 L67 27" /></svg>
           </div>
           <div class="card-meta"><div><h3>The parent side</h3><p>Behind the PIN, a parent builds the friend in three steps: one character sheet, twelve motions made from it, then a one-time code that sends him to the child’s phone. The child never sees any of it.</p></div><svg class="icon"><use href="#i-out"/></svg></div>
         </article>
@@ -569,7 +608,6 @@
   const colEls = [...wall.children];
 
   // ---------- Character sheet in story card ----------
-  root.querySelector('[data-parent] .panel').innerHTML = motions.map(([id, label]) => `<figure><img src="${base}${id}.jpg" alt="" loading="lazy" /><figcaption>${label}</figcaption></figure>`).join('');
   root.querySelector('[data-sheet]').innerHTML = motions.map(([id, label]) => `<img src="${base}${id}.jpg" alt="${label}" loading="lazy" />`).join('');
 
   // ---------- Knob words ----------
@@ -797,6 +835,8 @@
         c.style.setProperty('--rz', `${clamp(off * 7, -7, 7)}deg`);
         c.style.setProperty('--s', (1 - Math.min(0.12, Math.abs(off) * 0.14)).toFixed(3));
         c.style.setProperty('--o', (1 - Math.min(1, Math.abs(off) * 1.8)).toFixed(3));
+        // The centred card always paints on top, so a tilted neighbour can't cover it.
+        c.style.zIndex = String(100 - Math.round(Math.abs(off) * 50));
       });
       chapter.textContent = String(active + 1).padStart(2, '0');
     }
