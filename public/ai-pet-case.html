@@ -217,6 +217,16 @@
   #pet-case .art-voice strong { font-size: clamp(20px, 2vw, 30px); letter-spacing: -0.035em; line-height: 1.05; }
   #pet-case .art-voice span { font-size: 13px; line-height: 1.45; opacity: 0.75; }
   #pet-case .art-voice .no-robot { position: absolute; right: 5%; top: 7%; font-size: 30px; color: var(--pc-yellow); transform: rotate(-6deg); }
+  #pet-case .art-parent { height: 100%; padding: 4.5%; display: grid; grid-template-rows: auto 1fr; gap: 12px; }
+  #pet-case .art-parent ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; counter-reset: step; }
+  #pet-case .art-parent li { counter-increment: step; display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,0.55); font-size: clamp(13px, 1.1vw, 16px); font-weight: 600; letter-spacing: -0.01em; color: #1f4d50; }
+  #pet-case .art-parent li::before { content: counter(step); display: grid; place-items: center; flex: none; width: 26px; height: 26px; border-radius: 50%; background: #fff; font-size: 13px; }
+  #pet-case .art-parent li.on { background: #fff; }
+  #pet-case .art-parent li.on::before { background: #4c9ea3; color: #fff; }
+  #pet-case .art-parent .panel { min-height: 0; background: #fff; border-radius: 14px; padding: 14px; display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 1fr; gap: 8px; }
+  #pet-case .art-parent figure { margin: 0; min-height: 0; display: grid; grid-template-rows: 1fr auto; gap: 4px; border: 1px solid #e3ecec; border-radius: 10px; padding: 6px; }
+  #pet-case .art-parent figure img { width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: 6px; background: var(--pc-screen); }
+  #pet-case .art-parent figcaption { font-size: 11px; font-weight: 600; text-align: center; color: #33494a; }
   #pet-case .art-trust { height: 100%; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 10px; padding: 4.5%; }
   #pet-case .art-trust div { background: rgba(255,255,255,0.9); border-radius: 14px; padding: 18px; display: grid; align-content: start; gap: 8px; }
   #pet-case .art-trust .icon { width: 22px; height: 22px; color: var(--pc-blue); }
@@ -400,7 +410,7 @@
         <div class="turn-foot">
           <span class="mono">Turn to choose · press to talk</span>
           <svg viewBox="0 0 46 24" class="draw-host" aria-hidden="true"><path class="draw" pathLength="1" d="M2 18 C 10 4, 18 22, 26 12 S 36 6, 43 12 M36 6 L43 12 L35 16" /></svg>
-          <p>A phone is a grown-up’s object, so Diandian also lives in a round screen inside a knob. No menus, no reading — the ring of light tells you where you are, and the dolphin tells you what he’s doing.</p>
+          <p>At home, Diandian lives in a round screen inside a knob on the desk. No menus, no reading — the ring of light tells you where you are, and the dolphin tells you what he’s doing.</p>
         </div>
       </div>
     </div>
@@ -411,7 +421,7 @@
     <div class="story-pin">
       <div class="wrap story-head">
         <h2 id="pc-story">How Diandian works</h2>
-        <span class="mono">Six chapters <svg class="icon"><use href="#i-se"/></svg></span>
+        <span class="mono">Seven chapters <svg class="icon"><use href="#i-se"/></svg></span>
       </div>
       <div class="track" data-track>
 
@@ -441,7 +451,7 @@
             <img src="/assets/ai-pet/phone/dolphin-speaking-equalizer-v2.jpg" alt="Call screen while Diandian talks" loading="lazy" />
             <img src="/assets/ai-pet/phone/french-mode-active-v1.jpg" alt="French mode: a bubble says Bonjour" loading="lazy" />
           </div>
-          <div class="card-meta"><div><h3>Same friend, on the go</h3><p>Away from the desk he’s a phone call: a face, a timer, a red button. He rings first at lunch and bedtime, eats dinner with you when you swipe up, and you can always cut in.</p></div><svg class="icon"><use href="#i-out"/></svg></div>
+          <div class="card-meta"><div><h3>When you go out, he comes too</h3><p>The knob stays plugged in at home. Outside, on mobile data, the same dolphin with the same voice is a phone call: a face, a timer, a red button. He rings first at lunch and bedtime, eats dinner with you when you swipe up, and you can always cut in.</p></div><svg class="icon"><use href="#i-out"/></svg></div>
         </article>
 
         <svg class="doodle-sep draw-host" viewBox="0 0 140 140" aria-hidden="true" style="stroke:#2f6fec"><path class="draw" pathLength="1" d="M30 84 C 20 30, 110 10, 116 62 S 50 132, 40 92 S 96 40, 112 104" /></svg>
@@ -455,6 +465,14 @@
             <div><small>Show</small><strong>Twelve loops</strong><span>The matching motion plays along.</span></div>
           </div>
           <div class="card-meta"><div><h3>Silence over a wrong voice</h3><p>The easy fallback was the phone’s built-in speech. I removed it: if the voice service fails, Diandian waits and tries again instead of sounding like a sat-nav. French words are the one deliberate exception.</p></div><svg class="icon"><use href="#i-out"/></svg></div>
+        </article>
+
+        <article class="card" style="--c:#cfe6e4">
+          <div class="card-art art-parent" data-parent>
+            <ol><li>Look &amp; angles</li><li class="on">Twelve motions</li><li>Send to phone</li></ol>
+            <div class="panel"></div>
+          </div>
+          <div class="card-meta"><div><h3>The parent side</h3><p>Behind the PIN, a parent builds the friend in three steps: one character sheet, twelve motions made from it, then a one-time code that sends him to the child’s phone. The child never sees any of it.</p></div><svg class="icon"><use href="#i-out"/></svg></div>
         </article>
 
         <article class="card" style="--c:#7fe0a0">
@@ -488,7 +506,7 @@
 
       </div>
       <div class="wrap story-foot">
-        <div class="count"><span data-chapter>01</span><span class="bar"><i></i></span><small>06</small></div>
+        <div class="count"><span data-chapter>01</span><span class="bar"><i></i></span><small>07</small></div>
         <span class="mono scroll-cue">Scroll to follow the story <svg class="icon"><use href="#i-down"/></svg></span>
         <span></span>
       </div>
@@ -551,6 +569,7 @@
   const colEls = [...wall.children];
 
   // ---------- Character sheet in story card ----------
+  root.querySelector('[data-parent] .panel').innerHTML = motions.map(([id, label]) => `<figure><img src="${base}${id}.jpg" alt="" loading="lazy" /><figcaption>${label}</figcaption></figure>`).join('');
   root.querySelector('[data-sheet]').innerHTML = motions.map(([id, label]) => `<img src="${base}${id}.jpg" alt="${label}" loading="lazy" />`).join('');
 
   // ---------- Knob words ----------
@@ -742,10 +761,11 @@
       }
     }
 
-    // Hand-drawn doodles draw themselves as they enter.
+    // Hand-drawn doodles draw themselves as they enter, then stay drawn.
     draws.forEach((svg) => {
       const r = svg.getBoundingClientRect();
-      const p = reduce.matches ? 1 : clamp((vh - r.top) / (vh * 0.55));
+      const p = reduce.matches ? 1 : Math.max(+svg.dataset.p || 0, clamp((vh - r.top) / (vh * 0.55)));
+      svg.dataset.p = p;
       svg.style.setProperty('--p', p.toFixed(3));
     });
 
