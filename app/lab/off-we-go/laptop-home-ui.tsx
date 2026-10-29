@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { Icon } from '../../components/icon'
+import { Icon } from '../../components/line-icon'
 import { screenWallpaperSrc } from './config'
 import styles from './off-we-go.module.css'
 

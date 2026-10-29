@@ -1,6 +1,6 @@
 'use client'
 
-import { Icon } from '../../components/icon'
+import { Icon } from '../../components/line-icon'
 import { useTranslation } from '../../i18n/use-translation'
 import styles from './playbook.module.css'
 

@@ -54,7 +54,7 @@ export function Session03Research() {
       <div className={styles.photoStack}>
         <div className={styles.photoFrame}>
           <Image
-            src="/assets/images/client-advisory/session-03-advisor.png"
+            src="/assets/images/client-advisory/session-03-advisor.webp"
             alt={t('ca.research.photoAlt')}
             fill
             priority

@@ -56,7 +56,7 @@ export function AudienceSection() {
 
           <div className="relative z-10 aspect-[7/5] w-full overflow-hidden rounded-[28px] border border-slide-line/60 shadow-[0_16px_40px_rgba(5,20,30,0.2)]">
             <Image
-              src="/assets/images/eon/audience-evidence.jpg"
+              src="/assets/images/eon/audience-evidence.webp"
               alt={t('eon.audience.photoAlt')}
               fill
               className="object-cover"

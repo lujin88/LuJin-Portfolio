@@ -7,9 +7,9 @@ import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { useTranslation } from '@i18n/use-translation'
 
 const principleArt = [
-  '/assets/images/client-advisory/ca-05-card-01.png',
-  '/assets/images/client-advisory/ca-05-card-02.png',
-  '/assets/images/client-advisory/ca-05-card-03.png',
+  '/assets/images/client-advisory/ca-05-card-01.webp',
+  '/assets/images/client-advisory/ca-05-card-02.webp',
+  '/assets/images/client-advisory/ca-05-card-03.webp',
 ] as const
 
 function PrincipleCard({

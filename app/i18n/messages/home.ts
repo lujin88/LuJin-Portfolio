@@ -51,7 +51,7 @@ export const home = {
       '0': {
         eyebrow: 'Oct 2022 — Sep 2026',
         title: 'UBS · Zurich',
-        role: 'Senior Service Designer / UX Designer',
+        role: 'Senior Service Designer',
         desc: 'Wealth-management workflows that balance users, business, and regulation.',
       },
       '1': {
@@ -128,7 +128,7 @@ export const home = {
       '0': {
         eyebrow: 'Okt. 2022 — Sep. 2026',
         title: 'UBS · Zürich',
-        role: 'Senior Service Designer / UX Designer',
+        role: 'Senior Service Designer',
         desc: 'Wealth-Management-Workflows zwischen Nutzern, Business und Regulierung.',
       },
       '1': {

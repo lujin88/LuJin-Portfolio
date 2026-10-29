@@ -449,10 +449,10 @@ const BAKERIES = [
   {id:'b4', name:'Confiserie Sprüngli', rating:4.9, n:'1.5k', loc:'Paradeplatz · Pickup', kind:'Luxurious', price:[85,140], allergy:false, hue:'#5A3A26', site:'https://www.spruengli.ch'}
 ];
 const ADDR_SUGGEST = [
-  'Seestrasse 123, 8802 Kilchberg',
-  'Seestrasse 45, 8802 Kilchberg',
-  'Seehaldenstrasse 12, 8802 Kilchberg',
-  'Bahnhofstrasse 8, 8802 Kilchberg',
+  'Seestrasse 123, 8001 Zürich',
+  'Seestrasse 45, 8001 Zürich',
+  'Seehaldenstrasse 12, 8001 Zürich',
+  'Bahnhofstrasse 8, 8001 Zürich',
   'Rütistrasse 21, 8804 Au',
   'Seestrasse 210, 8038 Zürich',
   'Bergstrasse 15, 8942 Oberrieden',
@@ -531,7 +531,7 @@ const kidsEstimate = () => S.invited ? coming().length + kids().length : 10;
 const budgetMax = () => S.customBudget || (S.budget ? S.budget[1] : 800);
 const typicalRange = () => isVenue() ? (perfYes() ? [900,1400] : [600,1000]) : (perfYes() ? [500,800] : [200,500]);
 const typicalText = () => `Typical for a ${isVenue() ? 'venue' : 'home'} party${perfYes() ? ' with a performer' : ''}.`;
-function seedDefaults() { if (!S.theme) S.theme = 'unicorn'; if (!S.performer) S.performer = 'yes'; if (!S.where) S.where = 'home'; if (!S.budget) S.budget = [500, 800]; if (!S.address) S.address = 'Seestrasse 123, 8802 Kilchberg'; }
+function seedDefaults() { if (!S.theme) S.theme = 'unicorn'; if (!S.performer) S.performer = 'yes'; if (!S.where) S.where = 'home'; if (!S.budget) S.budget = [500, 800]; if (!S.address) S.address = 'Seestrasse 123, 8001 Zürich'; }
 const kids = () => [S.child, ...S.siblings];
 const kid = i => i === 0 ? S.child : S.siblings[i - 1];
 const kidNames = () => { const n = kids().map(k => k.name.trim()).filter(Boolean); if (!n.length) return 'Your child'; return n.length === 1 ? n[0] : n.slice(0, -1).join(', ') + ' & ' + n[n.length - 1]; };
@@ -826,7 +826,7 @@ plan: () => { const st = steps(); const p = progress(st); const b = budgetSum();
 address: () => ({
   body:`${pageHead('Your address', null, {toHub:true})}
     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px"><div><b style="font-size:16px">${esc(partyName())}</b><div style="font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1.1">${daysUntil(S.date)} days</div><div class="small">${t('until')}</div></div>${art('pipBalloon', 128, 111)}</div>
-    <div style="position:relative"><label class="field">${ic('pin', 18)}<input id="addr" aria-label="Your address" value="${esc(S.address)}" placeholder="e.g. Seestrasse 123, 8802 Kilchberg" autocomplete="off" oninput="S.address=this.value;document.querySelector('.footer .btn-primary').textContent=this.value.trim()?nextLabel():'Skip for now';A.addrType(this.value)" onblur="setTimeout(()=>{const b=document.getElementById('addr-sugg');if(b)b.innerHTML=''},150)"></label><div id="addr-sugg" class="addr-sugg"></div></div>
+    <div style="position:relative"><label class="field">${ic('pin', 18)}<input id="addr" aria-label="Your address" value="${esc(S.address)}" placeholder="e.g. Seestrasse 123, 8001 Zürich" autocomplete="off" oninput="S.address=this.value;document.querySelector('.footer .btn-primary').textContent=this.value.trim()?nextLabel():'Skip for now';A.addrType(this.value)" onblur="setTimeout(()=>{const b=document.getElementById('addr-sugg');if(b)b.innerHTML=''},150)"></label><div id="addr-sugg" class="addr-sugg"></div></div>
     <p class="hint">Used on the invitation and for the party-day directions. Only guests with the RSVP link can see it.</p>
     <button class="btn btn-text" style="height:auto;padding:12px 0;font-size:15px" onclick="A.switchWhere('venue')">Hosting somewhere else? Find a venue</button>`,
   footer: flowFooter(`<button class="btn btn-primary" onclick="A.saveAddress()">${S.address.trim() ? nextLabel() : 'Skip for now'}</button>`)

@@ -1,6 +1,6 @@
 export const eon = {
   en: {
-    documentTitle: 'Lu — E.ON Solar',
+    documentTitle: 'Lu Jin — E.ON Solar',
     description:
       'Case study: redesigning a high-friction solar calculator journey to turn existing traffic into qualified leads.',
     overview: {
@@ -161,7 +161,7 @@ export const eon = {
     },
   },
   de: {
-    documentTitle: 'Lu — E.ON Solar',
+    documentTitle: 'Lu Jin — E.ON Solar',
     description:
       'Case Study: Neugestaltung einer reibungsreichen Solarrechner-Strecke, um bestehenden Traffic in qualifizierte Leads zu verwandeln.',
     overview: {

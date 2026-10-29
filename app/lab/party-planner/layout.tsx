@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Patrick_Hand } from 'next/font/google'
 import { HtmlChrome } from '../../html-chrome'
+import { socialMetadata } from '../../seo'
 import './party-planner.css'
 
 const patrickHand = Patrick_Hand({
@@ -10,12 +11,14 @@ const patrickHand = Patrick_Hand({
   display: 'swap',
 })
 
+const TITLE = 'Lu — Gratula'
+const DESCRIPTION =
+  'Gratula turns four practical details into one calm plan for a child’s birthday — invitations, RSVPs, local suppliers and the party-day schedule.'
+
 export const metadata: Metadata = {
-  title: {
-    absolute: 'Lu — Gratula',
-  },
-  description:
-    'Gratula turns four practical details into one calm plan for a child’s birthday — invitations, RSVPs, local suppliers and the party-day schedule.',
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/lab/party-planner' }),
 }
 
 export const viewport: Viewport = {

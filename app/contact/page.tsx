@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — Contact',
+    absolute: 'Lu Jin — Contact',
   },
 }
 

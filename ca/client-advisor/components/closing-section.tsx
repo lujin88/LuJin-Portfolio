@@ -12,8 +12,8 @@ export function ClosingSection() {
     >
       <div className="ca-closing-atmosphere pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <img
-          src="/assets/images/client-advisory/closing-earth.png"
-          alt={t('ca.closingAlt')}
+          src="/assets/images/client-advisory/closing-earth.webp"
+          alt=""
           className="absolute inset-0 h-full w-full object-cover object-top"
         />
         <div className="ca-closing-floor" />

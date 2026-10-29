@@ -1,11 +1,11 @@
 import type { StaticImageData } from 'next/image'
 
-import bookView from '../../../image/CAWB.png'
-import clientPage from '../../../image/Investment Hub_ Client page 1.jpg'
-import clientView from '../../../image/Investment Hub - Client View 1.png'
-import proposalCreation from '../../../image/Proposal creation.jpg'
-import reviewExecute from '../../../image/Review & execute.jpg'
-import usTech from '../../../image/US Tech.jpg'
+import bookView from '../../../image/cawb.webp'
+import clientPage from '../../../image/investment-hub-client-page-1.webp'
+import clientView from '../../../image/investment-hub-client-view-1.webp'
+import proposalCreation from '../../../image/proposal-creation.webp'
+import reviewExecute from '../../../image/review-and-execute.webp'
+import usTech from '../../../image/us-tech.webp'
 
 export type ConceptMockup = {
   id: string

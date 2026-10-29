@@ -24,7 +24,7 @@ export function HeroImage() {
       {/* Photo */}
       <div className="relative z-10 overflow-hidden rounded-[2rem] shadow-lg shadow-navy-950/20">
         <Image
-          src="/assets/images/eon/solar-house.png"
+          src="/assets/images/eon/solar-house.webp"
           alt={t('eon.overview.photoAlt')}
           width={1000}
           height={1100}

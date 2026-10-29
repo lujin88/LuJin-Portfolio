@@ -5,7 +5,7 @@ import type { CSSProperties } from 'react'
 import { SiteClosing } from '../../components/site-closing'
 import { PartyPlannerCanvas } from './canvas-fit'
 import { assets, prototypeUrl } from './config'
-import { Icon as LineIcon } from '../../components/icon'
+import { Icon as LineIcon } from '../../components/line-icon'
 import { Icon, IconSprite } from './icon-sprite'
 
 function Confetti({

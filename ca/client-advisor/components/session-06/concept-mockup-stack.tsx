@@ -203,11 +203,11 @@ export function ConceptMockupStack() {
             }}
           >
             <span className={styles.face}>
-              <img src={item.src.src} alt="" draggable={false} />
+              <img src={item.src.src} alt="" draggable={false} loading="lazy" decoding="async" />
             </span>
             <span className={styles.rim} aria-hidden="true" />
             <span className={styles.reflect} aria-hidden="true">
-              <img src={item.src.src} alt="" draggable={false} />
+              <img src={item.src.src} alt="" draggable={false} loading="lazy" decoding="async" />
             </span>
           </button>
         ))}

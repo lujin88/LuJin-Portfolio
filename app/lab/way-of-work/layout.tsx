@@ -1,15 +1,18 @@
 import type { Metadata, Viewport } from 'next'
 
 import { HtmlChrome } from '../../html-chrome'
+import { socialMetadata } from '../../seo'
 
 const PAPER = '#fdfcf9'
 
+const TITLE = 'Lu — Human × AI'
+const DESCRIPTION =
+  'A human-led design practice powered by AI. Human judgment. AI execution.'
+
 export const metadata: Metadata = {
-  title: {
-    absolute: 'Lu — Human × AI',
-  },
-  description:
-    'A human-led design practice powered by AI. Human judgment. AI execution.',
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/lab/way-of-work' }),
 }
 
 export const viewport: Viewport = {

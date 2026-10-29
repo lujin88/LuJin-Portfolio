@@ -109,7 +109,7 @@ export function WeatherAquariumPage() {
 
     const heroMedia = heroMediaRef.current
     const heroDevice = heroDeviceRef.current
-    const onMove = (event: PointerEvent) => {
+    const onMove = (event: globalThis.PointerEvent) => {
       if (!heroMedia || !heroDevice) return
       const bounds = heroMedia.getBoundingClientRect()
       const x = (event.clientX - bounds.left) / bounds.width - 0.5

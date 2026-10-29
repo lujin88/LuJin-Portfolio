@@ -1,11 +1,16 @@
 import type { Metadata } from 'next'
 import 'remixicon/fonts/remixicon.css'
 import { HtmlChrome } from '../html-chrome'
+import { socialMetadata } from '../seo'
+
+const TITLE = 'Lu Jin — Product & Service Designer'
+const DESCRIPTION =
+  'Design leadership across product and service — from early-stage strategy to production-ready systems.'
 
 export const metadata: Metadata = {
-  title: {
-    absolute: 'Lu — Product & Service Designer',
-  },
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/index' }),
 }
 
 export default function IndexLayout({

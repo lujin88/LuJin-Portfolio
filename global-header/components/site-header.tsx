@@ -27,7 +27,9 @@ type NavGroup = {
   children: readonly NavLink[]
 }
 
-type NavEntry = ({ kind: 'link' } & NavLink) | ({ kind: 'group' } & NavGroup)
+type NavEntry =
+  | { kind: 'link'; label: string; href: string }
+  | ({ kind: 'group' } & NavGroup)
 
 const NAV: readonly NavEntry[] = [
   {
@@ -420,7 +422,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           )}
         >
           <img
-            src="/assets/images/brand/lu-logo.png"
+            src="/assets/images/brand/lu-logo-64.webp"
             alt="Lu"
             width={32}
             height={32}

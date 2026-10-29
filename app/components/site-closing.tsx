@@ -7,7 +7,7 @@ const EMAIL = 'lu.jin.ixd@gmail.com'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lu-jin-28008689/'
 const GITHUB_URL = 'https://github.com/lujin88'
 const CV_URL =
-  'https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link'
+  '/cv/lu-jin-cv.pdf'
 
 export function SiteClosing({ className }: { className?: string }) {
   const { t } = useTranslation()
@@ -76,6 +76,10 @@ export function SiteClosing({ className }: { className?: string }) {
           <div className="site-footer__bottom">
             <p className="site-footer__note">
               <span>{t('common.footerRights')}</span>
+              <span className="site-footer__analytics">
+                <span aria-hidden="true">·</span>
+                <span>{t('common.footerAnalytics')}</span>
+              </span>
             </p>
           </div>
         </div>

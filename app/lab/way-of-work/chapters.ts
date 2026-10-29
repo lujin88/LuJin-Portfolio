@@ -15,7 +15,7 @@ const IMG = '/assets/images/lab/way-of-work'
 const VID = '/assets/videos/lab/way-of-work'
 
 /** Six source clips concatenated into one scrub film. */
-export const SCRUB_VIDEO = `${VID}/scrub.mp4?v=2560`
+export const SCRUB_VIDEO = `${VID}/scrub.mp4?v=1920`
 
 export const CHAPTERS: readonly Chapter[] = [
   {
