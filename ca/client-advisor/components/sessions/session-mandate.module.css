@@ -31,6 +31,15 @@
     radial-gradient(ellipse 45% 52% at 55% 68%, #001b3440 0%, transparent 80%);
 }
 
+@media (min-width: 1024px) {
+  /* The slide is wider than a laptop. Keep the art box, and let the field
+     continue through the reserved viewport so it does not cut off mid-page. */
+  .atmosphere {
+    bottom: auto;
+    height: max(100%, 100svh, 100dvh);
+  }
+}
+
 .atmosphere::after {
   content: '';
   position: absolute;

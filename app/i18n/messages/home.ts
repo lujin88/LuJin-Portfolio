@@ -1,121 +1,153 @@
 export const home = {
   en: {
     documentTitle: 'Lu — Product & Service Designer',
-    heroTitleHtml: 'Simplify complexity.<br />Design with AI.',
-    heroSubtitle:
-      'Design leadership across product and service — from early-stage strategy to production-ready systems.',
+    heroKicker: 'Product designer · Enterprise & regulated UX',
+    heroTitle: 'Design for products where mistakes are expensive.',
+    heroBody:
+      'B2B products where clarity, compliance, and trust matter — from UBS wealth advisory to a police platform used in all 26 Swiss cantons.',
+    heroExploreHtml:
+      '<button type="button" class="hero-link" data-scroll-target="experience">My experience →</button>',
+    askLu: 'Ask Lu',
+    askLuClose: 'Close chat',
+    askLuSend: 'Send',
+    askLuGreeting: 'Hi! I’m Lu’s AI assistant. Ask about her work, experience, or process.',
+    askLuPlaceholder: 'Ask about Lu’s work…',
+    partnersLabel: 'Clients I’ve designed for',
     ca: {
-      titleHtml:
-        'AI-powered advisor <span class="font-sans font-semibold">workflow optimization</span>',
-      roleTitle: 'My role — lead service designer',
-      roleBody:
-        'Mapped end-to-end advisor workflows, identified key friction points, and translated insights into information architecture, user flows, and wireframes. Contributed to advisor interviews to uncover daily needs, priorities, and opportunities for AI.',
-      frictionTitle: 'From friction to AI',
-      frictionBody:
-        'Embedded AI into existing workflows to help advisors prioritize tasks, surface relevant information, and respond to clients at the right moment. When a client calls, AI can also surface who they are and what they may need — giving advisors the right context immediately, without adding another tool.',
-      scaleTitle: 'Designed for 500+ advisors',
-      scaleBody:
-        'Concept testing pointed to 5–10 minutes saved per workflow — less time searching, synthesising information, and switching between systems.',
+      eyebrow: 'Client Advisory · UBS',
+      titleHtml: 'AI that frees advisors for the client',
+      role: 'Lead Service Designer',
+      storyTitle: 'From searching to advising',
+      storyBody: 'One AI-supported view that surfaces the right information at the right moment.',
+      metricTitle: 'Designed for 500+ advisors',
+      metricBody: 'Concept tests: 5–10 min saved per client, up to 30 min on complex proposals.',
+      cta: 'Explore case study',
     },
     eon: {
-      titleHtml: 'Solar landing page <span class="font-sans font-semibold">redesign</span>',
-      roleTitle: 'My role — lead product designer',
-      roleBody:
-        'Led the end-to-end product design process, from research and journey mapping through information architecture, UX/UI design, prototyping, and implementation. Collaborated closely with developers to bring the experience to life and iterated based on user testing and data.',
-      conversionTitle: 'From complexity to conversion',
-      conversionBody:
-        'Redesigned the solar purchase journey to make a complex investment easier to understand, personalize, and trust. Progressive input and a more transparent calculator helped users move from initial interest to a meaningful, personalized offer with less friction.',
-      impactTitle: '300% higher conversion',
-      impactBody:
-        'The redesigned experience increased solar lead conversion by 300% within two months — from a ~5.1% baseline across Germany. Later adapted for the UK market.',
+      eyebrow: 'Solar · E.ON',
+      titleHtml: 'Solar landing page redesign',
+      role: 'Lead Product Designer',
+      storyTitle: 'From complexity to conversion',
+      storyBody: 'A complex investment, made easier to understand and trust.',
+      metricTitle: '300% increase in lead conversion',
+      metricBody: 'Within two months, from a 5.1% baseline in Germany. Later adapted for the UK.',
+      cta: 'Explore case study',
     },
+    how: {
+      kicker: 'How I work',
+      titleHtml: 'AI drafts.<em>I decide.</em>',
+      bodyHtml:
+        'AI drafts and iterates with me at every step.<br class="ad-desktop-break"> I decide the problem, the direction, and what<br class="ad-desktop-break"> ships.',
+      cta: 'Explore how I work',
+      artLabel:
+        'Decide: Human judgment in every step. A human designer leads a team of AI assistants, surrounded by sketches, checklists, and an idea bulb.',
+    },
+    expKicker: 'My Experience',
+    expHeadingHtml: '10+ years.<br />Product, service and UI.',
     aboutHeading: 'About me',
     aboutBodyHtml:
-      'I\'m Lu, a <strong class="text-text1 font-semibold">product &amp; service design lead</strong> with 10+ years turning <strong class="text-text1 font-semibold">complex systems and workflows into clear, useful products</strong>.<br /><br />I lead end-to-end across <strong class="text-text1 font-semibold">product, service, and UI design</strong> — from framing problems to prototyping and implementation. I use AI as part of my everyday design process to explore faster, prototype boldly, and turn ideas into working experiences.',
+      'I\'m Lu, an <strong class="text-text1 font-semibold">AI-native Product Designer</strong> who turns <strong class="text-text1 font-semibold">complex systems into clear, useful products</strong>.<br /><br />I work end-to-end across <strong class="text-text1 font-semibold">product, service, and UI design</strong>, and use AI every day to explore faster and prototype boldly.',
     exp: {
       '0': {
         eyebrow: 'Oct 2022 — Sep 2026',
         title: 'UBS · Zurich',
         role: 'Senior Service Designer',
-        desc: 'Designed for complex wealth-management workflows — balancing user needs with business goals and regulation.',
+        desc: 'Wealth-management workflows that balance users, business, and regulation.',
       },
       '1': {
         eyebrow: 'Oct 2020 — Sep 2022',
         title: 'AdNovum · Bern',
         role: 'Senior Product Designer',
-        desc: 'Complex enterprise interfaces — data tables, filtering and bulk operations for a nationwide Swiss platform.',
+        desc: 'Data tables, filters, and bulk actions for a nationwide Swiss platform.',
       },
       '2': {
         eyebrow: 'Jun 2016 — Jul 2020',
         title: 'Futurice · Munich',
         role: 'Senior Product Designer',
-        desc: 'Launched digital products from research and concept through implementation. Led a six-person design team.',
+        desc: 'Took digital products from research to launch. Led a six-person design team.',
       },
       '3': {
         eyebrow: 'Sep 2014 — Jun 2016',
         title: 'Designaffairs (Accenture) · Munich',
         role: 'Usability Engineer',
-        desc: 'UX concepts and interactive prototypes for connected products, plus scalable UI components and B2B design systems.',
+        desc: 'UX concepts and prototypes for connected products, plus B2B design systems.',
       },
     },
   },
   de: {
     documentTitle: 'Lu — Produkt- & Service-Designerin',
-    heroTitleHtml: 'Komplexität vereinfachen.<br />Mit KI gestalten.',
-    heroSubtitle:
-      'Design-Leadership in Produkt und Service — von der frühen Strategie bis zu produktionsreifen Systemen.',
+    heroKicker: 'Product Designerin · Enterprise- & regulierte UX',
+    heroTitle: 'Design für Produkte, bei denen Fehler teuer sind.',
+    heroBody:
+      'B2B-Produkte, bei denen Klarheit, Compliance und Vertrauen zählen — von Wealth Advisory bei der UBS bis zu einer Polizeiplattform für alle 26 Kantone.',
+    heroExploreHtml:
+      '<button type="button" class="hero-link" data-scroll-target="experience">Meine Erfahrung →</button>',
+    askLu: 'Ask Lu',
+    askLuClose: 'Chat schließen',
+    askLuSend: 'Senden',
+    askLuGreeting:
+      'Hallo! Ich bin Lus KI-Assistent. Fragen Sie nach ihrer Arbeit, Erfahrung oder Arbeitsweise.',
+    askLuPlaceholder: 'Fragen Sie nach Lus Arbeit…',
+    partnersLabel: 'Kunden, für die ich gestaltet habe',
     ca: {
-      titleHtml:
-        'KI-gestützte <span class="font-sans font-semibold">Workflow-Optimierung für Berater</span>',
-      roleTitle: 'Meine Rolle — Lead Service Designer',
-      roleBody:
-        'Erfassung von End-to-End-Berater-Workflows, Identifizierung zentraler Reibungspunkte und Übersetzung von Erkenntnissen in Informationsarchitektur, User Flows und Wireframes. Mitwirkung an Berater-Interviews zur Ermittlung täglicher Bedürfnisse, Prioritäten und KI-Chancen.',
-      frictionTitle: 'Von Reibung zu KI',
-      frictionBody:
-        'KI in bestehende Workflows eingebettet, damit Berater Aufgaben priorisieren, relevante Informationen einblenden und Kunden im richtigen Moment antworten können. Bei einem Kundenanruf zeigt die KI, wer anruft und was benötigt werden könnte — der richtige Kontext sofort, ohne ein weiteres Tool.',
-      scaleTitle: 'Entwickelt für 500+ Berater',
-      scaleBody:
-        'Im Konzepttest zeigten sich 5–10 Minuten Ersparnis pro Workflow — weniger Zeit für Suche, Synthese von Informationen und Wechsel zwischen Systemen.',
+      eyebrow: 'Client Advisory · UBS',
+      titleHtml: 'KI, die Beratern Zeit für Kunden gibt',
+      role: 'Lead Service Designerin',
+      storyTitle: 'Weniger suchen, mehr beraten',
+      storyBody: 'Eine KI-gestützte Sicht, die die richtige Information im richtigen Moment zeigt.',
+      metricTitle: 'Gestaltet für über 500 Berater',
+      metricBody:
+        'Konzepttest: 5–10 Min. pro Kunde gespart, bis zu 30 Min. bei komplexen Anlagevorschlägen.',
+      cta: 'Case Study ansehen',
     },
     eon: {
-      titleHtml: 'Solar-Landingpage <span class="font-sans font-semibold">Neugestaltung</span>',
-      roleTitle: 'Meine Rolle — Lead Product Designer',
-      roleBody:
-        'Leitung des Produktdesigns von Ende zu Ende: Research und Journey Mapping, Informationsarchitektur, UX/UI, Prototyping und Umsetzung. Enge Zusammenarbeit mit der Entwicklung und Iteration auf Basis von Tests und Daten.',
-      conversionTitle: 'Von Komplexität zu Conversion',
-      conversionBody:
-        'Die Solar-Kaufstrecke so gestaltet, dass eine komplexe Investition leichter verständlich, personalisierbar und vertrauenswürdig wird. Progressive Eingaben und ein transparenterer Rechner führten mit weniger Reibung vom Interesse zum personalisierten Angebot.',
-      impactTitle: '300% höhere Conversion',
-      impactBody:
-        'Die neu gestaltete Strecke steigerte die Solar-Lead-Conversion innerhalb von zwei Monaten um 300% — ausgehend von rund 5,1% Baseline in Deutschland. Anschließend Anpassung für den britischen Markt.',
+      eyebrow: 'Solar · E.ON',
+      titleHtml: 'Redesign der Solar-Landingpage',
+      role: 'Lead Product Designerin',
+      storyTitle: 'Von Komplexität zu Conversion',
+      storyBody: 'Eine komplexe Investition, leichter zu verstehen und zu vertrauen.',
+      metricTitle: '300 % mehr Lead-Conversion',
+      metricBody: 'In zwei Monaten, ausgehend von 5,1 % in Deutschland. Später für Großbritannien adaptiert.',
+      cta: 'Case Study ansehen',
     },
+    how: {
+      kicker: 'Wie ich arbeite',
+      titleHtml: 'KI entwirft.<em>Ich entscheide.</em>',
+      bodyHtml:
+        'KI entwirft und iteriert in jedem Schritt mit mir.<br class="ad-desktop-break"> Ich entscheide über Problem, Richtung und was<br class="ad-desktop-break"> live geht.',
+      cta: 'Arbeitsweise ansehen',
+      artLabel:
+        'Entscheiden: Menschliches Urteil in jedem Schritt. Eine Designerin führt KI-Assistenten, umgeben von Skizzen, Checklisten und einer Ideenbirne.',
+    },
+    expKicker: 'Meine Erfahrung',
+    expHeadingHtml: 'Über 10 Jahre.<br />Produkt, Service und UI.',
     aboutHeading: 'Über mich',
     aboutBodyHtml:
-      'Ich bin Lu, eine <strong class="text-text1 font-semibold">Lead für Produkt- &amp; Service-Design</strong> mit über 10 Jahren Erfahrung darin, <strong class="text-text1 font-semibold">komplexe Systeme und Workflows in klare, nützliche Produkte</strong> zu übersetzen.<br /><br />Ich führe Ende-zu-Ende in <strong class="text-text1 font-semibold">Produkt-, Service- und UI-Design</strong> — vom Framing bis zu Prototyp und Umsetzung. KI ist Teil meines Alltags: schneller erkunden, mutiger prototypen, Ideen in funktionierende Erlebnisse bringen.',
+      'Ich bin Lu, eine <strong class="text-text1 font-semibold">KI-native Product Designerin</strong>, die <strong class="text-text1 font-semibold">komplexe Systeme in klare, nützliche Produkte</strong> übersetzt.<br /><br />Ich arbeite end-to-end in <strong class="text-text1 font-semibold">Produkt-, Service- und UI-Design</strong> und nutze KI täglich, um schneller zu erkunden und mutiger zu prototypen.',
     exp: {
       '0': {
         eyebrow: 'Okt. 2022 — Sep. 2026',
         title: 'UBS · Zürich',
         role: 'Senior Service Designer',
-        desc: 'Komplexe Wealth-Management-Workflows — Nutzerbedürfnisse, Geschäftsziele und Regulation im Gleichgewicht.',
+        desc: 'Wealth-Management-Workflows zwischen Nutzern, Business und Regulierung.',
       },
       '1': {
         eyebrow: 'Okt. 2020 — Sep. 2022',
         title: 'AdNovum · Bern',
         role: 'Senior Product Designer',
-        desc: 'Komplexe Enterprise-Interfaces — Datentabellen, Filter und Massenoperationen für eine schweizweite Plattform.',
+        desc: 'Datentabellen, Filter und Sammelaktionen für eine schweizweite Plattform.',
       },
       '2': {
         eyebrow: 'Jun. 2016 — Jul. 2020',
         title: 'Futurice · München',
         role: 'Senior Product Designer',
-        desc: 'Digitale Produkte von Research und Konzept bis zur Umsetzung. Leitung eines sechsköpfigen Designteams.',
+        desc: 'Digitale Produkte von Research bis Launch. Leitung eines sechsköpfigen Designteams.',
       },
       '3': {
         eyebrow: 'Sep. 2014 — Jun. 2016',
         title: 'Designaffairs (Accenture) · München',
         role: 'Usability Engineer',
-        desc: 'UX-Konzepte und interaktive Prototypen für Connected Products sowie skalierbare UI-Komponenten und B2B-Designsysteme.',
+        desc: 'UX-Konzepte und Prototypen für Connected Products sowie B2B-Designsysteme.',
       },
     },
   },

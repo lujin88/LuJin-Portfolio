@@ -7,11 +7,11 @@ export const eon = {
       eyebrow: 'The Overview',
       titleBefore: 'Turning paid traffic into',
       titleAccent: 'solar leads.',
-      body: 'Redesigning a high-friction journey, turning existing traffic into qualified solar leads.',
+      body: 'Redesigning a high-friction calculator journey so the traffic E.ON already paid for turns into qualified leads.',
       role: 'My Role',
       roleLead: 'Led design end-to-end',
       roleBody:
-        'From research through testing, with a junior designer, partnering with PM, dev, and PO on strategy and delivery.',
+        'From research to testing, working with a junior designer and partnering with PM, engineering, and the PO on strategy and delivery.',
       photoAlt:
         'A modern house with black solar panels on the roof at sunset, surrounded by greenery',
       hand1: 'More',
@@ -20,7 +20,7 @@ export const eon = {
       hand4: 'tomorrow.',
       uplift: 'Lead conversion uplift',
       ukTitle: 'UK rollout',
-      ukBody: 'Similar experience rolled out to the UK market.',
+      ukBody: 'Adapted and rolled out for the UK market.',
     },
     challenge: {
       eyebrow: 'The Challenge',
@@ -29,7 +29,7 @@ export const eon = {
       title1: 'We had the traffic.',
       title2: 'Not the leads.',
       body1:
-        'E.ON was investing in paid traffic, but too few visitors converted — baseline lead conversion sat around 5.1%. People were researching solar, comparing options — but dropping off before finishing the calculator. We never got their information.',
+        'E.ON paid for traffic, but only about 5.1% converted to leads. People researched solar, then dropped off before finishing the calculator. We never got their details.',
       body2Lead: 'The opportunity wasn’t more traffic.',
       body2Strong: 'It was more value from the traffic we already had.',
     },
@@ -48,7 +48,7 @@ export const eon = {
       eyebrow: 'The Journey',
       title: 'A narrow window, lost at Calculate.',
       hand: 'The solar calculator was a critical step between interest and becoming a lead.',
-      body: 'Homeowners typically made a decision within 24 hours of their first visit — but over 85% dropped off at Calculate before ever getting there. A slow, heavy calculator was costing us the entire decision window.',
+      body: 'Homeowners usually decided within 24 hours — but over 85% dropped off at Calculate. A slow, heavy calculator cost us the whole decision window.',
       steps: ['Visit', 'Explore', 'Calculate', 'Consider', 'Apply', 'Purchase'],
     },
     problem: {
@@ -57,7 +57,7 @@ export const eon = {
       title2: 'asked for too much.',
       body1: 'A useful estimate required detailed information about the home.',
       body2:
-        'The original five or so questions were built for the algorithm, not for the customer.',
+        'The original questions were built for the algorithm, not for the customer.',
       body3: 'Some dropped off. Others never started.',
       hand1a: 'Finding these details',
       hand1b: 'takes time.',
@@ -85,7 +85,7 @@ export const eon = {
       p1Title: 'Get what we can automatically',
       p1Heading: 'Let the system find the data.',
       p1Body:
-        "We use the customer's location to retrieve key details about their home upfront — reducing manual input and unnecessary questions.",
+        "We use the customer's location to retrieve key details about their home upfront, so there's less to type and fewer questions to answer.",
       p1Emphasis: 'Fewer inputs. Fewer unnecessary questions.',
       p2Title: 'Ask what people can answer easily',
       p2Heading: 'Ask what people can answer easily.',
@@ -95,7 +95,7 @@ export const eon = {
       p3Title: 'Show the value, not just the calculation',
       p3Heading: 'Show the value, not just the calculation.',
       p3Body:
-        "We visualized the customer's home and showed what could be added to the system — such as solar panels, battery storage, and other options.",
+        "We visualized the customer's home and showed what the system could include — solar panels, battery storage, and other options.",
       p3Emphasis: 'A clear view of the value makes the decision easier.',
     },
     ui: {
@@ -142,7 +142,7 @@ export const eon = {
       eyebrow: 'Testing & Iteration',
       line1: 'Testing with',
       line2: 'real customers.',
-      body: 'We tested the redesigned calculator with customers using multiple sources of feedback.',
+      body: 'We tested the redesigned calculator with customers and combined several sources of feedback.',
       sources: ['Customer research', 'Website analytics', 'Hotjar', 'Sales feedback'],
       hand1: 'Less effort.',
       hand2: 'Faster understanding.',
@@ -168,20 +168,20 @@ export const eon = {
       eyebrow: 'Der Überblick',
       titleBefore: 'Bezahlten Traffic in',
       titleAccent: 'Solar-Leads verwandeln.',
-      body: 'Eine reibungsreiche Strecke neu gestaltet — bestehender Traffic wird zu qualifizierten Solar-Leads.',
+      body: 'Eine Rechner-Strecke voller Hürden, neu gestaltet — damit der Traffic, für den E.ON bereits bezahlte, zu qualifizierten Leads wird.',
       role: 'Meine Rolle',
-      roleLead: 'Design von Ende zu Ende',
+      roleLead: 'Design end-to-end verantwortet',
       roleBody:
-        'Von Research bis Testing, mit einer Junior Designerin, in Partnerschaft mit PM, Dev und PO zu Strategie und Umsetzung.',
+        'Von der Recherche bis zum Testing, gemeinsam mit einer Junior Designerin und in enger Zusammenarbeit mit PM, Engineering und PO bei Strategie und Umsetzung.',
       photoAlt:
         'Ein modernes Haus mit schwarzen Solarpanels auf dem Dach bei Sonnenuntergang, umgeben von Grün',
       hand1: 'Mehr',
       hand2: 'Sonne für',
       hand3: 'einen helleren',
       hand4: 'Morgen.',
-      uplift: 'Lead-Conversion-Steigerung',
-      ukTitle: 'UK-Roll-out',
-      ukBody: 'Ähnliches Erlebnis für den britischen Markt ausgerollt.',
+      uplift: 'Mehr Lead-Conversion',
+      ukTitle: 'Roll-out in Großbritannien',
+      ukBody: 'Für den britischen Markt adaptiert und ausgerollt.',
     },
     challenge: {
       eyebrow: 'Die Herausforderung',
@@ -190,7 +190,7 @@ export const eon = {
       title1: 'Wir hatten den Traffic.',
       title2: 'Nicht die Leads.',
       body1:
-        'E.ON investierte in Paid Traffic, aber zu wenige Besucher konvertierten — die Lead-Conversion lag bei rund 5,1 %. Menschen recherchierten Solar, verglichen Optionen — und brachen ab, bevor der Rechner fertig war. Wir bekamen ihre Daten nie.',
+        'E.ON bezahlte für Traffic, doch nur rund 5,1 % wurden zu Leads. Die Menschen informierten sich über Solar und brachen dann vor dem Ende des Rechners ab. Ihre Kontaktdaten bekamen wir nie.',
       body2Lead: 'Die Chance war nicht mehr Traffic.',
       body2Strong: 'Sondern mehr Wert aus dem Traffic, den wir schon hatten.',
     },
@@ -199,17 +199,17 @@ export const eon = {
       title: 'Für wen gestalten wir?',
       market: 'Der deutsche Markt',
       marketBody:
-        'Unsere Zielgruppe waren vor allem Eigenheimbesitzer ab 40, noch früh auf ihrer Solar-Reise.',
+        'Unsere Zielgruppe waren vor allem Eigenheimbesitzer ab 40, die sich gerade erst mit Solar beschäftigten.',
       insight: 'Zentrale Erkenntnis',
-      insightBody: 'Interesse war da. Vertrauen nicht.',
+      insightBody: 'Interesse war da. Sicherheit nicht.',
       photoAlt:
         'Research-Zusammenfassung: 66,7 % der Eigenheimbesitzer sind 40+, dazu Profile kostenbewusster, nachhaltigkeitsorientierter und informationssuchender Haushalte, über einem Foto einer Familie vor ihrem Solarhaus in der Dämmerung, annotiert „Noch am Erkunden. Noch am Entscheiden.“',
     },
     journey: {
       eyebrow: 'Die Journey',
-      title: 'Ein enges Fenster, verloren bei Calculate.',
+      title: 'Ein kurzes Zeitfenster, verloren am Rechner.',
       hand: 'Der Solarrechner war der kritische Schritt zwischen Interesse und Lead.',
-      body: 'Eigenheimbesitzer entschieden typischerweise innerhalb von 24 Stunden nach dem ersten Besuch — aber über 85 % brachen bei Calculate ab, bevor sie dort ankamen. Ein langsamer, schwerer Rechner kostete uns das gesamte Entscheidungsfenster.',
+      body: 'Eigenheimbesitzer entschieden meist innerhalb von 24 Stunden — doch über 85 % brachen beim Rechner ab. Ein langsamer, schwerfälliger Rechner kostete uns das ganze Entscheidungsfenster.',
       steps: ['Besuch', 'Erkunden', 'Rechner', 'Abwägen', 'Antrag', 'Kauf'],
     },
     problem: {
@@ -218,7 +218,7 @@ export const eon = {
       title2: 'verlangte zu viel.',
       body1: 'Eine brauchbare Schätzung brauchte detaillierte Angaben zum Haus.',
       body2:
-        'Die ursprünglichen rund fünf Fragen waren für den Algorithmus gebaut, nicht für den Kunden.',
+        'Die ursprünglichen Fragen waren für den Algorithmus gebaut, nicht für den Kunden.',
       body3: 'Manche brachen ab. Andere fingen gar nicht an.',
       hand1a: 'Diese Angaben zu finden',
       hand1b: 'braucht Zeit.',
@@ -228,7 +228,7 @@ export const eon = {
       houseAlt: 'Solarrechner-UI, die nach der Dachneigung fragt',
     },
     constraint: {
-      eyebrow: 'Die Design-Constraint',
+      eyebrow: 'Die Designhürde',
       titleBold: 'Der Rechner brauchte Daten.',
       titleRest: 'Der Kunde wollte sie nicht suchen.',
       body: 'Die Schätzung hing von detaillierten Angaben zum Haus ab.',
@@ -253,11 +253,11 @@ export const eon = {
       p2Heading: 'Fragen, was Menschen leicht beantworten.',
       p2Body:
         'Wir haben die Fragen reduziert und uns auf das Wesentliche konzentriert — Dinge, die Menschen über ihr Haus wissen.',
-      p2Emphasis: 'Ein kürzeres, einfacheres Formular führt zu höheren Completion-Raten.',
+      p2Emphasis: 'Ein kürzeres, einfacheres Formular wird häufiger abgeschlossen.',
       p3Title: 'Den Wert zeigen, nicht nur die Rechnung',
       p3Heading: 'Den Wert zeigen, nicht nur die Rechnung.',
       p3Body:
-        'Wir haben das Haus visualisiert und gezeigt, was sich ergänzen lässt — Solarpanels, Speicher und weitere Optionen.',
+        'Wir haben das Haus des Kunden visualisiert und gezeigt, was die Anlage umfassen kann — Solarpanels, Batteriespeicher und weitere Optionen.',
       p3Emphasis: 'Eine klare Sicht auf den Wert macht die Entscheidung leichter.',
     },
     ui: {
@@ -304,7 +304,7 @@ export const eon = {
       eyebrow: 'Testen & Iterieren',
       line1: 'Testen mit',
       line2: 'echten Kunden.',
-      body: 'Wir haben den neu gestalteten Rechner mit Kunden getestet — über mehrere Feedback-Quellen.',
+      body: 'Wir haben den neuen Rechner mit Kunden getestet und mehrere Feedback-Quellen kombiniert.',
       sources: ['Kundenresearch', 'Website-Analytics', 'Hotjar', 'Sales-Feedback'],
       hand1: 'Weniger Aufwand.',
       hand2: 'Schnelleres Verstehen.',
@@ -316,9 +316,9 @@ export const eon = {
     },
     results: {
       eyebrow: 'Ergebnis',
-      title: 'Echter Impact.',
-      uplift: 'Lead-Conversion-Steigerung',
-      ukTitle: 'UK-Roll-out',
+      title: 'Echte Wirkung.',
+      uplift: 'Mehr Lead-Conversion',
+      ukTitle: 'Roll-out in Großbritannien',
       ukBody: 'Angepasst und in den britischen Markt ausgerollt.',
     },
   },

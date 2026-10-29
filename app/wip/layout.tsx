@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import '../island-utilities.css'
 import { HtmlChrome } from '../html-chrome'
 import { socialMetadata } from '../seo'
 

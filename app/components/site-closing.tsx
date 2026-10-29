@@ -5,6 +5,7 @@ import { useTranslation } from '@i18n'
 
 const EMAIL = 'lu.jin.ixd@gmail.com'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lu-jin-28008689/'
+const GITHUB_URL = 'https://github.com/lujin88'
 const CV_URL =
   '/cv/lu-jin-cv.pdf'
 
@@ -47,6 +48,12 @@ export function SiteClosing({ className }: { className?: string }) {
               </span>
               <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
                 {t('common.linkedin')}
+              </a>
+              <span className="exp-contact__sep" aria-hidden="true">
+                ·
+              </span>
+              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
+                {t('common.github')}
               </a>
               <span className="exp-contact__sep" aria-hidden="true">
                 ·

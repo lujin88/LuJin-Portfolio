@@ -3,6 +3,7 @@ import { SiteHeader } from '@header/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { HtmlTheme } from '../html-theme'
 import { socialMetadata } from '../seo'
+import '@header/header.css'
 import '@/app/globals.css'
 import 'remixicon/fonts/remixicon.css'
 

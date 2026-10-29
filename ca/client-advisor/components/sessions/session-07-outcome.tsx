@@ -36,7 +36,7 @@ export function Session07Outcome() {
         className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-[linear-gradient(180deg,transparent_0%,var(--ca-bg)_100%)]"
       />
 
-      <div className="relative mx-auto flex h-auto w-full max-w-[1440px] flex-col gap-12 overflow-visible px-6 py-24 sm:px-10 lg:mx-0 lg:max-w-none lg:py-28 lg:pl-[var(--ca-rail)] lg:pr-16 xl:flex-row xl:items-center xl:gap-20 xl:pr-20">
+      <div className="relative mx-auto flex h-auto w-full max-w-[1440px] flex-col gap-12 overflow-visible px-[var(--content-inset,24px)] py-24 lg:mx-0 lg:max-w-none lg:py-28 xl:flex-row xl:items-center xl:gap-20">
         <Editorial />
         <Outcomes />
       </div>
@@ -92,6 +92,7 @@ function Outcomes() {
           value={t('ca.outcome.m1Value')}
           label={t('ca.outcome.m1Label')}
           image="/assets/images/client-advisory/sessions/07/card-01.webp"
+          imageAlt=""
         />
 
         <MetricCard
@@ -99,6 +100,7 @@ function Outcomes() {
           value={t('ca.outcome.m2Value')}
           label={t('ca.outcome.m2Label')}
           image="/assets/images/client-advisory/sessions/07/card-02.webp"
+          imageAlt=""
         />
 
         <MetricCard
@@ -107,6 +109,7 @@ function Outcomes() {
           label={t('ca.outcome.m3Label')}
           eyebrow={t('ca.outcome.reach')}
           image="/assets/images/client-advisory/sessions/07/card-03.webp"
+          imageAlt=""
         />
       </div>
 
@@ -123,18 +126,16 @@ type MetricCardProps = {
   label: string
   eyebrow?: string
   image: string
+  imageAlt: string
 }
 
-function MetricCard({ icon, value, label, eyebrow, image }: MetricCardProps) {
+function MetricCard({ icon, value, label, eyebrow, image, imageAlt }: MetricCardProps) {
   return (
     <TiltCard className="relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl border border-[var(--ca-line)] bg-[var(--ca-card)] shadow-[0_0_0_1px_rgba(61,139,255,0.04),0_30px_60px_-40px_rgba(61,139,255,0.35)]">
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]"
-      >
+      <div className="absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]">
         <Image
           src={image}
-          alt=""
+          alt={imageAlt}
           fill
           sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw"
           className="object-cover object-bottom"

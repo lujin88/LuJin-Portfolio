@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
   <style>
-    :root{--bg:#0a0a0a;--surface:#111214;--surface-2:#1a1c1f;--elevated:#1f2124;--text:#f9fbfc;--text-2:#b6bbc2;--text-3:#777e85;--text-4:#595d61;--accent:#8B5CF6;--accent-hover:#A78BFA;--border:#343638;--hair:rgba(255,255,255,.10);--hair-strong:rgba(255,255,255,.16);--ease:cubic-bezier(.22,1,.36,1);--wrap:1440px;--editorial:1040px;--pad:24px}
+    :root{--bg:#0a0a0a;--surface:#111214;--surface-2:#1a1c1f;--elevated:#1f2124;--text:#f9fbfc;--text-2:#b6bbc2;--text-3:#777e85;--text-4:#595d61;--accent:#7ea2ff;--accent-hover:#a9c4ff;--border:#343638;--hair:rgba(255,255,255,.10);--hair-strong:rgba(255,255,255,.16);--ease:cubic-bezier(.22,1,.36,1);--wrap:1440px;--editorial:1040px;--pad:24px}
     *{box-sizing:border-box}html{scroll-behavior:smooth}
     body{margin:0;background:var(--bg);color:var(--text);font:15px/1.75 Poppins,Arial,sans-serif;background-image:radial-gradient(rgba(255,255,255,.035) .7px,transparent .7px);background-size:4px 4px}
     a{color:inherit}
@@ -20,7 +20,7 @@
     nav{display:flex;gap:18px;flex-wrap:wrap}
     nav a{color:var(--text-2);font-size:12px;text-decoration:none}
     nav a:hover{color:var(--text)}
-    .hero{min-height:60vh;display:grid;align-items:end;padding:130px 0 80px;background:linear-gradient(135deg,rgba(139,92,246,.14),transparent 45%),linear-gradient(180deg,transparent,#0a0a0a)}
+    .hero{min-height:60vh;display:grid;align-items:end;padding:130px 0 80px;background:linear-gradient(135deg,rgba(126,162,255,.14),transparent 45%),linear-gradient(180deg,transparent,#0a0a0a)}
     .kicker,.index{color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
     .hero h1,h2{margin:.35rem 0 1rem;line-height:1.08;letter-spacing:-.04em}
     .hero h1{font-size:clamp(2.6rem,6vw,5.3rem);max-width:900px}
@@ -38,7 +38,7 @@
     .card,.rule,.theme{border:1px solid var(--hair);background:linear-gradient(145deg,rgba(255,255,255,.035),transparent);padding:25px;border-radius:16px}
     .card p,.rule p,.theme p{margin:0;color:var(--text-2)}
     .rule{border-left:2px solid var(--accent);margin-top:14px}
-    .callout{margin-top:32px;padding:26px;border:1px solid rgba(139,92,246,.42);border-radius:16px;background:rgba(139,92,246,.08)}
+    .callout{margin-top:32px;padding:26px;border:1px solid rgba(126,162,255,.42);border-radius:16px;background:rgba(126,162,255,.08)}
     .callout strong{color:#d9ccff}
     .callout p{margin:10px 0 0;color:var(--text-2)}
     .callout ul{margin:10px 0 0;padding-left:18px;color:var(--text-2)}
@@ -64,7 +64,7 @@
     .pill:hover{background:#f9fbfc;color:#0a0a0a;transform:translateY(-2px)}
     .demo{margin-top:28px;padding:34px;border:1px solid var(--hair);border-radius:16px;background:var(--surface)}
     .split{display:grid;grid-template-columns:43fr 57fr;gap:48px;align-items:center}
-    .media{aspect-ratio:16/9;border-radius:16px;background:linear-gradient(135deg,#211d35,#111214 55%,#172136);box-shadow:0 18px 60px rgba(139,92,246,.15)}
+    .media{aspect-ratio:16/9;border-radius:16px;background:linear-gradient(135deg,#211d35,#111214 55%,#172136);box-shadow:0 18px 60px rgba(126,162,255,.15)}
     .motion{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
     .motion div{padding:18px;background:var(--surface);border:1px solid var(--hair);border-radius:12px}
     .motion b{display:block;margin-bottom:6px}
@@ -107,10 +107,10 @@
       <h2>One portfolio world. Multiple authored voices.</h2>
       <p class="intro">This document is an evolution of the reverse-engineered foundation—not a redesign brief. Existing values remain evidence. The added rules prevent a future implementation from mistaking visual variety or legacy code for a mandate to flatten the work.</p>
       <div class="grid2">
-        <article class="rule"><h3>Type does hierarchy. Color does signaling.</h3><p>Poppins carries the product voice for Display, headings, body, and UI site-wide. There is no second decorative display face. Blue-violet guides focus, labels, glows and selection; it does not erase hierarchy or become a blanket fill.</p></article>
+        <article class="rule"><h3>Type does hierarchy. Color does signaling.</h3><p>Poppins carries the product voice for Display, headings, body, and UI site-wide. There is no second decorative display face. Index blue guides focus, labels, glows and selection; it does not erase hierarchy or become a blanket fill.</p></article>
         <article class="rule"><h3>Image-led, 16:9, 43 / 57</h3><p>Existing case-study sections use a full-viewport story stage, then a 43fr / 57fr copy-to-media split with 48–80px gutters; following sections may mirror the columns.</p></article>
         <article class="rule"><h3>Motion explains, then stops</h3><p>Pin-and-scrub storytelling, reveals and ambient movement support the narrative. At 640px or with reduced motion, pinning collapses to static stacks.</p></article>
-        <article class="rule"><h3>Theme layers inherit; they are not flattened</h3><p>Case studies inherit Global Foundation rhythm, shell, interaction and motion. Their palettes, media and storytelling stay authored. Do not “correct” a theme with the global blue-violet.</p></article>
+        <article class="rule"><h3>Theme layers inherit; they are not flattened</h3><p>Case studies inherit Global Foundation rhythm, shell, interaction and motion. Their palettes, media and storytelling stay authored. Do not “correct” a theme with the global index blue.</p></article>
       </div>
 
       <h3 class="sub">Global Foundation vs Theme Layer</h3>
@@ -129,7 +129,7 @@
             <li>Interaction principles</li>
             <li>Motion</li>
             <li>Responsive behavior</li>
-            <li>Global shell (header mechanics, page field, blue-violet signal)</li>
+            <li>Global shell (header mechanics, page field, index-blue signal)</li>
           </ul>
         </article>
         <article class="card">
@@ -168,7 +168,7 @@
     <section id="foundation"><div class="wrap">
       <p class="index">02 / Global foundation</p>
       <h2>Document what repeats. Do not invent a cleaner system.</h2>
-      <p class="intro">A value qualifies as a global token when it repeats across shared portfolio pages. The values below are retained from the live implementation. Official name for the shell accent: <strong>Blue-violet</strong>. Do not call it generic purple.</p>
+      <p class="intro">A value qualifies as a global token when it repeats across shared portfolio pages. The values below are retained from the live implementation. Official name for the shell accent: <strong>Index blue</strong> (<code>#7ea2ff</code>). Header check uses the same blue.</p>
 
       <h3 style="margin-top:38px">Typography</h3>
       <table class="table"><thead><tr><th>Role</th><th>Existing specification</th><th>Scope</th></tr></thead><tbody>
@@ -185,38 +185,39 @@
         <article class="swatch"><div class="chip" style="background:#111214"></div><div><strong>Surface</strong><code>--color-bg-primary #111214</code></div></article>
         <article class="swatch"><div class="chip" style="background:#1a1c1f"></div><div><strong>Secondary</strong><code>--color-bg-secondary #1a1c1f</code></div></article>
         <article class="swatch"><div class="chip" style="background:#1f2124"></div><div><strong>Elevated</strong><code>--color-bg-elevated #1f2124</code></div></article>
-        <article class="swatch"><div class="chip" style="background:#8B5CF6"></div><div><strong>Blue-violet</strong><code>--color-theme-2 #8B5CF6</code></div></article>
-        <article class="swatch"><div class="chip" style="background:#A78BFA"></div><div><strong>Blue-violet hover</strong><code>--color-theme-hover #A78BFA</code></div></article>
-        <article class="swatch"><div class="chip" style="background:rgba(139,92,246,0.15)"></div><div><strong>Soft accent</strong><code>--color-theme-3 rgba(139,92,246,0.15)</code></div></article>
+        <article class="swatch"><div class="chip" style="background:#7ea2ff"></div><div><strong>Index blue</strong><code>--color-theme-2 #7ea2ff</code></div></article>
+        <article class="swatch"><div class="chip" style="background:#a9c4ff"></div><div><strong>Index blue hover</strong><code>--color-theme-hover #a9c4ff</code></div></article>
+        <article class="swatch"><div class="chip" style="background:rgba(126,162,255,0.15)"></div><div><strong>Soft accent</strong><code>--color-theme-3 rgba(126,162,255,0.15)</code></div></article>
         <article class="swatch"><div class="chip" style="background:#343638"></div><div><strong>Divider</strong><code>--color-border-divider #343638</code></div></article>
         <article class="swatch"><div class="chip" style="background:#f9fbfc"></div><div><strong>Primary text</strong><code>--color-text-1 #f9fbfc</code></div></article>
         <article class="swatch"><div class="chip" style="background:#b6bbc2"></div><div><strong>Secondary text</strong><code>--color-text-2 #b6bbc2</code></div></article>
         <article class="swatch"><div class="chip" style="background:#777e85"></div><div><strong>Muted text</strong><code>--color-text-3 #777e85</code></div></article>
       </div>
 
-      <h3 class="sub">Global blue-violet tokens</h3>
-      <p class="intro">Blue-violet is a signal / interaction / editorial accent, not a universal page fill. Live HTML shell pages and <code>global-header/header.css</code> map Tailwind <code>accent</code> to blue-violet <code>#8B5CF6</code> (<code>var(--color-theme-2)</code>). Client Advisory and E.ON local <code>--accent</code> tokens are not the global blue-violet accent and must remain case-specific. Do not remap them to <code>#8B5CF6</code>.</p>
+      <h3 class="sub">Global index-blue tokens</h3>
+      <p class="intro">Index blue is a signal / interaction / editorial accent, not a universal page fill. Live HTML shell pages and <code>global-header/header.css</code> map Tailwind <code>accent</code> and <code>--header-accent</code> to <code>#7ea2ff</code> (<code>var(--color-theme-2)</code>). Client Advisory and E.ON local <code>--accent</code> tokens are not this accent and must remain case-specific. Do not remap them to <code>#7ea2ff</code>.</p>
       <table class="table"><thead><tr><th>Role</th><th>Token</th><th>Value</th><th>Rule</th></tr></thead><tbody>
-        <tr><td>Shell accent</td><td><code>--color-theme-2</code> · live Tailwind <code>accent</code> (HTML shell / global header only)</td><td><code>#8B5CF6</code></td><td>Official name: <strong>Blue-violet</strong>. Shared shell identity only. Not CA/E.ON <code>--accent</code>.</td></tr>
-        <tr><td>Hover</td><td><code>--color-theme-hover</code></td><td><code>#A78BFA</code></td><td>Hover companion to the shell accent.</td></tr>
-        <tr><td>Soft accent</td><td><code>--color-theme-3</code></td><td><code>rgba(139,92,246,0.15)</code></td><td>Soft signal / glow treatment. Not a general-purpose background fill.</td></tr>
+        <tr><td>Shell accent</td><td><code>--color-theme-2</code> · live Tailwind <code>accent</code> · <code>--header-accent</code></td><td><code>#7ea2ff</code></td><td>Official name: <strong>Index blue</strong>. Shared shell and header check. Not CA/E.ON <code>--accent</code>.</td></tr>
+        <tr><td>Hover</td><td><code>--color-theme-hover</code></td><td><code>#a9c4ff</code></td><td>Hover companion to the shell accent.</td></tr>
+        <tr><td>Soft accent</td><td><code>--color-theme-3</code></td><td><code>rgba(126,162,255,0.15)</code></td><td>Soft signal / glow treatment. Not a general-purpose background fill.</td></tr>
       </tbody></table>
 
-      <h3 class="sub">Verified live usage of blue-violet</h3>
+      <h3 class="sub">Verified live usage of index blue</h3>
       <table class="table"><thead><tr><th>Surface</th><th>Where it actually paints</th></tr></thead><tbody>
         <tr><td>Index, About, Lab, AI Workflow</td><td>Text selection</td></tr>
         <tr><td>Shared HTML shell</td><td>Focus rings on pills, accordion, contact/footer links</td></tr>
         <tr><td>Lab</td><td>Eyebrow <code>text-accent</code> (“Lab”)</td></tr>
         <tr><td>AI Workflow</td><td>Eyebrow, arrows / accents, media wash via <code>--color-theme-3</code></td></tr>
         <tr><td>Cards / panels</td><td>Restrained card glow; selected / related shell interaction states</td></tr>
-        <tr><td>Not used as</td><td>Universal page fill; Client Advisory content; E.ON content; Client Advisory and E.ON local <code>--accent</code> tokens; React SiteHeader focus ring (<code>currentColor</code>); React header check; Index experience connectors</td></tr>
+        <tr><td>Also paints</td><td>Header language check (<code>--header-accent #7ea2ff</code>) and Index experience connectors (<code>--exp-blue: 126, 162, 255</code>)</td></tr>
+        <tr><td>Not used as</td><td>Universal page fill; Client Advisory content; E.ON content; Client Advisory and E.ON local <code>--accent</code> tokens; React SiteHeader focus ring (<code>currentColor</code>)</td></tr>
       </tbody></table>
 
-      <h3 class="sub">Scoped colors — not global brand tokens</h3>
-      <p class="intro">These blues exist in the live code. They must remain separate from blue-violet. Do not merge, rename, or replace them with <code>#8B5CF6</code>.</p>
+      <h3 class="sub">Same accent on header and experience</h3>
+      <p class="intro">The header check and the Index experience connector use the host accent. Case-study palettes stay separate.</p>
       <table class="table"><thead><tr><th>Scope</th><th>Value</th><th>Classification</th></tr></thead><tbody>
-        <tr><td>Header-local accent</td><td><code>--header-accent #4a90ff</code></td><td>React SiteHeader selected-language Check icon only (hover/focus of the selected option). Not the global brand accent. Not a case-study theme color.</td></tr>
-        <tr><td>Index experience storytelling / connector motif</td><td><code>#7A7FDC</code> / <code>#3846D4</code></td><td>Index experience timeline active connector and plus only. A storytelling motif. Do not rename as blue-violet. Lab/AI CSS fallbacks that mention these hexes do not win when the active accent token is present.</td></tr>
+        <tr><td>Header accent</td><td><code>--header-accent #7ea2ff</code></td><td>Same blue as <code>--color-theme-2</code>. React SiteHeader selected-language Check (hover/focus of the selected option).</td></tr>
+        <tr><td>Index experience connector</td><td><code>#7ea2ff</code> / hover <code>#a9c4ff</code></td><td>Timeline bar and plus use the host accent. Not a second periwinkle.</td></tr>
       </tbody></table>
 
       <div class="grid2">
@@ -279,7 +280,7 @@
         <li><strong>Client Advisory hero composition.</strong> Full-bleed photography, authored rail, 01→02 overlap and arc. UI may sit in the frame while artwork extends beyond it.</li>
         <li><strong>E.ON Solar hero composition.</strong> Full-bleed navy stage, illustration and theme-only interior inset. Content well remains 1440; extra inset stays in the E.ON Theme Layer.</li>
         <li><strong>Lab / AI editorial composition.</strong> Editorial <code>1040px</code> well, Poppins Display at the editorial size token, and the <code>899px</code> timeline fallback. Not a sitewide breakpoint or a 1440 rewrite.</li>
-        <li><strong>Index-specific experience layout.</strong> Pin-scroll stages, viewport-centered hero copy, centered section headings, periwinkle connectors.</li>
+        <li><strong>Index-specific experience layout.</strong> Pin-scroll stages, viewport-centered hero copy, centered section headings, index-blue connectors.</li>
         <li><strong>About video composition.</strong> Full-viewport video, mouse-scrub, copy inset in the 1440 well. Vertical seating is compositional.</li>
         <li><strong>Artwork overlap and storytelling treatments.</strong> Arcs, fans, overflowing media, decorative shapes. These may break the grid by design.</li>
       </ul>
@@ -327,15 +328,15 @@
     <section id="themes"><div class="wrap">
       <p class="index">03 / Theme Layer</p>
       <h2>Accent colors are authored content, not inconsistency.</h2>
-      <p class="intro">Theme values are intentionally not promoted into the global palette. A normalization pass may document and apply them consistently inside their own case study; it must not remove, replace or “correct” them with blue-violet.</p>
+      <p class="intro">Theme values are intentionally not promoted into the global palette. A normalization pass may document and apply them consistently inside their own case study; it must not remove, replace or “correct” them with index blue.</p>
       <div class="grid3">
-        <article class="theme"><h3>Client Advisory</h3><p>Ice / signal blue on deep navy. Case-study meaning. Must not be overwritten by global blue-violet.</p></article>
+        <article class="theme"><h3>Client Advisory</h3><p>Ice / signal blue on deep navy. Case-study meaning. Must not be overwritten by the global index blue.</p></article>
         <article class="theme"><h3>E.ON Solar</h3><p>Navy, lavender, mint, E.ON red and light sections—including the Caveat hand expression. Lavender stays lavender.</p></article>
-        <article class="theme"><h3>Playground + AI Workflow</h3><p>Editorial expression of the global blue-violet with Poppins Display at the larger editorial size. Outward label is Playground; URL <code>/lab/*</code> may remain. Preserve the more visible use of the accent token.</p></article>
+        <article class="theme"><h3>Playground + AI Workflow</h3><p>Editorial expression of the global index blue with Poppins Display at the larger editorial size. Outward label is Playground; URL <code>/lab/*</code> may remain. Preserve the more visible use of the accent token.</p></article>
       </div>
 
       <h3 class="sub">Theme Layer → Client Advisory</h3>
-      <p class="intro">Client Advisory colors belong to the Client Advisory Theme Layer and must not be replaced by the global blue-violet.</p>
+      <p class="intro">Client Advisory colors belong to the Client Advisory Theme Layer and must not be replaced by the global index blue.</p>
       <table class="table"><thead><tr><th>Group</th><th>Token</th><th>Verified value</th></tr></thead><tbody>
         <tr><td>Background</td><td><code>--ca-bg</code></td><td><code>#0b1220</code></td></tr>
         <tr><td>Background</td><td><code>--ca-bg-2</code></td><td><code>#0d1526</code></td></tr>
@@ -349,7 +350,7 @@
       <p class="note">Source: <code>ca/client-advisor/app/globals.css</code>. Do not flatten these into Global Foundation.</p>
 
       <h3 class="sub">Theme Layer → E.ON Solar</h3>
-      <p class="intro">E.ON Solar colors belong to the E.ON Solar Theme Layer and must not be replaced by the global blue-violet.</p>
+      <p class="intro">E.ON Solar colors belong to the E.ON Solar Theme Layer and must not be replaced by the global index blue.</p>
       <table class="table"><thead><tr><th>Group</th><th>Token</th><th>Verified value</th></tr></thead><tbody>
         <tr><td>Base</td><td><code>--navy-950</code></td><td><code>#07151f</code></td></tr>
         <tr><td>Base</td><td><code>--off-white</code></td><td><code>#f8f8f6</code></td></tr>
@@ -363,7 +364,7 @@
       </tbody></table>
       <div class="card" style="margin-top:20px">
         <h3>Other authored E.ON treatments</h3>
-        <p>Light sections use <code>--off-white</code> / related light surfaces rather than the global near-black page field. Product sans is inherited Poppins (Global Foundation). Handwriting uses Caveat via <code>--font-hand</code> as the E.ON Theme Layer handwritten accent. There is no single Caveat color token: live hand copy inherits the containing surface (<code>text-ink</code>, white, and in one testing note <code>#5a6180</code>). Live CSS also aliases <code>--section-marker-purple</code> to <code>--lavender-light</code>; that name is E.ON lavender, unrelated to the global blue-violet token. Preserve these treatments inside the case.</p>
+        <p>Light sections use <code>--off-white</code> / related light surfaces rather than the global near-black page field. Product sans is inherited Poppins (Global Foundation). Handwriting uses Caveat via <code>--font-hand</code> as the E.ON Theme Layer handwritten accent. There is no single Caveat color token: live hand copy inherits the containing surface (<code>text-ink</code>, white, and in one testing note <code>#5a6180</code>). Live CSS also aliases <code>--section-marker-purple</code> to <code>--lavender-light</code>; that name is E.ON lavender, unrelated to the global index-blue token. Preserve these treatments inside the case.</p>
       </div>
       <p class="note">Source: <code>eon/e-on-09/app/globals.css</code>. E.ON lavender remains lavender.</p>
 
@@ -383,10 +384,10 @@
         <p style="margin-top:28px"><a class="pill" href="#implementation">Explore now →</a></p>
       </div><div class="media"></div></div></div>
       <table class="table"><thead><tr><th>Component</th><th>Existing behavior to retain</th></tr></thead><tbody>
-        <tr><td>Live global header</td><td>React SiteHeader: 80px, 96px from md; glass after scroll; centered nav; 200ms hover; mobile hamburger. The HTML <code>#site-nav</code> is hidden by Next.js to prevent duplicate headers. Focus ring is <code>currentColor</code>, <code>2px</code> width, <code>3px</code> offset. Header-local accent <code>#4a90ff</code> is used only on the selected-language Check interaction.</td></tr>
-        <tr><td>Pill button</td><td><code>999px</code> radius; <code>.85rem 1.9rem</code> padding; white-outline to white-fill hover; <code>-2px</code> lift, 0.97 active scale, arrow +3px. Pills are not filled with blue-violet.</td></tr>
+        <tr><td>Live global header</td><td>React SiteHeader: 80px, 96px from md; glass after scroll; centered nav; 200ms hover; mobile hamburger. The HTML <code>#site-nav</code> is hidden by Next.js to prevent duplicate headers. Focus ring is <code>currentColor</code>, <code>2px</code> width, <code>3px</code> offset. Header accent <code>#7ea2ff</code> matches the host accent and is used on the selected-language Check interaction.</td></tr>
+        <tr><td>Pill button</td><td><code>999px</code> radius; <code>.85rem 1.9rem</code> padding; white-outline to white-fill hover; <code>-2px</code> lift, 0.97 active scale, arrow +3px. Pills are not filled with index blue.</td></tr>
         <tr><td>Accordion</td><td>2px active bar; 1.15rem / 600 title; 0.95rem / 1.75 body; grid-row open transition 450ms; in pin-wrap scroll chooses item.</td></tr>
-        <tr><td>Cards / panels</td><td>Hairline border, restrained blue-violet card glow, rounded-2xl media. About collection cards retain 9:16 format and authored fan motion.</td></tr>
+        <tr><td>Cards / panels</td><td>Hairline border, restrained index-blue card glow, rounded-2xl media. About collection cards retain 9:16 format and authored fan motion.</td></tr>
         <tr><td>Footer</td><td>Compact HTML copyright on Index/About/Playground/AI Workflow; Client Advisory and E.ON use React SiteFooter with glow field. Shared copy (Playground link); intentionally different chrome.</td></tr>
       </tbody></table>
     </div></section>
@@ -440,8 +441,8 @@
           <ul>
             <li>Client Advisory Theme Layer (ice / signal / navy tokens above)</li>
             <li>E.ON Solar Theme Layer (navy, lavender, mint, red, light sections, Caveat)</li>
-            <li>Lab / AI Workflow blue-violet signaling and Poppins Display (editorial size)</li>
-            <li>Index experience periwinkle connectors and header-local <code>#4a90ff</code></li>
+            <li>Lab / AI Workflow index-blue signaling and Poppins Display (editorial size)</li>
+            <li>Index experience connectors and the header check, both <code>#7ea2ff</code></li>
             <li>Continuous underlying world across accents and transitions</li>
             <li>Case-specific footer and display-family differences recorded in the audit</li>
           </ul>
@@ -465,8 +466,7 @@
 
       <h3 class="sub">Intentional differences</h3>
       <ul class="steps">
-        <li><strong>Global blue-violet vs header-local blue.</strong> Shell identity is <code>#8B5CF6</code>. React SiteHeader selected-language Check uses <code>#4a90ff</code> only. Do not collapse them.</li>
-        <li><strong>Global blue-violet vs Index periwinkle.</strong> Experience timeline connectors use <code>#7A7FDC</code> / <code>#3846D4</code> as an Index storytelling motif. Do not replace with <code>#8B5CF6</code>.</li>
+        <li><strong>One index blue.</strong> Shell identity, the React SiteHeader language check, and the experience timeline connectors share <code>#7ea2ff</code> (hover <code>#a9c4ff</code>).</li>
         <li><strong>Global shell vs Client Advisory theme.</strong> CA navy, ice, signal and <code>--ca-accent</code> are Theme Layer tokens. They are not defects in the Global Foundation.</li>
         <li><strong>Global shell vs E.ON Solar theme.</strong> E.ON navy, lavender, mint, red and light sections are Theme Layer tokens. Local CSS names that contain “purple” still mean lavender.</li>
         <li><strong>One Display face.</strong> Index, About, Lab, AI Workflow, and Party Planner titles all use Poppins. Size tokens differ; the family does not. Theme hand accents (Caveat / Patrick Hand) stay local and are not Display.</li>
@@ -490,10 +490,10 @@
 
     <section id="brand-clarification"><div class="wrap narrow">
       <p class="index">Brand clarification</p>
-      <h2>The global accent is blue-violet, not generic purple.</h2>
-      <p class="intro"><code>#8B5CF6</code> is the portfolio’s blue-violet signal. Use it for shared identity—focus, selection, Lab/AI eyebrows and arrows, restrained glows and related shell interaction states. It does not require individual case studies to adopt it, and it must not replace their authored blue, lavender, mint, red or other thematic colors.</p>
+      <h2>The global accent is index blue.</h2>
+      <p class="intro"><code>#7ea2ff</code> is the portfolio’s index-blue signal. Use it for shared identity—focus, selection, the header check, experience connectors, Lab/AI eyebrows and arrows, restrained glows and related shell interaction states. It does not require individual case studies to adopt it, and it must not replace their authored blue, lavender, mint, red or other thematic colors.</p>
       <div class="callout">
-        <strong>Controlled vocabulary.</strong> In this Design System, call <code>#8B5CF6</code> <strong>blue-violet</strong>. Do not rename E.ON lavender, Client Advisory blue, header-local blue, or Index experience periwinkle as blue-violet.
+        <strong>Controlled vocabulary.</strong> In this Design System, call <code>#7ea2ff</code> <strong>index blue</strong>. Header check and experience connectors use that same blue. Do not rename E.ON lavender or Client Advisory blue as index blue.
       </div>
     </div></section>
   </main>

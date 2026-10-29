@@ -1,10 +1,10 @@
 export const ai = {
   en: {
-    documentTitle: 'Lu Jin — AI Design Workflow',
+    documentTitle: 'Lu — AI Design Workflow',
     eyebrow: 'Playground — Experiment',
     titleHtml: 'Explore more.<br />Think deeper.',
     intro:
-      'AI expands the possibilities. I bring the strategy, judgment, and systems thinking to shape what comes next — a working study of how an AI-native process actually changes the way products get designed.',
+      'AI expands the possibilities. I bring the strategy, judgment, and systems thinking — a working study of how an AI-native process changes product design.',
     flowExplore: 'Explore',
     flowGenerate: 'Generate',
     flowPrototype: 'Prototype',
@@ -20,26 +20,26 @@ export const ai = {
     metaStageValue: 'Ongoing — evolves with the tools',
     premiseTitleHtml: 'What changes when AI enters the <span class="font-bold">process</span>?',
     premiseBody1:
-      'The tools generate options faster than any team could. The risk is speed without direction — more artefacts, less clarity.',
+      'The tools generate options faster than any team could. The risk is speed without direction — more artifacts, less clarity.',
     premiseSpeed: 'Speed',
     premiseVolume: 'Volume',
     premiseJudgment: 'Judgment',
     premiseCraft: 'Craft',
     premiseBody2Html:
-      'So the question isn\'t <span class="text-white font-bold">can AI design this?</span> It\'s how a designer stays in the lead — using AI to widen the option space while strategy, taste, and systems thinking decide what\'s worth building.',
+      'So the question isn\'t <span class="text-white font-bold">can AI design this?</span> It\'s how a designer stays in the lead — AI widens the options; strategy and taste decide what\'s worth building.',
     loopTitleHtml: 'One loop. <span class="font-bold">Four moves.</span>',
     step1Title: '01 — Explore · Start with better questions',
     step1BodyHtml:
-      'Research, challenge assumptions, connect signals, and explore beyond the obvious. AI compresses the reading, but the framing — which questions are worth asking — stays the designer\'s call.<br /><span class="text-text3">ChatGPT · Claude · Gemini · Perplexity</span>',
+      'Research, challenge assumptions, connect signals. AI compresses the reading; which questions are worth asking stays the designer\'s call.<br /><span class="text-text3">ChatGPT · Claude · Gemini · Perplexity</span>',
     step2Title: '02 — Generate · Make possibilities visible',
     step2BodyHtml:
-      'Turn ideas into visuals, motion, and directions — making abstract thinking tangible early, while it\'s still cheap to change your mind.<br /><span class="text-text3">Kling · Seedance · MiniMax · Jimeng</span>',
+      'Turn ideas into visuals, motion, and directions early, while changing your mind is still cheap.<br /><span class="text-text3">Kling · Seedance · MiniMax · Jimeng</span>',
     step3Title: '03 — Prototype · Make it real enough to learn',
     step3BodyHtml:
-      'Turn promising directions into working experiences and see what holds up under real interaction, not just in a static frame.<br /><span class="text-text3">Figma · Canva · Paico</span>',
+      'Turn promising directions into working experiences and see what holds up under real interaction.<br /><span class="text-text3">Figma · Canva · Paico</span>',
     step4Title: '04 — Iterate · Make. Test. Learn. Repeat.',
     step4BodyHtml:
-      'Push ideas through scenarios and edge cases, then rethink what doesn\'t work. The loop tightens each pass until the direction earns its place.<br /><span class="text-text3">Claude · Codex</span>',
+      'Push ideas through scenarios and edge cases, and rethink what breaks. Each pass tightens the loop.<br /><span class="text-text3">Claude · Codex</span>',
     contributionTitleHtml: 'Where I come in<span class="shell-accent">.</span>',
     contributionBody1:
       "AI can produce a hundred directions in an afternoon. It can't tell you which one fits the product, the users, or the constraints you haven't written down yet.",
@@ -64,16 +64,16 @@ export const ai = {
     bannerJudgmentHtml: '<span class="text-white font-semibold">Judgment</span> shapes what comes next',
   },
   de: {
-    documentTitle: 'Lu Jin — KI-Design-Workflow',
+    documentTitle: 'Lu — KI-Design-Workflow',
     eyebrow: 'Playground — Experiment',
     titleHtml: 'Weiter erkunden.<br />Tiefer denken.',
     intro:
-      'KI erweitert den Möglichkeitsraum. Ich bringe Strategie, Urteilskraft und Systemdenken — eine Arbeitsstudie, wie ein KI-nativer Prozess tatsächlich verändert, wie Produkte gestaltet werden.',
+      'KI erweitert den Möglichkeitsraum. Ich bringe Strategie, Urteilskraft und Systemdenken ein — eine Arbeitsstudie, wie ein KI-nativer Prozess Produktdesign verändert.',
     flowExplore: 'Erkunden',
     flowGenerate: 'Generieren',
     flowPrototype: 'Prototypen',
     flowIterate: 'Iterieren',
-    cta: 'Zeig mir den Ablauf',
+    cta: 'Ablauf ansehen',
     metaRole: 'Rolle',
     metaRoleValue: 'Product Designer — eigenständig',
     metaFocus: 'Fokus',
@@ -90,23 +90,23 @@ export const ai = {
     premiseJudgment: 'Urteil',
     premiseCraft: 'Handwerk',
     premiseBody2Html:
-      'Die Frage ist also nicht <span class="text-white font-bold">kann KI das gestalten?</span> Sondern, wie die Designerin die Führung behält — KI weitet den Optionenraum, Strategie, Gespür und Systemdenken entscheiden, was gebaut wird.',
+      'Die Frage ist also nicht <span class="text-white font-bold">kann KI das gestalten?</span> Sondern, wie die Designerin die Führung behält — KI weitet die Optionen, Strategie und Gespür entscheiden, was gebaut wird.',
     loopTitleHtml: 'Eine Schleife. <span class="font-bold">Vier Schritte.</span>',
     step1Title: '01 — Erkunden · Mit besseren Fragen beginnen',
     step1BodyHtml:
-      'Recherchieren, Annahmen prüfen, Signale verbinden, über das Offensichtliche hinausgehen. KI verdichtet das Lesen — das Framing, welche Fragen sich lohnen, bleibt die Entscheidung der Designerin.<br /><span class="text-text3">ChatGPT · Claude · Gemini · Perplexity</span>',
+      'Recherchieren, Annahmen prüfen, Signale verbinden. KI verdichtet das Lesen; welche Fragen sich lohnen, entscheidet die Designerin.<br /><span class="text-text3">ChatGPT · Claude · Gemini · Perplexity</span>',
     step2Title: '02 — Generieren · Möglichkeiten sichtbar machen',
     step2BodyHtml:
-      'Ideen in Visuals, Motion und Richtungen übersetzen — abstraktes Denken früh greifbar machen, solange Umdenken noch günstig ist.<br /><span class="text-text3">Kling · Seedance · MiniMax · Jimeng</span>',
+      'Ideen früh in Visuals, Motion und Richtungen übersetzen, solange Umdenken noch günstig ist.<br /><span class="text-text3">Kling · Seedance · MiniMax · Jimeng</span>',
     step3Title: '03 — Prototypen · Real genug, um zu lernen',
     step3BodyHtml:
-      'Vielversprechende Richtungen in funktionierende Erlebnisse überführen und prüfen, was unter echter Interaktion hält — nicht nur im Standbild.<br /><span class="text-text3">Figma · Canva · Paico</span>',
+      'Vielversprechende Richtungen in funktionierende Erlebnisse überführen und prüfen, was unter echter Interaktion hält.<br /><span class="text-text3">Figma · Canva · Paico</span>',
     step4Title: '04 — Iterieren · Machen. Testen. Lernen. Wiederholen.',
     step4BodyHtml:
-      'Ideen durch Szenarien und Grenzfälle treiben, dann überdenken, was nicht trägt. Die Schleife wird enger, bis die Richtung ihren Platz verdient.<br /><span class="text-text3">Claude · Codex</span>',
+      'Ideen durch Szenarien und Grenzfälle treiben und überdenken, was nicht trägt. Jeder Durchgang macht die Schleife enger.<br /><span class="text-text3">Claude · Codex</span>',
     contributionTitleHtml: 'Wo ich ansetze<span class="shell-accent">.</span>',
     contributionBody1:
-      'KI kann an einem Nachmittag hundert Richtungen erzeugen. Sie sagt nicht, welche zum Produkt, zu den Nutzern oder zu den noch ungeschriebenen Constraints passt.',
+      'KI kann an einem Nachmittag hundert Richtungen erzeugen. Sie kann nicht sagen, welche zum Produkt passt, zu den Nutzern oder zu den Rahmenbedingungen, die noch niemand aufgeschrieben hat.',
     contributionBody2:
       'Jeder Durchgang fragt: Was kann ich generieren, was wiederverwenden, und was braucht wirklich eine Entscheidung?',
     contributionGoalLabel: 'Das Ziel',
@@ -116,7 +116,7 @@ export const ai = {
     outcomeIntro:
       'Eine wiederholbare Schleife von der groben Frage zum funktionierenden Prototyp — die Tools tragen das Volumen, die Designerin die Richtung.',
     card1Title: '4 Stufen',
-    card1Body: 'Erkunden, Generieren, Prototypen, Iterieren — eine Schleife, Ende zu Ende.',
+    card1Body: 'Erkunden, Generieren, Prototypen, Iterieren — eine Schleife, end-to-end.',
     card2Title: 'Tage, nicht Wochen',
     card2Body: 'Richtungen werden in einem Bruchteil der üblichen Zeit testbar.',
     card3Title: 'Urteilsgeführt',

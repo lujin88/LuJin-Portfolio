@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useTranslation } from '@i18n'
 import { cn } from '@header/lib/utils'
+import { Icon } from '../../components/line-icon'
 import { SiteClosing } from '../../components/site-closing'
 
 import { SCENE_ASPECT, prototypeUrl, sceneBackgroundSrc } from './config'
@@ -20,7 +21,7 @@ function GlassCta({
     <>
       <span>{children}</span>
       <span className={styles.glassIcon}>
-        <i className="ri-arrow-right-up-line" aria-hidden="true" />
+        <Icon name="arrow-right-up-line" />
       </span>
     </>
   )

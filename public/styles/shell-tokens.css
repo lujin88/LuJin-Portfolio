@@ -1,14 +1,15 @@
 /* Shell tokens for Index, About, Playground, and AI Workflow.
-   Host layer only. Do not merge with header accent #4a90ff or case-study palettes.
+   Host accent and header accent are the same index blue (#7ea2ff).
+   Do not merge with case-study palettes.
    --color-bg-deepseek is a leftover and is intentionally absent. */
 
 :root {
-  /* Host layer — showcase shell only. Hex casing matches Master DS. */
+  /* Host layer — showcase shell. Header check uses this same blue. */
   --color-theme-1: #ffffff;
-  --color-theme-2: #8B5CF6;
-  --color-theme-3: rgba(139, 92, 246, 0.15);
-  --color-theme-hover: #A78BFA;
-  --color-primary-solid: #8B5CF6;
+  --color-theme-2: #7ea2ff;
+  --color-theme-3: rgba(126, 162, 255, 0.15);
+  --color-theme-hover: #a9c4ff;
+  --color-primary-solid: #7ea2ff;
 
   --color-bg-page: #0a0a0a;
   --color-bg-primary: #111214;
@@ -33,11 +34,11 @@
   --nav-scrolled-bg: rgba(10, 10, 10, 0.78);
 
   --pill-text: #f9fbfc;
-  --pill-border: rgba(249, 251, 252, 0.45);
-  --pill-bg: rgba(255, 255, 255, 0.02);
+  --pill-border: rgba(249, 251, 252, 0.72);
+  --pill-bg: transparent;
   --pill-hover-bg: #f9fbfc;
   --pill-hover-text: #0a0a0a;
-  --pill-hover-shadow: 0 10px 30px -8px rgba(249, 251, 252, 0.35);
+  --pill-hover-shadow: none;
 
   --panel-shadow:
     0 40px 80px -30px rgba(0, 0, 0, 0.7),
@@ -47,26 +48,26 @@
   --card-bg: #111214;
   --card-border: rgba(255, 255, 255, 0.07);
   --card-border-hover: rgba(255, 255, 255, 0.16);
-  --card-glow: rgba(139, 92, 246, 0.15);
+  --card-glow: rgba(126, 162, 255, 0.15);
   --card-shadow:
     0 1px 0 rgba(255, 255, 255, 0.04) inset,
-    0 24px 48px -26px rgba(139, 92, 246, 0.14),
+    0 24px 48px -26px rgba(126, 162, 255, 0.14),
     0 10px 28px -12px rgba(0, 0, 0, 0.65);
   --card-shadow-hover:
     0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 32px 64px -26px rgba(139, 92, 246, 0.24),
+    0 32px 64px -26px rgba(126, 162, 255, 0.24),
     0 14px 34px -12px rgba(0, 0, 0, 0.75);
 
   --grain-opacity: 0.035;
   --grain-blend: overlay;
 
-  --selection-bg: rgba(139, 92, 246, 0.35);
+  --selection-bg: rgba(126, 162, 255, 0.35);
   --selection-text: #ffffff;
 
-  --exp-accent: #8B5CF6;
-  --exp-accent-bright: #A78BFA;
-  --exp-glow-wide: rgba(139, 92, 246, 0.22);
-  --exp-glow-mid: rgba(139, 92, 246, 0.34);
+  --exp-accent: #7ea2ff;
+  --exp-accent-bright: #a9c4ff;
+  --exp-glow-wide: rgba(126, 162, 255, 0.22);
+  --exp-glow-mid: rgba(126, 162, 255, 0.34);
   --exp-track: rgba(255, 255, 255, 0.09);
   --exp-dot-ring: rgba(255, 255, 255, 0.35);
   --exp-connector: linear-gradient(
@@ -140,6 +141,10 @@
   --duration-fast: 200ms;
   --duration-interaction: 320ms;
   --duration-reveal: 800ms;
+
+  /* Page gutter. 24px until the 1440 well is centered, then the
+     side margin of that well. Header and page content share this edge. */
+  --content-inset: max(var(--pad), calc((100% - var(--wrap)) / 2));
 }
 
 /* Header focus stays currentColor in global-header/header.css. */

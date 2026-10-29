@@ -18,10 +18,10 @@ Accent 可变；底层空间世界、壳层节奏与交互结构保持连续。
 
 | # | 规则 | 含义 |
 |---|------|------|
-| 1 | **Type does hierarchy. Color does signaling.** | Poppins 承载产品/UI 与 **Display** 全站标题（无第二装饰 Display 字体）。Blue-violet（`#8B5CF6`）做信号、焦点、选中与克制 glow——**不是**整页铺色，也**不能**抹平 case 主题色。 |
-| 2 | **Theme accents are authored content, not inconsistency.** | 页面级 primary / secondary accent **允许且鼓励**。CA 冰蓝、E.ON lavender/mint/red、Playground 编辑式 violet 等必须保留，禁止用全局 blue-violet“纠正”。 |
+| 1 | **Type does hierarchy. Color does signaling.** | Poppins 承载产品/UI 与 **Display** 全站标题（无第二装饰 Display 字体）。Index blue（`#7ea2ff`）做信号、焦点、选中与克制 glow——**不是**整页铺色，也**不能**抹平 case 主题色。 |
+| 2 | **Theme accents are authored content, not inconsistency.** | 页面级 primary / secondary accent **允许且鼓励**。CA 冰蓝、E.ON lavender/mint/red、Playground 编辑式 index blue 等必须保留，禁止用全局 index blue“纠正” case 色。 |
 | 3 | **Global Page Frame is the content X-anchor.** | 内容对齐：`24px` page pad + `1440px` main / `1040px` editorial well。Header chrome（1800 / 1600）**不是**内容原点。 |
-| 4 | **Structure constant; theme paint variable.** | 按钮半径、尺寸阶、icon gap、状态运动学跨主题保持同一结构；填充色 / 描边色跟页面 accent 走。Pills **不用** blue-violet 实心填充。 |
+| 4 | **Structure constant; theme paint variable.** | 按钮半径、尺寸阶、icon gap、状态运动学跨主题保持同一结构；填充色 / 描边色跟页面 accent 走。Pills **不用** index blue 实心填充。 |
 | 5 | **Normalize only what repeats.** | 只对齐跨页重复的类型角色、间距、容器、边框、radius、交互与 motion safety。勿把 Theme Layer 构图压成一套绝对 Y / 一套测量。 |
 | 6 | **Background Continuity.** | Section 可换 accent 与 mood，但仍是同一空间世界的 accent layer——不是硬切成另一个网站。 |
 | 7 | **Motion explains, then stops.** | Prefer transform / opacity；`prefers-reduced-motion` 下取消位移。640px 以下 pin 塌为静态栈。 |
@@ -49,7 +49,7 @@ Accent 可变；底层空间世界、壳层节奏与交互结构保持连续。
 
 ### 2.1 Color — Global Foundation（Host shell）
 
-官方壳层 accent 名：**Blue-violet**（勿称 generic purple）。
+官方壳层 accent 名：**Index blue**（`#7ea2ff`）。Header check 用同一蓝色。
 
 | Token | Value | 用途 |
 |-------|-------|------|
@@ -57,9 +57,9 @@ Accent 可变；底层空间世界、壳层节奏与交互结构保持连续。
 | `--color-bg-primary` | `#111214` | Surface / card |
 | `--color-bg-secondary` | `#1a1c1f` | Secondary surface |
 | `--color-bg-elevated` | `#1f2124` | Elevated |
-| `--color-theme-2` / `--color-primary-solid` | `#8B5CF6` | Shell accent（信号） |
-| `--color-theme-hover` | `#A78BFA` | Accent hover |
-| `--color-theme-3` | `rgba(139,92,246,0.15)` | Soft accent / glow |
+| `--color-theme-2` / `--color-primary-solid` | `#7ea2ff` | Shell accent（信号） |
+| `--color-theme-hover` | `#a9c4ff` | Accent hover |
+| `--color-theme-3` | `rgba(126,162,255,0.15)` | Soft accent / glow |
 | `--color-text-1` | `#f9fbfc` | Primary text |
 | `--color-text-2` | `#b6bbc2` | Secondary / body |
 | `--color-text-3` | `#777e85` | Muted |
@@ -73,8 +73,8 @@ Accent 可变；底层空间世界、壳层节奏与交互结构保持连续。
 
 | Scope | Value | 规则 |
 |-------|-------|------|
-| Header-local | `--header-accent #4a90ff` | **仅** SiteHeader 已选语言 Check |
-| Index experience motif | `#7A7FDC` / `#3846D4` | Index timeline connector / plus，勿改名 blue-violet |
+| Header accent | `--header-accent #7ea2ff` | 与 host accent 同一蓝色。SiteHeader 已选语言 Check |
+| Index experience connector | `#7ea2ff` / hover `#a9c4ff` | Timeline bar 与 plus，同一 host accent |
 | `--color-bg-deepseek` | — | 历史残留，**不推广** |
 | `.btn-primary-kling` | — | 未使用历史类，**非**组件 token |
 
@@ -177,7 +177,7 @@ Radius：卡片/媒体常见 **16px**（`rounded-2xl`）；小 swatch **12px**�
 
 | Variant | 默认外观（Host shell） | Hover | 规则 |
 |---------|------------------------|-------|------|
-| **Primary**（Pill CTA） | 透明/微底 `--pill-bg` + 描边 `--pill-border`；字 `--pill-text` | 白底 `#f9fbfc` + 深字 `#0a0a0a` + `--pill-hover-shadow` | **不要**用 blue-violet 实心填 pill |
+| **Primary**（Pill CTA） | 白字 `#f9fbfc`、透明底、白描边 `rgba(249, 251, 252, 0.72)` | hover 白底 `#f9fbfc` + 深字 `#0a0a0a`，无 glow | Header Contact Me 与深色页 CTA 同一支 |
 | **Secondary** | 更弱描边 / 无底；字 `--color-text-2` | 提到 `--color-text-1` + 略强描边 | 次要行动；同 radius / 尺寸阶 |
 | **Ghost** | 无边框、无底；字 `--color-text-2` | 字 `--color-text-1`；可微底 `rgba(255,255,255,0.06)` | 用于行内/工具条；保 focus ring |
 | **Icon** | 正方形触控区；半径可用 999（圆）或 12px；padding 均分 | 同 Primary/Ghost 的运动学 | 宽高对齐 ≥ S/M/L 的 min-height；icon 居中 |
@@ -208,11 +208,11 @@ Radius：卡片/媒体常见 **16px**（`rounded-2xl`）；小 swatch **12px**�
 
 ### 3.2 禁止什么
 
-- 用全局 `#8B5CF6` **覆盖** CA `--ca-accent` / E.ON lavender·mint·red / Index periwinkle motif  
+- 用全局 `#7ea2ff` **覆盖** CA `--ca-accent` / E.ON lavender·mint·red  
 - 把 Theme Layer 的 ch/px 测量 **压平** 进 672 / 448 / 1040  
 - 把 header chrome padding 当成内容 X 锚点  
 - 把 `max-w-3xl`（768）当成第三个全局 well  
-- Pill 实心填 blue-violet  
+- Pill 实心填 index blue  
 - 推广未使用历史 token（`--color-bg-deepseek`、`.btn-primary-kling`）  
 - 静默替换 Global Page Frame / shell nav / 背景连续性 / a11y focus / 响应式规则  
 
@@ -222,7 +222,7 @@ Radius：卡片/媒体常见 **16px**（`rounded-2xl`）；小 swatch **12px**�
 |-------|-------------|-------------------|
 | **Client Advisory** | Ice / signal blue on deep navy | `--ca-bg #0b1220` · `--ca-accent #8aa3c7` · `--color-signal #4da3ff` · `--ca-text #f3f6fa` |
 | **E.ON Solar** | Navy + lavender + mint + E.ON red + light sections | `--navy-950 #07151f` · `--lavender #c9b5f4` · `--mint #b9f4d8` · `--eon-red #f32717` · `--off-white #f8f8f6` |
-| **Playground + AI Workflow** | 全局 blue-violet 的编辑式强化 + Poppins Display（更大尺寸 token） | `--color-theme-2` + Poppins · URL `/lab/*` 可保留 |
+| **Playground + AI Workflow** | 全局 index blue 的编辑式强化 + Poppins Display（更大尺寸 token） | `--color-theme-2` + Poppins · URL `/lab/*` 可保留 |
 | **Index / About / Host** | Blue-violet 信号 + Poppins | `shell-tokens.css` |
 
 ### 3.4 Theme boundary（一句话）
@@ -274,7 +274,7 @@ Radius：卡片/媒体常见 **16px**（`rounded-2xl`）；小 swatch **12px**�
 - [ ] 内容 X 锚点 = `24px` pad + `1440` 或 `1040` well（不是 header 1800 边）  
 - [ ] React SiteHeader：80 / 96px 高；focus `currentColor` 2+3；无重复 HTML `#site-nav`  
 - [ ] Host 页加载 `shell-tokens` / 共享 primitive；grain ≈ 3.5%  
-- [ ] Selection / shell focus 使用 blue-violet；header Check 仍用 `#4a90ff`  
+- [ ] Selection / shell focus / header Check 使用 index blue `#7ea2ff`  
 
 ### B. 字体与层级
 
@@ -294,7 +294,7 @@ Radius：卡片/媒体常见 **16px**（`rounded-2xl`）；小 swatch **12px**�
 
 - [ ] Primary CTA 为 pill 结构；M = `0.85rem 1.9rem`；radius 999  
 - [ ] Icon gap 8px；hover -2px；active 0.97；arrow +3px  
-- [ ] **未**用 blue-violet 实心填 pill  
+- [ ] Primary CTA 为白字、透明底、白描边；hover 白底深字，无 glow  
 - [ ] S/M/L 与 Primary/Secondary/Ghost/Icon 结构一致，仅 paint 随主题  
 - [ ] Focus-visible 可见；reduced-motion 无位移  
 
@@ -319,11 +319,63 @@ Radius：卡片/媒体常见 **16px**（`rounded-2xl`）；小 swatch **12px**�
 
 ---
 
+## 5. Copy & Voice（文案规范 · EN / DE）
+
+### 5.1 文案在哪里
+
+| 位置 | 内容 |
+|---|---|
+| `app/i18n/messages/*.ts` | 全站 EN / DE 字典（home、ca、eon、wow、ai、lab、owg、common） |
+| `app/i18n/about-me.ts` | About 页 EN / DE |
+| `global-header/lib/header-copy.ts` | Header 导航与按钮 |
+| `public/*.html` | HTML island 的**英文默认文本**（`data-i18n`）；`about.html` 内另有一份翻译表副本；`home.html` 内有 Ask Lu 的 `copy` 对象 |
+| `app/lab/agent-monitor/page.tsx`、`app/lab/party-planner/party-planner-page.tsx` | 仅英文，硬编码 |
+
+**改英文时必须同步 HTML 默认文本**，否则加载时会闪出旧文案。AI Companion Pet 是中文原型，不在 EN / DE 范围内。
+
+### 5.2 Voice
+
+- 第一人称、直接、具体：说做了什么、为谁、结果是什么。少用抽象名词堆叠（如 “advisor workflow optimization”）。
+- 短句优先；一句一个意思。标题可以是片段，正文用完整句子。
+- 指标必须与案例页一致（例：CA 5–10 min 信息收集 · 最多 30 min 复杂方案 · 500+ advisors；E.ON +300%、基线 5.1%）。改一处，查所有出现处。
+- 不夸大、不编造数字；不确定的量词（“five or so”）宁可删掉。
+
+### 5.3 English
+
+- **美式拼写**：optimize、recognize、prioritized、judgment、artifacts、personalize。
+- **按钮 / 链接用 sentence case**：`Let's talk`、`Explore now`、`Contact me`、`Back to homepage`、`Start planning`。专有名称保留大写：`Way of Work`、`Agent Monitor`、`Playground`。
+- 列表用 Oxford comma：clarity, compliance, and trust。
+- 引号用弯引号 “ ” 和 ’，不用直引号。
+- 页面标题格式：`Lu — Page name`。
+
+### 5.4 Deutsch
+
+- **一律 “Sie”**（招聘方 / 企业读者）。不用 “du / dein / Frag mich / Lass uns”。E.ON 计算器 UI 原型本身也是 Sie。
+- 使用德国德语拼写：**ß**（maßgeschneidert、größten），不用瑞士 ss。
+- 职位用女性形式：`Lead Service Designerin`、`Product Designerin`、`Designerin`。
+- 术语：proposal → **Anlagevorschlag**（不用 Offerte / Angebot）；research（叙述中）→ **Recherche**，作为方法 / 范围标签可保留 `Research`；end-to-end 写作 `end-to-end`。
+- 百分号前加空格：`300 %`、`5,1 %`；小数用逗号。
+- 引号用 „ “。
+- 避免直译腔和英文名词硬拼：用 “Ideen greifbar machen”，不用 “Ideen wirklich machen”；用 “Abschlussrate / wird häufiger abgeschlossen”，不用 “Completion-Raten”。
+- 可保留的英文行业词：Case Study、Design System、Workflow、Lead-Conversion、Playground、Way of Work。
+- 页面标题格式：`Lu — Seitenname`。
+
+### 5.5 Copy review checklist
+
+- [ ] EN 与 DE 意思一致，没有一边多一边少
+- [ ] 指标在首页卡片、案例页、metadata 中一致
+- [ ] DE 全部为 Sie；EN 为美式拼写
+- [ ] 按钮 sentence case；页面标题 `Lu — …`
+- [ ] HTML 默认文本已与字典同步
+- [ ] 原型中的人名、步骤名、标签前后一致（例：Party Planner 生日主角 = Mia）
+
+---
+
 ## Appendix — Quick Reference
 
 ```
 Fonts:     Poppins (UI + Display site-wide) · Caveat (E.ON hand only) · Patrick Hand (PP hand only)
-Accent:    Blue-violet #8B5CF6 / hover #A78BFA  → signal only
+Accent:    Index blue #7ea2ff / hover #a9c4ff  → signal only. Header check is the same blue.
 Pad:       24px content · Wells 1440 / 1040
 Space:     8 · 16 · 24 · 48 · 80 · 96 · 128
 Pill M:    999px · padding 0.85rem 1.9rem · gap 0.5rem · 320ms
