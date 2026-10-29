@@ -26,3 +26,11 @@ This repo is the canonical site on **port 3000**.
 - 推之前跑 `pnpm install --frozen-lockfile`，通过了再推。分支落后 main 很多时先 rebase 再跑。
 
 来源：Lu 2026-11-03（Buzz 事件 e2633b3f）。
+
+# Cloud Agent
+
+Run the site from the repository root.
+
+- Install with `npm ci`, using the root `package-lock.json`. The Next apps under `eon/`, `ca/`, `global-header/`, and `global-footer/` are source imported by the root app. Do not install or start them as separate servers.
+- `npm run dev` is the dev server, pinned to port 3000. Open `http://localhost:3000/index`.
+- Leave `NEXT_PUBLIC_POSTHOG_KEY` empty to run without analytics. No secret is required.
