@@ -39,6 +39,8 @@
   --color-lavender-insight: var(--lavender-insight);
   --color-mint: var(--mint);
   --color-mint-light: var(--mint-light);
+  --color-after: var(--after);
+  --color-after-foreground: var(--after-foreground);
   --color-blue-soft: var(--blue-soft);
   --color-peach: var(--peach);
   --color-eon-red: var(--eon-red);
@@ -127,6 +129,8 @@
   --lavender-insight: #9b90c5;
   --mint: #b9f4d8;
   --mint-light: #e5f9ee;
+  --after: oklch(0.82 0.14 165);
+  --after-foreground: oklch(0.2 0.06 200);
   --blue-soft: #b9d4ff;
   --peach: #ffdcc3;
   --eon-red: #f32717;
@@ -303,15 +307,9 @@
 
 .content-container {
   width: 100%;
-  max-width: var(--content-max-width);
-  margin-inline: auto;
-  padding-inline: var(--content-padding-x);
-}
-
-@media (width >= 768px) {
-  :root {
-    --content-padding-x: 4rem;
-  }
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: var(--content-inset, 24px);
 }
 
 .site-chrome {

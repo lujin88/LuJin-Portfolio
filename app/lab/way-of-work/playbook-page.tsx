@@ -4,15 +4,8 @@ import { Icon } from '../../components/icon'
 import { useTranslation } from '../../i18n/use-translation'
 import styles from './playbook.module.css'
 
-const QUESTIONS = [
-  'How is a PRD different from a Design Brief?',
-  "What if there's no PRD?",
-  'What are the Design Brief, Design System and Design Spec?',
-  'When are KPIs set?',
-  'What if chats get too long and use too many tokens?',
-]
-
 const PLAYBOOK = '/ai-ui-process/index.html'
+const PROCESS_SHOT = '/assets/images/lab/way-of-work/design-process.png'
 
 export function PlaybookPage() {
   const { t } = useTranslation()
@@ -26,11 +19,19 @@ export function PlaybookPage() {
         </div>
 
         <div className={styles.stage}>
-          <p className={`${styles.callout} ${styles.calloutFind}`}>
-            <strong>{t('wow.findTitle')}</strong>
-            <span>{t('wow.findBody')}</span>
-          </p>
-          <div className={styles.notes}>
+          <div className={styles.frame}>
+            <div className={styles.device}>
+              <span className={styles.handle} data-corner="tl" />
+              <span className={styles.handle} data-corner="tr" />
+              <span className={styles.handle} data-corner="bl" />
+              <span className={styles.handle} data-corner="br" />
+              <img
+                className={styles.shot}
+                src={PROCESS_SHOT}
+                alt="Design process workspace with search, your situation, and the steps from discover through launch."
+              />
+            </div>
+
             <p className={`${styles.callout} ${styles.calloutGuide}`}>
               <strong>{t('wow.guideTitle')}</strong>
               <span>{t('wow.guideBody')}</span>
@@ -39,49 +40,10 @@ export function PlaybookPage() {
               <strong>{t('wow.answersTitle')}</strong>
               <span>{t('wow.answersBody')}</span>
             </p>
-          </div>
-
-          <div className={styles.frame}>
-            <span className={styles.handle} data-corner="tl" />
-            <span className={styles.handle} data-corner="tr" />
-            <span className={styles.handle} data-corner="bl" />
-            <span className={styles.handle} data-corner="br" />
-            <div className={styles.window} aria-hidden="true">
-              <aside className={styles.rail}>
-                <span className={styles.railMark}>
-                  <Icon name="sparkling-line" />
-                </span>
-                <span><Icon name="file-list-3-line" /></span>
-                <span><Icon name="layout-grid-line" /></span>
-                <span className={styles.railOn}><Icon name="chat-smile-2-line" /></span>
-              </aside>
-              <div className={styles.sheet}>
-                <div className={styles.toolbar}>
-                  <span className={styles.search}>
-                    <span className={styles.toolIcon}><Icon name="search-line" /></span>
-                    Search prompts, checklists, templates…
-                    <span className={styles.kbd}>⌘K</span>
-                  </span>
-                  <span className={styles.langs}>
-                    <span>中文</span>
-                    <span className={styles.langOn}>EN</span>
-                    <span>DE</span>
-                  </span>
-                </div>
-                <div className={styles.faq}>
-                  <h2>FAQ</h2>
-                  <p>Open a question to see the answer.</p>
-                  <ul>
-                    {QUESTIONS.map((question) => (
-                      <li key={question}>
-                        <span>{question}</span>
-                        <Icon name="arrow-right-s-line" />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <p className={`${styles.callout} ${styles.calloutFind}`}>
+              <strong>{t('wow.findTitle')}</strong>
+              <span>{t('wow.findBody')}</span>
+            </p>
           </div>
         </div>
 
@@ -89,7 +51,6 @@ export function PlaybookPage() {
           {t('wow.playbookCta')}
           <Icon name="arrow-right-up-line" />
         </a>
-        <p className={styles.hint}>{t('wow.playbookHint')}</p>
       </section>
 
       <section className={styles.base} aria-label={t('wow.playbookName')}>

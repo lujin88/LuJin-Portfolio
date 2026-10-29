@@ -635,7 +635,7 @@
     padding-top: 8rem;
     padding-bottom: 4.5rem;
     padding-left: var(--ca-rail);
-    padding-right: 5.25rem;
+    padding-right: var(--ca-rail);
   }
 
   .ca-s02-copy {
@@ -853,9 +853,19 @@
 }
 
 /*
- * Shared editorial rail (lg+).
- * Midpoint between the hero's current left edge (centered 1520px well + 3rem)
- * and the too-left full-bleed gutter marked by the red guide (5.25rem).
+ * Shared page rail. Matches Index / How I work / Playground: 24px until the
+ * 1440px well is centered, then that well's side margin.
+ */
+main {
+  --ca-hero-rail: var(--content-inset, 24px);
+  --ca-red-rail: var(--content-inset, 24px);
+  --ca-rail: var(--content-inset, 24px);
+}
+
+/*
+ * Desktop section alignment. The rail is the same inset at every breakpoint;
+ * these rules only drop the old centered wells so full-bleed art can sit
+ * outside the copy.
  */
 @media (min-width: 1024px) {
   html:has(.ca-s01-s03) {
@@ -896,21 +906,10 @@
     }
   }
 
-  main {
-    --ca-hero-rail: calc((100vw - min(100vw, 1520px)) / 2 + 3rem);
-    --ca-red-rail: 5.25rem;
-    --ca-rail: calc((var(--ca-hero-rail) + var(--ca-red-rail)) / 2);
-  }
-
-  /*
-   * 01 Overview stays an authored composition. The copy keeps the centered
-   * 1520px well. The glance column caps its right inset at the full-bleed
-   * gutter so it sits on the page edge instead of inside that well.
-   */
   .ca-s01-grid {
     max-width: none;
-    padding-left: max(3rem, calc((100% - 1520px) / 2 + 3rem));
-    padding-right: min(5.25rem, max(3rem, calc((100% - 1520px) / 2 + 3rem)));
+    padding-left: var(--content-inset, 24px);
+    padding-right: var(--content-inset, 24px);
   }
 
   /*
@@ -932,7 +931,7 @@
     max-width: none;
     margin-inline: 0;
     padding-left: var(--ca-rail);
-    padding-right: 5.25rem;
+    padding-right: var(--ca-rail);
   }
 
   /* 03 Research — keep photo/text split; seat the grid on the shared rail */
@@ -940,6 +939,12 @@
     max-width: none;
     margin-inline: 0;
     padding-left: var(--ca-rail);
+    padding-right: var(--ca-rail);
+  }
+
+  #session-04 {
+    padding-left: var(--ca-rail);
+    padding-right: var(--ca-rail);
   }
 
   /* 05 Design Principles — card row starts on the rail; header stays centered */
@@ -975,6 +980,7 @@
     max-width: none;
     margin-inline: 0;
     padding-left: var(--ca-rail);
+    padding-right: var(--ca-rail);
   }
 
   /* 08 Closing stays centered; match the outer inset only */

@@ -126,7 +126,7 @@ export function ConceptScrollStory({
           className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_42%_at_50%_22%,rgba(28,74,150,0.3),transparent_68%),radial-gradient(ellipse_60%_55%_at_30%_52%,rgba(30,74,140,0.36),transparent_70%),radial-gradient(ellipse_45%_50%_at_72%_32%,rgba(20,50,110,0.22),transparent_70%)]"
         />
 
-        <div className={`mx-auto grid w-full max-w-[1600px] grid-cols-1 gap-10 px-6 md:px-10 lg:grid-cols-[minmax(0,1.32fr)_minmax(0,0.9fr)] lg:gap-16 lg:px-14 xl:gap-20 xl:px-20 ${enabled ? 'items-start' : 'items-center'}`}>
+        <div className={`mx-auto grid w-full max-w-[1600px] grid-cols-1 gap-10 px-[var(--content-inset,24px)] lg:grid-cols-[minmax(0,1.32fr)_minmax(0,0.9fr)] lg:gap-16 xl:gap-20 ${enabled ? 'items-start' : 'items-center'}`}>
           <div
             style={
               enabled

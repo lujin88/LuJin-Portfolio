@@ -56,7 +56,7 @@ export const ca = {
       title: 'Understanding the work.',
       subhead: 'One need. A whole service behind it.',
       body1Html:
-        'I set out to understand how advisors actually work. I interviewed 17 client advisors, mostly in Switzerland Wealth Management, plus EMEA and APAC<sup class="ml-px text-[0.65em] leading-none">*</sup> advisors for comparison — following how they moved across 10+ tools, worked with colleagues, and turned what they gathered into a decision for the client.',
+        'I interviewed 17 client advisors, mostly in Switzerland Wealth Management, plus EMEA and APAC<sup class="ml-px text-[0.65em] leading-none">*</sup> for comparison — following how they moved across 10+ tools and turned what they found into a decision for the client.',
       heading2: 'The information existed. The advisor had to connect it.',
       body2:
         'The friction wasn’t only access. It was stitching together 10+ disconnected tools — in the moment, under pressure.',
@@ -94,13 +94,13 @@ export const ca = {
       eyebrow: 'Design Principles',
       headline: 'Turning the model into design decisions.',
       intro:
-        "The direction was set, with one constraint: it couldn't feel like another tool. Signal → Context → Act became the model for how it earned its place — one principle for each moment.",
+        "One constraint: it couldn't feel like another tool. Signal → Context → Act became the model — one principle for each moment.",
       p1Title: 'Surface what matters',
       p1Body:
-        'Not everything worth knowing deserves a place on screen. A signal earned its spot by urgency and stakes — a portfolio shift, a compliance flag — not by being one more thing to scroll past.',
+        'A signal earns its spot through urgency and stakes — a portfolio shift, a compliance flag — not as one more thing to scroll past.',
       p2Title: 'Explain with context',
       p2Body:
-        'A signal without a reason is just noise. Each one had to answer “why now?” at a glance — using the same research, market insights, and client notes the advisor would otherwise have to dig for.',
+        'A signal without a reason is noise. Each one answers “why now?” at a glance, using the research and client notes advisors would otherwise dig for.',
       p3Title: 'Support judgment',
       p3Body:
         'AI surfaces, it never decides. Every signal is a suggestion — the trade, the allocation, the response to the client stays entirely with the advisor.',
@@ -116,11 +116,11 @@ export const ca = {
       path2Title: 'The case for less',
       whyLess: 'Why less',
       whyLessBody:
-        "A new dashboard was the easier sell internally: simpler to scope, own, and fund as a standalone initiative. I argued for the surface layer instead. The goal wasn't a new product to own; it was fewer tools for advisors to juggle. They already worked across 10+ systems, and adding one more, or making them relearn one, would cost more than it saved.",
+        "A new dashboard was the easier sell: simpler to scope, own, and fund. I argued for the surface layer instead. The goal was fewer tools, not a new product. Advisors already juggled 10+ systems — one more would cost more than it saved.",
       buying: 'Buy-in + in practice',
       buyingWon: 'That case won the stakeholder over.',
       buyingPractice:
-        'A prioritized overview layered on the existing dashboard. One click opens the full context, and next steps appear as recommendations — the way retail apps suggest related picks.',
+        'A prioritized overview on the existing dashboard. One click opens the full context; next steps appear as recommendations.',
       path3Title: 'The result',
       path3Body:
         'One experience that unifies client context, portfolio, and research — without adding to the pile. 500+ client signals, one view.',
@@ -176,7 +176,7 @@ export const ca = {
       m3Value: '500+',
       m3Label: 'Advisors in trials and the target user base.',
       footnote:
-        "Feedback was consistent across EMEA and CH, where the concept was primarily scoped. APAC leaned toward speed over the signal-and-context flow — a nuance noted for future markets, outside this project's core focus.",
+        'Feedback was consistent across EMEA and CH, the core scope. APAC leaned toward speed over the signal-and-context flow — noted for future markets.',
     },
     closing:
       "Complexity doesn't disappear. It gets a place to land — so advisors spend less time managing tools, and more time with the client on the phone.",
@@ -238,7 +238,7 @@ export const ca = {
       title: 'Die Arbeit verstehen.',
       subhead: 'Ein Bedarf. Ein ganzer Service dahinter.',
       body1Html:
-        'Ich wollte verstehen, wie Berater wirklich arbeiten. Dafür habe ich 17 Client Advisors interviewt, vor allem aus Switzerland Wealth Management, ergänzt um Berater aus EMEA und APAC<sup class="ml-px text-[0.65em] leading-none">*</sup> zum Vergleich — und beobachtet, wie sie sich durch 10+ Tools bewegten, mit Kollegen zusammenarbeiteten und das Gesammelte in eine Entscheidung für den Kunden übersetzten.',
+        'Ich habe 17 Client Advisors interviewt, vor allem aus Switzerland Wealth Management, ergänzt um EMEA und APAC<sup class="ml-px text-[0.65em] leading-none">*</sup> zum Vergleich — und verfolgt, wie sie sich durch 10+ Tools bewegten und daraus eine Entscheidung für den Kunden machten.',
       heading2: 'Die Information war da. Der Berater musste sie verbinden.',
       body2:
         'Die Reibung war nicht nur der Zugang. Es war das Zusammenfügen von 10+ getrennten Tools — im Moment, unter Druck.',
@@ -276,13 +276,13 @@ export const ca = {
       eyebrow: 'Design Principles',
       headline: 'Das Modell in Designentscheidungen übersetzen.',
       intro:
-        'Die Richtung stand, mit einer Bedingung: Es durfte sich nicht wie ein weiteres Tool anfühlen. Signal → Kontext → Handeln wurde das Modell, mit dem es sich seinen Platz verdiente — ein Prinzip für jeden Moment.',
+        'Eine Bedingung: Es durfte sich nicht wie ein weiteres Tool anfühlen. Signal → Kontext → Handeln wurde das Modell — ein Prinzip für jeden Moment.',
       p1Title: 'Zeigen, was zählt',
       p1Body:
-        'Nicht alles Wissenswerte gehört auf den Screen. Ein Signal musste sich seinen Platz durch Dringlichkeit und Tragweite verdienen — eine Portfolio-Verschiebung, ein Compliance-Hinweis — statt nur eine weitere Zeile zum Wegscrollen zu sein.',
+        'Ein Signal verdient seinen Platz durch Dringlichkeit und Tragweite — eine Portfolio-Verschiebung, ein Compliance-Hinweis — nicht als weitere Zeile zum Wegscrollen.',
       p2Title: 'Mit Kontext erklären',
       p2Body:
-        'Ein Signal ohne Grund ist nur Rauschen. Jedes musste auf einen Blick beantworten: „Warum jetzt?“ — mit denselben Research-Inhalten, Markteinschätzungen und Kundennotizen, die der Berater sonst zusammensuchen müsste.',
+        'Ein Signal ohne Grund ist Rauschen. Jedes beantwortet auf einen Blick „Warum jetzt?“ — mit Research und Kundennotizen, die Berater sonst zusammensuchen.',
       p3Title: 'Urteil unterstützen',
       p3Body:
         'KI zeigt, sie entscheidet nie. Jedes Signal ist ein Vorschlag — Transaktion, Allokation und Antwort an den Kunden bleiben vollständig beim Berater.',
@@ -298,11 +298,11 @@ export const ca = {
       path2Title: 'Das Argument für weniger',
       whyLess: 'Warum weniger',
       whyLessBody:
-        'Ein neues Dashboard war intern leichter zu verkaufen: einfacher abzugrenzen, zu verantworten und als eigenes Vorhaben zu finanzieren. Ich argumentierte stattdessen für die Schicht. Das Ziel war kein neues Produkt, sondern weniger Tools für die Berater. Sie arbeiteten bereits in 10+ Systemen — ein weiteres oder eines, das sie neu lernen müssten, hätte mehr gekostet als gebracht.',
+        'Ein neues Dashboard war leichter zu verkaufen: einfacher abzugrenzen, zu verantworten und zu finanzieren. Ich argumentierte für die Schicht. Das Ziel waren weniger Tools, kein neues Produkt. Berater jonglierten bereits 10+ Systeme — eines mehr hätte mehr gekostet als gebracht.',
       buying: 'Buy-in + in der Praxis',
       buyingWon: 'Dieses Argument hat den Stakeholder überzeugt.',
       buyingPractice:
-        'Ein priorisierter Überblick auf dem bestehenden Dashboard. Ein Klick öffnet den vollen Kontext, nächste Schritte erscheinen als Empfehlungen — so wie Retail-Apps passende Produkte vorschlagen.',
+        'Ein priorisierter Überblick auf dem bestehenden Dashboard. Ein Klick öffnet den vollen Kontext; nächste Schritte erscheinen als Empfehlungen.',
       path3Title: 'Das Ergebnis',
       path3Body:
         'Ein Erlebnis, das Kundenkontext, Portfolio und Research verbindet — ohne den Stapel zu vergrößern. 500+ Kundensignale, eine Sicht.',
@@ -358,7 +358,7 @@ export const ca = {
       m3Value: '500+',
       m3Label: 'Berater in Trials und Zielgruppe.',
       footnote:
-        'Das Feedback war in EMEA und der Schweiz konsistent, wo der Schwerpunkt des Konzepts lag. APAC legte mehr Wert auf Tempo als auf den Signal-und-Kontext-Flow — eine Nuance für künftige Märkte, außerhalb des Kernfokus dieses Projekts.',
+        'Das Feedback war in EMEA und der Schweiz, dem Kernfokus, konsistent. APAC legte mehr Wert auf Tempo als auf den Signal-und-Kontext-Flow — notiert für künftige Märkte.',
     },
     closing:
       'Komplexität verschwindet nicht. Sie bekommt einen Ort, an dem sie landen kann — damit Berater weniger Zeit mit Tools verbringen und mehr Zeit mit dem Kunden am Telefon.',

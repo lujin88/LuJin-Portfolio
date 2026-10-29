@@ -3,15 +3,26 @@ import type { LangCode } from './language'
 export const headerCopy = {
   en: {
     nav: {
-      Projects: 'Projects',
-      'Playground': 'Playground',
-      About: 'About',
+      Work: 'Work',
+      'How I work': 'How I work',
+      Playground: 'Playground',
       'Client Advisory': 'Client Advisory',
       'E.ON': 'E.ON',
-      'Agent Monitor': 'Agent Monitor',
-      'Way of Work': 'Way of Work',
-      'Off We Go Workbench': 'Off We Go Workbench',
-      'Party Planner': 'Party Planner',
+      'MAN Truck & Bus': 'MAN Truck & Bus',
+      'ETF Savings Plan': 'ETF Savings Plan',
+      'Design System': 'Design System',
+      'Weather Aquarium': 'Weather Aquarium',
+      'AI Pet': 'AI Pet',
+      Gratula: 'Gratula',
+    },
+    meta: {
+      'Wealth · Service design': 'Wealth · Service design',
+      'E-commerce · +300% conversion': 'E-commerce · +300% conversion',
+      'Rive motion': 'Rive motion',
+      'Under construction': 'Under construction',
+      'Voice · Hardware': 'Voice · Hardware',
+      'Sparplan · Design system': 'Sparplan · Design system',
+      'Launching soon': 'Launching soon',
     },
     contactMe: 'Contact me',
     email: 'Email',
@@ -25,15 +36,26 @@ export const headerCopy = {
   },
   de: {
     nav: {
-      Projects: 'Projekte',
-      'Playground': 'Playground',
-      About: 'Über mich',
+      Work: 'Arbeit',
+      'How I work': 'Wie ich arbeite',
+      Playground: 'Playground',
       'Client Advisory': 'Client Advisory',
       'E.ON': 'E.ON',
-      'Agent Monitor': 'Agent Monitor',
-      'Way of Work': 'Way of Work',
-      'Off We Go Workbench': 'Off We Go Workbench',
-      'Party Planner': 'Party Planner',
+      'MAN Truck & Bus': 'MAN Truck & Bus',
+      'ETF Savings Plan': 'ETF Savings Plan',
+      'Design System': 'Design System',
+      'Weather Aquarium': 'Weather Aquarium',
+      'AI Pet': 'AI Pet',
+      Gratula: 'Gratula',
+    },
+    meta: {
+      'Wealth · Service design': 'Wealth · Service Design',
+      'E-commerce · +300% conversion': 'E-Commerce · +300 % Conversion',
+      'Rive motion': 'Rive Motion',
+      'Under construction': 'Im Aufbau',
+      'Voice · Hardware': 'Stimme · Hardware',
+      'Sparplan · Design system': 'Sparplan · Designsystem',
+      'Launching soon': 'Startet bald',
     },
     contactMe: 'Kontakt',
     email: 'E-Mail',
@@ -49,6 +71,7 @@ export const headerCopy = {
   LangCode,
   {
     nav: Record<string, string>
+    meta: Record<string, string>
     contactMe: string
     email: string
     skipToContent: string

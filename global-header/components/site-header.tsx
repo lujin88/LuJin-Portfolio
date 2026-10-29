@@ -3,14 +3,21 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useId, useRef, useState } from 'react'
-import { Check, ChevronDown, Mail, Menu, X } from 'lucide-react'
+import { Check, ChevronDown, Globe, Mail, Menu, MessageCircle, X } from 'lucide-react'
 import { headerCopy } from '../lib/header-copy'
 import { LANGUAGES, useSiteLanguage } from '../lib/language'
 import { cn } from '../lib/utils'
 
+type NavIcon = {
+  light: string
+  dark: string
+}
+
 type NavLink = {
   label: string
   href: string
+  meta?: string
+  icon: NavIcon
 }
 
 type NavGroup = {
@@ -25,23 +32,95 @@ type NavEntry = ({ kind: 'link' } & NavLink) | ({ kind: 'group' } & NavGroup)
 const NAV: readonly NavEntry[] = [
   {
     kind: 'group',
-    label: 'Projects',
+    label: 'Work',
     children: [
-      { label: 'Client Advisory', href: '/client-advisory' },
-      { label: 'E.ON', href: '/EON' },
+      {
+        label: 'Client Advisory',
+        href: '/client-advisory',
+        meta: 'Wealth · Service design',
+        icon: {
+          light: '/assets/images/nav/light/work/client-advisory-light.png',
+          dark: '/assets/images/nav/dark/work/client-advisory-dark.png',
+        },
+      },
+      {
+        label: 'E.ON',
+        href: '/EON',
+        meta: 'E-commerce · +300% conversion',
+        icon: {
+          light: '/assets/images/nav/light/work/eon-light.png',
+          dark: '/assets/images/nav/dark/work/eon-dark.png',
+        },
+      },
+      {
+        label: 'MAN Truck & Bus',
+        href: '/man-truck-bus',
+        meta: 'Under construction',
+        icon: {
+          light: '/assets/images/nav/light/work/man-truck-bus-light.png',
+          dark: '/assets/images/nav/dark/work/man-truck-bus-dark.png',
+        },
+      },
+      {
+        label: 'ETF Savings Plan',
+        href: '/etf-savings-plan',
+        meta: 'Under construction',
+        icon: {
+          light: '/assets/images/nav/light/work/etf-savings-plan-light.png',
+          dark: '/assets/images/nav/dark/work/etf-savings-plan-dark.png',
+        },
+      },
+      {
+        label: 'Design System',
+        href: '/design-system',
+        meta: 'Sparplan · Design system',
+        icon: {
+          light: '/assets/images/nav/light/work/design-system-light.png',
+          dark: '/assets/images/nav/dark/work/design-system-dark.png',
+        },
+      },
     ],
   },
+  { kind: 'link', label: 'How I work', href: '/lab/way-of-work' },
   {
     kind: 'group',
     label: 'Playground',
-    sectionHref: '/lab',
     children: [
-      { label: 'Agent Monitor', href: '/lab/agent-monitor' },
-      { label: 'Off We Go Workbench', href: '/lab/off-we-go' },
-      { label: 'Party Planner', href: '/lab/party-planner' },
+      {
+        label: 'Weather Aquarium',
+        href: '/lab/weather-aquarium',
+        meta: 'Rive motion',
+        icon: {
+          light: '/assets/images/nav/light/playground/weather-aquarium-light.png',
+          dark: '/assets/images/nav/dark/playground/weather-aquarium-dark.png',
+        },
+      },
+      {
+        label: 'AI Pet',
+        href: '/ai-companion-pet',
+        meta: 'Voice · Hardware',
+        icon: {
+          light: '/assets/images/nav/light/playground/ai-pet-light.png',
+          dark: '/assets/images/nav/dark/playground/ai-pet-dark.png',
+        },
+      },
+      {
+        label: 'Gratula',
+        href: '/lab/party-planner',
+        meta: 'Launching soon',
+        icon: {
+          light: '/assets/images/nav/light/playground/gratula-light.png',
+          dark: '/assets/images/nav/dark/playground/gratula-dark.png',
+        },
+      },
     ],
   },
 ]
+
+const LANGUAGE_ICONS = {
+  en: Globe,
+  de: MessageCircle,
+} as const
 
 const FOCUS_RING =
   'focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current'
@@ -50,7 +129,7 @@ const PLAIN_CONTROL =
   'appearance-none border-0 bg-transparent shadow-none outline-none focus:outline-none focus:ring-0'
 
 const MENU_PANEL = cn(
-  'm-0 flex list-none flex-col items-stretch gap-1 rounded-[22px] border border-header-line/40 bg-header-menu p-2 shadow-[0_18px_48px_-12px_rgba(0,0,0,0.65)]',
+  'header-menu m-0 flex list-none flex-col items-stretch gap-1 rounded-[12px] border border-header-line/40 bg-header-menu p-2 shadow-[0_18px_48px_-12px_rgba(0,0,0,0.65)]',
 )
 
 type SiteHeaderProps = {
@@ -62,6 +141,12 @@ function hrefMatches(href: string, currentHref: string, pathname: string) {
   if (candidates.includes(href)) return true
   if (href === '/client-advisory' && candidates.includes('/client-advisor')) return true
   if (href === '/EON' && candidates.includes('/eon-solar')) return true
+  if (
+    href === '/lab/way-of-work' &&
+    candidates.some((value) => value === href || value.startsWith(`${href}/`))
+  ) {
+    return true
+  }
   return false
 }
 
@@ -76,19 +161,31 @@ function navLabel(copy: (typeof headerCopy)[keyof typeof headerCopy], label: str
   return copy.nav[label as keyof typeof copy.nav] ?? label
 }
 
+function menuMeta(copy: (typeof headerCopy)[keyof typeof headerCopy], meta: string) {
+  return copy.meta[meta as keyof typeof copy.meta] ?? meta
+}
+
 export function SiteHeader({ activeHref }: SiteHeaderProps) {
   const pathname = usePathname()
   const currentHref = activeHref ?? pathname
   const cinematicHeader =
-    pathname.startsWith('/lab/agent-monitor') ||
-    pathname.startsWith('/lab/way-of-work') ||
     pathname.startsWith('/lab/off-we-go') ||
-    pathname.startsWith('/lab/party-planner')
+    pathname.startsWith('/backup/ai-design-process') ||
+    pathname.startsWith('/backup/way-of-work')
   const partyHeader = pathname.startsWith('/lab/party-planner')
+  const pinnedPaper =
+    pathname.startsWith('/lab/weather-aquarium') ||
+    pathname.startsWith('/ai-companion-pet') ||
+    pathname.startsWith('/lab/agent-monitor')
+  const paperHeader =
+    pathname.startsWith('/lab/way-of-work') ||
+    pathname.startsWith('/design-system') ||
+    pinnedPaper
+  const headerTone = partyHeader ? 'party' : paperHeader ? 'paper' : undefined
   const [menuOpen, setMenuOpen] = useState(false)
   const [mobileSection, setMobileSection] = useState<string | null>(null)
   const [langOpen, setLangOpen] = useState(false)
-  const [glassActive, setGlassActive] = useState(false)
+  const [glassActive, setGlassActive] = useState(pinnedPaper)
   const { language, setLanguage } = useSiteLanguage()
   const copy = headerCopy[language.code]
   const [pinnedMenu, setPinnedMenu] = useState<string | null>(null)
@@ -118,11 +215,11 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   }
 
   useEffect(() => {
-    const onScroll = () => setGlassActive(cinematicHeader || window.scrollY > 12)
+    const onScroll = () => setGlassActive(cinematicHeader || pinnedPaper || window.scrollY > 12)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [cinematicHeader])
+  }, [cinematicHeader, pinnedPaper])
 
   useEffect(() => {
     if (closeTimer.current !== null) {
@@ -290,7 +387,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   return (
     <header
       data-site-header=""
-      data-header-tone={partyHeader ? 'party' : undefined}
+      data-header-tone={headerTone}
       className="fixed top-0 right-0 left-0 z-[100] isolate font-sans text-header-foreground [font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif] [&_a]:no-underline [&_li]:list-none [&_ul]:list-none"
     >
       <a href="#site-content" className="header-skip">
@@ -299,7 +396,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       <div
         aria-hidden="true"
         className={cn(
-          'pointer-events-none absolute inset-x-0 top-0 h-[220%] bg-gradient-to-b from-header-scrim/70 via-header-scrim/35 to-transparent transition-opacity duration-500 ease-out',
+          'pointer-events-none absolute inset-x-0 top-0 h-28 bg-[linear-gradient(to_bottom,color-mix(in_oklab,var(--header-scrim)_76%,transparent)_0%,color-mix(in_oklab,var(--header-scrim)_18%,transparent)_58%,transparent_100%)] transition-opacity duration-500 ease-out',
           MOTION_SAFE,
           glassActive ? 'opacity-0' : 'opacity-100',
         )}
@@ -307,14 +404,13 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       <div
         aria-hidden="true"
         className={cn(
-          'pointer-events-none absolute inset-x-0 top-0 h-[160%] border-b border-white/5 bg-header-glass/80 backdrop-blur-lg transition-opacity duration-500 ease-out md:backdrop-blur-xl',
+          'pointer-events-none absolute inset-x-0 top-0 h-28 bg-header-glass/70 backdrop-blur-md transition-opacity duration-500 ease-out [mask-image:linear-gradient(to_bottom,black_0%,black_52%,transparent_100%)]',
           MOTION_SAFE,
-          '[mask-image:linear-gradient(to_bottom,black_0%,black_62%,transparent_100%)]',
           glassActive ? 'opacity-100' : 'opacity-0',
         )}
       />
 
-      <div className="header-frame relative flex h-20 items-center justify-between md:h-24">
+      <div className="header-frame relative flex h-16 items-center justify-between">
         <Link
           href="/index"
           className={cn(
@@ -337,7 +433,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           aria-label={copy.mainNav}
           className="absolute left-1/2 hidden -translate-x-1/2 lg:block"
         >
-          <ul className="m-0 flex list-none items-center gap-8 p-0 lg:gap-12">
+          <ul className="m-0 flex list-none items-center gap-6 p-0 xl:gap-10">
             {NAV.map((item) => {
               if (item.kind === 'link') {
                 const isActive = hrefMatches(item.href, currentHref, pathname)
@@ -348,7 +444,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                       aria-current={isActive ? 'page' : undefined}
                       onClick={dismissMenus}
                       className={cn(
-                        'inline-flex min-h-11 items-center rounded-sm text-[0.95rem] leading-none no-underline transition-colors duration-200',
+                        'inline-flex min-h-11 items-center rounded-sm px-2 text-[0.95rem] leading-none no-underline transition-colors duration-200 xl:px-3',
                         FOCUS_RING,
                         MOTION_SAFE,
                         isActive
@@ -369,6 +465,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                   key={item.label}
                   group={item}
                   copy={copy}
+                  iconTone={paperHeader ? 'light' : 'dark'}
                   open={isOpen}
                   active={isActive}
                   currentHref={currentHref}
@@ -387,7 +484,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-5 lg:gap-7">
+        <div className="flex items-center gap-4 lg:gap-5">
           <div ref={langRootRef} className="relative hidden md:block">
             <button
               ref={langTriggerRef}
@@ -427,13 +524,14 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                 aria-label={copy.selectLanguage}
                 className={cn(
                   MENU_PANEL,
-                  'absolute right-0 top-full z-10 mt-4 w-60 max-w-[calc(100vw-3rem)] origin-top-right',
+                  'absolute right-0 top-full z-10 mt-4 w-max max-w-[calc(100vw-3rem)] origin-top-right',
                   'animate-in fade-in-0 zoom-in-[0.98] slide-in-from-top-1 duration-150 ease-out',
                   MOTION_SAFE,
                 )}
               >
                 {LANGUAGES.map((lang, index) => {
                   const isSelected = lang.code === language.code
+                  const LangIcon = LANGUAGE_ICONS[lang.code]
                   return (
                     <li key={lang.code}>
                       <button
@@ -447,9 +545,8 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                         onClick={() => selectLanguage(lang)}
                         onKeyDown={(event) => onOptionKeyDown(event, index)}
                         className={cn(
-                          'group flex w-full items-center justify-between rounded-2xl px-5 py-4 text-left text-[1.0625rem] leading-none transition-colors duration-150',
+                          'flex w-full items-center justify-between gap-4 rounded-[8px] px-3.5 py-3 text-left text-[0.95rem] leading-none transition-colors duration-150',
                           PLAIN_CONTROL,
-                          FOCUS_RING,
                           MOTION_SAFE,
                           'hover:bg-header-menu-item focus-visible:bg-header-menu-item',
                           isSelected
@@ -457,14 +554,14 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                             : 'text-header-foreground/80 hover:text-header-foreground focus-visible:text-header-foreground',
                         )}
                       >
-                        {lang.label}
+                        <span className="inline-flex items-center gap-3">
+                          <LangIcon aria-hidden="true" className="size-4 shrink-0" strokeWidth={1.75} />
+                          {lang.label}
+                        </span>
                         {isSelected && (
                           <Check
                             aria-hidden="true"
-                            className={cn(
-                              'size-[18px] shrink-0 text-header-accent opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100',
-                              MOTION_SAFE,
-                            )}
+                            className="size-[18px] shrink-0 text-header-accent"
                             strokeWidth={2.5}
                           />
                         )}
@@ -479,7 +576,10 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           <a
             href="mailto:lu.jin.ixd@gmail.com"
             className={cn(
-              'hidden min-h-11 items-center rounded-full border border-white/70 bg-transparent px-6 py-3 text-[0.95rem] leading-none text-[#f9fbfc] no-underline transition-colors duration-200 hover:border-[#f9fbfc] hover:bg-[#f9fbfc] hover:text-[#0a0a0a] md:px-7 md:py-3.5 lg:inline-flex',
+              'hidden min-h-11 items-center rounded-full border bg-transparent px-5 py-2 text-[0.95rem] leading-none no-underline transition-colors duration-200 md:px-6 lg:inline-flex',
+              paperHeader
+                ? 'border-[#111]/25 text-[#111] hover:border-[#111] hover:bg-[#111] hover:text-white'
+                : 'border-white/70 text-[#f9fbfc] hover:border-[#f9fbfc] hover:bg-[#f9fbfc] hover:text-[#0a0a0a]',
               FOCUS_RING,
               MOTION_SAFE,
             )}
@@ -517,7 +617,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
         className={cn(
           'relative overflow-hidden bg-header-scrim transition-[max-height,opacity] duration-300 motion-reduce:transition-none lg:hidden',
           menuOpen
-            ? 'max-h-[calc(100dvh-5rem)] overflow-y-auto opacity-100 md:max-h-[calc(100dvh-6rem)]'
+            ? 'max-h-[calc(100dvh-4rem)] overflow-y-auto opacity-100'
             : 'max-h-0 opacity-0',
         )}
       >
@@ -585,29 +685,43 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                     )}
                   >
                     <div className="overflow-hidden">
-                      <ul className={cn(MENU_PANEL, 'mt-3')} role="list">
+                      <ul className={cn(MENU_PANEL, 'header-menu-divided mt-3 w-full gap-0 p-1')} role="list">
                         {item.children.map((child) => {
                           const uniqueHref =
                             item.children.filter((entry) => entry.href === child.href).length === 1
                           const childActive =
                             uniqueHref && hrefMatches(child.href, currentHref, pathname)
                           return (
-                            <li key={child.label}>
+                            <li
+                              key={child.label}
+                              className="w-full"
+                            >
                               <Link
                                 href={child.href}
                                 aria-current={childActive ? 'page' : undefined}
                                 onClick={() => setMenuOpen(false)}
                                 className={cn(
-                                  'flex w-full items-center rounded-2xl px-5 py-4 text-left text-[1.0625rem] leading-none no-underline transition-colors duration-150',
-                                  FOCUS_RING,
+                                  'flex w-full items-center gap-2.5 rounded-[8px] px-2 py-1.5 text-left no-underline transition-colors duration-150',
                                   MOTION_SAFE,
                                   'hover:bg-header-menu-item focus-visible:bg-header-menu-item',
-                                  childActive
-                                    ? 'font-semibold text-header-foreground'
-                                    : 'text-header-foreground/80 hover:text-header-foreground focus-visible:text-header-foreground',
                                 )}
                               >
-                                {navLabel(copy, child.label)}
+                                <MenuThumb icon={child.icon} tone={paperHeader ? 'light' : 'dark'} />
+                                <span className="min-w-0 max-w-[10.25rem]">
+                                  <span
+                                    className={cn(
+                                      'block text-[0.9375rem] leading-tight text-header-foreground',
+                                      childActive && 'font-semibold',
+                                    )}
+                                  >
+                                    {navLabel(copy, child.label)}
+                                  </span>
+                                  {child.meta ? (
+                                    <span className="mt-0.5 block text-[0.75rem] leading-snug text-header-foreground/55">
+                                      {menuMeta(copy, child.meta)}
+                                    </span>
+                                  ) : null}
+                                </span>
                               </Link>
                             </li>
                           )
@@ -657,9 +771,22 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   )
 }
 
+function MenuThumb({ icon, tone }: { icon: NavIcon; tone: 'light' | 'dark' }) {
+  return (
+    <img
+      src={icon[tone]}
+      alt=""
+      width={32}
+      height={32}
+      className="size-8 shrink-0 rounded-full object-cover"
+    />
+  )
+}
+
 function NavDropdown({
   group,
   copy,
+  iconTone,
   open,
   active,
   currentHref,
@@ -673,6 +800,7 @@ function NavDropdown({
 }: {
   group: NavGroup
   copy: (typeof headerCopy)[keyof typeof headerCopy]
+  iconTone: 'light' | 'dark'
   open: boolean
   active: boolean
   currentHref: string
@@ -744,7 +872,7 @@ function NavDropdown({
         }}
         onKeyDown={onButtonKeyDown}
         className={cn(
-          'inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[0.95rem] leading-none transition-colors duration-200',
+          'inline-flex min-h-11 items-center gap-1.5 rounded-sm px-2 text-[0.95rem] leading-none transition-colors duration-200 xl:px-3',
           PLAIN_CONTROL,
           FOCUS_RING,
           MOTION_SAFE,
@@ -772,7 +900,7 @@ function NavDropdown({
             aria-label={navLabel(copy, group.label)}
             className={cn(
               MENU_PANEL,
-              'w-max min-w-56 max-w-[calc(100vw-3rem)] origin-top',
+              'header-menu-divided w-max max-w-[calc(100vw-3rem)] origin-top gap-0 p-1',
               'animate-in fade-in-0 zoom-in-[0.98] slide-in-from-top-1 duration-150 ease-out',
               MOTION_SAFE,
             )}
@@ -783,7 +911,11 @@ function NavDropdown({
               const childActive =
                 uniqueHref && hrefMatches(child.href, currentHref, pathname)
               return (
-                <li key={child.label} role="none" className="w-full">
+                <li
+                  key={child.label}
+                  role="none"
+                  className="w-full"
+                >
                   <Link
                     ref={(node) => {
                       itemRefs.current[index] = node
@@ -798,16 +930,27 @@ function NavDropdown({
                     }}
                     onKeyDown={(event) => onItemKeyDown(event, index)}
                     className={cn(
-                      'flex w-full items-center whitespace-nowrap rounded-2xl px-5 py-4 text-left text-[1.0625rem] leading-none no-underline transition-colors duration-150',
-                      FOCUS_RING,
+                      'flex w-full items-center gap-2.5 rounded-[8px] px-2 py-1.5 text-left no-underline transition-colors duration-150',
                       MOTION_SAFE,
                       'hover:bg-header-menu-item focus-visible:bg-header-menu-item',
-                      childActive
-                        ? 'font-semibold text-header-foreground'
-                        : 'text-header-foreground/80 hover:text-header-foreground focus-visible:text-header-foreground',
                     )}
                   >
-                    {navLabel(copy, child.label)}
+                    <MenuThumb icon={child.icon} tone={iconTone} />
+                    <span className="min-w-0 max-w-[10.25rem]">
+                      <span
+                        className={cn(
+                          'block text-[0.9375rem] leading-tight text-header-foreground',
+                          childActive && 'font-semibold',
+                        )}
+                      >
+                        {navLabel(copy, child.label)}
+                      </span>
+                      {child.meta ? (
+                        <span className="mt-0.5 block text-[0.75rem] leading-snug text-header-foreground/55">
+                          {menuMeta(copy, child.meta)}
+                        </span>
+                      ) : null}
+                    </span>
                   </Link>
                 </li>
               )

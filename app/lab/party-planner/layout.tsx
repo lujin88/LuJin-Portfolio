@@ -12,10 +12,10 @@ const patrickHand = Patrick_Hand({
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — Party Planner',
+    absolute: 'Lu — Gratula',
   },
   description:
-    'Party Planner turns four practical details into one calm plan for a child’s birthday — invitations, RSVPs, local suppliers and the party-day schedule.',
+    'Gratula turns four practical details into one calm plan for a child’s birthday — invitations, RSVPs, local suppliers and the party-day schedule.',
 }
 
 export const viewport: Viewport = {

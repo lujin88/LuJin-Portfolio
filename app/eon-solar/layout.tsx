@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { SiteHeader } from '@header/components/site-header'
 import { SiteFooter } from '@eon/components/site-footer'
 import { HtmlTheme } from '../html-theme'
+import '@header/header.css'
 import '@eon/app/globals.css'
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ export default function EonSolarLayout({
       <div className="site-chrome">
         <SiteHeader activeHref="/EON" />
       </div>
-      <div id="site-content" tabIndex={-1} className="pt-20 md:pt-24">
+      <div id="site-content" tabIndex={-1} className="pt-16">
         {children}
       </div>
       <div className="site-chrome">

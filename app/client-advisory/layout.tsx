@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { SiteHeader } from '@header/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { HtmlTheme } from '../html-theme'
+import '@header/header.css'
 import '@/app/globals.css'
 import 'remixicon/fonts/remixicon.css'
 

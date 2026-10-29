@@ -20,6 +20,96 @@ function Confetti({
   return <span className={['confetti', tone, className].filter(Boolean).join(' ')} style={style} />
 }
 
+function LockIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+      <path
+        fill="currentColor"
+        d="M19 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C15.866 2 19 5.13401 19 9V10ZM5 12V20H19V12H5ZM11 14H13V18H11V14ZM17 10V9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9V10H17Z"
+      />
+    </svg>
+  )
+}
+
+function OneLinkSection() {
+  return (
+    <section className="one-link" aria-labelledby="one-link-title">
+      <div className="one-link-intro">
+        <h2 id="one-link-title">One link. Three things parents need.</h2>
+        <p>Everything a guest family needs, from one invitation link.</p>
+      </div>
+      <div className="one-link-grid">
+        <article className="one-link-card">
+          <div className="one-link-kicker">
+            <span className="one-link-label">RSVP</span>
+            <span className="one-link-chip">No app</span>
+          </div>
+          <h3>Reply without an account</h3>
+          <p>No app, no account. Reply from the invite.</p>
+          <div className="one-link-moment">
+            <div className="one-link-product">
+              <p className="one-link-ask">Can you come?</p>
+              <p className="one-link-when">Sat 14 Jun · 15:00</p>
+              <div className="one-link-answers">
+                <span className="one-link-answer yes">Yes</span>
+                <span className="one-link-answer">No</span>
+              </div>
+              <p className="one-link-note">One tap. The host sees it.</p>
+            </div>
+          </div>
+        </article>
+        <article className="one-link-card">
+          <div className="one-link-kicker">
+            <span className="one-link-label">WISHLIST</span>
+            <span className="one-link-chip">No doubles</span>
+          </div>
+          <h3>Claim a gift, once</h3>
+          <p>See what&apos;s still open and what&apos;s taken.</p>
+          <div className="one-link-moment">
+            <div className="one-link-product">
+              <div className="one-link-wish">
+                <span>Wooden train set</span>
+                <span className="one-link-claim">Claim</span>
+              </div>
+              <div className="one-link-wish">
+                <span>Picture book</span>
+                <span className="one-link-claim claimed">Claimed</span>
+              </div>
+              <p className="one-link-note">Claimed gifts stay off the list.</p>
+            </div>
+          </div>
+        </article>
+        <article className="one-link-card">
+          <div className="one-link-kicker">
+            <span className="one-link-label">PRIVACY</span>
+            <span className="one-link-chip">Host only</span>
+          </div>
+          <h3>Allergies stay with the host</h3>
+          <p>Only the host sees dietary notes and phone numbers.</p>
+          <div className="one-link-moment">
+            <div className="one-link-product">
+              <div className="one-link-host">
+                <span className="one-link-lock">
+                  <LockIcon />
+                </span>
+                <strong>Only the host</strong>
+              </div>
+              <p className="one-link-private">
+                Dietary notes and phone numbers stay private.
+              </p>
+              <div className="one-link-retention">
+                <span className="one-link-deleted">Deleted</span>
+                <span>Guest data is removed after 30 days.</span>
+              </div>
+              <p className="one-link-note">Guests never see each other&apos;s details.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  )
+}
+
 function HeroBleed() {
   return (
     <div className="hero-bleed" aria-hidden="true">
@@ -91,6 +181,7 @@ export function PartyPlannerPage() {
           <HeroBleed />
           <div className="hero-frame">
             <div className="hero-copy">
+              <p className="hero-brand">Gratula</p>
               <h1 id="hero-title" tabIndex={-1}>
                 One calm plan
                 <br />
@@ -108,7 +199,7 @@ export function PartyPlannerPage() {
                 className="pill"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Start a party, open Party Planner prototype (opens in a new tab)"
+                aria-label="Start a party, open the Gratula prototype (opens in a new tab)"
               >
                 <span>Start a party</span>
                 <LineIcon name="arrow-right-line" />
@@ -119,7 +210,7 @@ export function PartyPlannerPage() {
               className="phone hero-phone"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Open Party Planner prototype from the home screen (opens in a new tab)"
+              aria-label="Open the Gratula prototype from the home screen (opens in a new tab)"
             >
               <div className="screen">
                 <img
@@ -133,6 +224,8 @@ export function PartyPlannerPage() {
             </a>
           </div>
         </section>
+
+        <OneLinkSection />
 
         <PartyPlannerCanvas>
           <section id="plan" className="plan-section" aria-labelledby="plan-title">
@@ -415,7 +508,7 @@ export function PartyPlannerPage() {
               className="phone day-phone"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Open Party Planner prototype from the party-day screen (opens in a new tab)"
+              aria-label="Open the Gratula prototype from the party-day screen (opens in a new tab)"
             >
               <div className="screen">
                 <img
@@ -431,7 +524,7 @@ export function PartyPlannerPage() {
               href={prototypeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Start planning, open Party Planner prototype (opens in a new tab)"
+              aria-label="Start planning, open the Gratula prototype (opens in a new tab)"
             >
               <span>Start planning</span>
               <LineIcon name="arrow-right-line" />

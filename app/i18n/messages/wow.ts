@@ -1,6 +1,6 @@
 export const wow = {
   en: {
-    documentTitle: 'Lu — AI Design Process',
+    documentTitle: 'Lu — Human × AI',
     heroTitle: 'Way of Work',
     heroLede:
       'A more human way to build. From curiosity to impact. A structured, iterative process for complex products.',
@@ -72,15 +72,14 @@ export const wow = {
     answersTitle: 'Practical answers',
     answersBody: 'Clear guidance for everyday design decisions.',
     playbookCta: 'Open full playbook',
-    playbookHint: 'Click to expand and explore',
     playbookMark: 'Design × AI',
     playbookName: 'The playbook',
     updated: 'Updated monthly',
     updatedBody:
-      'A step-by-step guide to designing with AI. Updated monthly with learnings from Lenny’s Podcast, insights from PMs and designers, useful skills, and new methods as AI evolves.',
+      'A step-by-step guide to designing with AI, updated monthly with new methods, skills, and lessons from PMs, designers, and Lenny’s Podcast.',
   },
   de: {
-    documentTitle: 'Lu — AI Design Process',
+    documentTitle: 'Lu — Human × AI',
     heroTitle: 'Way of Work',
     heroLede:
       'Menschlicher bauen. Von der Neugier zur Wirkung. Ein strukturierter, iterativer Prozess für komplexe Produkte.',
@@ -155,11 +154,10 @@ export const wow = {
     answersTitle: 'Praktische Antworten',
     answersBody: 'Klare Orientierung für alltägliche Design-Entscheidungen.',
     playbookCta: 'Playbook öffnen',
-    playbookHint: 'Zum Öffnen und Erkunden klicken',
     playbookMark: 'Design × KI',
     playbookName: 'Das Playbook',
     updated: 'Monatlich aktualisiert',
     updatedBody:
-      'Eine Schritt-für-Schritt-Anleitung fürs Gestalten mit KI. Monatlich ergänzt mit Impulsen aus Lenny’s Podcast, Einblicken von PMs und Designern, nützlichen Skills und neuen Methoden, während sich KI weiterentwickelt.',
+      'Eine Schritt-für-Schritt-Anleitung fürs Gestalten mit KI, monatlich ergänzt um neue Methoden, Skills und Impulse von PMs, Designern und Lenny’s Podcast.',
   },
 } as const

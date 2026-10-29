@@ -49,7 +49,7 @@ export function SiteFooter() {
 
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="group inline-flex min-h-12 w-fit shrink-0 items-center gap-2 rounded-full border border-footer-line px-9 py-4 text-[1.0625rem] font-normal transition-colors duration-200 hover:border-footer-muted hover:bg-footer-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current motion-reduce:transition-none"
+            className="group inline-flex min-h-11 w-fit shrink-0 items-center gap-2 rounded-full border border-footer-line px-7 py-3.5 text-[0.95rem] leading-none font-normal transition-colors duration-200 hover:border-footer-muted hover:bg-footer-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current motion-reduce:transition-none"
           >
             Let&apos;s Talk
             <span
