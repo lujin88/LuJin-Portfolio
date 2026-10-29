@@ -1083,3 +1083,282 @@ html:has(.pp-landing) #site-content {
   color: inherit;
   text-decoration: none;
 }
+
+/* One link — three guest needs. Static. No shadow, no motion. */
+.pp-landing .one-link {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 3.25rem 3.5rem 3.5rem;
+  background: transparent;
+  color: #fff;
+}
+.pp-landing .one-link-intro {
+  max-width: 61.25rem;
+  margin: 0 auto 2.75rem;
+  text-align: center;
+}
+.pp-landing .one-link h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 3.25rem;
+  line-height: 1.04;
+  letter-spacing: -0.042em;
+  font-weight: 800;
+  color: #fff;
+}
+.pp-landing .one-link-intro p {
+  margin: 1rem 0 0;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+}
+.pp-landing .one-link-grid {
+  max-width: 83rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+}
+.pp-landing .one-link-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem 1.75rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 1.5rem;
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: none;
+}
+.pp-landing .one-link-kicker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.8rem;
+}
+.pp-landing .one-link-label {
+  color: var(--blue);
+  font-size: 0.75rem;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.pp-landing .one-link-chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  box-shadow: none;
+}
+.pp-landing .one-link-card h3 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.625rem;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: var(--ink);
+}
+.pp-landing .one-link-card > p {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+.pp-landing .one-link-moment {
+  margin-top: 2rem;
+  flex: 1 1 auto;
+  display: flex;
+  min-height: 0;
+}
+.pp-landing .one-link-product {
+  width: 100%;
+  min-height: 11.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.25rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1.125rem;
+  background: var(--paper);
+  box-shadow: none;
+}
+.pp-landing .one-link-ask {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--ink);
+}
+.pp-landing .one-link-when {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+.pp-landing .one-link-answers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.625rem;
+  margin-top: 1rem;
+}
+.pp-landing .one-link-answer,
+.pp-landing .one-link-claim {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: #fff;
+  color: var(--ink);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: none;
+}
+.pp-landing .one-link-answer.yes,
+.pp-landing .one-link-claim {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+.pp-landing .one-link-claim.claimed {
+  border-color: transparent;
+  background: var(--green-soft);
+  color: var(--green);
+}
+.pp-landing .one-link-wish {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 4.25rem;
+  border-bottom: 1px solid var(--line);
+}
+.pp-landing .one-link-wish:last-of-type {
+  border-bottom: 0;
+}
+.pp-landing .one-link-wish > span:first-child {
+  min-width: 0;
+  font-size: 0.9375rem;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--ink);
+}
+.pp-landing .one-link-claim {
+  flex: 0 0 auto;
+}
+.pp-landing .one-link-host {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.pp-landing .one-link-host strong {
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--ink);
+}
+.pp-landing .one-link-lock {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 0.875rem;
+  background: var(--soft);
+  color: var(--blue);
+}
+.pp-landing .one-link-lock svg {
+  display: block;
+  width: 1.375rem;
+  height: 1.375rem;
+}
+.pp-landing .one-link-private {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+.pp-landing .one-link-retention {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: 0.875rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+.pp-landing .one-link-retention > span:last-child {
+  min-width: 0;
+}
+.pp-landing .one-link-deleted {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 0.625rem;
+  background: #fff;
+  color: var(--blue);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.pp-landing .one-link-note {
+  margin: auto 0 0;
+  padding-top: 0.875rem;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+@media (max-width: 900px) {
+  .pp-landing .one-link {
+    padding: 2.75rem 1rem 2.5rem;
+  }
+  .pp-landing .one-link h2 {
+    font-size: 2rem;
+    letter-spacing: -0.03em;
+  }
+  .pp-landing .one-link-intro p,
+  .pp-landing .one-link-card > p,
+  .pp-landing .one-link-ask,
+  .pp-landing .one-link-when,
+  .pp-landing .one-link-private,
+  .pp-landing .one-link-retention,
+  .pp-landing .one-link-note,
+  .pp-landing .one-link-wish > span:first-child,
+  .pp-landing .one-link-answer,
+  .pp-landing .one-link-claim {
+    font-size: 0.9375rem;
+  }
+  .pp-landing .one-link-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+  .pp-landing .one-link-card h3 {
+    font-size: 1.375rem;
+  }
+  .pp-landing .one-link-answer,
+  .pp-landing .one-link-claim {
+    min-height: 2.75rem;
+  }
+}
