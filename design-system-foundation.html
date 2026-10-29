@@ -457,8 +457,8 @@
             <table class="bp-table">
               <thead><tr><th>Token</th><th>Value</th><th>Where</th></tr></thead>
               <tbody>
-                <tr><td>--container-max</td><td>1440px</td><td>heroes, case studies, about bio</td></tr>
-                <tr><td>--container-editorial</td><td>1040px</td><td>Lab/AI heroes, contact, HTML footer</td></tr>
+                <tr><td>--container-max</td><td>1440px</td><td>heroes, case studies, about bio, contact</td></tr>
+                <tr><td>--container-editorial</td><td>1040px</td><td>Lab/AI heroes, HTML footer</td></tr>
                 <tr><td>--container-nav</td><td>1600px</td><td>HTML #site-nav (hidden in Next)</td></tr>
                 <tr><td>--container-chrome</td><td>1800px</td><td>live React SiteHeader</td></tr>
                 <tr><td>page pad</td><td>24px / md 56px nav</td><td>React header also 48 / 80 / 112px</td></tr>
@@ -715,7 +715,8 @@
           </div>
           <div class="site-footer-demo">© 2026 Lu Jin. All rights reserved.</div>
           <p class="spec-body" style="margin-top:1rem">
-            Contact max-width 1040px, heading clamp 1.6-2.4rem / 600. Footer is a hairline plus
+            Contact uses the 1440px main well with 24px desktop gutters (1392px usable width at a
+            1440px viewport), heading clamp 1.6-2.4rem / 600. Footer is a hairline plus
             12px muted copyright. Case studies replace this with the React SiteFooter
             (dark oklch footer, larger type, glow wash). Same words, different chrome.
           </p>

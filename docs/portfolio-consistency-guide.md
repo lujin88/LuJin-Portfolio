@@ -132,12 +132,14 @@ Accent 可变；底层空间世界、壳层节奏与交互结构保持连续。
 
 | Well | Max-width | 用途 |
 |------|-----------|------|
-| Main | **1440px** (`--wrap`) | 媒体主导、43/57、Index pin、About video inset |
-| Editorial | **1040px** (`--editorial`) | Playground/AI 页框、contact、standalone editorial、footer inner |
+| Main | **1440px** (`--wrap`) | 媒体主导、43/57、Index pin、About video inset、contact |
+| Editorial | **1040px** (`--editorial`) | Playground/AI 页框、standalone editorial、footer inner |
 | Text measure — Editorial Wide | **1040px**（well 即正文块） | 多段编辑正文 |
 | Text measure — Body / Standard | **672px** (`max-w-2xl` / `42rem`) | 跑文 |
 | Text measure — Reading / Narrow | **448px** (`max-w-md` / `28rem`) | 短 lede / caption |
 | Heading wrap only | **768px** (`max-w-3xl`) | **不是** well |
+
+Contact 在桌面使用 Main well；1440px viewport 减去左右各 24px page pad 后，可用宽度为 **1392px**。移动端仍使用相同的 24px page pad。
 
 #### Card padding
 

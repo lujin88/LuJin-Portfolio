@@ -66,7 +66,7 @@
 
 - Display：Poppins 700 · `clamp(2.25rem, 5.2vw, 4rem)` · lh 1.08 ✅  
 - Hero / sections：`px-6` + `max-w-[var(--wrap)]`（1440）✅  
-- Contact：`--editorial` 1040 ✅  
+- Contact：Main well；1440px viewport 下左右各 24px，usable width 1392 ✅
 - Hero CTA `See My Work`、案例 `Explore Now`：pill 结构 + Title Case ✅  
 - Pin / 43–57 / reduced-motion 规则存在 ✅  
 
