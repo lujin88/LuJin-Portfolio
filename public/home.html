@@ -33,6 +33,7 @@
 </script>
 
 <link rel="stylesheet" href="/styles/shell-tokens.css" />
+<link rel="stylesheet" href="/styles/home-motion.css" />
 
 <style>
   /* Shell tokens live in /styles/shell-tokens.css */
@@ -1150,17 +1151,17 @@
 <div id="hero">
   <section class="hero-pin-section relative w-full min-h-[100dvh] h-[100dvh] overflow-hidden flex items-center pt-20 md:pt-24">
     <div class="hero-media" aria-hidden="true">
-      <div class="hero-ambient-zoom absolute inset-0 overflow-hidden">
+      <div class="absolute inset-0 overflow-hidden">
         <video
           class="hero-media__video"
-          src="/assets/videos/home/hero.mp4"
-          autoplay
+          src="/assets/videos/about/turn-head.mp4"
+          poster="/assets/images/home-motion/hero-still.jpg"
           muted
-          loop
           playsinline
           preload="auto"
           disablepictureinpicture
         ></video>
+        <img class="hero-media__video hero-motion-still" src="/assets/images/home-motion/hero-still.jpg" alt="" />
       </div>
     </div>
     <div class="hero-scrim"></div>
@@ -1226,143 +1227,29 @@
   </section>
 </div>
 
-<!-- MODEL SERIES (scroll-driven: section pins while scroll position advances the active item) -->
-<div id="model-series" class="pin-wrap" style="height:360vh;">
-  <section class="pin-sticky h-screen min-h-[680px] w-full flex items-center bg-ink px-6">
-    <div class="mx-auto max-w-[var(--wrap)] w-full">
-      <h2 class="text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-16 md:mb-20" data-i18n-html="home.ca.titleHtml">
-        AI-powered advisor <span class="font-sans font-semibold">workflow optimization</span>
-      </h2>
-
-      <div class="grid lg:grid-cols-[minmax(0,43fr)_minmax(0,57fr)] gap-12 lg:gap-20 items-center">
-        <div class="flex flex-col">
-        <div class="accordion my-auto" data-group="1">
-          <button class="accordion-item is-active" data-index="0" type="button">
-            <span class="accordion-bar"></span>
-            <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.ca.roleTitle">My role — lead service designer</span>
-              <span class="accordion-body-wrap">
-                <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.ca.roleBody">Mapped end-to-end advisor workflows, identified key friction points, and translated insights into information architecture, user flows, and wireframes. Contributed to advisor interviews to uncover daily needs, priorities, and opportunities for AI.</p>
-                </span>
-              </span>
-            </span>
-          </button>
-
-          <button class="accordion-item" data-index="1" type="button">
-            <span class="accordion-bar"></span>
-            <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.ca.frictionTitle">From friction to AI</span>
-              <span class="accordion-body-wrap">
-                <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.ca.frictionBody">Embedded AI into existing workflows to help advisors prioritize tasks, surface relevant information, and respond to clients at the right moment. When a client calls, AI can also surface who they are and what they may need — giving advisors the right context immediately, without adding another tool.</p>
-                </span>
-              </span>
-            </span>
-          </button>
-
-          <button class="accordion-item" data-index="2" type="button">
-            <span class="accordion-bar"></span>
-            <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.ca.scaleTitle">Designed for 500+ advisors</span>
-              <span class="accordion-body-wrap">
-                <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.ca.scaleBody">Concept testing pointed to 5–10 minutes saved per workflow — less time searching, synthesising information, and switching between systems.</p>
-                </span>
-              </span>
-            </span>
-          </button>
-        </div>
-
-        <div class="mt-12 md:mt-14 text-left">
-          <a href="/client-advisory" class="pill-btn">
-            <span data-i18n="common.exploreNow">Explore Now</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-        </div>
-
-        <div class="relative rounded-2xl overflow-hidden media-panel aspect-[16/9]">
-          <video class="absolute inset-0 w-full h-full object-cover" src="/assets/videos/client-advisory/CA-office-call-loop.mp4" autoplay loop muted playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- OMNI MODEL (scroll-driven, mirrored layout: image left, accordion right) -->
-<div id="omni-model" class="pin-wrap" style="height:360vh;">
-  <section class="pin-sticky h-screen min-h-[680px] w-full flex items-center bg-ink px-6">
-    <div class="mx-auto max-w-[var(--wrap)] w-full">
-      <h2 class="text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-16 md:mb-20" data-i18n-html="home.eon.titleHtml">
-        Solar landing page <span class="font-sans font-semibold">redesign</span>
-      </h2>
-
-      <div class="grid lg:grid-cols-[minmax(0,57fr)_minmax(0,43fr)] gap-12 lg:gap-20 items-center">
-        <div class="relative rounded-2xl overflow-hidden media-panel aspect-[16/9]">
-          <video
-            class="absolute inset-0 w-full h-full object-cover"
-            src="/assets/videos/eon/solar-calculator-hero.mp4"
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="auto"
-            disablepictureinpicture
-            aria-hidden="true"
-          ></video>
-        </div>
-
-        <div class="flex flex-col">
-        <div class="accordion my-auto" data-group="2">
-          <button class="accordion-item is-active" data-index="0" type="button">
-            <span class="accordion-bar"></span>
-            <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.eon.roleTitle">My role — lead product designer</span>
-              <span class="accordion-body-wrap">
-                <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.eon.roleBody">Led the end-to-end product design process, from research and journey mapping through information architecture, UX/UI design, prototyping, and implementation. Collaborated closely with developers to bring the experience to life and iterated based on user testing and data.</p>
-                </span>
-              </span>
-            </span>
-          </button>
-
-          <button class="accordion-item" data-index="1" type="button">
-            <span class="accordion-bar"></span>
-            <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.eon.conversionTitle">From complexity to conversion</span>
-              <span class="accordion-body-wrap">
-                <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.eon.conversionBody">Redesigned the solar purchase journey to make a complex investment easier to understand, personalize, and trust. Progressive input and a more transparent calculator helped users move from initial interest to a meaningful, personalized offer with less friction.</p>
-                </span>
-              </span>
-            </span>
-          </button>
-
-          <button class="accordion-item" data-index="2" type="button">
-            <span class="accordion-bar"></span>
-            <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.eon.impactTitle">300% higher conversion</span>
-              <span class="accordion-body-wrap">
-                <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.eon.impactBody">The redesigned experience increased solar lead conversion by 300% within two months — from a ~5.1% baseline across Germany. Later adapted for the UK market.</p>
-                </span>
-              </span>
-            </span>
-          </button>
-        </div>
-
-        <div class="mt-12 md:mt-14 text-left">
-          <a href="/EON" class="pill-btn">
-            <span data-i18n="common.exploreNow">Explore Now</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
+<!-- S-A: native scroll, static reading holds, image-only fan handover. -->
+<section id="home-showcase" aria-label="Selected work"><div class="home-showcase-stage"><article id="model-series" class="home-case" aria-label="Client Advisory · UBS">
+  <img class="home-case-image" src="/assets/images/home-motion/ubs.jpg" alt="" />
+  <div class="home-case-shade"></div>
+  <div class="home-case-copy"><p class="home-eyebrow">Client Advisory · UBS</p><h2 class="home-case-title" data-i18n-html="home.ca.titleHtml">
+        AI-powered advisor <span class="home-case-title">workflow optimization</span>
+      </h2><div class="home-case-detail"><h3 data-i18n="home.ca.roleTitle">My role — lead service designer</h3><p data-i18n="home.ca.roleBody">Mapped end-to-end advisor workflows, identified key friction points, and translated insights into information architecture, user flows, and wireframes. Contributed to advisor interviews to uncover daily needs, priorities, and opportunities for AI.</p></div><div class="home-case-detail"><h3 data-i18n="home.ca.frictionTitle">From friction to AI</h3><p data-i18n="home.ca.frictionBody">Embedded AI into existing workflows to help advisors prioritize tasks, surface relevant information, and respond to clients at the right moment. When a client calls, AI can also surface who they are and what they may need — giving advisors the right context immediately, without adding another tool.</p></div><div class="home-case-detail"><h3 data-i18n="home.ca.scaleTitle">Designed for 500+ advisors</h3><p data-i18n="home.ca.scaleBody">Concept testing pointed to 5–10 minutes saved per workflow — less time searching, synthesising information, and switching between systems.</p></div>
+    <div class="home-case-links"><a class="pill-btn" href="/client-advisory" data-i18n="common.exploreNow">Explore Now</a><a class="home-next-case" href="#omni-model">E.ON ↓</a></div>
+  </div>
+</article><article id="omni-model" class="home-case" aria-label="Solar · E.ON">
+  <img class="home-case-image" src="/assets/images/home-motion/eon.jpg" alt="" />
+  <div class="home-case-shade"></div>
+  <div class="home-case-copy"><p class="home-eyebrow">Solar · E.ON</p><h2 class="home-case-title" data-i18n-html="home.eon.titleHtml">
+        Solar landing page <span class="home-case-title">redesign</span>
+      </h2><div class="home-case-detail"><h3 data-i18n="home.eon.roleTitle">My role — lead product designer</h3><p data-i18n="home.eon.roleBody">Led the end-to-end product design process, from research and journey mapping through information architecture, UX/UI design, prototyping, and implementation. Collaborated closely with developers to bring the experience to life and iterated based on user testing and data.</p></div><div class="home-case-detail"><h3 data-i18n="home.eon.conversionTitle">From complexity to conversion</h3><p data-i18n="home.eon.conversionBody">Redesigned the solar purchase journey to make a complex investment easier to understand, personalize, and trust. Progressive input and a more transparent calculator helped users move from initial interest to a meaningful, personalized offer with less friction.</p></div><div class="home-case-detail"><h3 data-i18n="home.eon.impactTitle">300% higher conversion</h3><p data-i18n="home.eon.impactBody">The redesigned experience increased solar lead conversion by 300% within two months — from a ~5.1% baseline across Germany. Later adapted for the UK market.</p></div>
+    <div class="home-case-links"><a class="pill-btn" href="/EON" data-i18n="common.exploreNow">Explore Now</a></div>
+  </div>
+</article></div></section>
+<section id="home-playground" aria-labelledby="home-playground-title"><div class="home-playground-inner">
+<p class="home-eyebrow">Playground</p><h2 id="home-playground-title">Playground</h2>
+<div class="home-project-grid"><a class="home-project" href="/lab"><img src="/assets/images/home-motion/weather.jpg" alt="Weather Aquarium project preview" loading="lazy" width="864" height="600" /><h3>Weather Aquarium</h3><p>A 2.5D weather world for iPad — helping children understand the day and discover new words.</p><span aria-hidden="true">↗</span></a>
+<a class="home-project" href="/lab"><img src="/assets/images/home-motion/pet.jpg" alt="AI Pet project preview" loading="lazy" width="864" height="600" /><h3>AI Pet</h3><p>A little friend to listen, tell stories, share a meal, and learn a few words of French.</p><span aria-hidden="true">↗</span></a>
+<a class="home-project" href="/lab"><img src="/assets/images/home-motion/gratula.jpg" alt="Gratula project preview" loading="lazy" width="864" height="600" /><h3>Gratula</h3><p>From ideas to invitations, a simpler way to plan a party they’ll always remember.</p><span aria-hidden="true">↗</span></a></div></div></section>
 
 <!-- ============================================================
      EXPERIENCE TIMELINE — FXIFY "How it works" curved-arc timeline.
@@ -1516,7 +1403,7 @@
 
     cta.addEventListener('click', (e) => {
       e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
     });
   })();
 
@@ -1956,26 +1843,110 @@
   })();
 </script>
 
-<script>
-  // Ensure hero / case videos autoplay reliably on load.
-  (function () {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    document.querySelectorAll('#hero video, #omni-model video').forEach((v) => {
-      v.muted = true;
-      if (reduceMotion) {
-        v.removeAttribute('autoplay');
-        v.pause();
-        return;
-      }
-      const kick = () => v.play().catch(() => {});
-      kick();
-      v.addEventListener('canplay', kick, { once: true });
-      document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) kick();
-      });
-    });
-  })();
-</script>
 
+
+<script>
+(function initHomeMotion() {
+  const hero = document.querySelector('#hero');
+  const video = hero.querySelector('video');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const pointer = matchMedia('(hover: hover) and (pointer: fine)');
+  let target = 0.5;
+  let visible = true;
+  let seeking = false;
+  // The only currentTime writer. Intermediate pointer samples are coalesced
+  // until seeked; no autoplay, smoothing loop, or competing playback helper.
+  function seek() {
+    if (!hero.isConnected || reduce.matches || !pointer.matches || !visible || document.hidden || seeking || video.seeking || !Number.isFinite(video.duration)) return;
+    const time = target * Math.max(0, video.duration - 0.05);
+    if (Math.abs(time - video.currentTime) < 1 / 30) return;
+    seeking = true;
+    video.currentTime = time;
+  }
+  function configureHero() {
+    video.pause();
+    hero.classList.toggle('hero-can-seek', !reduce.matches && pointer.matches && video.readyState >= 2 && !video.error);
+    seek();
+  }
+  video.addEventListener('loadedmetadata', configureHero);
+  video.addEventListener('loadeddata', configureHero);
+  video.addEventListener('seeked', () => { seeking = false; seek(); });
+  video.addEventListener('error', () => hero.classList.remove('hero-can-seek'));
+  hero.addEventListener('pointermove', (event) => {
+    const rect = hero.getBoundingClientRect();
+    target = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
+    seek();
+  });
+  hero.addEventListener('pointerleave', () => { target = 0.5; seek(); });
+  // Visibility is derived from scroll, avoiding a persistent observer on the island.
+  function checkVisibility() {
+    const rect = hero.getBoundingClientRect();
+    visible = rect.bottom > 0 && rect.top < innerHeight;
+    seek();
+  }
+  window.addEventListener('scroll', checkVisibility, { passive: true });
+  document.addEventListener('visibilitychange', configureHero);
+  pointer.addEventListener('change', configureHero);
+
+  const showcase = document.getElementById('home-showcase');
+  const scenes = Array.from(showcase.querySelectorAll('.home-case'));
+  const images = scenes.map(scene => scene.querySelector('.home-case-image'));
+  const shades = scenes.map(scene => scene.querySelector('.home-case-shade'));
+  const copies = scenes.map(scene => scene.querySelector('.home-case-copy'));
+  const clamp = value => Math.min(1, Math.max(0, value));
+  let scheduled = false;
+  let pinned = false;
+  function render() {
+    scheduled = false;
+    if (!showcase.isConnected || !pinned) return;
+    const progress = clamp(-showcase.getBoundingClientRect().top / (showcase.offsetHeight - innerHeight));
+    // Suggested scroll allocation: 30% UBS hold, 40% handover, 30% E.ON hold.
+    const turn = clamp((progress - 0.3) / 0.4);
+    images[0].style.transform = `translateX(${-65 * turn}%) rotate(${-5 * Math.sin(turn * Math.PI)}deg) scale(${1 - 0.25 * Math.sin(turn * Math.PI)})`;
+    images[1].style.transform = `translateX(${65 * (1 - turn)}%) rotate(${5 * Math.sin(turn * Math.PI)}deg) scale(${1 - 0.25 * Math.sin(turn * Math.PI)})`;
+    images[0].style.opacity = String(clamp((1 - turn) * 3));
+    images[1].style.opacity = String(clamp(turn * 3));
+    const opacity = [1 - clamp(turn * 5), clamp((turn - 0.8) * 5)];
+    copies.forEach((copy, i) => {
+      copy.style.opacity = String(opacity[i]);
+      shades[i].style.opacity = String(opacity[i]);
+      scenes[i].inert = opacity[i] < 0.99;
+      copy.style.visibility = opacity[i] === 0 ? 'hidden' : 'visible';
+    });
+  }
+  function requestRender() {
+    if (!scheduled && pinned) { scheduled = true; requestAnimationFrame(render); }
+  }
+  function layout() {
+    // Short screens, zoom and translated copy keep native document flow.
+    showcase.classList.remove('home-showcase-pinned');
+    scenes.forEach(scene => { scene.inert = false; });
+    [...images, ...copies, ...shades].forEach(el => {
+      el.style.removeProperty('transform'); el.style.removeProperty('opacity'); el.style.removeProperty('visibility');
+    });
+    pinned = !reduce.matches && innerWidth >= 1100 && innerHeight >= 760 && copies.every(copy => copy.scrollHeight + 96 <= innerHeight);
+    showcase.classList.toggle('home-showcase-pinned', pinned);
+    render();
+    configureHero();
+  }
+  showcase.querySelector('.home-next-case').addEventListener('click', event => {
+    if (!pinned) return;
+    event.preventDefault();
+    window.scrollTo({ top: scrollY + showcase.getBoundingClientRect().top + (showcase.offsetHeight - innerHeight) * 0.85, behavior: 'instant' });
+    render();
+    scenes[1].querySelector('a').focus({ preventScroll: true });
+  });
+  window.addEventListener('scroll', requestRender, { passive: true });
+  window.addEventListener('resize', layout);
+  window.addEventListener('load', layout);
+  reduce.addEventListener('change', layout);
+  document.fonts.ready.then(() => { if (showcase.isConnected) layout(); });
+  // The site language bridge changes copy in place. Recheck available reading space.
+  const mutation = new MutationObserver(() => { if (showcase.isConnected) layout(); else mutation.disconnect(); });
+  copies.forEach(copy => mutation.observe(copy, { childList: true, subtree: true, characterData: true }));
+  layout();
+})();
+
+</script>
 </body>
 </html>
