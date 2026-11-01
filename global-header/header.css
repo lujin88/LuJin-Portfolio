@@ -170,17 +170,8 @@
   bottom: 0;
   left: 0;
   height: 1px;
-  /* Lu 11-01: row dividers read too bright. Half the tone's line colour,
-     so dark, party and paper headers all dim by the same step. */
-  background: color-mix(in oklab, var(--header-line) 45%, transparent);
+  background: var(--header-line);
   pointer-events: none;
-}
-
-/* Lu 11-01: rows felt cramped. More room on all sides; the icon gap
-   grows with it. Applies to the desktop flyout and the mobile list. */
-[data-site-header] .header-menu-divided > li > a {
-  gap: 0.875rem;
-  padding: 0.75rem 1.25rem 0.75rem 0.875rem;
 }
 
 /* Same horizontal inset as the page content (--content-inset). */
