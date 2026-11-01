@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useTranslation } from '@i18n'
 import { cn } from '@header/lib/utils'
-import { Icon } from '../../components/icon'
+import { Icon } from '../../components/line-icon'
 import { SiteClosing } from '../../components/site-closing'
 
 import { SCENE_ASPECT, prototypeUrl, sceneBackgroundSrc } from './config'
