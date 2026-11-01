@@ -91,7 +91,7 @@ function Outcomes() {
           icon={<Clock className="size-5" strokeWidth={2.2} />}
           value={t('ca.outcome.m1Value')}
           label={t('ca.outcome.m1Label')}
-          image="/assets/images/client-advisory/sessions/07/card-01.png"
+          image="/assets/images/client-advisory/sessions/07/card-01.webp"
           imageAlt={t('ca.outcome.m1Alt')}
         />
 
@@ -99,7 +99,7 @@ function Outcomes() {
           icon={<BarChart3 className="size-5" strokeWidth={2.2} />}
           value={t('ca.outcome.m2Value')}
           label={t('ca.outcome.m2Label')}
-          image="/assets/images/client-advisory/sessions/07/card-02.png"
+          image="/assets/images/client-advisory/sessions/07/card-02.webp"
           imageAlt={t('ca.outcome.m2Alt')}
         />
 
@@ -108,7 +108,7 @@ function Outcomes() {
           value={t('ca.outcome.m3Value')}
           label={t('ca.outcome.m3Label')}
           eyebrow={t('ca.outcome.reach')}
-          image="/assets/images/client-advisory/sessions/07/card-03.png"
+          image="/assets/images/client-advisory/sessions/07/card-03.webp"
           imageAlt={t('ca.outcome.m3Alt')}
         />
       </div>

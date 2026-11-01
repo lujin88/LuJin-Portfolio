@@ -1,13 +1,16 @@
 import type { Metadata } from 'next'
 
 import { HtmlChrome } from '../../html-chrome'
+import { socialMetadata } from '../../seo'
+
+const TITLE = 'Lu — Human × AI Practice'
+const DESCRIPTION =
+  'A human-led design practice: Agent Monitor, AI Team, and Design OS.'
 
 export const metadata: Metadata = {
-  title: {
-    absolute: 'Lu — Human × AI Practice',
-  },
-  description:
-    'A human-led design practice: Agent Monitor, AI Team, and Design OS.',
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/lab/agent-monitor' }),
 }
 
 export default function AgentMonitorLayout({
