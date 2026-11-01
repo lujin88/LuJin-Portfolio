@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import 'remixicon/fonts/remixicon.css'
 
+import { mediaUrl } from '../../../lib/media-url'
 import { HtmlChrome } from '../../html-chrome'
 import { socialMetadata } from '../../seo'
 
@@ -22,7 +23,7 @@ export default function OffWeGoLayout({
   return (
     <HtmlChrome activeHref="/lab/off-we-go">
       <link rel="stylesheet" href="/styles/shell-components.css" />
-      <link rel="preload" as="image" href="/assets/images/lab/off-we-go/lakeside-hero.jpg" />
+      <link rel="preload" as="image" href={mediaUrl('/assets/images/lab/off-we-go/lakeside-hero.jpg')} />
       {children}
     </HtmlChrome>
   )

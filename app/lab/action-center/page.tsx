@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { mediaUrl } from '../../../lib/media-url'
 import { SiteClosing } from '../../components/site-closing'
 import styles from './action-center.module.css'
 
@@ -15,7 +16,7 @@ export default function ActionCenterPage() {
       >
         <Image
           className={styles.heroImage}
-          src={`${assetRoot}/monitor-hero-bg.png`}
+          src={mediaUrl(`${assetRoot}/monitor-hero-bg.png`)}
           alt="A tablet showing the Action Center beside a coding display, framed by colorful paper-cut artwork."
           width={7680}
           height={4320}
