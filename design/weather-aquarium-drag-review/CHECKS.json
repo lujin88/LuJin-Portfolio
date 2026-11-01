@@ -1,0 +1,19 @@
+{
+  "desktopWidth": 1392,
+  "states": [
+    "Spring",
+    "Summer",
+    "Autumn",
+    "Winter",
+    "Winter"
+  ],
+  "returnToSpring": true,
+  "keyboard": true,
+  "reducedMotion": "0s",
+  "mobile": {
+    "season": "Spring",
+    "overflow": false
+  },
+  "errors": [],
+  "frames": 237
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weather Aquarium — drag review</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0a0a0a; min-height: 100svh; display: grid; align-items: center; padding: 24px; }
+  .scene { position: relative; width: 100%; max-width: 1392px; aspect-ratio: 1392 / 650; margin: auto; touch-action: pan-y; user-select: none; cursor: ew-resize; overflow: clip; }
+  .scene img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; opacity: 0; transition: opacity 125ms ease; }
+  .scene img.active { opacity: 1; }
+  .track { position: absolute; inset: 0 22px; pointer-events: none; }
+  .cursor { width: 100%; height: 100%; transform: translateX(0); }
+  .line { position: absolute; height: 100%; width: 2px; background: #f9fbfc; box-shadow: 0 0 4px #111214; }
+  .knob { position: absolute; top: 50%; left: 1px; transform: translate(-50%, -50%); width: 44px; height: 44px; border: 2px solid #f9fbfc; border-radius: 50%; background: #111214b3; display: grid; place-items: center; }
+  svg { width: 24px; height: 24px; fill: none; stroke: #f9fbfc; stroke-width: 2; }
+  .scene:focus-visible { outline: 2px solid #8B5CF6; outline-offset: 6px; }
+  @media (prefers-reduced-motion: reduce) { .scene img { transition: none; } }
+</style>
+<main class="scene" role="slider" tabindex="0" aria-label="Season" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Spring">
+  <img class="active" src="spring.png" alt="" draggable="false">
+  <img src="summer.png" alt="" draggable="false">
+  <img src="autumn.png" alt="" draggable="false">
+  <img src="winter.png" alt="" draggable="false">
+  <div class="track" aria-hidden="true"><div class="cursor"><div class="line"><span class="knob"><svg viewBox="0 0 24 24"><path d="m8 7-5 5 5 5m8-10 5 5-5 5"/></svg></span></div></div></div>
+</main>
+<script src="preview.js"></script>
+</html>
