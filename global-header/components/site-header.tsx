@@ -182,8 +182,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   const partyHeader = pathname.startsWith('/lab/party-planner')
   const pinnedPaper =
     pathname.startsWith('/lab/weather-aquarium') ||
-    pathname.startsWith('/ai-companion-pet') ||
-    pathname.startsWith('/lab/agent-monitor')
+    pathname.startsWith('/ai-companion-pet')
   const paperHeader =
     pathname.startsWith('/lab/way-of-work') ||
     pathname.startsWith('/design-system') ||

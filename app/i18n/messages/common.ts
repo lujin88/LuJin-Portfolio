@@ -19,7 +19,6 @@ export const common = {
     closePreview: 'Close preview',
     previousScreen: 'Previous screen',
     nextScreen: 'Next screen',
-    documentTitleAbout: 'Lu Jin — About',
   },
   de: {
     exploreNow: 'Jetzt entdecken',
@@ -42,6 +41,5 @@ export const common = {
     closePreview: 'Vorschau schließen',
     previousScreen: 'Vorheriger Screen',
     nextScreen: 'Nächster Screen',
-    documentTitleAbout: 'Lu Jin — Über mich',
   },
 } as const

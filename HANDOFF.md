@@ -307,9 +307,7 @@ Host app: `http://localhost:3000` (root `/` redirects to `/index`).
 | Page | Route | Implementation | Relation |
 |---|---|---|---|
 | **Index** | `/index` | HTML island `public/home.html` | Shared React header; Poppins; pin-scroll experience; index-blue connectors |
-| **About** | `/about` | HTML island `public/about.html` | Same shell; Poppins; 9:16 collection cards; contact restored in global pass |
-| **Lab** | `/lab` | HTML island `public/lab.html` | Poppins Display + index-blue signaling |
-| **AI Workflow** | `/ai-workflow-case` | HTML island `public/ai-workflow-case.html` | Same Lab/AI editorial family |
+| **Lab** | `/lab` | Redirects to `/lab/weather-aquarium` | /about, /wip, /ai-workflow-case, /lab/agent-monitor removed 2026-11-01 |
 | **Client Advisory** | `/client-advisory` (alias `/client-advisor`) | React `ClientAdvisorCaseStudy` | Theme Layer navy/ice; uncommitted join + polish |
 | **E.ON Solar** | `/EON` (`/eon-solar` redirects here) | `eon/e-on-09` | Theme Layer lavender/mint/red/light; nested repo |
 
