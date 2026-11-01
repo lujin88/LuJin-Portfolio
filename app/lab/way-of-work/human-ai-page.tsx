@@ -71,7 +71,7 @@ export function HumanAiPage() {
       doc.head.appendChild(style)
       dialog = doc.getElementById('projects-dialog') as HTMLDialogElement | null
       dialog?.addEventListener('toggle', () => {
-        requestAnimationFrame(placeDialog)
+        requestAnimationFrame(() => placeDialog())
       })
       doc.getElementById('projects-button')?.addEventListener(
         'click',
@@ -89,13 +89,14 @@ export function HumanAiPage() {
       fit()
       placeDialog()
     }
+    const onScroll = () => placeDialog()
     frame.addEventListener('load', onLoad)
-    window.addEventListener('scroll', placeDialog, { passive: true })
+    window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onResize)
     if (frame.contentDocument?.readyState === 'complete') onLoad()
     return () => {
       frame.removeEventListener('load', onLoad)
-      window.removeEventListener('scroll', placeDialog)
+      window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onResize)
       observer?.disconnect()
     }
