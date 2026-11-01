@@ -46,7 +46,7 @@ export default function RootLayout({
       className={`${caveat.variable} ${poppins.variable} overflow-x-hidden`}
       style={{ backgroundColor: '#0a0a0a', colorScheme: 'dark' }}
     >
-      <body className="min-w-[360px] antialiased">
+      <body className="m-0 min-w-[360px] antialiased">
         <I18nProvider>{children}</I18nProvider>
       </body>
     </html>

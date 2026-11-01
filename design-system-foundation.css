@@ -82,6 +82,12 @@
   --header-menu: oklch(0.24 0.004 264);
   --header-menu-item: oklch(0.29 0.004 264);
   --header-accent: #7ea2ff;
+  --header-menu-hover-light: #e2e2e2;
+  --header-menu-hover-dark: #474747;
+  --header-menu-selected-light: #0961ff;
+  --header-menu-selected-dark: #7ea2ff;
+  --header-menu-selected-bar: 4px;
+  --header-menu-selected-weight: 700;
 
   /* ---------- semantic aliases requested for this document ---------- */
   --color-bg: var(--color-bg-page);
@@ -1107,6 +1113,101 @@ img {
   padding: 0.75rem 1.5rem;
   font-size: 1.0625rem;
   line-height: 1;
+}
+
+.header-menu-states {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.header-menu-example__label {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 0.625rem;
+  font-size: 0.75rem;
+  color: var(--color-text-2);
+}
+
+.header-menu-example__label code {
+  color: var(--color-text-3);
+}
+
+.header-menu-preview {
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.65);
+}
+
+.header-menu-preview--light {
+  background: #ffffff;
+  color: #171717;
+}
+
+.header-menu-preview--dark {
+  background: #303030;
+  color: #f7f7f7;
+}
+
+.header-menu-row {
+  position: relative;
+  display: flex;
+  min-height: 3.75rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  border-radius: 0;
+}
+
+.header-menu-row + .header-menu-row {
+  border-top: 1px solid rgba(127, 127, 127, 0.18);
+}
+
+.header-menu-row__icon {
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: 0 0 1.75rem;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+.header-menu-preview--light .header-menu-row.is-hovered {
+  background: var(--header-menu-hover-light);
+}
+
+.header-menu-preview--dark .header-menu-row.is-hovered {
+  background: var(--header-menu-hover-dark);
+}
+
+.header-menu-row.is-selected,
+.header-menu-row.is-selected:hover {
+  background: transparent;
+  font-weight: var(--header-menu-selected-weight);
+}
+
+.header-menu-row.is-selected::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--header-menu-selected-bar);
+  content: '';
+}
+
+.header-menu-preview--light .header-menu-row.is-selected::before {
+  background: var(--header-menu-selected-light);
+}
+
+.header-menu-preview--dark .header-menu-row.is-selected::before {
+  background: var(--header-menu-selected-dark);
 }
 
 .component-stage {
