@@ -1,18 +1,17 @@
+import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { SiteHeader } from '@header/components/site-header'
 import { SiteFooter } from '@eon/components/site-footer'
 import { HtmlTheme } from '../html-theme'
-import { socialMetadata } from '../seo'
+import '@header/header.css'
 import '@eon/app/globals.css'
 
-const TITLE = 'Lu Jin — E.ON Solar'
-const DESCRIPTION =
-  'Case study: redesigning a high-friction solar calculator journey to turn existing traffic into qualified leads.'
-
 export const metadata: Metadata = {
-  title: { absolute: TITLE },
-  description: DESCRIPTION,
-  ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/EON', image: '/og/eon-solar.jpg' }),
+  title: {
+    absolute: 'Lu — E.ON Solar',
+  },
+  description:
+    'Case study: redesigning a high-friction solar calculator journey to turn existing traffic into qualified leads.',
 }
 
 export const viewport: Viewport = {
@@ -31,12 +30,13 @@ export default function EonLayout({
       <div className="site-chrome">
         <SiteHeader activeHref="/EON" />
       </div>
-      <div id="site-content" tabIndex={-1} className="pt-20 font-sans md:pt-24">
+      <div id="site-content" tabIndex={-1} className="pt-16 font-sans">
         {children}
       </div>
       <div className="site-chrome">
         <SiteFooter variant="light" />
       </div>
+      {process.env.NODE_ENV === 'production' && <Analytics />}
     </>
   )
 }

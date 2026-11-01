@@ -40,6 +40,16 @@
   --pill-hover-text: #0a0a0a;
   --pill-hover-shadow: none;
 
+  --button-cta-height: 46px;
+  --button-cta-padding-inline: 28px;
+  --button-cta-font-size: 0.95rem;
+  --button-cta-line-height: 1;
+  --button-cta-font-weight: 400;
+  --button-cta-gap: 8px;
+  --button-cta-icon-size: 16px;
+  --button-cta-radius: var(--radius-pill);
+  --button-cta-border-width: 1px;
+
   --panel-shadow:
     0 40px 80px -30px rgba(0, 0, 0, 0.7),
     0 12px 30px -10px rgba(0, 0, 0, 0.55),
@@ -142,18 +152,9 @@
   --duration-interaction: 320ms;
   --duration-reveal: 800ms;
 
-  /* Content inset. Matches the Client Advisory hero rail:
-     24px below tablet, 40px from 768, 48px from 1024, then the
-     1520px well. Header chrome stays on --pad. */
-  --content-inset: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  :root { --content-inset: 2.5rem; }
-}
-
-@media (min-width: 1024px) {
-  :root { --content-inset: max(3rem, calc((100vw - 1520px) / 2 + 3rem)); }
+  /* Page gutter. 24px until the 1440 well is centered, then the
+     side margin of that well. Header and page content share this edge. */
+  --content-inset: max(var(--pad), calc((100% - var(--wrap)) / 2));
 }
 
 /* Header focus stays currentColor in global-header/header.css. */
