@@ -3,7 +3,7 @@
 10+ years in product, service and UI design, mostly in finance, public sector and automotive.
 
 ## Career
-- Oct 2022 – Sep 2026 · UBS, Zurich · Senior Service Designer / UX Designer
+- Oct 2022 – Sep 2026 · UBS, Zurich · Senior Service Designer
   B2B wealth-management products: tools for wealth advisors, a multi-asset application for bankers and traders, and middle-office payments tooling. Lead Service Designer on the AI advisor workflow concept (see cases/ubs-advisory.md). Contributed to AI components with the design system team (proposing, reviewing, shaping).
   Wealth-advisor tools: 89% CAST usability score; advisor preparation time reduced by more than 10 minutes per client interaction, across Switzerland, EMEA and APAC.
 - Oct 2020 – Sep 2022 · AdNovum, Bern · Senior Product Designer
