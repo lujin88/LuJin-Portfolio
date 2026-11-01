@@ -82,7 +82,7 @@ export function SiteFooter({ variant }: SiteFooterProps) {
           ·
         </span>
         <a
-          href="/lab"
+          href="/lab/weather-aquarium"
           className="text-xs text-footer-muted/80 transition-colors duration-200 hover:text-footer-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current motion-reduce:transition-none"
         >
           Playground
