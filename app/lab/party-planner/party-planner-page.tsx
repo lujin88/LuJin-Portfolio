@@ -5,6 +5,7 @@ import type { CSSProperties } from 'react'
 import { SiteClosing } from '../../components/site-closing'
 import { PartyPlannerCanvas } from './canvas-fit'
 import { assets, prototypeUrl } from './config'
+import { Icon as LineIcon } from '../../components/icon'
 import { Icon, IconSprite } from './icon-sprite'
 
 function Confetti({
@@ -109,8 +110,8 @@ export function PartyPlannerPage() {
                 rel="noopener noreferrer"
                 aria-label="Start a party, open Party Planner prototype (opens in a new tab)"
               >
-                <span>Start A Party</span>
-                <i className="ri-arrow-right-line" aria-hidden="true" />
+                <span>Start a party</span>
+                <LineIcon name="arrow-right-line" />
               </a>
             </div>
             <a
@@ -223,7 +224,7 @@ export function PartyPlannerPage() {
                 <div className="guest-head">
                   <Icon name="i-back" />
                   <span>Guests &amp; RSVPs</span>
-                  <i className="ri-add-line" aria-hidden="true" />
+                  <LineIcon name="add-line" />
                 </div>
                 <p className="guest-intro">
                   Replies from the RSVP link and guests you add yourself, in one list.
@@ -243,7 +244,7 @@ export function PartyPlannerPage() {
                   </div>
                 </div>
                 <p className="guest-caption">
-                  About 5 kids including Emma — no need to count siblings or parents.
+                  About 5 kids including Mia — no need to count siblings or parents.
                 </p>
                 <div className="guest-list">
                   <div className="guest-person">
@@ -252,8 +253,8 @@ export function PartyPlannerPage() {
                     <span className="tag coming">Coming</span>
                   </div>
                   <div className="guest-person">
-                    <span className="avatar">M</span>
-                    <span className="guest-name">Mia</span>
+                    <span className="avatar">E</span>
+                    <span className="guest-name">Emma</span>
                     <span className="tag coming">Coming</span>
                   </div>
                   <div className="guest-person">
@@ -432,8 +433,8 @@ export function PartyPlannerPage() {
               rel="noopener noreferrer"
               aria-label="Start planning, open Party Planner prototype (opens in a new tab)"
             >
-              <span>Start Planning</span>
-              <i className="ri-arrow-right-line" aria-hidden="true" />
+              <span>Start planning</span>
+              <LineIcon name="arrow-right-line" />
             </a>
             <div className="closing-footer">Happier planning. Brighter childhoods.</div>
           </section>

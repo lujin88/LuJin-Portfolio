@@ -14,12 +14,12 @@ export const wip = {
     documentTitle: 'Lu Jin — Work in Progress',
     eyebrow: 'Playground',
     title: 'Work in Progress',
-    body: 'This page is currently under development. Check back soon for updates!',
+    body: 'This page is still being built. Check back soon.',
   },
   de: {
     documentTitle: 'Lu Jin — In Arbeit',
     eyebrow: 'Playground',
     title: 'In Arbeit',
-    body: 'Diese Seite wird gerade entwickelt. Schauen Sie bald wieder vorbei!',
+    body: 'Diese Seite entsteht gerade. Schauen Sie bald wieder vorbei.',
   },
 } as const

@@ -36,12 +36,11 @@ const NAV: readonly NavEntry[] = [
     label: 'Playground',
     sectionHref: '/lab',
     children: [
-      { label: 'Action Center', href: '/lab/action-center' },
+      { label: 'Agent Monitor', href: '/lab/agent-monitor' },
       { label: 'Off We Go Workbench', href: '/lab/off-we-go' },
       { label: 'Party Planner', href: '/lab/party-planner' },
     ],
   },
-  { kind: 'link', label: 'About', href: '/about' },
 ]
 
 const FOCUS_RING =
@@ -81,7 +80,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   const pathname = usePathname()
   const currentHref = activeHref ?? pathname
   const cinematicHeader =
-    pathname.startsWith('/lab/action-center') ||
+    pathname.startsWith('/lab/agent-monitor') ||
     pathname.startsWith('/lab/way-of-work') ||
     pathname.startsWith('/lab/off-we-go') ||
     pathname.startsWith('/lab/party-planner')
@@ -315,7 +314,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
         )}
       />
 
-      <div className="relative mx-auto flex h-20 max-w-[1800px] items-center justify-between px-6 md:h-24 md:px-12 lg:px-20 xl:px-28">
+      <div className="header-frame relative flex h-20 items-center justify-between md:h-24">
         <Link
           href="/index"
           className={cn(
@@ -349,7 +348,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                       aria-current={isActive ? 'page' : undefined}
                       onClick={dismissMenus}
                       className={cn(
-                        'inline-flex min-h-11 items-center rounded-sm text-[1.0625rem] leading-none no-underline transition-colors duration-200',
+                        'inline-flex min-h-11 items-center rounded-sm text-[0.95rem] leading-none no-underline transition-colors duration-200',
                         FOCUS_RING,
                         MOTION_SAFE,
                         isActive
@@ -404,7 +403,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
               }}
               onKeyDown={onTriggerKeyDown}
               className={cn(
-                'inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[1.0625rem] leading-none text-header-foreground/72 transition-colors duration-200 hover:text-header-foreground focus-visible:text-header-foreground',
+                'inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[0.95rem] leading-none text-header-foreground/72 transition-colors duration-200 hover:text-header-foreground focus-visible:text-header-foreground',
                 PLAIN_CONTROL,
                 FOCUS_RING,
                 MOTION_SAFE,
@@ -480,7 +479,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           <a
             href="mailto:lu.jin.ixd@gmail.com"
             className={cn(
-              'hidden min-h-12 items-center rounded-full border border-header-line px-9 py-4 text-[1.0625rem] leading-none text-header-foreground no-underline transition-colors duration-200 hover:border-header-foreground/70 hover:bg-header-foreground/6 lg:inline-flex',
+              'hidden min-h-11 items-center rounded-full border border-white/70 bg-transparent px-6 py-3 text-[0.95rem] leading-none text-[#f9fbfc] no-underline transition-colors duration-200 hover:border-[#f9fbfc] hover:bg-[#f9fbfc] hover:text-[#0a0a0a] md:px-7 md:py-3.5 lg:inline-flex',
               FOCUS_RING,
               MOTION_SAFE,
             )}
@@ -522,7 +521,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
             : 'max-h-0 opacity-0',
         )}
       >
-        <nav aria-label={copy.mobileNav} className="flex flex-col gap-6 px-6 pb-8 pt-2">
+        <nav aria-label={copy.mobileNav} className="header-frame flex flex-col gap-6 pb-8 pt-2">
           <ul className="m-0 flex list-none flex-col gap-4 p-0">
             {NAV.map((item) => {
               if (item.kind === 'link') {
@@ -745,7 +744,7 @@ function NavDropdown({
         }}
         onKeyDown={onButtonKeyDown}
         className={cn(
-          'inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[1.0625rem] leading-none transition-colors duration-200',
+          'inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[0.95rem] leading-none transition-colors duration-200',
           PLAIN_CONTROL,
           FOCUS_RING,
           MOTION_SAFE,

@@ -1,24 +1,20 @@
 import type { Metadata, Viewport } from 'next'
 
 import { HtmlChrome } from '../../html-chrome'
-import { socialMetadata } from '../../seo'
-import { CHAPTERS } from './chapters'
 
-const MIST = '#587894'
-
-const TITLE = 'Lu Jin — Way of Work'
-const DESCRIPTION =
-  'A more human way to build. From curiosity to impact. A structured, iterative process for complex products.'
+const NIGHT = '#070b16'
 
 export const metadata: Metadata = {
-  title: { absolute: TITLE },
-  description: DESCRIPTION,
-  ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/lab/way-of-work' }),
+  title: {
+    absolute: 'Lu — AI Design Process',
+  },
+  description:
+    'A practical workspace for AI-assisted design. Prompts, checklists and templates in one place.',
 }
 
 export const viewport: Viewport = {
   colorScheme: 'dark',
-  themeColor: MIST,
+  themeColor: NIGHT,
 }
 
 export default function WayOfWorkLayout({
@@ -27,17 +23,8 @@ export default function WayOfWorkLayout({
   children: React.ReactNode
 }>) {
   return (
-    <HtmlChrome activeHref="/lab/way-of-work" backgroundColor={MIST}>
+    <HtmlChrome activeHref="/lab/way-of-work" backgroundColor={NIGHT}>
       <link rel="stylesheet" href="/styles/shell-components.css" />
-      {CHAPTERS.map((chapter) => (
-        <link
-          key={chapter.still}
-          rel="preload"
-          as="image"
-          href={chapter.still}
-          fetchPriority={chapter.id === 'hero' ? 'high' : 'low'}
-        />
-      ))}
       {children}
     </HtmlChrome>
   )

@@ -104,7 +104,7 @@
   --header-glass: rgb(3 10 24);
   --header-menu: oklch(0.24 0.004 264);
   --header-menu-item: oklch(0.29 0.004 264);
-  --header-accent: #4a90ff;
+  --header-accent: #7ea2ff;
   --footer: oklch(0.13 0.008 265);
   --footer-foreground: oklch(0.985 0 0);
   --footer-muted: oklch(0.6 0.012 265);

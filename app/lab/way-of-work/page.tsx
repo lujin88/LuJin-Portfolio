@@ -1,5 +1,5 @@
-import { WayOfWorkPage } from './way-of-work-page'
+import { PlaybookPage } from './playbook-page'
 
 export default function Page() {
-  return <WayOfWorkPage />
+  return <PlaybookPage />
 }

@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react'
+import { Icon } from '../components/icon'
 import styles from './pet.module.css'
 
 type Screen = 'welcome' | 'avatar'
@@ -10,10 +11,10 @@ type Material = 'cloud' | 'velvet' | 'knit' | 'felt'
 const avatarPath = '/assets/ai-companion-pet/muse-avatar-reference.png'
 
 const materials: Array<{ id: Material; name: string; note: string; icon: string }> = [
-  { id: 'cloud', name: '云朵绒', note: '柔软蓬松', icon: 'ri-cloud-line' },
-  { id: 'velvet', name: '细短绒', note: '顺滑轻盈', icon: 'ri-sparkling-line' },
-  { id: 'knit', name: '针织', note: '温暖有纹理', icon: 'ri-shirt-line' },
-  { id: 'felt', name: '毛毡', note: '简单耐用', icon: 'ri-shapes-line' },
+  { id: 'cloud', name: '云朵绒', note: '柔软蓬松', icon: 'cloud-line' },
+  { id: 'velvet', name: '细短绒', note: '顺滑轻盈', icon: 'sparkling-line' },
+  { id: 'knit', name: '针织', note: '温暖有纹理', icon: 'shirt-line' },
+  { id: 'felt', name: '毛毡', note: '简单耐用', icon: 'shapes-line' },
 ]
 
 const colors = [
@@ -108,7 +109,7 @@ export default function CompanionPetPage() {
           <button type="button" data-active={screen === 'avatar'} onClick={() => setScreen('avatar')}>创造伙伴</button>
         </div>
         <button className={styles.soundButton} type="button" onClick={playWelcome} aria-label="播放默默的欢迎语" title="播放欢迎语">
-          <i className={speaking ? 'ri-volume-vibrate-fill' : 'ri-volume-up-line'} aria-hidden="true" />
+          <Icon name={speaking ? 'volume-vibrate-fill' : 'volume-up-line'} />
         </button>
       </header>
 
@@ -121,7 +122,7 @@ export default function CompanionPetPage() {
             <div className={styles.welcomeActions}>
               <button className={styles.primaryButton} type="button" onClick={playWelcome} disabled={speaking}>
                 <span>{speaking ? '默默正在说话…' : '开始创造我的伙伴'}</span>
-                <i className={speaking ? 'ri-sound-module-line' : 'ri-arrow-right-line'} aria-hidden="true" />
+                <Icon name={speaking ? 'sound-module-line' : 'arrow-right-line'} />
               </button>
               <button className={styles.spaceHint} type="button" onClick={playWelcome} disabled={speaking}>
                 <span>空格键</span>
@@ -143,16 +144,16 @@ export default function CompanionPetPage() {
           </div>
 
           <div className={styles.promiseList}>
-            <div><i className="ri-heart-3-line" aria-hidden="true" /><span>陪着你，不催你</span></div>
-            <div><i className="ri-bookmark-3-line" aria-hidden="true" /><span>记住重要的小事</span></div>
-            <div><i className="ri-shield-check-line" aria-hidden="true" /><span>由家人保护隐私</span></div>
+            <div><Icon name="heart-3-line" /><span>陪着你，不催你</span></div>
+            <div><Icon name="bookmark-3-line" /><span>记住重要的小事</span></div>
+            <div><Icon name="shield-check-line" /><span>由家人保护隐私</span></div>
           </div>
         </section>
       ) : (
         <section className={styles.avatarScreen} id="avatar-creator" style={{ '--chosen-color': color.value } as CSSProperties}>
           <div className={styles.creatorIntro}>
             <button type="button" className={styles.backButton} onClick={() => setScreen('welcome')}>
-              <i className="ri-arrow-left-line" aria-hidden="true" />返回
+              <Icon name="arrow-left-line" />返回
             </button>
             <p className={styles.eyebrow}>创造你的伙伴</p>
             <h1>它摸起来，<br />应该是什么感觉？</h1>
@@ -178,7 +179,7 @@ export default function CompanionPetPage() {
               <div className={styles.materialGrid}>
                 {materials.map((item) => (
                   <button key={item.id} type="button" data-selected={material === item.id} aria-pressed={material === item.id} onClick={() => setMaterial(item.id)}>
-                    <i className={item.icon} aria-hidden="true" />
+                    <Icon name={item.icon} />
                     <strong>{item.name}</strong>
                     <span>{item.note}</span>
                   </button>
@@ -202,22 +203,22 @@ export default function CompanionPetPage() {
               <label className={styles.nameField}>
                 <span className={styles.visuallyHidden}>伙伴名字</span>
                 <input value={name} onChange={(event) => { setName(event.target.value); setSaved(false) }} maxLength={8} />
-                <i className="ri-pencil-line" aria-hidden="true" />
+                <Icon name="pencil-line" />
               </label>
             </div>
 
             <button className={styles.primaryButton} type="button" onClick={() => setSaved(true)}>
               <span>{saved ? '已经准备好了' : '完成设置'}</span>
-              <i className={saved ? 'ri-check-line' : 'ri-arrow-right-line'} aria-hidden="true" />
+              <Icon name={saved ? 'check-line' : 'arrow-right-line'} />
             </button>
           </aside>
         </section>
       )}
 
       <nav className={styles.screenSwitcher} aria-label="Key screen 切换">
-        <button type="button" onClick={() => setScreen('welcome')} aria-label="上一个 screen" title="上一个"><i className="ri-arrow-left-s-line" aria-hidden="true" /></button>
+        <button type="button" onClick={() => setScreen('welcome')} aria-label="上一个 screen" title="上一个"><Icon name="arrow-left-s-line" /></button>
         <div><strong>{screen === 'welcome' ? '01' : '02'}</strong><span>{screen === 'welcome' ? 'Welcome' : 'Avatar'}</span></div>
-        <button type="button" onClick={() => setScreen('avatar')} aria-label="下一个 screen" title="下一个"><i className="ri-arrow-right-s-line" aria-hidden="true" /></button>
+        <button type="button" onClick={() => setScreen('avatar')} aria-label="下一个 screen" title="下一个"><Icon name="arrow-right-s-line" /></button>
       </nav>
     </main>
   )

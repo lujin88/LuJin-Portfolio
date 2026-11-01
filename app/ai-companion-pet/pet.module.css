@@ -166,7 +166,7 @@
 
 .primaryButton:active { transform: scale(0.98); }
 .primaryButton:disabled { cursor: default; opacity: 0.86; }
-.primaryButton i { font-size: 18px; }
+.primaryButton svg { width: 18px; height: 18px; display: block; }
 
 .spaceHint {
   display: flex;
@@ -294,7 +294,7 @@
 }
 
 .promiseList div { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 9px; }
-.promiseList i { color: var(--rose); font-size: 15px; }
+.promiseList svg { color: var(--rose); width: 15px; height: 15px; display: block; }
 
 .avatarScreen {
   display: grid;
@@ -318,7 +318,7 @@
   color: var(--muted);
   font-size: 10px;
 }
-.backButton i { font-size: 15px; }
+.backButton svg { width: 15px; height: 15px; display: block; }
 .creatorIntro h1 { max-width: 7ch; font-size: clamp(48px, 5vw, 72px); }
 .creatorIntro > p:last-child { max-width: 30ch; margin: 24px 0 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
 
@@ -420,7 +420,7 @@
   text-align: left;
 }
 .materialGrid button[data-selected='true'] { border-color: var(--rose); background: rgba(244,225,220,0.7); box-shadow: inset 0 0 0 1px rgba(183,96,97,0.15); }
-.materialGrid i { grid-row: 1 / span 2; align-self: center; color: var(--rose); font-size: 18px; }
+.materialGrid svg { grid-row: 1 / span 2; align-self: center; color: var(--rose); width: 18px; height: 18px; }
 .materialGrid strong { font-size: 10px; }
 .materialGrid span { color: var(--muted); font-size: 8px; }
 
@@ -448,7 +448,7 @@
   background: rgba(255,255,255,0.62);
 }
 .nameField input { min-width: 0; flex: 1; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 12px; font-weight: 650; }
-.nameField i { color: var(--muted); font-size: 15px; }
+.nameField svg { color: var(--muted); width: 15px; height: 15px; display: block; }
 .creatorPanel > .primaryButton { width: 100%; margin-top: 24px; }
 
 .screenSwitcher {

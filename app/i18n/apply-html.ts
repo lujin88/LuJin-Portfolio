@@ -49,6 +49,14 @@ export function applyHtmlTranslations(lang: LangCode, root: ParentNode = documen
     applyAttr(el, 'alt', value)
   })
 
+  root.querySelectorAll<HTMLElement>('[data-i18n-placeholder]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-placeholder')
+    if (!key) return
+    const value = lookupString(dict, key)
+    if (value == null) return
+    applyAttr(el, 'placeholder', value)
+  })
+
   root.querySelectorAll<HTMLElement>('[data-i18n-aria]').forEach((el) => {
     const key = el.getAttribute('data-i18n-aria')
     if (!key) return

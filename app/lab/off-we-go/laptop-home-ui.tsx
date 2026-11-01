@@ -1,5 +1,6 @@
 import Image from 'next/image'
 
+import { Icon } from '../../components/icon'
 import { screenWallpaperSrc } from './config'
 import styles from './off-we-go.module.css'
 
@@ -29,7 +30,7 @@ export function LaptopHomeUi() {
               strokeLinejoin="round"
             />
           </svg>
-          <i className="ri-settings-3-line" aria-hidden="true" />
+          <Icon name="settings-3-line" />
         </div>
 
         <div className={styles.homeStack}>
@@ -38,7 +39,7 @@ export function LaptopHomeUi() {
           <p className={styles.homeLede}>Tell me a little. We will plan it step by step.</p>
 
           <div className={styles.homeSearch}>
-            <i className="ri-search-line" aria-hidden="true" />
+            <Icon name="search-line" />
             <span>For example: a warm, easy family trip in the next school break</span>
             <em>Start planning</em>
           </div>

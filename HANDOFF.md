@@ -42,7 +42,7 @@ Master rule from the DS: **Audit → Normalize → Preserve → Apply.**
 
 Note the spelling `protoflio`. There is also a copy at `portfolio_perfect/design-system-foundation.html`. The **desktop Master file is the only source of truth**. Do not treat the in-repo HTML/CSS copies as license to rewrite the system.
 
-Official name for the global shell accent: **blue-violet** (`#8B5CF6`). Do not call it generic purple. Do not rename E.ON lavender, Client Advisory blue, header-local blue, or Index periwinkle as blue-violet.
+Official name for the global shell accent: **index blue** (`#7ea2ff`, hover `#a9c4ff`). Header check and Index experience connectors use the same blue. Do not rename E.ON lavender or Client Advisory blue as index blue.
 
 ### Global Foundation (what repeats across the shared shell)
 
@@ -55,15 +55,15 @@ Controls:
 - Interaction principles (pills, focus, hover)
 - Motion timing and reduced-motion fallbacks
 - Responsive behavior
-- Global shell: header mechanics, page field `#0a0a0a` with 3.5% grain, blue-violet **signal** (not a page fill)
+- Global shell: header mechanics, page field `#0a0a0a` with 3.5% grain, index-blue **signal** (not a page fill)
 
-Blue-violet tokens:
+Index-blue tokens:
 
 | Role | Token | Value |
 |---|---|---|
-| Shell accent | `--color-theme-2` / live Tailwind `accent` | `#8B5CF6` |
-| Hover | `--color-theme-hover` | `#A78BFA` |
-| Soft accent | `--color-theme-3` | `rgba(139,92,246,0.15)` |
+| Shell accent | `--color-theme-2` / live Tailwind `accent` / `--header-accent` | `#7ea2ff` |
+| Hover | `--color-theme-hover` | `#a9c4ff` |
+| Soft accent | `--color-theme-3` | `rgba(126,162,255,0.15)` |
 
 Surfaces: `#0a0a0a` page → `#111214` → `#1a1c1f` → `#1f2124`. Secondary text `#b6bbc2`. Divider `#343638`.
 
@@ -75,7 +75,7 @@ A theme **may** control: case palette, section-specific colors, illustrations, m
 
 A theme **may not** arbitrarily reset: global page rhythm, shell navigation, background continuity, accessible interaction, or responsive rules.
 
-**Client Advisory Theme Layer** (do not replace with blue-violet):
+**Client Advisory Theme Layer** (do not replace with index blue):
 
 | Token | Value |
 |---|---|
@@ -93,7 +93,7 @@ Also used in uncommitted Outcome work: `--ca-accent-soft: #7cc0ff` (CA theme, no
 
 **E.ON Solar Theme Layer:** navy `#07151f`, off-white `#f8f8f6`, lavender `#c9b5f4` / `#e8e1ff` / `#9284d7` / `#9b90c5`, mint `#b9f4d8` / `#e5f9ee`, E.ON red `#f32717`, Caveat handwriting, Geist product sans, light sections. CSS names containing “purple” still mean **lavender**. Source: `eon/e-on-09/app/globals.css`.
 
-**Lab + AI Workflow:** editorial use of global blue-violet **plus** Poppins at the larger Display editorial size token. No second Display face.
+**Lab + AI Workflow:** editorial use of global index blue **plus** Poppins at the larger Display editorial size token. No second Display face.
 
 ### Background Continuity Principle
 
@@ -119,10 +119,10 @@ Type does hierarchy. Color does signaling.
 
 ### Color rules (scoped, not global)
 
-Do **not** merge these into blue-violet:
+Host, header, and Index experience share one accent. Do **not** merge case palettes into it:
 
-- Header-local accent `--header-accent #4a90ff` — React SiteHeader selected-language Check icon only
-- Index experience connectors `#7A7FDC` / `#3846D4` — Index storytelling motif only
+- Header accent `--header-accent #7ea2ff` — same blue as `--color-theme-2`. React SiteHeader selected-language Check
+- Index experience connectors — same `#7ea2ff` (hover `#a9c4ff`)
 
 ### Responsive rules
 
@@ -150,8 +150,7 @@ At **640px** or `prefers-reduced-motion`, pinning collapses to static stacks. Mo
 
 ### Intentional exceptions (must stay different)
 
-- Global blue-violet `#8B5CF6` vs header-local `#4a90ff`
-- Global blue-violet vs Index periwinkle connectors
+- One index blue `#7ea2ff` for shell, header check, and experience connectors
 - CA navy / ice / signal / `--ca-accent` are Theme Layer, not Global Foundation defects
 - E.ON navy / lavender / mint / red / light sections are Theme Layer
 - One Display face: Poppins site-wide (size tokens may differ)
@@ -169,11 +168,10 @@ At **640px** or `prefers-reduced-motion`, pinning collapses to static stacks. Mo
 ### What must NOT be changed
 
 - The Master DS file itself, unless the user explicitly requests a DS edit
-- Case-specific visual identities (CA navy/ice, E.ON lavender/mint/red/Caveat, Lab/AI blue-violet signaling, PP Patrick Hand accents)
-- Index periwinkle connectors and header-local `#4a90ff`
+- Case-specific visual identities (CA navy/ice, E.ON lavender/mint/red/Caveat, Lab/AI index-blue signaling, PP Patrick Hand accents)
 - Unrelated case studies when the task is about one page
 - Existing uncommitted Client Advisory work (see §5)
-- Do not invent a new global palette, new DS, or “correct” a theme with blue-violet
+- Do not invent a new global palette, new DS, or “correct” a theme with index blue
 - Do not flatten Theme Layer colors into Global Foundation
 
 ---
@@ -237,7 +235,7 @@ No new design system. Shared shell only. Theme Layers preserved.
 
 Included (high level):
 
-- `global-header/header.css`: HTML-only `--color-accent: #8B5CF6` so `text-accent` is not white (Next `--color-accent` was empty)
+- `global-header/header.css`: HTML-only `--color-accent: #7ea2ff` so `text-accent` is not white (Next `--color-accent` was empty)
 - `site-header.tsx`: focus-ring / `MOTION_SAFE`; `twMerge` had been dropping `focus-visible:outline` — fixed with `outline-solid` + explicit header focus-visible
 - HTML footers transparent so the ending reads as one surface (Background Continuity)
 - About contact restored
@@ -296,7 +294,7 @@ Replaces the text `Concept → Mockup → Test` row with `<ProcessJourney />`.
 Client component: Concept / Mockup / Test steps with icons; IntersectionObserver reveal; respects `prefers-reduced-motion`.
 
 **`ca/client-advisor/components/sessions/process-journey.module.css`** (untracked)  
-CA-theme styling using `--ca-accent-soft`. Do not restyle with global blue-violet.
+CA-theme styling using `--ca-accent-soft`. Do not restyle with global index blue.
 
 Hero PNG (`ca/client-advisor/public/images/hero-background.png`) already contains the left navy field, the advisor, and the bottom-left arc. Mandate assets: `ca-02-bg.png` (arc + glow), `ca-02-ui.png` (card stack).
 
@@ -308,9 +306,9 @@ Host app: `http://localhost:3000` (root `/` redirects to `/index`).
 
 | Page | Route | Implementation | Relation |
 |---|---|---|---|
-| **Index** | `/index` | HTML island `public/home.html` | Shared React header; Poppins; pin-scroll experience; periwinkle connectors |
+| **Index** | `/index` | HTML island `public/home.html` | Shared React header; Poppins; pin-scroll experience; index-blue connectors |
 | **About** | `/about` | HTML island `public/about.html` | Same shell; Poppins; 9:16 collection cards; contact restored in global pass |
-| **Lab** | `/lab` | HTML island `public/lab.html` | Poppins Display + blue-violet signaling |
+| **Lab** | `/lab` | HTML island `public/lab.html` | Poppins Display + index-blue signaling |
 | **AI Workflow** | `/ai-workflow-case` | HTML island `public/ai-workflow-case.html` | Same Lab/AI editorial family |
 | **Client Advisory** | `/client-advisory` (alias `/client-advisor`) | React `ClientAdvisorCaseStudy` | Theme Layer navy/ice; uncommitted join + polish |
 | **E.ON Solar** | `/EON` (`/eon-solar` redirects here) | `eon/e-on-09` | Theme Layer lavender/mint/red/light; nested repo |
@@ -385,6 +383,7 @@ Do not start another global design-system pass.
 - Verify UI in the browser before declaring visual work done. A single screenshot is not enough; check behavior and related routes that share state.
 - Next.js 16: read `node_modules/next/dist/docs/` before using APIs from memory.
 - Do not flatten Theme Layer colors into Global Foundation.
+- **Copy (EN / DE):** follow `docs/portfolio-consistency-guide.md` § 5 Copy & Voice — US English, sentence-case buttons, German always “Sie”, keep metrics consistent, and sync HTML fallback text when changing English.
 
 ---
 

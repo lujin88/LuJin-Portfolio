@@ -1,8 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
-@import '../../../node_modules/remixicon/fonts/remixicon.css';
-
 @source '../../ca-session-01-hero/components';
 @source '../../ca-session-02-mandate/components';
 @source '../../ca-session-03-research/components';
@@ -88,10 +86,10 @@
 
 :root {
   /*
-   * Color layers — do not merge.
-   *   Host    — showcase shell (#8B5CF6 on home/about/lab). Not a case fill.
-   *   Header  — shared chrome (--header-accent #4a90ff). Language check only.
-   *   Session — --ca-* navy/ice/signal below. Narrative, not branding.
+   * Color layers.
+   *   Host and header share index blue #7ea2ff. Not a case fill.
+   *   Header  — shared chrome (--header-accent #7ea2ff). Language check only.
+   *   Session — --ca-* navy/ice/signal below. Narrative, not branding. Do not recolor.
    */
   color-scheme: dark;
   --header-scrim: oklch(0.15 0.012 264);
@@ -100,7 +98,7 @@
   --header-glass: rgb(3 10 24);
   --header-menu: oklch(0.24 0.004 264);
   --header-menu-item: oklch(0.29 0.004 264);
-  --header-accent: #4a90ff;
+  --header-accent: #7ea2ff;
   --footer: oklch(0.13 0.008 265);
   --footer-foreground: oklch(0.985 0 0);
   --footer-muted: oklch(0.6 0.012 265);
@@ -154,7 +152,7 @@
   --header-glass: rgb(3 10 24);
   --header-menu: oklch(0.24 0.004 264);
   --header-menu-item: oklch(0.29 0.004 264);
-  --header-accent: #4a90ff;
+  --header-accent: #7ea2ff;
   --footer: oklch(0.13 0.008 265);
   --footer-foreground: oklch(0.985 0 0);
   --footer-muted: oklch(0.6 0.012 265);
@@ -202,7 +200,7 @@
     --header-glass: rgb(3 10 24);
     --header-menu: oklch(0.24 0.004 264);
     --header-menu-item: oklch(0.29 0.004 264);
-    --header-accent: #4a90ff;
+    --header-accent: #7ea2ff;
     --footer: oklch(0.13 0.008 265);
     --footer-foreground: oklch(0.985 0 0);
     --footer-muted: oklch(0.6 0.012 265);

@@ -15,7 +15,7 @@ export default function NotFound() {
         <p className="not-found__code">404</p>
         <h1>{t('common.pageNotFound')}</h1>
         <p className="not-found__body">{t('common.pageNotFoundBody')}</p>
-        <Link href="/index" className="not-found__home">
+        <Link href="/" className="not-found__home">
           {t('common.backHome')}
         </Link>
       </main>
@@ -57,18 +57,20 @@ export default function NotFound() {
           min-height: 2.75rem;
           margin-top: 2rem;
           padding: 0 1.35rem;
-          border: 1px solid var(--pill-border, rgba(249, 251, 252, 0.45));
+          border: 1px solid var(--pill-border, rgba(249, 251, 252, 0.72));
           border-radius: 999px;
+          background: var(--pill-bg, transparent);
           color: var(--pill-text, #f9fbfc);
           font-weight: 600;
           text-decoration: none;
         }
         .not-found__home:hover {
           background: var(--pill-hover-bg, #f9fbfc);
+          border-color: var(--pill-hover-bg, #f9fbfc);
           color: var(--pill-hover-text, #0a0a0a);
         }
         .not-found__home:focus-visible {
-          outline: 2px solid var(--focus-ring, #8B5CF6);
+          outline: 2px solid var(--focus-ring, #7ea2ff);
           outline-offset: 3px;
         }
       `}</style>
