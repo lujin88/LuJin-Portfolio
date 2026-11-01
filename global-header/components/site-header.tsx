@@ -180,7 +180,6 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   const pathname = usePathname()
   const currentHref = activeHref ?? pathname
   const cinematicHeader =
-    pathname.startsWith('/lab/off-we-go') ||
     pathname.startsWith('/backup/ai-design-process') ||
     pathname.startsWith('/backup/way-of-work')
   const partyHeader = pathname.startsWith('/lab/party-planner')

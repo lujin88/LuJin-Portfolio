@@ -9,7 +9,6 @@ const ROUTES = [
   '/about',
   '/ai-workflow-case',
   '/lab/action-center',
-  '/lab/off-we-go',
   '/lab/party-planner',
   '/lab/way-of-work',
 ]

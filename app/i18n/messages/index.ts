@@ -2,7 +2,6 @@ import type { LangCode } from '@header/lib/language'
 import { common } from './common'
 import { home } from './home'
 import { construction, lab, pet, wip } from './lab'
-import { owg } from './owg'
 import { wow } from './wow'
 import { ai } from './ai'
 import { ca } from './ca'
@@ -16,7 +15,6 @@ export const dictionaries = {
     pet: pet.en,
     construction: construction.en,
     wip: wip.en,
-    owg: owg.en,
     wow: wow.en,
     ai: ai.en,
     ca: ca.en,
@@ -29,7 +27,6 @@ export const dictionaries = {
     pet: pet.de,
     construction: construction.de,
     wip: wip.de,
-    owg: owg.de,
     wow: wow.de,
     ai: ai.de,
     ca: ca.de,
@@ -44,7 +41,6 @@ export const documentTitleKeys: Record<string, string> = {
   '/index': 'home.documentTitle',
   '/lab': 'lab.documentTitle',
   '/lab/way-of-work': 'wow.documentTitle',
-  '/lab/off-we-go': 'owg.documentTitle',
   '/lab/party-planner': 'lab.partyPlannerTitle',
   '/lab/weather-aquarium': 'lab.weatherAquariumTitle',
   '/ai-companion-pet': 'pet.documentTitle',

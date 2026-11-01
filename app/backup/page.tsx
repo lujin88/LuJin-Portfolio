@@ -41,11 +41,6 @@ const PAGES = [
     title: 'Way of Work',
     note: 'The earlier scroll page, before the playbook replaced it.',
   },
-  {
-    href: '/lab/off-we-go',
-    title: 'Off We Go',
-    note: 'Playground project kept off the menu.',
-  },
 ] as const
 
 export default function BackupPage() {

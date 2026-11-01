@@ -34,7 +34,6 @@ const nextConfig = {
       { source: '/lab/action-center', destination: '/lab/agent-monitor', permanent: false },
       { source: '/wip.html', destination: '/wip', permanent: false },
       { source: '/way-of-work', destination: '/lab/way-of-work', permanent: false },
-      { source: '/lab/off-we-go-workbench', destination: '/lab/off-we-go', permanent: false },
       { source: '/about.html', destination: '/about', permanent: false },
       { source: '/ai-workflow-case.html', destination: '/ai-workflow-case', permanent: false },
       { source: '/3000', destination: '/index', permanent: false },
