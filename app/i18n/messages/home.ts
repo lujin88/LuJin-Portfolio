@@ -4,7 +4,7 @@ export const home = {
     heroKicker: 'Product designer · Enterprise & regulated UX',
     heroTitle: 'Simplify complexity. Design with AI.',
     heroBody:
-      '<a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS: AI-assisted workflow, 10+ min saved per client</a>. <a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar: 4× lead conversion rate</a>.',
+      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS: AI-assisted workflow, 10+ min saved per client</a>.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar: 4× lead conversion rate</a>.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Close chat',
     askLuSend: 'Send',
@@ -83,7 +83,7 @@ export const home = {
     heroKicker: 'Product Designerin · Enterprise- & regulierte UX',
     heroTitle: 'Komplexität vereinfachen. Mit KI gestalten.',
     heroBody:
-      '<a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS: KI-gestützter Workflow, 10+&nbsp;Min. pro Kunde gespart</a>. <a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar: Anfragequote vervierfacht</a>.',
+      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS: KI-gestützter Workflow, 10+&nbsp;Min. pro Kunde gespart</a>.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar: Anfragequote vervierfacht</a>.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Chat schließen',
     askLuSend: 'Senden',
