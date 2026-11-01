@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import 'remixicon/fonts/remixicon.css'
 
+import { mediaUrl } from '../../../lib/media-url'
 import { HtmlChrome } from '../../html-chrome'
 import { socialMetadata } from '../../seo'
 
@@ -30,7 +31,7 @@ export default function ActionCenterLayout({
       <link
         rel="preload"
         as="image"
-        href="/assets/images/lab/action-center/monitor-hero-bg.png"
+        href={mediaUrl('/assets/images/lab/action-center/monitor-hero-bg.png')}
       />
       {children}
     </HtmlChrome>

@@ -2,6 +2,7 @@
 
 import { Check, Scan, Sun, Triangle } from 'lucide-react'
 import Image from 'next/image'
+import { mediaUrl } from '../../../../lib/media-url'
 import { ComparisonCardHeader } from '@eon/components/decisions/comparison-card-header'
 import { PanelArrow } from '@eon/components/decisions/panel-arrow'
 import { useTranslation } from '@i18n/use-translation'
@@ -24,7 +25,7 @@ export function ComparisonPanel() {
       <div className="flex flex-1 flex-col gap-6 rounded-2xl border border-navy-950/8 bg-card p-3 shadow-[0_20px_60px_rgba(5,20,30,0.08)] sm:flex-row sm:items-center">
         <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-xl sm:h-48 sm:w-48">
           <Image
-            src="/assets/images/eon/eon 07 map before.png"
+            src={mediaUrl('/assets/images/eon/eon 07 map before.png')}
             alt={t('eon.ui.beforeMapAlt')}
             fill
             className="object-cover"
@@ -49,7 +50,7 @@ export function ComparisonPanel() {
       <div className="flex flex-1 flex-col gap-6 rounded-2xl border border-navy-950/8 bg-card p-3 shadow-[0_20px_60px_rgba(5,20,30,0.08)] sm:flex-row sm:items-center">
         <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-xl sm:h-48 sm:w-48">
           <Image
-            src="/assets/images/eon/eon 07 map after.png"
+            src={mediaUrl('/assets/images/eon/eon 07 map after.png')}
             alt={t('eon.ui.afterMapAlt')}
             fill
             className="object-cover"

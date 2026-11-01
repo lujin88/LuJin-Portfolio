@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { Leaf } from 'lucide-react'
+import { mediaUrl } from '../../../../lib/media-url'
 import { ComparisonCardHeader } from '@eon/components/decisions/comparison-card-header'
 import { PanelArrow } from '@eon/components/decisions/panel-arrow'
 import { formatEurPerYear, type HouseholdState } from '@eon/components/decisions/household-states'
@@ -50,7 +51,7 @@ export function ShowValuePanel({ household }: { household: HouseholdState }) {
           <div className="grid h-full min-w-0 grid-cols-1 items-stretch gap-4 sm:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
             <div className="relative min-h-0 min-w-0 overflow-hidden aspect-[1679/937]">
               <Image
-                src="/assets/images/eon/eon 07 battery home.png"
+                src={mediaUrl('/assets/images/eon/eon 07 battery home.png')}
                 alt={t('eon.ui.homeAlt')}
                 fill
                 sizes="(max-width: 1024px) 50vw, 28vw"
