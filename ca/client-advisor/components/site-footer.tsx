@@ -18,7 +18,7 @@ export function SiteFooter() {
   ]
 
   return (
-    <footer className="relative w-full overflow-hidden bg-footer text-footer-foreground">
+    <footer className="relative w-full overflow-hidden bg-[#06101f] text-footer-foreground">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5 bg-linear-to-t from-footer-glow to-transparent"
