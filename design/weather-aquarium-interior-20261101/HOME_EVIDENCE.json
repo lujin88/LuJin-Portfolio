@@ -1,0 +1,28 @@
+{
+  "url": "http://localhost:3000/home.html",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "cards": [
+    {
+      "x": 24,
+      "y": 320.609375,
+      "width": 443,
+      "height": 539.359375
+    },
+    {
+      "x": 491,
+      "y": 320.609375,
+      "width": 443,
+      "height": 539.359375
+    },
+    {
+      "x": 958,
+      "y": 320.609375,
+      "width": 443,
+      "height": 539.359375
+    }
+  ],
+  "method": "Temporary DOM-only replacement of first card image; no source edits"
+}

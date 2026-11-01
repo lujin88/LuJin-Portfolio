@@ -1,0 +1,29 @@
+{
+  "source": ".scratch/wa-four-seasons-20261031.1uskxp/shots-consistent",
+  "sourceCommit": "7df7ad1d18a5dfa3866a770f67a07b237e9abe79",
+  "crop": {
+    "x": 390,
+    "y": 312,
+    "width": 1008,
+    "height": 700
+  },
+  "output": {
+    "width": 864,
+    "height": 600
+  },
+  "scale": 0.8571428571428571,
+  "widthShortfall": 0,
+  "order": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+  ],
+  "method": "Crop existing raw captures, uniform resize; no generation or stretching",
+  "sourceHashes": {
+    "spring": "be2dc214c512680c46cf078e0e1e2310e65d8038bafb04fc346401f310828b1e",
+    "summer": "dc96cdcf50be2a810b9ff09a8d49e8e517e7cbd64c02fd42f40002537fe086dc",
+    "autumn": "ee0875f4d63dcd47d2e1b4717f719146670e8de21c412fc3a6275cfc222c6ef0",
+    "winter": "9a12a9fc36fa07478ace030e96ba092faf8ad4fdb28ebac44de41c5658c5ad72"
+  }
+}
