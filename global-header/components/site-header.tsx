@@ -179,9 +179,6 @@ function menuMeta(copy: (typeof headerCopy)[keyof typeof headerCopy], meta: stri
 export function SiteHeader({ activeHref }: SiteHeaderProps) {
   const pathname = usePathname()
   const currentHref = activeHref ?? pathname
-  const cinematicHeader =
-    pathname.startsWith('/backup/ai-design-process') ||
-    pathname.startsWith('/backup/way-of-work')
   const partyHeader = pathname.startsWith('/lab/party-planner')
   const pinnedPaper =
     pathname.startsWith('/lab/weather-aquarium') ||
@@ -225,11 +222,11 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   }
 
   useEffect(() => {
-    const onScroll = () => setGlassActive(cinematicHeader || pinnedPaper || window.scrollY > 12)
+    const onScroll = () => setGlassActive(pinnedPaper || window.scrollY > 12)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [cinematicHeader, pinnedPaper])
+  }, [pinnedPaper])
 
   useEffect(() => {
     if (closeTimer.current !== null) {
