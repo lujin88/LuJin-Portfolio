@@ -1,5 +1,5 @@
-import { PlaybookPage } from './playbook-page'
+import { HumanAiPage } from './human-ai-page'
 
 export default function Page() {
-  return <PlaybookPage />
+  return <HumanAiPage />
 }
