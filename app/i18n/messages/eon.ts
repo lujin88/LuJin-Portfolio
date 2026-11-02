@@ -305,7 +305,7 @@ export const eon = {
       line1: 'Testen mit',
       line2: 'echten Kunden.',
       body: 'Wir haben den neuen Rechner mit Kunden getestet und mehrere Feedback-Quellen kombiniert.',
-      sources: ['Kundenresearch', 'Website-Analytics', 'Hotjar', 'Sales-Feedback'],
+      sources: ['Kunden\u00ADresearch', 'Website-Analytics', 'Hotjar', 'Sales-Feedback'],
       hand1: 'Weniger Aufwand.',
       hand2: 'Schnelleres Verstehen.',
       quote1: 'Es war so viel',
