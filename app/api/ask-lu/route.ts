@@ -8,6 +8,7 @@ import { openai } from '@ai-sdk/openai'
 import { streamText, type ModelMessage } from 'ai'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
+import { isAskLuEnabled } from '../../../lib/ask-lu'
 import { ASK_LU_SYSTEM_PROMPT } from './knowledge.generated'
 
 export const maxDuration = 30
@@ -52,6 +53,7 @@ function isTurn(m: unknown): m is ChatTurn {
 }
 
 export async function POST(req: Request) {
+  if (!isAskLuEnabled()) return text(404, 'Not found')
   if (!MODEL) {
     console.error(`[ask-lu] ASK_LU_MODEL is required when ASK_LU_PROVIDER=${PROVIDER}`)
     return text(503, 'The chat is not configured yet.')
