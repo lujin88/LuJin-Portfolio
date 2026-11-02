@@ -1,6 +1,6 @@
 export const owg = {
   en: {
-    documentTitle: 'Lu — Off We Go Workbench',
+    documentTitle: 'Lu Jin — Off We Go Workbench',
     tag: 'Concept Project',
     titleLead: 'Off We Go',
     titleAccent: 'Workbench',
@@ -14,7 +14,7 @@ export const owg = {
     sceneLines: ['Plan smarter.', 'Travel further.', 'Off we go.'],
   },
   de: {
-    documentTitle: 'Lu — Off We Go Workbench',
+    documentTitle: 'Lu Jin — Off We Go Workbench',
     tag: 'Konzeptprojekt',
     titleLead: 'Off We Go',
     titleAccent: 'Workbench',

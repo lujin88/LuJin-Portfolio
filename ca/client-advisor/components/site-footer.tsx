@@ -6,7 +6,7 @@ const CONTACT_EMAIL = 'lu.jin.ixd@gmail.com'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lu-jin-28008689/'
 const GITHUB_URL = 'https://github.com/lujin88'
 const CV_URL =
-  'https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view'
+  '/cv/lu-jin-cv.pdf'
 
 export function SiteFooter() {
   const { t } = useTranslation()
@@ -80,6 +80,12 @@ export function SiteFooter() {
         >
           Playground
         </a>
+        <div className="flex items-center gap-x-3">
+          <span aria-hidden="true" className="text-xs text-footer-muted/50">
+            ·
+          </span>
+          <p className="text-xs text-footer-muted/80">{t('common.footerAnalytics')}</p>
+        </div>
       </div>
     </footer>
   )

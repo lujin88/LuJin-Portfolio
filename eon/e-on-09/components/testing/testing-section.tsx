@@ -144,7 +144,7 @@ export function TestingSection() {
             <div className="relative ml-auto w-full max-w-[500px] lg:mr-8">
               <div className="overflow-hidden rounded-3xl shadow-[0_24px_60px_rgba(5,20,30,0.14)]">
                 <Image
-                  src="/assets/images/eon/eon 08 woman.png"
+                  src="/assets/images/eon/eon-08-woman.webp"
                   alt={t('eon.testing.womanAlt')}
                   width={1372}
                   height={1148}
@@ -156,10 +156,10 @@ export function TestingSection() {
               <div className="absolute bottom-0 right-[-0.75rem] z-20 w-[236px] bg-transparent md:w-[248px] lg:right-[-5.5rem]">
                 <div className="relative bg-transparent">
                   <Image
-                    src="/assets/images/eon/eon 08 house.png"
+                    src="/assets/images/eon/eon-08-house.webp"
                     alt={t('eon.testing.houseAlt')}
-                    width={1122}
-                    height={1402}
+                    width={520}
+                    height={650}
                     className="h-auto w-full bg-transparent"
                   />
                   <div className="absolute left-[58%] top-[12.5%] z-20 -translate-x-1/2">

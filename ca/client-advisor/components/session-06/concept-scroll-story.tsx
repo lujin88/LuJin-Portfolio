@@ -41,11 +41,14 @@ export function ConceptScrollStory({
   useLayoutEffect(() => {
     const motionMq = window.matchMedia('(prefers-reduced-motion: reduce)')
     const wideMq = window.matchMedia('(min-width: 1024px)')
+    // Below 900px tall, the open step can run past the pinned viewport and stay
+    // off-screen while the stage is sticky, so fall back to the static layout.
+    const tallMq = window.matchMedia('(min-height: 900px)')
 
     let ticking = false
     let last = -1
 
-    const shouldRun = () => !motionMq.matches && wideMq.matches
+    const shouldRun = () => !motionMq.matches && wideMq.matches && tallMq.matches
 
     const update = () => {
       ticking = false
@@ -90,12 +93,14 @@ export function ConceptScrollStory({
     window.addEventListener('resize', onScrollOrResize)
     motionMq.addEventListener('change', applyMode)
     wideMq.addEventListener('change', applyMode)
+    tallMq.addEventListener('change', applyMode)
 
     return () => {
       window.removeEventListener('scroll', onScrollOrResize)
       window.removeEventListener('resize', onScrollOrResize)
       motionMq.removeEventListener('change', applyMode)
       wideMq.removeEventListener('change', applyMode)
+      tallMq.removeEventListener('change', applyMode)
     }
   }, [count])
 

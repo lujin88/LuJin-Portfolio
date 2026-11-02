@@ -56,7 +56,7 @@ export function ResultsSection() {
             {/* Secondary result — UK rollout */}
             <div className="relative flex min-w-0 flex-col gap-6 overflow-hidden rounded-3xl bg-lavender-light p-8 sm:p-10">
               <Image
-                src="/assets/images/eon/uk-map-silhouette.png"
+                src="/assets/images/eon/uk-map-silhouette.webp"
                 alt=""
                 width={220}
                 height={260}

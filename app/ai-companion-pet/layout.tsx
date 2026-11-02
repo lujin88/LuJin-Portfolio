@@ -9,6 +9,11 @@ export const metadata: Metadata = {
     absolute: 'Lu — AI Pet',
   },
   description: 'Diandian, a little AI dolphin. Turn the knob. Pick a mood. Play.',
+  // Private prototype: keep it out of search results.
+  robots: { index: false, follow: false },
+  // Don't inherit the portfolio's default share card.
+  openGraph: null,
+  twitter: null,
 }
 
 export const viewport: Viewport = {

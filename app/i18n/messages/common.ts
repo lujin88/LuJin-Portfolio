@@ -7,6 +7,7 @@ export const common = {
     contactHeading: 'Have an opportunity in mind?',
     selectedExperience: 'Selected experience',
     footerRights: '© 2026 Lu Jin. All rights reserved.',
+    footerAnalytics: 'Visit statistics via PostHog (EU).',
     linkedin: 'LinkedIn',
     github: 'GitHub',
     backHome: 'Back to home',
@@ -18,7 +19,7 @@ export const common = {
     closePreview: 'Close preview',
     previousScreen: 'Previous screen',
     nextScreen: 'Next screen',
-    documentTitleAbout: 'Lu — About',
+    documentTitleAbout: 'Lu Jin — About',
   },
   de: {
     exploreNow: 'Jetzt entdecken',
@@ -28,6 +29,7 @@ export const common = {
     contactHeading: 'Haben Sie eine Rolle oder ein Projekt im Blick?',
     selectedExperience: 'Ausgewählte Stationen',
     footerRights: '© 2026 Lu Jin. Alle Rechte vorbehalten.',
+    footerAnalytics: 'Besuchsstatistik über PostHog (EU).',
     linkedin: 'LinkedIn',
     github: 'GitHub',
     backHome: 'Zurück zur Startseite',
@@ -40,6 +42,6 @@ export const common = {
     closePreview: 'Vorschau schließen',
     previousScreen: 'Vorheriger Screen',
     nextScreen: 'Nächster Screen',
-    documentTitleAbout: 'Lu — Über mich',
+    documentTitleAbout: 'Lu Jin — Über mich',
   },
 } as const

@@ -59,13 +59,13 @@ export const construction = {
 
 export const wip = {
   en: {
-    documentTitle: 'Lu — Work in Progress',
+    documentTitle: 'Lu Jin — Work in Progress',
     eyebrow: 'Playground',
     title: 'Work in Progress',
     body: 'This page is still being built. Check back soon.',
   },
   de: {
-    documentTitle: 'Lu — In Arbeit',
+    documentTitle: 'Lu Jin — In Arbeit',
     eyebrow: 'Playground',
     title: 'In Arbeit',
     body: 'Diese Seite entsteht gerade. Schauen Sie bald wieder vorbei.',

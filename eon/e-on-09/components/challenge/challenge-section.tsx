@@ -24,10 +24,10 @@ export function ChallengeSection() {
         <div data-move="100" data-from-opacity="0.92">
           <div className="relative overflow-hidden rounded-[28px]">
             <Image
-              src="/assets/images/eon/eon-challenge-woman-laptop.png"
+              src="/assets/images/eon/eon-challenge-woman-laptop.webp"
               alt={t('eon.challenge.photoAlt')}
-              width={1672}
-              height={941}
+              width={1400}
+              height={788}
               priority
               className="h-auto w-full object-cover"
             />
