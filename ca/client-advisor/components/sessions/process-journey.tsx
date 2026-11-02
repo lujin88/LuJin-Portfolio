@@ -59,7 +59,6 @@ function Step({
 }) {
   const nodeDelay = `${index * 320}ms`
   const lineDelay = `${index * 320 + 160}ms`
-  const labelDelay = `${index * 320 + 90}ms`
 
   return (
     <>
@@ -72,12 +71,7 @@ function Step({
           <span className={styles.glow} />
           <step.Icon className={styles.icon} />
         </span>
-        <span
-          className={styles.label}
-          style={{ '--label-delay': labelDelay } as CSSProperties}
-        >
-          {step.label}
-        </span>
+        <span className="sr-only">{step.label}</span>
       </div>
       {showConnector ? (
         <div
