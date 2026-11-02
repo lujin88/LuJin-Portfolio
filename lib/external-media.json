@@ -1,0 +1,73 @@
+{
+  "baseUrl": "https://g4payu1nu5v5zbsn.public.blob.vercel-storage.com",
+  "files": [
+    {
+      "path": "/assets/videos/lab/way-of-work/scrub.mp4",
+      "bytes": 22685860
+    },
+    {
+      "path": "/assets/images/lab/action-center/monitor-hero-bg.png",
+      "bytes": 16749614
+    },
+    {
+      "path": "/assets/videos/about/lu-intro.mp4",
+      "bytes": 9798284
+    },
+    {
+      "path": "/assets/videos/lab/way-of-work/05-06.mp4",
+      "bytes": 4204584
+    },
+    {
+      "path": "/assets/videos/lab/way-of-work/03-04.mp4",
+      "bytes": 3910714
+    },
+    {
+      "path": "/assets/videos/lab/way-of-work/06-07.mp4",
+      "bytes": 3497028
+    },
+    {
+      "path": "/assets/videos/lab/ai-workflow-hero.mp4",
+      "bytes": 3462255
+    },
+    {
+      "path": "/assets/videos/lab/way-of-work/04-05.mp4",
+      "bytes": 3246411
+    },
+    {
+      "path": "/assets/images/eon/eon 07 map before.png",
+      "bytes": 3184457
+    },
+    {
+      "path": "/assets/videos/lab/way-of-work/01-02.mp4",
+      "bytes": 3091208
+    },
+    {
+      "path": "/assets/images/eon/eon 07 map after.png",
+      "bytes": 2979214
+    },
+    {
+      "path": "/assets/videos/lab/way-of-work/02-03.mp4",
+      "bytes": 2903394
+    },
+    {
+      "path": "/assets/images/lab/off-we-go/lakeside-hero.jpg",
+      "bytes": 1576528
+    },
+    {
+      "path": "/assets/images/eon/eon 07 battery home.png",
+      "bytes": 1563498
+    },
+    {
+      "path": "/assets/videos/client-advisory/hero.mp4",
+      "bytes": 1219944
+    },
+    {
+      "path": "/assets/images/lab/off-we-go/prototype-home.png",
+      "bytes": 741052
+    },
+    {
+      "path": "/assets/videos/about/turn-head.mp4",
+      "bytes": 700675
+    }
+  ]
+}

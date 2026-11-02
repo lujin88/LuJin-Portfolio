@@ -1,3 +1,5 @@
+import { mediaUrl } from '../../../lib/media-url'
+
 /**
  * Off We Go case page configuration.
  *
@@ -7,9 +9,9 @@
  */
 export const prototypeUrl = '/lab/off-we-go/prototype'
 
-export const prototypePreviewSrc = '/assets/images/lab/off-we-go/prototype-home.png'
+export const prototypePreviewSrc = mediaUrl('/assets/images/lab/off-we-go/prototype-home.png')
 export const screenWallpaperSrc = '/assets/images/lab/off-we-go/screen-wallpaper.png'
-export const sceneBackgroundSrc = '/assets/images/lab/off-we-go/lakeside-hero.jpg'
+export const sceneBackgroundSrc = mediaUrl('/assets/images/lab/off-we-go/lakeside-hero.jpg')
 
 export const SCENE_IMAGE = {
   width: 3840,

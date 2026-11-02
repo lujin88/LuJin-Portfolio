@@ -1,3 +1,5 @@
+import { mediaUrl } from '../../../lib/media-url'
+
 export type Chapter = {
   id: string
   number: string
@@ -15,14 +17,14 @@ const IMG = '/assets/images/lab/way-of-work'
 const VID = '/assets/videos/lab/way-of-work'
 
 /** Six source clips concatenated into one scrub film. */
-export const SCRUB_VIDEO = `${VID}/scrub.mp4?v=1920`
+export const SCRUB_VIDEO = mediaUrl(`${VID}/scrub.mp4?v=1920`)
 
 export const CHAPTERS: readonly Chapter[] = [
   {
     id: 'hero',
     number: '',
     still: `${IMG}/01.jpg`,
-    video: `${VID}/01-02.mp4`,
+    video: mediaUrl(`${VID}/01-02.mp4`),
     titleKey: 'wow.heroTitle',
     bodyKey: 'wow.heroLede',
     objectPosition: '72% 38%',
@@ -32,7 +34,7 @@ export const CHAPTERS: readonly Chapter[] = [
     id: 'research',
     number: '01',
     still: `${IMG}/02.jpg`,
-    video: `${VID}/02-03.mp4`,
+    video: mediaUrl(`${VID}/02-03.mp4`),
     labelKey: 'wow.researchLabel',
     titleKey: 'wow.researchTitle',
     bodyKey: 'wow.researchBody',
@@ -44,7 +46,7 @@ export const CHAPTERS: readonly Chapter[] = [
     id: 'journey',
     number: '02',
     still: `${IMG}/03.jpg`,
-    video: `${VID}/03-04.mp4`,
+    video: mediaUrl(`${VID}/03-04.mp4`),
     labelKey: 'wow.journeyLabel',
     titleKey: 'wow.journeyTitle',
     bodyKey: 'wow.journeyBody',
@@ -56,7 +58,7 @@ export const CHAPTERS: readonly Chapter[] = [
     id: 'system',
     number: '03',
     still: `${IMG}/04.jpg`,
-    video: `${VID}/04-05.mp4`,
+    video: mediaUrl(`${VID}/04-05.mp4`),
     labelKey: 'wow.systemLabel',
     titleKey: 'wow.systemTitle',
     bodyKey: 'wow.systemBody',
@@ -68,7 +70,7 @@ export const CHAPTERS: readonly Chapter[] = [
     id: 'static-screens',
     number: '03.1',
     still: `${IMG}/05.jpg`,
-    video: `${VID}/05-06.mp4`,
+    video: mediaUrl(`${VID}/05-06.mp4`),
     labelKey: 'wow.staticLabel',
     titleKey: 'wow.staticTitle',
     bodyKey: 'wow.staticBody',
@@ -80,7 +82,7 @@ export const CHAPTERS: readonly Chapter[] = [
     id: 'prototype',
     number: '04',
     still: `${IMG}/06.jpg`,
-    video: `${VID}/06-07.mp4`,
+    video: mediaUrl(`${VID}/06-07.mp4`),
     labelKey: 'wow.prototypeLabel',
     titleKey: 'wow.prototypeTitle',
     bodyKey: 'wow.prototypeBody',
@@ -92,7 +94,7 @@ export const CHAPTERS: readonly Chapter[] = [
     id: 'production',
     number: '05',
     still: `${IMG}/07.jpg`,
-    video: `${VID}/06-07.mp4`,
+    video: mediaUrl(`${VID}/06-07.mp4`),
     labelKey: 'wow.productionLabel',
     titleKey: 'wow.productionTitle',
     bodyKey: 'wow.productionBody',

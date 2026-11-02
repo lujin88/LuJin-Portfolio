@@ -19,8 +19,10 @@ const HOME_VIDEO_POSTERS: Record<string, string> = {
 
 function withVideoPosters(html: string) {
   return html.replace(/<video\b[^>]*>/g, (tag) => {
-    const src = /\ssrc="([^"]+)"/.exec(tag)?.[1]
-    const poster = src && HOME_VIDEO_POSTERS[src]
+    const src = /\ssrc="([^"]+)"/.exec(tag)?.[1]?.split('?')[0]
+    const poster =
+      src &&
+      Object.entries(HOME_VIDEO_POSTERS).find(([path]) => src.endsWith(path))?.[1]
     if (!poster || /\sposter=/.test(tag)) return tag
     return tag
       .replace(/\spreload="auto"/, ' preload="metadata"')
