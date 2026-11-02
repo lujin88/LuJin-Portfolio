@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import type { ReactNode } from 'react'
 import { MousePointer2, MessageSquare, Users, BarChart3 } from 'lucide-react'
-import { TestingBackgroundShapes } from '@eon/components/decisions/background-shapes'
 import { SectionLabel } from '@eon/components/section-label'
 import { ContentContainer } from '@eon/components/content-container'
 import { EvidenceCard } from '@eon/components/testing/evidence-card'
@@ -94,8 +93,6 @@ export function TestingSection() {
 
   return (
     <section className="case-study-section relative overflow-x-clip bg-off-white pb-20">
-      <TestingBackgroundShapes />
-
       <ContentContainer className="relative z-[1]">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,620px)] lg:gap-0">
           {/* Left column: editorial content */}
