@@ -96,7 +96,7 @@ function voiceScore(voice: SpeechSynthesisVoice, want: string): number {
   return score
 }
 
-const IMAGE_ASPECT = 1837 / 856
+const IMAGE_ASPECT = 1836 / 857
 const STAGE_ASPECT = 1
 const SEASON_WINDOW = STAGE_ASPECT / IMAGE_ASPECT
 const SEASON_PAN = 1 - SEASON_WINDOW
@@ -322,7 +322,7 @@ export function WeatherAquariumPage() {
                 onKeyDown={onSeasonKeyDown}
               >
                 <img
-                  src={`${IMG}/seasons-panorama.png`}
+                  src={`${IMG}/seasons-panorama-aligned.png`}
                   alt=""
                   draggable={false}
                 />

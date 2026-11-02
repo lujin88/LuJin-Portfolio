@@ -484,17 +484,19 @@ html:has(.wa-page) {
 
 .wa-closing {
   box-sizing: border-box;
-  --color-text-1: #f9fbfc;
-  --color-text-3: #777e85;
-  --color-text-4: #595d61;
-  --color-footer-divider: rgba(255, 255, 255, 0.045);
-  --pill-text: #f9fbfc;
-  --pill-border: rgba(249, 251, 252, 0.72);
+  /* Same green as the page behind the seasons image (#edf3e7); greys meet 4.5:1 on it. */
+  --color-text-1: #0a0a0a;
+  --color-text-3: #61707a;
+  --color-text-4: #61707a;
+  --color-footer-divider: rgba(10, 10, 10, 0.08);
+  --pill-text: #0a0a0a;
+  --pill-border: rgba(10, 10, 10, 0.72);
   --pill-bg: transparent;
-  --pill-hover-bg: #f9fbfc;
-  --pill-hover-text: #0a0a0a;
-  color: #f9fbfc;
-  background: #0a0a0a;
+  --pill-hover-bg: #0a0a0a;
+  --pill-hover-text: #f9fbfc;
+  --focus-ring: #1f6b45;
+  color: #0a0a0a;
+  background: #edf3e7;
   font-family: var(--font-poppins), Poppins, ui-sans-serif, system-ui, sans-serif;
 }
 .wa-closing, .wa-closing * { box-sizing: border-box; }
