@@ -68,15 +68,6 @@ export function SiteFooter() {
         <p className="text-xs text-footer-muted/80">
           © 2026 Lu Jin. All rights reserved.
         </p>
-        <span aria-hidden="true" className="text-xs text-footer-muted/50">
-          ·
-        </span>
-        <a
-          href="/lab"
-          className="text-xs text-footer-muted/80 transition-colors duration-200 hover:text-footer-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current motion-reduce:transition-none"
-        >
-          Playground
-        </a>
       </div>
     </footer>
   )
