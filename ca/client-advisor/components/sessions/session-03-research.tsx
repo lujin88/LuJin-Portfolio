@@ -66,7 +66,7 @@ export function Session03Research() {
       </div>
 
       <div
-        className={`${styles.grid} relative z-10 mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-y-14 px-6 pb-10 pt-24 sm:px-10 lg:grid-cols-[minmax(0,58fr)_minmax(0,42fr)] lg:px-16 lg:pb-12 lg:pt-16 xl:px-20`}
+        className={`${styles.grid} relative z-10 mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-y-14 px-[var(--content-inset,24px)] pb-10 pt-24 lg:grid-cols-[minmax(0,58fr)_minmax(0,42fr)] lg:pb-12 lg:pt-16`}
       >
         <div className={`${styles.quotesCol} flex flex-col justify-center lg:self-start lg:py-8`}>
           <ul

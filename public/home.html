@@ -9,35 +9,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          ink: 'var(--color-bg-page)',
-          text1: 'var(--color-text-1)',
-          text2: 'var(--color-text-2)',
-          text3: 'var(--color-text-3)',
-          divider: 'var(--color-border-divider)',
-          accent: 'var(--color-theme-2)',
-          'accent-hover': 'var(--color-theme-hover)',
-        },
-        fontFamily: {
-          sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-          serif: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'], /* alias: Display is Poppins */
-        },
-      },
-    },
-  };
-</script>
-
 <link rel="stylesheet" href="/styles/shell-tokens.css" />
+<link rel="stylesheet" href="/styles/home-motion.css" />
 
 <style>
   /* Shell tokens live in /styles/shell-tokens.css */
 
   html { scroll-behavior: smooth; overflow-x: hidden; min-width: 360px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
   body {
     background: var(--color-bg-page);
     font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
@@ -82,11 +63,18 @@
   .pill-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    border-radius: 999px;
-    border: 1px solid var(--pill-border);
-    padding: 0.85rem 1.9rem;
-    font-size: var(--font-size-pill); /* Pill M */
+    justify-content: center;
+    gap: var(--button-cta-gap);
+    box-sizing: border-box;
+    white-space: nowrap;
+    border-radius: var(--button-cta-radius);
+    border: var(--button-cta-border-width) solid var(--pill-border);
+    height: var(--button-cta-height);
+    min-height: var(--button-cta-height);
+    padding: 0 var(--button-cta-padding-inline);
+    font-size: var(--button-cta-font-size);
+    font-weight: var(--button-cta-font-weight);
+    line-height: var(--button-cta-line-height);
     color: var(--pill-text);
     background: var(--pill-bg);
     transition: transform var(--duration-interaction) var(--ease),
@@ -103,20 +91,14 @@
     transform: translateY(-2px);
   }
   .pill-btn:active { transform: translateY(0) scale(0.97); }
-  .pill-btn svg { transition: transform var(--duration-interaction) var(--ease); }
+  .pill-btn svg {
+    width: var(--button-cta-icon-size);
+    height: var(--button-cta-icon-size);
+    transition: transform var(--duration-interaction) var(--ease);
+  }
   .pill-btn:hover svg { transform: translateX(3px); }
 
-  /* Pill size matrix (Consistency Guide) — structure shared; padding/type only */
-  .pill-btn--s {
-    padding: 0.55rem 1.25rem;
-    font-size: var(--font-size-caption); /* Pill S */
-    min-height: 36px;
-  }
-  .pill-btn--l {
-    padding: 1rem 2.25rem;
-    font-size: var(--font-size-body-lg); /* Pill L */
-    min-height: 48px;
-  }
+  /* .pill-btn--l is a semantic alias. Portfolio CTAs do not change geometry. */
 
   /* language switcher */
   .lang-switch { position: relative; }
@@ -343,10 +325,7 @@
     isolation: isolate;
     padding-bottom: var(--logo-overlay-space);
   }
-  .hero-pin-section h1,
-  .hero-pin-section .pill-btn { color: var(--color-text-1); }
-  /* Keep default light on video; restore black label on filled hover */
-  .hero-pin-section .pill-btn:hover { color: var(--pill-hover-text); }
+  .hero-pin-section h1 { color: var(--color-text-1); }
   .hero-pin-section .z-10 p { color: #d7dbe0; }
   .hero-media {
     position: absolute;
@@ -358,20 +337,298 @@
   }
   .hero-media__video {
     position: absolute;
-    inset: 0;
-    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: 68%;
     height: 100%;
     object-fit: cover;
-    object-position: center center;
+    object-position: 58% 14%;
+    transform: none;
+    opacity: 0;
+    transition: opacity 900ms ease;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.2) 7%,
+      rgba(0, 0, 0, 0.65) 16%,
+      #000 30%,
+      #000 74%,
+      rgba(0, 0, 0, 0.45) 88%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.2) 7%,
+      rgba(0, 0, 0, 0.65) 16%,
+      #000 30%,
+      #000 74%,
+      rgba(0, 0, 0, 0.45) 88%,
+      transparent 100%
+    );
   }
+  .hero-media__video.is-loaded { opacity: 1; }
   .hero-scrim {
     position: absolute;
     inset: 0;
     z-index: 1;
     pointer-events: none;
     background:
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.12) 38%, transparent 62%),
-      linear-gradient(to top, rgba(0, 0, 0, 0.28) 0%, transparent 36%);
+      linear-gradient(90deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.78) 32%, rgba(0, 0, 0, 0.28) 48%, transparent 64%),
+      linear-gradient(to top, rgba(0, 0, 0, 0.62) 0%, transparent 30%),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, transparent 18%);
+  }
+  /* Logo-wall B, desktop only. 240px was measured at 1440×900, where the
+     video fills the hero. At ≤860 the video is only the bottom 42% / 34%,
+     and this scrim would black out that frame. Small screens keep .logo-bar. */
+  @media (min-width: 861px) {
+    .hero-scrim::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 240px;
+      pointer-events: none;
+      background: linear-gradient(
+        to bottom,
+        rgba(3, 5, 8, 0) 0%,
+        rgba(3, 5, 8, 0.18) 16%,
+        rgba(3, 5, 8, 0.64) 34%,
+        rgba(3, 5, 8, 0.94) 52%,
+        rgb(3, 5, 8) 60%,
+        rgb(3, 5, 8) 100%
+      );
+    }
+  }
+  .hero-copy-wrap {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 var(--content-inset);
+  }
+  .hero-copy { max-width: min(34rem, 40vw); }
+  .hero-kicker {
+    margin: 0 0 1.15rem;
+    color: var(--color-theme-2);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+  }
+  .hero-copy h1 {
+    margin: 0;
+    max-width: 14em;
+    color: var(--color-text-1);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-heading-lg);
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-display);
+  }
+  .hero-ai {
+    background: linear-gradient(100deg, var(--color-theme-hover) 0%, var(--color-theme-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-lede,
+  .hero-explore {
+    margin: 1.35rem 0 0;
+    max-width: 36rem;
+    color: var(--color-text-2);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--leading-body);
+  }
+  .hero-lede p { margin: 0; }
+  .hero-lede p + p { margin-top: 0.85rem; }
+  .hero-lede .hero-line { display: block; }
+  .hero-explore { margin-top: 1.15rem; }
+  .hero-link {
+    color: #e7edf8;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  button.hero-link {
+    border: 0;
+    padding: 0;
+    background: none;
+    font: inherit;
+    cursor: pointer;
+  }
+  .hero-link:hover { color: #fff; }
+  a.hero-jump {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-color: rgba(126, 162, 255, 0.7);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+  a.hero-jump:hover { color: inherit; }
+  .ask-lu-wrap { position: relative; margin-top: 1.7rem; }
+  .ask-lu {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.72rem 1.2rem 0.72rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    border-radius: 999px;
+    background: #0b0c10;
+    color: #f5f7fa;
+    font: inherit;
+    font-size: var(--font-size-pill);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    box-shadow: -14px 0 32px rgba(126, 162, 255, 0.32);
+  }
+  .ask-lu i { font-size: 1.15rem; line-height: 1; }
+  .ask-lu:hover { background: #15171d; border-color: #fff; }
+  .ask-lu[aria-expanded="true"] { border-color: var(--color-theme-hover); }
+  .ask-chat {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 0.75rem);
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    width: min(22.5rem, calc(100vw - 3rem));
+    max-height: min(24rem, 52vh);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 1.1rem;
+    background: rgba(12, 13, 18, 0.94);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(16px);
+  }
+  .ask-chat[hidden] { display: none; }
+  .ask-chat__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0.85rem 0.7rem 1rem;
+  }
+  .ask-chat__bar p { margin: 0; font-size: 0.92rem; font-weight: 600; color: #f5f7fa; }
+  .ask-chat__close,
+  .ask-chat__send {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: #f5f7fa;
+    cursor: pointer;
+  }
+  .ask-chat__close:hover,
+  .ask-chat__send:hover { background: rgba(255, 255, 255, 0.08); }
+  .ask-chat__log {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    overflow: auto;
+    padding: 0.2rem 1rem 0.8rem;
+  }
+  .ask-chat__msg {
+    margin: 0;
+    max-width: 92%;
+    padding: 0.65rem 0.8rem;
+    border-radius: 0.85rem;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+  .ask-chat__msg--lu { align-self: flex-start; background: rgba(255, 255, 255, 0.06); color: #e6e9ee; }
+  .ask-chat__msg--you { align-self: flex-end; background: #f5f7fa; color: #111; }
+  .ask-chat__form {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.7rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .ask-chat__form input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #f5f7fa;
+    font: inherit;
+    font-size: 0.9rem;
+    padding: 0.65rem 0.9rem;
+  }
+  .ask-chat__form input::placeholder { color: rgba(255, 255, 255, 0.45); }
+  .ask-lu:focus-visible,
+  .ask-chat__close:focus-visible,
+  .ask-chat__send:focus-visible,
+  .ask-chat__form input:focus-visible,
+  .hero-link:focus-visible,
+  .hero-jump:focus-visible {
+    outline: 2px solid var(--color-theme-2);
+    outline-offset: 3px;
+  }
+  @media (max-width: 1200px) {
+    .hero-media__video { width: 64%; object-position: 42% 12%; }
+    .hero-copy { max-width: min(22rem, 38vw); }
+  }
+  @media (max-width: 1000px) {
+    .hero-pin-section { align-items: flex-start; padding-top: 5.75rem; }
+    .hero-media__video {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      object-position: 8% 14%;
+    }
+    .hero-copy { max-width: min(22rem, 46vw); }
+    .hero-copy h1 { font-size: var(--font-size-heading-lg); }
+    .hero-lede { margin-top: 0.9rem; }
+    .hero-lede p + p { margin-top: 0.55rem; }
+    .hero-explore { margin-top: 0.8rem; }
+    .hero-scrim {
+      background:
+        linear-gradient(90deg, #0a0a0a 0%, #0a0a0a 42%, rgba(10, 10, 10, 0.55) 54%, transparent 68%),
+        linear-gradient(to top, rgba(10, 10, 10, 0.72) 0%, transparent 26%),
+        linear-gradient(to bottom, rgba(10, 10, 10, 0.45) 0%, transparent 16%);
+    }
+    .hero-media__video {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+  @media (max-width: 860px) {
+    .hero-media__video {
+      top: auto;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 42%;
+      object-position: 50% 8%;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.45) 10%, #000 26%);
+      mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.45) 10%, #000 26%);
+    }
+    .hero-copy { max-width: 100%; }
+    .hero-scrim {
+      background:
+        linear-gradient(to bottom, rgba(5, 7, 12, 0.96) 0%, rgba(5, 7, 12, 0.9) 42%, rgba(5, 7, 12, 0.45) 58%, transparent 74%),
+        linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 22%);
+    }
+  }
+  @media (max-width: 640px) {
+    .hero-media__video { height: 34%; object-position: 50% 0%; }
+    .hero-scrim {
+      background:
+        linear-gradient(to bottom, rgba(5, 7, 12, 0.98) 0%, rgba(5, 7, 12, 0.94) 58%, rgba(5, 7, 12, 0.4) 70%, transparent 82%),
+        linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 20%);
+    }
+  }
+  @media (max-width: 900px) {
+    .hero-copy h1 { max-width: none; }
   }
   @media (min-width: 768px) {
     .hero-pin-section { --logo-overlay-space: 8.5rem; }
@@ -393,11 +650,253 @@
     will-change: transform;
   }
 
+  /* How I work — between Solar and Experience. */
+  .ai-decides-section {
+    --ad-bg: #080f1b;
+    --ad-ink: #f7f8fc;
+    --ad-muted: #cdd3df;
+    --ad-blue: #518aff;
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    overflow: hidden;
+    background: var(--ad-bg);
+    color: var(--ad-ink);
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .ai-decides-section *,
+  .ai-decides-section *::before,
+  .ai-decides-section *::after { box-sizing: border-box; }
+  .ai-decides-section .ad-layout {
+    width: min(100%, 1842px);
+    min-height: 854px;
+    margin-inline: auto;
+    padding: 80px 72px 80px 97px;
+    display: grid;
+    grid-template-columns: minmax(0, 548px) minmax(0, 1fr);
+    align-items: center;
+    gap: 75px;
+  }
+  .ai-decides-section .ad-copy { position: relative; z-index: 1; transform: translateY(48px); }
+  .ai-decides-section .ad-eyebrow {
+    margin: 0 0 16px;
+    color: #5b9dff;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 25px;
+    letter-spacing: 5.1px;
+  }
+  .ai-decides-section .ad-heading {
+    margin: 0;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 84px;
+    font-weight: 400;
+    line-height: 1.03;
+    letter-spacing: -.8px;
+  }
+  .ai-decides-section .ad-heading em {
+    display: block;
+    color: #80aaff;
+    font-family: inherit;
+    font-size: 90px;
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -1.3px;
+  }
+  .ai-decides-section .ad-description {
+    max-width: 550px;
+    margin: 28px 0 0;
+    color: var(--ad-muted);
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: .12px;
+  }
+  .ai-decides-section .ad-cta {
+    margin-top: 37px;
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    text-decoration: none;
+  }
+  .ai-decides-section .ad-art {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1060 / 654;
+    overflow: hidden;
+    transform: translateY(27px);
+    mask-image: linear-gradient(to right, transparent, #000 1.5%, #000 98.5%, transparent);
+  }
+  @media (min-width: 901px) and (max-width: 1600px) {
+    .ai-decides-section .ad-layout { min-height: clamp(640px, 46.36vw, 854px); padding: 60px 4vw 65px 5.25vw; grid-template-columns: minmax(0, 32.8fr) minmax(0, 63.2fr); gap: 4%; }
+    .ai-decides-section .ad-copy { transform: translateY(30px); }
+    .ai-decides-section .ad-eyebrow { font-size: clamp(13px, 1.04vw, 19px); letter-spacing: 4px; }
+    .ai-decides-section .ad-heading { font-size: clamp(51px, 4.56vw, 84px); }
+    .ai-decides-section .ad-heading em { font-size: clamp(57px, 4.89vw, 90px); }
+    .ai-decides-section .ad-description { margin-top: 24px; font-size: clamp(17px, 1.25vw, 23px); line-height: 1.55; }
+    .ai-decides-section .ad-cta { margin-top: 29px; }
+  }
+  @media (max-width: 900px) {
+    .ai-decides-section .ad-layout { min-height: auto; padding: 54px 28px 34px; grid-template-columns: 1fr; gap: 26px; }
+    .ai-decides-section .ad-copy { width: min(100%, 580px); margin-inline: auto; transform: none; }
+    .ai-decides-section .ad-eyebrow { font-size: 13px; line-height: 20px; letter-spacing: 4px; margin-bottom: 18px; }
+    .ai-decides-section .ad-heading { font-size: clamp(54px, 9.5vw, 78px); line-height: 1.04; }
+    .ai-decides-section .ad-heading em { font-size: clamp(60px, 10.5vw, 84px); }
+    .ai-decides-section .ad-description { margin-top: 24px; font-size: 18px; line-height: 29px; }
+    .ai-decides-section .ad-desktop-break { display: none; }
+    .ai-decides-section .ad-cta { margin-top: 26px; }
+    .ai-decides-section .ad-art { width: min(100%, 720px); margin-inline: auto; transform: none; }
+  }
+  @media (max-width: 480px) {
+    .ai-decides-section .ad-layout { padding: 42px 24px 24px; gap: 27px; }
+    .ai-decides-section .ad-art { width: calc(100% + 28px); max-width: none; margin-left: -14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ai-decides-section .ad-cta,
+    .ai-decides-section .ad-cta svg { transition: none; }
+    .ai-decides-section .ad-cta:hover,
+    .ai-decides-section .ad-cta:hover svg { transform: none; }
+  }
+
+  /* One index screen: fill the viewport, share the content rail, clear the fixed header. */
+  .ai-decides-section {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+  .ai-decides-section .ad-layout {
+    width: 100%;
+    flex: 1 0 auto;
+    min-height: 100dvh;
+    padding-inline: var(--content-inset);
+    padding-top: calc(6rem + 1.5rem);
+  }
+  .ai-decides-section .ad-eyebrow { text-transform: uppercase; }
+  @media (max-width: 900px) {
+    .ai-decides-section .ad-layout { padding-top: calc(5rem + 1.5rem); }
+  }
+
+  .case-block {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    min-height: 100dvh;
+    background: var(--color-bg-page);
+    padding: 6.5rem 0 3rem;
+  }
+  .case-block > .index-align { width: 100%; }
+  /* Copy, contact, and the copyright row share the header rail. */
+  .index-align {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+  .case-card {
+    display: grid;
+    grid-template-columns: minmax(16rem, 32%) minmax(0, 1fr);
+    gap: clamp(1.5rem, 3vw, 3.5rem);
+    align-items: center;
+    padding-left: var(--content-inset);
+    padding-right: var(--content-inset);
+  }
+  .case-card--flip {
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 32%);
+    padding-left: var(--content-inset);
+    padding-right: var(--content-inset);
+  }
+  .case-card--flip .case-card__copy { order: 2; }
+  .case-card__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin: 0 0 1.15rem;
+    color: var(--color-theme-hover);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+  }
+  .case-card__title {
+    margin: 0;
+    color: var(--color-text-1);
+    font-size: var(--font-size-heading-lg);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-display);
+  }
+  .case-card__role {
+    margin: 0.85rem 0 0;
+    color: var(--color-text-2);
+    font-size: var(--font-size-body-lg);
+    font-weight: var(--font-weight-medium);
+  }
+  .case-card__story { margin: 1.65rem 0 0; }
+  .case-card__story h3 {
+    margin: 0 0 0.4rem;
+    color: var(--color-text-1);
+    font-size: var(--font-size-subhead);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-display);
+  }
+  .case-card__story p,
+  .case-card__metric span {
+    margin: 0;
+    color: var(--color-text-2);
+    font-size: var(--font-size-body);
+    line-height: var(--leading-body);
+  }
+  .case-card__metric {
+    margin: 1.35rem 0 0;
+    padding-left: 0.95rem;
+    border-left: 2px solid var(--color-theme-2);
+  }
+  .case-card__metric strong {
+    display: block;
+    margin-bottom: 0.2rem;
+    color: var(--color-text-1);
+    font-size: var(--font-size-body-lg);
+    font-weight: var(--font-weight-semibold);
+  }
+  .case-card__copy .pill-btn { margin-top: 1.65rem; }
+  .case-card__media {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    border-radius: 1.15rem;
+    background-color: #111318;
+    background-position: center;
+    background-size: cover;
+  }
+  .case-card__media video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: translateZ(0);
+    transition: opacity 400ms ease;
+  }
+  .case-card__media video.is-ready { opacity: 1; }
+  @media (max-width: 900px) {
+    .case-block { min-height: 0; padding: 3.5rem 0; align-items: flex-start; }
+    .case-card,
+    .case-card--flip {
+      grid-template-columns: 1fr;
+      padding-left: var(--content-inset);
+      padding-right: var(--content-inset);
+    }
+    .case-card--flip .case-card__media { order: -1; }
+    .hero-copy h1,
+    .case-card__title { font-size: var(--font-size-heading); }
+  }
+
   /* ============================================================
      EXPERIENCE TIMELINE — FXIFY-style curved-arc timeline.
      A tall scroll track (500vh) drives a native position:sticky
      viewport (90vh). Inside sits a relative coordinate box
-     (~46.36vw) holding a large curved SVG arc, a soft violet glow,
+     (~46.36vw) holding a large curved SVG arc, a soft blue glow,
      4 FIXED dots sampled onto the arc path, and 4 alternating
      content blocks. The track's own scroll progress is the single
      source of truth: activeIndex = clamp(floor(progress*4),0,3),
@@ -445,7 +944,7 @@
        Contact section, so the Contact copy floats on top of the field. */
     padding-top: 0;
     --exp-ease: cubic-bezier(0.16, 1, 0.3, 1);
-    --exp-blue: 122, 127, 220;          /* #7A7FDC — reference "+" / connector periwinkle */
+    --exp-blue: 126, 162, 255;          /* host index blue — same accent as the rest of the index */
   }
 
   /* header is a normal-flow sibling ABOVE the sticky track, so it scrolls
@@ -465,15 +964,9 @@
     height: 500vh;
   }
 
-  /* Catch fast wheel/trackpad gestures at the opening composition instead of
-     letting momentum skip past the intended About + UBS pause. */
-  @media (min-width: 641px) and (prefers-reduced-motion: no-preference) {
-    html { scroll-snap-type: y proximity; }
-    .exp-track {
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-    }
-  }
+  /* Section pauses are not CSS scroll-snap. Proximity + snap-stop can
+     pull against the travel direction. initSectionSettle() eases only
+     toward a start that is still ahead, after the gesture goes quiet. */
 
   /* sticky viewport — native CSS position:sticky, NOT JS pinning.
      NOTE: the clip that keeps the 250vh curve/glow inside one screen now lives
@@ -503,7 +996,7 @@
   }
 
   /* isolates the curve/glow clipping: same 100vh box the sticky used to clip,
-     but scoped to the curve group so the blue-purple field is left uncut. The
+     but scoped to the curve group so the blue field is left uncut. The
      bottom edge is feathered (not a hard cut) so the raster never reads as a
      horizontal seam where it meets the field / footer — matters in light mode. */
   .exp-curve-clip {
@@ -525,7 +1018,11 @@
     width: min(1200px, 100vw - 3rem);
     height: 100vh;
     --exp-shift: 0px;
-    --exp-f: 0;                 /* blue-purple field emergence, 0 -> 1, driven in expWrite */
+    --exp-f: 0;                 /* blue field emergence, 0 -> 1, driven in expWrite */
+    /* 1440×900, scrollY 6420: the visible curve sat through the UBS sentence.
+       36px puts that curve 8px-plus below the glyph box. Curvature, width
+       and opacity stay. Dots and stems use the same drop. */
+    --exp-arc-drop: 36px;
     transform: translate3d(-50%, var(--exp-shift), 0);
     will-change: transform;
   }
@@ -568,7 +1065,7 @@
     opacity: var(--exp-f);
     pointer-events: none;
     /* bottom fade + a soft RIGHT-edge fade so the raster's baked hard vertical
-       boundary dissolves into the blue-purple field instead of reading as a
+       boundary dissolves into the blue field instead of reading as a
        clip seam once it is visible (transition/contact only). */
     -webkit-mask-image:
       linear-gradient(to bottom, #000 58%, transparent 100%),
@@ -603,7 +1100,7 @@
     --exp-f: 0;                 /* default until expWrite mirrors it here */
   }
 
-  /* ── blue-purple field ─────────────────────────────────────────────
+  /* ── blue field ─────────────────────────────────────────────
      The cinematic bridge from the finished timeline to Contact. Held at
      opacity 0 for the ENTIRE timeline — it only emerges in the contact
      phase (--exp-f, 0 until pin 0.82). As --exp-f ramps 0->1 it rises from
@@ -622,13 +1119,13 @@
     pointer-events: none;
     background:
       radial-gradient(125% 88% at 67% 82%,
-        rgba(58, 70, 212, 0.46) 0%,
-        rgba(43, 50, 165, 0.30) 30%,
-        rgba(26, 30, 92, 0.14) 54%,
+        rgba(79, 120, 240, 0.46) 0%,
+        rgba(48, 82, 190, 0.30) 30%,
+        rgba(16, 28, 64, 0.14) 54%,
         transparent 78%),
       radial-gradient(115% 82% at 26% 100%,
-        rgba(122, 127, 220, 0.24) 0%,
-        rgba(80, 84, 180, 0.12) 42%,
+        rgba(126, 162, 255, 0.24) 0%,
+        rgba(79, 120, 240, 0.12) 42%,
         transparent 74%);
     -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 14%, #000 46%, rgba(0,0,0,0.5) 72%, transparent 100%);
             mask-image: linear-gradient(to top, transparent 0%, #000 14%, #000 46%, rgba(0,0,0,0.5) 72%, transparent 100%);
@@ -652,6 +1149,7 @@
     z-index: 1;
     overflow: visible;
     pointer-events: none;
+    transform: translateY(var(--exp-arc-drop, 0px));
   }
   .exp-arc__path {
     fill: none;
@@ -663,7 +1161,8 @@
   }
 
   /* 4 fixed dots — CSS-anchored to the same points as their content.
-     Reference: all dots are plain solid white, always visible, no glow. */
+     Plain solid white, no glow. Dot 0 waits for the seam (data-stem).
+     Dots 1–3 fade with their copy so a hidden entry leaves no orphan dot. */
   .exp-dot {
     position: absolute;
     width: 6px;
@@ -672,11 +1171,24 @@
     border-radius: 50%;
     background: #fff;
     z-index: 3;
+    transform: translateY(var(--exp-arc-drop, 0px));
   }
-  .exp-dot[data-index="0"] { left: 26.7%; top: 33.4%; }
+  /* Original curve anchor. The first entry's copy stays 72px lower.
+     Dot 0 stays hidden until the seam line reaches it (data-stem). */
+  .exp-dot[data-index="0"] { left: 26.7%; top: 33.4%; opacity: 0; }
+  .exp-dot[data-index="0"][data-stem="on"] { opacity: 1; }
   .exp-dot[data-index="1"] { left: 61.2%; top: 37.9%; }
   .exp-dot[data-index="2"] { left: 72.5%; top: 74.5%; }
   .exp-dot[data-index="3"] { left: 44.8%; top: 94.0%; }
+  .exp-dot[data-index="1"],
+  .exp-dot[data-index="2"],
+  .exp-dot[data-index="3"] {
+    opacity: 1;
+    transition: opacity 0.9s var(--exp-ease);
+  }
+  .exp-dot[data-index="1"][data-status="hidden"],
+  .exp-dot[data-index="2"][data-status="hidden"],
+  .exp-dot[data-index="3"][data-status="hidden"] { opacity: 0; }
 
   /* content blocks — anchored to their dot's X, sitting ABOVE the dot */
   .exp-content {
@@ -687,11 +1199,20 @@
     transition: opacity 0.9s var(--exp-ease);
     will-change: opacity;
   }
-  .exp-content[data-side="left"]  { text-align: left;  padding-left: 1rem; }
+  .exp-content[data-side="left"]  { text-align: left;  padding-left: 1.75rem; }
   .exp-content[data-side="right"] { text-align: right; padding-right: 1rem; }
 
   /* bottom = 100% - (dot top%) + gap, so the block floats ~42px above the dot */
-  .exp-content[data-index="0"] { left: 26.7%;  bottom: calc(66.6% + 42px); }
+  /* 72px lower than the dot-gap anchor so the How I Work arc can
+     finish its turn on the timeline column before the title. */
+  .exp-content[data-index="0"] {
+    left: 26.7%;
+    bottom: calc(66.6% + 42px - 72px);
+    /* Content bottom sits 30px below the unshifted dot line (72px type
+       drop minus the 42px gap). The dot is --exp-arc-drop further down.
+       This is the distance from the card edge to the dot center. */
+    --ubs-stem-bottom: calc(30px - var(--exp-arc-drop, 0px));
+  }
   .exp-content[data-index="1"] { left: 61.2%;  bottom: calc(62.1% + 42px); }
   .exp-content[data-index="2"] { right: 27.5%; bottom: calc(25.5% + 42px); }
   .exp-content[data-index="3"] { right: 55.2%; bottom: calc(6.0% + 42px); }
@@ -704,28 +1225,30 @@
   .exp-content__node {
     position: absolute;
     top: 0;
-    bottom: -42px;
+    bottom: calc(-42px - var(--exp-arc-drop, 0px));
     width: 1px;
   }
   .exp-content[data-side="left"]  .exp-content__node { left: 0; }
   .exp-content[data-side="right"] .exp-content__node { right: 0; }
 
-  /* THE active vertical connector — a single element (reference:
-     list-item_ListItem_line__H_5Or). 1.6875px wide; blue -> periwinkle ->
-     transparent so it is solid from the "+" down to the dot (~43% down)
-     and gone below it. No tail, no wash, no wisp. Active item only. */
+  /* THE active vertical connector. 1.6875px wide. The fade is a fixed
+     36px below the dot, not a percentage of the node: extendBarTo()
+     stretches the node upward, and a 232% bar used to drag the tail
+     with it. 36px is the old 43%→52% fade on the resting UBS node
+     (~175px × 0.206). Active item only. */
   .exp-content__bar {
+    --exp-bar-tail: 36px;
     position: absolute;
     left: 0;
     top: 0;
-    height: 232%;
+    bottom: calc(-1 * var(--exp-bar-tail));
     width: 1.6875px;
     margin-left: -0.84px;
     background: linear-gradient(to bottom,
-      #3846D4 0%,
-      #7A7FDC 38%,
-      rgba(122, 127, 220, 0.85) 43%,
-      rgba(122, 127, 220, 0) 52%);
+      #4f78f0 0,
+      var(--color-theme-2) calc(100% - var(--exp-bar-tail) - 20px),
+      rgba(126, 162, 255, 0.85) calc(100% - var(--exp-bar-tail)),
+      rgba(126, 162, 255, 0) 100%);
     opacity: 0;
     transition: opacity 1s ease-in-out;
   }
@@ -740,7 +1263,7 @@
     transform: translate(-50%, -50%) rotate(135deg);
     opacity: 0;
     transition: transform 1s ease-in-out, opacity 1s ease-in-out, color 1s ease-in-out;
-    color: #7A7FDC;
+    color: var(--color-theme-2);
   }
   .exp-content__plus::before,
   .exp-content__plus::after { content: ""; position: absolute; background: currentColor; }
@@ -750,24 +1273,110 @@
   .exp-content[data-status="active"]   .exp-content__plus,
   .exp-content[data-status="previous"] .exp-content__plus {
     transform: translate(-50%, -50%) rotate(0deg);
-    color: #7A7FDC;
+    color: var(--color-theme-2);
   }
   .exp-content[data-status="active"]   .exp-content__plus { opacity: 1; }
   .exp-content[data-status="previous"] .exp-content__plus { opacity: 1; }
 
   /* copy */
+  .exp-kicker {
+    display: block;
+    margin: 0 0 1rem;
+    color: var(--color-theme-hover);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-eyebrow);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .exp-heading {
+    display: block;
+    margin: 0 0 calc(1.35rem + 15px);
+    color: var(--color-text-1);
+    font-size: var(--font-size-heading);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-display);
+  }
+  .exp-content[data-index="0"] .exp-content__node {
+    top: calc(0.8125rem + 1rem + 2 * var(--font-size-heading) * var(--leading-heading) + 0.55rem + 5px);
+    /* Node ends at the white-dot center. The bar keeps the shared 36px fade below that. */
+    bottom: var(--ubs-stem-bottom);
+  }
+  .exp-content[data-index="0"] .exp-content__plus { display: none; }
+  .exp-content[data-index="0"] .exp-content__bar {
+    /* Same 36px fade as the other bars. Inherited --exp-bar-tail and bottom
+       hang that tail under the dot. Hidden until the seam arrives, then
+       revealed from the join downward. */
+    opacity: 0;
+    transition: none;
+    transform-origin: top center;
+    clip-path: inset(0 0 calc((1 - var(--stem-grow, 0)) * 100%) 0);
+  }
+  .exp-content[data-index="0"][data-stem="on"] .exp-content__bar {
+    opacity: var(--ubs-line, 1);
+  }
+  /* UBS → AdNovum only. The AdNovum stem reveals from the "+" downward
+     while the UBS stem fades. Scroll position owns both, so reversing
+     the scroll puts them back. Futurice and Designaffairs stay on the
+     active-bar opacity fade above. */
+  .exp-content[data-index="1"][data-relay="on"] .exp-content__bar {
+    opacity: 1;
+    transition: none;
+    transform-origin: top center;
+    clip-path: inset(0 0 calc((1 - var(--relay-grow, 0)) * 100%) 0);
+  }
+  @media (min-width: 768px) {
+    .exp-heading { font-size: var(--font-size-heading-lg); }
+    .exp-content[data-index="0"] .exp-content__node {
+      top: calc(0.8125rem + 1rem + 2 * var(--font-size-heading-lg) * var(--leading-heading) + 0.55rem + 5px);
+    }
+  }
+  /* Desktop: the title sits in the blank left of the timeline, under the
+     header, so the UBS entry and the title share one screen. The stem
+     then starts at the date instead of climbing through the title. */
+  @media (min-width: 641px) {
+    .exp-content[data-index="0"] .exp-lead {
+      position: absolute;
+      z-index: 5;
+      top: calc(138px - 33.4vh + 100%);
+      width: min(19rem, calc(0.267 * min(1200px, 100vw - 3rem) + (100vw - min(1200px, 100vw - 3rem)) / 2 - var(--content-inset) - 1.5rem));
+      margin: 0;
+      left: calc(var(--content-inset) - ((100vw - min(1200px, 100vw - 3rem)) / 2 + 0.267 * min(1200px, 100vw - 3rem)));
+    }
+    .exp-content[data-index="0"] .exp-lead .exp-heading { margin-bottom: 0; }
+    .exp-content[data-index="0"] .exp-content__node {
+      top: 0;
+      bottom: calc(-42px - var(--exp-arc-drop, 0px));
+    }
+    .exp-content[data-index="0"] {
+      bottom: calc(66.6% + 42px);
+      --ubs-stem-bottom: calc(-42px - var(--exp-arc-drop, 0px));
+    }
+    .exp-dot[data-index="3"]::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1.6875px;
+      height: 168px;
+      transform: translateX(-50%);
+      background: linear-gradient(to bottom, rgba(126, 162, 255, 0.85), rgba(126, 162, 255, 0));
+      pointer-events: none;
+    }
+  }
   .exp-content__eyebrow {
     display: block;
     font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
     font-style: italic;
-    font-size: 0.8rem;
+    font-size: var(--font-size-caption);
     color: var(--color-text-3);
     margin-bottom: 0.35rem;
   }
   .exp-content__title {
     display: block;
-    font-size: 1.02rem;
-    font-weight: 600;
+    font-size: var(--font-size-body-lg);
+    font-weight: var(--font-weight-semibold);
     letter-spacing: -0.015em;
     line-height: 1.3;
     color: var(--color-text-1);
@@ -775,15 +1384,15 @@
   }
   .exp-content__role {
     display: block;
-    font-size: 0.86rem;
-    font-weight: 500;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
     color: var(--color-text-2);
     margin-bottom: 0.5rem;
   }
   .exp-content__desc {
     display: block;
-    font-size: 0.82rem;
-    line-height: 1.6;
+    font-size: var(--font-size-caption);
+    line-height: var(--leading-relaxed);
     color: var(--exp-desc);
   }
 
@@ -803,12 +1412,13 @@
        so the original .exp-field bleed simply feathers out over the top of
        Contact as it always did over the footer. */
     background: transparent;
-    padding: clamp(6rem, 14vh, 9rem) var(--pad) clamp(4.5rem, 10vh, 7rem);
+    padding: clamp(6rem, 14vh, 9rem) var(--content-inset) clamp(4.5rem, 10vh, 7rem);
   }
 
   .exp-contact {
-    max-width: var(--editorial);
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -863,18 +1473,17 @@
   }
 
   /* ── shared site footer ─────────────────────────────────────────────
-     Full-bleed divider, then copyright. The inner container matches the
-     "Have an opportunity in mind?" block so the copyright's left edge
-     aligns with the heading. Identical markup + rules on every page
-     that uses the footer. */
+     Full-bleed divider, then the copyright on the same rail as the header. */
   .site-footer__inner {
-    max-width: var(--footer-max-w);
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
   }
-  .exp-footer {
+  .site-footer.exp-footer {
     --footer-rule-inset: 4rem;
     background: transparent;
     position: relative;
+    padding-inline: var(--content-inset);
   }
   .exp-footer::before {
     content: "";
@@ -898,12 +1507,8 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: flex-start;
     gap: 0.5rem;
-  }
-  .site-footer__analytics {
-    display: inline-flex;
-    align-items: center;
-    gap: inherit;
   }
   .site-footer__lab {
     color: inherit;
@@ -952,7 +1557,7 @@
      fall back to a plain stacked list */
   @media (max-width: 640px), (prefers-reduced-motion: reduce) {
     .exp-track { height: auto; }
-    .exp-sticky { position: static; height: auto; display: block; overflow: visible; padding: 0 0 3rem; }
+    .exp-sticky { position: static; height: auto; display: block; overflow: visible; padding: 6rem 0 3rem; }
     .exp-intro {
       position: relative;
       top: auto;
@@ -976,13 +1581,21 @@
     .exp-content[data-index="1"],
     .exp-content[data-index="2"],
     .exp-content[data-index="3"] {
-      position: relative; bottom: auto; left: auto; right: auto;
+      position: relative; top: auto; bottom: auto; left: auto; right: auto;
       width: 100%; max-width: none; opacity: 1 !important;
       text-align: left; margin: 0 0 2.25rem; padding: 0 0 0 1.5rem;
       border-left: 1px solid rgba(var(--exp-blue), 0.4);
     }
     .exp-content__node, .exp-content__bar, .exp-content__plus { display: none; }
     .exp-content__eyebrow, .exp-content__title, .exp-content__role, .exp-content__desc { opacity: 1 !important; }
+    .exp-content[data-index="3"]::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 72px;
+      margin-left: -1.5rem;
+      background: linear-gradient(to bottom, rgba(126, 162, 255, 0.4), rgba(126, 162, 255, 0));
+    }
 
     .exp-contact {
       flex-direction: column; align-items: flex-start; gap: 1.5rem;
@@ -1030,18 +1643,26 @@
     pointer-events: none;
     background: linear-gradient(to top, var(--logo-overlay-bg, rgba(0, 0, 0, 0.72)), transparent);
   }
+  /* ≥861: the hero-scrim fade replaces this plate. ≤860 keeps it,
+     because the video is only the bottom band and has no 240px scrim. */
+  @media (min-width: 861px) {
+    .logo-bar { background: transparent; }
+    .logo-bar::before { content: none; }
+  }
   .logo-bar__frame {
     position: relative;
-    max-width: var(--wrap);
-    margin: 0 auto;
-    padding: 0 var(--pad);
+    max-width: none;
+    margin: 0;
+    padding: 0 var(--content-inset);
   }
   .logo-bar__label {
     margin: 0 0 16px;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: var(--font-size-meta);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
     line-height: 1.4;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.48);
   }
   .logo-bar__scroller {
     overflow-x: auto;
@@ -1138,7 +1759,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .logo-bar__item { transition: none; }
-    .hero-media__video { animation: none; }
+    .hero-media__video { transition: none; transform: none; }
   }
 </style>
 </head>
@@ -1146,41 +1767,60 @@
 <body class="bg-ink text-text1 min-w-[360px]">
 
 
-<!-- HERO — full-viewport video stage with logo overlay docked to the bottom -->
+<!-- HERO — About head-turn animation, copy on the left, partners along the bottom -->
 <div id="hero">
-  <section class="hero-pin-section relative w-full min-h-[100dvh] h-[100dvh] overflow-hidden flex items-center pt-20 md:pt-24">
+  <section class="hero-pin-section relative w-full min-h-[100dvh] h-[100dvh] overflow-hidden flex items-center pt-16">
     <div class="hero-media" aria-hidden="true">
-      <div class="hero-ambient-zoom absolute inset-0 overflow-hidden">
-        <video
-          class="hero-media__video"
-          src="/assets/videos/home/hero.mp4"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="auto"
-          disablepictureinpicture
-        ></video>
-      </div>
+      <video
+        id="bgVideo"
+        class="hero-media__video"
+        src="/assets/videos/about/turn-head.mp4"
+        poster="/assets/images/home-motion/hero-still.jpg"
+        muted
+        playsinline
+        preload="auto"
+        disablepictureinpicture
+      ></video>
+      <img class="hero-media__video hero-motion-still" src="/assets/images/home-motion/hero-still.jpg" alt="" />
     </div>
     <div class="hero-scrim"></div>
 
-    <!-- hero copy -->
-    <div class="relative z-10 w-full px-6 mx-auto max-w-[var(--wrap)]">
-      <div class="max-w-2xl">
-        <h1 class="font-sans font-bold text-[clamp(2.25rem,5.2vw,4rem)] leading-[1.08] tracking-tight text-text1 drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)]" data-i18n-html="home.heroTitleHtml">
-          Simplify complexity.<br />Design with AI.
-        </h1>
-        <p class="mt-6 max-w-md text-base md:text-lg leading-relaxed text-text2" data-i18n="home.heroSubtitle">
-          Design leadership across product and service — from early-stage strategy to production-ready systems.
-        </p>
-        <a href="#" id="hero-see-how" class="pill-btn mt-9" data-i18n="common.seeMyWork">See My Work</a>
+    <div class="hero-copy-wrap">
+      <div class="hero-copy">
+        <p class="hero-kicker" data-i18n="home.heroKicker">Product designer · Enterprise & regulated UX</p>
+        <h1 data-i18n="home.heroTitle">Simplify complexity. Design with AI.</h1>
+        <div class="hero-lede">
+          <p data-i18n-html="home.heroBody"><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, 10+ min saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 4× lead conversion rate.</span><span class="hero-line">BMW app: led its design system.</span></p>
+        </div>
+        <div class="ask-lu-wrap">
+          <button id="ask-lu" type="button" class="ask-lu" aria-expanded="false" aria-controls="ask-lu-chat">
+            <i class="ri-chat-smile-2-line" aria-hidden="true"></i>
+            <span data-i18n="home.askLu">Ask Lu</span>
+          </button>
+          <div id="ask-lu-chat" class="ask-chat" hidden role="dialog" aria-labelledby="ask-lu-title">
+            <div class="ask-chat__bar">
+              <p id="ask-lu-title" data-i18n="home.askLu">Ask Lu</p>
+              <button type="button" class="ask-chat__close" id="ask-lu-close" data-i18n-aria="home.askLuClose" aria-label="Close chat">
+                <i class="ri-close-line" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="ask-chat__log" id="ask-lu-log">
+              <p class="ask-chat__msg ask-chat__msg--lu" data-i18n="home.askLuGreeting">Hi! I’m Lu’s AI assistant. Ask about her work, experience, or process.</p>
+            </div>
+            <form class="ask-chat__form" id="ask-lu-form">
+              <input id="ask-lu-input" type="text" autocomplete="off" data-i18n-placeholder="home.askLuPlaceholder" data-i18n-aria="home.askLuPlaceholder" placeholder="Ask about Lu’s work…" aria-label="Ask about Lu’s work…" />
+              <button type="submit" class="ask-chat__send" data-i18n-aria="home.askLuSend" aria-label="Send">
+                <i class="ri-arrow-up-line" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
 
-    <aside id="logo-bar" class="logo-bar" aria-label="Selected experience">
+    <aside id="logo-bar" class="logo-bar" aria-label="Clients I’ve designed for">
       <div class="logo-bar__frame">
-        <p class="logo-bar__label" data-i18n="common.selectedExperience">Selected experience</p>
+        <p class="logo-bar__label" data-i18n="home.partnersLabel">Clients I’ve designed for</p>
         <div class="logo-bar__scroller">
           <ul class="logo-bar__row">
             <li class="logo-bar__item">
@@ -1226,142 +1866,91 @@
   </section>
 </div>
 
-<!-- MODEL SERIES (scroll-driven: section pins while scroll position advances the active item) -->
-<div id="model-series" class="pin-wrap" style="height:360vh;">
-  <section class="pin-sticky h-screen min-h-[680px] w-full flex items-center bg-ink px-6">
-    <div class="mx-auto max-w-[var(--wrap)] w-full">
-      <h2 class="text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-16 md:mb-20" data-i18n-html="home.ca.titleHtml">
-        AI-powered advisor <span class="font-sans font-semibold">workflow optimization</span>
-      </h2>
-
-      <div class="grid lg:grid-cols-[minmax(0,43fr)_minmax(0,57fr)] gap-12 lg:gap-20 items-center">
-        <div class="flex flex-col">
-        <div class="accordion my-auto" data-group="1">
-          <button class="accordion-item is-active" data-index="0" type="button">
-            <span class="accordion-bar"></span>
-            <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.ca.roleTitle">My role — lead service designer</span>
-              <span class="accordion-body-wrap">
-                <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.ca.roleBody">Mapped end-to-end advisor workflows, identified key friction points, and translated insights into information architecture, user flows, and wireframes. Contributed to advisor interviews to uncover daily needs, priorities, and opportunities for AI.</p>
-                </span>
-              </span>
-            </span>
-          </button>
-
-          <button class="accordion-item" data-index="1" type="button">
-            <span class="accordion-bar"></span>
-            <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.ca.frictionTitle">From friction to AI</span>
-              <span class="accordion-body-wrap">
-                <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.ca.frictionBody">Embedded AI into existing workflows to help advisors prioritize tasks, surface relevant information, and respond to clients at the right moment. When a client calls, AI can also surface who they are and what they may need — giving advisors the right context immediately, without adding another tool.</p>
-                </span>
-              </span>
-            </span>
-          </button>
-
-          <button class="accordion-item" data-index="2" type="button">
-            <span class="accordion-bar"></span>
-            <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.ca.scaleTitle">Designed for 500+ advisors</span>
-              <span class="accordion-body-wrap">
-                <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.ca.scaleBody">Concept testing pointed to 5–10 minutes saved per workflow — less time searching, synthesising information, and switching between systems.</p>
-                </span>
-              </span>
-            </span>
-          </button>
+<!-- S-A: native scroll, static reading holds, image-only fan handover. Copy is the current 3000 case text. -->
+<section id="home-showcase" aria-label="Selected work">
+  <div class="home-showcase-stage">
+    <article id="model-series" class="home-case" aria-labelledby="case-ca-title">
+      <img class="home-case-image" src="/assets/images/home-motion/ubs.jpg" alt="" />
+      <div class="home-case-shade"></div>
+      <div class="home-case-copy">
+        <p class="home-eyebrow" data-i18n="home.ca.eyebrow">Client Advisory · UBS</p>
+        <h2 id="case-ca-title" class="home-case-title" data-i18n-html="home.ca.titleHtml">AI that frees advisors for the client</h2>
+        <p class="case-card__role" data-i18n="home.ca.role">Lead Service Designer</p>
+        <div class="home-case-detail">
+          <h3 data-i18n="home.ca.storyTitle">From searching to advising</h3>
+          <p data-i18n="home.ca.storyBody">One AI-supported view that surfaces the right information at the right moment.</p>
         </div>
-
-        <div class="mt-12 md:mt-14 text-left">
+        <div class="home-case-detail">
+          <h3 data-i18n="home.ca.metricTitle">Designed for 500+ advisors</h3>
+          <p data-i18n="home.ca.metricBody">Concept tests: 5–10 min saved per client, up to 30 min on complex proposals.</p>
+        </div>
+        <div class="home-case-links">
           <a href="/client-advisory" class="pill-btn">
-            <span data-i18n="common.exploreNow">Explore Now</span>
+            <span data-i18n="home.ca.cta">Explore case study</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
-        </div>
-
-        <div class="relative rounded-2xl overflow-hidden media-panel aspect-[16/9]">
-          <video class="absolute inset-0 w-full h-full object-cover" src="/assets/videos/client-advisory/CA-office-call-loop.mp4" autoplay loop muted playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video>
-        </div>
       </div>
-    </div>
-  </section>
-</div>
-
-<!-- OMNI MODEL (scroll-driven, mirrored layout: image left, accordion right) -->
-<div id="omni-model" class="pin-wrap" style="height:360vh;">
-  <section class="pin-sticky h-screen min-h-[680px] w-full flex items-center bg-ink px-6">
-    <div class="mx-auto max-w-[var(--wrap)] w-full">
-      <h2 class="text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-16 md:mb-20" data-i18n-html="home.eon.titleHtml">
-        Solar landing page <span class="font-sans font-semibold">redesign</span>
-      </h2>
-
-      <div class="grid lg:grid-cols-[minmax(0,57fr)_minmax(0,43fr)] gap-12 lg:gap-20 items-center">
-        <div class="relative rounded-2xl overflow-hidden media-panel aspect-[16/9]">
-          <video
-            class="absolute inset-0 w-full h-full object-cover"
-            src="/assets/videos/eon/solar-calculator-hero.mp4"
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="auto"
-            disablepictureinpicture
-            aria-hidden="true"
-          ></video>
+    </article>
+    <article id="omni-model" class="home-case" aria-labelledby="case-eon-title">
+      <img class="home-case-image" src="/assets/images/home-motion/eon.jpg" alt="" />
+      <div class="home-case-shade"></div>
+      <div class="home-case-copy">
+        <p class="home-eyebrow" data-i18n="home.eon.eyebrow">Solar · E.ON</p>
+        <h2 id="case-eon-title" class="home-case-title" data-i18n-html="home.eon.titleHtml">Solar landing page redesign</h2>
+        <p class="case-card__role" data-i18n="home.eon.role">Lead Product Designer</p>
+        <div class="home-case-detail">
+          <h3 data-i18n="home.eon.storyTitle">From complexity to conversion</h3>
+          <p data-i18n="home.eon.storyBody">A complex investment, made easier to understand and trust.</p>
         </div>
-
-        <div class="flex flex-col">
-        <div class="accordion my-auto" data-group="2">
-          <button class="accordion-item is-active" data-index="0" type="button">
-            <span class="accordion-bar"></span>
-            <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.eon.roleTitle">My role — lead product designer</span>
-              <span class="accordion-body-wrap">
-                <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.eon.roleBody">Led the end-to-end product design process, from research and journey mapping through information architecture, UX/UI design, prototyping, and implementation. Collaborated closely with developers to bring the experience to life and iterated based on user testing and data.</p>
-                </span>
-              </span>
-            </span>
-          </button>
-
-          <button class="accordion-item" data-index="1" type="button">
-            <span class="accordion-bar"></span>
-            <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.eon.conversionTitle">From complexity to conversion</span>
-              <span class="accordion-body-wrap">
-                <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.eon.conversionBody">Redesigned the solar purchase journey to make a complex investment easier to understand, personalize, and trust. Progressive input and a more transparent calculator helped users move from initial interest to a meaningful, personalized offer with less friction.</p>
-                </span>
-              </span>
-            </span>
-          </button>
-
-          <button class="accordion-item" data-index="2" type="button">
-            <span class="accordion-bar"></span>
-            <span class="flex-1">
-              <span class="accordion-title block" data-i18n="home.eon.impactTitle">300% higher conversion</span>
-              <span class="accordion-body-wrap">
-                <span class="accordion-body-inner block">
-                  <p class="accordion-body" data-i18n="home.eon.impactBody">The redesigned experience increased solar lead conversion by 300% within two months — from a ~5.1% baseline across Germany. Later adapted for the UK market.</p>
-                </span>
-              </span>
-            </span>
-          </button>
+        <div class="home-case-detail">
+          <h3 data-i18n="home.eon.metricTitle">300% increase in lead conversion</h3>
+          <p data-i18n="home.eon.metricBody">Within two months, from a 5.1% baseline in Germany. Later adapted for the UK.</p>
         </div>
-
-        <div class="mt-12 md:mt-14 text-left">
+        <div class="home-case-links">
           <a href="/EON" class="pill-btn">
-            <span data-i18n="common.exploreNow">Explore Now</span>
+            <span data-i18n="home.eon.cta">Explore case study</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
-        </div>
       </div>
+    </article>
+  </div>
+</section>
+<section id="home-playground" aria-labelledby="home-playground-title">
+  <div class="home-playground-inner">
+    <p class="home-eyebrow">Playground</p>
+    <h2 id="home-playground-title">Playground</h2>
+    <div class="home-project-grid">
+      <a class="home-project" href="/lab/weather-aquarium"><img src="/assets/images/home-motion/weather-interior-autumn.png" alt="Weather Aquarium project preview" loading="lazy" width="864" height="600" /><h3>Weather Aquarium</h3><p class="home-project-meta" data-i18n="home.playground.weatherMeta">Rive motion</p><p>A 2.5D weather world for iPad — helping children understand the day and discover new words.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="home-project" href="/ai-companion-pet"><img src="/assets/images/home-motion/pet.jpg" alt="AI Pet project preview" loading="lazy" width="864" height="600" /><h3>AI Pet</h3><p class="home-project-meta" data-i18n="home.playground.petMeta">Voice · Hardware</p><p>A little friend to listen, tell stories, share a meal, and learn a few words of French.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="home-project" href="/lab/party-planner"><video src="/assets/videos/home/gratula-pip.mp4" poster="/assets/images/home-motion/gratula-pip.jpg" aria-label="Gratula project preview" width="864" height="600" muted playsinline data-loop-gap="2000" disablepictureinpicture></video><h3>Gratula</h3><p class="home-project-meta" data-i18n="home.playground.gratulaMeta">Launching soon</p><p>From ideas to invitations, a simpler way to plan a party they’ll always remember.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
-  </section>
+  </div>
+</section>
+
+<section id="how-i-work" class="ai-decides-section" aria-labelledby="how-i-work-title">
+  <div class="ad-layout">
+    <div class="ad-copy">
+      <p class="ad-eyebrow" data-i18n="home.how.kicker">How I work</p>
+      <h2 class="ad-heading" id="how-i-work-title" data-i18n-html="home.how.titleHtml">AI drafts.<em>I decide.</em></h2>
+      <p class="ad-description" data-i18n-html="home.how.bodyHtml">AI drafts and iterates with me at every step.<br class="ad-desktop-break"> I decide the problem, the direction, and what<br class="ad-desktop-break"> ships.</p>
+      <a class="pill-btn ad-cta" href="/lab/way-of-work">
+        <span data-i18n="home.how.cta">Explore how I work</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <svg class="ad-art" xmlns="http://www.w3.org/2000/svg" viewBox="720 130 1060 654" width="1060" height="654" role="img" data-i18n-aria="home.how.artLabel" aria-label="Decide: Human judgment in every step. A human designer leads a team of AI assistants, surrounded by sketches, checklists, and an idea bulb.">
+      <image href="/assets/images/how-i-work/ai-decides.webp" x="0" y="0" width="1842" height="854"/>
+    </svg>
+  </div>
+</section>
+
+<div class="hiw-exp-seam" aria-hidden="true">
+  <div class="hiw-exp-seam__wash"></div>
+  <svg class="hiw-exp-seam__svg" focusable="false">
+    <path class="hiw-exp-seam__path" d=""></path>
+  </svg>
 </div>
 
 <!-- ============================================================
@@ -1386,20 +1975,10 @@
   <div class="exp-field" aria-hidden="true"></div>
 </div>
 
-<section id="experience" class="exp-section relative bg-ink">
+<section id="experience" class="exp-section relative" aria-labelledby="experience-title">
 
   <div class="exp-track" id="exp-track">
     <div class="exp-sticky">
-
-      <section id="nextgen" class="exp-intro">
-        <div class="mx-auto max-w-[var(--editorial)]">
-          <h2 class="reveal text-center text-[1.9rem] md:text-4xl font-semibold text-text1 mb-5" data-i18n="home.aboutHeading">About me</h2>
-          <p class="reveal text-center text-text2 mx-auto mb-0 text-[15px] leading-relaxed" data-i18n-html="home.aboutBodyHtml">
-            I'm Lu, a <strong class="text-text1 font-semibold">product &amp; service design lead</strong> with 10+ years turning <strong class="text-text1 font-semibold">complex systems and workflows into clear, useful products</strong>.<br /><br />
-            I lead end-to-end across <strong class="text-text1 font-semibold">product, service, and UI design</strong> — from framing problems to prototyping and implementation. I use AI as part of my everyday design process to explore faster, prototype boldly, and turn ideas into working experiences.
-          </p>
-        </div>
-      </section>
 
       <div class="exp-coord" id="exp-coord">
 
@@ -1427,10 +2006,14 @@
             <span class="exp-content__bar"></span>
             <span class="exp-content__plus"></span>
           </span>
+          <div class="exp-lead">
+            <p class="exp-kicker" data-i18n="home.expKicker">My Experience</p>
+            <h2 class="exp-heading" id="experience-title" data-i18n-html="home.expHeadingHtml">10+ years.<br />Product, service and UI.</h2>
+          </div>
           <span class="exp-content__eyebrow" data-i18n="home.exp.0.eyebrow">Oct 2022 — Sep 2026</span>
           <span class="exp-content__title" data-i18n="home.exp.0.title">UBS · Zurich</span>
           <span class="exp-content__role" data-i18n="home.exp.0.role">Senior Service Designer</span>
-          <span class="exp-content__desc" data-i18n="home.exp.0.desc">Designed for complex wealth-management workflows — balancing user needs with business goals and regulation.</span>
+          <span class="exp-content__desc" data-i18n="home.exp.0.desc">Wealth-management workflows that balance users, business, and regulation.</span>
         </article>
 
         <article class="exp-content" data-index="1" data-side="left" data-status="hidden">
@@ -1441,7 +2024,7 @@
           <span class="exp-content__eyebrow" data-i18n="home.exp.1.eyebrow">Oct 2020 — Sep 2022</span>
           <span class="exp-content__title" data-i18n="home.exp.1.title">AdNovum · Bern</span>
           <span class="exp-content__role" data-i18n="home.exp.1.role">Senior Product Designer</span>
-          <span class="exp-content__desc" data-i18n="home.exp.1.desc">Complex enterprise interfaces — data tables, filtering and bulk operations for a nationwide Swiss platform.</span>
+          <span class="exp-content__desc" data-i18n="home.exp.1.desc">Data tables, filters, and bulk actions for a nationwide Swiss platform.</span>
         </article>
 
         <article class="exp-content" data-index="2" data-side="right" data-status="hidden">
@@ -1452,7 +2035,7 @@
           <span class="exp-content__eyebrow" data-i18n="home.exp.2.eyebrow">Jun 2016 — Jul 2020</span>
           <span class="exp-content__title" data-i18n="home.exp.2.title">Futurice · Munich</span>
           <span class="exp-content__role" data-i18n="home.exp.2.role">Senior Product Designer</span>
-          <span class="exp-content__desc" data-i18n="home.exp.2.desc">Launched digital products from research and concept through implementation. Led a six-person design team.</span>
+          <span class="exp-content__desc" data-i18n="home.exp.2.desc">Took digital products from research to launch. Led a six-person design team.</span>
         </article>
 
         <article class="exp-content" data-index="3" data-side="right" data-status="hidden">
@@ -1463,7 +2046,7 @@
           <span class="exp-content__eyebrow" data-i18n="home.exp.3.eyebrow">Sep 2014 — Jun 2016</span>
           <span class="exp-content__title" data-i18n="home.exp.3.title">Designaffairs (Accenture) · Munich</span>
           <span class="exp-content__role" data-i18n="home.exp.3.role">Usability Engineer</span>
-          <span class="exp-content__desc" data-i18n="home.exp.3.desc">UX concepts and interactive prototypes for connected products, plus scalable UI components and B2B design systems.</span>
+          <span class="exp-content__desc" data-i18n="home.exp.3.desc">UX concepts and prototypes for connected products, plus B2B design systems.</span>
         </article>
 
       </div>
@@ -1485,11 +2068,13 @@
         <span class="exp-contact__sep" aria-hidden="true">·</span>
         <a href="https://www.linkedin.com/in/lu-jin-28008689/" target="_blank" rel="noopener noreferrer" data-i18n="common.linkedin">LinkedIn</a>
         <span class="exp-contact__sep" aria-hidden="true">·</span>
+        <a href="https://github.com/lujin88" target="_blank" rel="noopener noreferrer" data-i18n="common.github">GitHub</a>
+        <span class="exp-contact__sep" aria-hidden="true">·</span>
         <a href="/cv/lu-jin-cv.pdf" target="_blank" rel="noopener noreferrer" data-i18n="common.downloadCv">Download CV</a>
       </p>
     </div>
     <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn pill-btn--l shrink-0">
-      <span data-i18n="common.letsTalk">Let's Talk</span>
+      <span data-i18n="common.letsTalk">Let's talk</span>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
   </div>
@@ -1499,7 +2084,7 @@
 <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
   <div class="site-footer__inner">
     <div class="site-footer__bottom">
-      <p class="site-footer__note text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span><span aria-hidden="true">·</span><a href="/lab" class="site-footer__lab">Playground</a><span class="site-footer__analytics"><span aria-hidden="true">·</span><span data-i18n="common.footerAnalytics">Visit statistics via PostHog (EU).</span></span></p>
+      <p class="site-footer__note text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span></p>
     </div>
   </div>
 </footer>
@@ -1507,16 +2092,293 @@
 <script>
   // #site-nav removed — React SiteHeader is sole nav.
 
-  // Hero CTA: smooth-scroll into the first content section below the hero
-  // rather than navigating.
-  (function () {
-    const cta = document.getElementById('hero-see-how');
-    const target = document.getElementById('model-series');
-    if (!cta || !target) return;
+  // In-page hero links. Next intercepts hash clicks and leaves the page unmoved.
+  // Capture + stopPropagation runs before that router listener. Delegation
+  // survives the language switch replacing the link markup.
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('[data-scroll-target]');
+    if (!link) return;
+    const target = document.getElementById(link.getAttribute('data-scroll-target'));
+    if (!target) return;
+    e.preventDefault();
+    e.stopPropagation();
+    if (link.blur) link.blur();
+    const hash = '#' + target.id;
+    if (location.hash !== hash) history.replaceState(null, '', hash);
+    // Blur first. A focused control in the hero pulls the viewport back
+    // and cancels the smooth scroll.
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const behavior = reduce ? 'instant' : 'smooth';
+    requestAnimationFrame(() => {
+      const showcase = document.getElementById('home-showcase');
+      const eonFull = showcase ? Number(showcase.dataset.eonFull) : NaN;
+      const pinned = !!(showcase && showcase.classList.contains('home-showcase-pinned'));
+      // While the showcase is pinned, both case anchors share one sticky top.
+      // E.ON copy reaches opacity 1 at dataset.eonFull (turn hits 1 in render).
+      if (pinned && target.id === 'omni-model' && eonFull > 0 && eonFull < 1) {
+        const top = window.scrollY + showcase.getBoundingClientRect().top;
+        const distance = showcase.offsetHeight - window.innerHeight;
+        window.scrollTo({ top: distance > 0 ? top + distance * eonFull : top, behavior });
+        return;
+      }
+      target.scrollIntoView({ behavior, block: 'start' });
+    });
+  }, true);
 
-    cta.addEventListener('click', (e) => {
+  // H-A: one currentTime writer. Pointer samples wait for seeked.
+  // No autoplay, smoothing loop, or second playback helper.
+  (function initHomeMotion() {
+    const hero = document.querySelector('#hero');
+    const video = document.getElementById('bgVideo');
+    const showcase = document.getElementById('home-showcase');
+    if (!hero || !video || !showcase) return;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    const pointer = matchMedia('(hover: hover) and (pointer: fine)');
+    let target = 0.5;
+    let visible = true;
+    let seeking = false;
+    let seekTimer = 0;
+    let requested = -1;
+    function canSeek() {
+      return hero.isConnected && !reduce.matches && pointer.matches && visible && !document.hidden && video.readyState >= 2 && !video.error && Number.isFinite(video.duration);
+    }
+    function releaseSeek() {
+      seeking = false;
+      window.clearTimeout(seekTimer);
+    }
+    function seek() {
+      // loadedmetadata can report a duration before the file is seekable.
+      // Setting currentTime then never fires seeked, and every later move bails out.
+      // A cached file can also fire seeked inside the currentTime assignment.
+      // Chasing from that call re-enters seek and wedges the page thread.
+      if (!canSeek() || seeking) return;
+      let time = target * Math.max(0, video.duration - 0.05);
+      const range = video.seekable;
+      if (range && range.length) {
+        const start = range.start(0);
+        const last = range.end(range.length - 1);
+        time = Math.min(Math.max(time, start), Math.max(start, last - 0.01));
+      }
+      if (Math.abs(time - video.currentTime) < 1 / 30) return;
+      if (Math.abs(time - requested) < 1 / 30) return;
+      requested = time;
+      seeking = true;
+      window.clearTimeout(seekTimer);
+      // If seeked never arrives, drop the lock so the next pointer move can try again.
+      seekTimer = window.setTimeout(releaseSeek, 450);
+      try {
+        video.currentTime = time;
+      } catch (e) {
+        releaseSeek();
+      }
+    }
+    function configureHero() {
+      video.pause();
+      const can = canSeek();
+      hero.classList.toggle('hero-can-seek', can);
+      if (can) video.classList.add('is-loaded');
+      seek();
+    }
+    video.addEventListener('loadedmetadata', configureHero);
+    video.addEventListener('loadeddata', configureHero);
+    video.addEventListener('canplay', configureHero);
+    video.addEventListener('seeked', () => {
+      releaseSeek();
+      requestAnimationFrame(() => seek());
+    });
+    video.addEventListener('error', () => hero.classList.remove('hero-can-seek'));
+    hero.addEventListener('pointermove', (event) => {
+      const rect = hero.getBoundingClientRect();
+      // turn-head.mp4 is shot backwards: t=0 looks to the viewer's right,
+      // t=end looks to the viewer's left. Invert so the head looks toward the pointer.
+      const x = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
+      target = 1 - x;
+      seek();
+    }, true);
+    hero.addEventListener('pointerleave', () => { target = 0.5; seek(); });
+    function checkVisibility() {
+      const rect = hero.getBoundingClientRect();
+      visible = rect.bottom > 0 && rect.top < innerHeight;
+      seek();
+    }
+    window.addEventListener('scroll', checkVisibility, { passive: true });
+    document.addEventListener('visibilitychange', configureHero);
+    pointer.addEventListener('change', configureHero);
+
+    const scenes = Array.from(showcase.querySelectorAll('.home-case'));
+    const images = scenes.map(scene => scene.querySelector('.home-case-image'));
+    const shades = scenes.map(scene => scene.querySelector('.home-case-shade'));
+    const copies = scenes.map(scene => scene.querySelector('.home-case-copy'));
+    const clamp = value => Math.min(1, Math.max(0, value));
+    const TURN_START = 0.3;
+    const TURN_SPAN = 0.4;
+    // E.ON copy opacity hits 1 when turn hits 1. Hero jump reads this.
+    showcase.dataset.eonFull = String(TURN_START + TURN_SPAN);
+    let scheduled = false;
+    let pinned = false;
+    function render() {
+      scheduled = false;
+      if (!showcase.isConnected || !pinned) return;
+      const progress = clamp(-showcase.getBoundingClientRect().top / (showcase.offsetHeight - innerHeight));
+      const turn = clamp((progress - TURN_START) / TURN_SPAN);
+      images[0].style.transform = `translateX(${-65 * turn}%) rotate(${-5 * Math.sin(turn * Math.PI)}deg) scale(${1 - 0.25 * Math.sin(turn * Math.PI)})`;
+      images[1].style.transform = `translateX(${65 * (1 - turn)}%) rotate(${5 * Math.sin(turn * Math.PI)}deg) scale(${1 - 0.25 * Math.sin(turn * Math.PI)})`;
+      images[0].style.opacity = String(clamp((1 - turn) * 3));
+      images[1].style.opacity = String(clamp(turn * 3));
+      const opacity = [1 - clamp(turn * 5), clamp((turn - 0.8) * 5)];
+      copies.forEach((copy, i) => {
+        copy.style.opacity = String(opacity[i]);
+        shades[i].style.opacity = String(opacity[i]);
+        scenes[i].inert = opacity[i] < 0.99;
+        copy.style.visibility = opacity[i] === 0 ? 'hidden' : 'visible';
+      });
+    }
+    function requestRender() {
+      if (!scheduled && pinned) { scheduled = true; requestAnimationFrame(render); }
+    }
+    function layout() {
+      showcase.classList.remove('home-showcase-pinned');
+      scenes.forEach(scene => { scene.inert = false; });
+      [...images, ...copies, ...shades].forEach(el => {
+        el.style.removeProperty('transform'); el.style.removeProperty('opacity'); el.style.removeProperty('visibility');
+      });
+      pinned = !reduce.matches && innerWidth >= 1100 && innerHeight >= 760 && copies.every(copy => copy.scrollHeight + 96 <= innerHeight);
+      showcase.classList.toggle('home-showcase-pinned', pinned);
+      render();
+      configureHero();
+    }
+    window.addEventListener('scroll', requestRender, { passive: true });
+    window.addEventListener('resize', layout);
+    window.addEventListener('load', layout);
+    reduce.addEventListener('change', layout);
+    document.fonts.ready.then(() => { if (showcase.isConnected) layout(); });
+    const mutation = new MutationObserver(() => { if (showcase.isConnected) layout(); else mutation.disconnect(); });
+    copies.forEach(copy => mutation.observe(copy, { childList: true, subtree: true, characterData: true }));
+    layout();
+  })();
+
+  // Ask Lu — streams answers from /api/ask-lu (knowledge: content/ask-lu/*.md).
+  (function () {
+    const trigger = document.getElementById('ask-lu');
+    const panel = document.getElementById('ask-lu-chat');
+    const form = document.getElementById('ask-lu-form');
+    const input = document.getElementById('ask-lu-input');
+    const log = document.getElementById('ask-lu-log');
+    const closeBtn = document.getElementById('ask-lu-close');
+    const sendBtn = form && form.querySelector('.ask-chat__send');
+    if (!trigger || !panel || !form || !input || !log) return;
+
+    const MAX_CHARS = 800;
+    input.maxLength = MAX_CHARS;
+    log.setAttribute('aria-live', 'polite');
+
+    const copy = {
+      en: {
+        thinking: 'Thinking…',
+        failed: 'Sorry, something went wrong. Please try again, or email Lu directly.',
+        note: 'AI assistant · answers from Lu’s own notes · may be incomplete',
+      },
+      de: {
+        thinking: 'Denke nach…',
+        failed: 'Da ist etwas schiefgelaufen. Bitte versuchen Sie es noch einmal oder schreiben Sie Lu direkt eine E-Mail.',
+        note: 'KI-Assistent · antwortet aus Notizen von Lu · kann unvollständig sein',
+      },
+    };
+    function t(key) {
+      return (copy[document.documentElement.lang === 'de' ? 'de' : 'en'])[key];
+    }
+
+    const note = document.createElement('p');
+    note.className = 'ask-chat__note';
+    note.textContent = t('note');
+    note.style.cssText = 'margin:0;padding:0 1rem 0.75rem;font-size:0.72rem;color:rgba(255,255,255,0.45);';
+    form.after(note);
+
+    const history = []; // { role: 'user' | 'assistant', content }
+    let busy = false;
+    let controller = null;
+
+    function addMessage(text, who) {
+      const bubble = document.createElement('p');
+      bubble.className = 'ask-chat__msg ask-chat__msg--' + who;
+      bubble.textContent = text;
+      log.appendChild(bubble);
+      log.scrollTop = log.scrollHeight;
+      return bubble;
+    }
+    function setBusy(value) {
+      busy = value;
+      input.disabled = value;
+      if (sendBtn) sendBtn.disabled = value;
+      if (!value) input.focus();
+    }
+    function setOpen(open) {
+      panel.hidden = !open;
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      note.textContent = t('note');
+      if (open) input.focus();
+      else trigger.focus();
+    }
+
+    async function ask(question) {
+      history.push({ role: 'user', content: question });
+      addMessage(question, 'you');
+      const bubble = addMessage(t('thinking'), 'lu');
+      setBusy(true);
+      controller = new AbortController();
+      let answer = '';
+      try {
+        const res = await fetch('/api/ask-lu', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages: history.slice(-10) }),
+          signal: controller.signal,
+        });
+        if (!res.ok || !res.body) {
+          const msg = (await res.text().catch(() => '')).trim();
+          throw new Error(msg && msg.length < 200 ? msg : t('failed'));
+        }
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        for (;;) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          answer += decoder.decode(value, { stream: true });
+          bubble.textContent = answer;
+          log.scrollTop = log.scrollHeight;
+        }
+        answer += decoder.decode();
+        if (!answer.trim()) throw new Error(t('failed'));
+        bubble.textContent = answer;
+        history.push({ role: 'assistant', content: answer });
+      } catch (err) {
+        if (err && err.name === 'AbortError') {
+          if (answer.trim()) history.push({ role: 'assistant', content: answer });
+          else { bubble.remove(); history.pop(); }
+        } else {
+          bubble.textContent = (err && err.message) || t('failed');
+          history.pop(); // drop the unanswered question so the next request stays valid
+        }
+      } finally {
+        controller = null;
+        setBusy(false);
+      }
+    }
+
+    trigger.addEventListener('click', () => setOpen(panel.hidden));
+    closeBtn && closeBtn.addEventListener('click', () => setOpen(false));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !panel.hidden) {
+        if (controller) controller.abort();
+        setOpen(false);
+      }
+    });
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const text = input.value.trim().slice(0, MAX_CHARS);
+      if (!text || busy) return;
+      input.value = '';
+      ask(text);
     });
   })();
 
@@ -1623,9 +2485,7 @@
     // ---- EXPERIENCE TIMELINE — FXIFY "How it works" curved-arc timeline.
     // The 500vh track's scroll progress is the single source of truth. Three
     // phases:
-    //   HOLD   p 0    -> 0.22 : About + UBS remain fixed as one composition
-    //   ENTER  p 0.22 -> 0.34 : About exits and the timeline settles upward
-    //   PINNED p 0.34 -> 0.86 : arc draws, glow fills, items 0..3 activate
+    //   PINNED p 0    -> 0.86 : arc draws, glow fills, items 0..3 activate
     //                           in turn (thresholds below)
     //   EXIT   p 0.86 -> 1    : coord box slides up and out
     // Dots are CSS-anchored (percent) to the same points as their content, so
@@ -1638,52 +2498,70 @@
     const expCurve = document.getElementById('exp-curve');
     const expDots = expCoord ? Array.from(expCoord.querySelectorAll('.exp-dot')) : [];
     const expContents = expCoord ? Array.from(expCoord.querySelectorAll('.exp-content')) : [];
-    const INTRO_HOLD = 0.22;                // hold About + UBS for almost one full viewport of scrolling
-    const INTRO_EXIT = 0.34;                // then move/fade About away over roughly half a viewport
-    const EXP_ENTER = INTRO_EXIT;            // timeline motion begins only after the opening composition exits
+    const INTRO_HOLD = 0;                   // no opening About block — timeline starts immediately
+    const INTRO_EXIT = 0;
+    const EXP_ENTER = INTRO_EXIT;
     const EXP_EXIT = 0.86;                  // pinned phase ends here (no exit slide —
                                             // the box holds until the track releases and
                                             // the whole section scrolls away)
     const EXP_TH = [0.24, 0.42, 0.60];      // item activation thresholds (pinned phase)
-    // EXP_TIMELINE_END — past the last entry, where the blue-purple transition
+    // EXP_TIMELINE_END — past the last entry, where the blue transition
     // (--exp-f, the field + curve glow) starts ramping from 0. The timeline
     // entries and dots are NOT hidden here — Contact is a separate normal-flow
     // section (#contact) with its own reveal, fully decoupled from the timeline.
     const EXP_TIMELINE_END = 0.82;
     let expLen = 0;
+    const expArcOrigin = 0.20;              // path fraction where the visible arc meets dot 0
     let expActive = -1;                     // last integer activeIndex written to the DOM
     let expLastShift = null;                // last --exp-shift written (px, 1dp)
     let expProgress = 0;                    // track progress, set in the READ phase
     let expLastArcOff = null;               // last strokeDashoffset written
     let expLastCurve = null;                // last curve-group opacity written
-    let expLastField = null;                // last --exp-f (blue-purple field) written
+    let expLastField = null;                // last --exp-f (blue field) written
+    let expRelayOn = false;                 // AdNovum stem is mid-reveal
+    let expLastClip = null;                 // last --relay-grow written
+    let expLastUbsLine = null;              // last --ubs-line written
     let expLastIntroOpacity = null;
     let expLastIntroShift = null;
     let expIntroOffset = 0;
     let expStageDrop = 0;
 
     function expMeasureIntroOffset() {
-      if (!expIntro || !expContents[0]) return;
-      expStageDrop = window.matchMedia('(max-width: 640px)').matches ? 0 : 140;
-      expIntro.style.setProperty('--exp-stage-drop', expStageDrop + 'px');
-      // Keep a consistent visual gap regardless of viewport height or copy
-      // wrapping. offsetTop is measured in the untransformed coordinate box.
-      expIntroOffset = Math.max(0, expIntro.offsetHeight + 56 - expContents[0].offsetTop);
-      expLastShift = null;
-      expLastIntroShift = null;
+      if (expIntro && expContents[0]) {
+        expStageDrop = window.matchMedia('(max-width: 640px)').matches ? 0 : 140;
+        expIntro.style.setProperty('--exp-stage-drop', expStageDrop + 'px');
+        // Keep a consistent visual gap regardless of viewport height or copy
+        // wrapping. offsetTop is measured in the untransformed coordinate box.
+        expIntroOffset = Math.max(0, expIntro.offsetHeight + 56 - expContents[0].offsetTop);
+        expLastShift = null;
+        expLastIntroShift = null;
+      }
+      // The heading sits in the first card and can wrap. A fixed line-count
+      // offset lands the "+" inside the title. Pin it to the date, and leave
+      // the dot on its curve anchor.
+      if (expContents[0]) {
+        const eyebrow = expContents[0].querySelector('.exp-content__eyebrow');
+        const node = expContents[0].querySelector('.exp-content__node');
+        if (eyebrow && node) {
+          node.style.top = eyebrow.offsetTop + 'px';
+          node.style.bottom = 'var(--ubs-stem-bottom)';
+        }
+      }
+    }
+
+    function expRefreshArc() {
+      if (!expArcPath) return;
+      expLen = expArcPath.getTotalLength();
+      expLastArcOff = null;
+      // Visible curve starts at dot 0 and grows forward through dots 1 -> 2 -> 3.
+      expArcPath.style.strokeDashoffset = (-expLen * expArcOrigin).toFixed(1);
+      expArcPath.style.strokeDasharray = (expLen * 0.02).toFixed(1) + ' ' + expLen.toFixed(1);
     }
 
     function expInit() {
       if (!expArcPath) return;
-      expLen = expArcPath.getTotalLength();
+      expRefreshArc();
       expMeasureIntroOffset();
-      // reference behaviour: the bright part of the curve GROWS along the path
-      // from a fixed anchor — stroke-dashoffset is fixed, only the visible dash
-      // length animates (compositor-friendly, quantised in expWrite).
-      // 0.20 = the path fraction of dot 0 (UBS), so the visible curve starts
-      // AT the first timeline point and grows forward through dots 1 -> 2 -> 3.
-      expArcPath.style.strokeDashoffset = (-expLen * 0.20).toFixed(1);
-      expArcPath.style.strokeDasharray = (expLen * 0.02).toFixed(1) + ' ' + expLen.toFixed(1);
       expReadProgress();
       expWrite();
     }
@@ -1740,7 +2618,7 @@
         shift = (expIntroOffset + expStageDrop) * (1 - eased);
       } else if (progress > 0.94) {
         // barely-there settle as the track releases — Contact stays seated inside
-        // the blue-purple field rather than being yanked up into black.
+        // the blue field rather than being yanked up into black.
         shift = -16 * ((progress - 0.94) / 0.06);
       }
       shift = Math.round(shift * 10) / 10;
@@ -1767,13 +2645,13 @@
         if (cOpa !== expLastCurve) { expCurve.style.opacity = cOpa.toFixed(3); expLastCurve = cOpa; }
       }
 
-      // blue-purple transition — its OWN progress track (field + curve glow, both
+      // blue transition — its OWN progress track (field + curve glow, both
       // `opacity: var(--exp-f)`). EXACTLY 0 for the whole timeline (every entry,
       // incl. the last, active up to EXP_TIMELINE_END) so the experience reads on
       // the plain dark surface. Ramps 0 -> EXP_F_PEAK across EXP_TIMELINE_END -> ~0.98,
       // i.e. it emerges AFTER the final experience and BEFORE the contact copy.
       // EXP_F_PEAK caps it well below full strength so the end-state reads as a
-      // subtle lower-right atmospheric glow, never a solid blue/purple wash.
+      // subtle lower-right atmospheric glow, never a solid blue wash.
       const EXP_F_PEAK = 0.5;
       const fieldRaw = clamp((pin - EXP_TIMELINE_END) / (0.98 - EXP_TIMELINE_END), 0, 1);
       const fieldEased = fieldRaw * fieldRaw * (3 - 2 * fieldRaw);
@@ -1792,6 +2670,34 @@
         const statusFor = (i) => (i < activeIndex ? 'previous' : i === activeIndex ? 'active' : 'hidden');
         for (let i = 0; i < expContents.length; i++) expContents[i].dataset.status = statusFor(i);
         for (let i = 0; i < expDots.length; i++) expDots[i].dataset.status = statusFor(i);
+      }
+
+      // UBS → AdNovum handoff. Starts when AdNovum becomes active and
+      // finishes before Futurice (EXP_TH[1] = 0.42). The bar itself now
+      // ends 36px below the dot, so grow runs 0 → 1 (not 0 → 0.52).
+      const ad = expContents[1];
+      const ubs = expContents[0];
+      if (ad && ubs) {
+        const RELAY_SPAN = 0.10;
+        const raw = clamp((pin - EXP_TH[0]) / RELAY_SPAN, 0, 1);
+        const eased = raw * raw * (3 - 2 * raw);
+        const growing = pin >= EXP_TH[0] && raw < 1;
+        const clip = Math.round(eased * 1000) / 1000;
+        const ubsLine = Math.round((1 - eased) * 1000) / 1000;
+        if (growing !== expRelayOn) {
+          expRelayOn = growing;
+          if (growing) ad.dataset.relay = 'on';
+          else delete ad.dataset.relay;
+          expLastClip = null;
+        }
+        if (growing && clip !== expLastClip) {
+          ad.style.setProperty('--relay-grow', clip.toFixed(3));
+          expLastClip = clip;
+        }
+        if (ubsLine !== expLastUbsLine) {
+          ubs.style.setProperty('--ubs-line', ubsLine.toFixed(3));
+          expLastUbsLine = ubsLine;
+        }
       }
     }
 
@@ -1883,6 +2789,7 @@
     }
 
     function onResize() {
+      expRefreshArc();
       expMeasureIntroOffset();
       onScrollOrResize();
     }
@@ -1894,6 +2801,248 @@
     expInit();
     updateScrollEffects();
   }
+</script>
+
+<script>
+  // How I Work → Experience seam. Draws the continuation of the illustration
+  // arc into the first timeline bar. Progress follows scroll position, so it
+  // reverses when you scroll back. No pin and no extra snap.
+  (function initHiwSeam() {
+    var seam = document.querySelector('.hiw-exp-seam');
+    var wash = seam && seam.querySelector('.hiw-exp-seam__wash');
+    var path = seam && seam.querySelector('.hiw-exp-seam__path');
+    var art = document.querySelector('.ad-art');
+    if (!seam || !wash || !path || !art) return;
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var ART_U = (1691 - 720) / 1060;
+    var ART_V = (390 - 130) / 654;
+    var length = 0;
+    var lastD = '';
+    var lastOff = null;
+    var ticking = false;
+
+    function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+    var handed = false;
+    var connectY = null;
+    // The stem is full the moment the arc lands, and stays full while
+    // scrollY is at or below that latch. The old p-based length peaked
+    // at the pin (y≈3650) and shrank the line on the way there. Scroll
+    // position still owns it: down never shortens it, up removes it
+    // only after you pass the latch.
+
+    // Resting top of the first bar (the date row), not the extended top.
+    // Once the arc has arrived, the bar grows upward from here and joinPoint
+    // must stay put so the handoff does not feed back into the progress.
+    function joinPoint() {
+      var bar = document.querySelector('.exp-content[data-index="0"] .exp-content__bar');
+      var card = document.querySelector('.exp-content[data-index="0"]');
+      var eyebrow = card && card.querySelector('.exp-content__eyebrow');
+      if (!card) return null;
+      if (bar && getComputedStyle(bar).display !== 'none' && eyebrow) {
+        var br = bar.getBoundingClientRect();
+        if (br.width > 0) {
+          return { x: br.left + br.width / 2, y: card.getBoundingClientRect().top + eyebrow.offsetTop };
+        }
+      }
+      var cr = card.getBoundingClientRect();
+      return { x: cr.left + 0.5, y: cr.top };
+    }
+
+    function barCanHold() {
+      var bar = document.querySelector('.exp-content[data-index="0"] .exp-content__bar');
+      return !!(bar && getComputedStyle(bar).display !== 'none');
+    }
+
+    function setStem(grow) {
+      var card = document.querySelector('.exp-content[data-index="0"]');
+      var dot = document.querySelector('.exp-dot[data-index="0"]');
+      if (!card) return;
+      if (grow <= 0) {
+        delete card.dataset.stem;
+        card.style.removeProperty('--stem-grow');
+        if (dot) delete dot.dataset.stem;
+        return;
+      }
+      card.dataset.stem = 'on';
+      card.style.setProperty('--stem-grow', grow.toFixed(4));
+      if (dot) {
+        var bar = card.querySelector('.exp-content__bar');
+        var reach = 1;
+        if (bar) {
+          var br = bar.getBoundingClientRect();
+          var dr = dot.getBoundingClientRect();
+          if (br.height > 1) reach = clamp((dr.top + dr.height / 2 - br.top) / br.height, 0, 1);
+        }
+        if (grow + 0.002 >= reach) dot.dataset.stem = 'on';
+        else delete dot.dataset.stem;
+      }
+    }
+
+    function restoreBar() {
+      var card = document.querySelector('.exp-content[data-index="0"]');
+      var node = card && card.querySelector('.exp-content__node');
+      var eyebrow = card && card.querySelector('.exp-content__eyebrow');
+      if (!node || !eyebrow) return;
+      node.style.top = eyebrow.offsetTop + 'px';
+      node.style.bottom = 'var(--ubs-stem-bottom)';
+    }
+
+    function extendBarTo(viewportY) {
+      var card = document.querySelector('.exp-content[data-index="0"]');
+      var node = card && card.querySelector('.exp-content__node');
+      var bar = card && card.querySelector('.exp-content__bar');
+      if (!node || !bar) return;
+      var current = parseFloat(node.style.top);
+      if (!isFinite(current)) current = 0;
+      var delta = viewportY - bar.getBoundingClientRect().top;
+      if (Math.abs(delta) < 0.2) return;
+      node.style.top = (current + delta) + 'px';
+      node.style.bottom = 'var(--ubs-stem-bottom)';
+    }
+
+    function layout(arcOnly) {
+      var artR = art.getBoundingClientRect();
+      var seamR = seam.getBoundingClientRect();
+      var join = joinPoint();
+      var kicker = document.querySelector('.exp-kicker');
+      if (!join || !kicker) return;
+      var rise = Math.max(0, seamR.top - artR.bottom);
+      wash.style.top = (-rise) + 'px';
+      wash.style.height = (rise + seamR.height) + 'px';
+
+      var sx = artR.left + artR.width * ART_U;
+      var sy = artR.top + artR.height * ART_V;
+      var ox = seamR.left;
+      var oy = seamR.top;
+      var right = Math.min(window.innerWidth - 10, Math.max(sx + 28, artR.right + 12));
+      var rel = function (x, y) { return { x: x - ox, y: y - oy }; };
+      var s = rel(sx, sy);
+      var c1 = rel(right, sy + 42);
+      var c2 = rel(right - 4, artR.bottom);
+      var e1x = sx - artR.width * 0.04;
+      var e1y = artR.bottom + 16;
+      var e1 = rel(e1x, e1y);
+      // The title sits in the left blank, so the arc stops a short step
+      // above the first job instead of climbing up to the heading.
+      var landY = join.y - 36;
+      if (landY < e1y + 24) landY = Math.min(join.y, e1y + 24);
+      var c3 = rel(join.x, Math.min(e1y, landY));
+      var c4 = rel(join.x, landY);
+      var land = rel(join.x, landY);
+      var narrow = window.matchMedia('(max-width: 640px)').matches;
+      var d;
+      if (narrow) {
+        // No timeline bar on the stacked list. Stop on the illustration
+        // side of the seam so the stroke does not enter the job list.
+        d = 'M ' + s.x.toFixed(1) + ' ' + s.y.toFixed(1)
+          + ' C ' + c1.x.toFixed(1) + ' ' + c1.y.toFixed(1)
+          + ', ' + c2.x.toFixed(1) + ' ' + c2.y.toFixed(1)
+          + ', ' + e1.x.toFixed(1) + ' ' + e1.y.toFixed(1);
+      } else {
+        d = 'M ' + s.x.toFixed(1) + ' ' + s.y.toFixed(1)
+          + ' C ' + c1.x.toFixed(1) + ' ' + c1.y.toFixed(1)
+          + ', ' + c2.x.toFixed(1) + ' ' + c2.y.toFixed(1)
+          + ', ' + e1.x.toFixed(1) + ' ' + e1.y.toFixed(1)
+          + ' C ' + c3.x.toFixed(1) + ' ' + c3.y.toFixed(1)
+          + ', ' + c4.x.toFixed(1) + ' ' + c4.y.toFixed(1)
+          + ', ' + land.x.toFixed(1) + ' ' + land.y.toFixed(1);
+      }
+      // The vertical is the first experience bar, not this path. It stays
+      // hidden until the arc reaches `land`, then grows downward.
+      if (d !== lastD) {
+        path.setAttribute('d', d);
+        lastD = d;
+        length = path.getTotalLength() || 0;
+        lastOff = null;
+      }
+      return landY;
+    }
+
+    function applyProgress(p) {
+      if (!length) return;
+      if (reduce.matches) {
+        path.style.strokeDasharray = 'none';
+        path.style.strokeDashoffset = '0';
+        lastOff = 0;
+        return;
+      }
+      var shown = clamp(p, 0, 1);
+      var off = (1 - shown) * length;
+      if (off === lastOff) return;
+      lastOff = off;
+      path.style.strokeDasharray = length.toFixed(1) + ' ' + length.toFixed(1);
+      path.style.strokeDashoffset = off.toFixed(1);
+    }
+
+    function frame() {
+      ticking = false;
+      var vh = window.innerHeight;
+      var artR = art.getBoundingClientRect();
+      var join = joinPoint();
+      if (!join) return;
+      var startY = artR.top + artR.height * ART_V;
+      var travel = vh * 0.42 + Math.max(80, join.y - startY);
+      var p = reduce.matches ? 1 : (vh - startY) / travel;
+      var y = window.scrollY;
+      if (reduce.matches) {
+        if (barCanHold()) {
+          var landReduce = layout(true);
+          if (landReduce != null) extendBarTo(landReduce - 0.5);
+          applyProgress(1);
+          setStem(1);
+          handed = true;
+        } else {
+          setStem(0);
+          if (handed) { restoreBar(); handed = false; }
+          layout(false);
+          applyProgress(1);
+        }
+        return;
+      }
+      // Stem is full once the arc has landed (p >= 1) and stays full below
+      // that scroll position. p peaks at the pin, so it must not scale the
+      // length. connectY is the smallest scrollY where the arc was landed;
+      // while still landed, a smaller y replaces it, so a jump that first
+      // samples further down cannot erase the line on the way back.
+      var arrive = p >= 1 && barCanHold();
+      if (arrive && (connectY == null || y < connectY)) connectY = y;
+      else if (!arrive && connectY != null && y < connectY - 0.5) connectY = null;
+      if (barCanHold() && (arrive || (connectY != null && y + 0.5 >= connectY))) {
+        var landY = layout(true);
+        if (landY != null) extendBarTo(landY - 0.5);
+        applyProgress(1);
+        setStem(1);
+        handed = true;
+        return;
+      }
+      setStem(0);
+      if (handed) {
+        restoreBar();
+        handed = false;
+      }
+      var near = artR.bottom > -vh * 0.15 && join.y < vh * 1.5;
+      if (!near) {
+        applyProgress(artR.bottom < 0 ? 1 : 0);
+        return;
+      }
+      layout(false);
+      applyProgress(p);
+    }
+
+    function schedule() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(frame);
+    }
+
+    reduce.addEventListener('change', schedule);
+    window.addEventListener('resize', schedule);
+    window.addEventListener('load', schedule);
+    window.addEventListener('scroll', schedule, { passive: true });
+    schedule();
+  })();
 </script>
 
 <script>
@@ -1957,22 +3106,269 @@
 </script>
 
 <script>
-  // Ensure hero / case videos autoplay reliably on load.
+  // Directional section settle. CSS scroll-snap picks the nearest start and
+  // can move against the gesture (a downward tick while scrolling up). This
+  // waits until wheel / touch / key input has gone quiet, then eases only
+  // toward a section start that is still ahead. A new input cancels it.
+  // Reduced motion and widths ≤640 stay on the native scroll.
+  // Trackpad pinch-zoom is a wheel event with ctrlKey, and it does not
+  // scroll. A gesture that leaves scrollY unchanged does not ease.
+  (function initSectionSettle() {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var narrow = window.matchMedia('(max-width: 640px)');
+    var dir = 0;
+    var lastY = window.scrollY;
+    var lastT = 0;
+    var armed = false;
+    var driving = false;
+    var raf = 0;
+    var quietTimer = 0;
+    var behaviorLocked = false;
+    var yAtInput = window.scrollY;
+
+    function disabled() {
+      return reduce.matches || narrow.matches;
+    }
+
+    function lockBehavior() {
+      if (behaviorLocked) return;
+      document.documentElement.style.scrollBehavior = 'auto';
+      behaviorLocked = true;
+    }
+
+    function unlockBehavior() {
+      if (!behaviorLocked) return;
+      document.documentElement.style.scrollBehavior = '';
+      behaviorLocked = false;
+    }
+
+    function cancel() {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      driving = false;
+      window.clearTimeout(quietTimer);
+      unlockBehavior();
+    }
+
+    function docTop(el) {
+      var y = 0;
+      var node = el;
+      while (node) {
+        y += node.offsetTop;
+        node = node.offsetParent;
+      }
+      return y;
+    }
+
+    function push(ys, y) {
+      if (!isFinite(y)) return;
+      var maxY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      ys.push(Math.max(0, Math.min(maxY, Math.round(y))));
+    }
+
+    // Hero, both cases, Playground, How I Work, and the Experience header.
+    // The 500vh timeline has no point of its own, so it keeps scrolling.
+    // Pinned showcase: both articles share one sticky box, so the second
+    // case is the scroll position where its copy reaches full opacity.
+    function points() {
+      var ys = [];
+      var hero = document.querySelector('.hero-pin-section');
+      if (hero) push(ys, docTop(hero));
+      var showcase = document.getElementById('home-showcase');
+      if (showcase && showcase.classList.contains('home-showcase-pinned')) {
+        var top = docTop(showcase);
+        var distance = showcase.offsetHeight - window.innerHeight;
+        var eonFull = Number(showcase.dataset.eonFull);
+        if (!(eonFull > 0 && eonFull < 1)) eonFull = 0.7;
+        push(ys, top);
+        if (distance > 0) push(ys, top + distance * eonFull);
+      } else {
+        var ubs = document.getElementById('model-series');
+        var eon = document.getElementById('omni-model');
+        if (ubs) push(ys, docTop(ubs));
+        if (eon) push(ys, docTop(eon));
+      }
+      var play = document.getElementById('home-playground');
+      var how = document.querySelector('.ai-decides-section');
+      var exp = document.getElementById('experience');
+      if (play) push(ys, docTop(play));
+      if (how) push(ys, docTop(how));
+      if (exp) push(ys, docTop(exp));
+      ys.sort(function (a, b) { return a - b; });
+      var out = [];
+      for (var i = 0; i < ys.length; i++) {
+        if (!out.length || ys[i] - out[out.length - 1] > 8) out.push(ys[i]);
+      }
+      return out;
+    }
+
+    function ease(t) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    function go(target) {
+      var from = window.scrollY;
+      var dist = target - from;
+      if (Math.abs(dist) < 1) return;
+      if (!dir || Math.sign(dist) !== dir) return;
+      cancel();
+      driving = true;
+      armed = false;
+      lockBehavior();
+      var t0 = performance.now();
+      var dur = 480;
+      function step(now) {
+        if (!driving) return;
+        var t = Math.min(1, (now - t0) / dur);
+        var y = from + dist * ease(t);
+        var cur = window.scrollY;
+        if (dir > 0 && y < cur) y = cur;
+        if (dir < 0 && y > cur) y = cur;
+        window.scrollTo(0, y);
+        if (t < 1) raf = requestAnimationFrame(step);
+        else {
+          raf = 0;
+          driving = false;
+          unlockBehavior();
+        }
+      }
+      raf = requestAnimationFrame(step);
+    }
+
+    function consider() {
+      quietTimer = 0;
+      if (disabled() || !armed || driving) return;
+      var y = window.scrollY;
+      if (Math.abs(y - yAtInput) < 0.5) {
+        armed = false;
+        return;
+      }
+      var reach = Math.max(120, Math.min(220, window.innerHeight * 0.22));
+      var pts = points();
+      var best = null;
+      var bestAbs = Infinity;
+      for (var i = 0; i < pts.length; i++) {
+        var d = pts[i] - y;
+        if (dir > 0 && d > 1 && d <= reach && d < bestAbs) {
+          best = pts[i];
+          bestAbs = d;
+        }
+        if (dir < 0 && d < -1 && -d <= reach && -d < bestAbs) {
+          best = pts[i];
+          bestAbs = -d;
+        }
+      }
+      armed = false;
+      if (best != null) go(best);
+    }
+
+    function noteInput(delta) {
+      if (disabled()) {
+        cancel();
+        armed = false;
+        return;
+      }
+      if (delta) dir = delta > 0 ? 1 : -1;
+      if (driving) cancel();
+      // Passive wheel listeners run after the browser has already applied
+      // the scroll, so scrollY here is the post-gesture position. lastY is
+      // still the position before this tick. A gesture that never moves
+      // leaves them equal, and consider() does not ease.
+      if (!armed) yAtInput = lastY;
+      armed = true;
+      window.clearTimeout(quietTimer);
+      quietTimer = window.setTimeout(consider, 90);
+    }
+
+    window.addEventListener('wheel', function (e) {
+      if (e.ctrlKey) return;
+      if (!e.deltaY) return;
+      noteInput(e.deltaY);
+    }, { passive: true });
+    window.addEventListener('touchstart', function () {
+      noteInput(0);
+    }, { passive: true });
+    window.addEventListener('touchmove', function () {
+      noteInput(0);
+    }, { passive: true });
+    window.addEventListener('keydown', function (e) {
+      var tag = e.target && e.target.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable)) return;
+      var d = 0;
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') d = 1;
+      else if (e.key === 'ArrowUp' || e.key === 'PageUp') d = -1;
+      else if (e.key === ' ' || e.key === 'Spacebar') d = e.shiftKey ? -1 : 1;
+      else return;
+      noteInput(d);
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest || !e.target.closest('[data-scroll-target]')) return;
+      armed = false;
+      cancel();
+    }, true);
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY;
+      var now = performance.now();
+      if (!driving && lastT) {
+        var dt = now - lastT;
+        if (dt > 0 && dt < 80 && Math.abs(y - lastY) > 0.5) dir = y > lastY ? 1 : -1;
+      }
+      lastY = y;
+      lastT = now;
+      if (!driving && armed) {
+        window.clearTimeout(quietTimer);
+        quietTimer = window.setTimeout(consider, 90);
+      }
+    }, { passive: true });
+    reduce.addEventListener('change', function () { cancel(); armed = false; });
+    narrow.addEventListener('change', function () { cancel(); armed = false; });
+  })();
+</script>
+
+<script>
+  // Case / project card videos play only while on screen (and the tab is
+  // visible). A video with data-loop-gap="<ms>" holds its last frame that
+  // long before replaying, instead of looping straight through.
   (function () {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    document.querySelectorAll('#hero video, #omni-model video').forEach((v) => {
+    document.querySelectorAll('.case-card__media video, .home-project video').forEach((v) => {
       v.muted = true;
+      const markReady = () => v.classList.add('is-ready');
+      if (v.readyState >= 2) markReady();
+      else v.addEventListener('loadeddata', markReady, { once: true });
       if (reduceMotion) {
         v.removeAttribute('autoplay');
         v.pause();
         return;
       }
-      const kick = () => v.play().catch(() => {});
-      kick();
-      v.addEventListener('canplay', kick, { once: true });
-      document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) kick();
-      });
+      const gap = parseInt(v.dataset.loopGap, 10);
+      if (gap >= 0) v.loop = false;
+      let onScreen = false;
+      let timer = null;
+      const canRun = () => onScreen && !document.hidden;
+      const stopGap = () => { clearTimeout(timer); timer = null; };
+      const startGap = () => {
+        stopGap();
+        timer = setTimeout(() => {
+          timer = null;
+          if (!canRun()) return;
+          v.currentTime = 0;
+          v.play().catch(() => {});
+        }, gap);
+      };
+      const update = () => {
+        if (!canRun()) { stopGap(); v.pause(); return; }
+        if (timer) return;
+        if (v.ended && gap >= 0) startGap();
+        else v.play().catch(() => {});
+      };
+      if (gap >= 0) v.addEventListener('ended', () => { if (canRun()) startGap(); });
+      v.addEventListener('canplay', update, { once: true });
+      document.addEventListener('visibilitychange', update);
+      new IntersectionObserver((entries) => {
+        onScreen = entries[entries.length - 1].isIntersecting;
+        update();
+      }, { rootMargin: '200px 0px' }).observe(v);
     });
   })();
 </script>

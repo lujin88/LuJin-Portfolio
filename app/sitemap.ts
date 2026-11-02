@@ -1,15 +1,13 @@
 import type { MetadataRoute } from 'next'
 import { SITE_URL } from './seo'
 
-/** Public, indexable routes. `/` redirects to `/index`; /wip and /ai-companion-pet are noindex. */
+/** Public, indexable routes. `/` redirects to `/index`; /home.html is noindex. */
 const ROUTES = [
   '/index',
   '/client-advisory',
   '/EON',
-  '/about',
-  '/ai-workflow-case',
-  '/lab/action-center',
-  '/lab/off-we-go',
+  '/ai-companion-pet',
+  '/lab/weather-aquarium',
   '/lab/party-planner',
   '/lab/way-of-work',
 ]

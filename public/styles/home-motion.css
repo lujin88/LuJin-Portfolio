@@ -1,0 +1,128 @@
+/* Approved H-A / S-A / P-A. All paint and typography inherit shell tokens. */
+.hero-motion-still { display: block; }
+#hero .hero-media video { visibility: hidden; }
+#hero.hero-can-seek .hero-media video { visibility: visible; }
+#hero.hero-can-seek .hero-motion-still { display: none; }
+#home-showcase { position: relative; }
+.home-showcase-stage { position: relative; }
+.home-case { position: relative; min-height: 100svh; overflow: hidden; background: var(--color-bg-page); }
+.home-case-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 35% center; }
+.home-case-shade { position: absolute; inset: 0; background: linear-gradient(90deg, transparent 15%, var(--color-bg-page) 59%); }
+.home-case-copy { position: relative; width: 46%; margin-left: 54%; padding: 48px 48px 48px 0; color: var(--color-text-1); }
+.home-eyebrow { font-size: var(--font-size-caption); color: var(--color-theme-hover); font-weight: 600; margin: 0 0 24px; }
+.home-case-title { font-size: clamp(1.9rem, 2.8vw, 2.5rem); font-weight: 600; line-height: 1.15; margin: 0 0 28px; }
+.home-case-detail { margin: 0 0 20px; }
+.home-case-detail h3 { font-size: var(--font-size-h3); font-weight: 600; line-height: 1.4; margin-bottom: 8px; }
+.home-case-detail p { font-size: var(--font-size-body); line-height: var(--leading-relaxed); color: var(--color-text-2); }
+.home-case-detail:last-of-type { border-top: 1px solid var(--color-border-divider); padding-top: 20px; }
+.home-case-links { display: flex; align-items: center; gap: 24px; margin-top: 24px; }
+.home-showcase-pinned { height: 350vh; }
+.home-showcase-pinned .home-showcase-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.home-showcase-pinned .home-case { position: absolute; inset: 0; background: transparent; min-height: 0; overflow: visible; }
+.home-showcase-pinned .home-case-copy { position: absolute; top: 50%; transform: translateY(-50%); }
+.home-showcase-pinned #omni-model .home-case-image { opacity: 0; }
+.home-showcase-pinned #omni-model .home-case-copy,
+.home-showcase-pinned #omni-model .home-case-shade { opacity: 0; }
+#home-playground { padding: var(--space-3xl) var(--pad); background: var(--color-bg-page); }
+.home-playground-inner { max-width: var(--wrap); margin: auto; }
+#home-playground h2 { font-size: var(--font-size-display); line-height: var(--leading-display); font-weight: 600; margin-bottom: var(--space-xl); }
+.home-project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-md); }
+.home-project { display: flex; flex-direction: column; color: var(--color-text-1); text-decoration: none; }
+.home-project img,
+.home-project video { width: 100%; aspect-ratio: 1.44; object-fit: cover; }
+.home-project h3 { font-size: var(--font-size-h3-card); line-height: 1.2; font-weight: 600; margin: 28px 0 8px; }
+.home-project p { font-size: var(--font-size-body-lg); line-height: var(--leading-relaxed); color: var(--color-text-2); margin-bottom: 32px; }
+.home-project p.home-project-meta { margin: 0 0 12px; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); line-height: 1.3; color: var(--color-theme-hover); }
+/* Card link stays the only hit target. The pill inherits the shared 46px CTA. */
+.home-project > .pill-btn {
+  align-self: flex-start;
+  margin-top: auto;
+  pointer-events: none;
+}
+.home-project:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+@media (hover: hover) and (pointer: fine) {
+  .home-project:hover > .pill-btn {
+    background: var(--pill-hover-bg);
+    color: var(--pill-hover-text);
+    border-color: var(--pill-hover-bg);
+    box-shadow: var(--pill-hover-shadow);
+    transform: translateY(-2px);
+  }
+  .home-project:hover > .pill-btn svg { transform: translateX(3px); }
+}
+.home-project:active > .pill-btn { transform: translateY(0) scale(0.97); }
+@media (max-width: 1099px) {
+  .home-case { min-height: 0; }
+  .home-case-image { position: relative; height: auto; aspect-ratio: 16/10; object-fit: cover; }
+  .home-case-shade { display: none; }
+  .home-case-copy { width: 100%; margin-left: 0; padding: 40px var(--pad) 72px; }
+  .home-case-title { max-width: 700px; }
+  .home-case-detail { max-width: 700px; }
+}
+@media (max-width: 639px) {
+  #home-playground { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
+  .home-project-grid { grid-template-columns: 1fr; gap: var(--space-xl); }
+  #home-playground h2 { margin-bottom: var(--space-lg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  #hero .hero-media video { display: none; }
+  #hero .hero-motion-still { display: block; }
+  #home-showcase, #home-showcase * { scroll-behavior: auto; }
+  .home-project > .pill-btn,
+  .home-project > .pill-btn svg { transition: none; }
+  .home-project:hover > .pill-btn,
+  .home-project:active > .pill-btn,
+  .home-project:hover > .pill-btn svg { transform: none; }
+}
+/* 3000 hero video starts at opacity 0 until .is-loaded. The still must stay visible, and the seek clip must appear with the still, not after a 900ms fade. */
+#hero .hero-motion-still { opacity: 1; transition: none; }
+#hero.hero-can-seek .hero-media video { opacity: 1; transition: none; }
+
+/* How I Work → Experience seam. Lu 2026-10-30 chose B (event 3c54a368):
+   the illustration's blue arc continues from the right into the timeline's
+   left vertical, and the gap under the art grows by 120px (about 77 → 197).
+   The wash and the stroke live here so the timeline sticky, dots and entries
+   stay untouched. Scroll progress draws the stroke; reduced motion shows it whole. */
+.hiw-exp-seam {
+  position: relative;
+  height: 120px;
+  background: #0a0a0a;
+  pointer-events: none;
+}
+.hiw-exp-seam__wash {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to bottom, #080f1b 0%, #10182a 42%, #0a0a0a 100%);
+}
+.hiw-exp-seam__svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  z-index: 3;
+}
+@media (max-width: 640px) {
+  /* The stacked list has no timeline bar. Keep the stroke free to meet the
+     illustration above the seam, and clip anything that would paint into
+     the experience list below. */
+  .hiw-exp-seam__svg {
+    clip-path: inset(-80vh 0 0 0);
+  }
+}
+.hiw-exp-seam__path {
+  fill: none;
+  stroke: var(--color-theme-2);
+  stroke-width: 1;
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hiw-exp-seam__path {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+}

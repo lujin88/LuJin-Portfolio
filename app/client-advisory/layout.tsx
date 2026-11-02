@@ -3,10 +3,11 @@ import { SiteHeader } from '@header/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { HtmlTheme } from '../html-theme'
 import { socialMetadata } from '../seo'
+import '@header/header.css'
 import '@/app/globals.css'
 import 'remixicon/fonts/remixicon.css'
 
-const TITLE = 'Lu Jin — Client Advisory'
+const TITLE = 'Lu — Client Advisory'
 const DESCRIPTION =
   'Less searching. More advising. An AI-powered advisory case study by Lu, Lead Service Designer — surfacing what matters to each client, exactly when it matters.'
 

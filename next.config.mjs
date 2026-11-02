@@ -33,17 +33,14 @@ const nextConfig = {
     root: fileURLToPath(new URL('.', import.meta.url)),
   },
   // readPublicHtmlPage() joins a dynamic filename onto public/, so Next's
-  // file tracer copies all of public/ into /about, /index, /ai-workflow-case
-  // and /wip. That was ~400 MB of video and images per function. Drop the
-  // asset trees from every server trace. The HTML islands stay at
-  // public/*.html and are still included. /lab/*/prototype keeps its own
-  // HTML file because this exclude does not cover public/lab.
+  // file tracer copies all of public/ into the island route (/index). That was
+  // ~400 MB of video and images per function. Drop the asset trees from every
+  // server trace. The HTML islands stay at public/*.html and are still
+  // included. /lab/*/prototype keeps its own HTML file because this exclude
+  // does not cover public/lab.
   outputFileTracingExcludes: {
     '/*': ['./public/assets/**/*'],
-    '/about': ['./public/lab/**/*'],
     '/index': ['./public/lab/**/*'],
-    '/ai-workflow-case': ['./public/lab/**/*'],
-    '/wip': ['./public/lab/**/*'],
   },
   images: {
     unoptimized: true,
@@ -77,27 +74,20 @@ const nextConfig = {
       { source: '/eon-solar.html', destination: '/EON', permanent: false },
       { source: '/client-advisor', destination: '/client-advisory', permanent: false },
       { source: '/client-advisory.html', destination: '/client-advisory', permanent: false },
-      { source: '/lab.html', destination: '/lab/action-center', permanent: false },
-      { source: '/wip.html', destination: '/wip', permanent: false },
+      { source: '/lab.html', destination: '/lab/weather-aquarium', permanent: false },
+      { source: '/lab/action-center', destination: '/lab/weather-aquarium', permanent: false },
       { source: '/way-of-work', destination: '/lab/way-of-work', permanent: false },
-      { source: '/lab/off-we-go-workbench', destination: '/lab/off-we-go', permanent: false },
-      { source: '/about.html', destination: '/about', permanent: false },
-      { source: '/ai-workflow-case.html', destination: '/ai-workflow-case', permanent: false },
       { source: '/3000', destination: '/index', permanent: false },
       { source: '/3000/index', destination: '/index', permanent: false },
       { source: '/3000/EON', destination: '/EON', permanent: false },
       { source: '/3000/client-advisory', destination: '/client-advisory', permanent: false },
       { source: '/3000/Client-Advisory', destination: '/client-advisory', permanent: false },
-      { source: '/3000/lab', destination: '/lab/action-center', permanent: false },
-      { source: '/3000/Lab', destination: '/lab/action-center', permanent: false },
-      { source: '/3000/about', destination: '/about', permanent: false },
-      { source: '/3000/About', destination: '/about', permanent: false },
-      { source: '/3000/ai-workflow-case', destination: '/ai-workflow-case', permanent: false },
+      { source: '/3000/lab', destination: '/lab/weather-aquarium', permanent: false },
+      { source: '/3000/Lab', destination: '/lab/weather-aquarium', permanent: false },
       { source: '/References/Home/Hero video.mp4', destination: blobUrl('/assets/videos/home/hero.mp4') ?? '/assets/videos/home/hero.mp4', permanent: false },
       { source: '/References/Client advisory/Client advsior hero.mp4', destination: blobUrl('/assets/videos/client-advisory/hero.mp4') ?? '/assets/videos/client-advisory/hero.mp4', permanent: false },
       { source: '/References/eon solar/solar-calculator-hero.mp4', destination: blobUrl('/assets/videos/eon/solar-calculator-hero.mp4') ?? '/assets/videos/eon/solar-calculator-hero.mp4', permanent: false },
       { source: '/References/About me/Turn head.mp4', destination: blobUrl('/assets/videos/about/turn-head.mp4') ?? '/assets/videos/about/turn-head.mp4', permanent: false },
-      { source: '/References/About me/Lu Intro.mp4', destination: blobUrl('/assets/videos/about/lu-intro.mp4') ?? '/assets/videos/about/lu-intro.mp4', permanent: false },
       ...externalMedia.files.flatMap((file) => {
         const destination = blobUrl(file.path)
         if (!destination) return []

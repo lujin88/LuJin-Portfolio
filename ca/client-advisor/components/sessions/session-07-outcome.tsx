@@ -1,8 +1,7 @@
 'use client'
 
-import type { CSSProperties, ReactNode } from 'react'
+import type { CSSProperties } from 'react'
 import Image from 'next/image'
-import { BarChart3, Clock, Users } from 'lucide-react'
 import { ProcessJourney } from './process-journey'
 import { TiltCard } from './tilt-card'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
@@ -36,7 +35,7 @@ export function Session07Outcome() {
         className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-[linear-gradient(180deg,transparent_0%,var(--ca-bg)_100%)]"
       />
 
-      <div className="relative mx-auto flex h-auto w-full max-w-[1440px] flex-col gap-12 overflow-visible px-6 py-24 sm:px-10 lg:mx-0 lg:max-w-none lg:py-28 lg:pl-[var(--ca-rail)] lg:pr-16 xl:flex-row xl:items-center xl:gap-20 xl:pr-20">
+      <div className="relative mx-auto flex h-auto w-full max-w-[1440px] flex-col gap-12 overflow-visible px-[var(--content-inset,24px)] py-24 lg:mx-0 lg:max-w-none lg:py-28 xl:flex-row xl:items-center xl:gap-20">
         <Editorial />
         <Outcomes />
       </div>
@@ -81,32 +80,29 @@ function Outcomes() {
   const { t } = useTranslation()
   return (
     <ScrollReveal className="flex h-auto w-full flex-col gap-5 overflow-visible xl:w-[62%]">
-      <div className="flex items-baseline justify-between gap-6 px-1 text-[12px] font-medium uppercase tracking-[0.18em] text-[var(--ca-muted)]">
-        <span>{t('ca.outcome.avgFeedback')}</span>
-        <span className="hidden xl:block">{t('ca.outcome.reach')}</span>
-      </div>
+      <p className="sr-only">{t('ca.outcome.avgFeedback')}</p>
 
       <div className="grid h-auto grid-cols-1 gap-4 overflow-visible md:grid-cols-2 md:gap-5 xl:grid-cols-3">
         <MetricCard
-          icon={<Clock className="size-5" strokeWidth={2.2} />}
           value={t('ca.outcome.m1Value')}
           label={t('ca.outcome.m1Label')}
           image="/assets/images/client-advisory/sessions/07/card-01.webp"
+          imageAlt={t('ca.outcome.m1Alt')}
         />
 
         <MetricCard
-          icon={<BarChart3 className="size-5" strokeWidth={2.2} />}
           value={t('ca.outcome.m2Value')}
           label={t('ca.outcome.m2Label')}
           image="/assets/images/client-advisory/sessions/07/card-02.webp"
+          imageAlt={t('ca.outcome.m2Alt')}
         />
 
         <MetricCard
-          icon={<Users className="size-5" strokeWidth={2.2} />}
           value={t('ca.outcome.m3Value')}
           label={t('ca.outcome.m3Label')}
           eyebrow={t('ca.outcome.reach')}
           image="/assets/images/client-advisory/sessions/07/card-03.webp"
+          imageAlt={t('ca.outcome.m3Alt')}
         />
       </div>
 
@@ -118,23 +114,20 @@ function Outcomes() {
 }
 
 type MetricCardProps = {
-  icon: ReactNode
   value: string
   label: string
   eyebrow?: string
   image: string
+  imageAlt: string
 }
 
-function MetricCard({ icon, value, label, eyebrow, image }: MetricCardProps) {
+function MetricCard({ value, label, eyebrow, image, imageAlt }: MetricCardProps) {
   return (
     <TiltCard className="relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl border border-[var(--ca-line)] bg-[var(--ca-card)] shadow-[0_0_0_1px_rgba(61,139,255,0.04),0_30px_60px_-40px_rgba(61,139,255,0.35)]">
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]"
-      >
+      <div className="absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]">
         <Image
           src={image}
-          alt=""
+          alt={imageAlt}
           fill
           sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw"
           className="object-cover object-bottom"
@@ -151,13 +144,6 @@ function MetricCard({ icon, value, label, eyebrow, image }: MetricCardProps) {
         style={{ transform: 'translate3d(var(--tilt-x), var(--tilt-y), 0)' }}
       >
         {eyebrow ? <span className="sr-only">{eyebrow}</span> : null}
-
-        <span
-          aria-hidden="true"
-          className="flex size-12 items-center justify-center rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(61,139,255,0.55),rgba(61,139,255,0.18)_70%)] text-[var(--ca-accent-soft)] shadow-[0_0_24px_rgba(61,139,255,0.35),inset_0_0_0_1px_rgba(124,192,255,0.35)]"
-        >
-          {icon}
-        </span>
 
         <div className="flex flex-col gap-3">
           <p className="whitespace-nowrap text-[clamp(24px,2.2vw,32px)] font-medium leading-[1.1] tracking-[-0.015em]">
