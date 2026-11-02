@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
+import { rewriteExternalMedia } from '../lib/media-url'
 
 function innerOf(html: string, openRe: RegExp, closeRe: RegExp) {
   const open = html.search(openRe)
@@ -12,7 +13,9 @@ function innerOf(html: string, openRe: RegExp, closeRe: RegExp) {
 }
 
 export async function readPublicHtmlPage(filename: string) {
-  const html = await readFile(join(process.cwd(), 'public', filename), 'utf8')
+  const html = rewriteExternalMedia(
+    await readFile(join(process.cwd(), 'public', filename), 'utf8'),
+  )
   const head = innerOf(html, /<head\b/i, /<\/head>/i)
 
   // Match the real <body> only after </head>. home.html's stylesheet comments
