@@ -78,15 +78,6 @@ export function SiteFooter({ variant }: SiteFooterProps) {
 
       <div className="relative flex w-full flex-wrap items-center justify-start gap-x-3 gap-y-1 px-[var(--content-inset,24px)] py-5 md:py-6">
         <p className="text-xs text-footer-muted/80">{t('common.footerRights')}</p>
-        <span aria-hidden="true" className="text-xs text-footer-muted/50">
-          ·
-        </span>
-        <a
-          href="/lab/weather-aquarium"
-          className="text-xs text-footer-muted/80 transition-colors duration-200 hover:text-footer-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current motion-reduce:transition-none"
-        >
-          Playground
-        </a>
         <div className="flex items-center gap-x-3">
           <span aria-hidden="true" className="text-xs text-footer-muted/50">
             ·

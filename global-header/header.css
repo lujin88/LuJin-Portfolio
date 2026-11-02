@@ -23,9 +23,11 @@
   --header-foreground: oklch(0.985 0 0);
   --header-line: oklch(1 0 0 / 28%);
   --header-glass: rgb(3 10 24);
-  --header-menu: oklch(0.24 0.004 264);
-  --header-menu-item: oklch(0.29 0.004 264);
+  --header-menu: oklch(0.24 0 0);
+  --header-menu-item: oklch(0.34 0 0);
   --header-accent: #7ea2ff;
+  --header-menu-hover: #474747;
+  --header-menu-selected: #7ea2ff;
   /* Same gutter as shell-tokens.css (--pad 24px, --wrap 1440px).
      Work case studies load this file without the host palette. */
   --content-inset: max(24px, calc((100% - 1440px) / 2));
@@ -61,20 +63,17 @@
   outline-offset: 3px;
 }
 
-/* Dropdown rows use the fill as the focus state. The chrome outline
-   draws a dark frame around the row on the light panel.
-   The panel radius is 6px. Matching padding keeps a row's hover fill
-   on the straight edges so it does not paint over the corners.
-   Left/right and top/bottom insets are the same. */
+/* The hover and current fill is the row itself. The panel has no
+   padding, so that fill meets the panel edges. The 6px radius clips
+   only the outer corners. */
 [data-site-header] .header-menu {
-  padding: 6px;
+  padding: 0;
   border-radius: 6px;
   overflow: hidden;
 }
 
-/* Desktop flyouts shrink-wrap to the longest label, including its
-   horizontal padding. A width:100% row inside width:max-content was
-   clipping the right inset (the label sat on the panel edge). */
+/* Desktop flyouts shrink-wrap to the longest label. Rows stretch to
+   that width so a shorter label's fill still covers the panel. */
 [data-site-header] .header-menu--flyout {
   display: inline-grid;
   width: max-content;
@@ -104,26 +103,55 @@
 
 [data-site-header] .header-menu--flyout > li {
   display: grid;
-  width: auto;
+  width: 100%;
 }
 
 [data-site-header] .header-menu :is(a, button) {
   display: flex;
   width: 100%;
   margin: 0;
-  border-radius: 4px;
+  border-radius: 0;
 }
 
 [data-site-header] .header-menu--flyout :is(a, button) {
-  width: auto;
+  width: 100%;
 }
 
-[data-site-header] .header-menu :is(a, button):hover,
-[data-site-header] .header-menu :is(a, button):focus-visible,
-[data-site-header] .header-menu :is(a, button)[aria-current='page'],
-[data-site-header] .header-menu :is(a, button)[aria-selected='true'] {
-  border-radius: 4px;
+/* Language listbox keeps its fill and check mark for the chosen option. */
+[data-site-header] .header-menu button[aria-selected='true'] {
+  border-radius: 0;
   background: var(--header-menu-item);
+}
+
+/* Row hover. Own token, so per-route --header-menu-item overrides do not
+   change it. Values match design-system-foundation.css. */
+[data-site-header] .header-menu :is(a, button):hover,
+[data-site-header] .header-menu :is(a, button):focus-visible {
+  border-radius: 0;
+  background: var(--header-menu-hover);
+}
+
+/* Current page: 4px left bar and a 700 title, no fill. Selected wins over
+   hover. Keyboard focus still shows the hover fill so focus stays visible. */
+[data-site-header] .header-menu a[aria-current='page'] {
+  position: relative;
+}
+
+[data-site-header] .header-menu a[aria-current='page']:not(:focus-visible) {
+  background: transparent;
+}
+
+[data-site-header] .header-menu a[aria-current='page']::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--header-menu-selected);
+  pointer-events: none;
+}
+
+[data-site-header] .header-menu a[aria-current='page'] > span:last-child > span:first-child {
+  font-weight: 700;
 }
 
 [data-site-header] .header-menu :is(a, button):focus,
@@ -142,8 +170,17 @@
   bottom: 0;
   left: 0;
   height: 1px;
-  background: var(--header-line);
+  /* Lu 11-01: row dividers read too bright. Half the tone's line colour,
+     so dark, party and paper headers all dim by the same step. */
+  background: color-mix(in oklab, var(--header-line) 45%, transparent);
   pointer-events: none;
+}
+
+/* Lu 11-01: rows felt cramped. More room on all sides; the icon gap
+   grows with it. Applies to the desktop flyout and the mobile list. */
+[data-site-header] .header-menu-divided > li > a {
+  gap: 0.875rem;
+  padding: 0.75rem 1.25rem 0.75rem 0.875rem;
 }
 
 /* Same horizontal inset as the page content (--content-inset). */
@@ -212,6 +249,7 @@
   --header-glass: #071e4d;
   --header-menu: rgb(18 70 180);
   --header-menu-item: rgb(28 88 210);
+  --header-menu-hover: rgb(28 88 210);
   --header-line: oklch(1 0 0 / 38%);
 }
 
@@ -222,8 +260,10 @@
   --header-line: oklch(0.2 0 0 / 14%);
   --header-glass: oklch(1 0 0);
   --header-menu: oklch(1 0 0);
-  --header-menu-item: oklch(0.96 0 0);
+  --header-menu-item: oklch(0.91 0 0);
   --header-accent: #0961ff;
+  --header-menu-hover: #e2e2e2;
+  --header-menu-selected: #0961ff;
 }
 
 [data-site-header][data-header-tone='paper'] :is(ul[role='list'], ul[role='listbox']) {

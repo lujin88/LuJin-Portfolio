@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import type { ReactNode } from 'react'
 import { MousePointer2, MessageSquare, Users, BarChart3 } from 'lucide-react'
-import { TestingBackgroundShapes } from '@eon/components/decisions/background-shapes'
 import { SectionLabel } from '@eon/components/section-label'
 import { ContentContainer } from '@eon/components/content-container'
 import { EvidenceCard } from '@eon/components/testing/evidence-card'
@@ -94,8 +93,6 @@ export function TestingSection() {
 
   return (
     <section className="case-study-section relative overflow-x-clip bg-off-white pb-20">
-      <TestingBackgroundShapes />
-
       <ContentContainer className="relative z-[1]">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,620px)] lg:gap-0">
           {/* Left column: editorial content */}
@@ -108,7 +105,7 @@ export function TestingSection() {
             />
 
             <KineticLines
-              className="mt-6 text-pretty text-[52px] font-extrabold leading-[0.98] tracking-[-0.03em] text-navy-950 md:text-[64px]"
+              className="mt-6 text-pretty text-[52px] font-extrabold leading-[0.98] tracking-[-0.03em] text-navy-950 md:text-[64px] lg:max-xl:max-w-min"
               lines={[t('eon.testing.line1'), t('eon.testing.line2')]}
             />
 
@@ -117,7 +114,7 @@ export function TestingSection() {
               {t('eon.testing.body')}
             </p>
 
-            <div className="mt-10 grid grid-cols-2 gap-3 sm:flex sm:flex-nowrap">
+            <div className="mt-10 grid grid-cols-2 gap-3 md:flex md:flex-nowrap lg:grid xl:flex">
               {evidenceSources.map(({ icon, label, iconClassName }) => (
                 <EvidenceCard key={label} icon={icon} iconClassName={iconClassName} label={label} />
               ))}
@@ -128,7 +125,7 @@ export function TestingSection() {
           {/* Right visual: photograph, quote, handwritten note, roof overlay */}
           <OnceReveal className="relative mx-auto w-full max-w-[520px] pt-16 lg:mx-0 lg:ml-auto lg:max-w-none lg:pt-2">
             <AnnotationGroup
-              className="pointer-events-none absolute top-0 z-30 hidden w-[420px] md:block md:-left-2 lg:-left-[9.5rem] lg:top-2"
+              className="pointer-events-none absolute top-0 z-30 hidden w-[420px] md:block md:-left-2 lg:-left-[9.5rem] lg:max-xl:-left-[6rem] lg:top-2"
               hand1={t('eon.testing.hand1')}
               hand2={t('eon.testing.hand2')}
               quote={quoteBody}
@@ -158,8 +155,8 @@ export function TestingSection() {
                   <Image
                     src="/assets/images/eon/eon-08-house.webp"
                     alt={t('eon.testing.houseAlt')}
-                    width={520}
-                    height={650}
+                    width={1122}
+                    height={1402}
                     className="h-auto w-full bg-transparent"
                   />
                   <div className="absolute left-[58%] top-[12.5%] z-20 -translate-x-1/2">

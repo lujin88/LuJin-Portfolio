@@ -32,7 +32,7 @@ export default function WayOfWorkLayout({
       colorScheme="light"
       backgroundColor={PAPER}
     >
-      <style>{`[data-site-header][data-header-tone="paper"]{--header-scrim:#e8e1d4;--header-glass:#f4efe6;--header-menu:#fff;--header-menu-item:#f3f0e8}`}</style>
+      <style>{`[data-site-header][data-header-tone="paper"]{--header-scrim:#e8e1d4;--header-glass:#f4efe6;--header-menu:#fff;--header-menu-item:#e8e8ea}`}</style>
       <link rel="stylesheet" href="/styles/shell-components.css" />
       {children}
     </HtmlChrome>

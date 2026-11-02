@@ -1,6 +1,6 @@
 export const eon = {
   en: {
-    documentTitle: 'Lu Jin — E.ON Solar',
+    documentTitle: 'Lu — E.ON Solar',
     description:
       'Case study: redesigning a high-friction solar calculator journey to turn existing traffic into qualified leads.',
     overview: {
@@ -161,7 +161,7 @@ export const eon = {
     },
   },
   de: {
-    documentTitle: 'Lu Jin — E.ON Solar',
+    documentTitle: 'Lu — E.ON Solar',
     description:
       'Case Study: Neugestaltung einer reibungsreichen Solarrechner-Strecke, um bestehenden Traffic in qualifizierte Leads zu verwandeln.',
     overview: {
@@ -267,10 +267,10 @@ export const eon = {
       foundRoof: 'Wir haben Ihr Dach gefunden',
       roofSizeQ: 'Dachfläche?',
       roofInclinationQ: 'Dachneigung?',
-      sunlightQ: 'Sonneneinstrahlung?',
+      sunlightQ: 'Sonnen\u00ADeinstrahlung?',
       roofSize: 'Dachfläche',
       roofInclination: 'Dachneigung',
-      sunlight: 'Sonneneinstrahlung',
+      sunlight: 'Sonnen\u00ADeinstrahlung',
       roofPitch: 'Dachneigung',
       beforeMapAlt: 'Luftbild eines Hausdachs vor der Analyse',
       afterMapAlt: 'Luftbild desselben Dachs mit hervorgehobener Sonneneinstrahlung',
@@ -305,7 +305,7 @@ export const eon = {
       line1: 'Testen mit',
       line2: 'echten Kunden.',
       body: 'Wir haben den neuen Rechner mit Kunden getestet und mehrere Feedback-Quellen kombiniert.',
-      sources: ['Kundenresearch', 'Website-Analytics', 'Hotjar', 'Sales-Feedback'],
+      sources: ['Kunden\u00ADresearch', 'Website-Analytics', 'Hotjar', 'Sales-Feedback'],
       hand1: 'Weniger Aufwand.',
       hand2: 'Schnelleres Verstehen.',
       quote1: 'Es war so viel',

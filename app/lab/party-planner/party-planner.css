@@ -1065,24 +1065,14 @@ html:has(.pp-landing) #site-content {
 }
 
 .pp-landing .pp-site-closing {
-  --color-text-1: #fff;
-  --color-text-3: rgba(255, 255, 255, 0.78);
-  --color-text-4: rgba(255, 255, 255, 0.42);
-  --color-footer-divider: rgba(255, 255, 255, 0.07);
-  --pill-text: #f9fbfc;
-  --pill-border: rgba(255, 255, 255, 0.72);
-  --pill-bg: transparent;
-  --pill-hover-bg: #f9fbfc;
-  --pill-hover-text: #0a0a0a;
-  --pill-hover-shadow: none;
-  --focus-ring: #fff;
-  --editorial: 72rem;
-  --footer-max-w: 72rem;
+  box-sizing: border-box;
   position: relative;
   z-index: 4;
-  background: transparent;
+  background: #0a0a0a;
+  color: #f9fbfc;
   font-family: var(--font-poppins), Poppins, ui-sans-serif, system-ui, sans-serif;
 }
+.pp-landing .pp-site-closing, .pp-landing .pp-site-closing * { box-sizing: border-box; }
 
 .pp-landing .pp-site-closing a {
   font: inherit;

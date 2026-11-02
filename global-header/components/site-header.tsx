@@ -74,7 +74,7 @@ const NAV: readonly NavEntry[] = [
       {
         label: 'Design System',
         href: '/design-system',
-        meta: 'Sparplan · Design system',
+        meta: 'Side project · Design system',
         icon: {
           light: '/assets/images/nav/light/work/design-system-light.png',
           dark: '/assets/images/nav/dark/work/design-system-dark.png',
@@ -200,6 +200,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   const langRootRef = useRef<HTMLDivElement>(null)
   const langTriggerRef = useRef<HTMLButtonElement>(null)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const headerRef = useRef<HTMLElement>(null)
   const langOptionRefs = useRef<(HTMLButtonElement | null)[]>([])
   const desktopNavRef = useRef<HTMLElement>(null)
   const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({})
@@ -276,6 +277,25 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [menuOpen, langOpen, openMenu])
+
+  // The open mobile menu covers the page. Make everything outside the
+  // header inert so Tab stays in the menu and cannot reach covered content.
+  useEffect(() => {
+    if (!menuOpen) return
+    const changed: HTMLElement[] = []
+    let node: HTMLElement | null = headerRef.current
+    while (node && node !== document.body) {
+      const parent: HTMLElement | null = node.parentElement
+      if (!parent) break
+      for (const sibling of Array.from(parent.children)) {
+        if (sibling === node || !(sibling instanceof HTMLElement) || sibling.inert) continue
+        sibling.inert = true
+        changed.push(sibling)
+      }
+      node = parent
+    }
+    return () => changed.forEach((element) => (element.inert = false))
+  }, [menuOpen])
 
   useEffect(() => {
     const desktopNav = window.matchMedia('(min-width: 64rem)')
@@ -392,6 +412,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
 
   return (
     <header
+      ref={headerRef}
       data-site-header=""
       data-header-tone={headerTone}
       className="fixed top-0 right-0 left-0 z-[100] isolate font-sans text-header-foreground [font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif] [&_a]:no-underline [&_li]:list-none [&_ul]:list-none"
@@ -684,6 +705,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                   </button>
                   <div
                     id={panelId}
+                    inert={!expanded ? true : undefined}
                     className={cn(
                       'grid transition-[grid-template-rows] duration-300 ease-out',
                       MOTION_SAFE,

@@ -9,29 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          ink: 'var(--color-bg-page)',
-          text1: 'var(--color-text-1)',
-          text2: 'var(--color-text-2)',
-          text3: 'var(--color-text-3)',
-          divider: 'var(--color-border-divider)',
-          accent: 'var(--color-theme-2)',
-          'accent-hover': 'var(--color-theme-hover)',
-        },
-        fontFamily: {
-          sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-          serif: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'], /* alias: Display is Poppins */
-        },
-      },
-    },
-  };
-</script>
-
 <link rel="stylesheet" href="/styles/shell-tokens.css" />
 <link rel="stylesheet" href="/styles/home-motion.css" />
 
@@ -1355,6 +1332,39 @@
       top: calc(0.8125rem + 1rem + 2 * var(--font-size-heading-lg) * var(--leading-heading) + 0.55rem + 5px);
     }
   }
+  /* Desktop: the title sits in the blank left of the timeline, under the
+     header, so the UBS entry and the title share one screen. The stem
+     then starts at the date instead of climbing through the title. */
+  @media (min-width: 641px) {
+    .exp-content[data-index="0"] .exp-lead {
+      position: absolute;
+      z-index: 5;
+      top: calc(138px - 33.4vh + 100%);
+      width: min(19rem, calc(0.267 * min(1200px, 100vw - 3rem) + (100vw - min(1200px, 100vw - 3rem)) / 2 - var(--content-inset) - 1.5rem));
+      margin: 0;
+      left: calc(var(--content-inset) - ((100vw - min(1200px, 100vw - 3rem)) / 2 + 0.267 * min(1200px, 100vw - 3rem)));
+    }
+    .exp-content[data-index="0"] .exp-lead .exp-heading { margin-bottom: 0; }
+    .exp-content[data-index="0"] .exp-content__node {
+      top: 0;
+      bottom: calc(-42px - var(--exp-arc-drop, 0px));
+    }
+    .exp-content[data-index="0"] {
+      bottom: calc(66.6% + 42px);
+      --ubs-stem-bottom: calc(-42px - var(--exp-arc-drop, 0px));
+    }
+    .exp-dot[data-index="3"]::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1.6875px;
+      height: 168px;
+      transform: translateX(-50%);
+      background: linear-gradient(to bottom, rgba(126, 162, 255, 0.85), rgba(126, 162, 255, 0));
+      pointer-events: none;
+    }
+  }
   .exp-content__eyebrow {
     display: block;
     font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
@@ -1578,6 +1588,14 @@
     }
     .exp-content__node, .exp-content__bar, .exp-content__plus { display: none; }
     .exp-content__eyebrow, .exp-content__title, .exp-content__role, .exp-content__desc { opacity: 1 !important; }
+    .exp-content[data-index="3"]::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 72px;
+      margin-left: -1.5rem;
+      background: linear-gradient(to bottom, rgba(126, 162, 255, 0.4), rgba(126, 162, 255, 0));
+    }
 
     .exp-contact {
       flex-direction: column; align-items: flex-start; gap: 1.5rem;
@@ -1772,7 +1790,7 @@
         <p class="hero-kicker" data-i18n="home.heroKicker">Product designer · Enterprise & regulated UX</p>
         <h1 data-i18n="home.heroTitle">Simplify complexity. Design with AI.</h1>
         <div class="hero-lede">
-          <p data-i18n-html="home.heroBody"><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS: AI-assisted workflow, 10+ min saved per client</a>.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar: 4× lead conversion rate</a>.</span></p>
+          <p data-i18n-html="home.heroBody"><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, 10+ min saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 4× lead conversion rate.</span></p>
         </div>
         <div class="ask-lu-wrap">
           <button id="ask-lu" type="button" class="ask-lu" aria-expanded="false" aria-controls="ask-lu-chat">
@@ -1904,9 +1922,9 @@
     <p class="home-eyebrow">Playground</p>
     <h2 id="home-playground-title">Playground</h2>
     <div class="home-project-grid">
-      <a class="home-project" href="/lab/weather-aquarium"><img src="/assets/images/home-motion/weather.jpg" alt="Weather Aquarium project preview" loading="lazy" width="864" height="600" /><h3>Weather Aquarium</h3><p class="home-project-meta" data-i18n="home.playground.weatherMeta">Rive motion</p><p>A 2.5D weather world for iPad — helping children understand the day and discover new words.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="home-project" href="/lab/weather-aquarium"><img src="/assets/images/home-motion/weather-interior-autumn.png" alt="Weather Aquarium project preview" loading="lazy" width="864" height="600" /><h3>Weather Aquarium</h3><p class="home-project-meta" data-i18n="home.playground.weatherMeta">Rive motion</p><p>A 2.5D weather world for iPad — helping children understand the day and discover new words.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       <a class="home-project" href="/ai-companion-pet"><img src="/assets/images/home-motion/pet.jpg" alt="AI Pet project preview" loading="lazy" width="864" height="600" /><h3>AI Pet</h3><p class="home-project-meta" data-i18n="home.playground.petMeta">Voice · Hardware</p><p>A little friend to listen, tell stories, share a meal, and learn a few words of French.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="home-project" href="/lab/party-planner"><img src="/assets/images/home-motion/gratula.jpg" alt="Gratula project preview" loading="lazy" width="864" height="600" /><h3>Gratula</h3><p class="home-project-meta" data-i18n="home.playground.gratulaMeta">Launching soon</p><p>From ideas to invitations, a simpler way to plan a party they’ll always remember.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="home-project" href="/lab/party-planner"><video src="/assets/videos/home/gratula-pip.mp4" poster="/assets/images/home-motion/gratula-pip.jpg" aria-label="Gratula project preview" width="864" height="600" muted playsinline data-loop-gap="2000" disablepictureinpicture></video><h3>Gratula</h3><p class="home-project-meta" data-i18n="home.playground.gratulaMeta">Launching soon</p><p>From ideas to invitations, a simpler way to plan a party they’ll always remember.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -1957,7 +1975,7 @@
   <div class="exp-field" aria-hidden="true"></div>
 </div>
 
-<section id="experience" class="exp-section relative bg-ink" aria-labelledby="experience-title">
+<section id="experience" class="exp-section relative" aria-labelledby="experience-title">
 
   <div class="exp-track" id="exp-track">
     <div class="exp-sticky">
@@ -1988,8 +2006,10 @@
             <span class="exp-content__bar"></span>
             <span class="exp-content__plus"></span>
           </span>
-          <p class="exp-kicker" data-i18n="home.expKicker">My Experience</p>
-          <h2 class="exp-heading" id="experience-title" data-i18n-html="home.expHeadingHtml">10+ years.<br />Product, service and UI.</h2>
+          <div class="exp-lead">
+            <p class="exp-kicker" data-i18n="home.expKicker">My Experience</p>
+            <h2 class="exp-heading" id="experience-title" data-i18n-html="home.expHeadingHtml">10+ years.<br />Product, service and UI.</h2>
+          </div>
           <span class="exp-content__eyebrow" data-i18n="home.exp.0.eyebrow">Oct 2022 — Sep 2026</span>
           <span class="exp-content__title" data-i18n="home.exp.0.title">UBS · Zurich</span>
           <span class="exp-content__role" data-i18n="home.exp.0.role">Senior Service Designer</span>
@@ -2888,7 +2908,6 @@
       var join = joinPoint();
       var kicker = document.querySelector('.exp-kicker');
       if (!join || !kicker) return;
-      var kick = kicker.getBoundingClientRect();
       var rise = Math.max(0, seamR.top - artR.bottom);
       wash.style.top = (-rise) + 'px';
       wash.style.height = (rise + seamR.height) + 'px';
@@ -2905,10 +2924,9 @@
       var e1x = sx - artR.width * 0.04;
       var e1y = artR.bottom + 16;
       var e1 = rel(e1x, e1y);
-      // Land on the timeline column above the title, then go straight down
-      // into the bar. Control points stay on that column so the curve's hull
-      // cannot cross the type.
-      var landY = Math.min(kick.top - 36, join.y);
+      // The title sits in the left blank, so the arc stops a short step
+      // above the first job instead of climbing up to the heading.
+      var landY = join.y - 36;
       if (landY < e1y + 24) landY = Math.min(join.y, e1y + 24);
       var c3 = rel(join.x, Math.min(e1y, landY));
       var c4 = rel(join.x, landY);
@@ -3308,10 +3326,12 @@
 </script>
 
 <script>
-  // Ensure hero / case videos autoplay reliably on load.
+  // Case / project card videos play only while on screen (and the tab is
+  // visible). A video with data-loop-gap="<ms>" holds its last frame that
+  // long before replaying, instead of looping straight through.
   (function () {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    document.querySelectorAll('.case-card__media video').forEach((v) => {
+    document.querySelectorAll('.case-card__media video, .home-project video').forEach((v) => {
       v.muted = true;
       const markReady = () => v.classList.add('is-ready');
       if (v.readyState >= 2) markReady();
@@ -3321,12 +3341,34 @@
         v.pause();
         return;
       }
-      const kick = () => v.play().catch(() => {});
-      kick();
-      v.addEventListener('canplay', kick, { once: true });
-      document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) kick();
-      });
+      const gap = parseInt(v.dataset.loopGap, 10);
+      if (gap >= 0) v.loop = false;
+      let onScreen = false;
+      let timer = null;
+      const canRun = () => onScreen && !document.hidden;
+      const stopGap = () => { clearTimeout(timer); timer = null; };
+      const startGap = () => {
+        stopGap();
+        timer = setTimeout(() => {
+          timer = null;
+          if (!canRun()) return;
+          v.currentTime = 0;
+          v.play().catch(() => {});
+        }, gap);
+      };
+      const update = () => {
+        if (!canRun()) { stopGap(); v.pause(); return; }
+        if (timer) return;
+        if (v.ended && gap >= 0) startGap();
+        else v.play().catch(() => {});
+      };
+      if (gap >= 0) v.addEventListener('ended', () => { if (canRun()) startGap(); });
+      v.addEventListener('canplay', update, { once: true });
+      document.addEventListener('visibilitychange', update);
+      new IntersectionObserver((entries) => {
+        onScreen = entries[entries.length - 1].isIntersecting;
+        update();
+      }, { rootMargin: '200px 0px' }).observe(v);
     });
   })();
 </script>
