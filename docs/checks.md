@@ -4,12 +4,12 @@ harness-core `checks.md` 里写「合格线在项目层」的地方，作品集�
 
 ## 网页视频：poster 对第 0 帧
 
-方法见 harness-core `docs/web-video.md`（harness-core #58 合并后才有）。
+方法见 harness-core `docs/web-video.md`。
 
 | | 线 | 用在哪 |
 |---|---|---|
-| 验收线 | 页面上 poster 对第 0 帧，Chrome 和 WebKit 各自 R/G/B **每个通道**均值差 ≤1 | 审查与 QA 判过不过 |
-| 出片自检（不是验收线） | ffmpeg 解码第 0 帧对 poster，R/G/B 每个通道均值差 ≤0.5 | 开发交付前自查 |
+| 验收线 | 页面上 poster 对第 0 帧，Chrome 和 WebKit 各自 R/G/B **每个通道**均值差的绝对值 ≤1（−1.45 不过） | 审查与 QA 判过不过 |
+| 出片自检（不是验收线） | ffmpeg 解码第 0 帧对 poster，R/G/B 每个通道均值差的绝对值 ≤0.5 | 开发交付前自查 |
 
 - 量验收线之前，先按 harness-core `docs/web-video.md` §5 确认截到的是视频帧，不是 poster。
 - 自检超过 0.5 时不算失败，交付里分开写两个差：原片对 poster 的差、转码带来的差（新片对原片）。接不接受由项目经理判断。
