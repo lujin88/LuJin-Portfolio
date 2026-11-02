@@ -5,7 +5,7 @@ import { ConstructionChrome } from '../components/construction-chrome'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — MAN Truck & Bus',
+    absolute: 'Lu Jin — MAN Truck & Bus',
   },
   description: 'MAN Truck & Bus is under construction.',
 }

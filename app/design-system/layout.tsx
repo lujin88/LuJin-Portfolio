@@ -3,7 +3,7 @@ import { HtmlChrome } from '../html-chrome'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — Design System',
+    absolute: 'Lu Jin — Design System',
   },
   description:
     'Forma Finance — a design system for Sparplan, a Swiss ETF savings plan. Calm, clear, and fair.',

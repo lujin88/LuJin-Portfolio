@@ -6,7 +6,7 @@ const PAPER = '#f7f6f2'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — AI Pet',
+    absolute: 'Lu Jin — AI Pet',
   },
   description: 'Diandian, a little AI dolphin. Turn the knob. Pick a mood. Play.',
   // Private prototype: keep it out of search results.

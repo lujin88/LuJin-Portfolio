@@ -1,23 +1,23 @@
 export const lab = {
   en: {
-    documentTitle: 'Lu — Playground',
-    partyPlannerTitle: 'Lu — Gratula',
-    weatherAquariumTitle: 'Lu — Weather Aquarium',
+    documentTitle: 'Lu Jin — Playground',
+    partyPlannerTitle: 'Lu Jin — Gratula',
+    weatherAquariumTitle: 'Lu Jin — Weather Aquarium',
   },
   de: {
-    documentTitle: 'Lu — Playground',
-    partyPlannerTitle: 'Lu — Gratula',
-    weatherAquariumTitle: 'Lu — Weather Aquarium',
+    documentTitle: 'Lu Jin — Playground',
+    partyPlannerTitle: 'Lu Jin — Gratula',
+    weatherAquariumTitle: 'Lu Jin — Weather Aquarium',
   },
 } as const
 
 export const pet = {
   en: {
-    documentTitle: 'Lu — AI Pet',
+    documentTitle: 'Lu Jin — AI Pet',
     eyebrow: 'AI Pet',
   },
   de: {
-    documentTitle: 'Lu — AI Pet',
+    documentTitle: 'Lu Jin — AI Pet',
     eyebrow: 'AI Pet',
   },
 } as const
@@ -27,15 +27,15 @@ export const construction = {
     title: 'Under construction',
     body: 'This page is still being built. Check back soon.',
     man: {
-      documentTitle: 'Lu — MAN Truck & Bus',
+      documentTitle: 'Lu Jin — MAN Truck & Bus',
       eyebrow: 'MAN Truck & Bus',
     },
     etf: {
-      documentTitle: 'Lu — ETF Savings Plan',
+      documentTitle: 'Lu Jin — ETF Savings Plan',
       eyebrow: 'ETF Savings Plan',
     },
     system: {
-      documentTitle: 'Lu — Design System',
+      documentTitle: 'Lu Jin — Design System',
       eyebrow: 'Design System',
     },
   },
@@ -43,15 +43,15 @@ export const construction = {
     title: 'Im Aufbau',
     body: 'Diese Seite entsteht gerade. Schauen Sie bald wieder vorbei.',
     man: {
-      documentTitle: 'Lu — MAN Truck & Bus',
+      documentTitle: 'Lu Jin — MAN Truck & Bus',
       eyebrow: 'MAN Truck & Bus',
     },
     etf: {
-      documentTitle: 'Lu — ETF Savings Plan',
+      documentTitle: 'Lu Jin — ETF Savings Plan',
       eyebrow: 'ETF Savings Plan',
     },
     system: {
-      documentTitle: 'Lu — Design System',
+      documentTitle: 'Lu Jin — Design System',
       eyebrow: 'Design System',
     },
   },

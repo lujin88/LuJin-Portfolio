@@ -4,7 +4,7 @@ import { HtmlChrome } from '../../html-chrome'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — Human × AI Practice',
+    absolute: 'Lu Jin — Human × AI Practice',
   },
   description:
     'A human-led design practice: Agent Monitor, AI Team, and Design OS.',

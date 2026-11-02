@@ -6,7 +6,7 @@ const NIGHT = '#070b16'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — Way of Work',
+    absolute: 'Lu Jin — Way of Work',
   },
   description: 'Backup of the earlier Way of Work page.',
 }

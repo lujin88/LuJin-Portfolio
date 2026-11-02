@@ -5,7 +5,7 @@ import { ConstructionChrome } from '../components/construction-chrome'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — ETF Savings Plan',
+    absolute: 'Lu Jin — ETF Savings Plan',
   },
   description: 'ETF Savings Plan is under construction.',
 }

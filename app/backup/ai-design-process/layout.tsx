@@ -6,7 +6,7 @@ const NIGHT = '#070b16'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — AI Design Process',
+    absolute: 'Lu Jin — AI Design Process',
   },
   description:
     'Backup of the AI Design Process page. A practical workspace for AI-assisted design.',

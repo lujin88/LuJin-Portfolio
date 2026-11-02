@@ -5,7 +5,7 @@ import styles from './backup.module.css'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — Kept pages',
+    absolute: 'Lu Jin — Kept pages',
   },
   description: 'Pages kept off the main navigation until they are removed together.',
 }

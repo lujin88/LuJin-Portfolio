@@ -6,7 +6,7 @@ import './weather-aquarium.css'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — Weather Aquarium',
+    absolute: 'Lu Jin — Weather Aquarium',
   },
   description:
     'Weather Aquarium — a playful 2.5D weather world for children.',
