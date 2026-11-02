@@ -28,7 +28,9 @@ type NavGroup = {
   children: readonly NavLink[]
 }
 
-type NavEntry = ({ kind: 'link' } & NavLink) | ({ kind: 'group' } & NavGroup)
+type NavEntry =
+  | { kind: 'link'; label: string; href: string }
+  | ({ kind: 'group' } & NavGroup)
 
 const NAV: readonly NavEntry[] = [
   {
