@@ -1,3 +1,4 @@
+import { isAskLuEnabled } from '../../lib/ask-lu'
 import { HtmlIsland } from '../html-island'
 import { readPublicHtmlPage } from '../read-public-html'
 
@@ -30,7 +31,13 @@ function withVideoPosters(html: string) {
   })
 }
 
+/** Drops the Ask Lu button and chat panel unless the feature is switched on. */
+function withAskLu(html: string) {
+  if (isAskLuEnabled()) return html
+  return html.replace(/<!-- ask-lu:start -->[\s\S]*?<!-- ask-lu:end -->/, '')
+}
+
 export default async function IndexPage() {
   const { head, body } = await readPublicHtmlPage('home.html')
-  return <HtmlIsland head={head} body={withVideoPosters(body)} />
+  return <HtmlIsland head={head} body={withAskLu(withVideoPosters(body))} />
 }

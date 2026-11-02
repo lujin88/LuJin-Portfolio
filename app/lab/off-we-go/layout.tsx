@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import 'remixicon/fonts/remixicon.css'
 
 import { mediaUrl } from '../../../lib/media-url'
 import { HtmlChrome } from '../../html-chrome'

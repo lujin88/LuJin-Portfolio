@@ -108,7 +108,7 @@ export function TestingSection() {
             />
 
             <KineticLines
-              className="mt-6 text-pretty text-[52px] font-extrabold leading-[0.98] tracking-[-0.03em] text-navy-950 md:text-[64px]"
+              className="mt-6 text-pretty text-[52px] font-extrabold leading-[0.98] tracking-[-0.03em] text-navy-950 md:text-[64px] lg:max-xl:max-w-min"
               lines={[t('eon.testing.line1'), t('eon.testing.line2')]}
             />
 
@@ -128,7 +128,7 @@ export function TestingSection() {
           {/* Right visual: photograph, quote, handwritten note, roof overlay */}
           <OnceReveal className="relative mx-auto w-full max-w-[520px] pt-16 lg:mx-0 lg:ml-auto lg:max-w-none lg:pt-2">
             <AnnotationGroup
-              className="pointer-events-none absolute top-0 z-30 hidden w-[420px] md:block md:-left-2 lg:-left-[9.5rem] lg:top-2"
+              className="pointer-events-none absolute top-0 z-30 hidden w-[420px] md:block md:-left-2 lg:-left-[9.5rem] lg:max-xl:-left-[6rem] lg:top-2"
               hand1={t('eon.testing.hand1')}
               hand2={t('eon.testing.hand2')}
               quote={quoteBody}

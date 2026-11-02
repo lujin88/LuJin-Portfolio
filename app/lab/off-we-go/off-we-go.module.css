@@ -123,7 +123,7 @@
   color: #fff;
 }
 
-.homeBar i {
+.homeBar svg {
   font-size: clamp(12px, 2.8cqw, 22px);
   line-height: 1;
   color: rgb(255 255 255 / 0.9);
@@ -189,7 +189,7 @@
   box-shadow: 0 10px 30px rgb(12 20 32 / 0.18);
 }
 
-.homeSearch i {
+.homeSearch svg {
   font-size: clamp(12px, 2.2cqw, 18px);
   color: #a1a1aa;
 }
@@ -406,19 +406,18 @@
   align-items: center;
   gap: 0.5rem;
   border-radius: var(--radius-pill, 999px);
-  border: 1px solid rgb(255 255 255 / 0.7);
-  background: rgb(255 255 255 / 0.92);
-  min-height: 48px;
-  padding: 1rem 2.25rem;
-  font-size: var(--font-size-body-lg); /* Pill L */
-  font-weight: var(--font-weight-semibold);
+  border: 1px solid rgba(249, 251, 252, 0.72);
+  background: transparent;
+  box-sizing: border-box;
+  min-height: 2.75rem;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 400;
   letter-spacing: normal;
-  line-height: 1.1;
-  color: #18181b;
+  line-height: 1;
+  color: #f9fbfc;
   text-decoration: none;
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.85),
-    0 10px 30px rgb(20 12 4 / 0.18);
+  box-shadow: none;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition:
@@ -428,7 +427,9 @@
 }
 
 .glass:hover {
-  background: #fff;
+  background: #f9fbfc;
+  border-color: #f9fbfc;
+  color: #0a0a0a;
 }
 
 .glass:active {
@@ -446,8 +447,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  background: rgb(24 24 27 / 0.08);
-  color: #18181b;
+  background: rgb(249 251 252 / 0.12);
+  color: inherit;
   transition: transform 500ms cubic-bezier(0.32, 0.72, 0, 1);
 }
 
@@ -455,7 +456,7 @@
   transform: translate(2px, -2px);
 }
 
-.glassIcon i {
+.glassIcon svg {
   font-size: var(--font-size-caption);
   line-height: 1;
 }
@@ -478,7 +479,7 @@
 
 .footer {
   position: relative;
-  padding: 4rem var(--pad, 1.5rem) 2rem;
+  padding: 4rem var(--content-inset, 1.5rem) 2rem;
 }
 
 .footerNote {

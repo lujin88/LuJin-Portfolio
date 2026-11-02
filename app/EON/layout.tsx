@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { SiteHeader } from '@header/components/site-header'
 import { SiteFooter } from '@eon/components/site-footer'
 import { HtmlTheme } from '../html-theme'
+import '@header/header.css'
 import { socialMetadata } from '../seo'
 import '@eon/app/globals.css'
 
@@ -31,7 +32,7 @@ export default function EonLayout({
       <div className="site-chrome">
         <SiteHeader activeHref="/EON" />
       </div>
-      <div id="site-content" tabIndex={-1} className="pt-20 font-sans md:pt-24">
+      <div id="site-content" tabIndex={-1} className="pt-16 font-sans">
         {children}
       </div>
       <div className="site-chrome">

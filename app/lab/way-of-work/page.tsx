@@ -1,5 +1,5 @@
-import { WayOfWorkPage } from './way-of-work-page'
+import { HumanAiPage } from './human-ai-page'
 
 export default function Page() {
-  return <WayOfWorkPage />
+  return <HumanAiPage />
 }

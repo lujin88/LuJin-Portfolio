@@ -18,10 +18,10 @@ Accent 可变；底层空间世界、壳层节奏与交互结构保持连续。
 
 | # | 规则 | 含义 |
 |---|------|------|
-| 1 | **Type does hierarchy. Color does signaling.** | Poppins 承载产品/UI 与 **Display** 全站标题（无第二装饰 Display 字体）。Blue-violet（`#8B5CF6`）做信号、焦点、选中与克制 glow——**不是**整页铺色，也**不能**抹平 case 主题色。 |
-| 2 | **Theme accents are authored content, not inconsistency.** | 页面级 primary / secondary accent **允许且鼓励**。CA 冰蓝、E.ON lavender/mint/red、Playground 编辑式 violet 等必须保留，禁止用全局 blue-violet“纠正”。 |
+| 1 | **Type does hierarchy. Color does signaling.** | Poppins 承载产品/UI 与 **Display** 全站标题（无第二装饰 Display 字体）。Index blue（`#7ea2ff`）做信号、焦点、选中与克制 glow——**不是**整页铺色，也**不能**抹平 case 主题色。 |
+| 2 | **Theme accents are authored content, not inconsistency.** | 页面级 primary / secondary accent **允许且鼓励**。CA 冰蓝、E.ON lavender/mint/red、Playground 编辑式 index blue 等必须保留，禁止用全局 index blue“纠正” case 色。 |
 | 3 | **Global Page Frame is the content X-anchor.** | 内容对齐：`24px` page pad + `1440px` main / `1040px` editorial well。Header chrome（1800 / 1600）**不是**内容原点。 |
-| 4 | **Structure constant; theme paint variable.** | 按钮半径、尺寸阶、icon gap、状态运动学跨主题保持同一结构；填充色 / 描边色跟页面 accent 走。Pills **不用** blue-violet 实心填充。 |
+| 4 | **Structure constant; theme paint variable.** | 按钮半径、尺寸阶、icon gap、状态运动学跨主题保持同一结构；填充色 / 描边色跟页面 accent 走。Pills **不用** index blue 实心填充。 |
 | 5 | **Normalize only what repeats.** | 只对齐跨页重复的类型角色、间距、容器、边框、radius、交互与 motion safety。勿把 Theme Layer 构图压成一套绝对 Y / 一套测量。 |
 | 6 | **Background Continuity.** | Section 可换 accent 与 mood，但仍是同一空间世界的 accent layer——不是硬切成另一个网站。 |
 | 7 | **Motion explains, then stops.** | Prefer transform / opacity；`prefers-reduced-motion` 下取消位移。640px 以下 pin 塌为静态栈。 |
@@ -49,7 +49,7 @@ Accent 可变；底层空间世界、壳层节奏与交互结构保持连续。
 
 ### 2.1 Color — Global Foundation（Host shell）
 
-官方壳层 accent 名：**Blue-violet**（勿称 generic purple）。
+官方壳层 accent 名：**Index blue**（`#7ea2ff`）。Header check 用同一蓝色。
 
 | Token | Value | 用途 |
 |-------|-------|------|
@@ -57,9 +57,9 @@ Accent 可变；底层空间世界、壳层节奏与交互结构保持连续。
 | `--color-bg-primary` | `#111214` | Surface / card |
 | `--color-bg-secondary` | `#1a1c1f` | Secondary surface |
 | `--color-bg-elevated` | `#1f2124` | Elevated |
-| `--color-theme-2` / `--color-primary-solid` | `#8B5CF6` | Shell accent（信号） |
-| `--color-theme-hover` | `#A78BFA` | Accent hover |
-| `--color-theme-3` | `rgba(139,92,246,0.15)` | Soft accent / glow |
+| `--color-theme-2` / `--color-primary-solid` | `#7ea2ff` | Shell accent（信号） |
+| `--color-theme-hover` | `#a9c4ff` | Accent hover |
+| `--color-theme-3` | `rgba(126,162,255,0.15)` | Soft accent / glow |
 | `--color-text-1` | `#f9fbfc` | Primary text |
 | `--color-text-2` | `#b6bbc2` | Secondary / body |
 | `--color-text-3` | `#777e85` | Muted |
@@ -73,8 +73,8 @@ Accent 可变；底层空间世界、壳层节奏与交互结构保持连续。
 
 | Scope | Value | 规则 |
 |-------|-------|------|
-| Header-local | `--header-accent #4a90ff` | **仅** SiteHeader 已选语言 Check |
-| Index experience motif | `#7A7FDC` / `#3846D4` | Index timeline connector / plus，勿改名 blue-violet |
+| Header accent | `--header-accent #7ea2ff` | 与 host accent 同一蓝色。SiteHeader 已选语言 Check |
+| Index experience connector | `#7ea2ff` / hover `#a9c4ff` | Timeline bar 与 plus，同一 host accent |
 | `--color-bg-deepseek` | — | 历史残留，**不推广** |
 | `.btn-primary-kling` | — | 未使用历史类，**非**组件 token |
 
@@ -163,21 +163,19 @@ Radius：卡片/媒体常见 **16px**（`rounded-2xl`）；小 swatch **12px**�
 
 **结构常量（跨主题必须一致）：** radius **999px** · icon gap **0.5rem（8px）** · ease `cubic-bezier(0.22, 1, 0.36, 1)` · interaction **320ms** · hover lift **-2px** · active **scale(0.97)** · arrow/icon hover **translateX(3px)** · focus-visible **2px** ring + **3px** offset · disabled opacity **0.45**。
 
-**权威实装：** `.pill-btn`（`shell-components.css`）= 默认 **Primary · M**。
+**权威实装：** `.pill-btn`（`shell-components.css`）= 全站 Portfolio CTA。产品里的控件尺寸另表，不走这一行。
 
-#### 尺寸（S / M / L）— 以 live M 为锚，沿 8pt 扩展
+#### Portfolio CTA
 
-| Size | Padding (Y X) | Font-size | Min-height 建议 | Icon |
-|------|---------------|-----------|-----------------|------|
-| **S** | `0.55rem 1.25rem`（≈9/20px） | `0.8125rem`（13px） | ≥36px | 14–16px |
-| **M**（默认 · live） | **`0.85rem 1.9rem`** | **`0.95rem`（15.2px）** | ≥44px | 16–18px |
-| **L** | `1rem 2.25rem`（16/36px） | `1.0625rem`（17px） | ≥48px | 18–20px |
+| Height | Padding | Font | Icon | Gap | Radius | Border |
+|--------|---------|------|------|-----|--------|--------|
+| **46px** | `0 28px` | Poppins 400 · **15.2px** (`0.95rem`) | **16px** | **8px** | **999px** | **1px** |
 
 #### 变体（结构同；paint 跟主题）
 
 | Variant | 默认外观（Host shell） | Hover | 规则 |
 |---------|------------------------|-------|------|
-| **Primary**（Pill CTA） | 透明/微底 `--pill-bg` + 描边 `--pill-border`；字 `--pill-text` | 白底 `#f9fbfc` + 深字 `#0a0a0a` + `--pill-hover-shadow` | **不要**用 blue-violet 实心填 pill |
+| **Primary**（Pill CTA） | 白字 `#f9fbfc`、透明底、白描边 `rgba(249, 251, 252, 0.72)` | hover 白底 `#f9fbfc` + 深字 `#0a0a0a`，无 glow | Header Contact Me 与深色页 CTA 同一支 |
 | **Secondary** | 更弱描边 / 无底；字 `--color-text-2` | 提到 `--color-text-1` + 略强描边 | 次要行动；同 radius / 尺寸阶 |
 | **Ghost** | 无边框、无底；字 `--color-text-2` | 字 `--color-text-1`；可微底 `rgba(255,255,255,0.06)` | 用于行内/工具条；保 focus ring |
 | **Icon** | 正方形触控区；半径可用 999（圆）或 12px；padding 均分 | 同 Primary/Ghost 的运动学 | 宽高对齐 ≥ S/M/L 的 min-height；icon 居中 |
@@ -208,11 +206,11 @@ Radius：卡片/媒体常见 **16px**（`rounded-2xl`）；小 swatch **12px**�
 
 ### 3.2 禁止什么
 
-- 用全局 `#8B5CF6` **覆盖** CA `--ca-accent` / E.ON lavender·mint·red / Index periwinkle motif  
+- 用全局 `#7ea2ff` **覆盖** CA `--ca-accent` / E.ON lavender·mint·red  
 - 把 Theme Layer 的 ch/px 测量 **压平** 进 672 / 448 / 1040  
 - 把 header chrome padding 当成内容 X 锚点  
 - 把 `max-w-3xl`（768）当成第三个全局 well  
-- Pill 实心填 blue-violet  
+- Pill 实心填 index blue  
 - 推广未使用历史 token（`--color-bg-deepseek`、`.btn-primary-kling`）  
 - 静默替换 Global Page Frame / shell nav / 背景连续性 / a11y focus / 响应式规则  
 
@@ -222,7 +220,7 @@ Radius：卡片/媒体常见 **16px**（`rounded-2xl`）；小 swatch **12px**�
 |-------|-------------|-------------------|
 | **Client Advisory** | Ice / signal blue on deep navy | `--ca-bg #0b1220` · `--ca-accent #8aa3c7` · `--color-signal #4da3ff` · `--ca-text #f3f6fa` |
 | **E.ON Solar** | Navy + lavender + mint + E.ON red + light sections | `--navy-950 #07151f` · `--lavender #c9b5f4` · `--mint #b9f4d8` · `--eon-red #f32717` · `--off-white #f8f8f6` |
-| **Playground + AI Workflow** | 全局 blue-violet 的编辑式强化 + Poppins Display（更大尺寸 token） | `--color-theme-2` + Poppins · URL `/lab/*` 可保留 |
+| **Playground + AI Workflow** | 全局 index blue 的编辑式强化 + Poppins Display（更大尺寸 token） | `--color-theme-2` + Poppins · URL `/lab/*` 可保留 |
 | **Index / About / Host** | Blue-violet 信号 + Poppins | `shell-tokens.css` |
 
 ### 3.4 Theme boundary（一句话）
@@ -274,7 +272,7 @@ Radius：卡片/媒体常见 **16px**（`rounded-2xl`）；小 swatch **12px**�
 - [ ] 内容 X 锚点 = `24px` pad + `1440` 或 `1040` well（不是 header 1800 边）  
 - [ ] React SiteHeader：80 / 96px 高；focus `currentColor` 2+3；无重复 HTML `#site-nav`  
 - [ ] Host 页加载 `shell-tokens` / 共享 primitive；grain ≈ 3.5%  
-- [ ] Selection / shell focus 使用 blue-violet；header Check 仍用 `#4a90ff`  
+- [ ] Selection / shell focus / header Check 使用 index blue `#7ea2ff`  
 
 ### B. 字体与层级
 
@@ -294,7 +292,7 @@ Radius：卡片/媒体常见 **16px**（`rounded-2xl`）；小 swatch **12px**�
 
 - [ ] Primary CTA 为 pill 结构；M = `0.85rem 1.9rem`；radius 999  
 - [ ] Icon gap 8px；hover -2px；active 0.97；arrow +3px  
-- [ ] **未**用 blue-violet 实心填 pill  
+- [ ] Primary CTA 为白字、透明底、白描边；hover 白底深字，无 glow  
 - [ ] S/M/L 与 Primary/Secondary/Ghost/Icon 结构一致，仅 paint 随主题  
 - [ ] Focus-visible 可见；reduced-motion 无位移  
 
@@ -319,14 +317,130 @@ Radius：卡片/媒体常见 **16px**（`rounded-2xl`）；小 swatch **12px**�
 
 ---
 
+## 5. Copy & Voice（文案规范 · EN / DE）
+
+### 5.1 文案在哪里
+
+| 位置 | 内容 |
+|---|---|
+| `app/i18n/messages/*.ts` | 全站 EN / DE 字典（home、ca、eon、wow、ai、lab、owg、common） |
+| `app/i18n/about-me.ts` | About 页 EN / DE |
+| `global-header/lib/header-copy.ts` | Header 导航与按钮 |
+| `public/*.html` | HTML island 的**英文默认文本**（`data-i18n`）；`about.html` 内另有一份翻译表副本；`home.html` 内有 Ask Lu 的 `copy` 对象 |
+| `app/lab/agent-monitor/page.tsx`、`app/lab/party-planner/party-planner-page.tsx` | 仅英文，硬编码 |
+
+**改英文时必须同步 HTML 默认文本**，否则加载时会闪出旧文案。AI Companion Pet 是中文原型，不在 EN / DE 范围内。
+
+### 5.2 Voice
+
+- 第一人称、直接、具体：说做了什么、为谁、结果是什么。少用抽象名词堆叠（如 “advisor workflow optimization”）。
+- 短句优先；一句一个意思。标题可以是片段，正文用完整句子。
+- 指标必须与案例页一致（例：CA 5–10 min 信息收集 · 最多 30 min 复杂方案 · 500+ advisors；E.ON +300%、基线 5.1%）。改一处，查所有出现处。
+- 不夸大、不编造数字；不确定的量词（“five or so”）宁可删掉。
+
+### 5.2a Tone of Voice
+
+> 从站上已经写好的文案里归纳，不另起一套。写新文案先对照本节，再对照 5.3 / 5.4 的写法规则。2026-10-30 起草，交叉审后修订（视觉校正 Codex），**整节待 Lu 确认**。标了「提案」的是新编辑规则，不是现状归纳，Lu 确认前不当硬规则用。
+> 例句后的 `文件:行` 是站上原句的出处（路径基准 `app/i18n/`，`messages/` 省略）。没有出处的例句是为说明规则写的示范句，不是站上文案。
+
+**写的人是谁**：做了 10 年以上产品和服务设计的设计师，做过银行、公共部门、能源这类“出错代价高”的产品。她每天用 AI 干活，但判断由她自己做。
+**读的人是谁**：招聘方、设计负责人、潜在合作方。时间少，看过很多作品集，对空话敏感。
+**听起来像**：一位有经验的同事站在白板前讲一个项目：先说问题，再说做了什么决定、为什么，最后给结果和数字。不急着证明自己。
+
+#### 四个特质
+
+| 特质 | 意思 | 站上的原句（照这个写） | 出处 |
+|---|---|---|---|
+| **1. 直接** Direct | 主语清楚，动词靠前；谁做决定写明白 | “AI drafts. I decide.” · “It proposes. Marco decides.” · „KI entwirft. Ich entscheide.“ | `home.ts:38` · `ca.ts:91` · `home.ts:115` |
+| **2. 具体** Concrete | 用对象、数字、工具名代替抽象名词 | “Data tables, filters, and bulk actions for a nationwide Swiss platform.” · „Datentabellen, Filter und Sammelaktionen für eine schweizweite Plattform.“ | `home.ts:61` · `home.ts:138` |
+| **3. 克制** Calm | 短句，不喊口号；让数字自己说话，限定词照留 | “Less searching. More advising.” · “Designed for 500+ advisors” · „Weniger suchen. Mehr beraten.“ | `ca.ts:8–9` · `home.ts:22` · `ca.ts:190–191` |
+| **4. 有人味** Human | 有生活细节、一点幽默，但不卖萌 | “Better work. More life.” · “Be there for the candles.” · „Bessere Arbeit. Mehr Leben.“ | `about-me.ts:20` · `app/lab/party-planner/party-planner-page.tsx:502` · `about-me.ts:50` |
+
+#### 是 / 不是
+
+| 是 | 不是 | ✅ EN | ❌ EN |
+|---|---|---|---|
+| 自信 | 自夸 | Designed for 500+ advisors.（`home.ts:22`） | Transformed how 500+ advisors work. |
+| 具体 | 抽象 | One AI-supported view that surfaces the right information at the right moment.（`home.ts:21`） | Advisor workflow optimization through AI-driven synergies. |
+| 克制 | 炒作 | AI widens the options; strategy and taste decide what’s worth building.（`ai.ts:29`） | Supercharge your design process with cutting-edge AI. |
+| 人主导 | AI 包装 | AI drafts and iterates with me at every step.（`home.ts:40`） | A fully automated, AI-powered design engine. |
+| 诚实：I 和 we 分清 | 把团队的事写成个人的 | I facilitated the stakeholder workshop. We chose the connecting layer.（示范句，事实见 `content/ask-lu/cases/ubs-advisory.md:16,19`） | I convinced the stakeholders to build the layer. |
+| 精确：限定词照留 | 为了好看删掉限定词 | Up to about 30 min saved on complex cases.（示范句，事实见 `ubs-advisory.md:26`） | 30 min saved. |
+| 温暖 | 卖萌 | Swim to reset.（`about-me.ts:12`，现写作 Swim to Reset，见清单 #36） | Pool time = brain reboot!! 🏊 |
+
+**DE 关键几条**
+
+| ✅ DE | ❌ DE | 为什么 |
+|---|---|---|
+| KI entwirft. Ich entscheide.（`home.ts:115`） | KI revolutioniert meinen Designprozess. | 直接、人主导，不炒作 |
+| Gestaltet für über 500 Berater.（`home.ts:98`） | Hat die Arbeit von 500 Beratern transformiert. | 自信不自夸，数字照事实 |
+| Bis zu etwa 30 Min. bei komplexen Fällen.（示范句，事实见 `ubs-advisory.md:26`） | 30 Min. gespart. | 限定词不能删 |
+| Datentabellen, Filter und Sammelaktionen für eine schweizweite Plattform.（`home.ts:138`） | Nahtlos, mühelos, ganzheitlich. | 具体，不堆空形容词 |
+| Haben Sie eine Rolle oder ein Projekt im Blick?（示范句） | Hast du einen Job für mich? | 一律 Sie（见 5.4） |
+
+#### 按场景调语气
+
+「长度」一列的词数、句数上限是**提案，待 Lu 确认**：从现有文案的长度估出来的，站上并非每处都满足。
+
+| 场景 | 目的 | 语气 | 人称 | 长度（提案） | ✅ EN | ✅ DE |
+|---|---|---|---|---|---|---|
+| **首页** Hero / 卡片 | 10 秒内说清 Lu 是谁、做过什么 | 最克制、最短：一个主张 + 一个证据 | I（可省主语） | 标题 ≤ 8 词，正文 1 句 | Design for products where mistakes are expensive.（`home.ts:5`） | Design für Produkte, bei denen Fehler teuer sind.（`home.ts:80`） |
+| **案例页** | 讲清 问题 → 决定 → 结果 | 叙述、具体；可以有张力，不戏剧化 | **I = Lu 本人做的，we = 团队做的**，不混用；没出处的个人角色不写 | 段落 ≤ 3 句；数字带限定词 | The team chose the connecting layer.（示范句，`ubs-advisory.md:19`） | Das Team entschied sich für die verbindende Ebene.（示范句） |
+| **About** | 让人想认识她 | 最温暖，可以有生活细节 | I | 短标签 + 一句 | Better work. More life.（`about-me.ts:20`） | Bessere Arbeit. Mehr Leben.（`about-me.ts:50`） |
+| **Playground** | 展示好奇心和动手能力 | 最轻松，可以玩文字；功能说明仍要清楚 | 产品名 / I | 卡片 1 句 | Plan smarter. Travel further.（`owg.ts:14`） | Klüger planen. Weiter reisen.（`owg.ts:28`） |
+| **Way of Work / AI** | 讲方法和判断 | 冷静、有观点；不神化工具 | I；步骤用动词开头 | 步骤标题 ≤ 6 词 | AI drafts. I decide.（`home.ts:38`） | KI entwirft. Ich entscheide.（`home.ts:115`） |
+| **按钮 / 链接** | 说清点了会怎样 | 中性，动词开头，sentence case | 无 | 1–3 词 | Explore case study · Download CV（`home.ts:24`、`common.ts:6`） | Case Study ansehen · Lebenslauf herunterladen（`home.ts:101`、`common.ts:27`） |
+| **报错 / 空状态** | 说发生了什么 + 下一步 | 平静、负责；不怪读者，不卖萌 | 无 / Sie | 1–2 句 | Sorry, something went wrong. Please try again, or email Lu directly.（`public/home.html:2138`） | Da ist etwas schiefgelaufen. Bitte versuchen Sie es noch einmal oder schreiben Sie Lu direkt eine E-Mail.（`public/home.html:2143`） |
+| **Alt / aria** | 读屏用户拿到同样的信息 | 描述画面，不营销；图里没有额外信息时用 `alt=""` | 第三人称 | 1 句 | A client advisor wearing a headset works at a laptop…（`ca.ts:30`） | Ein Kundenberater mit Headset arbeitet am Laptop…（`ca.ts:212`） |
+| **Ask Lu** | 代 Lu 回答 | 友好；用第三人称说 Lu | she / Lu；对读者 you / Sie | 短 | Hi! I’m Lu’s AI assistant. Ask about her work, experience, or process.（`home.ts:13`） | Hallo! Ich bin Lus KI-Assistent. Fragen Sie nach ihrer Arbeit, Erfahrung oder Arbeitsweise.（`home.ts:89`） |
+
+#### 规则
+
+- **事实以 Lu 自己的笔记为准**：`content/ask-lu/`（Ask Lu 的知识库，Lu 写的）。页面和笔记说法不同，不自己挑，问 Lu。**笔记里没有 ≠ 是错的**：只能标「缺出处」去问 Lu，不能写成编造或假数据。
+- **职位 ≠ 项目角色**：UBS 职位是 Senior Service Designer，CA 项目角色是 Lead Service Designer，两个都对。经历列表用职位，案例页用项目角色。
+- **少用的词**：EN effortless, seamless, supercharge, cutting-edge, unlock, empower, leverage, revolutionize；DE nahtlos, mühelos, revolutionär, ganzheitlich。换成具体动作或数字。`harness-core/scripts/copycheck` 会标出这类词。
+- **提案，待 Lu 确认**：双关和手写体口吻只用在 Playground 和 About，按钮不用。现有例外：E.ON 案例页已有手写注语（`eon.ts:17–20`、`:62–65`、`:147–148`）。Lu 定：保留为案例页例外，还是收回到 Playground / About。
+
+### 5.3 English
+
+- **美式拼写**：optimize、recognize、prioritized、judgment、artifacts、personalize。
+- **按钮 / 链接用 sentence case**：`Let's talk`、`Explore now`、`Contact me`、`Back to homepage`、`Start planning`。专有名称保留大写：`Way of Work`、`Agent Monitor`、`Playground`。
+- 列表用 Oxford comma：clarity, compliance, and trust。
+- 引号用弯引号 “ ” 和 ’，不用直引号。
+- 页面标题格式：`Lu — Page name`。
+
+### 5.4 Deutsch
+
+- **一律 “Sie”**（招聘方 / 企业读者）。不用 “du / dein / Frag mich / Lass uns”。E.ON 计算器 UI 原型本身也是 Sie。
+- 使用德国德语拼写：**ß**（maßgeschneidert、größten），不用瑞士 ss。
+- 职位用女性形式：`Lead Service Designerin`、`Product Designerin`、`Designerin`。
+- 术语：proposal → **Anlagevorschlag**（不用 Offerte / Angebot）；research（叙述中）→ **Recherche**，作为方法 / 范围标签可保留 `Research`；end-to-end 写作 `end-to-end`。
+- 百分号前加空格：`300 %`、`5,1 %`；小数用逗号。
+- 引号用 „ “。
+- 避免直译腔和英文名词硬拼：用 “Ideen greifbar machen”，不用 “Ideen wirklich machen”；用 “Abschlussrate / wird häufiger abgeschlossen”，不用 “Completion-Raten”。
+- 可保留的英文行业词：Case Study、Design System、Workflow、Lead-Conversion、Playground、Way of Work。
+- 页面标题格式：`Lu — Seitenname`。
+
+### 5.5 Copy review checklist
+
+- [ ] EN 与 DE 意思一致，没有一边多一边少
+- [ ] 指标在首页卡片、案例页、metadata 中一致
+- [ ] DE 全部为 Sie；EN 为美式拼写
+- [ ] 按钮 sentence case；页面标题 `Lu — …`
+- [ ] HTML 默认文本已与字典同步
+- [ ] 原型中的人名、步骤名、标签前后一致（例：Party Planner 生日主角 = Mia）
+- [ ] 语气符合 5.2a：I / we 分清；数字和事实与 `content/ask-lu/` 一致，限定词（up to / about）没被删掉
+
+---
+
 ## Appendix — Quick Reference
 
 ```
 Fonts:     Poppins (UI + Display site-wide) · Caveat (E.ON hand only) · Patrick Hand (PP hand only)
-Accent:    Blue-violet #8B5CF6 / hover #A78BFA  → signal only
+Accent:    Index blue #7ea2ff / hover #a9c4ff  → signal only. Header check is the same blue.
 Pad:       24px content · Wells 1440 / 1040
 Space:     8 · 16 · 24 · 48 · 80 · 96 · 128
-Pill M:    999px · padding 0.85rem 1.9rem · gap 0.5rem · 320ms
+Portfolio CTA: 46px · 0 28px · Poppins 15.2px · icon 16px · gap 8px · radius 999px
 Ease:      cubic-bezier(0.22, 1, 0.36, 1)
 ```
 

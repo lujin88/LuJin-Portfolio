@@ -55,14 +55,14 @@
 
 :root {
   color-scheme: light;
-  /* Header layer — chrome only (#4a90ff). Not Host #8B5CF6. Not a case Session accent. */
+  /* Header accent matches the host index blue (#7ea2ff). Not a case Session accent. */
   --header-scrim: oklch(0.15 0.012 264);
   --header-foreground: oklch(0.985 0 0);
   --header-line: oklch(1 0 0 / 28%);
   --header-glass: rgb(3 10 24);
   --header-menu: oklch(0.24 0.004 264);
   --header-menu-item: oklch(0.29 0.004 264);
-  --header-accent: #4a90ff;
+  --header-accent: #7ea2ff;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);

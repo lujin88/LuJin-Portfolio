@@ -8,7 +8,7 @@ const ROUTES = [
   '/EON',
   '/about',
   '/ai-workflow-case',
-  '/lab/action-center',
+  '/lab/agent-monitor',
   '/lab/off-we-go',
   '/lab/party-planner',
   '/lab/way-of-work',
