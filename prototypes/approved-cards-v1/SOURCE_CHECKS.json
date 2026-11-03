@@ -1,0 +1,22 @@
+{
+  "SOLAR": {
+    "sha256": "c2dded5009e2aa472d18fce2b2b0219869b3c0495b0d6039297867bb8d0cf2f9",
+    "bytes": 2248106,
+    "matchesApprovedShare": true
+  },
+  "ZH": {
+    "sha256": "5dc5b2b7912d3bc56fa2b22da9c21f28d7d13b153b9ce22a8afa2eed3bd77807",
+    "bytes": 2097980,
+    "matchesApprovedShare": true
+  },
+  "FR": {
+    "sha256": "c209b9f860485870933f823056599494d6129cb7b48171343ae405901d493763",
+    "bytes": 1987617,
+    "matchesApprovedShare": true
+  },
+  "DE": {
+    "sha256": "1c12540443fd154f0b3307ab37602896b9f9caa6c2f158430e9204622684044c",
+    "bytes": 1961014,
+    "matchesApprovedShare": true
+  }
+}

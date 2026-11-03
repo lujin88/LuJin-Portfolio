@@ -1,0 +1,222 @@
+{
+  "solar": {
+    "size": [
+      864,
+      540
+    ],
+    "frames": 192,
+    "bytes": 449777,
+    "keyframes": [
+      0,
+      144
+    ],
+    "colr": [
+      1,
+      13,
+      1,
+      0
+    ],
+    "SPS": [
+      "[trace_headers @ 0xc7300c050] 89          video_full_range_flag                                       0 = 0",
+      "[trace_headers @ 0xc7300c050] 91          colour_primaries                                     00000001 = 1",
+      "[trace_headers @ 0xc7300c050] 99          transfer_characteristics                             00001101 = 13",
+      "[trace_headers @ 0xc7300c050] 107         matrix_coefficients                                  00000001 = 1"
+    ],
+    "hold": {
+      "maxAdjacent": 3,
+      "largestAdjacentMAE": 0.0029578189300411522
+    },
+    "firstLastDecoded": {
+      "meanAbsolute": 0.9081197130772748,
+      "max": 20,
+      "changedPixelsGt8": 86,
+      "percentGt8": 0.01843278463648834,
+      "meanRGBDelta": [
+        -0.007064471879286694,
+        -0.007047325102880658,
+        0.00010931069958847737
+      ]
+    },
+    "motion": {
+      "meanAbsolute": 0.38210162322816643,
+      "max": 197,
+      "changedPixelsGt8": 8332,
+      "percentGt8": 1.7858367626886145,
+      "meanRGBDelta": [
+        0.0029492455418381343,
+        0.0022505144032921812,
+        0.001903292181069959
+      ]
+    },
+    "sourceStaticRegions": {
+      "sky": {
+        "meanAbsolute": 0,
+        "max": 0,
+        "changedPixelsGt8": 0,
+        "percentGt8": 0,
+        "meanRGBDelta": [
+          0,
+          0,
+          0
+        ]
+      },
+      "panel": {
+        "meanAbsolute": 0,
+        "max": 0,
+        "changedPixelsGt8": 0,
+        "percentGt8": 0,
+        "meanRGBDelta": [
+          0,
+          0,
+          0
+        ]
+      },
+      "window": {
+        "meanAbsolute": 0,
+        "max": 0,
+        "changedPixelsGt8": 0,
+        "percentGt8": 0,
+        "meanRGBDelta": [
+          0,
+          0,
+          0
+        ]
+      },
+      "lake": {
+        "meanAbsolute": 6.131512971441029,
+        "max": 29,
+        "changedPixelsGt8": 2209,
+        "percentGt8": 36.118378024852845,
+        "meanRGBDelta": [
+          0.07390451275343361,
+          0.06164159581425768,
+          0.053629823413996074
+        ]
+      }
+    }
+  },
+  "solar448": {
+    "size": [
+      448,
+      280
+    ],
+    "frames": 192,
+    "bytes": 160307,
+    "keyframes": [
+      0,
+      144
+    ],
+    "colr": [
+      1,
+      13,
+      1,
+      0
+    ],
+    "SPS": [
+      "[trace_headers @ 0xbf2c1c050] 87          video_full_range_flag                                       0 = 0",
+      "[trace_headers @ 0xbf2c1c050] 89          colour_primaries                                     00000001 = 1",
+      "[trace_headers @ 0xbf2c1c050] 97          transfer_characteristics                             00001101 = 13",
+      "[trace_headers @ 0xbf2c1c050] 105         matrix_coefficients                                  00000001 = 1"
+    ],
+    "hold": {
+      "maxAdjacent": 3,
+      "largestAdjacentMAE": 0.0030638818027210885
+    },
+    "firstLastDecoded": {
+      "meanAbsolute": 1.063626700680272,
+      "max": 22,
+      "changedPixelsGt8": 92,
+      "percentGt8": 0.07334183673469388,
+      "meanRGBDelta": [
+        -0.008386479591836735,
+        -0.0039700255102040815,
+        0.018112244897959182
+      ]
+    },
+    "motion": {
+      "meanAbsolute": 0.3858843537414966,
+      "max": 199,
+      "changedPixelsGt8": 2269,
+      "percentGt8": 1.8088329081632653,
+      "meanRGBDelta": [
+        0.01600765306122449,
+        0.01253188775510204,
+        0.009438775510204082
+      ]
+    },
+    "sourceStaticRegions": {},
+    "lake": {
+      "meanAbsolute": 5.469576719576719,
+      "max": 29,
+      "changedPixelsGt8": 548,
+      "percentGt8": 31.065759637188208,
+      "meanRGBDelta": [
+        0.05102040816326531,
+        0.011904761904761904,
+        0.02947845804988662
+      ]
+    }
+  },
+  "dolphin": {
+    "size": [
+      864,
+      600
+    ],
+    "frames": 288,
+    "bytes": 703226,
+    "keyframes": [
+      0,
+      240
+    ],
+    "colr": [
+      1,
+      13,
+      1,
+      0
+    ],
+    "SPS": [
+      "[trace_headers @ 0xc1ec1c050] 91          video_full_range_flag                                       0 = 0",
+      "[trace_headers @ 0xc1ec1c050] 93          colour_primaries                                     00000001 = 1",
+      "[trace_headers @ 0xc1ec1c050] 101         transfer_characteristics                             00001101 = 13",
+      "[trace_headers @ 0xc1ec1c050] 109         matrix_coefficients                                  00000001 = 1"
+    ],
+    "hold": {
+      "maxAdjacent": 3,
+      "largestAdjacentMAE": 0.0010558127572016462
+    },
+    "firstLastDecoded": {
+      "meanAbsolute": 0.9725437242798355,
+      "max": 23,
+      "changedPixelsGt8": 818,
+      "percentGt8": 0.1577932098765432,
+      "meanRGBDelta": [
+        -0.008883101851851852,
+        -0.006039737654320988,
+        -0.018503086419753085
+      ]
+    },
+    "motion": {
+      "meanAbsolute": 0.4922151491769547,
+      "max": 199,
+      "changedPixelsGt8": 5656,
+      "percentGt8": 1.0910493827160492,
+      "meanRGBDelta": [
+        0.05384066358024692,
+        0.11487847222222222,
+        0.07797260802469136
+      ]
+    },
+    "sourceStaticRegions": {},
+    "frames249to250": {
+      "meanAbsolute": 0,
+      "max": 0,
+      "changedPixelsGt8": 0,
+      "percentGt8": 0,
+      "meanRGBDelta": [
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "solar": {
+    "frames": 192,
+    "duration": "8.000000",
+    "width": 864,
+    "height": 540,
+    "bytes": 240471,
+    "decodedFirstLastMAE": 0.13519161522633744,
+    "decodedFirstLastMax": 19,
+    "decodedFirstLastPSNR": 53.026726239310506
+  },
+  "dolphin": {
+    "frames": 288,
+    "duration": "12.000000",
+    "width": 432,
+    "height": 300,
+    "bytes": 211155,
+    "decodedFirstLastMAE": 1.1924948559670783,
+    "decodedFirstLastMax": 25,
+    "decodedFirstLastPSNR": 43.00093077209272
+  }
+}

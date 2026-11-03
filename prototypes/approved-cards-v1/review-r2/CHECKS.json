@@ -1,0 +1,44 @@
+{
+  "solar": {
+    "viewport": {
+      "width": 864,
+      "height": 540
+    },
+    "duration": 8,
+    "firstLastMaxDifference": 0,
+    "holdSeconds": 2,
+    "seamMaxDifference": 0,
+    "errors": [],
+    "reducedExact": true,
+    "checkedFrames": 192,
+    "all48HoldFramesExact": true
+  },
+  "solar448": {
+    "viewport": {
+      "width": 448,
+      "height": 280
+    },
+    "duration": 8,
+    "firstLastMaxDifference": 0,
+    "holdSeconds": 2,
+    "seamMaxDifference": 0,
+    "errors": [],
+    "reducedExact": true,
+    "checkedFrames": 192,
+    "all48HoldFramesExact": true
+  },
+  "dolphin": {
+    "viewport": {
+      "width": 864,
+      "height": 600
+    },
+    "duration": 12,
+    "firstLastMaxDifference": 0,
+    "holdSeconds": 2,
+    "seamMaxDifference": 0,
+    "errors": [],
+    "reducedExact": true,
+    "checkedFrames": 288,
+    "all48HoldFramesExact": true
+  }
+}

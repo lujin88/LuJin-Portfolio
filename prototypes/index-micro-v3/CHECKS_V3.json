@@ -1,0 +1,42 @@
+{
+  "NORMAL": {
+    "errors": [],
+    "state": {
+      "display": "block",
+      "animations": [
+        "running",
+        "running",
+        "running"
+      ]
+    }
+  },
+  "SLOW": {
+    "errors": [],
+    "state": {
+      "display": "block",
+      "animations": [
+        "running",
+        "running",
+        "running"
+      ]
+    }
+  },
+  "REDUCED": {
+    "errors": [],
+    "state": {
+      "display": "none",
+      "animations": [
+        "paused",
+        "paused",
+        "paused"
+      ]
+    }
+  },
+  "seamExact": true,
+  "selection": {
+    "score": 0.7897710905349794,
+    "time": 1900,
+    "frames": 81,
+    "faceMax": 0
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "authorization": "Buzz 05d6fab3e406a04afff4b9a50f0cf9f4e6d8632b8dc2022ae90e398e1e722630",
+  "balance_before": 473,
+  "jobs": [
+    {
+      "submit_id": "d6466444-0c7a-4d4d-be50-e0bff9124d7f",
+      "mode": "image2image",
+      "status": "fail",
+      "reason": "upload phase, no file upload",
+      "reported_credit_count": null,
+      "observed_balance_after": 473
+    },
+    {
+      "submit_id": "f45512c6-495d-4aa5-bc8e-1b6c1c3bc436",
+      "mode": "text2image",
+      "model": "5.0",
+      "resolution": "2k",
+      "ratio": "16:9",
+      "status": "success",
+      "reported_credit_count": 3,
+      "width": 2560,
+      "height": 1440,
+      "prompt": "Photoreal architectural dusk photograph for a quiet premium solar energy website. A modern Swiss lakeside home with a broad sloping dark photovoltaic roof, warm timber and pale stone exterior, large glass doors with restrained warm interior light. Three-quarter front view, the complete house is within the LEFT 60 percent of the image with space above and below, the right side is quiet dark landscape suitable behind webpage text. Small reflecting pool in front, planted grasses and a few slender trees, distant blue grey lake and mountains. Subtle peach horizon, blue grey evening sky. Realistic straight architecture and clean aligned solar cells. Ground-level locked camera, 35mm architectural lens, natural materials, soft photographic detail. No people, no cars, no text, no labels, no logos, no illustration, no exaggerated flare. Calm, credible residential architecture, not a mansion advertisement."
+    }
+  ],
+  "balance_after": 470,
+  "generated_video_jobs": 0,
+  "motion_method": "local transparent SVG overlays; CSS Web Animations API; no generative video"
+}

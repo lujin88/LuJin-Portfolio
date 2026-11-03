@@ -1,0 +1,30 @@
+{
+  "solar": {
+    "viewport": {
+      "width": 864,
+      "height": 540
+    },
+    "duration": 8,
+    "firstLastMaxDifference": 0,
+    "holdSeconds": 2,
+    "seamMaxDifference": 0,
+    "errors": [],
+    "reducedExact": true,
+    "checkedFrames": 192,
+    "all48HoldFramesExact": true
+  },
+  "dolphin": {
+    "viewport": {
+      "width": 432,
+      "height": 300
+    },
+    "duration": 12,
+    "firstLastMaxDifference": 0,
+    "holdSeconds": 2,
+    "seamMaxDifference": 0,
+    "errors": [],
+    "reducedExact": true,
+    "checkedFrames": 288,
+    "all48HoldFramesExact": true
+  }
+}

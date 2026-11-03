@@ -1,0 +1,94 @@
+{
+  "decodedHash": "SHA256=f2bdb3c9782a58e04bae0438709f237666a181bc0c35175c8cab9047797528ab",
+  "frameCount": 384,
+  "firstRestart": {
+    "max": 0,
+    "mae": 0,
+    "gt24": 0,
+    "pct24": 0
+  },
+  "peakEncoded": {
+    "max": 216,
+    "mae": 0.626610331632653,
+    "gt24": 981,
+    "pct24": 0.7820471938775511
+  },
+  "lastTenAdjacent": [
+    {
+      "frame": 182,
+      "max": 0,
+      "mae": 0,
+      "gt24": 0,
+      "pct24": 0
+    },
+    {
+      "frame": 183,
+      "max": 0,
+      "mae": 0,
+      "gt24": 0,
+      "pct24": 0
+    },
+    {
+      "frame": 184,
+      "max": 0,
+      "mae": 0,
+      "gt24": 0,
+      "pct24": 0
+    },
+    {
+      "frame": 185,
+      "max": 0,
+      "mae": 0,
+      "gt24": 0,
+      "pct24": 0
+    },
+    {
+      "frame": 186,
+      "max": 0,
+      "mae": 0,
+      "gt24": 0,
+      "pct24": 0
+    },
+    {
+      "frame": 187,
+      "max": 0,
+      "mae": 0,
+      "gt24": 0,
+      "pct24": 0
+    },
+    {
+      "frame": 188,
+      "max": 0,
+      "mae": 0,
+      "gt24": 0,
+      "pct24": 0
+    },
+    {
+      "frame": 189,
+      "max": 0,
+      "mae": 0,
+      "gt24": 0,
+      "pct24": 0
+    },
+    {
+      "frame": 190,
+      "max": 0,
+      "mae": 0,
+      "gt24": 0,
+      "pct24": 0
+    },
+    {
+      "frame": 191,
+      "max": 0,
+      "mae": 0,
+      "gt24": 0,
+      "pct24": 0
+    }
+  ],
+  "seam": {
+    "max": 22,
+    "mae": 1.10578231292517,
+    "gt24": 0,
+    "pct24": 0
+  }
+}
