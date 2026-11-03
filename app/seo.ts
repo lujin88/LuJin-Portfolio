@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-export const SITE_URL = 'https://lujin-portfolio.vercel.app'
+export const SITE_URL = 'https://lujin.me'
 export const SITE_NAME = 'Lu Jin'
 export const DEFAULT_OG_IMAGE = '/og/default.jpg'
 
