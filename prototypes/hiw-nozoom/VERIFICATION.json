@@ -1,0 +1,105 @@
+{
+  "before": {
+    "width_pct": [
+      -1.4380530973451378,
+      3.0973451327433565
+    ],
+    "height_pct": [
+      -3.039513677811545,
+      0.911854103343468
+    ],
+    "adjacent_width_pct": [
+      -1.637554585152834,
+      1.683501683501687
+    ],
+    "adjacent_height_pct": [
+      -1.2048192771084376,
+      0.92592592592593
+    ],
+    "equivalent_scale_pct": [
+      -1.4789134377603985,
+      1.2422172358173666
+    ],
+    "first_last_mean_abs_pixel_delta": 1.6573072336660704,
+    "first_last_psnr": 35.9617549686085,
+    "laptop_tracking_scale_pct": [
+      -4.650322655064332,
+      1.6469926259160772
+    ]
+  },
+  "after": {
+    "width_pct": [
+      -0.11061946902655162,
+      0.22123893805310324
+    ],
+    "height_pct": [
+      -0.3039513677811523,
+      0.0
+    ],
+    "adjacent_width_pct": [
+      -0.22075055187638082,
+      0.33222591362125353
+    ],
+    "adjacent_height_pct": [
+      -0.3039513677811523,
+      0.304878048780477
+    ],
+    "equivalent_scale_pct": [
+      -0.20733223699176406,
+      0.11055835327915542
+    ],
+    "first_last_mean_abs_pixel_delta": 0.8038817725463043,
+    "first_last_psnr": 41.61393496956848,
+    "laptop_tracking_scale_pct": [
+      -4.362560222659906,
+      4.186504470457231
+    ]
+  },
+  "controlled_v2": {
+    "width_pct": [
+      0.0,
+      0.0
+    ],
+    "height_pct": [
+      0.0,
+      0.0
+    ],
+    "adjacent_width_pct": [
+      0.0,
+      0.0
+    ],
+    "adjacent_height_pct": [
+      0.0,
+      0.0
+    ],
+    "equivalent_scale_pct": [
+      0.0,
+      0.0
+    ],
+    "first_last_mean_abs_pixel_delta": 0.1774979324139788,
+    "first_last_psnr": 50.8902976389484,
+    "laptop_tracking_scale_pct": [
+      -3.2934324978306506e-05,
+      0.10075103985067724
+    ]
+  },
+  "measurement": "Bright subject/table envelope, original frame 0 reference 904x329. Independent tracking measures laptop deformation, not camera ground truth.",
+  "files": {
+    "ORIGINAL.mp4": {
+      "sha256": "8561670dcc7310f76afb2edf3a510f16dcb3e1db3db3f260c7e1123c53f75cf7",
+      "bytes": 462266
+    },
+    "BEFORE.mp4": {
+      "sha256": "c77b8571d6e39b141366f187809ddbbc178940bca54fb1d7cfa7a4978ffeb2f4",
+      "bytes": 755674
+    },
+    "AFTER.mp4": {
+      "sha256": "9616743001354098856cae76e0d397a2b2429ddb30bea3d213a94412a22195ff",
+      "bytes": 1165824
+    },
+    "CONTROLLED_V2.mp4": {
+      "sha256": "967350e5d3d1911278dfbf92e163c0654ea220902628da17d3fe14f3a0715360",
+      "bytes": 250111
+    }
+  }
+}
