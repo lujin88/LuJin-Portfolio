@@ -133,6 +133,7 @@ export function DiandianPage() {
     const frame = frameRef.current
     if (!frame) return
     let observer: ResizeObserver | undefined
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 
     const fit = () => {
       const doc = frame.contentDocument
@@ -145,9 +146,12 @@ export function DiandianPage() {
 
     // The iframe is as tall as the page, so its own viewport would mark every
     // video as visible. Play only the ones in the site window.
+    // With reduced motion, nothing autoplays. Each video stays paused on its
+    // poster; a video the visitor starts by pressing the knob keeps playing.
     const syncVideos = () => {
       const doc = frame.contentDocument
       if (!doc) return
+      const reduced = reducedMotion.matches
       const frameTop = frame.getBoundingClientRect().top
       doc.querySelectorAll('video').forEach((node) => {
         const video = node as HTMLVideoElement
@@ -155,8 +159,8 @@ export function DiandianPage() {
         const top = frameTop + rect.top
         const bottom = frameTop + rect.bottom
         const visible = bottom > 0 && top < window.innerHeight
-        if (visible) video.play().catch(() => {})
-        else video.pause()
+        if (!visible) video.pause()
+        else if (!reduced) video.play().catch(() => {})
       })
     }
 
@@ -181,14 +185,24 @@ export function DiandianPage() {
     }
 
     const onScroll = () => syncVideos()
+    const onMotionChange = () => {
+      if (reducedMotion.matches) {
+        frame.contentDocument?.querySelectorAll('video').forEach((video) => video.pause())
+      }
+      // The export has its own listener that plays every video in the
+      // page-tall iframe. Sync after it so offscreen videos stay paused.
+      window.requestAnimationFrame(syncVideos)
+    }
     frame.addEventListener('load', onLoad)
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
+    reducedMotion.addEventListener('change', onMotionChange)
     if (frame.contentDocument?.readyState === 'complete') onLoad()
     return () => {
       frame.removeEventListener('load', onLoad)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
+      reducedMotion.removeEventListener('change', onMotionChange)
       observer?.disconnect()
     }
   }, [])
