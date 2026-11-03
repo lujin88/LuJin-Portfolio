@@ -23,13 +23,19 @@
     float inside(float x,float a,float b){return smoothstep(a,a+.004,x)*(1.-smoothstep(b-.004,b,x));}
     void main(){
       vec2 q=(uv-.5)*crop+.5;
+      float light=0.;
       if(solar>.5){
         // Pool polygon is strictly inside the waterline; lake excludes trees and shore.
         float left=.263+(q.y-.833)*(-1.22);
         float right=.418+(q.y-.878)*(-3.9);
         float pool=inside(q.y,.767,.877)*inside(q.x,left,right);
-        float lake=inside(q.y,.648,.704)*inside(q.x,.69,.994);
-        q.x+=amount*(pool*.00125*sin(q.y*480.-time*2.1)+lake*.00065*sin(q.y*550.-time*1.3));
+        float lake=smoothstep(.638,.653,q.y)*(1.-smoothstep(.666,.677,q.y))
+          *smoothstep(.650,.680,q.x)*(1.-smoothstep(.978,.995,q.x));
+        // Travelling neutral light/dark pairs: the water carries the motion,
+        // with no hue shift, sky exposure change, or moving shore geometry.
+        float wave=sin(q.y*720.-time*5.2+sin(q.x*60.-time*1.7)*1.9+sin(q.x*129.+time*.9)*.45);
+        light=amount*lake*.11*wave;
+        q.x+=amount*(pool*.0018*sin(q.y*480.-time*2.1)+lake*.012*sin(q.y*550.-time*1.7));
       } else {
         // Anchor the upper lip. Compress only the opening; stretch the lower white
         // muzzle back to its fixed boundary, keeping the nose and eyes untouched.
@@ -43,6 +49,7 @@
         }
       }
       gl_FragColor=texture2D(art,q);
+      gl_FragColor.rgb*=1.+light;
     }`));
   gl.linkProgram(program);
   if(!gl.getProgramParameter(program,gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program));

@@ -1,0 +1,24 @@
+{
+  "solar": {
+    "http": true,
+    "finalSourceMatchesExport": true,
+    "pauseStopsDraws": true,
+    "reducedToggle": true,
+    "offscreenPauses": true,
+    "errors": []
+  },
+  "dolphin": {
+    "http": true,
+    "finalSourceMatchesExport": true,
+    "pauseStopsDraws": true,
+    "reducedToggle": true,
+    "offscreenPauses": true,
+    "errors": []
+  },
+  "reviewPage": {
+    "cardWidths": [
+      448,
+      448
+    ]
+  }
+}
