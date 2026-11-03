@@ -10,10 +10,10 @@ The four input PNGs remain byte-for-byte copies of Lu's approved stills. See `SO
 
 | Asset | Motion | Timing | Export size |
 | --- | --- | --- | --- |
-| E.ON | Travelling light/dark bands confined to the right lake surface, with small pool reflection displacement. Sky, panels, architecture and window light stay fixed. | 6 s motion, 2 s original-frame hold, hard restart | 864 × 540 master and native 448 × 280 review |
+| E.ON | Broad refraction and neutral brightness waves in the foreground pool's warm window reflection; secondary bands on the right lake. Sky, panels, architecture and window light stay fixed. | 6 s continuous motion, 2 s original-frame hold, hard restart | 864 × 540 master and native 448 × 280 review |
 | Dolphin | Chinese happy, French surprised, German wink; lower mouth deformation within each approved pose, then Chinese again | 3 s per language; 1 s return/settle; hold 10–12 s; hard restart | 864 × 600 |
 
-Revision 2 moves the main action from the pool to the lake. The lake mask ends above the foreground reeds; the effect uses paired neutral light/dark bands rather than changing the overall colour grade. The three dolphin poses still cut directly at 3, 6 and 9 seconds. The nose, upper lip, device, labels and base do not animate within a pose. No continuous fin tween, crossfade or audio lip sync is added.
+Revision 3 addresses the two visibility returns by making the foreground window reflection the main action. A four-edge water mask holds the stone rim fixed while the reflection bends sideways, stretches vertically and brightens/darkens in travelling waves. The 120 ms edge ramps replace the previous six-second sine envelope, so movement continues throughout the active interval. Secondary lake bands remain above the reeds. This changes reflected light locally, not the approved image's overall grade. The dolphin shader and exports remain at revision 2: poses cut directly at 3, 6 and 9 seconds; nose, upper lip, device, labels and base stay fixed within each pose.
 
 `motion.js` is the editable source. This is a raster card preview, not a Rive state-machine delivery; it introduces no application inputs. Rive doctor passed, but these photographic review clips have no .riv file. The approved photographic backgrounds are preserved.
 
@@ -21,15 +21,17 @@ Review controls: `review.setTime(seconds)`, `review.play(rate=1)`, `review.pause
 
 ## Encoding and review evidence
 
-Revision 2 deliverables: `OUTBOX/APPROVED_CARDS_MOTION_20261103/REVISION_2/DELIVERY/`. Earlier attempts and the first delivery are retained in their original folders and are not the revised handoff.
+Current E.ON deliverables: `OUTBOX/APPROVED_CARDS_MOTION_20261103/REVISION_3/DELIVERY/`. Dolphin deliverables remain in `REVISION_2/DELIVERY/`. Earlier attempts are retained. Revision 3 assignment: Buzz `6ce4744ab206ea61606052adc28dd4a6f996f1825d1ce622e487190d7caccc61`.
+
+Native 448×280 visibility: all 192 source frames compared with frame 0 using the maximum RGB-channel difference per pixel, selecting the peak by count >8/255. Peak is frame 53 (2.2083 s): 2,538 pixels >8 (2.023%), 1,064 pixels >24 (0.848%), 422 pixels >48. Revision 2 QA measured 373 pixels >24 (0.297%); the new count is 2.85 times that. All 143 active adjacent-frame pairs change; all 48 hold frames equal the original. `visibility.cjs` reproduces the figures and a 896×280 comparison with two unscaled 448px cards. Visual approval remains with QA/Lu.
 
 - `*_NORMAL.mp4`: one cycle of actual Chrome canvas frames sampled at 24 fps.
 - `*_TWO_LOOPS_UPLOAD.mp4`: two cycles, with ancillary metadata removed for channel upload.
 - `*_SLOW.mp4`: the same encoded frames at quarter speed, remuxed without colour conversion.
 - `*_REDUCED.mp4` and PNG: original still with motion disabled.
 - `*_FIRST_LAST.png`: first frame on the left, last on the right.
-- `solar448_ACTIVE_REGIONS.png`: lake and pool marked on a native 448px card.
-- `CHECKS.json`, `ENCODE_CHECKS.json`, `BROWSER_COLOR.json`, `SMOKE.json` and logs: source-frame, encoded-frame, browser-colour and runtime checks. Current copies are in `review-r2/`; root-level JSON reports describe the previous revision.
+- `solar448_FIRST_PEAK.png`: original left, strongest frame right, each at native 448px.
+- `VISIBILITY.json`, `CHECKS.json`, `ENCODE_CHECKS.json`, `BROWSER_COLOR.json`, `SMOKE.json` and logs: source-frame, encoded-frame, browser-colour and runtime checks. Current compact copies are in `review-r3/`; earlier reports remain in `review-r2/` and the root.
 
 RGB source frames are explicitly converted to limited-range BT.709 YUV and tagged with sRGB transfer (`iec61966-2-1`). Both SPS and MP4 `colr` must read primaries 1 / transfer 13 / matrix 1 / range tv. Scene-cut keyframes are disabled; keyframes occur at frame 0 and hold start (144 for E.ON, 240 for dolphin). Source hold frames are identical; lossy MP4 hold differences are measured separately and must not be described as pixel-identical.
 

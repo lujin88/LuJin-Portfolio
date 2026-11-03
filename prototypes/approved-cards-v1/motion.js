@@ -25,17 +25,20 @@
       vec2 q=(uv-.5)*crop+.5;
       float light=0.;
       if(solar>.5){
-        // Pool polygon is strictly inside the waterline; lake excludes trees and shore.
-        float left=.263+(q.y-.833)*(-1.22);
-        float right=.418+(q.y-.878)*(-3.9);
-        float pool=inside(q.y,.767,.877)*inside(q.x,left,right);
+        // Four measured waterline edges. Taper refraction before the stone rim.
+        float top=max(.831-.311*(q.x-.265),.755+.086*(q.x-.509));
+        float bottom=min(.831+.292*(q.x-.265),.876-.505*(q.x-.419));
+        float pool=smoothstep(top+.003,top+.012,q.y)
+          *(1.-smoothstep(bottom-.012,bottom-.003,q.y));
         float lake=smoothstep(.638,.653,q.y)*(1.-smoothstep(.666,.677,q.y))
           *smoothstep(.650,.680,q.x)*(1.-smoothstep(.978,.995,q.x));
         // Travelling neutral light/dark pairs: the water carries the motion,
         // with no hue shift, sky exposure change, or moving shore geometry.
         float wave=sin(q.y*720.-time*5.2+sin(q.x*60.-time*1.7)*1.9+sin(q.x*129.+time*.9)*.45);
-        light=amount*lake*.11*wave;
-        q.x+=amount*(pool*.0018*sin(q.y*480.-time*2.1)+lake*.012*sin(q.y*550.-time*1.7));
+        float reflection=sin(q.y*235.-time*3.8+sin(q.x*18.+time*.8)*.7);
+        light=amount*(lake*.11*wave+pool*.28*reflection);
+        q.x+=amount*(pool*.017*sin(q.y*285.-time*3.8)+lake*.012*sin(q.y*550.-time*1.7));
+        q.y+=amount*pool*.004*sin(q.x*35.+q.y*150.-time*2.7);
       } else {
         // Anchor the upper lip. Compress only the opening; stretch the lower white
         // muzzle back to its fixed boundary, keeping the nose and eyes untouched.
@@ -77,7 +80,8 @@
     const local=t%3;
     const speech= t<9 && local>.35 && local<2.35;
     const syllable=speech ? Math.pow(Math.sin((local-.35)*Math.PI*3),2)*.54 : t>=9&&t<10 ? .3*Math.sin((t-9)*Math.PI)**2 : 0;
-    const envelope=scene==='solar'&&t<6?Math.sin(Math.PI*t/6)**2:0;
+    // Only the final two seconds hold; short edge ramps keep all of 0–6s active.
+    const envelope=scene==='solar'&&t<6?Math.min(1,t/.12,(6-t)/.12):0;
     const tex=textures[pose];
     const width=Math.round(innerWidth*devicePixelRatio),height=Math.round(innerHeight*devicePixelRatio);
     if(canvas.width!==width||canvas.height!==height){canvas.width=width;canvas.height=height;}
