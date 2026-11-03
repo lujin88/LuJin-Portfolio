@@ -1,0 +1,19 @@
+{
+  "first_source_mae": 1.06,
+  "first_next_mae": 2.91,
+  "last_previous_mae": 0.399,
+  "adjacent_median_mae": 2.553,
+  "background_delta_range": [
+    -1.872,
+    1.678
+  ],
+  "figure_region_delta_range": [
+    -0.917,
+    1.65
+  ],
+  "full_delta_range": [
+    -0.847,
+    1.166
+  ],
+  "brightness_fail_frames": []
+}

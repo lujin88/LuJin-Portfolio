@@ -1,0 +1,57 @@
+{
+  "first_source_mae": 1.055,
+  "first_next_mae": 9.161,
+  "opening_adjacent_mae": [
+    {
+      "from": 0,
+      "to": 1,
+      "mae": 9.161
+    },
+    {
+      "from": 1,
+      "to": 2,
+      "mae": 5.521
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "mae": 4.651
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "mae": 3.194
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "mae": 6.569
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "mae": 5.508
+    },
+    {
+      "from": 6,
+      "to": 7,
+      "mae": 4.544
+    }
+  ],
+  "raw_opening_1_to_2_mae": 5.521,
+  "last_previous_mae": 0.399,
+  "adjacent_median_mae": 2.559,
+  "background_delta_range": [
+    -1.874,
+    1.675
+  ],
+  "figure_region_delta_range": [
+    -0.91,
+    1.657
+  ],
+  "full_delta_range": [
+    -0.843,
+    1.158
+  ],
+  "brightness_fail_frames": []
+}
