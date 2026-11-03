@@ -1,0 +1,58 @@
+[
+  {
+    "mode": "before",
+    "state": {
+      "width": 791.77490234375,
+      "height": 488.5030822753906,
+      "paused": false,
+      "display": "block",
+      "currentTime": 1.6134,
+      "path": "M 1305.5 -515.7 C 1384.0 -473.7, 1457.3 -251.7, 1364.0 -193.4 C 1097.7 -27.0, 440.4 66.2, 440.4 254.3",
+      "overflow": false
+    },
+    "errors": [],
+    "captureSeconds": 18.124
+  },
+  {
+    "mode": "after",
+    "state": {
+      "width": 791.77490234375,
+      "height": 488.5030822753906,
+      "paused": false,
+      "display": "block",
+      "currentTime": 1.2393,
+      "path": "M 1015.7137451171875 -209.428466796875 C 895.15328125 -70.32023925781252, 440.40625 59.51410644531251, 440.40625 254.265625",
+      "overflow": false
+    },
+    "errors": [],
+    "captureSeconds": 28.181
+  },
+  {
+    "mode": "slow",
+    "state": {
+      "width": 791.77490234375,
+      "height": 488.5030822753906,
+      "paused": false,
+      "display": "block",
+      "currentTime": 2.228,
+      "path": "M 1015.7137451171875 -209.428466796875 C 895.15328125 -70.32023925781252, 440.40625 59.51410644531251, 440.40625 254.265625",
+      "overflow": false
+    },
+    "errors": [],
+    "captureSeconds": 19.297
+  },
+  {
+    "mode": "reduced",
+    "state": {
+      "width": 0,
+      "height": 0,
+      "paused": true,
+      "display": "none",
+      "currentTime": 0,
+      "path": "",
+      "overflow": false
+    },
+    "errors": [],
+    "captureSeconds": 10.006
+  }
+]

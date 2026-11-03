@@ -1,0 +1,16 @@
+{
+  "frames": 192,
+  "fps": 24,
+  "duration_seconds": 8.0,
+  "cut_source_frame": 143,
+  "cut_seconds": 5.958333333333333,
+  "hold_seconds": 2,
+  "cut_to_first_mae": 0.0,
+  "seam_mae": 0.0,
+  "active_adjacent_median_mae": 0.24172436674167677,
+  "active_adjacent_mean_mae": 0.24861605550061378,
+  "active_adjacent_max_mae": 0.4652684015155886,
+  "hold_max_mae": 0.0,
+  "decide_first_to_peak_mae": 12.649336870026525,
+  "size_bytes": 15263633
+}
