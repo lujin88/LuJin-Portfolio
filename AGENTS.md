@@ -33,4 +33,5 @@ Run the site from the repository root.
 
 - Install with `pnpm install --frozen-lockfile`, using the root `pnpm-lock.yaml` (see the lockfile rules above). The Next apps under `eon/`, `ca/`, `global-header/`, and `global-footer/` are source imported by the root app. Do not install or start them as separate servers.
 - `pnpm dev` is the dev server, pinned to port 3000. Open `http://localhost:3000/index`.
+- Local agents on Lu's Mac must not run `pnpm dev` or take port 3000. Preview on another port instead: `pnpm predev && pnpm exec next dev --port 4620`. Run `predev` first, or the Ask Lu data is not generated.
 - Leave `NEXT_PUBLIC_POSTHOG_KEY` empty to run without analytics. No secret is required.
