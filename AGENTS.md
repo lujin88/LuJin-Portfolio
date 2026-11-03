@@ -15,3 +15,14 @@ This repo is the canonical site on **port 3000**.
 - `http://localhost:3000/` stays empty.
 - First page is `/index`. Always serve the latest full site at `http://localhost:3000/index`.
 - Do not move this app, or lu-portfolio, to 3001.
+
+# 依赖和 lockfile
+
+本项目用 pnpm，Vercel 按 `pnpm-lock.yaml` 装依赖（frozen，lockfile 和 package.json 对不上就构建失败）。
+
+- 改 `package.json` 后一定跑 `pnpm install`，把 `pnpm-lock.yaml` 和 `package.json` 放在同一个提交里。
+- 不要用 `--no-frozen-lockfile` 或改 Vercel 安装命令来绕过 `ERR_PNPM_OUTDATED_LOCKFILE`；报这个错就重新生成 lockfile。
+- 不要用 `npm install` 加依赖（只会改 `package-lock.json`，不改 `pnpm-lock.yaml`）。
+- 推之前跑 `pnpm install --frozen-lockfile`，通过了再推。分支落后 main 很多时先 rebase 再跑。
+
+来源：Lu 2026-11-03（Buzz 事件 e2633b3f）。
