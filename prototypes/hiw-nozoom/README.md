@@ -57,3 +57,7 @@ Use a new output directory; ffmpeg refuses to overwrite an existing video. The o
 Final browser run: test-lock start 10:47:24 load 27.19 / 30.28 / 21.88; end 10:50:33 load 45.57 / 36.03 / 25.82, exit 0. Four modes reported zero page errors and no horizontal overflow. Reduced mode had video paused/hidden and no connector. The initial Next-page loading failures are not acceptance passes. Final candidate regenerated from the checked-in source is byte-identical (SHA256 967350e5d3d1911278dfbf92e163c0654ea220902628da17d3fe14f3a0715360).
 
 Share clips are `REVIEW_FINAL/*_CLEAN_1440.mp4`: 1440×900, cropped from the 1440×1000 recording to remove the browser recorder padding, with explicit full-to-limited range and BT.601-to-BT.709 conversion. This fixes the browser recording export, not the source animation. The original 1440×1000 screenshots and raw recordings remain available. Both normal clips include the transition into the timeline; the full scene keeps the same scale.
+
+## Current correction round
+
+Lu’s four corrections from 3 November are in [REVISION_2.md](REVISION_2.md). That candidate supersedes this document’s relocated connector and four-second brightness animation. Earlier artifacts remain as history.

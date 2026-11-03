@@ -1,0 +1,16 @@
+测试锁被占用，排队中。占用者：
+空闲 | 上一次 pid 96879 结束 2026-11-03 11:17:59 退出码 1
+命令 node /Users/lu/.buzz/REPOS/LuJin-Portfolio-hiw-nozoom/prototypes/hiw-nozoom/record_revision2.cjs
+（记录的 pid 已退出，锁仍被它留下的子进程占着；看 ps 找浏览器/node 进程，别手动删锁）
+[test-lock] 开始 11:18:04 负载 60.09 32.29 25.72 排队 5 秒
+after page loaded
+FIRST {"time":0,"opacity":"1","playing":"hiw-video is-playing"}
+DECIDE_PEAK {"time":2.5,"opacity":"1","playing":"hiw-video is-playing"}
+HOLD {"time":7,"opacity":"1","playing":"hiw-video is-playing"}
+after captured
+seam_slow page loaded
+seam_slow captured
+reduced page loaded
+reduced captured
+[{"mode":"after","state":{"duration":8,"currentTime":2.3225,"rate":1,"startTime":0,"captureStartNavigationSeconds":19.23479999999888,"paused":false,"display":"block","overflow":false,"stageMask":"none","lineDisplay":"none","stillVisibility":"hidden","recordElapsed":10.333700000001118},"errors":[]},{"mode":"seam_slow","state":{"duration":8,"currentTime":1.0512,"rate":0.25,"startTime":5.5,"captureStartNavigationSeconds":15.087200000001118,"paused":false,"display":"block","overflow":false,"stageMask":"none","lineDisplay":"none","stillVisibility":"hidden","recordElapsed":14.2145},"errors":[]},{"mode":"reduced","state":{"duration":null,"currentTime":0,"rate":1,"captureStartNavigationSeconds":null,"paused":true,"display":"none","overflow":false,"stageMask":"none","lineDisplay":"none","stillVisibility":"visible","recordElapsed":null},"errors":[]}]
+[test-lock] 结束 11:19:52 负载 19.47 26.84 24.41 退出码 0

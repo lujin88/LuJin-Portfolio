@@ -1,0 +1,55 @@
+[
+  {
+    "mode": "after",
+    "state": {
+      "duration": 8,
+      "currentTime": 2.3225,
+      "rate": 1,
+      "startTime": 0,
+      "captureStartNavigationSeconds": 19.23479999999888,
+      "paused": false,
+      "display": "block",
+      "overflow": false,
+      "stageMask": "none",
+      "lineDisplay": "none",
+      "stillVisibility": "hidden",
+      "recordElapsed": 10.333700000001118
+    },
+    "errors": []
+  },
+  {
+    "mode": "seam_slow",
+    "state": {
+      "duration": 8,
+      "currentTime": 1.0512,
+      "rate": 0.25,
+      "startTime": 5.5,
+      "captureStartNavigationSeconds": 15.087200000001118,
+      "paused": false,
+      "display": "block",
+      "overflow": false,
+      "stageMask": "none",
+      "lineDisplay": "none",
+      "stillVisibility": "hidden",
+      "recordElapsed": 14.2145
+    },
+    "errors": []
+  },
+  {
+    "mode": "reduced",
+    "state": {
+      "duration": null,
+      "currentTime": 0,
+      "rate": 1,
+      "captureStartNavigationSeconds": null,
+      "paused": true,
+      "display": "none",
+      "overflow": false,
+      "stageMask": "none",
+      "lineDisplay": "none",
+      "stillVisibility": "visible",
+      "recordElapsed": null
+    },
+    "errors": []
+  }
+]
