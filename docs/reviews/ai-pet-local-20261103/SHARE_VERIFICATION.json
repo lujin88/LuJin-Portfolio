@@ -1,0 +1,24 @@
+{
+  "AI_PET_ZH_FR_DE_LOCAL_V5.mp4": {
+    "sha256": "5c6d055d6925c129c45a0fa7842fed6b260a18cd78c3e80da27c038d3bdbaee3",
+    "bytes": 12584229,
+    "colr": [
+      1,
+      13,
+      1,
+      0
+    ],
+    "decoded_frame_hash": "68ea79db19262722afb9440e5cc30f721417a33f0da4f9f65a9d70c48c26cf12"
+  },
+  "AI_PET_ZH_FR_DE_LOCAL_V5_SHARE.mp4": {
+    "sha256": "ae05b8d226352be8cb87aec4283ef7bd5e02645a1f38488d3f5e2fd7720ae3a9",
+    "bytes": 12583567,
+    "colr": [
+      1,
+      13,
+      1,
+      0
+    ],
+    "decoded_frame_hash": "68ea79db19262722afb9440e5cc30f721417a33f0da4f9f65a9d70c48c26cf12"
+  }
+}
