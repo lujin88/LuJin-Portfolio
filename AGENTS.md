@@ -31,6 +31,6 @@ This repo is the canonical site on **port 3000**.
 
 Run the site from the repository root.
 
-- Install with `npm ci`, using the root `package-lock.json`. The Next apps under `eon/`, `ca/`, `global-header/`, and `global-footer/` are source imported by the root app. Do not install or start them as separate servers.
-- `npm run dev` is the dev server, pinned to port 3000. Open `http://localhost:3000/index`.
+- Install with `pnpm install --frozen-lockfile`, using the root `pnpm-lock.yaml` (see the lockfile rules above). The Next apps under `eon/`, `ca/`, `global-header/`, and `global-footer/` are source imported by the root app. Do not install or start them as separate servers.
+- `pnpm dev` is the dev server, pinned to port 3000. Open `http://localhost:3000/index`.
 - Leave `NEXT_PUBLIC_POSTHOG_KEY` empty to run without analytics. No secret is required.
