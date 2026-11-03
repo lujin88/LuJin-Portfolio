@@ -1,0 +1,26 @@
+{
+  "AI_PET_ZH_FR_DE_LOCAL_V6_SHARE.mp4": {
+    "decoded_frames_equal": true,
+    "frames": 192,
+    "bytes": 12687579,
+    "sha256": "858f54e9ca3a4995f524cb3151f6584f2fd2e01ff7a0fda5644fc4a031db4d2e"
+  },
+  "NORMAL_CARD_SHARE.mp4": {
+    "decoded_frames_equal": true,
+    "frames": 304,
+    "bytes": 396507,
+    "sha256": "668cf45f69a03490c6cab5a1e52d89a4481c6ca7e0d991829ed433f85deec7da"
+  },
+  "SEAM_4X_CARD_SHARE.mp4": {
+    "decoded_frames_equal": true,
+    "frames": 422,
+    "bytes": 294366,
+    "sha256": "5fa00f30059f5c07ce63b266ab09d8fbd9038323592471be12a6748cdbf13f22"
+  },
+  "REDUCED_CARD_SHARE.mp4": {
+    "decoded_frames_equal": true,
+    "frames": 161,
+    "bytes": 72713,
+    "sha256": "566026eab8f366cd44d2c483e2f05b2613571e8cd246afcd7e608eee987fba3e"
+  }
+}

@@ -1,3 +1,5 @@
+> Current candidate: [V6 with corrected V2 artwork](v6/README.md). The V5 evidence below is retained for history.
+
 # AI Pet local motion preview — 2026-11-03
 
 Local motion from Lu's approved Chinese / French / German frame, for the homepage project card. PM assignment: Buzz event `28e2d179754106eab462eea6d97191dc5a4d4f4dcd5db6ebb943e34c9f437158` in channel `4d529583-4dcf-4804-816e-94f63f30634b`.
