@@ -30,10 +30,14 @@ const MAX_HISTORY = 10 // messages sent to the model per request
 const MAX_CHARS = 800 // per message
 const MAX_OUTPUT_TOKENS = 500
 
+// Vercel Storage → Upstash names the vars KV_REST_API_*; a manual setup uses UPSTASH_REDIS_REST_*.
+const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL
+const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN
+
 const ratelimit =
-  process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
+  REDIS_URL && REDIS_TOKEN
     ? new Ratelimit({
-        redis: Redis.fromEnv(),
+        redis: new Redis({ url: REDIS_URL, token: REDIS_TOKEN }),
         limiter: Ratelimit.slidingWindow(20, '1 h'), // 20 questions per visitor per hour
         prefix: 'ask-lu',
       })
@@ -67,7 +71,7 @@ export async function POST(req: Request) {
     const { success } = await ratelimit.limit(ip)
     if (!success) return text(429, 'Too many questions for now. Please try again later, or use the contact form.')
   } else if (process.env.NODE_ENV === 'production') {
-    console.error('[ask-lu] Upstash env vars missing — chat disabled in production.')
+    console.error('[ask-lu] Upstash env vars missing (UPSTASH_REDIS_REST_* or KV_REST_API_*) — chat disabled in production.')
     return text(503, 'The chat is temporarily unavailable. Please use the contact form.')
   }
 
