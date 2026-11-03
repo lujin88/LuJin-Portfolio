@@ -1,0 +1,45 @@
+{
+  "file": "AI_PET_ZH_FR_DE_LOCAL_V6.mp4",
+  "bytes": 12688241,
+  "frames": 192,
+  "fps": "24/1",
+  "size": [
+    896,
+    622
+  ],
+  "audio_streams": 0,
+  "colr": [
+    1,
+    13,
+    1,
+    0
+  ],
+  "sps": {
+    "video_full_range_flag": "0",
+    "colour_primaries": "1",
+    "transfer_characteristics": "13",
+    "matrix_coefficients": "1"
+  },
+  "card_size": [
+    432,
+    300
+  ],
+  "adjacent_median": 0.3878137767314911,
+  "hold_entry_mae": 0.0,
+  "loop_mae": 0.0,
+  "hold_max_difference": 0,
+  "max_adjacent_mean_luma_delta": 0.016160465591994466,
+  "max_mean_luma_drift": 0.14393623822923018,
+  "poster_rgb_mean_signed": [
+    -0.21880203485488892,
+    -0.5649151802062988,
+    -0.08462046086788177
+  ],
+  "poster_rgb_mean_absolute": [
+    1.01146399974823,
+    0.8792633414268494,
+    1.177616834640503
+  ],
+  "peak_vs_first_card_mae": 2.35628080368042,
+  "console_max_difference": 11
+}
