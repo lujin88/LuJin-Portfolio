@@ -108,8 +108,8 @@ export function TestingMotionScene({ children, className, sequenceKey }: {
       add(node, [{ opacity: 0, transform: 'translateY(6px) scale(0.95)' }, { opacity: 1, transform: 'none' }], 1590, 240)
     })
 
-    // Person footage is a separate deliverable. These timings exclude the smile;
-    // the media integrator must gate this quote stage on that clip's completion.
+    // Review-only clock until person footage arrives: typing → roof, nod → checks,
+    // smile/speech → quote. Align these cues to the approved footage during integration.
     const typeStart = 1830
     select('[data-quote-panel]').forEach(node => {
       add(node, [{ opacity: 0, transform: 'scale(0.95)' }, { opacity: 1, transform: 'scale(1)' }], typeStart, 300)
@@ -144,4 +144,3 @@ export function TestingMotionScene({ children, className, sequenceKey }: {
 
   return <div id="auto-detect" ref={ref} className={className} style={{ scrollMarginTop: '6rem' }} data-testing-motion>{children}</div>
 }
-

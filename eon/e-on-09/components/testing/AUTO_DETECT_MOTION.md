@@ -17,7 +17,7 @@ This is a once-per-entry explanatory sequence, implemented with Web Animations A
 
 English has 31 animated characters: 3000 ms total, previously 6900 ms. Other languages use their actual character count: `1830 + count × 30 + 240` ms. Times exclude the future smile clip. White uses the existing white palette and retains the supplied quote SVG silhouette.
 
-The woman remains the existing still photograph. Video generation and integration are separate work. The integrator must start the smile after the detection label completes, and delay the quote stage until that smile completes; no guessed video duration is shipped here.
+The woman remains the existing still photograph. Video generation and integration are separate work. Updated coordination request: Buzz event `bdd380b5414abcde1e6829b7ab179ce15fbec5af4972e1b5942ce8f3e7506e1a`. The approved intended order is typing an address → whole Solar image → nod → consecutive checks → smile and speech → quote. The three provisional sync cues are roof at 0 ms, checks at 1050 / 1230 / 1410 ms, and quote at 1830 ms, relative to this UI sequence's start. These are review markers, not video timestamps; align them with the approved footage when it arrives. Do not assume an isolated smile clip must finish before speech/quote. No guessed video duration or completed media synchronization is shipped here.
 
 Mobile B keeps the photograph above the quote; Lu's layout approval is pending. The arrow is also shown on mobile after typing. Desktop keeps its existing overlapping editorial composition. No new gestures.
 
