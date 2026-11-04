@@ -41,7 +41,7 @@
     if(!active||!geometry)return;
     const {top,range,width,height,scale,targetX}=geometry;
     const p=clamp((scrollY-top)/range);
-    const gather=ease(between(p,.43,.82));
+    const gather=ease(between(p,.35,.98));
     const positions=[
       [0,height*.14,-3],
       [width-280,height*.11,3],
@@ -55,11 +55,11 @@
       const shiftY=y+(targetY-y)*gather;
       card.style.transform=`translate3d(${shiftX}px,${shiftY}px,0) rotate(${angle*(1-gather)}deg) scale(${1+(scale-1)*gather})`;
     });
-    slogan.style.opacity=String(between(p,.09,.25)*(1-between(p,.40,.53)));
-    slogan.style.transform=`translate3d(0,${16*(1-between(p,.09,.25))}px,0)`;
-    final.style.opacity=String(between(p,.64,.81));
-    board.style.opacity=String(between(p,.72,.86));
-    note.style.opacity=String(between(p,.79,.9));
+    slogan.style.opacity=String(between(p,.08,.26)*(1-between(p,.32,.44)));
+    slogan.style.transform=`translate3d(0,${16*(1-between(p,.08,.26))}px,0)`;
+    final.style.opacity=String(between(p,.75,.94));
+    board.style.opacity=String(between(p,.80,.96));
+    note.style.opacity=String(between(p,.92,1));
     section.dataset.progress=p.toFixed(4);
   }
   function queue(){if(active&&!scheduled)scheduled=requestAnimationFrame(render);}

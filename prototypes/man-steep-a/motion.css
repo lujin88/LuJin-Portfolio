@@ -15,7 +15,7 @@
 .man-case .man-motion-note {color:var(--muted);font-size:12px;line-height:1.4;margin:20px 0 0;}
 /* Static assembled layout is the baseline: works without JavaScript and with reduced motion. */
 @media(min-width:1001px) {
-  .man-case .man-motion.is-scrubbed {height:2900px;}
+  .man-case .man-motion.is-scrubbed {height:calc(clamp(680px, 100vh, 1000px) + min(80vh, 900px));}
   .man-case .is-scrubbed .man-motion-stage {position:sticky;top:0;height:100vh;min-height:680px;max-height:1000px;padding:0;overflow:visible;}
   .man-case .is-scrubbed .man-motion-over {position:absolute;top:8%;left:0;margin:0;}
   .man-case .is-scrubbed .man-motion-slogan {position:absolute;top:31%;left:0;max-width:850px;margin:0;opacity:0;}

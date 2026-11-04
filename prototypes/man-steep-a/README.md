@@ -8,13 +8,15 @@ A preserves the Stuttgart depot story and gathers four fields from the same 10:0
 
 This is a web scroll prototype, not a Rive asset or production integration. No Rive input or developer integration changes are included. Editable sources are `motion.js`, `motion.css`, and `build.cjs`.
 
-- Above 1000px, native scroll maps to progress 0–1 over the section height minus the stage height. At 1440 × 1000, the section starts at y=634 and has 1900px of progress within its 2900px height.
-- 0–9%: four real screenshot crops are scattered. 9–25%: the existing case-study statement appears. 25–40%: reading interval. 40–53%: statement leaves. 43–82%: fields gather into the same shared record. 64–81%: final heading appears. 72–86%: record frame appears. 79–90%: provenance caption appears. 90–100%: settled record.
+- Above 1000px, native scroll maps to progress 0–1 over the section height minus the stage height. The progress distance is `min(80vh, 900px)` plus a stage clamped to 680–1000px. At 1440 × 1000, the section starts at y=634 and has 800px of progress within its 1800px height (previously 1900px within 2900px).
+- 0–8%: four real screenshot crops are scattered. 8–26%: the existing case-study statement appears. 26–32%: short reading interval (48px at a 1000px viewport height). 32–44%: statement leaves. 35–98%: fields gather into the same shared record. 75–94%: final heading appears. 80–96%: record frame appears. 92–100%: provenance caption appears. The section releases immediately at 100%, with no settled hold.
 - No fixed playback duration or automatic loop: the reader controls time and can reverse immediately. No wheel/touch cancellation or synthetic scrolling in the prototype. On-screen interpolation uses `cubic-bezier(.77,0,.175,1)` from the animate skill. Only transform and opacity animate.
 - At 1000px and below, or with `prefers-reduced-motion: reduce`, show the assembled layout in normal document flow. JavaScript disabled uses the same readable static baseline. Runtime preference changes clear transforms immediately.
 - No continuous animation frame loop. A scroll event queues one render; resizing refreshes measured geometry.
 
-The normal review script moves through the 1900px progress in two segments (2.4s to 32%, 4.5s to 94%), with reading pauses. This is a review gesture, not a product timing setting. Slow review sets CDP `Animation.setPlaybackRate` to 0.25 **and** scales the scroll traversal durations by four: CDP alone does not slow JS that maps scroll position to transforms. Reduced review scrolls ordinary document flow.
+The revised normal review uses `record-wheel.cjs new|old` and native browser wheel input via CDP, with acceleration and decaying inertia: each pulse totals 420 CSS px in 24 events, nominally 30ms apart, with 140ms between pulses. This is a simulated gesture, not a physical trackpad recording. The old comparison serves the saved pre-revision CSS/JS through request interception, using identical input. `MAN_REVIEW` must point to a review directory containing `OLD_motion.css` and `OLD_motion.js` for the old run. Actual input timing and pinned duration are saved in each `*_WHEEL.json`; no playback speed-up is applied. The older `record.cjs` remains available for slowed keyframe review; its fixed-duration scroll is not the current normal-speed evidence.
+
+Preview persistence: `~/Library/LaunchAgents/com.buzz.man-motion-preview-4698.plist` starts the static server at login and restarts it on exit. Files remain on the external SSD; the tiny server log is `.scratch/man-preview-4698.log` on the internal drive because launchd could not open the external log path. The SSD must be mounted.
 
 ## Sources and design constraints
 

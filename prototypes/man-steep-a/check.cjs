@@ -10,19 +10,19 @@ const out=process.env.MAN_REVIEW||'/Volumes/Extreme SSD/agent-scratch/man-steep-
  await page.goto('http://localhost:4698/prototype.html',{waitUntil:'networkidle'});await page.evaluate(()=>document.fonts.ready);
  await page.screenshot({path:out+'/AFTER_1440.png'});
  const geometry=await page.evaluate(()=>{const el=document.querySelector('.man-motion');return {top:el.offsetTop,range:el.offsetHeight-document.querySelector('.man-motion-stage').clientHeight};});
- for(const [name,p] of [['SCATTER',0],['SLOGAN',.32],['ASSEMBLED',.94]]){
+ for(const [name,p] of [['SCATTER',0],['SLOGAN',.29],['ASSEMBLED',1]]){
  await page.evaluate(({top,range,p})=>scrollTo(0,top+range*p),{...geometry,p});await page.waitForTimeout(120);
  await page.screenshot({path:out+'/'+name+'_1440.png'});
  }
  const assembled=await page.evaluate(()=>({progress:document.querySelector('.man-motion').dataset.progress,rects:[...document.querySelectorAll('.man-motion-card')].map(n=>{const r=n.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height};})}));
- await page.evaluate(({top,range})=>scrollTo(0,top+range*.32),geometry);await page.waitForTimeout(80);
+ await page.evaluate(({top,range})=>scrollTo(0,top+range*.29),geometry);await page.waitForTimeout(80);
  await page.screenshot({path:out+'/REVERSE_SLOGAN_1440.png'});
  await page.emulateMedia({reducedMotion:'reduce'});await page.locator('.man-motion').scrollIntoViewIfNeeded();
  await page.screenshot({path:out+'/REDUCED_1440.png'});
  const reduced=await page.evaluate(()=>({scrubbed:document.querySelector('.man-motion').classList.contains('is-scrubbed'),transforms:[...document.querySelectorAll('.man-motion-card')].map(n=>getComputedStyle(n).transform)}));
  await page.emulateMedia({reducedMotion:'no-preference'});
  const widths=[];
- for(const w of [390,768,1024,1280,1440]){
+ for(const w of [390,768,1000,1001,1024,1280,1440]){
  await page.setViewportSize({width:w,height:w===390?844:1000});await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(100);
  widths.push(await page.evaluate(()=>({width:innerWidth,overflow:document.documentElement.scrollWidth-innerWidth,logoTop:document.querySelector('.mc-man-logo').getBoundingClientRect().top})));
  if(w===390){await page.screenshot({path:out+'/AFTER_390.png'});await page.locator('.man-motion').scrollIntoViewIfNeeded();await page.screenshot({path:out+'/STATIC_390.png'});}
