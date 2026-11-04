@@ -1,0 +1,59 @@
+{
+  "NORMAL": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "width": 1440,
+        "height": 814,
+        "r_frame_rate": "30/1",
+        "nb_frames": "748"
+      }
+    ],
+    "format": {
+      "duration": "24.933333",
+      "size": "623781"
+    }
+  },
+  "SLOW": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "width": 1440,
+        "height": 814,
+        "r_frame_rate": "30/1",
+        "nb_frames": "1456"
+      }
+    ],
+    "format": {
+      "duration": "48.533333",
+      "size": "600924"
+    }
+  },
+  "REDUCED": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "width": 1440,
+        "height": 900,
+        "r_frame_rate": "30/1",
+        "nb_frames": "90"
+      }
+    ],
+    "format": {
+      "duration": "3.000000",
+      "size": "56248"
+    }
+  },
+  "decodedLoopSeam": {
+    "samples": [
+      11.8,
+      12.2
+    ],
+    "maxRGBDifference": 0.0,
+    "meanRGBDifference": 0.0,
+    "note": "Lossy encoded samples; exact source/browser START-SEAM difference is zero."
+  }
+}

@@ -1,0 +1,436 @@
+{
+  "timeline": {
+    "person": [
+      60,
+      102,
+      570,
+      612
+    ],
+    "bulb": [
+      114,
+      138,
+      540,
+      570
+    ],
+    "decide": [
+      210,
+      228,
+      540,
+      570
+    ],
+    "fox": [
+      150,
+      192,
+      570,
+      612
+    ],
+    "checklist": [
+      192,
+      222,
+      570,
+      612
+    ],
+    "tail": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "rabbit": [
+      168,
+      198,
+      570,
+      612
+    ],
+    "bear": [
+      180,
+      210,
+      570,
+      612
+    ],
+    "card0": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "card1": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "card2": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "meshes": [
+    {
+      "name": "Rabbit",
+      "vertices": 10335,
+      "triangles": 20224
+    },
+    {
+      "name": "Bear",
+      "vertices": 9063,
+      "triangles": 17696
+    },
+    {
+      "name": "Fox",
+      "vertices": 14787,
+      "triangles": 29072
+    }
+  ],
+  "animalFlow": {
+    "bear": [
+      890,
+      650,
+      14,
+      5,
+      -14
+    ],
+    "rabbit": [
+      986,
+      615,
+      14,
+      5,
+      4
+    ],
+    "fox": [
+      1380,
+      625,
+      0,
+      0,
+      0
+    ],
+    "checklist": [
+      1565,
+      697,
+      -14,
+      -10,
+      -12
+    ]
+  },
+  "integration": "harmonic coordinates, rigid head contours, fixed props, background orientation constraints",
+  "projection": [
+    {
+      "frame": 0,
+      "iterations": 0,
+      "maxBackgroundCorrectionPx": 0.0
+    },
+    {
+      "frame": 60,
+      "iterations": 0,
+      "maxBackgroundCorrectionPx": 0.0
+    },
+    {
+      "frame": 66,
+      "iterations": 0,
+      "maxBackgroundCorrectionPx": 0.0
+    },
+    {
+      "frame": 72,
+      "iterations": 0,
+      "maxBackgroundCorrectionPx": 0.0
+    },
+    {
+      "frame": 78,
+      "iterations": 0,
+      "maxBackgroundCorrectionPx": 0.0
+    },
+    {
+      "frame": 84,
+      "iterations": 1,
+      "maxBackgroundCorrectionPx": 0.6109004645902019
+    },
+    {
+      "frame": 90,
+      "iterations": 26,
+      "maxBackgroundCorrectionPx": 2.2942500655576112
+    },
+    {
+      "frame": 92,
+      "iterations": 55,
+      "maxBackgroundCorrectionPx": 2.789487038990703
+    },
+    {
+      "frame": 96,
+      "iterations": 107,
+      "maxBackgroundCorrectionPx": 3.602974400105359
+    },
+    {
+      "frame": 102,
+      "iterations": 160,
+      "maxBackgroundCorrectionPx": 4.150056636670008
+    },
+    {
+      "frame": 108,
+      "iterations": 160,
+      "maxBackgroundCorrectionPx": 4.150056636670008
+    },
+    {
+      "frame": 114,
+      "iterations": 160,
+      "maxBackgroundCorrectionPx": 4.150056636670008
+    },
+    {
+      "frame": 120,
+      "iterations": 181,
+      "maxBackgroundCorrectionPx": 4.208927295702598
+    },
+    {
+      "frame": 126,
+      "iterations": 227,
+      "maxBackgroundCorrectionPx": 4.381562704543815
+    },
+    {
+      "frame": 132,
+      "iterations": 315,
+      "maxBackgroundCorrectionPx": 4.656915379123445
+    },
+    {
+      "frame": 138,
+      "iterations": 426,
+      "maxBackgroundCorrectionPx": 5.356791372112129
+    },
+    {
+      "frame": 144,
+      "iterations": 404,
+      "maxBackgroundCorrectionPx": 5.199193716069733
+    },
+    {
+      "frame": 150,
+      "iterations": 400,
+      "maxBackgroundCorrectionPx": 5.094110428149138
+    },
+    {
+      "frame": 156,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 162,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 168,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 174,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 180,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 186,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 192,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 198,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 204,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 210,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 216,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 222,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 228,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 234,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 240,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 246,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 252,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 258,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 264,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 270,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 276,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 288,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 300,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 330,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 345,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 360,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 378,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 390,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 396,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 408,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 420,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 450,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 480,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 498,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 504,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 510,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 516,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 522,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 540,
+      "iterations": 385,
+      "maxBackgroundCorrectionPx": 4.948863734984718
+    },
+    {
+      "frame": 570,
+      "iterations": 192,
+      "maxBackgroundCorrectionPx": 4.861665312874868
+    },
+    {
+      "frame": 600,
+      "iterations": 0,
+      "maxBackgroundCorrectionPx": 0.0
+    },
+    {
+      "frame": 612,
+      "iterations": 0,
+      "maxBackgroundCorrectionPx": 0.0
+    },
+    {
+      "frame": 630,
+      "iterations": 0,
+      "maxBackgroundCorrectionPx": 0.0
+    },
+    {
+      "frame": 660,
+      "iterations": 0,
+      "maxBackgroundCorrectionPx": 0.0
+    },
+    {
+      "frame": 720,
+      "iterations": 0,
+      "maxBackgroundCorrectionPx": 0.0
+    }
+  ],
+  "decide_source_settled_rise": 43.2
+}

@@ -1,0 +1,121 @@
+[
+  {
+    "mode": "normal",
+    "errors": [],
+    "requests": [
+      "http://127.0.0.1:4690/hiw-r8/Bear/build/bear.riv",
+      "http://127.0.0.1:4690/hiw-r8/Rabbit/build/rabbit.riv",
+      "http://127.0.0.1:4690/hiw-r8/Fox/build/fox.riv"
+    ],
+    "count": 811,
+    "playTiming": {
+      "before": 1793797336.342,
+      "after": 1793797336.343
+    },
+    "geometry": {
+      "stage": {
+        "x": 580.237548828125,
+        "y": 317.5015563964844,
+        "width": 791.77490234375,
+        "height": 488.5030822753906,
+        "top": 317.5015563964844,
+        "right": 1372.012451171875,
+        "bottom": 806.004638671875,
+        "left": 580.237548828125
+      },
+      "plane": {
+        "x": 42.43133544921875,
+        "y": 220.39999389648438,
+        "width": 1375.888916015625,
+        "height": 637.8890380859375,
+        "top": 220.39999389648438,
+        "right": 1418.3202514648438,
+        "bottom": 858.2890319824219,
+        "left": 42.43133544921875
+      }
+    },
+    "offscreenPaused": true,
+    "resumed": true,
+    "liveReducedStops": true,
+    "state": {
+      "events": [
+        "Bear",
+        "Rabbit",
+        "Fox",
+        "Bear",
+        "Rabbit",
+        "Fox"
+      ],
+      "errors": [],
+      "loopPhases": [
+        {
+          "name": "/hiw-r8/Bear/build/bear.riv",
+          "wall": 1793797348.387,
+          "fadeTime": 0
+        },
+        {
+          "name": "/hiw-r8/Rabbit/build/rabbit.riv",
+          "wall": 1793797348.388,
+          "fadeTime": 0
+        },
+        {
+          "name": "/hiw-r8/Fox/build/fox.riv",
+          "wall": 1793797348.389,
+          "fadeTime": 0
+        },
+        {
+          "name": "/hiw-r8/Bear/build/bear.riv",
+          "wall": 1793797360.387,
+          "fadeTime": 0
+        },
+        {
+          "name": "/hiw-r8/Rabbit/build/rabbit.riv",
+          "wall": 1793797360.388,
+          "fadeTime": 0
+        },
+        {
+          "name": "/hiw-r8/Fox/build/fox.riv",
+          "wall": 1793797360.388,
+          "fadeTime": 0
+        }
+      ],
+      "overflow": false,
+      "fadeState": "running"
+    }
+  },
+  {
+    "mode": "slow",
+    "errors": [],
+    "requests": [
+      "http://127.0.0.1:4690/hiw-r8/Bear/build/bear.riv",
+      "http://127.0.0.1:4690/hiw-r8/Rabbit/build/rabbit.riv",
+      "http://127.0.0.1:4690/hiw-r8/Fox/build/fox.riv"
+    ],
+    "count": 2249,
+    "playTiming": {
+      "before": 1793797371,
+      "after": 1793797371
+    },
+    "state": {
+      "events": [],
+      "errors": [],
+      "loopPhases": [],
+      "overflow": false,
+      "fadeState": "paused"
+    }
+  },
+  {
+    "mode": "reduced",
+    "errors": [],
+    "requests": []
+  },
+  {
+    "mode": "mobile",
+    "errors": [],
+    "requests": [
+      "http://127.0.0.1:4690/hiw-r8/Bear/build/bear.riv",
+      "http://127.0.0.1:4690/hiw-r8/Rabbit/build/rabbit.riv",
+      "http://127.0.0.1:4690/hiw-r8/Fox/build/fox.riv"
+    ]
+  }
+]

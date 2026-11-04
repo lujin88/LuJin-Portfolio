@@ -1,0 +1,34 @@
+{
+  "mainMeshes": [
+    {
+      "band": "Rabbit",
+      "vertices": 10494,
+      "triangles": 20540,
+      "sampledSourceFrames": 721,
+      "minimumSignedDoubleArea": 0.6515851020812988,
+      "nonpositiveTriangles": 0,
+      "firstLastPositionDifference": 0.0
+    },
+    {
+      "band": "Bear",
+      "vertices": 9063,
+      "triangles": 17696,
+      "sampledSourceFrames": 721,
+      "minimumSignedDoubleArea": 0.7441282272338867,
+      "nonpositiveTriangles": 0,
+      "firstLastPositionDifference": 0.0
+    },
+    {
+      "band": "Fox",
+      "vertices": 14946,
+      "triangles": 29388,
+      "sampledSourceFrames": 721,
+      "minimumSignedDoubleArea": 0.7605104446411133,
+      "nonpositiveTriangles": 0,
+      "firstLastPositionDifference": 0.0
+    }
+  ],
+  "originalRasterSHA256": "f2d93e7366a9a472e4f723a6fa196d712aa915df65e223acee3cd8eb10c21be4",
+  "originalRasterUnchanged": true,
+  "scope": "Main background/character deformation meshes at every integer source frame. Intentional unit-scale mirrored fox overlay excluded from positive-winding assertion."
+}
