@@ -1,0 +1,48 @@
+/* R5 review: shared 200ms fast token for entry/exit and shared ease.
+   Only artwork transforms; speech controls and hit areas stay fixed.
+   Existing nth-child order is VOCAB: perch, church, sun, rain, coat, hat. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .wa-page .vocab-art img,
+  .wa-page .pose > span:last-child {
+    transition: transform var(--duration-fast, 200ms) var(--ease, ease);
+  }
+  .wa-page .vocab-item:hover .vocab-art img,
+  .wa-page .pose:hover > span:last-child {
+    transition-duration: var(--duration-fast, 200ms);
+  }
+  .wa-page .vocab-item:nth-child(1):hover .vocab-art img {
+    transform: translateX(24px) rotate(-8deg);
+  }
+  .wa-page .vocab-item:nth-child(2) .vocab-art img {
+    transform-origin: 50% 85%;
+  }
+  .wa-page .vocab-item:nth-child(2):hover .vocab-art img {
+    transform: translateY(-12px) scale(1.06);
+  }
+  .wa-page .vocab-item:nth-child(3):hover .vocab-art img {
+    transform: translateY(-8px) rotate(26deg) scale(1.04);
+  }
+  .wa-page .vocab-item:nth-child(4):hover .vocab-art img {
+    transform: translateY(14px) rotate(-5deg);
+  }
+  .wa-page .vocab-item:nth-child(5) .vocab-art img {
+    transform-origin: 50% 18%;
+  }
+  .wa-page .vocab-item:nth-child(5):hover .vocab-art img {
+    transform: rotate(-10deg);
+  }
+  .wa-page .vocab-item:nth-child(6):hover .vocab-art img {
+    transform: translateY(-16px) rotate(10deg);
+  }
+  .wa-page .pose:hover > span:last-child {
+    transform: translateY(-12px);
+  }
+}
+/* No added keyboard motion. Dynamic preference changes reset immediately. */
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .wa-page .vocab-art img,
+  .wa-page .pose > span:last-child {
+    transform: none;
+    transition: none;
+  }
+}
