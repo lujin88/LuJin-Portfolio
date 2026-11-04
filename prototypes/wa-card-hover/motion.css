@@ -1,6 +1,20 @@
 /* R5 review: shared 200ms fast token for entry/exit and shared ease.
    Only artwork transforms; speech controls and hit areas stay fixed.
    Existing nth-child order is VOCAB: perch, church, sun, rain, coat, hat. */
+/* The original sun WebP includes its ground shadow. Complementary masks
+   preserve the source pixels: only the body layer receives hover transforms. */
+.wa-page .vocab-item[data-word="sun"] .vocab-art { position: relative; }
+.wa-page .vocab-item[data-word="sun"] .vocab-art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("assets/vocab-sun.webp") center / contain no-repeat;
+  mask: url("assets/sun-shadow-mask.svg") center / contain no-repeat;
+  pointer-events: none;
+}
+.wa-page .vocab-item[data-word="sun"] .vocab-art img {
+  mask: url("assets/sun-body-mask.svg") center / contain no-repeat;
+}
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .wa-page .vocab-art img,
   .wa-page .pose > span:last-child {

@@ -1,5 +1,7 @@
 # Weather Aquarium hover review — R5
 
+R6 correction: [Sun-only still/peak comparison](https://buzz-wwbf.srv2056990.hstgr.cloud/media/6fc1fb8673be1c51cf07bc0b3f4c4bd722c038f31c07f0659dbf810750dd28d9.png). The source WebP contains both the sun and its ground shadow. Two complementary SVG masks separate the original pixels into a fixed shadow pseudo-element and the moving body image; the original WebP is unchanged. The masks follow the bottom ray where it meets the shadow. The sun keeps R5's -8px / 26° / 1.04 motion. The captured ground-shadow strip stays pixel-identical before/after hover; the pseudo-element transform is `none`. `COMPARE_SUN_ONLY=1` produces the single-cell comparison. R5 media below is historical and still contains the rotated shadow.
+
 Review-only prototype for the six vocabulary illustrations and four character labels. This directory is not imported by the site and does not change port 3000. Lu and visual QA have not approved integration.
 
 [Native still/peak comparison](https://buzz-wwbf.srv2056990.hstgr.cloud/media/fce953d0bfd0b6869e2cbc13602d91b8072509c9238d1e46e2f5327ea8951a0c.png) · [1440 normal-speed recording](https://buzz-wwbf.srv2056990.hstgr.cloud/media/a884f7d47ca8430b174c8514623352980f2983020f69a50797564b96b7b6c933.mp4)
