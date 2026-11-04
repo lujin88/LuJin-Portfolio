@@ -1,0 +1,32 @@
+{
+  "sun": {
+    "rect": [
+      535,
+      445,
+      145,
+      15
+    ],
+    "max": 0,
+    "changedChannels": 0
+  },
+  "rain": {
+    "rect": [
+      770,
+      318,
+      140,
+      74
+    ],
+    "max": 1,
+    "changedChannels": 153
+  },
+  "coat": {
+    "rect": [
+      1000,
+      377,
+      140,
+      80
+    ],
+    "max": 1,
+    "changedChannels": 157
+  }
+}

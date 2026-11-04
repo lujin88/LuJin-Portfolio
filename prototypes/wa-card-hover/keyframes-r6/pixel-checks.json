@@ -1,0 +1,108 @@
+{
+  "checks": [
+    {
+      "id": "church-a",
+      "labelRowPngIdentical": true,
+      "nativeCrop": [
+        264,
+        261
+      ],
+      "comparisonBytes": 63177,
+      "comparisonSha256": "750ada300668520bbf5af6d9f0211622ed021fa7b216d39f8751d77e5d422ac4"
+    },
+    {
+      "id": "church-b",
+      "labelRowPngIdentical": true,
+      "nativeCrop": [
+        264,
+        261
+      ],
+      "comparisonBytes": 64274,
+      "comparisonSha256": "f938f712513bbf9ec9c713ccdb7ea329b91c60f0b108c96829293665c373ff08"
+    },
+    {
+      "id": "church-c",
+      "labelRowPngIdentical": true,
+      "nativeCrop": [
+        264,
+        261
+      ],
+      "comparisonBytes": 62970,
+      "comparisonSha256": "5f62dd5201fde91e9a62c408bfad8dd5c379fe352c73ca8dc9879d8bf5e9cc74"
+    },
+    {
+      "id": "hood-01",
+      "labelRowPngIdentical": true,
+      "nativeCrop": [
+        264,
+        261
+      ],
+      "fixedRegionMaxRgbDifference": 1,
+      "fixedRegionNativeCrop": [
+        70,
+        99,
+        195,
+        178
+      ],
+      "comparisonBytes": 53207,
+      "comparisonSha256": "7932ab498b7c184485166f2a16e87e5609ea38de498a78f85bbad5bbcb5e10f4"
+    },
+    {
+      "id": "hat-02",
+      "labelRowPngIdentical": true,
+      "nativeCrop": [
+        264,
+        261
+      ],
+      "comparisonBytes": 90034,
+      "comparisonSha256": "43ddf8b007e8b1f3cd1dbae10e5f32e251ca6576546a651eff4e9e50905edf57"
+    },
+    {
+      "id": "fish",
+      "labelRowPngIdentical": true,
+      "nativeCrop": [
+        264,
+        261
+      ],
+      "comparisonBytes": 60895,
+      "comparisonSha256": "cd3bda201f08333bc69f087bd9f0ac06540d404b019bd91348d8c669c38667b3"
+    },
+    {
+      "id": "sun",
+      "labelRowPngIdentical": true,
+      "nativeCrop": [
+        264,
+        261
+      ],
+      "fixedRegionMaxRgbDifference": 1,
+      "fixedRegionNativeCrop": [
+        76,
+        182,
+        186,
+        188
+      ],
+      "comparisonBytes": 55609,
+      "comparisonSha256": "81d5e9021e4f32c594da1fba0cafb3723e0cc748917f5d41ac78f748e062fd7f"
+    },
+    {
+      "id": "rain",
+      "labelRowPngIdentical": true,
+      "nativeCrop": [
+        264,
+        261
+      ],
+      "fixedRegionMaxRgbDifference": 1,
+      "fixedRegionNativeCrop": [
+        64,
+        47,
+        204,
+        121
+      ],
+      "comparisonBytes": 38832,
+      "comparisonSha256": "c6da606ff673d095562e5fe37bf36b5db1d8b0952ef784146e095c1ba602d5da"
+    }
+  ],
+  "allOriginalWebpBytesMatchPreviousHead": true,
+  "svgXmlParsed": 8,
+  "scope": "Static images only; no timing or interaction validation"
+}

@@ -1,0 +1,803 @@
+{
+  "head": "fab4981bedd90075e1363cc0ac6829f7583b97dd",
+  "runs": [
+    {
+      "mode": "CHECK",
+      "cards": [
+        {
+          "word": "perch",
+          "during": {
+            "word": "perch",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "matrix(1, 0, 0, 1, 0, -12)",
+              "tail": "matrix(0.994374, 0.105929, -0.105929, 0.994374, 0, 0)"
+            },
+            "running": 1
+          },
+          "after": {
+            "word": "perch",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "none",
+              "tail": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": {
+            "max": 0,
+            "changedChannels": 0,
+            "totalChannels": 148248
+          },
+          "rowPixels": {
+            "max": 0,
+            "changedChannels": 0,
+            "totalChannels": 24444
+          },
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "church",
+          "during": {
+            "word": "church",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "dove": "matrix(1.22919, -0.227154, 0.227154, 1.22919, 1035.89, 193.53)",
+              "wing": "matrix(0.980748, -0.195275, 0.121977, 0.612615, 0, 0)"
+            },
+            "running": 2
+          },
+          "after": {
+            "word": "church",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 1,
+            "transforms": {
+              "dove": "matrix(1.25, 0, 0, 1.25, 953, 204)",
+              "wing": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": {
+            "max": 0,
+            "changedChannels": 0,
+            "totalChannels": 148248
+          },
+          "rowPixels": {
+            "max": 0,
+            "changedChannels": 0,
+            "totalChannels": 24444
+          },
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "sun",
+          "during": {
+            "word": "sun",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "rays": "none"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "sun",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "rays": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": {
+            "max": 0,
+            "changedChannels": 0,
+            "totalChannels": 148248
+          },
+          "rowPixels": {
+            "max": 0,
+            "changedChannels": 0,
+            "totalChannels": 24444
+          },
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "rain",
+          "during": {
+            "word": "rain",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 5,
+            "completedFlights": 0,
+            "transforms": {},
+            "running": 5
+          },
+          "after": {
+            "word": "rain",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 5,
+            "completedFlights": 0,
+            "transforms": {},
+            "running": 0
+          },
+          "restorePixels": {
+            "max": 1,
+            "changedChannels": 32,
+            "totalChannels": 148248
+          },
+          "rowPixels": {
+            "max": 0,
+            "changedChannels": 0,
+            "totalChannels": 24444
+          },
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "coat",
+          "during": {
+            "word": "coat",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "hood": "matrix(1, 0, 0, 0.26, 0, 326)"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "coat",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "hood": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": {
+            "max": 0,
+            "changedChannels": 0,
+            "totalChannels": 148248
+          },
+          "rowPixels": {
+            "max": 1,
+            "changedChannels": 1,
+            "totalChannels": 24444
+          },
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "hat",
+          "during": {
+            "word": "hat",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "matrix(1, 0, 0, 1, 0, -92)",
+              "pompom": "matrix(0.999977, -0.00676661, 0.00676661, 0.999977, 0, 0)"
+            },
+            "running": 1
+          },
+          "after": {
+            "word": "hat",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "none",
+              "pompom": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": {
+            "max": 0,
+            "changedChannels": 0,
+            "totalChannels": 148248
+          },
+          "rowPixels": {
+            "max": 0,
+            "changedChannels": 0,
+            "totalChannels": 24444
+          },
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        }
+      ],
+      "interruptedReentry": true,
+      "liveReduced": true,
+      "keyboardStill": true,
+      "r5LabelPreserved": true,
+      "errors": []
+    },
+    {
+      "mode": "NORMAL",
+      "cards": [
+        {
+          "word": "perch",
+          "during": {
+            "word": "perch",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "matrix(1, 0, 0, 1, 0, -12)",
+              "tail": "matrix(0.995935, -0.0900765, 0.0900765, 0.995935, 0, 0)"
+            },
+            "running": 1
+          },
+          "after": {
+            "word": "perch",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "none",
+              "tail": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "church",
+          "during": {
+            "word": "church",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 1,
+            "transforms": {
+              "dove": "matrix(1.25, 0, 0, 1.25, 953, 204)",
+              "wing": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "church",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 1,
+            "transforms": {
+              "dove": "matrix(1.25, 0, 0, 1.25, 953, 204)",
+              "wing": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "sun",
+          "during": {
+            "word": "sun",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "rays": "none"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "sun",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "rays": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "rain",
+          "during": {
+            "word": "rain",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 10,
+            "completedFlights": 0,
+            "transforms": {},
+            "running": 2
+          },
+          "after": {
+            "word": "rain",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 10,
+            "completedFlights": 0,
+            "transforms": {},
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "coat",
+          "during": {
+            "word": "coat",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "hood": "matrix(1, 0, 0, 0.26, 0, 326)"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "coat",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "hood": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "hat",
+          "during": {
+            "word": "hat",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "matrix(1, 0, 0, 1, 0, -92)",
+              "pompom": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "hat",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "none",
+              "pompom": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        }
+      ],
+      "recording": {
+        "frames": 432,
+        "method": "Timestamped Chrome screencast",
+        "file": "NORMAL.mp4"
+      },
+      "errors": []
+    },
+    {
+      "mode": "SLOW",
+      "cards": [
+        {
+          "word": "perch",
+          "during": {
+            "word": "perch",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "matrix(1, 0, 0, 1, 0, -12)",
+              "tail": "matrix(0.998162, -0.0605947, 0.0605947, 0.998162, 0, 0)"
+            },
+            "running": 1
+          },
+          "after": {
+            "word": "perch",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "none",
+              "tail": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "church",
+          "during": {
+            "word": "church",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 1,
+            "transforms": {
+              "dove": "matrix(1.25, 0, 0, 1.25, 953, 204)",
+              "wing": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "church",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 1,
+            "transforms": {
+              "dove": "matrix(1.25, 0, 0, 1.25, 953, 204)",
+              "wing": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "sun",
+          "during": {
+            "word": "sun",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "rays": "none"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "sun",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "rays": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "rain",
+          "during": {
+            "word": "rain",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 10,
+            "completedFlights": 0,
+            "transforms": {},
+            "running": 2
+          },
+          "after": {
+            "word": "rain",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 10,
+            "completedFlights": 0,
+            "transforms": {},
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "coat",
+          "during": {
+            "word": "coat",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "hood": "matrix(1, 0, 0, 0.26, 0, 326)"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "coat",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "hood": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "hat",
+          "during": {
+            "word": "hat",
+            "hovered": true,
+            "phase": "hover",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "matrix(1, 0, 0, 1, 0, -92)",
+              "pompom": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "hat",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "none",
+              "pompom": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        }
+      ],
+      "recording": {
+        "frames": 1660,
+        "method": "Timestamped Chrome screencast",
+        "file": "SLOW.mp4"
+      },
+      "errors": []
+    },
+    {
+      "mode": "REDUCED",
+      "cards": [
+        {
+          "word": "perch",
+          "during": {
+            "word": "perch",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "none",
+              "tail": "none"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "perch",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "none",
+              "tail": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "church",
+          "during": {
+            "word": "church",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "dove": "none",
+              "wing": "none"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "church",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "dove": "none",
+              "wing": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "sun",
+          "during": {
+            "word": "sun",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "rays": "none"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "sun",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "rays": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "rain",
+          "during": {
+            "word": "rain",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {},
+            "running": 0
+          },
+          "after": {
+            "word": "rain",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {},
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "coat",
+          "during": {
+            "word": "coat",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "hood": "none"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "coat",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "hood": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        },
+        {
+          "word": "hat",
+          "during": {
+            "word": "hat",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "none",
+              "pompom": "none"
+            },
+            "running": 0
+          },
+          "after": {
+            "word": "hat",
+            "hovered": false,
+            "phase": "idle",
+            "emissions": 0,
+            "completedFlights": 0,
+            "transforms": {
+              "body": "none",
+              "pompom": "none"
+            },
+            "running": 0
+          },
+          "restorePixels": null,
+          "rowPixels": null,
+          "cardBoundsUnchanged": true,
+          "rowBoundsUnchanged": true
+        }
+      ],
+      "recording": {
+        "frames": 6,
+        "method": "Timestamped Chrome screencast",
+        "file": "REDUCED.mp4"
+      },
+      "errors": []
+    }
+  ],
+  "overallExitCode": 1,
+  "touchStatus": "Not passed: recorder header update changed the 390px layout by 18px. Header updates are now suppressed for TOUCH; this harness-only fix was not rerun because internal disk fell to 758 MiB.",
+  "lock": "18:04:06 load 8.51/11.31/8.00 -> 18:09:52 load 9.01/10.07/8.61; exit 1 in supplementary TOUCH after CHECK/NORMAL/SLOW/REDUCED passed."
+}

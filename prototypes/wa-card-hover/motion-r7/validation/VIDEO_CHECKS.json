@@ -1,0 +1,47 @@
+{
+  "NORMAL": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "width": 1440,
+        "height": 900,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "37.133333",
+      "size": "807122"
+    }
+  },
+  "SLOW": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "width": 1440,
+        "height": 900,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "139.566667",
+      "size": "2613818"
+    }
+  },
+  "REDUCED": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "width": 1440,
+        "height": 900,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "40.433333",
+      "size": "666253"
+    }
+  }
+}
