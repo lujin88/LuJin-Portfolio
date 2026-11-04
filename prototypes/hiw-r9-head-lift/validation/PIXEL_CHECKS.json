@@ -1,0 +1,30 @@
+{
+  "START_SEAM": {
+    "maxRGBDifference": 0.0,
+    "meanRGBDifference": 0.0
+  },
+  "REDUCED_REDUCED_AFTER": {
+    "maxRGBDifference": 0.0,
+    "meanRGBDifference": 0.0
+  },
+  "DECIDE": {
+    "screenROI": [
+      846,
+      318,
+      1051,
+      366
+    ],
+    "preRevealMaxDifference": 0.0,
+    "visibleMeanDifference": 15.037872628726287
+  },
+  "CAPTION": {
+    "screenROI": [
+      821,
+      367,
+      1052,
+      389
+    ],
+    "preRevealMaxDifference": 0.0,
+    "visibleMeanDifference": 27.030171848353667
+  }
+}

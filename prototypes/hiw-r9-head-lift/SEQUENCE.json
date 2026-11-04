@@ -1,0 +1,47 @@
+{
+  "fps": 60,
+  "duration": 12,
+  "girl": [
+    1,
+    1.7
+  ],
+  "bulb": [
+    1.9,
+    2.3
+  ],
+  "fox": [
+    2.5,
+    3.2
+  ],
+  "decide": [
+    3.5,
+    3.8,
+    4.1
+  ],
+  "caption": [
+    4.2,
+    4.6
+  ],
+  "hold": [
+    4.6,
+    9
+  ],
+  "fade": [
+    9,
+    9.5
+  ],
+  "hiddenReset": [
+    9.5,
+    10.5
+  ],
+  "return": [
+    10.5,
+    11
+  ],
+  "rest": [
+    11,
+    12
+  ],
+  "text": "Human judgment in every step",
+  "textSource": "original.png, x1042..1352/y196..226; exact raster type retained; font identity not available"
+}

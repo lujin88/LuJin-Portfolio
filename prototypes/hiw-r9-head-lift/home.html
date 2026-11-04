@@ -1,0 +1,2211 @@
+<!DOCTYPE html>
+<html lang="en" data-scroll-behavior="smooth" class="caveat_5b73e2b9-module__c4RjOG__variable poppins_708fc0ab-module__eAmMKW__variable overflow-x-hidden" style="background-color:#0a0a0a;color-scheme:dark">
+<head>
+<link rel="stylesheet" href="/hiw-r8/host.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lu — Product & Service Designer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="/styles/shell-tokens.css" />
+<link rel="stylesheet" href="/styles/home-motion.css" />
+
+<style>
+  /* Shell tokens live in /styles/shell-tokens.css */
+
+  html { scroll-behavior: smooth; overflow-x: hidden; min-width: 360px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  body {
+    background: var(--color-bg-page);
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-width: 360px;
+  }
+
+  /* subtle film-grain texture for depth, per design guardrails */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    mix-blend-mode: var(--grain-blend);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection { background: var(--selection-bg); color: var(--selection-text); }
+
+  /* nav */
+  .nav-link {
+    position: relative;
+    color: color-mix(in srgb, var(--color-text-1) 72%, transparent);
+    transition: color 300ms var(--ease);
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    height: 1px;
+    background: var(--color-text-1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 350ms var(--ease);
+  }
+  .nav-link:hover, .nav-link:focus-visible { color: var(--color-text-1); }
+  .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
+
+  /* pill button */
+  .pill-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--button-cta-gap);
+    box-sizing: border-box;
+    white-space: nowrap;
+    border-radius: var(--button-cta-radius);
+    border: var(--button-cta-border-width) solid var(--pill-border);
+    height: var(--button-cta-height);
+    min-height: var(--button-cta-height);
+    padding: 0 var(--button-cta-padding-inline);
+    font-size: var(--button-cta-font-size);
+    font-weight: var(--button-cta-font-weight);
+    line-height: var(--button-cta-line-height);
+    color: var(--pill-text);
+    background: var(--pill-bg);
+    transition: transform var(--duration-interaction) var(--ease),
+                background-color var(--duration-interaction) var(--ease),
+                color var(--duration-interaction) var(--ease),
+                border-color var(--duration-interaction) var(--ease),
+                box-shadow var(--duration-interaction) var(--ease);
+  }
+  .pill-btn:hover {
+    background: var(--pill-hover-bg);
+    color: var(--pill-hover-text);
+    border-color: var(--pill-hover-bg);
+    box-shadow: var(--pill-hover-shadow);
+    transform: translateY(-2px);
+  }
+  .pill-btn:active { transform: translateY(0) scale(0.97); }
+  .pill-btn svg {
+    width: var(--button-cta-icon-size);
+    height: var(--button-cta-icon-size);
+    transition: transform var(--duration-interaction) var(--ease);
+  }
+  .pill-btn:hover svg { transform: translateX(3px); }
+
+  /* .pill-btn--l is a semantic alias. Portfolio CTAs do not change geometry. */
+
+  /* language switcher */
+  .lang-switch { position: relative; }
+  .lang-trigger svg { transition: transform 300ms var(--ease); }
+  .lang-trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .lang-menu {
+    position: absolute;
+    top: calc(100% + 16px);
+    right: 0;
+    min-width: 224px;
+    padding: 10px;
+    border-radius: 16px;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--hairline, rgba(255,255,255,0.10));
+    box-shadow: var(--panel-shadow, 0 40px 80px -30px rgba(0,0,0,0.7), 0 12px 30px -10px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06));
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+    transform-origin: top right;
+    pointer-events: none;
+    transition: opacity 260ms var(--ease), transform 260ms var(--ease);
+    z-index: 60;
+  }
+  .lang-menu.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+  .lang-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: var(--radius-md, 10px);
+    font-size: var(--font-size-body); /* Body R */
+    line-height: 1.25;
+    color: var(--color-text-2);
+    text-align: left;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+  .lang-option:hover, .lang-option:focus-visible {
+    background: var(--surface-raise, rgba(255,255,255,0.06));
+    color: var(--color-text-1);
+    outline: none;
+  }
+  .lang-option[aria-selected="true"] { color: var(--color-text-1); font-weight: 600; }
+  .lang-check { opacity: 0; flex-shrink: 0; color: var(--color-theme-2); transition: opacity 200ms ease; }
+  .lang-option[aria-selected="true"] .lang-check { opacity: 1; }
+
+  /* section media panel shadow (layered, tinted, per guardrails) */
+  .media-panel {
+    box-shadow: var(--panel-shadow);
+  }
+
+  /* accordion */
+  .accordion-item {
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1.1rem 0;
+  }
+  .accordion--end .accordion-item { flex-direction: row-reverse; text-align: right; }
+
+  .accordion-bar {
+    flex: 0 0 2px;
+    width: 2px;
+    border-radius: 2px;
+    background: transparent;
+    transition: background-color 400ms ease;
+  }
+  .accordion-item.is-active .accordion-bar { background: var(--color-text-1); }
+
+  .accordion-title {
+    font-size: var(--font-size-h3); /* H3 accordion */
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-text-3);
+    transition: color 400ms ease;
+  }
+  .accordion-item.is-active .accordion-title { color: var(--color-text-1); }
+  .accordion-item:not(.is-active):hover .accordion-title { color: var(--color-text-2); }
+  .accordion-item:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  /* scroll-driven groups (inside .pin-wrap): not clickable, advance from scroll position only.
+     pointer-events stays enabled so the title/body text remains selectable/copyable; the JS
+     click-to-advance binding is what's actually skipped for these groups (see .closest('.pin-wrap') check). */
+  .pin-wrap .accordion-item {
+    cursor: default;
+  }
+  .pin-wrap .accordion-item:not(.is-active):hover .accordion-title { color: var(--color-text-3); }
+
+  .accordion-body-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 450ms var(--ease), opacity 350ms ease;
+  }
+  .accordion-item.is-active .accordion-body-wrap {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+  .accordion-body-inner { overflow: hidden; }
+  .accordion-body {
+    margin-top: 0.85rem;
+    color: var(--color-text-2);
+    line-height: var(--leading-body);
+    font-size: var(--font-size-body); /* Body R (was 0.95≈pill; align to body) */
+    font-weight: var(--font-weight-regular);
+  }
+
+  /* reveal-on-scroll (transform + opacity only) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity var(--duration-reveal) var(--ease), transform var(--duration-reveal) var(--ease);
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* LAB — quiet metadata label: a theme-aware, rounded-full echo of the
+     intro / AI Workflow metadata pills, used to mark each experiment */
+  .lab-meta {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    border-radius: 999px;
+    border: 1px solid var(--hairline-strong);
+    background: var(--surface-raise);
+    padding: 0.3rem 0.72rem;
+    font-size: var(--font-size-meta); /* Meta */
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--color-text-3);
+  }
+
+  /* LAB — oversized editorial index numeral (Poppins italic; Display is Poppins site-wide) */
+  .lab-index {
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-style: italic;
+    font-size: clamp(2.5rem, 5vw, 3.25rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-text-3);
+  }
+
+  @media (min-width: 1024px) {
+    .lg-divider-l { border-left: 1px solid var(--hairline); }
+    .lg-divider-r { border-right: 1px solid var(--hairline); }
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* scroll-driven text/image swap (pinned accordion) */
+  .scroll-media {
+    transition: opacity 650ms var(--ease);
+  }
+
+  .tilt-card-wrap {
+    perspective: 900px;
+  }
+  .nextgen-card {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    padding: 1.75rem 1.5rem;
+    height: 100%;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 350ms var(--ease), border-color 350ms ease, background-color 450ms ease;
+  }
+  .nextgen-card:hover {
+    border-color: var(--card-border-hover);
+    box-shadow: var(--card-shadow-hover);
+  }
+  .nextgen-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--card-glow), transparent 60%);
+    opacity: 0;
+    transition: opacity 350ms ease;
+    pointer-events: none;
+  }
+  .nextgen-card:hover::before { opacity: 1; }
+  .nextgen-card > * { position: relative; z-index: 1; }
+
+  /* scroll-pinned zoom sections (hero, banner): the section sticks in place
+     while its wrapper scrolls past, and the media scales up underneath it */
+  .pin-wrap { position: relative; }
+  .pin-sticky {
+    position: sticky !important;
+    top: 0 !important;
+    will-change: transform;
+  }
+  .pin-media {
+    transform: scale(1);
+    will-change: transform;
+  }
+  .pin-fade {
+    will-change: transform, opacity;
+  }
+  /* hero copy sits on top of the video — keep it light against the footage */
+  .hero-pin-section {
+    --logo-overlay-bg: rgba(0, 0, 0, 0.72);
+    --logo-overlay-space: 7.5rem;
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    isolation: isolate;
+    padding-bottom: var(--logo-overlay-space);
+  }
+  .hero-pin-section h1 { color: var(--color-text-1); }
+  .hero-pin-section .z-10 p { color: #d7dbe0; }
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: var(--color-bg-page);
+    pointer-events: none;
+  }
+  .hero-media__video {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: 68%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 58% 14%;
+    transform: none;
+    opacity: 0;
+    transition: opacity 900ms ease;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.2) 7%,
+      rgba(0, 0, 0, 0.65) 16%,
+      #000 30%,
+      #000 74%,
+      rgba(0, 0, 0, 0.45) 88%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.2) 7%,
+      rgba(0, 0, 0, 0.65) 16%,
+      #000 30%,
+      #000 74%,
+      rgba(0, 0, 0, 0.45) 88%,
+      transparent 100%
+    );
+  }
+  .hero-media__video.is-loaded { opacity: 1; }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.78) 32%, rgba(0, 0, 0, 0.28) 48%, transparent 64%),
+      linear-gradient(to top, rgba(0, 0, 0, 0.62) 0%, transparent 30%),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, transparent 18%);
+  }
+  /* Logo-wall B, desktop only. 240px was measured at 1440×900, where the
+     video fills the hero. At ≤860 the video is only the bottom 42% / 34%,
+     and this scrim would black out that frame. Small screens keep .logo-bar. */
+  @media (min-width: 861px) {
+    .hero-scrim::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 240px;
+      pointer-events: none;
+      background: linear-gradient(
+        to bottom,
+        rgba(3, 5, 8, 0) 0%,
+        rgba(3, 5, 8, 0.18) 16%,
+        rgba(3, 5, 8, 0.64) 34%,
+        rgba(3, 5, 8, 0.94) 52%,
+        rgb(3, 5, 8) 60%,
+        rgb(3, 5, 8) 100%
+      );
+    }
+  }
+  .hero-copy-wrap {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 var(--content-inset);
+  }
+  .hero-copy { max-width: min(34rem, 40vw); }
+  .hero-kicker {
+    margin: 0 0 1.15rem;
+    color: var(--color-theme-2);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+  }
+  .hero-copy h1 {
+    margin: 0;
+    max-width: 14em;
+    color: var(--color-text-1);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-heading-lg);
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-display);
+  }
+  .hero-ai {
+    background: linear-gradient(100deg, var(--color-theme-hover) 0%, var(--color-theme-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-lede,
+  .hero-explore {
+    margin: 1.35rem 0 0;
+    max-width: 36rem;
+    color: var(--color-text-2);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--leading-body);
+  }
+  .hero-lede p { margin: 0; }
+  .hero-lede p + p { margin-top: 0.85rem; }
+  .hero-lede .hero-line { display: block; }
+  .hero-explore { margin-top: 1.15rem; }
+  .hero-link {
+    color: #e7edf8;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  button.hero-link {
+    border: 0;
+    padding: 0;
+    background: none;
+    font: inherit;
+    cursor: pointer;
+  }
+  .hero-link:hover { color: #fff; }
+  a.hero-jump {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-color: rgba(126, 162, 255, 0.7);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+  a.hero-jump:hover { color: inherit; }
+  .ask-lu-wrap { position: relative; margin-top: 1.7rem; }
+  .ask-lu {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.72rem 1.2rem 0.72rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    border-radius: 999px;
+    background: #0b0c10;
+    color: #f5f7fa;
+    font: inherit;
+    font-size: var(--font-size-pill);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    box-shadow: -14px 0 32px rgba(126, 162, 255, 0.32);
+  }
+  .ask-lu i { font-size: 1.15rem; line-height: 1; }
+  .ask-lu:hover { background: #15171d; border-color: #fff; }
+  .ask-lu[aria-expanded="true"] { border-color: var(--color-theme-hover); }
+  .ask-chat {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 0.75rem);
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    width: min(22.5rem, calc(100vw - 3rem));
+    max-height: min(24rem, 52vh);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 1.1rem;
+    background: rgba(12, 13, 18, 0.94);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(16px);
+  }
+  .ask-chat[hidden] { display: none; }
+  .ask-chat__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0.85rem 0.7rem 1rem;
+  }
+  .ask-chat__bar p { margin: 0; font-size: 0.92rem; font-weight: 600; color: #f5f7fa; }
+  .ask-chat__close,
+  .ask-chat__send {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: #f5f7fa;
+    cursor: pointer;
+  }
+  .ask-chat__close:hover,
+  .ask-chat__send:hover { background: rgba(255, 255, 255, 0.08); }
+  .ask-chat__log {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    overflow: auto;
+    padding: 0.2rem 1rem 0.8rem;
+  }
+  .ask-chat__msg {
+    margin: 0;
+    max-width: 92%;
+    padding: 0.65rem 0.8rem;
+    border-radius: 0.85rem;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+  .ask-chat__msg--lu { align-self: flex-start; background: rgba(255, 255, 255, 0.06); color: #e6e9ee; }
+  .ask-chat__msg--you { align-self: flex-end; background: #f5f7fa; color: #111; }
+  .ask-chat__form {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.7rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .ask-chat__form input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #f5f7fa;
+    font: inherit;
+    font-size: 0.9rem;
+    padding: 0.65rem 0.9rem;
+  }
+  .ask-chat__form input::placeholder { color: rgba(255, 255, 255, 0.45); }
+  .ask-lu:focus-visible,
+  .ask-chat__close:focus-visible,
+  .ask-chat__send:focus-visible,
+  .ask-chat__form input:focus-visible,
+  .hero-link:focus-visible,
+  .hero-jump:focus-visible {
+    outline: 2px solid var(--color-theme-2);
+    outline-offset: 3px;
+  }
+  @media (max-width: 1200px) {
+    .hero-media__video { width: 64%; object-position: 42% 12%; }
+    .hero-copy { max-width: min(22rem, 38vw); }
+  }
+  @media (max-width: 1000px) {
+    .hero-pin-section { align-items: flex-start; padding-top: 5.75rem; }
+    .hero-media__video {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      object-position: 8% 14%;
+    }
+    .hero-copy { max-width: min(22rem, 46vw); }
+    .hero-copy h1 { font-size: var(--font-size-heading-lg); }
+    .hero-lede { margin-top: 0.9rem; }
+    .hero-lede p + p { margin-top: 0.55rem; }
+    .hero-explore { margin-top: 0.8rem; }
+    .hero-scrim {
+      background:
+        linear-gradient(90deg, #0a0a0a 0%, #0a0a0a 42%, rgba(10, 10, 10, 0.55) 54%, transparent 68%),
+        linear-gradient(to top, rgba(10, 10, 10, 0.72) 0%, transparent 26%),
+        linear-gradient(to bottom, rgba(10, 10, 10, 0.45) 0%, transparent 16%);
+    }
+    .hero-media__video {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+  @media (max-width: 860px) {
+    .hero-media__video {
+      top: auto;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 42%;
+      object-position: 50% 8%;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.45) 10%, #000 26%);
+      mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.45) 10%, #000 26%);
+    }
+    .hero-copy { max-width: 100%; }
+    .hero-scrim {
+      background:
+        linear-gradient(to bottom, rgba(5, 7, 12, 0.96) 0%, rgba(5, 7, 12, 0.9) 42%, rgba(5, 7, 12, 0.45) 58%, transparent 74%),
+        linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 22%);
+    }
+  }
+  @media (max-width: 640px) {
+    .hero-media__video { height: 34%; object-position: 50% 0%; }
+    .hero-scrim {
+      background:
+        linear-gradient(to bottom, rgba(5, 7, 12, 0.98) 0%, rgba(5, 7, 12, 0.94) 58%, rgba(5, 7, 12, 0.4) 70%, transparent 82%),
+        linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 20%);
+    }
+  }
+  @media (max-width: 900px) {
+    .hero-copy h1 { max-width: none; }
+  }
+  @media (min-width: 768px) {
+    .hero-pin-section { --logo-overlay-space: 8.5rem; }
+  }
+
+  /* gentle scroll-linked zoom for inline media panels */
+  .parallax-zoom {
+    transform: scale(1.08);
+    will-change: transform;
+  }
+
+  /* ambient idle zoom on the hero video, independent of the scroll-driven pin-move on its child */
+  @keyframes heroAmbientZoom {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.09); }
+  }
+  .hero-ambient-zoom {
+    animation: heroAmbientZoom 16s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  /* How I work — between Solar and Experience. */
+  .ai-decides-section {
+    --ad-bg: #080f1b;
+    --ad-ink: #f7f8fc;
+    --ad-muted: #cdd3df;
+    --ad-blue: #518aff;
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    overflow: hidden;
+    background: var(--ad-bg);
+    color: var(--ad-ink);
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .ai-decides-section *,
+  .ai-decides-section *::before,
+  .ai-decides-section *::after { box-sizing: border-box; }
+  .ai-decides-section .ad-layout {
+    width: min(100%, 1842px);
+    min-height: 854px;
+    margin-inline: auto;
+    padding: 80px 72px 80px 97px;
+    display: grid;
+    grid-template-columns: minmax(0, 548px) minmax(0, 1fr);
+    align-items: center;
+    gap: 75px;
+  }
+  .ai-decides-section .ad-copy { position: relative; z-index: 1; transform: translateY(48px); }
+  .ai-decides-section .ad-eyebrow {
+    margin: 0 0 16px;
+    color: #5b9dff;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 25px;
+    letter-spacing: 5.1px;
+  }
+  .ai-decides-section .ad-heading {
+    margin: 0;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 84px;
+    font-weight: 400;
+    line-height: 1.03;
+    letter-spacing: -.8px;
+  }
+  .ai-decides-section .ad-heading em {
+    display: block;
+    color: #80aaff;
+    font-family: inherit;
+    font-size: 90px;
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -1.3px;
+  }
+  .ai-decides-section .ad-description {
+    max-width: 550px;
+    margin: 28px 0 0;
+    color: var(--ad-muted);
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: .12px;
+  }
+  .ai-decides-section .ad-cta {
+    margin-top: 37px;
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    text-decoration: none;
+  }
+  .ai-decides-section .ad-art-stage {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1060 / 654;
+    overflow: hidden;
+    transform: translateY(27px);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 1.5%, #000 98.5%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 1.5%, #000 98.5%, transparent);
+  }
+  .ai-decides-section .ad-art {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .ai-decides-section .hiw-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .ai-decides-section .hiw-video.is-playing { opacity: 1; }
+
+  /* HIW V4 review: one common scale and transparent cutout for burned-in arc/title. */
+  .ai-decides-section .ad-art-stage { scale: .9; background: var(--ad-bg); }
+  .ai-decides-section .ad-art,
+  .ai-decides-section .hiw-video {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201060%20654%22%3E%3Crect%20width%3D%221060%22%20height%3D%22654%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M28%20193%20C190%2075%20812%2072%20987%20262%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%2272%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%22320%22%20y%3D%220%22%20width%3D%22320%22%20height%3D%22101%22%20fill%3D%22black%22%2F%3E%3C%2Fsvg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201060%20654%22%3E%3Crect%20width%3D%221060%22%20height%3D%22654%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M28%20193%20C190%2075%20812%2072%20987%20262%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%2272%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%22320%22%20y%3D%220%22%20width%3D%22320%22%20height%3D%22101%22%20fill%3D%22black%22%2F%3E%3C%2Fsvg%3E");
+    mask-size: 100% 100%; mask-repeat: no-repeat; mask-mode: luminance; mix-blend-mode: lighten;
+  }
+  .ai-decides-section .hiw-video { transition: none; }
+  .ai-decides-section .ad-art-stage:has(.hiw-video.is-playing) .ad-art { opacity: 0; }
+  .ai-decides-section .hiw-decide-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: lighten; }
+  .hiw-decide-label { animation: hiw-decide-settle 320ms ease-out both; }
+  .hiw-decide-left { animation: hiw-decide-accent 8s ease-out infinite; }
+  .hiw-decide-right { animation: hiw-decide-accent 8s 160ms ease-out infinite; }
+  @keyframes hiw-decide-settle { from { opacity: .55; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes hiw-decide-accent { 0%, 6%, 100% { opacity: 1; } 2% { opacity: .4; } }
+  .ad-art-stage:not(.hiw-motion-visible) .hiw-decide-layer g { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) {
+    .hiw-decide-layer g { animation: none !important; opacity: 1; transform: none; }
+    .ai-decides-section .hiw-video { transition: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ai-decides-section .hiw-video { display: none; }
+  }
+  .ai-decides-section .hiw-plays {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .ai-decides-section .hiw-plane {
+    position: absolute;
+    left: calc(-720 / 1060 * 100%);
+    top: calc(-130 / 654 * 100%);
+    width: calc(1842 / 1060 * 100%);
+    height: calc(854 / 654 * 100%);
+  }
+  .ai-decides-section .hiw-plane canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  @media (min-width: 901px) and (max-width: 1600px) {
+    .ai-decides-section .ad-layout { min-height: clamp(640px, 46.36vw, 854px); padding: 60px 4vw 65px 5.25vw; grid-template-columns: minmax(0, 32.8fr) minmax(0, 63.2fr); gap: 4%; }
+    .ai-decides-section .ad-copy { transform: translateY(30px); }
+    .ai-decides-section .ad-eyebrow { font-size: clamp(13px, 1.04vw, 19px); letter-spacing: 4px; }
+    .ai-decides-section .ad-heading { font-size: clamp(51px, 4.56vw, 84px); }
+    .ai-decides-section .ad-heading em { font-size: clamp(57px, 4.89vw, 90px); }
+    .ai-decides-section .ad-description { margin-top: 24px; font-size: clamp(17px, 1.25vw, 23px); line-height: 1.55; }
+    .ai-decides-section .ad-cta { margin-top: 29px; }
+  }
+  @media (max-width: 900px) {
+    .ai-decides-section .ad-layout { min-height: auto; padding: 54px 28px 34px; grid-template-columns: 1fr; gap: 26px; }
+    .ai-decides-section .ad-copy { width: min(100%, 580px); margin-inline: auto; transform: none; }
+    .ai-decides-section .ad-eyebrow { font-size: 13px; line-height: 20px; letter-spacing: 4px; margin-bottom: 18px; }
+    .ai-decides-section .ad-heading { font-size: clamp(54px, 9.5vw, 78px); line-height: 1.04; }
+    .ai-decides-section .ad-heading em { font-size: clamp(60px, 10.5vw, 84px); }
+    .ai-decides-section .ad-description { margin-top: 24px; font-size: 18px; line-height: 29px; }
+    .ai-decides-section .ad-desktop-break { display: none; }
+    .ai-decides-section .ad-cta { margin-top: 26px; }
+    .ai-decides-section .ad-art-stage { width: min(100%, 720px); margin-inline: auto; transform: none; }
+  }
+  @media (max-width: 480px) {
+    .ai-decides-section .ad-layout { padding: 42px 24px 24px; gap: 27px; }
+    .ai-decides-section .ad-art-stage { width: calc(100% + 28px); max-width: none; margin-left: -14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ai-decides-section .ad-cta,
+    .ai-decides-section .ad-cta svg { transition: none; }
+    .ai-decides-section .ad-cta:hover,
+    .ai-decides-section .ad-cta:hover svg { transform: none; }
+  }
+
+  /* One index screen: fill the viewport, share the content rail, clear the fixed header. */
+  .ai-decides-section {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+  .ai-decides-section .ad-layout {
+    width: 100%;
+    flex: 1 0 auto;
+    min-height: 100dvh;
+    padding-inline: var(--content-inset);
+    padding-top: calc(6rem + 1.5rem);
+  }
+  .ai-decides-section .ad-eyebrow { text-transform: uppercase; }
+  @media (max-width: 900px) {
+    .ai-decides-section .ad-layout { padding-top: calc(5rem + 1.5rem); }
+  }
+
+  .case-block {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    min-height: 100dvh;
+    background: var(--color-bg-page);
+    padding: 6.5rem 0 3rem;
+  }
+  .case-block > .index-align { width: 100%; }
+  /* Copy, contact, and the copyright row share the header rail. */
+  .index-align {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+  .case-card {
+    display: grid;
+    grid-template-columns: minmax(16rem, 32%) minmax(0, 1fr);
+    gap: clamp(1.5rem, 3vw, 3.5rem);
+    align-items: center;
+    padding-left: var(--content-inset);
+    padding-right: var(--content-inset);
+  }
+  .case-card--flip {
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 32%);
+    padding-left: var(--content-inset);
+    padding-right: var(--content-inset);
+  }
+  .case-card--flip .case-card__copy { order: 2; }
+  .case-card__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin: 0 0 1.15rem;
+    color: var(--color-theme-hover);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+  }
+  .case-card__title {
+    margin: 0;
+    color: var(--color-text-1);
+    font-size: var(--font-size-heading-lg);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-display);
+  }
+  .case-card__role {
+    margin: 0.85rem 0 0;
+    color: var(--color-text-2);
+    font-size: var(--font-size-body-lg);
+    font-weight: var(--font-weight-medium);
+  }
+  .case-card__story { margin: 1.65rem 0 0; }
+  .case-card__story h3 {
+    margin: 0 0 0.4rem;
+    color: var(--color-text-1);
+    font-size: var(--font-size-subhead);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-display);
+  }
+  .case-card__story p,
+  .case-card__metric span {
+    margin: 0;
+    color: var(--color-text-2);
+    font-size: var(--font-size-body);
+    line-height: var(--leading-body);
+  }
+  .case-card__metric {
+    margin: 1.35rem 0 0;
+    padding-left: 0.95rem;
+    border-left: 2px solid var(--color-theme-2);
+  }
+  .case-card__metric strong {
+    display: block;
+    margin-bottom: 0.2rem;
+    color: var(--color-text-1);
+    font-size: var(--font-size-body-lg);
+    font-weight: var(--font-weight-semibold);
+  }
+  .case-card__copy .pill-btn { margin-top: 1.65rem; }
+  .case-card__media {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    border-radius: 1.15rem;
+    background-color: #111318;
+    background-position: center;
+    background-size: cover;
+  }
+  .case-card__media video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: translateZ(0);
+    transition: opacity 400ms ease;
+  }
+  .case-card__media video.is-ready { opacity: 1; }
+  @media (max-width: 900px) {
+    .case-block { min-height: 0; padding: 3.5rem 0; align-items: flex-start; }
+    .case-card,
+    .case-card--flip {
+      grid-template-columns: 1fr;
+      padding-left: var(--content-inset);
+      padding-right: var(--content-inset);
+    }
+    .case-card--flip .case-card__media { order: -1; }
+    .hero-copy h1,
+    .case-card__title { font-size: var(--font-size-heading); }
+  }
+
+  /* ============================================================
+     EXPERIENCE TIMELINE — FXIFY-style curved-arc timeline.
+     A tall scroll track (500vh) drives a native position:sticky
+     viewport (90vh). Inside sits a relative coordinate box
+     (~46.36vw) holding a large curved SVG arc, a soft blue glow,
+     4 FIXED dots sampled onto the arc path, and 4 alternating
+     content blocks. The track's own scroll progress is the single
+     source of truth: activeIndex = clamp(floor(progress*4),0,3),
+     the arc draws to ~40% of its path length via stroke-dashoffset,
+     and every content block / dot carries
+     data-status = active | previous | hidden. Dots never move.
+     No IntersectionObserver. See expInit() / expWrite().
+     ============================================================ */
+  /* ============================================================
+     EXPERIENCE TIMELINE — FXIFY "How it works" curved-arc timeline.
+
+     Coordinate system (the whole point of this rebuild):
+       .exp-coord is ONE relative box, centred, ~1200px wide, 100vh tall.
+       Every visual — the faint background arc, the blue glow, the 4 dots
+       and the 4 content blocks — lives inside it and is positioned in the
+       SAME percentage space. A dot and its content block share an X anchor;
+       the content sits ABOVE the dot, joined by a thin vertical bar with a
+       "+" at the top and the dot at the bottom.
+
+       4 fixed anchor points (percent of the box), sampled from the
+       reference at 1280x638:
+         0  (28.1%, 33.4%)   left  side   "UBS"
+         1  (61.2%, 37.9%)   left  side   "AdNovum"
+         2  (72.5%, 74.5%)   right side   "Futurice"
+         3  (44.8%, 94.0%)   right side   "Designaffairs"
+
+     Scroll (progress of the 500vh track) drives three phases:
+       HOLD   p 0   -> 0.22 : About + UBS stay fixed as one composition.
+       ENTER  p 0.22-> 0.34 : About leaves upward and the timeline settles
+                              into its normal coordinate system.
+       PINNED p 0.34-> 0.86 : the arc draws along its path, the glow fills,
+                              and items activate 0 -> 1 -> 2 -> 3.
+       EXIT   p 0.86-> 1    : the whole box slides up and out.
+
+     The arc is a BACKGROUND visual only — near-invisible, masked, low
+     opacity. The reader follows the content, the "+" marker, the bar and
+     the dot, not the big curve. See expInit() / expWrite().
+     ============================================================ */
+  .exp-section {
+    position: relative;
+    /* NO z-index — a positive z-index here would paint the whole section (and
+       .exp-field inside it) ON TOP of the later transparent #contact / footer,
+       so the field covered the Contact text instead of sitting behind it. With
+       z-index:auto the field paints in normal DOM order: behind the transparent
+       Contact section, so the Contact copy floats on top of the field. */
+    padding-top: 0;
+    --exp-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --exp-blue: 126, 162, 255;          /* host index blue — same accent as the rest of the index */
+  }
+
+  /* header is a normal-flow sibling ABOVE the sticky track, so it scrolls
+     away as the timeline pins (reference: HowItWorks_header). */
+  .exp-header {
+    position: relative;
+    z-index: 4;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 48px 1.5rem;
+  }
+  .exp__heading { pointer-events: auto; }
+
+  /* tall scroll track */
+  .exp-track {
+    position: relative;
+    height: 500vh;
+  }
+
+  /* Section pauses are not CSS scroll-snap. Proximity + snap-stop can
+     pull against the travel direction. initSectionSettle() eases only
+     toward a start that is still ahead, after the gesture goes quiet. */
+
+  /* sticky viewport — native CSS position:sticky, NOT JS pinning.
+     NOTE: the clip that keeps the 250vh curve/glow inside one screen now lives
+     on .exp-curve-clip (a wrapper around ONLY the curve group), NOT here — so
+     .exp-field can bleed past the bottom edge and flow into the footer without
+     a visible clip seam. Do not re-add overflow:hidden here. */
+  .exp-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+
+  /* Keep the About + first-experience composition on screen before the
+     timeline advances. It holds at full opacity, then leaves upward as the
+     user continues scrolling. */
+  .exp-intro {
+    position: absolute;
+    top: var(--exp-stage-drop, 0px);
+    left: 0;
+    right: 0;
+    z-index: 4;
+    padding: 6rem 1.5rem 0;
+    opacity: var(--exp-intro-opacity, 1);
+    transform: translate3d(0, var(--exp-intro-shift, 0px), 0);
+    will-change: opacity, transform;
+    pointer-events: none;
+  }
+
+  /* isolates the curve/glow clipping: same 100vh box the sticky used to clip,
+     but scoped to the curve group so the blue field is left uncut. The
+     bottom edge is feathered (not a hard cut) so the raster never reads as a
+     horizontal seam where it meets the field / footer — matters in light mode. */
+  .exp-curve-clip {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, #000 92%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 92%, transparent 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* the single relative coordinate box — arc / glow / dots / content all
+     share this percentage space. --exp-shift is the enter/exit slide. */
+  .exp-coord {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(1200px, 100vw - 3rem);
+    height: 100vh;
+    --exp-shift: 0px;
+    --exp-f: 0;                 /* blue field emergence, 0 -> 1, driven in expWrite */
+    /* 1440×900, scrollY 6420: the visible curve sat through the UBS sentence.
+       36px puts that curve 8px-plus below the glyph box. Curvature, width
+       and opacity stay. Dots and stems use the same drop. */
+    --exp-arc-drop: 36px;
+    transform: translate3d(-50%, var(--exp-shift), 0);
+    will-change: transform;
+  }
+
+  /* ── curve + glow group ─────────────────────────────────────────────
+     ONE masked wrapper holds BOTH the SVG curve and the reference's
+     pre-rendered navy raster (blue-4.webp). The group's opacity is the
+     scroll-driven fade-in; the shared mask fades the lower band away
+     (reference: HowItWorks_line__auowC). */
+  .exp-curve {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 250%;                 /* tall canvas (ref: _line box ≈ 1.8× its sticky) */
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+    will-change: opacity;
+    -webkit-mask-image: linear-gradient(0deg, transparent 40%, #000 60%);
+            mask-image: linear-gradient(0deg, transparent 40%, #000 60%);
+  }
+
+  /* reference raster: saturated deep-blue / navy atmospheric glow with the
+     curve light baked in. Positioned so its curve tracks the %-anchored
+     dots (viewBox region 0 0 1468 971 of the arc coordinate space). */
+  .exp-curve__glow {
+    position: absolute;
+    left: 10.25%;
+    top: 11.45%;
+    width: 78.35%;
+    height: 40.6%;
+    object-fit: fill;
+    /* The blue atmosphere is a TRANSITION effect, NOT a timeline background.
+       It stays fully absent while the experience entries read (--exp-f == 0)
+       and only emerges — together with .exp-field — once the timeline is done
+       and Contact is revealing. The curve LINE itself (.exp-arc__path) is a
+       separate element and is always drawn, so the timeline still has its arc. */
+    opacity: var(--exp-f);
+    pointer-events: none;
+    /* bottom fade + a soft RIGHT-edge fade so the raster's baked hard vertical
+       boundary dissolves into the blue field instead of reading as a
+       clip seam once it is visible (transition/contact only). */
+    -webkit-mask-image:
+      linear-gradient(to bottom, #000 58%, transparent 100%),
+      linear-gradient(to right, #000 62%, transparent 98%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to bottom, #000 58%, transparent 100%),
+      linear-gradient(to right, #000 62%, transparent 98%);
+    mask-composite: intersect;
+  }
+
+  /* ── atmosphere carrier ────────────────────────────────────────────
+     The ONE .exp-field lives in here, NOT in #exp-coord. As a <body class="m-0 min-w-[360px] antialiased"> child
+     this carrier's position:sticky range spans #experience + #contact +
+     footer, so the SAME field — identical geometry: 96% / -26% of this
+     100vh box, exactly as when it sat in #exp-coord — stays put behind the
+     Contact copy once the timeline's own sticky (.exp-sticky) releases.
+     margin-bottom:-100vh removes its flow height (zero space added — it just
+     overlaps the top 100vh of #experience, where --exp-f is 0 so the field
+     is invisible). isolation:isolate scopes the field's z-index:1 here so the
+     carrier still paints BEHIND #contact / footer, which float on top of it.
+     The timeline's own sticky/track/coord/dots/entries are untouched. */
+  .exp-atmos {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin-bottom: -100vh;
+    isolation: isolate;
+    pointer-events: none;
+    --exp-f: 0;                 /* default until expWrite mirrors it here */
+  }
+
+  /* ── blue field ─────────────────────────────────────────────
+     The cinematic bridge from the finished timeline to Contact. Held at
+     opacity 0 for the ENTIRE timeline — it only emerges in the contact
+     phase (--exp-f, 0 until pin 0.82). As --exp-f ramps 0->1 it rises from
+     the base of the frame and fills edge to edge, so Contact reveals within
+     it. Purely --exp-f driven — no transition, the scrub is the animation. */
+  .exp-field {
+    position: absolute;
+    left: 50%;
+    bottom: -26%;               /* solid base runs past the fold so the track
+                                   release / settle never exposes a hard edge or a
+                                   black band under the field — it fades into footer */
+    width: 100vw;               /* break out of the 1200px coord box — edge to edge */
+    height: 96%;
+    z-index: 1;
+    opacity: var(--exp-f);
+    pointer-events: none;
+    /* One light with the arc sheet: purer blue, deep on the right,
+       gone before the left (Designaffairs) side. No second lobe on the left. */
+    background:
+      radial-gradient(70% 78% at 94% 70%,
+        rgba(36, 116, 255, 0.42) 0%,
+        rgba(32, 108, 252, 0.18) 34%,
+        rgba(28, 100, 248, 0.05) 56%,
+        transparent 74%);
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 14%, #000 46%, rgba(0,0,0,0.5) 72%, transparent 100%);
+            mask-image: linear-gradient(to top, transparent 0%, #000 14%, #000 46%, rgba(0,0,0,0.5) 72%, transparent 100%);
+    transform: translateX(-50%) translateY(calc((1 - var(--exp-f)) * 12%)) scaleY(calc(0.82 + 0.18 * var(--exp-f)));
+    transform-origin: 50% 100%;
+    will-change: opacity, transform;
+  }
+
+  /* the large curved band: the reference closed blob path, stroked at
+     100 user units and CLIPPED to its own outline, so only the inner
+     ~half of the stroke shows as a soft luminous edge — never a hairline,
+     never blurred. viewBox is framed so a path point lands on the
+     matching %-positioned dot. */
+  .exp-arc {
+    position: absolute;
+    left: 10.24%;
+    top: 11.76%;
+    width: 78.3%;
+    height: 64.5%;             /* SVG element = ref's _line box (viewBox 0 0 1468 1555),
+                                  placed so a path point lands on its %-anchored dot */
+    z-index: 1;
+    overflow: visible;
+    pointer-events: none;
+    transform: translateY(var(--exp-arc-drop, 0px));
+  }
+  .exp-arc__path {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 100;
+    stroke-linecap: butt;
+    opacity: 0.26;
+    will-change: stroke-dasharray;
+  }
+
+  /* Futurice → Designaffairs sheet: a blue wash under the line.
+     Same path as before. Horizontal: deep blue on the right, transparent
+     by the left. The mask eats the mass that used to sit past the line. */
+  .exp-arc__sheet {
+    opacity: 0;
+    transition: opacity 0.9s var(--exp-ease);
+  }
+  .exp-coord:has(.exp-dot[data-index="3"]:not([data-status="hidden"])) .exp-arc__sheet { opacity: 1; }
+
+  /* 4 fixed dots — CSS-anchored to the same points as their content.
+     Plain solid white, no glow. Dot 0 waits for the seam (data-stem).
+     Dots 1–3 fade with their copy so a hidden entry leaves no orphan dot. */
+  .exp-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    border-radius: 50%;
+    background: #fff;
+    z-index: 3;
+    transform: translateY(var(--exp-arc-drop, 0px));
+  }
+  /* Original curve anchor. The first entry's copy stays 72px lower.
+     Dot 0 stays hidden until the seam line reaches it (data-stem). */
+  .exp-dot[data-index="0"] { left: 26.7%; top: 33.4%; opacity: 0; }
+  .exp-dot[data-index="0"][data-stem="on"] { opacity: 1; }
+  .exp-dot[data-index="1"] { left: 61.2%; top: 37.9%; }
+  .exp-dot[data-index="2"] { left: 72.5%; top: 74.5%; }
+  .exp-dot[data-index="3"] { left: 44.8%; top: 94.0%; }
+  .exp-dot[data-index="1"],
+  .exp-dot[data-index="2"],
+  .exp-dot[data-index="3"] {
+    opacity: 1;
+    transition: opacity 0.9s var(--exp-ease);
+  }
+  .exp-dot[data-index="1"][data-status="hidden"],
+  .exp-dot[data-index="2"][data-status="hidden"],
+  .exp-dot[data-index="3"][data-status="hidden"] { opacity: 0; }
+
+  /* content blocks — anchored to their dot's X, sitting ABOVE the dot */
+  .exp-content {
+    position: absolute;
+    z-index: 2;
+    width: min(340px, 40vw);
+    opacity: 0;
+    transition: opacity 0.9s var(--exp-ease);
+    will-change: opacity;
+  }
+  .exp-content[data-side="left"]  { text-align: left;  padding-left: 1.75rem; }
+  .exp-content[data-side="right"] { text-align: right; padding-right: 1rem; }
+
+  /* bottom = 100% - (dot top%) + gap, so the block floats ~42px above the dot */
+  /* 72px lower than the dot-gap anchor so the How I Work arc can
+     finish its turn on the timeline column before the title. */
+  .exp-content[data-index="0"] {
+    left: 26.7%;
+    bottom: calc(66.6% + 42px - 72px);
+    /* Content bottom sits 30px below the unshifted dot line (72px type
+       drop minus the 42px gap). The dot is --exp-arc-drop further down.
+       This is the distance from the card edge to the dot center. */
+    --ubs-stem-bottom: calc(30px - var(--exp-arc-drop, 0px));
+  }
+  .exp-content[data-index="1"] { left: 61.2%;  bottom: calc(62.1% + 42px); }
+  .exp-content[data-index="2"] { right: 27.5%; bottom: calc(25.5% + 42px); }
+  .exp-content[data-index="3"] { right: 55.2%; bottom: calc(6.0% + 42px); }
+
+  .exp-content[data-status="hidden"]   { opacity: 0; pointer-events: none; }
+  .exp-content[data-status="active"]   { opacity: 1; pointer-events: auto; }
+  .exp-content[data-status="previous"] { opacity: 1; pointer-events: none; }
+
+  /* node decoration: ONE vertical connector + "+" crosshair at the top */
+  .exp-content__node {
+    position: absolute;
+    top: 0;
+    bottom: calc(-42px - var(--exp-arc-drop, 0px));
+    width: 1px;
+  }
+  .exp-content[data-side="left"]  .exp-content__node { left: 0; }
+  .exp-content[data-side="right"] .exp-content__node { right: 0; }
+
+  /* THE active vertical connector. 1.6875px wide. The fade is a fixed
+     36px below the dot, not a percentage of the node: extendBarTo()
+     stretches the node upward, and a 232% bar used to drag the tail
+     with it. 36px is the old 43%→52% fade on the resting UBS node
+     (~175px × 0.206). Active item only. */
+  .exp-content__bar {
+    --exp-bar-tail: 36px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: calc(-1 * var(--exp-bar-tail));
+    width: 1.6875px;
+    margin-left: -0.84px;
+    background: linear-gradient(to bottom,
+      #4f78f0 0,
+      var(--color-theme-2) calc(100% - var(--exp-bar-tail) - 20px),
+      rgba(126, 162, 255, 0.85) calc(100% - var(--exp-bar-tail)),
+      rgba(126, 162, 255, 0) 100%);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  .exp-content[data-status="active"] .exp-content__bar { opacity: 1; }
+
+  .exp-content__plus {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 11px;
+    height: 11px;
+    transform: translate(-50%, -50%) rotate(135deg);
+    opacity: 0;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out, color 1s ease-in-out;
+    color: var(--color-theme-2);
+  }
+  .exp-content__plus::before,
+  .exp-content__plus::after { content: ""; position: absolute; background: currentColor; }
+  .exp-content__plus::before { left: 50%; top: 0; width: 1.25px; height: 100%; transform: translateX(-50%); }
+  .exp-content__plus::after  { top: 50%; left: 0; height: 1.25px; width: 100%; transform: translateY(-50%); }
+
+  .exp-content[data-status="active"]   .exp-content__plus,
+  .exp-content[data-status="previous"] .exp-content__plus {
+    transform: translate(-50%, -50%) rotate(0deg);
+    color: var(--color-theme-2);
+  }
+  .exp-content[data-status="active"]   .exp-content__plus { opacity: 1; }
+  .exp-content[data-status="previous"] .exp-content__plus { opacity: 1; }
+
+  /* copy */
+  .exp-kicker {
+    display: block;
+    margin: 0 0 1rem;
+    color: var(--color-theme-hover);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-eyebrow);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .exp-heading {
+    display: block;
+    margin: 0 0 calc(1.35rem + 15px);
+    color: var(--color-text-1);
+    font-size: var(--font-size-heading);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-display);
+  }
+  .exp-content[data-index="0"] .exp-content__node {
+    top: calc(0.8125rem + 1rem + 2 * var(--font-size-heading) * var(--leading-heading) + 0.55rem + 5px);
+    /* Node ends at the white-dot center. The bar keeps the shared 36px fade below that. */
+    bottom: var(--ubs-stem-bottom);
+  }
+  .exp-content[data-index="0"] .exp-content__plus { display: none; }
+  .exp-content[data-index="0"] .exp-content__bar {
+    /* Same 36px fade as the other bars. Inherited --exp-bar-tail and bottom
+       hang that tail under the dot. Hidden until the seam arrives, then
+       revealed from the join downward. */
+    opacity: 0;
+    transition: none;
+    transform-origin: top center;
+    clip-path: inset(0 0 calc((1 - var(--stem-grow, 0)) * 100%) 0);
+  }
+  .exp-content[data-index="0"][data-stem="on"] .exp-content__bar {
+    opacity: var(--ubs-line, 1);
+  }
+  /* UBS → AdNovum only. The AdNovum stem reveals from the "+" downward
+     while the UBS stem fades. Scroll position owns both, so reversing
+     the scroll puts them back. Futurice and Designaffairs stay on the
+     active-bar opacity fade above. */
+  .exp-content[data-index="1"][data-relay="on"] .exp-content__bar {
+    opacity: 1;
+    transition: none;
+    transform-origin: top center;
+    clip-path: inset(0 0 calc((1 - var(--relay-grow, 0)) * 100%) 0);
+  }
+  @media (min-width: 768px) {
+    .exp-heading { font-size: var(--font-size-heading-lg); }
+    .exp-content[data-index="0"] .exp-content__node {
+      top: calc(0.8125rem + 1rem + 2 * var(--font-size-heading-lg) * var(--leading-heading) + 0.55rem + 5px);
+    }
+  }
+  /* Desktop: the title's first line sits level with the UBS date, in the
+     blank left of the timeline. Its right edge stays 48px clear of the
+     vertical line. 390px and below keep the stacked list. */
+  @media (min-width: 641px) {
+    .exp-content[data-index="0"] .exp-lead {
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      width: max-content;
+      max-width: min(19rem, calc(
+        (100vw - min(1200px, 100vw - 3rem)) / 2
+        + 0.267 * min(1200px, 100vw - 3rem)
+        - 48px
+        - var(--content-inset)
+      ));
+      margin: 0;
+      left: auto;
+      right: calc(100% + 48px);
+    }
+    .exp-content[data-index="0"] .exp-lead { text-align: right; }
+    .exp-content[data-index="0"] .exp-lead .exp-heading { margin-bottom: 0; }
+    .exp-content[data-index="0"] .exp-content__node {
+      top: 0;
+      bottom: calc(-42px - var(--exp-arc-drop, 0px));
+    }
+    .exp-content[data-index="0"] {
+      bottom: calc(66.6% + 42px);
+      --ubs-stem-bottom: calc(-42px - var(--exp-arc-drop, 0px));
+    }
+  }
+  .exp-content__eyebrow {
+    display: block;
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-style: italic;
+    font-size: var(--font-size-caption);
+    color: var(--color-text-3);
+    margin-bottom: 0.35rem;
+  }
+  .exp-content__title {
+    display: block;
+    font-size: var(--font-size-body-lg);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+    color: var(--color-text-1);
+    margin-bottom: 0.3rem;
+  }
+  .exp-content__role {
+    display: block;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-2);
+    margin-bottom: 0.5rem;
+  }
+  .exp-content__desc {
+    display: block;
+    font-size: var(--font-size-caption);
+    line-height: var(--leading-relaxed);
+    color: var(--exp-desc);
+  }
+
+  /* previous items stay fully readable (reference does NOT ghost them) —
+     the active signal is the connector + "+" + dot, not a brightness cliff. */
+
+  /* ── contact section ───────────────────────────────────────────────
+     Its OWN normal-flow section AFTER the Experience track — not inside
+     #exp-coord, not scroll-pinned, no shared state with the timeline.
+     SEPARATE SECTION, NOT a separate background: it is transparent, so the
+     copy just floats over the page's own surface — no fill, no gradient,
+     no pseudo-element, so there is no horizontal boundary where Experience
+     ends and Contact begins. */
+  .contact-section {
+    position: relative;
+    /* no z-index — like the footer, this sits BELOW .exp-section (z-index:1)
+       so the original .exp-field bleed simply feathers out over the top of
+       Contact as it always did over the footer. */
+    background: transparent;
+    padding: clamp(6rem, 14vh, 9rem) var(--content-inset) clamp(4.5rem, 10vh, 7rem);
+  }
+
+  .exp-contact {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.75rem 3rem;
+  }
+
+  /* independent reveal — fade + gentle rise as the Contact section enters
+     the viewport. Toggled by the shared IntersectionObserver (.is-visible).
+     Never touches the Experience timeline. */
+  .contact-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--duration-reveal) var(--ease), transform var(--duration-reveal) var(--ease);
+  }
+  .contact-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .exp-contact__heading {
+    font-size: var(--font-size-contact); /* H3 contact */
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    color: var(--color-text-1);
+  }
+  .exp-contact__links {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.75rem;
+    font-size: var(--font-size-body); /* Body R */
+    color: var(--color-text-3);
+  }
+  .exp-contact__links a {
+    transition: color 0.3s var(--exp-ease);
+  }
+  .exp-contact__links a:hover { color: var(--color-text-1); }
+  .exp-contact__links a:focus-visible {
+    outline: 2px solid var(--color-theme-2);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+  .exp-contact__sep { color: var(--color-text-4, rgba(255,255,255,0.25)); }
+
+  /* transparent — no fill of its own, so Experience -> Contact -> footer are
+     one continuous surface (the page's own bg + whatever of the .exp-field
+     atmosphere reaches this far), with no horizontal boundary anywhere. */
+  .exp-footer {
+    background: transparent;
+  }
+
+  /* ── shared site footer ─────────────────────────────────────────────
+     Full-bleed divider, then the copyright on the same rail as the header. */
+  .site-footer__inner {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+  .site-footer.exp-footer {
+    --footer-rule-inset: 4rem;
+    background: transparent;
+    position: relative;
+    padding-inline: var(--content-inset);
+  }
+  .exp-footer::before {
+    content: "";
+    position: absolute;
+    top: var(--footer-rule-inset);
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    border-top: 1px solid var(--color-footer-divider);
+    pointer-events: none;
+  }
+  .site-footer__bottom {
+    padding-top: 2rem;
+    text-align: left;
+    color: var(--color-text-3);
+  }
+  .site-footer__credit {
+    margin-inline-start: 0.5em;
+  }
+  .site-footer__note {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+  .site-footer__lab {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.85;
+  }
+  .site-footer__lab:hover,
+  .site-footer__lab:focus-visible {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 1024px) {
+    .exp-content { width: min(320px, 44vw); }
+    .exp-dot[data-index="1"] { left: 58%; }
+    .exp-content[data-index="1"] { left: 58%; }
+  }
+
+  /* Phone + tablet: the 360vh case pins are taller than the viewport
+     (especially iPad landscape), so the accordion and Explore link sit
+     below the fold. Collapse them into a normal stack and show every step. */
+  @media (max-width: 1023px) {
+    #model-series.pin-wrap,
+    #omni-model.pin-wrap { height: auto !important; }
+    #model-series > .pin-sticky,
+    #omni-model > .pin-sticky {
+      position: relative !important;
+      top: auto !important;
+      height: auto !important;
+      min-height: 0 !important;
+      align-items: flex-start;
+      padding-top: 6rem;
+      padding-bottom: 4rem;
+    }
+    .pin-wrap .accordion-body-wrap {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+    .pin-wrap .accordion-title { color: var(--color-text-1); }
+    .pin-wrap .accordion-bar { background: var(--color-text-1); }
+    #model-series .pin-sticky h2,
+    #omni-model .pin-sticky h2 { margin-bottom: 2rem; }
+  }
+
+  /* narrow screens + reduced motion: the curved-arc pin doesn't read —
+     fall back to a plain stacked list */
+  @media (max-width: 640px), (prefers-reduced-motion: reduce) {
+    .exp-track { height: auto; }
+    .exp-sticky { position: static; height: auto; display: block; overflow: visible; padding: 6rem 0 3rem; }
+    .exp-intro {
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      padding: 6rem 1.25rem 4rem;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .exp-header { position: static; transform: none; padding: 0 1.25rem 1.75rem; }
+    .exp-coord {
+      position: relative; left: auto; transform: none !important;
+      width: 100%; max-width: 52rem; height: auto;
+      margin: 0; padding: 0 1.25rem;
+    }
+    .exp-atmos, .exp-curve-clip, .exp-curve, .exp-arc, .exp-dot, .exp-field { display: none; }
+    .exp-content,
+    .exp-content[data-side="left"],
+    .exp-content[data-side="right"],
+    .exp-content[data-index="0"],
+    .exp-content[data-index="1"],
+    .exp-content[data-index="2"],
+    .exp-content[data-index="3"] {
+      position: relative; top: auto; bottom: auto; left: auto; right: auto;
+      width: 100%; max-width: none; opacity: 1 !important;
+      text-align: left; margin: 0 0 2.25rem; padding: 0 0 0 1.5rem;
+      border-left: 1px solid rgba(var(--exp-blue), 0.4);
+    }
+    .exp-content__node, .exp-content__bar, .exp-content__plus { display: none; }
+    .exp-content__eyebrow, .exp-content__title, .exp-content__role, .exp-content__desc { opacity: 1 !important; }
+    .exp-content[data-index="3"]::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 72px;
+      margin-left: -1.5rem;
+      background: linear-gradient(to bottom, rgba(126, 162, 255, 0.4), rgba(126, 162, 255, 0));
+    }
+
+    .exp-contact {
+      flex-direction: column; align-items: flex-start; gap: 1.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pin-wrap { height: auto !important; }
+    .pin-sticky { position: relative; height: auto !important; }
+    .pin-media, .parallax-zoom { transform: none !important; }
+    .pin-fade, .pin-move { opacity: 1 !important; transform: none !important; }
+    .contact-reveal { opacity: 1 !important; transform: none !important; }
+    .hero-ambient-zoom { animation: none !important; }
+    .hero-pin-section {
+      display: flex !important;
+      min-height: 100dvh;
+      height: 100dvh;
+    }
+  }
+
+  /* ============================================================
+     LOGO OVERLAY — selected-experience wall docked to the bottom
+     of the first viewport. Full-bleed translucent black sits on
+     the video; inner logos keep the Global Page Frame (24px + 1440).
+     Absolute inside the 100dvh hero so later sections are not covered.
+     ============================================================ */
+  .logo-bar {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 20;
+    width: 100%;
+    margin: 0;
+    padding: 20px 0 22px;
+    padding-bottom: max(22px, env(safe-area-inset-bottom));
+    background: var(--logo-overlay-bg, rgba(0, 0, 0, 0.72));
+  }
+  .logo-bar::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    height: 40px;
+    pointer-events: none;
+    background: linear-gradient(to top, var(--logo-overlay-bg, rgba(0, 0, 0, 0.72)), transparent);
+  }
+  /* ≥861: the hero-scrim fade replaces this plate. ≤860 keeps it,
+     because the video is only the bottom band and has no 240px scrim. */
+  @media (min-width: 861px) {
+    .logo-bar { background: transparent; }
+    .logo-bar::before { content: none; }
+  }
+  .logo-bar__frame {
+    position: relative;
+    max-width: none;
+    margin: 0;
+    padding: 0 var(--content-inset);
+  }
+  .logo-bar__label {
+    margin: 0 0 16px;
+    font-size: var(--font-size-meta);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.48);
+  }
+  .logo-bar__scroller {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+  }
+  .logo-bar__scroller::-webkit-scrollbar {
+    display: none;
+  }
+  .logo-bar__row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .logo-bar__item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 0 0 auto;
+    min-height: 32px;
+    min-width: 0;
+    opacity: 0.45;
+    color: var(--color-text-1);
+    transition: opacity var(--duration-interaction) var(--ease);
+  }
+  .logo-bar__item:hover,
+  .logo-bar__item:focus-within {
+    opacity: 0.85;
+  }
+  .logo-bar__item:first-child {
+    padding-left: 0;
+    margin-left: 0;
+  }
+  .logo-bar__item img {
+    display: block;
+    width: auto;
+    height: 14px;
+    max-width: none;
+    flex-shrink: 0;
+    object-fit: contain;
+    object-position: left center;
+    filter: grayscale(1) invert(1) brightness(1.08);
+  }
+  .logo-bar__item img.logo-bar__mark--eon { height: 14px; }
+  .logo-bar__item img.logo-bar__mark--bmw { height: 24px; }
+  .logo-bar__item img.logo-bar__mark--mercedes { height: 24px; }
+  .logo-bar__item img.logo-bar__mark--siemens { height: 14px; }
+  .logo-bar__item img.logo-bar__mark--porsche { height: 12px; }
+  .logo-bar__item img.logo-bar__mark--airbus { height: 12px; }
+  .logo-bar__item img.logo-bar__mark--telekom { height: 18px; }
+  .logo-bar__item img.logo-bar__mark--bosch { height: 18px; }
+  .logo-bar__item img.logo-bar__mark--ubs { height: 20px; }
+  .logo-bar__item img.logo-bar__mark--isc { height: 20px; }
+  .logo-bar__item img.logo-bar__mark--man { height: 22px; }
+  .logo-bar__item img.logo-bar__mark--hyundai { height: 10px; }
+  @media (min-width: 768px) {
+    .logo-bar {
+      padding: 24px 0 28px;
+      padding-bottom: max(28px, env(safe-area-inset-bottom));
+    }
+  }
+  /* iPad: wrap the wall so wordmarks stay at authored size instead of
+     sitting in a hidden scroller or being forced into one squeezed row. */
+  @media (min-width: 768px) and (max-width: 1279px) {
+    .hero-pin-section { --logo-overlay-space: 10rem; }
+    .logo-bar__scroller { overflow: visible; }
+    .logo-bar__row {
+      width: 100%;
+      min-width: 0;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 1.15rem 1.85rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .logo-bar__scroller { overflow: visible; }
+    .logo-bar__row {
+      width: 100%;
+      min-width: 0;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logo-bar__item { transition: none; }
+    .hero-media__video { transition: none; transform: none; }
+  }
+</style>
+<link rel="stylesheet" href="/hiw-r8/r6.css">
+<link rel="stylesheet" href="/styles/advisory-office.css">
+</head>
+
+<body class="bg-ink text-text1 min-w-[360px]">
+
+
+<!-- HERO — About head-turn animation, copy on the left, partners along the bottom -->
+<div id="hero">
+  <section class="hero-pin-section relative w-full min-h-[100dvh] h-[100dvh] overflow-hidden flex items-center pt-16">
+    <div class="hero-media" aria-hidden="true">
+      <video
+        id="bgVideo"
+        class="hero-media__video"
+        data-src="/assets/videos/about/turn-head.mp4"
+        poster="/assets/images/home-motion/hero-still.jpg"
+        muted
+        playsinline
+        preload="none"
+        disablepictureinpicture
+      ></video>
+      <img class="hero-media__video hero-motion-still" src="/assets/images/home-motion/hero-still.jpg" alt="" />
+    </div>
+    <div class="hero-scrim"></div>
+
+    <div class="hero-copy-wrap">
+      <div class="hero-copy">
+        <p class="hero-kicker" data-i18n="home.heroKicker">Product designer · Enterprise & regulated UX</p>
+        <h1 data-i18n="home.heroTitle">Simplify complexity. Design with AI.</h1>
+        <div class="hero-lede">
+          <p data-i18n-html="home.heroBody"><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, 10+ min saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 4× lead conversion rate.</span><span class="hero-line">BMW app: led design team &amp; design system.</span></p>
+        </div>
+        <div class="ask-lu-wrap">
+          <button id="ask-lu" type="button" class="ask-lu" aria-expanded="false" aria-controls="ask-lu-chat">
+            <i class="ri-chat-smile-2-line" aria-hidden="true"></i>
+            <span data-i18n="home.askLu">Ask Lu</span>
+          </button>
+          <div id="ask-lu-chat" class="ask-chat" hidden role="dialog" aria-labelledby="ask-lu-title">
+            <div class="ask-chat__bar">
+              <p id="ask-lu-title" data-i18n="home.askLu">Ask Lu</p>
+              <button type="button" class="ask-chat__close" id="ask-lu-close" data-i18n-aria="home.askLuClose" aria-label="Close chat">
+                <i class="ri-close-line" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="ask-chat__log" id="ask-lu-log">
+              <p class="ask-chat__msg ask-chat__msg--lu" data-i18n="home.askLuGreeting">Hi! I’m Lu’s AI assistant. Ask about her work, experience, or process.</p>
+            </div>
+            <form class="ask-chat__form" id="ask-lu-form">
+              <input id="ask-lu-input" type="text" autocomplete="off" data-i18n-placeholder="home.askLuPlaceholder" data-i18n-aria="home.askLuPlaceholder" placeholder="Ask about Lu’s work…" aria-label="Ask about Lu’s work…" />
+              <button type="submit" class="ask-chat__send" data-i18n-aria="home.askLuSend" aria-label="Send">
+                <i class="ri-arrow-up-line" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside id="logo-bar" class="logo-bar" aria-label="Clients I’ve designed for">
+      <div class="logo-bar__frame">
+        <p class="logo-bar__label" data-i18n="home.partnersLabel">Clients I’ve designed for</p>
+        <div class="logo-bar__scroller">
+          <ul class="logo-bar__row">
+            <li class="logo-bar__item">
+              <img class="logo-bar__mark--eon" src="/assets/images/logo/eon-logo.svg" alt="E.ON" width="145" height="45" />
+            </li>
+            <li class="logo-bar__item">
+              <img class="logo-bar__mark--bmw" src="/assets/images/logo/bmw-logo.svg" alt="BMW" width="90" height="90" />
+            </li>
+            <li class="logo-bar__item">
+              <img class="logo-bar__mark--mercedes" src="/assets/images/logo/mercedes-benz-logo.svg" alt="Mercedes-Benz" width="100" height="26" />
+            </li>
+            <li class="logo-bar__item">
+              <img class="logo-bar__mark--siemens" src="/assets/images/logo/siemens-logo.svg" alt="Siemens" width="1000" height="159" />
+            </li>
+            <li class="logo-bar__item">
+              <img class="logo-bar__mark--porsche" src="/assets/images/logo/porsche-logo.svg" alt="Porsche" width="921" height="96" />
+            </li>
+            <li class="logo-bar__item">
+              <img class="logo-bar__mark--airbus" src="/assets/images/logo/airbus-logo.svg" alt="Airbus" width="399" height="74" />
+            </li>
+            <li class="logo-bar__item">
+              <img class="logo-bar__mark--telekom" src="/assets/images/logo/deutsche-telekom-logo.svg" alt="Deutsche Telekom" width="116" height="142" />
+            </li>
+            <li class="logo-bar__item">
+              <img class="logo-bar__mark--bosch" src="/assets/images/logo/bosch-logo.svg" alt="Bosch" width="433" height="97" />
+            </li>
+            <li class="logo-bar__item">
+              <img class="logo-bar__mark--ubs" src="/assets/images/logo/ubs-logo.svg" alt="UBS" width="300" height="110" />
+            </li>
+            <li class="logo-bar__item">
+              <img class="logo-bar__mark--isc" src="/assets/images/logo/isc-ejpd-logo.svg" alt="ISC-EJPD" width="108" height="36" />
+            </li>
+            <li class="logo-bar__item">
+              <img class="logo-bar__mark--man" src="/assets/images/logo/man-logo.svg" alt="MAN" width="24" height="14" />
+            </li>
+            <li class="logo-bar__item">
+              <img class="logo-bar__mark--hyundai" src="/assets/images/logo/hyundai-logo.svg" alt="Hyundai" width="282" height="42" />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </section>
+</div>
+
+<!-- S-A: native scroll, static reading holds, image-only fan handover. Copy is the current 3000 case text. -->
+<section id="home-showcase" aria-label="Selected work">
+  <div class="home-showcase-stage">
+    <article id="model-series" class="home-case" aria-labelledby="case-ca-title">
+      <div class="home-case-image advisory-office"><img src="/assets/images/home-motion/ubs.jpg" alt="" /><video data-src="/assets/videos/home/advisory-office-web.mp4" poster="/assets/images/home-motion/ubs.jpg" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+      <div class="home-case-shade"></div>
+      <div class="home-case-copy">
+        <p class="home-eyebrow" data-i18n="home.ca.eyebrow">Client Advisory · UBS</p>
+        <h2 id="case-ca-title" class="home-case-title" data-i18n-html="home.ca.titleHtml">AI that frees advisors for the client</h2>
+        <p class="case-card__role" data-i18n="home.ca.role">Lead Service Designer</p>
+        <div class="home-case-detail">
+          <h3 data-i18n="home.ca.storyTitle">From searching to advising</h3>
+          <p data-i18n="home.ca.storyBody">One AI-supported view that surfaces the right information at the right moment.</p>
+        </div>
+        <div class="home-case-detail">
+          <h3 data-i18n="home.ca.metricTitle">Designed for 500+ advisors</h3>
+          <p data-i18n="home.ca.metricBody">Concept tests: 5–10 min saved per client, up to 30 min on complex proposals.</p>
+        </div>
+        <div class="home-case-links">
+          <a href="/client-advisory" class="pill-btn">
+            <span data-i18n="home.ca.cta">Explore case study</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+    <article id="omni-model" class="home-case" aria-labelledby="case-eon-title">
+      <img class="home-case-image" src="/assets/images/home-motion/eon.jpg" alt="" />
+      <div class="home-case-shade"></div>
+      <div class="home-case-copy">
+        <p class="home-eyebrow" data-i18n="home.eon.eyebrow">Solar · E.ON</p>
+        <h2 id="case-eon-title" class="home-case-title" data-i18n-html="home.eon.titleHtml">Solar landing page redesign</h2>
+        <p class="case-card__role" data-i18n="home.eon.role">Lead Product Designer</p>
+        <div class="home-case-detail">
+          <h3 data-i18n="home.eon.storyTitle">From complexity to conversion</h3>
+          <p data-i18n="home.eon.storyBody">A complex investment, made easier to understand and trust.</p>
+        </div>
+        <div class="home-case-detail">
+          <h3 data-i18n="home.eon.metricTitle">300% increase in lead conversion</h3>
+          <p data-i18n="home.eon.metricBody">Within two months, from a 5.1% baseline in Germany. Later adapted for the UK.</p>
+        </div>
+        <div class="home-case-links">
+          <a href="/EON" class="pill-btn">
+            <span data-i18n="home.eon.cta">Explore case study</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+<section id="home-playground" aria-labelledby="home-playground-title">
+  <div class="home-playground-inner">
+    <h2 id="home-playground-title">Playground</h2>
+    <div class="home-project-grid">
+      <!-- WA: data-loop-gap holds the last frame 2s because weather-autumn.mp4 has no still ending. Remove it when the four-seasons video (with its own 2s hold) replaces this file, or it will hold 4s. -->
+      <a class="home-project" href="/lab/weather-aquarium"><video data-src="/assets/videos/home/weather-autumn.mp4" preload="none" poster="/assets/images/home-motion/weather-autumn-lake.jpg" aria-label="Weather Aquarium project preview" width="864" height="600" muted playsinline data-loop-gap="2000" disablepictureinpicture></video><h3>Weather Aquarium</h3><p class="home-project-meta" data-i18n="home.playground.weatherMeta">Rive motion</p><p>A 2.5D weather world for iPad — helping children understand the day and discover new words.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="home-project" href="/ai-companion-pet"><video data-src="/assets/videos/home/ai-pet-console.mp4" preload="none" poster="/assets/images/home-motion/ai-pet-console.webp" aria-label="AI Pet project preview" width="864" height="600" muted loop playsinline disablepictureinpicture></video><h3>AI Pet</h3><p class="home-project-meta" data-i18n="home.playground.petMeta">Voice · Hardware</p><p>A little friend to listen, tell stories, share a meal, and learn a few words of German and French.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="home-project" href="/lab/party-planner"><video data-src="/assets/videos/home/gratula-pip.mp4" preload="none" poster="/assets/images/home-motion/gratula-pip.jpg" aria-label="Gratula project preview" width="864" height="600" muted playsinline data-loop-gap="2000" disablepictureinpicture></video><h3>Gratula</h3><p class="home-project-meta" data-i18n="home.playground.gratulaMeta">Launching soon</p><p>From ideas to invitations, a simpler way to plan a party they’ll always remember.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<section id="how-i-work" class="ai-decides-section" aria-labelledby="how-i-work-title">
+  <div class="ad-layout">
+    <div class="ad-copy">
+      <p class="ad-eyebrow" data-i18n="home.how.kicker">How I work</p>
+      <h2 class="ad-heading" id="how-i-work-title" data-i18n-html="home.how.titleHtml">AI drafts.<em>I decide.</em></h2>
+      <p class="ad-description" data-i18n-html="home.how.bodyHtml">AI drafts and iterates with me at every step.<br class="ad-desktop-break"> I decide the problem, the direction, and what<br class="ad-desktop-break"> ships.</p>
+      <a class="pill-btn ad-cta" href="/lab/way-of-work">
+        <span data-i18n="home.how.cta">Explore how I work</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="ad-art-stage">
+    <svg class="ad-art" xmlns="http://www.w3.org/2000/svg" viewBox="720 130 1060 654" width="1060" height="654" role="img" data-i18n-aria="home.how.artLabel" aria-label="Decide: Human judgment in every step. A human designer leads a team of AI assistants, surrounded by sketches, checklists, and an idea bulb.">
+      <image href="/hiw-r8/original.png" x="0" y="0" width="1842" height="854"/>
+      <rect class="hiw-caption-loading-cover" x="1035" y="126" width="325" height="102" fill="#080f1a"/>
+      <path d="M 730 228 L 1720 228 L 1720 420 L 1670 420 L 1590 344 L 1480 310 L 1360 295 L 1230 268 L 1080 265 L 950 299 L 850 322 L 800 355 L 730 355 Z" fill="#080f1a"/>
+    </svg>
+    <div class="hiw-plays" aria-hidden="true"><div class="hiw-plane"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="hiw-exp-seam" aria-hidden="true">
+  <div class="hiw-exp-seam__wash"></div>
+  <svg class="hiw-exp-seam__svg" focusable="false">
+    <path class="hiw-exp-seam__path" d=""></path>
+  </svg>
+</div>
+
+<!-- ============================================================
+     EXPERIENCE TIMELINE — FXIFY "How it works" curved-arc timeline.
+     section -> header -> 500vh scroll track -> native position:sticky
+     viewport -> ONE relative coordinate box holding { background arc |
+     blue glow | 4 dots | 4 content blocks }. Dots and their content
+     share an X anchor; the content sits ABOVE the dot on a thin bar
+     with a "+" at the top. Scroll progress drives an enter/exit slide
+     (--exp-shift), the arc draw, the glow fill and data-status.
+     See .exp-section / expInit() / expWrite().
+     ============================================================ -->
+
+<!-- ATMOSPHERE CARRIER — the ONE .exp-field, lifted out of #exp-coord into its
+     own 100vh position:sticky carrier. As a <body> child its sticky range
+     covers #experience + #contact + footer, so the SAME field (identical
+     geometry, mask, gradient, opacity) keeps sitting behind the page as the
+     Contact copy scrolls up over it — after the timeline's own sticky releases.
+     margin-bottom:-100vh (in CSS) cancels its flow height. --exp-f is mirrored
+     onto it by expWrite(); it is 0 through the whole timeline. -->
+<div class="exp-atmos" aria-hidden="true">
+  <div class="exp-field" aria-hidden="true"></div>
+</div>
+
+<section id="experience" class="exp-section relative" aria-labelledby="experience-title">
+
+  <div class="exp-track" id="exp-track">
+    <div class="exp-sticky">
+
+      <div class="exp-coord" id="exp-coord">
+
+        <div class="exp-curve-clip" aria-hidden="true">
+        <div class="exp-curve" id="exp-curve" aria-hidden="true">
+          <img class="exp-curve__glow" src="/assets/images/experience/blue-glow.webp" alt="" decoding="async" />
+          <svg class="exp-arc" viewBox="0 0 1468 1555" fill="none" preserveAspectRatio="none">
+            <defs>
+              <clipPath id="exp-arc-clip">
+                <path d="M1366.32 295.46C1420.23 86.8392 644.588 38.2593 250.028 40.047C1448.11 56.8065 1425.07 264.488 1319.08 357.804C1186.6 474.45 724.986 547.971 412.486 735.914C147.019 895.571 80.492 1104.38 84.14 1195.77C85.292 1432.19 93.7016 1766.8 118.124 1213.87C148.652 522.716 1298.92 556.235 1366.32 295.46Z"></path>
+              </clipPath>
+              <clipPath id="exp-sheet-below" clipPathUnits="userSpaceOnUse">
+                <path d="M1365.3 274.7C1365.3 306.2 1344.6 335.3 1319.1 357.8C1186.6 474.45 724.986 547.971 412.486 735.914C147.019 895.571 80.492 1104.38 84.14 1195.77L84.14 1555L1365.3 1555Z"></path>
+              </clipPath>
+              <linearGradient id="exp-sheet-tone" gradientUnits="userSpaceOnUse" x1="1400" y1="780" x2="420" y2="780">
+                <stop offset="0" stop-color="rgb(36, 116, 255)" stop-opacity="0.50"></stop>
+                <stop offset="0.30" stop-color="rgb(32, 108, 252)" stop-opacity="0.24"></stop>
+                <stop offset="0.58" stop-color="rgb(28, 100, 248)" stop-opacity="0.05"></stop>
+                <stop offset="1" stop-color="rgb(36, 116, 255)" stop-opacity="0"></stop>
+              </linearGradient>
+              <!-- dissolve the cap that sits past the line; the wash stays under the arc -->
+              <linearGradient id="exp-sheet-edge" gradientUnits="userSpaceOnUse" x1="1080" y1="340" x2="1380" y2="620">
+                <stop offset="0" stop-color="#fff"></stop>
+                <stop offset="0.62" stop-color="#fff"></stop>
+                <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+              </linearGradient>
+              <mask id="exp-sheet-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1468" height="1555">
+                <rect x="0" y="0" width="1468" height="1555" fill="url(#exp-sheet-edge)"></rect>
+              </mask>
+              <filter id="exp-sheet-blur" filterUnits="userSpaceOnUse" x="0" y="200" width="1468" height="1200">
+                <feGaussianBlur stdDeviation="14"></feGaussianBlur>
+              </filter>
+            </defs>
+            <g class="exp-arc__sheet" clip-path="url(#exp-sheet-below)" mask="url(#exp-sheet-mask)">
+              <path d="M1365.3 274.7C1365.3 306.2 1344.6 335.3 1319.1 357.8C1186.6 474.45 724.986 547.971 412.486 735.914C147.019 895.571 80.492 1104.38 84.14 1195.77" stroke="url(#exp-sheet-tone)" stroke-width="72" fill="none" filter="url(#exp-sheet-blur)"></path>
+            </g>
+            <path class="exp-arc__path" id="exp-arc-path" clip-path="url(#exp-arc-clip)" d="M1366.32 295.46C1420.23 86.8392 644.588 38.2593 250.028 40.047C1448.11 56.8065 1425.07 264.488 1319.08 357.804C1186.6 474.45 724.986 547.971 412.486 735.914C147.019 895.571 80.492 1104.38 84.14 1195.77C85.292 1432.19 93.7016 1766.8 118.124 1213.87C148.652 522.716 1298.92 556.235 1366.32 295.46Z"></path>
+          </svg>
+        </div>
+        </div>
+
+        <span class="exp-dot" data-index="0" data-status="active" aria-hidden="true"></span>
+        <span class="exp-dot" data-index="1" data-status="hidden" aria-hidden="true"></span>
+        <span class="exp-dot" data-index="2" data-status="hidden" aria-hidden="true"></span>
+        <span class="exp-dot" data-index="3" data-status="hidden" aria-hidden="true"></span>
+
+        <article class="exp-content" data-index="0" data-side="left" data-status="active">
+          <span class="exp-content__node" aria-hidden="true">
+            <span class="exp-content__bar"></span>
+            <span class="exp-content__plus"></span>
+          </span>
+          <div class="exp-lead">
+            <p class="exp-kicker" data-i18n="home.expKicker">My Experience</p>
+            <h2 class="exp-heading" id="experience-title" data-i18n-html="home.expHeadingHtml">10+ years.<br />Product, service and UI.</h2>
+          </div>
+          <span class="exp-content__eyebrow" data-i18n="home.exp.0.eyebrow">Oct 2022 — Sep 2026</span>
+          <span class="exp-content__title" data-i18n="home.exp.0.title">UBS · Zurich</span>
+          <span class="exp-content__role" data-i18n="home.exp.0.role">Senior Service Designer / UX Designer</span>
+          <span class="exp-content__desc" data-i18n="home.exp.0.desc">Wealth-management workflows that balance users, business, and regulation.</span>
+        </article>
+
+        <article class="exp-content" data-index="1" data-side="left" data-status="hidden">
+          <span class="exp-content__node" aria-hidden="true">
+            <span class="exp-content__bar"></span>
+            <span class="exp-content__plus"></span>
+          </span>
+          <span class="exp-content__eyebrow" data-i18n="home.exp.1.eyebrow">Oct 2020 — Sep 2022</span>
+          <span class="exp-content__title" data-i18n="home.exp.1.title">AdNovum · Bern</span>
+          <span class="exp-content__role" data-i18n="home.exp.1.role">Senior Product Designer</span>
+          <span class="exp-content__desc" data-i18n="home.exp.1.desc">Data tables, filters, and bulk actions for a nationwide Swiss platform.</span>
+        </article>
+
+        <article class="exp-content" data-index="2" data-side="right" data-status="hidden">
+          <span class="exp-content__node" aria-hidden="true">
+            <span class="exp-content__bar"></span>
+            <span class="exp-content__plus"></span>
+          </span>
+          <span class="exp-content__eyebrow" data-i18n="home.exp.2.eyebrow">Jun 2016 — Jul 2020</span>
+          <span class="exp-content__title" data-i18n="home.exp.2.title">Futurice · Munich</span>
+          <span class="exp-content__role" data-i18n="home.exp.2.role">Senior Product Designer</span>
+          <span class="exp-content__desc" data-i18n="home.exp.2.desc">Took digital products from research to launch. Led a six-person design team.</span>
+        </article>
+
+        <article class="exp-content" data-index="3" data-side="right" data-status="hidden">
+          <span class="exp-content__node" aria-hidden="true">
+            <span class="exp-content__bar"></span>
+            <span class="exp-content__plus"></span>
+          </span>
+          <span class="exp-content__eyebrow" data-i18n="home.exp.3.eyebrow">Sep 2014 — Jun 2016</span>
+          <span class="exp-content__title" data-i18n="home.exp.3.title">Designaffairs (Accenture) · Munich</span>
+          <span class="exp-content__role" data-i18n="home.exp.3.role">Usability Engineer</span>
+          <span class="exp-content__desc" data-i18n="home.exp.3.desc">UX concepts and prototypes for connected products, plus B2B design systems.</span>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT — its OWN normal-flow section, fully independent of the
+     Experience sticky/scroll timeline. It occupies its own vertical space
+     after Experience and reveals with a fade + upward rise as it enters
+     the viewport (.contact-reveal + the shared IntersectionObserver). It
+     never hides, unmounts, or overlays the Experience content. -->
+<section id="contact" class="contact-section">
+  <div class="exp-contact contact-reveal">
+    <div class="exp-contact__lead">
+      <h2 class="exp-contact__heading" data-i18n="common.contactHeading">Have an opportunity in mind?</h2>
+      <p class="exp-contact__links">
+        <a href="mailto:lu.jin.ixd@gmail.com">lu.jin.ixd@gmail.com</a>
+        <span class="exp-contact__sep" aria-hidden="true">·</span>
+        <a href="https://www.linkedin.com/in/lu-jin-28008689/" target="_blank" rel="noopener noreferrer" data-i18n="common.linkedin">LinkedIn</a>
+        <span class="exp-contact__sep" aria-hidden="true">·</span>
+        <a href="https://github.com/lujin88" target="_blank" rel="noopener noreferrer" data-i18n="common.github">GitHub</a>
+        <span class="exp-contact__sep" aria-hidden="true">·</span>
+        <a href="https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-i18n="common.downloadCv">Download CV</a>
+      </p>
+    </div>
+    <a href="mailto:lu.jin.ixd@gmail.com" class="pill-btn pill-btn--l shrink-0">
+      <span data-i18n="common.letsTalk">Let's talk</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER — shared across every page (identical markup + .site-footer rules) -->
+<footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
+  <div class="site-footer__inner">
+    <div class="site-footer__bottom">
+      <p class="site-footer__note text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span></p>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/hiw-r8/rive.js"></script><script src="/hiw-r8/r6.js"></script>
+</body>
+</html>

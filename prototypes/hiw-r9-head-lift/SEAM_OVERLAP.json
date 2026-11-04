@@ -1,0 +1,18 @@
+[
+  {
+    "band": "Rabbit",
+    "addedVertices": 159,
+    "addedTriangles": 316,
+    "addedKeyedObjects": 89,
+    "overlapSourcePixels": 5,
+    "originalVerticesAndKeysUnchanged": true
+  },
+  {
+    "band": "Fox",
+    "addedVertices": 159,
+    "addedTriangles": 316,
+    "addedKeyedObjects": 134,
+    "overlapSourcePixels": 5,
+    "originalVerticesAndKeysUnchanged": true
+  }
+]
