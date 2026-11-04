@@ -1,0 +1,46 @@
+const {chromium}=require(process.env.PLAYWRIGHT_PATH || '/Users/lu/.buzz/.scratch/tl-1104/node_modules/playwright-core');
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),os=require('node:os');
+const {execFileSync}=require('node:child_process');
+assert.equal(process.env.TEST_LOCK_HELD,'1');assert.ok(os.loadavg()[1]<=10,'Five-minute load exceeds 10');
+const root='/Volumes/Extreme SSD/Lu_Mac_Offload_20261104/MOTION_CODEX/EON_JOURNEY_AB';fs.mkdirSync(root,{recursive:true});
+const out=fs.mkdtempSync(path.join(root,'CDP_'));console.log('Output:',out);
+const idle=ms=>new Promise(r=>setTimeout(r,ms));
+(async()=>{const browser=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
+try{const report=[];for(const variant of ['A','B']){
+ const context=await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:1});
+ const page=await context.newPage(),cdp=await context.newCDPSession(page),errors=[];
+ page.on('pageerror',e=>errors.push(e.message));
+ await cdp.send('Animation.enable');await cdp.send('Animation.setPlaybackRate',{playbackRate:0});
+ await page.goto(`http://127.0.0.1:4691/EON?journey=${variant}`,{waitUntil:'networkidle'});
+ await page.locator('[data-journey-sequence][data-ready="true"]').waitFor();await page.evaluate(()=>document.fonts.ready);
+ // Only recording framing: keep the fixed navigation outside the section crop.
+ await page.addStyleTag({content:'html,body{scroll-behavior:auto!important}[data-site-header]{visibility:hidden!important}'});
+ const section=page.locator('[data-journey-section]'),seq=page.locator('[data-journey-sequence]');
+ await section.evaluate(el=>window.scrollTo({top:scrollY+el.getBoundingClientRect().top-80,behavior:'instant'}));
+ await page.locator('[data-journey-sequence][data-started="true"]').waitFor();
+ const rect=await section.boundingBox();assert.equal(rect.width,1440);assert.ok(rect.y>=0&&rect.y+rect.height<=1000);
+ const crop={x:Math.round(rect.x),y:Math.round(rect.y),width:1440,height:Math.floor(rect.height/2)*2};
+ await section.screenshot({path:path.join(out,`${variant}_START.png`)});
+ const dir=path.join(out,variant);fs.mkdirSync(dir);const frames=[],recordingErrors=[];
+ const onFrame=e=>{try{const png=Buffer.from(e.data,'base64');if(png.readUInt32BE(16)===1440&&png.readUInt32BE(20)===1000){const name=`frame-${String(frames.length).padStart(6,'0')}.png`;fs.writeFileSync(path.join(dir,name),png);frames.push({name,time:e.metadata.timestamp});}}catch(e){recordingErrors.push(String(e));}cdp.send('Page.screencastFrameAck',{sessionId:e.sessionId}).catch(e=>recordingErrors.push(String(e)));};
+ cdp.on('Page.screencastFrame',onFrame);await cdp.send('Page.startScreencast',{format:'png',maxWidth:1440,maxHeight:1000,everyNthFrame:1});
+ await cdp.send('Animation.setPlaybackRate',{playbackRate:0.1});
+ const duration=variant==='A'?2800:1600;
+ await idle((duration+2000)*10);
+ const end=Date.now()/1000;await cdp.send('Page.stopScreencast');cdp.off('Page.screencastFrame',onFrame);
+ assert.deepEqual(recordingErrors,[]);assert.ok(frames.length>10);
+ const state=await section.evaluate(el=>({running:el.getAnimations({subtree:true}).filter(a=>a.playState==='running').map(a=>a.animationName),nodes:[...el.querySelectorAll('[data-journey-node]')].map(n=>({opacity:getComputedStyle(n).opacity,transform:getComputedStyle(n).transform})),particles:[...el.querySelectorAll('[data-journey-particle]')].map(n=>({kind:n.dataset.journeyParticle,opacity:getComputedStyle(n).opacity,transform:getComputedStyle(n).transform})),spinner:getComputedStyle(el.querySelector('[data-journey-spinner]')).transform}));
+ assert.deepEqual(state.running,[],'Sequence must stop, including B spinner');
+ assert.equal(state.nodes.length,6);assert.equal(state.nodes[2].transform,'matrix(1.08, 0, 0, 1.08, 0, 0)');
+ if(variant==='A'){assert.equal(state.particles.filter(p=>p.kind==='drop').length,5);state.particles.forEach(p=>assert.equal(p.opacity,'0'));}
+ assert.deepEqual(errors,[]);await section.screenshot({path:path.join(out,`${variant}_FINAL.png`)});
+ const concat=[];for(let i=0;i<frames.length;i++){concat.push(`file '${frames[i].name}'`,`duration ${Math.max(.001,(frames[i+1]?.time??end)-frames[i].time).toFixed(6)}`);}concat.push(`file '${frames.at(-1).name}'`);
+ fs.writeFileSync(path.join(dir,'frames.txt'),concat.join('\n')+'\n');fs.writeFileSync(path.join(dir,'timestamps.json'),JSON.stringify(frames));
+ await context.close();
+ const video=path.join(out,`EON_JOURNEY_${variant}.mp4`);
+ await require('./encode.cjs').encode(dir,video,duration,crop);
+ execFileSync('ffmpeg',['-v','error','-threads','1','-i',video,'-f','null','-']);
+ report.push({variant,cssDurationMs:duration,captureRate:.1,restoredRate:1,finalHoldMs:2000,crop,frames:frames.length,state,errors,video});
+ console.log(variant,'passed');
+}fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify(report,null,2));
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});
