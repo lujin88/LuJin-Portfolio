@@ -1,4 +1,8 @@
-# Weather Aquarium hover review — R5
+# Weather Aquarium hover review
+
+**Current: [R6 static selection frames](keyframes-r6/README.md).** Lu requested local fish-tail, sunlight, raindrop and clothing motions instead of R5 whole-object transforms. Church A/B/C and clothing 01/02 are static proposals awaiting selection. No R6 video or runtime behavior is implemented; the existing scene remains the historical R5 demo. Four character labels are unchanged.
+
+## Historical R5 and sun-shadow correction
 
 R6 correction: [Sun-only still/peak comparison](https://buzz-wwbf.srv2056990.hstgr.cloud/media/6fc1fb8673be1c51cf07bc0b3f4c4bd722c038f31c07f0659dbf810750dd28d9.png). The source WebP contains both the sun and its ground shadow. Two complementary SVG masks separate the original pixels into a fixed shadow pseudo-element and the moving body image; the original WebP is unchanged. The masks follow the bottom ray where it meets the shadow. The sun keeps R5's -8px / 26° / 1.04 motion. The captured ground-shadow strip stays pixel-identical before/after hover; the pseudo-element transform is `none`. `COMPARE_SUN_ONLY=1` produces the single-cell comparison. R5 media below is historical and still contains the rotated shadow.
 

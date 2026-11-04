@@ -1,0 +1,28 @@
+{
+  "originalWebpSha256": {
+    "perch": "5cc67a8b631503fb92de06a3c7414a04d0c1ccd9c78fd1ed9e635d3594af97ae",
+    "sun": "26ca1d1a845c629607160cc1085226fb9fd28ef7c572a5b3ab64d76598fac05c",
+    "rain": "185786113c14c145a2c3e30835cbed111dc43630d758c9b48e216998e14579a2",
+    "coat": "11d0f261b5d117d1133c201528bb7096adaf9e80db213ab152343e4d3f09d8b3",
+    "hat": "821d01388291a294c4e19d5f42f618055f1fc2221759f0631ae2a70fba1beff4",
+    "church": "888bdd38da1ef91ac14995d2de38f9706cfb1bacd8491d3297350eed16caddf1"
+  },
+  "frames": [
+    "fish-peak",
+    "sun-peak",
+    "rain-peak",
+    "hood-01-peak",
+    "hat-02-peak",
+    "church-a-peak",
+    "church-b-peak",
+    "church-c-peak"
+  ],
+  "newElements": {
+    "sun": "12 round-ended gold ray strokes, top/side field only to protect ground shadow",
+    "rain": "No new drops: five original raster drops isolated and translated",
+    "churchA": "Warm gold overlays confined to original blue glass; original quatrefoil patch rotated",
+    "churchB": "New small vector bell and two pairs of thin sound arcs; source tower has louvers, no exposed bell",
+    "churchC": "New single vector dove silhouette with two feather tones, gold beak and small eye"
+  },
+  "status": "Static proposals only; timing, hover exit and loops not implemented"
+}
