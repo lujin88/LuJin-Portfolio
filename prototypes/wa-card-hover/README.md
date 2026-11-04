@@ -1,6 +1,6 @@
 # Weather Aquarium hover review
 
-**Current: [R6 static selection frames](keyframes-r6/README.md).** Lu requested local fish-tail, sunlight, raindrop and clothing motions instead of R5 whole-object transforms. Church A/B/C and clothing 01/02 are static proposals awaiting selection. No R6 video or runtime behavior is implemented; the existing scene remains the historical R5 demo. Four character labels are unchanged.
+**Current: [R7 selected hover motions](motion-r7/README.md).** Lu selected church C and approved the remaining R6 images. R7 animates the six vocabulary illustrations and keeps the four R5 character labels unchanged. The root `scene.html` remains the historical R5 demo; use `motion-r7/scene.html` for R7. [R6 selection evidence](keyframes-r6/README.md) is retained.
 
 ## Historical R5 and sun-shadow correction
 

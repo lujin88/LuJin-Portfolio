@@ -1,0 +1,30 @@
+/* Vocabulary-only override. Historical R5 character labels remain untouched. */
+.wa-page .vocab-art { position: relative; }
+.wa-page .vocab-item .vocab-art::before { content: none; }
+.wa-page .vocab-item .vocab-art > img {
+  grid-area: 1 / 1; mask: none; transform: none !important; transition: none;
+}
+.wa-page .vocab-item .vocab-art > .r7-art {
+  position: absolute; pointer-events: none; overflow: visible;
+  opacity: 0; transition: opacity 200ms var(--ease);
+}
+.wa-page .vocab-item[data-playing="true"] .r7-art { opacity: 1; }
+/* Raster decomposition replaces the same still at t=0. Do not fade the whole
+   fish/hood/hat or briefly make it disappear while its local part starts moving. */
+.wa-page .vocab-item[data-word="perch"] .r7-art,
+.wa-page .vocab-item[data-word="rain"] .r7-art,
+.wa-page .vocab-item[data-word="coat"] .r7-art,
+.wa-page .vocab-item[data-word="hat"] .r7-art { transition: none; }
+.wa-page .vocab-item[data-playing="true"] .vocab-art > img { opacity: 0; }
+.wa-page .vocab-item[data-word="church"] .vocab-art > img,
+.wa-page .vocab-item[data-word="sun"] .vocab-art > img { opacity: 1; }
+.wa-page .vocab-item[data-word="rain"][data-playing="true"] .vocab-art > img,
+.wa-page .vocab-item[data-word="coat"][data-playing="true"] .vocab-art > img {
+  opacity: 1; clip-path: var(--r7-native-cut);
+}
+.wa-page .vocab-item[data-word="rain"] .r7-art,
+.wa-page .vocab-item[data-word="coat"] .r7-art { clip-path: var(--r7-layer-cut); }
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .wa-page .vocab-item .r7-art { display: none; }
+  .wa-page .vocab-item .vocab-art > img { opacity: 1; clip-path: none; }
+}

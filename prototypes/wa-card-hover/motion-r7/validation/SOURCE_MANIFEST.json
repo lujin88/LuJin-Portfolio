@@ -1,0 +1,15 @@
+{
+  "motion-r7/motion.js": "2669abf710840c94de1e3297fe56a4a7811687fabb68197059f422fd0f775003",
+  "motion-r7/motion.css": "30b75e07290a34011a65be482e0a51ac87ec7b02d4fd69c40b22163b7e647add",
+  "motion-r7/scene.html": "e23b9fd7d3cb93e6a492a35455f09241feccca7f2320fcb935574d659c0fd45f",
+  "motion-r7/capture.cjs": "650b3dc65c69e6c500b2aa0aceb7f2516fc8ac9c94f99ffb7d1997307f1fef2a",
+  "originalWebp": {
+    "vocab-rain.webp": "185786113c14c145a2c3e30835cbed111dc43630d758c9b48e216998e14579a2",
+    "vocab-sun.webp": "26ca1d1a845c629607160cc1085226fb9fd28ef7c572a5b3ab64d76598fac05c",
+    "vocab-church.webp": "888bdd38da1ef91ac14995d2de38f9706cfb1bacd8491d3297350eed16caddf1",
+    "vocab-hat.webp": "821d01388291a294c4e19d5f42f618055f1fc2221759f0631ae2a70fba1beff4",
+    "vocab-perch.webp": "5cc67a8b631503fb92de06a3c7414a04d0c1ccd9c78fd1ed9e635d3594af97ae",
+    "vocab-coat.webp": "11d0f261b5d117d1133c201528bb7096adaf9e80db213ab152343e4d3f09d8b3"
+  },
+  "captureAfterTouchHarnessFixSha256": "d3c6352657cf5abe9965ffc87d217b7eecd0f581480341da30e8314db9d97829"
+}
