@@ -29,3 +29,5 @@ The 85% recordings were captured before the final normalization of the released-
 QA found that the original boundary mapping was not reversible at B 1024×768, static section +100px: scrollY 660 → 1078 → 560. A direct static → animated → static round trip now restores the original static reading position. A real scroll invalidates this return point, even if the reader scrolls back; viewport changes also invalidate it. Section position and both layout heights must still match.
 
 A/B share the same fix; their CSS, scene geometry and animation timing are unchanged. Follow-up evidence and reproduction scripts are in `roundtrip/`; `TESTED_SOURCES.json` identifies the exact component bytes used by the isolated production build. Earlier evidence above describes the initial submission, not this follow-up.
+
+Follow-up result: B 1024 14/14 and A 1024/1440 28/28 round trips passed with 0px return drift; four invalidation/repetition scenarios passed. A normal-motion comparisons at three viewport sizes and the complete eight-viewport scene probe match the original A. [Full data, comparison screenshots, limitations and test-lock loads](roundtrip/REVIEW.md).

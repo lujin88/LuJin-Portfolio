@@ -1,0 +1,126 @@
+{
+  "out": [
+    {
+      "scenario": "repeated",
+      "before": {
+        "y": 660,
+        "p": "static",
+        "meta": 738.25
+      },
+      "mid": {
+        "y": 1078,
+        "p": "0.8436",
+        "meta": 738.015625
+      },
+      "changed": {
+        "y": 1078,
+        "p": "0.8436",
+        "meta": 738.015625
+      },
+      "back": {
+        "y": 660,
+        "p": "static",
+        "meta": 738.25
+      },
+      "rounds": [
+        {
+          "y": 660,
+          "p": "static",
+          "meta": 738.25
+        },
+        {
+          "y": 660,
+          "p": "static",
+          "meta": 738.25
+        },
+        {
+          "y": 660,
+          "p": "static",
+          "meta": 738.25
+        },
+        {
+          "y": 660,
+          "p": "static",
+          "meta": 738.25
+        }
+      ],
+      "pass": true
+    },
+    {
+      "scenario": "scroll",
+      "before": {
+        "y": 660,
+        "p": "static",
+        "meta": 738.25
+      },
+      "mid": {
+        "y": 1078,
+        "p": "0.8436",
+        "meta": 738.015625
+      },
+      "changed": {
+        "y": 1318,
+        "p": "1.0000",
+        "meta": 498.015625
+      },
+      "back": {
+        "y": 900,
+        "p": "static",
+        "meta": 498.25
+      },
+      "rounds": [],
+      "pass": true
+    },
+    {
+      "scenario": "scroll_back",
+      "before": {
+        "y": 660,
+        "p": "static",
+        "meta": 738.25
+      },
+      "mid": {
+        "y": 1078,
+        "p": "0.8436",
+        "meta": 738.015625
+      },
+      "changed": {
+        "y": 1078,
+        "p": "0.8436",
+        "meta": 738.015625
+      },
+      "back": {
+        "y": 560,
+        "p": "static",
+        "meta": 838.25
+      },
+      "rounds": [],
+      "pass": true
+    },
+    {
+      "scenario": "resize_back",
+      "before": {
+        "y": 660,
+        "p": "static",
+        "meta": 738.25
+      },
+      "mid": {
+        "y": 1078,
+        "p": "0.8436",
+        "meta": 738.015625
+      },
+      "changed": {
+        "y": 1078,
+        "p": "0.8436",
+        "meta": 738.015625
+      },
+      "back": {
+        "y": 560,
+        "p": "static",
+        "meta": 838.25
+      },
+      "rounds": [],
+      "pass": true
+    }
+  ],
+  "errors": []
+}

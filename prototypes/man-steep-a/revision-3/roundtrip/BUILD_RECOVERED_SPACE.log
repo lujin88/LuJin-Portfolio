@@ -1,0 +1,57 @@
+$ node scripts/build-ask-lu.mjs
+[ask-lu] 10 files, ~3084 tokens, 2 TODO(Lu) placeholders skipped
+$ next build
+▲ Next.js 16.3.3 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.mjs took 9ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 14.6s
+  Skipping validation of types
+  Finished TypeScript config validation in 5ms ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/32) ...
+  Generating static pages using 7 workers (8/32)
+  Generating static pages using 7 workers (16/32)
+  Generating static pages using 7 workers (24/32)
+✓ Generating static pages using 7 workers (32/32) in 347ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /_not-found
+├ ƒ /about
+├ ○ /ai-companion-pet
+├ ○ /ai-workflow-case
+├ ƒ /api/ask-lu
+├ ○ /apple-icon.png
+├ ○ /backup
+├ ○ /backup/ai-design-process
+├ ○ /backup/way-of-work
+├ ○ /bmw-design-system
+├ ○ /bmw-design-system-v2
+├ ƒ /bmw-design-system/ideas/[variation]
+├ ○ /client-advisor
+├ ○ /client-advisory
+├ ○ /contact
+├ ○ /EON
+├ ○ /eon-solar
+├ ○ /etf-savings-plan
+├ ○ /icon.png
+├ ○ /index
+├ ○ /lab
+├ ○ /lab/agent-monitor
+├ ○ /lab/off-we-go
+├ ƒ /lab/off-we-go/prototype
+├ ○ /lab/party-planner
+├ ƒ /lab/party-planner/prototype
+├ ○ /lab/way-of-work
+├ ○ /lab/weather-aquarium
+├ ○ /man-before-a
+├ ○ /man-before-b
+├ ○ /man-regression-a
+├ ○ /man-truck-bus
+└ ○ /wip
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

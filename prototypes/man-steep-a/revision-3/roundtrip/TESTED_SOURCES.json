@@ -1,0 +1,20 @@
+{
+  "source_parent": "43929aec8c758b8597f1a6bd1f2598f23f2b5f39",
+  "sources": {
+    "A": {
+      "sha256": "d67155a6ec42ffdad0ed151450f1146dbbc4cd90df3761b4c1b0aa79da3226bb",
+      "preview": "/Users/lu/.buzz/.scratch/man-r69-roundtrip-249a/app/man-regression-a/man-motion.tsx",
+      "patch_applies": true
+    },
+    "B": {
+      "sha256": "221b9ee74fd748496ea8b7ecca0d7c649725093d2ab3c2cf6ac5774de549f321",
+      "preview": "/Users/lu/.buzz/.scratch/man-r69-roundtrip-249a/app/man-truck-bus/man-motion.tsx",
+      "patch_applies": true
+    }
+  },
+  "source_commit": "f627d0ff1681888e39a5c335ca1b582d064dab06",
+  "preview_physical_path": "/Users/lu/.buzz/.scratch/man-r69-roundtrip-249a",
+  "build_id": "4U_xTW7IdtoDipgENqwgN",
+  "build_command": "pnpm build; next start --port 4848",
+  "typecheck_matches_qa_baseline": true
+}

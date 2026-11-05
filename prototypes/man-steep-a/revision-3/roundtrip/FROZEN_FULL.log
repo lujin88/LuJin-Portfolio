@@ -1,0 +1,50 @@
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +401
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 401, reused 400, downloaded 0, added 45
+Progress: resolved 401, reused 401, downloaded 0, added 262
+Progress: resolved 401, reused 401, downloaded 0, added 366
+Progress: resolved 401, reused 401, downloaded 0, added 399
+Progress: resolved 401, reused 401, downloaded 0, added 400
+Progress: resolved 401, reused 401, downloaded 0, added 401, done
+
+dependencies:
++ @ai-sdk/anthropic 4.0.94
++ @ai-sdk/google 4.0.109
++ @ai-sdk/openai 4.0.106
++ @base-ui/react 1.8.0
++ @upstash/ratelimit 2.2.0
++ @upstash/redis 1.40.0
++ @vercel/analytics 1.6.1
++ ai 7.0.159
++ class-variance-authority 0.7.1
++ clsx 2.1.1
++ lucide-react 1.48.0
++ next 16.3.3
++ posthog-js 1.438.21
++ react 19.3.0
++ react-dom 19.3.0
++ remixicon 4.9.1
++ shadcn 4.21.0
++ tailwind-merge 3.7.0
++ tw-animate-css 1.4.0
+
+devDependencies:
++ @tailwindcss/postcss 4.3.3
++ @types/node 24.13.6
++ @types/react 19.3.0
++ @types/react-dom 19.3.0
++ @vercel/blob 2.8.2
++ postcss 8.5.28
++ tailwindcss 4.3.3
++ typescript 5.7.3
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: core-js@3.51.0.                                     │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Done in 5.7s using pnpm v10.33.4
