@@ -38,18 +38,18 @@ export default function CompanionPetLayout({
           __html: `
 .dd-closing {
   box-sizing: border-box;
-  --color-text-1: #f9fbfc;
-  --color-text-3: #777e85;
-  --color-text-4: #595d61;
-  --color-footer-divider: rgba(255, 255, 255, 0.045);
-  --pill-border: rgba(249, 251, 252, 0.72);
-  --pill-text: #f9fbfc;
+  --color-text-1: #0a0a0a;
+  --color-text-3: #5d5b57;
+  --color-text-4: #a09d97;
+  --color-footer-divider: rgba(10, 10, 10, 0.08);
+  --pill-border: #0a0a0a;
+  --pill-text: #0a0a0a;
   --pill-bg: transparent;
-  --pill-hover-bg: #f9fbfc;
-  --pill-hover-text: #0a0a0a;
+  --pill-hover-bg: #0a0a0a;
+  --pill-hover-text: ${PAPER};
   --pill-hover-shadow: none;
-  color: #f9fbfc;
-  background: #0a0a0a;
+  color: #0a0a0a;
+  background: ${PAPER};
   font-family: var(--font-poppins), Poppins, ui-sans-serif, system-ui, sans-serif;
 }
 .dd-closing .contact-section {
@@ -127,7 +127,7 @@ export default function CompanionPetLayout({
 .dd-closing .pill-btn:hover svg { transform: translateX(3px); }
 .dd-closing .pill-btn:focus-visible,
 .dd-closing .exp-contact__links a:focus-visible {
-  outline: 2px solid #7ea2ff;
+  outline: 2px solid #0a0a0a;
   outline-offset: 3px;
 }
 .dd-closing .exp-footer {

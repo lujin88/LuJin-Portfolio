@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { SeasonCrossfade } from './season-crossfade'
 import { SiteClosing } from '../../components/site-closing'
 
 const IMG = '/assets/images/lab/weather-aquarium'
@@ -36,27 +37,21 @@ const LANGUAGES: { id: Lang; label: string }[] = [
 ]
 
 const POSES = [
-  { index: 0, label: 'Idle', alt: 'Character standing idle' },
-  { index: 1, label: 'Wave', alt: 'Character waving' },
-  { index: 2, label: 'Get dressed', alt: 'Character getting dressed' },
-  { index: 3, label: 'Walk & explore', alt: 'Character walking and exploring' },
+  { index: 0, label: 'Idle', alt: 'Character standing idle', video: 'pose-idle-v1.mp4', poster: null },
+  // Wave's still is the clip's own first frame, so starting playback does not jump.
+  { index: 1, label: 'Wave', alt: 'Character waving', video: 'pose-wave-v2.mp4', poster: 'pose-wave-v2-poster.jpg' },
+  { index: 2, label: 'Get dressed', alt: 'Character getting dressed', video: 'pose-get-dressed-v1.mp4', poster: null },
+  { index: 3, label: 'Walk & explore', alt: 'Character walking and exploring', video: 'pose-walk-explore-v21.mp4', poster: null },
 ] as const
 
 const VOCAB: { word: Word; alt: string; src: string }[] = [
-  { word: 'perch', alt: 'European perch', src: `${IMG}/vocab-perch.png` },
-  { word: 'church', alt: 'Church', src: `${IMG}/vocab-church.png` },
-  { word: 'sun', alt: 'Sun', src: `${IMG}/vocab-sun.png` },
-  { word: 'rain', alt: 'Rain cloud', src: `${IMG}/vocab-rain.png` },
-  { word: 'coat', alt: 'Yellow raincoat', src: `${IMG}/vocab-coat.png` },
-  { word: 'hat', alt: 'Red winter hat', src: `${IMG}/vocab-hat.png` },
+  { word: 'perch', alt: 'European perch', src: `${IMG}/vocab-perch.webp` },
+  { word: 'church', alt: 'Church', src: `${IMG}/vocab-church.webp` },
+  { word: 'sun', alt: 'Sun', src: `${IMG}/vocab-sun.webp` },
+  { word: 'rain', alt: 'Rain cloud', src: `${IMG}/vocab-rain.webp` },
+  { word: 'coat', alt: 'Yellow raincoat', src: `${IMG}/vocab-coat.webp` },
+  { word: 'hat', alt: 'Red winter hat', src: `${IMG}/vocab-hat.webp` },
 ]
-
-const SEASONS = [
-  { name: 'Spring', caption: '春 · Spring · Frühling' },
-  { name: 'Summer', caption: '夏 · Summer · Sommer' },
-  { name: 'Autumn', caption: '秋 · Autumn · Herbst' },
-  { name: 'Winter', caption: '冬 · Winter · Winter' },
-] as const
 
 function voiceForLocale(locale: string): SpeechSynthesisVoice | undefined {
   if (!('speechSynthesis' in window)) return undefined
@@ -96,31 +91,242 @@ function voiceScore(voice: SpeechSynthesisVoice, want: string): number {
   return score
 }
 
-const IMAGE_ASPECT = 1836 / 857
-const STAGE_ASPECT = 1
-const SEASON_WINDOW = STAGE_ASPECT / IMAGE_ASPECT
-const SEASON_PAN = 1 - SEASON_WINDOW
+const EDITIONS = [
+  { slice: 0, caption: 'Easter / Ostern', alt: 'Easter eggs, blossoms and a child beside the lake', image: 'holiday-easter.webp', video: 'easter-v2.mp4' },
+  { slice: 1, caption: '1 August / Nationalfeiertag', alt: 'Swiss flags, lanterns and fireworks reflected in the lake', image: 'holiday-august.webp', video: 'august-v1.mp4' },
+  { slice: 2, caption: 'Christmas / Weihnachten', alt: 'A child by a glowing Christmas tree on a snowy dock', image: 'holiday-christmas.webp', video: 'christmas-v2.mp4' },
+] as const
 
-function seasonIndex(t: number) {
-  const center = t * SEASON_PAN + SEASON_WINDOW / 2
-  return Math.min(SEASONS.length - 1, Math.floor(Math.min(center, 0.999) * SEASONS.length))
+function useMotionAllowed() {
+  const [motionAllowed, setMotionAllowed] = useState(false)
+
+  useEffect(() => {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = () => setMotionAllowed(!preference.matches)
+    update()
+    preference.addEventListener('change', update)
+    return () => preference.removeEventListener('change', update)
+  }, [])
+
+  return motionAllowed
 }
 
-const EDITIONS = [
-  { slice: 0, caption: 'Easter / Ostern', alt: 'Easter eggs, blossoms and a child beside the lake' },
-  { slice: 1, caption: '1 August / Nationalfeiertag', alt: 'Swiss flags, lanterns and fireworks reflected in the lake' },
-  { slice: 2, caption: 'Christmas / Weihnachten', alt: 'A child by a glowing Christmas tree on a snowy dock' },
-] as const
+function HolidayVideo({ file, className = 'holiday-video' }: { file: string; className?: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const motionAllowed = useMotionAllowed()
+  const [playing, setPlaying] = useState(false)
+  const [failed, setFailed] = useState(false)
+
+  useEffect(() => {
+    setPlaying(false)
+  }, [motionAllowed])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || !motionAllowed || failed) return
+
+    let inView = false
+    const syncPlayback = () => {
+      if (inView && !document.hidden) {
+        void video.play().catch(() => {
+          // Playback may be interrupted by a scroll or preference change.
+        })
+      } else {
+        video.pause()
+      }
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting && entry.intersectionRatio > 0
+      syncPlayback()
+    })
+    observer.observe(video)
+    document.addEventListener('visibilitychange', syncPlayback)
+    return () => {
+      observer.disconnect()
+      document.removeEventListener('visibilitychange', syncPlayback)
+      video.pause()
+    }
+  }, [motionAllowed, failed, file])
+
+  if (!motionAllowed || failed) return null
+
+  return (
+    <video
+      ref={videoRef}
+      className={`${className}${playing ? ' is-playing' : ''}`}
+      src={`/assets/videos/lab/weather-aquarium/${file}`}
+      loop
+      muted
+      playsInline
+      preload="metadata"
+      aria-hidden="true"
+      onPlaying={() => setPlaying(true)}
+      onError={() => setFailed(true)}
+    />
+  )
+}
+
+function PoseButton({
+  item,
+  selected,
+  onSelect,
+  activeTap,
+  onTap,
+}: {
+  item: (typeof POSES)[number]
+  selected: boolean
+  onSelect: () => void
+  activeTap: number | null
+  onTap: () => void
+}) {
+  // Walk plays once and holds the last frame until the pointer leaves.
+  // The other clips keep looping while the pointer stays.
+  const playOnce = item.index === 3
+  // Annotated so TS does not narrow `item` to never in the `!hoverOnly` branch below
+  // (the expression is always true today; that branch is kept as-is).
+  const hoverOnly: boolean = item.index !== 3 || playOnce
+  const file = item.video
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const hovering = useRef(false)
+  const motionAllowed = useMotionAllowed()
+  const [playing, setPlaying] = useState(false)
+  const [failed, setFailed] = useState(false)
+  const showClip = hoverOnly && Boolean(file) && motionAllowed && !failed
+
+  const reset = () => {
+    hovering.current = false
+    setPlaying(false)
+    const video = videoRef.current
+    if (!video) return
+    video.pause()
+    if (video.currentTime !== 0) video.currentTime = 0
+  }
+
+  const start = (loop: boolean) => {
+    const video = videoRef.current
+    if (!video) return
+    video.loop = loop
+    const go = () => {
+      video.currentTime = 0
+      void video.play().catch(() => {
+        // A tap can be rejected if the file is not ready yet.
+      })
+    }
+    // preload=metadata stops at HAVE_METADATA (readyState 1) and never fires
+    // loadeddata until playback starts, so waiting for loadeddata drops the tap.
+    if (video.readyState >= 1) go()
+    else video.addEventListener('loadedmetadata', go, { once: true })
+  }
+
+  useEffect(() => {
+    if (!hoverOnly || activeTap == null || activeTap === item.index) return
+    reset()
+  }, [activeTap, hoverOnly, item.index])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || !showClip) return
+
+    let inView = false
+    const syncPlayback = () => {
+      if (!inView || document.hidden) {
+        video.pause()
+        setPlaying(false)
+        return
+      }
+      if (hovering.current) {
+        // An ended play-once clip stays on its last frame. play() would restart it.
+        if (video.ended) setPlaying(true)
+        else void video.play().catch(() => {})
+      }
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting && entry.intersectionRatio > 0
+      syncPlayback()
+    })
+    observer.observe(video)
+    document.addEventListener('visibilitychange', syncPlayback)
+    return () => {
+      observer.disconnect()
+      document.removeEventListener('visibilitychange', syncPlayback)
+      video.pause()
+    }
+  }, [showClip, item.video])
+
+  const finePointer = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches
+
+  return (
+    <button
+      className={`pose reveal${hoverOnly ? ' pose-nodot' : ''}`}
+      type="button"
+      aria-pressed={hoverOnly ? playing : selected}
+      style={{ ['--index' as string]: item.index }}
+      onPointerEnter={(event) => {
+        if (!hoverOnly || event.pointerType === 'touch' || !finePointer()) return
+        hovering.current = true
+        start(!playOnce)
+      }}
+      onPointerLeave={(event) => {
+        if (!hoverOnly || event.pointerType === 'touch') return
+        reset()
+      }}
+      onFocus={() => {
+        if (!hoverOnly || !finePointer()) return
+        hovering.current = true
+        start(!playOnce)
+      }}
+      onBlur={() => {
+        if (!hoverOnly || !finePointer()) return
+        reset()
+      }}
+      onClick={() => {
+        if (!hoverOnly) {
+          onSelect()
+          onTap()
+          return
+        }
+        if (finePointer()) return
+        hovering.current = false
+        onTap()
+        start(false)
+      }}
+    >
+      <span className="pose-art sprite-window">
+        {item.poster ? (
+          <img className="pose-poster" src={`${IMG}/${item.poster}`} alt={item.alt} loading="lazy" />
+        ) : (
+          <img src={`${IMG}/character-sprite.webp`} alt={item.alt} loading="lazy" />
+        )}
+        {showClip && file && (
+          <video
+            ref={videoRef}
+            className={`pose-video${playing ? ' is-playing' : ''}`}
+            src={`/assets/videos/lab/weather-aquarium/${file}`}
+            muted
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+            onPlaying={() => setPlaying(true)}
+            onEnded={() => {
+              if (!hovering.current) reset()
+            }}
+            onError={() => setFailed(true)}
+          />
+        )}
+        {!hoverOnly && item.video && <HolidayVideo file={item.video} className="pose-video" />}
+      </span>
+      <span>{item.label}</span>
+    </button>
+  )
+}
 
 export function WeatherAquariumPage() {
   const rootRef = useRef<HTMLDivElement>(null)
   const heroMediaRef = useRef<HTMLDivElement>(null)
   const heroDeviceRef = useRef<HTMLImageElement>(null)
-  const seasonRef = useRef<HTMLDivElement>(null)
-  const seasonDrag = useRef<{ id: number; x: number; y: number; locked: boolean | null } | null>(null)
   const [language, setLanguage] = useState<Lang>('zh')
   const [pose, setPose] = useState(0)
-  const [seasonT, setSeasonT] = useState(0.5)
+  const [activeTap, setActiveTap] = useState<number | null>(null)
 
   useEffect(() => {
     if (!('speechSynthesis' in window)) return
@@ -181,60 +387,6 @@ export function WeatherAquariumPage() {
     }
   }, [])
 
-  const seasonFromClientX = (clientX: number) => {
-    const stage = seasonRef.current
-    if (!stage) return seasonT
-    const bounds = stage.getBoundingClientRect()
-    if (bounds.width <= 0) return seasonT
-    return Math.min(1, Math.max(0, (clientX - bounds.left) / bounds.width))
-  }
-
-  const onSeasonPointerDown = (event: PointerEvent<HTMLDivElement>) => {
-    seasonDrag.current = { id: event.pointerId, x: event.clientX, y: event.clientY, locked: null }
-  }
-
-  const onSeasonPointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    const drag = seasonDrag.current
-    if (!drag || drag.id !== event.pointerId) return
-    const dx = event.clientX - drag.x
-    const dy = event.clientY - drag.y
-    if (drag.locked === null) {
-      if (Math.hypot(dx, dy) < 8) return
-      drag.locked = Math.abs(dx) > Math.abs(dy)
-      if (!drag.locked) {
-        seasonDrag.current = null
-        return
-      }
-      event.currentTarget.setPointerCapture(event.pointerId)
-    }
-    setSeasonT(seasonFromClientX(event.clientX))
-  }
-
-  const onSeasonPointerUp = (event: PointerEvent<HTMLDivElement>) => {
-    const drag = seasonDrag.current
-    if (drag && drag.id === event.pointerId && drag.locked !== false) {
-      setSeasonT(seasonFromClientX(event.clientX))
-    }
-    seasonDrag.current = null
-  }
-
-  const onSeasonKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    const step = event.shiftKey ? 0.25 : 0.08
-    if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
-      event.preventDefault()
-      setSeasonT((value) => Math.min(1, value + step))
-    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
-      event.preventDefault()
-      setSeasonT((value) => Math.max(0, value - step))
-    } else if (event.key === 'Home') {
-      event.preventDefault()
-      setSeasonT(0)
-    } else if (event.key === 'End') {
-      event.preventDefault()
-      setSeasonT(1)
-    }
-  }
-
   const speak = (word: Word) => {
     if (!('speechSynthesis' in window)) return
     const entry = DICTIONARY[language]
@@ -287,7 +439,7 @@ export function WeatherAquariumPage() {
                 <img
                   ref={heroDeviceRef}
                   className="hero-device"
-                  src={`${IMG}/hero-device.png`}
+                  src={`${IMG}/hero-device.webp`}
                   alt="A tilted iPad showing an Alpine lake, village, weather forecast and freshwater aquarium"
                   fetchPriority="high"
                 />
@@ -304,41 +456,7 @@ export function WeatherAquariumPage() {
             </div>
 
             <div className="shell seasons-frame">
-              <div
-                className="season-stage"
-                ref={seasonRef}
-                role="slider"
-                tabIndex={0}
-                aria-label="Season"
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-valuenow={Math.round(seasonT * 100)}
-                aria-valuetext={SEASONS[seasonIndex(seasonT)].name}
-                style={{ ['--t' as string]: seasonT, ['--pan' as string]: SEASON_PAN }}
-                onPointerDown={onSeasonPointerDown}
-                onPointerMove={onSeasonPointerMove}
-                onPointerUp={onSeasonPointerUp}
-                onPointerCancel={onSeasonPointerUp}
-                onKeyDown={onSeasonKeyDown}
-              >
-                <img
-                  src={`${IMG}/seasons-panorama-aligned.png`}
-                  alt=""
-                  draggable={false}
-                />
-                <div className="season-playhead" aria-hidden="true">
-                  <span className="season-now">{SEASONS[seasonIndex(seasonT)].name}</span>
-                  <span className="season-knob" />
-                </div>
-              </div>
-
-              <div className="season-captions" aria-label="Season names in Chinese, English and German">
-                {SEASONS.map((season, index) => (
-                  <span key={season.name} className={index === seasonIndex(seasonT) ? 'is-current' : undefined}>
-                    {season.caption}
-                  </span>
-                ))}
-              </div>
+              <SeasonCrossfade />
             </div>
           </section>
 
@@ -353,10 +471,11 @@ export function WeatherAquariumPage() {
                 {EDITIONS.map((edition) => (
                   <figure className="edition reveal" key={edition.caption}>
                     <div
-                      className="edition-media holiday-slice"
+                      className={`edition-media ${edition.video ? 'holiday-cover' : 'holiday-slice'}`}
                       style={{ ['--slice' as string]: edition.slice }}
                     >
-                      <img src={`${IMG}/holiday-strip.png`} alt={edition.alt} loading="lazy" />
+                      <img src={`${IMG}/${edition.image}`} alt={edition.alt} loading="lazy" />
+                      {edition.video && <HolidayVideo file={edition.video} />}
                     </div>
                     <figcaption>{edition.caption}</figcaption>
                   </figure>
@@ -424,19 +543,14 @@ export function WeatherAquariumPage() {
 
               <div className="pose-track" aria-label="Character motion states">
                 {POSES.map((item) => (
-                  <button
+                  <PoseButton
                     key={item.label}
-                    className="pose reveal"
-                    type="button"
-                    aria-pressed={pose === item.index}
-                    style={{ ['--index' as string]: item.index }}
-                    onClick={() => setPose(item.index)}
-                  >
-                    <span className="pose-art sprite-window">
-                      <img src={`${IMG}/character-sprite.png`} alt={item.alt} loading="lazy" />
-                    </span>
-                    <span>{item.label}</span>
-                  </button>
+                    item={item}
+                    selected={pose === item.index}
+                    onSelect={() => setPose(item.index)}
+                    activeTap={activeTap}
+                    onTap={() => setActiveTap(item.index)}
+                  />
                 ))}
               </div>
             </div>

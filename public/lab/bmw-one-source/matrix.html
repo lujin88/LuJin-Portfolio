@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head><title>BMW Design System · Matrix</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0}
+.showcase{box-sizing:border-box;min-height:100svh;font:clamp(15px,1.4vw,23px)/1.4 Arial,sans-serif;color:#172431;background:linear-gradient(145deg,transparent 68%,#324c60 68%,#10283d),#f6f2ec;padding:clamp(22px,4vw,64px);display:grid;align-content:center;gap:3vw}
+.showcase *{box-sizing:border-box}.showcase header,.summary{display:flex;justify-content:space-between;align-items:center;gap:20px}.showcase header small,.overline{letter-spacing:.16em;text-transform:uppercase;font-size:.65em;font-weight:700}
+.columns{display:grid;grid-template-columns:1.35fr 1fr;align-items:center;gap:6vw}.showcase h1{font:650 clamp(44px,5.5vw,92px)/.99 Arial,sans-serif;letter-spacing:-.06em;margin:0 0 .5em}.showcase .phone{display:block;justify-self:center;width:min(100%,clamp(188px,19vw,320px));height:auto;border:5px solid #1e2426;border-radius:clamp(24px,2.6vw,40px);box-shadow:0 1px 0 1px #9c9f9b,0 12px 25px #12202d22}
+.book{background:linear-gradient(90deg,#faf7f1,#f2eee7 49%,#e5dfd4 51%,#faf7f1 54%,#f4f0e9);border-radius:12px;padding:3vw 2.5vw;box-shadow:0 20px 28px -20px #3c332d88,0 2px 3px #3c332d26}.book .line{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:8px;align-items:center;width:100%;text-align:left;padding:.62em .7em}.book button,.choices button{color:inherit;font:inherit;border:0;background:transparent;cursor:pointer}.book button[aria-pressed=true]{background:#d5dfe4;box-shadow:inset 4px 0 #45647a;border-radius:5px;font-weight:bold}.book .labels{font-size:.8em;border-bottom:1px solid #98958d}.showcase button:focus-visible{outline:3px solid #577f96;outline-offset:2px}.summary{background:#faf7f1;border-radius:12px;padding:1.3em 1.7em;flex-wrap:wrap}.summary div{display:grid;gap:4px}.summary small,.detail{font-size:.74em;color:#48535a}.themes{display:flex;gap:9px}.tile{padding:14px 18px;border-radius:7px;background:#eeece8;color:#18232b;min-width:5em}.tile b,.tile small{display:block}.tile.dark{background:#21282d;color:white}.tile.dark small{color:#d8dfe3}
+.desk{background:#f7f0e6}.desk h1{font-family:Georgia,serif;font-weight:500;font-size:clamp(50px,6.4vw,105px);margin:.15em 0}.desk-body{display:grid;grid-template-columns:.7fr 2.15fr .9fr;gap:4vw;align-items:center}.choices{display:grid;gap:8px}.choices button{background:#ebe4da;border-radius:6px;text-align:left;padding:12px}.choices button[aria-pressed=true]{background:#1c2b35;color:white}.inspect{position:relative;display:flex;align-items:center;padding:2vw 0}.sample{padding:2vw;background:#f2ebe1;border-radius:18px;width:54%;box-shadow:0 10px 32px #241a101a}.sample.front{position:relative;margin-left:-6%;width:58%;background:#1c2329;color:#fff}.sample h2{font-size:1.2em;margin:0 0 1.4em}.sample .tile{margin:0 0 1.3em;padding:1.1em;border:1px solid #8883}.sample.front .tile{border-left:6px solid #e6ac55;padding-left:1.5em}.callout{color:#eab76b;font-size:.75em}.confirm{margin-top:1em;background:#fcf7ef;color:#1c2329;border:0;border-radius:5px;padding:.7em;width:100%;font:600 .82em Arial;cursor:pointer}.confirm:disabled{opacity:.72}.desk .summary{background:transparent;border-top:1px solid #cfc7bc;border-radius:0}.desk .phone{max-width:100%}
+@media(max-width:720px){.showcase{gap:28px}.columns,.desk-body{grid-template-columns:1fr;gap:26px}.showcase .phone{width:185px}.book{padding:20px 12px}.summary{gap:14px}.choices{grid-template-columns:repeat(4,1fr)}.choices button{text-align:center;padding:10px 0}.inspect{padding:10px 0}.sample{padding:16px}.showcase h1{margin-bottom:22px}}
+
+.showcase .overline{text-decoration:none}
+@media(min-width:721px){
+.showcase{padding:clamp(22px,4vh,54px) 4vw;gap:clamp(14px,2.2vh,34px)}
+.showcase .phone{width:min(22vw,31vh,320px)}
+.showcase .summary{padding:clamp(12px,2vh,26px) 2vw}
+}
+
+.showcase .themes .tile{min-width:6em;border:1px solid #28354229}
+.showcase .themes .tile:after{content:"";display:block;width:1em;height:1em;margin-top:.6em;background:currentColor;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='black' stroke-width='1.65' stroke-linejoin='round'%3E%3Cdefs%3E%3Cpath id='b' d='M14 14C9 6 15 1 20 3c4 2 3 6-1 7-2 1-3 2-3 4'/%3E%3C/defs%3E%3Cuse href='%23b'/%3E%3Cuse href='%23b' transform='rotate(90 16 16)'/%3E%3Cuse href='%23b' transform='rotate(180 16 16)'/%3E%3Cuse href='%23b' transform='rotate(270 16 16)'/%3E%3Ccircle cx='16' cy='16' r='2.6'/%3E%3C/svg%3E") center/contain no-repeat}
+</style></head><body><main class="showcase"><header><span><b>BMW</b> Design System</span><small>Rule Matrix</small></header><div class="columns"><div><h1>Select a rule.<br/>See the component.</h1><div class="book"><div class="line labels"><b>Model</b><b>Market</b><b>2020 cell</b></div><button class="line" type="button" data-rule="Climate" aria-pressed="false"><b>iX3</b><span>Market A</span><span>Climate</span></button><button class="line" type="button" data-rule="Engine start" aria-pressed="false"><b>320i</b><span>Market A</span><span>Engine start</span></button><button class="line" type="button" data-rule="Entry omitted" aria-pressed="false"><b>320d</b><span>Market C</span><span>Hidden</span></button><button class="line" type="button" data-rule="Climate" aria-pressed="true"><b>530i</b><span>Market B</span><span>Check</span></button></div></div><img class="phone" src="assets/i4-complete.png" width="376" height="815" alt="My BMW showing a fully charged silver i4 eDrive35" /></div><footer class="summary"><b>Generated states</b><section class="themes" aria-live="polite"><div class="tile"><b data-output>Climate</b><small data-state>Off</small></div><div class="tile dark"><b data-output>Climate</b><small data-state>Off</small></div></section><div><b>2020</b><small>Check each model in Excel</small></div><div><b>2026 · Proposed</b><small>Generate variants for team review</small></div></footer></main><script>function applySelection(root, button) {
+  if (button.classList.contains('confirm')) {
+    root.dataset.approved='true';
+    button.disabled=true;
+    button.textContent='Approved as variant';
+    return;
+  }
+  const rule=button.dataset.rule;
+  if (!rule) return;
+  root.querySelectorAll('[data-rule]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+  root.querySelectorAll('[data-output]').forEach(el=>el.textContent=rule);
+  root.querySelectorAll('[data-state]').forEach(el=>el.textContent=rule==='Entry omitted'?'':'Off');
+  const action=root.querySelector('.confirm');
+  if (action) {
+    const review=button.textContent==='530i';
+    root.querySelector('.callout').textContent=review?'Local padding · Market B':rule==='Entry omitted'?'Hidden in Market C':'Matches spec';
+    action.hidden=!review;
+  }
+}
+document.querySelector('main').addEventListener('click',e=>{const b=e.target.closest('button');if(b)applySelection(e.currentTarget,b)});</script></body></html>

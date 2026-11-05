@@ -207,6 +207,20 @@
   letter-spacing: 0.14em;
   text-align: center;
   text-transform: uppercase;
+}.wa-page .holiday-cover img,
+.wa-page .holiday-cover .holiday-video{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}.wa-page .holiday-video{
+  background: #dbe8dc;
+  opacity: 0;
+  pointer-events: none;
+}.wa-page .holiday-video.is-playing{
+  opacity: 1;
 }.wa-page .learning-section{
   padding-block: 96px;
 }.wa-page .learning-head{
@@ -344,8 +358,10 @@
 }.wa-page .pose[aria-pressed="true"]::after{
   box-shadow: 0 0 0 5px rgb(31 107 69 / 0.28);
   transform: translateX(-50%) scale(1.15);
+}.wa-page .pose.pose-nodot::after{
+  content: none;
 }.wa-page .pose-art{
-  /* One frame of character-sprite.png is 543×724. Match that so hats and shoes stay inside the window. */
+  /* One frame of character-sprite.webp is 543×724. Match that so hats and shoes stay inside the window. */
   width: 100%;
   height: auto;
   aspect-ratio: 543 / 724;
@@ -357,6 +373,25 @@
   height: auto;
   max-width: none;
   transform: translateX(calc(var(--index) * -25%));
+}.wa-page .pose-art .pose-poster,
+.wa-page .pose-video{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0;
+  /* Blend only the empty outer margin into the transparent sprite backdrop. */
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent),
+    linear-gradient(to bottom, transparent, black 4%, black 96%, transparent);
+  mask-composite: intersect;
+}.wa-page .pose-art .pose-poster{
+  max-width: none;
+  transform: none;
+  opacity: 1;
+}.wa-page .pose-video.is-playing{
+  opacity: 1;
 }.wa-page .pose > span:last-child{
   color: var(--muted);
   font-size: var(--font-size-meta);

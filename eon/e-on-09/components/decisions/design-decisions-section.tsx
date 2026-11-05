@@ -146,7 +146,7 @@ export function DesignDecisionsSection() {
                   {principle.emphasis}
                 </p>
                 <div className="pt-2">
-                  {principle.number === '01' ? <ComparisonPanel /> : null}
+                  {principle.number === '01' ? <ComparisonPanel active={isActive} /> : null}
                   {principle.number === '02' ? (
                     <EasyAnswerPanel household={household} onSelect={setHouseholdId} />
                   ) : null}

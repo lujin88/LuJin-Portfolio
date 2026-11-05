@@ -7,7 +7,7 @@ const PAPER = '#fdfcf9'
 
 const TITLE = 'Lu — Human × AI'
 const DESCRIPTION =
-  'A human-led design practice powered by AI. Human judgment. AI execution.'
+  'How Lu Jin works with AI agents: design judgement written as rules, reviewed by her before anything ships.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

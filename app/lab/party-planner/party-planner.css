@@ -1068,8 +1068,20 @@ html:has(.pp-landing) #site-content {
   box-sizing: border-box;
   position: relative;
   z-index: 4;
-  background: #0a0a0a;
-  color: #f9fbfc;
+  /* Same blue as the page above, so the closing does not cut to black.
+     Links stay full white: 78% white on this blue is under 4.5:1. */
+  --color-text-1: #fff;
+  --color-text-3: #fff;
+  --color-text-4: rgba(255, 255, 255, 0.6);
+  --color-footer-divider: rgba(255, 255, 255, 0.2);
+  --pill-border: #fff;
+  --pill-text: #fff;
+  --pill-bg: transparent;
+  --pill-hover-bg: #fff;
+  --pill-hover-text: #1768e8;
+  --pill-hover-shadow: none;
+  background: #1768e8;
+  color: #fff;
   font-family: var(--font-poppins), Poppins, ui-sans-serif, system-ui, sans-serif;
 }
 .pp-landing .pp-site-closing, .pp-landing .pp-site-closing * { box-sizing: border-box; }
@@ -1078,6 +1090,10 @@ html:has(.pp-landing) #site-content {
   font: inherit;
   color: inherit;
   text-decoration: none;
+}
+.pp-landing .pp-site-closing .exp-contact__links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 .pp-landing .pp-site-closing .contact-section,
 .pp-landing .pp-site-closing .exp-footer {
@@ -1109,6 +1125,7 @@ html:has(.pp-landing) #site-content {
 .pp-landing .pp-site-closing .pill-btn:hover {
   color: var(--pill-hover-text);
 }
+.pp-landing .pp-site-closing :is(a, .pill-btn):focus-visible { outline-color: #fff; }
 
 /* One link — three guest needs. Static. No shadow, no motion. */
 .pp-landing .one-link {
