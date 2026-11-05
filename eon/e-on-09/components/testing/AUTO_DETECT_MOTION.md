@@ -21,7 +21,7 @@ The woman remains the existing still photograph. Video generation and integratio
 
 Mobile B keeps the photograph above the quote; Lu's layout approval is pending. The arrow is also shown on mobile after typing. Desktop keeps its existing overlapping editorial composition. No new gestures.
 
-The sequence pauses when the scene exits the viewport or the document becomes hidden; it does not repeat after completion. Reduced motion shows a complete static result. Deep links and content already visible before hydration remain static to avoid hiding readable content. Screen readers receive the complete sentence once; animated glyphs are hidden from the accessibility tree.
+The sequence pauses when the scene exits the viewport or the document becomes hidden; it does not repeat after completion. It starts when 35% of the scene is visible; on screens up to 767px wide, where the photo sits above the quote, it starts only when 50% of the quote card is visible (PM decision, Buzz event `74dd22156da5e55d7c4dd3766983d730cc0fa058463d95b90fc0061155e9bef1`). Once it has started or shown its static result, a language switch keeps the complete state instead of playing again. Reduced motion shows a complete static result. Deep links and content already visible before hydration remain static to avoid hiding readable content. Screen readers receive the complete sentence once; animated glyphs are hidden from the accessibility tree.
 
 Not added: roof scanning line (Lu removed it); handwriting (Lu removed it); repeating detection/typing (would interrupt reading); simulated whole-photo movement (would not establish natural movement of the person).
 

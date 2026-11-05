@@ -35,13 +35,26 @@ export function TestingMotionScene({ children, className, sequenceKey }: {
   sequenceKey: string
 }) {
   const ref = useRef<HTMLDivElement>(null)
+  // Survives sequenceKey changes. A language switch rebuilds the letters, but once
+  // the pass has started it must not hide the copy and play again.
+  const passedRef = useRef(false)
 
   useEffect(() => {
     const root = ref.current
     if (!root) return
+    if (passedRef.current) {
+      root.dataset.motionState = 'complete'
+      root.dataset.motionReason = 'already-played'
+      return
+    }
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)')
+    // Narrow screens stack the photo above the quote, so the 35% scene threshold
+    // fires while the quote is still below the fold. Start there on the quote instead.
+    const narrow = window.matchMedia('(max-width: 767px)')
     let animations: Animation[] = []
     let inView = false
+    let sceneVisible = false
+    let quoteVisible = false
     let started = false
     let completed = false
     const ease = getComputedStyle(root).getPropertyValue('--sc-ease-out').trim() || 'ease-out'
@@ -60,6 +73,7 @@ export function TestingMotionScene({ children, className, sequenceKey }: {
       animations.forEach(animation => animation.cancel())
       animations = []
       completed = true
+      passedRef.current = true
       root.dataset.motionState = 'complete'
     }
     const updatePlayback = () => {
@@ -67,6 +81,7 @@ export function TestingMotionScene({ children, className, sequenceKey }: {
       if (reduce.matches) { finish(); return }
       if (inView && !document.hidden) {
         started = true
+        passedRef.current = true
         root.dataset.motionState = 'playing'
         animations.forEach(animation => animation.play())
       } else {
@@ -77,6 +92,7 @@ export function TestingMotionScene({ children, className, sequenceKey }: {
 
     // Static/SSR is the default. JS failure or reduced motion never hides content.
     if (reduce.matches || !Element.prototype.animate || !window.IntersectionObserver) {
+      passedRef.current = true
       root.dataset.motionState = 'complete'
       return
     }
@@ -88,6 +104,7 @@ export function TestingMotionScene({ children, className, sequenceKey }: {
         (initialRect.top < window.innerHeight && initialRect.bottom > 0)) {
       root.dataset.motionState = 'complete'
       root.dataset.motionReason = 'already-visible'
+      passedRef.current = true
       return
     }
 
@@ -126,11 +143,22 @@ export function TestingMotionScene({ children, className, sequenceKey }: {
     root.dataset.motionDuration = String(end)
     const clock = add(root, [{}, {}], end, 1, 'linear')
     clock.onfinish = finish
-    const observer = new IntersectionObserver(([entry]) => {
-      inView = entry.isIntersecting && entry.intersectionRatio >= 0.35
+    // Desktop and mobile each render a quote card; the hidden one never intersects.
+    const quotes = select('[data-quote-panel]')
+    const quoteRatios = new Map<Element, number>()
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.target === root) sceneVisible = entry.isIntersecting && entry.intersectionRatio >= 0.35
+        else quoteRatios.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0)
+      }
+      quoteVisible = Array.from(quoteRatios.values()).some(ratio => ratio >= 0.5)
+      // Start: quote half visible on narrow screens, 35% of the scene elsewhere.
+      // After the start, pausing follows the scene on every width.
+      inView = !started && narrow.matches && quotes.length > 0 ? quoteVisible : sceneVisible
       updatePlayback()
-    }, { threshold: [0, 0.35] })
+    }, { threshold: [0, 0.35, 0.5] })
     observer.observe(root)
+    quotes.forEach(node => observer.observe(node))
     document.addEventListener('visibilitychange', updatePlayback)
     reduce.addEventListener('change', updatePlayback)
     root.dataset.motionState = 'ready'
