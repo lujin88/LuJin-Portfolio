@@ -92,7 +92,7 @@ export function ProblemSection() {
 
             <div className="absolute left-[1%] -top-3 z-[3] w-[86%] max-w-[500px] md:left-[3%] md:-top-9 md:max-w-[520px]">
               <img
-                src="/assets/images/eon/eon 04&05 House.png"
+                src="/assets/images/eon/eon-04-05-house.png"
                 alt={t('eon.problem.houseAlt')}
                 className="h-auto w-full max-w-[520px] -rotate-[4deg]"
                 style={{
