@@ -22,7 +22,7 @@
    <section className="mc-section mc-context">
 --- /dev/null
 +++ b/app/man-truck-bus/man-motion.tsx
-@@ -0,0 +1,141 @@
+@@ -0,0 +1,143 @@
 +'use client'
 +
 +import { useEffect, useRef } from 'react'
@@ -39,15 +39,16 @@
 +  const sectionRef = useRef<HTMLElement>(null)
 +
 +  useEffect(() => {
-+  const section = sectionRef.current!;
-+  if (!section) return;
++  if (!sectionRef.current) return;
++  const section = sectionRef.current;
 +  const stage = section.querySelector<HTMLElement>('.man-motion-stage')!;
++  const scene = section.querySelector<HTMLElement>('.man-motion-scene')!;
 +  const cards = [...section.querySelectorAll<HTMLElement>('.man-motion-card')];
 +  const slogan = section.querySelector<HTMLElement>('.man-motion-slogan')!;
 +  const final = section.querySelector<HTMLElement>('.man-motion-final')!;
 +  const board = section.querySelector<HTMLElement>('.man-motion-board')!;
 +  const note = section.querySelector<HTMLElement>('.man-motion-note')!;
-+  if (!stage || !slogan || !final || !board || !note) return;
++  if (!stage || !scene || !slogan || !final || !board || !note) return;
 +  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 +  const wide = matchMedia('(min-width: 1001px)');
 +  const animated = [...cards,slogan,final,board,note];
@@ -71,8 +72,8 @@
 +  function measure() {
 +    const rect=section.getBoundingClientRect();
 +    const width=stage.clientWidth;
-+    // Board top retains the original scene coordinates after trimming the lower edge.
-+    const height=board.offsetTop/.38;
++    // Read the CSS scene size directly; trimming the stage does not change these coordinates.
++    const height=scene.getBoundingClientRect().height;
 +    const scale=Math.min(1,(width-36-36)/1061);
 +    const sizes=[280,247,330,212];
 +    const targetX=sizes.map((_,i)=>18+sizes.slice(0,i).reduce((n,v)=>n+v*scale+12,0));
@@ -143,6 +144,7 @@
 +  return (
 +    <section ref={sectionRef} className="man-motion" aria-labelledby="man-motion-title">
 +      <div className="man-motion-stage">
++        <div className="man-motion-scene" aria-hidden="true" />
 +        <p className="man-motion-over">10:00 to Stuttgart</p>
 +        <h2 className="man-motion-slogan" id="man-motion-title">A truck can be ready.<br /><em>Its shift can still be at risk.</em></h2>
 +        <h3 className="man-motion-final">One shift, one shared record.</h3>
@@ -166,9 +168,10 @@
 +}
 --- /dev/null
 +++ b/app/man-truck-bus/man-motion.css
-@@ -0,0 +1,55 @@
+@@ -0,0 +1,62 @@
 +/* MAN A integration. All styles scoped to the new section; case.css stays unchanged. */
 +.man-case .man-motion {background:#f9f1e5;position:relative;}
++.man-case .man-motion-scene {display:none;}
 +.man-case .man-motion-stage {position:relative;max-width:1184px;margin-inline:auto;padding:70px 0 80px;}
 +.man-case .man-motion-over {font-size:13px;color:var(--muted);margin:0 0 25px;}
 +.man-case .man-motion-slogan {font-family:var(--serif);font-weight:400;font-size:clamp(38px,4.7vw,68px);letter-spacing:-.045em;line-height:1.04;margin:0 0 34px;max-width:850px;}
@@ -184,19 +187,24 @@
 +.man-case .man-motion-note {color:var(--muted);font-size:12px;line-height:1.4;margin:20px 0 0;}
 +/* Static assembled layout is the baseline: works without JavaScript and with reduced motion. */
 +@media(min-width:1001px) {
-+  /* Keep the scene coordinates; the note and 96px padding define its lower edge.
++  /* Keep the scene coordinates; the note and responsive bottom padding define its lower edge.
 +     A normal-flow spacer supplies the independent, reversible scroll distance. */
++  .man-case .man-motion.is-scrubbed {--man-scene-height:clamp(680px,100vh,1000px);}
++  .man-case .is-scrubbed .man-motion-scene {display:block;position:absolute;top:0;left:0;width:0;height:var(--man-scene-height);visibility:hidden;pointer-events:none;}
 +  .man-case .man-motion.is-scrubbed::after {content:"";display:block;height:min(80vh,900px);}
-+  .man-case .is-scrubbed .man-motion-stage {position:sticky;top:0;padding:calc(clamp(258.4px,38vh,380px) + 257px) 0 96px;overflow:visible;}
-+  .man-case .is-scrubbed .man-motion-over {position:absolute;top:clamp(54.4px,8vh,80px);left:0;margin:0;}
-+  .man-case .is-scrubbed .man-motion-slogan {position:absolute;top:clamp(210.8px,31vh,310px);left:0;max-width:850px;margin:0;opacity:0;}
-+  .man-case .is-scrubbed .man-motion-final {position:absolute;top:clamp(156.4px,23vh,230px);left:0;margin:0;opacity:0;}
-+  .man-case .is-scrubbed .man-motion-board {position:absolute;top:clamp(258.4px,38vh,380px);left:0;width:100%;height:236px;opacity:0;}
++  .man-case .is-scrubbed .man-motion-stage {position:sticky;top:0;padding:calc(var(--man-scene-height) * .38 + 257px) 0 96px;overflow:visible;}
++  .man-case .is-scrubbed .man-motion-over {position:absolute;top:calc(var(--man-scene-height) * .08);left:0;margin:0;}
++  .man-case .is-scrubbed .man-motion-slogan {position:absolute;top:calc(var(--man-scene-height) * .31);left:0;max-width:850px;margin:0;opacity:0;}
++  .man-case .is-scrubbed .man-motion-final {position:absolute;top:calc(var(--man-scene-height) * .23);left:0;margin:0;opacity:0;}
++  .man-case .is-scrubbed .man-motion-board {position:absolute;top:calc(var(--man-scene-height) * .38);left:0;width:100%;height:236px;opacity:0;}
 +  .man-case .is-scrubbed .man-motion-assembly {display:contents;}
 +  .man-case .is-scrubbed .man-motion-board {border:1px solid #e8ddd1;background:#fffefa;border-radius:14px;padding:18px;}
 +  .man-case .is-scrubbed .man-motion-cards {display:contents;}
 +  .man-case .is-scrubbed .man-motion-card {position:absolute;left:0;top:0;margin:0;}
 +  .man-case .is-scrubbed .man-motion-note {position:relative;margin:0;opacity:0;}
++}
++@media(min-width:1001px) and (max-width:1280px) {
++  .man-case .is-scrubbed .man-motion-stage {padding-bottom:76px;}
 +}
 +@media(max-width:1280px) {
 +  .man-case .man-motion-stage {max-width:calc(100% - 96px);}
@@ -210,6 +218,7 @@
 +  .man-case .man-motion-final {font-size:32px;}
 +}
 +@media(max-width:580px) {
++  .man-case .man-motion-stage {padding-bottom:68px;}
 +  .man-case .man-motion-stage {max-width:calc(100% - 40px);}
 +  .man-case .man-motion-slogan {font-size:39px;}
 +  .man-case .man-motion-cards {grid-template-columns:1fr;gap:10px;}

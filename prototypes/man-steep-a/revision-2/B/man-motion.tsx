@@ -14,15 +14,16 @@ export function ManMotion() {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-  const section = sectionRef.current!;
-  if (!section) return;
+  if (!sectionRef.current) return;
+  const section = sectionRef.current;
   const stage = section.querySelector<HTMLElement>('.man-motion-stage')!;
+  const scene = section.querySelector<HTMLElement>('.man-motion-scene')!;
   const cards = [...section.querySelectorAll<HTMLElement>('.man-motion-card')];
   const slogan = section.querySelector<HTMLElement>('.man-motion-slogan')!;
   const final = section.querySelector<HTMLElement>('.man-motion-final')!;
   const board = section.querySelector<HTMLElement>('.man-motion-board')!;
   const note = section.querySelector<HTMLElement>('.man-motion-note')!;
-  if (!stage || !slogan || !final || !board || !note) return;
+  if (!stage || !scene || !slogan || !final || !board || !note) return;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const wide = matchMedia('(min-width: 1001px)');
   const animated = [...cards,slogan,final,board,note];
@@ -46,8 +47,8 @@ export function ManMotion() {
   function measure() {
     const rect=section.getBoundingClientRect();
     const width=stage.clientWidth;
-    // Board top retains the original scene coordinates after trimming the lower edge.
-    const height=board.offsetTop/.38;
+    // Read the CSS scene size directly; trimming the stage does not change these coordinates.
+    const height=scene.getBoundingClientRect().height;
     const scale=Math.min(1,(width-36-36)/1061);
     const sizes=[280,247,330,212];
     const targetX=sizes.map((_,i)=>18+sizes.slice(0,i).reduce((n,v)=>n+v*scale+12,0));
@@ -118,6 +119,7 @@ export function ManMotion() {
   return (
     <section ref={sectionRef} className="man-motion" aria-labelledby="man-motion-title">
       <div className="man-motion-stage">
+        <div className="man-motion-scene" aria-hidden="true" />
         <p className="man-motion-over">10:00 to Stuttgart</p>
         <h2 className="man-motion-slogan" id="man-motion-title">A truck can be ready.<br /><em>Its shift can still be at risk.</em></h2>
         <h3 className="man-motion-final">One shift, one shared record.</h3>
