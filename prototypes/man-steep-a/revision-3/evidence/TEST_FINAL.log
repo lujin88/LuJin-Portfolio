@@ -1,0 +1,8 @@
+测试锁被占用，排队中。占用者：
+占用 | pid 62452 开始 2026-11-05 03:49:19 | MAN A R3 QA (代码审查与 QA Claude)
+命令 bash run.sh
+（记录的 pid 已退出，锁仍被它留下的子进程占着；看 ps 找浏览器/node 进程，别手动删锁）
+[test-lock] 开始 03:53:37 负载 3.75 3.44 3.70 排队 225 秒
+Error: round trip {"v":"A","w":1440,"h":900,"progress":0.25,"before":{"y":814,"sectionTop":-180.40625,"top":633.59375,"bottom":1251.390625,"height":1431.796875,"stageTop":0,"stageBottom":711.796875,"metaTop":1251.390625,"range":720,"progress":"0.2506","inline":true},"reduced":{"y":814,"sectionTop":-180.40625,"top":633.59375,"bottom":1251.390625,"height":1431.796875,"stageTop":0,"stageBottom":711.796875,"metaTop":1251.390625,"range":720,"progress":"0.2506","inline":true},"restored":{"y":814,"sectionTop":-180.40625,"top":633.59375,"bottom":1251.390625,"height":1431.796875,"stageTop":0,"stageBottom":711.796875,"metaTop":1251.390625,"range":720,"progress":"0.2506","inline":true}}
+    at /Users/lu/.buzz/OUTBOX/MAN_REDUCED_ANCHOR_20261105_249a/check_final.cjs:15:129
+[test-lock] 结束 03:53:55 负载 3.76 3.46 3.70 退出码 1

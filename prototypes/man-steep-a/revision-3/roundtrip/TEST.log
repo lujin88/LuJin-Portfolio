@@ -1,0 +1,7 @@
+[test-lock] 开始 08:21:06 负载 6.15 9.96 12.23 排队 0 秒
+{"tag":"BEFORE_B_1024x768","n":14,"errs":0}
+{"tag":"B_1024x768","n":14,"errs":0}
+{"tag":"A_1024x768","n":14,"errs":0}
+{"tag":"A_1440x900","n":14,"errs":0}
+4 extra scenarios passed
+[test-lock] 结束 08:30:16 负载 5.39 5.61 8.80 退出码 0

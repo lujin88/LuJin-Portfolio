@@ -1,0 +1,9 @@
+测试锁被占用，排队中。占用者：
+占用 | pid 62452 开始 2026-11-05 03:49:19 | MAN A R3 QA (代码审查与 QA Claude)
+命令 bash run.sh
+（记录的 pid 已退出，锁仍被它留下的子进程占着；看 ps 找浏览器/node 进程，别手动删锁）
+[test-lock] 开始 03:52:35 负载 3.82 3.37 3.70 排队 140 秒
+BEFORE_A zero console/page errors
+AFTER_A zero console/page errors
+AFTER_B zero console/page errors
+[test-lock] 结束 03:53:06 负载 3.82 3.40 3.69 退出码 0

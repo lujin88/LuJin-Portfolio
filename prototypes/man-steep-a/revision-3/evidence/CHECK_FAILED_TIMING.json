@@ -1,0 +1,47 @@
+[
+  {
+    "v": "A",
+    "w": 1440,
+    "h": 900,
+    "progress": 0.25,
+    "before": {
+      "y": 814,
+      "sectionTop": -180.40625,
+      "top": 633.59375,
+      "bottom": 1251.390625,
+      "height": 1431.796875,
+      "stageTop": 0,
+      "stageBottom": 711.796875,
+      "metaTop": 1251.390625,
+      "range": 720,
+      "progress": "0.2506",
+      "inline": true
+    },
+    "reduced": {
+      "y": 814,
+      "sectionTop": -180.40625,
+      "top": 633.59375,
+      "bottom": 1251.390625,
+      "height": 1431.796875,
+      "stageTop": 0,
+      "stageBottom": 711.796875,
+      "metaTop": 1251.390625,
+      "range": 720,
+      "progress": "0.2506",
+      "inline": true
+    },
+    "restored": {
+      "y": 814,
+      "sectionTop": -180.40625,
+      "top": 633.59375,
+      "bottom": 1251.390625,
+      "height": 1431.796875,
+      "stageTop": 0,
+      "stageBottom": 711.796875,
+      "metaTop": 1251.390625,
+      "range": 720,
+      "progress": "0.2506",
+      "inline": true
+    }
+  }
+]

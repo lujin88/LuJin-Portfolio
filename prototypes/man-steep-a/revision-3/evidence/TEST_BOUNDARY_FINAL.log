@@ -1,0 +1,8 @@
+[test-lock] 开始 03:56:16 负载 2.41 3.05 3.49 排队 0 秒
+A 1440 passed []
+A 1024 passed []
+A 390 passed []
+B 1440 passed []
+B 1024 passed []
+B 390 passed []
+[test-lock] 结束 03:57:01 负载 4.77 3.56 3.65 退出码 0

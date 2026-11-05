@@ -1,0 +1,8 @@
+[test-lock] 开始 03:54:41 负载 2.94 3.28 3.62 排队 0 秒
+A 1440 passed []
+A 1024 passed []
+A 390 passed []
+B 1440 passed []
+Error: static reading offset
+    at /Users/lu/.buzz/OUTBOX/MAN_REDUCED_ANCHOR_20261105_249a/check_final.cjs:23:290
+[test-lock] 结束 03:55:18 负载 3.05 3.25 3.59 退出码 1

@@ -1,0 +1,32 @@
+app/html-island-activate.tsx(140,29): error TS2339: Property 'content' does not exist on type 'Element'.
+app/html-island-activate.tsx(144,29): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'HTMLScriptElement'.
+app/html-island-activate.tsx(145,34): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'HTMLScriptElement'.
+app/html-island-activate.tsx(147,11): error TS18046: 'src' is of type 'unknown'.
+app/lab/way-of-work/human-ai-page.tsx(74,31): error TS2345: Argument of type '(force?: boolean) => void' is not assignable to parameter of type 'FrameRequestCallback'.
+  Types of parameters 'force' and 'time' are incompatible.
+    Type 'number' is not assignable to type 'boolean | undefined'.
+app/lab/way-of-work/human-ai-page.tsx(93,39): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(type: "scroll", listener: (this: Window, ev: Event) => any, options?: boolean | AddEventListenerOptions | undefined): void', gave the following error.
+    Argument of type '(force?: boolean) => void' is not assignable to parameter of type '(this: Window, ev: Event) => any'.
+      Types of parameters 'force' and 'ev' are incompatible.
+        Type 'Event' is not assignable to type 'boolean | undefined'.
+  Overload 2 of 2, '(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions | undefined): void', gave the following error.
+    Argument of type '(force?: boolean) => void' is not assignable to parameter of type 'EventListenerOrEventListenerObject'.
+      Type '(force?: boolean) => void' is not assignable to type 'EventListener'.
+        Types of parameters 'force' and 'evt' are incompatible.
+          Type 'Event' is not assignable to type 'boolean | undefined'.
+app/lab/way-of-work/human-ai-page.tsx(98,44): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(type: "scroll", listener: (this: Window, ev: Event) => any, options?: boolean | EventListenerOptions | undefined): void', gave the following error.
+    Argument of type '(force?: boolean) => void' is not assignable to parameter of type '(this: Window, ev: Event) => any'.
+      Types of parameters 'force' and 'ev' are incompatible.
+        Type 'Event' is not assignable to type 'boolean | undefined'.
+  Overload 2 of 2, '(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions | undefined): void', gave the following error.
+    Argument of type '(force?: boolean) => void' is not assignable to parameter of type 'EventListenerOrEventListenerObject'.
+      Type '(force?: boolean) => void' is not assignable to type 'EventListener'.
+        Types of parameters 'force' and 'evt' are incompatible.
+          Type 'Event' is not assignable to type 'boolean | undefined'.
+app/lab/weather-aquarium/weather-aquarium-page.tsx(314,29): error TS2339: Property 'video' does not exist on type 'never'.
+app/lab/weather-aquarium/weather-aquarium-page.tsx(314,63): error TS2339: Property 'video' does not exist on type 'never'.
+global-header/components/site-header.tsx(85,3): error TS2322: Type '{ kind: "link"; label: string; href: string; }' is not assignable to type 'NavEntry'.
+  Type '{ kind: "link"; label: string; href: string; }' is not assignable to type '{ kind: "link"; } & NavLink'.
+    Property 'icon' is missing in type '{ kind: "link"; label: string; href: string; }' but required in type 'NavLink'.
