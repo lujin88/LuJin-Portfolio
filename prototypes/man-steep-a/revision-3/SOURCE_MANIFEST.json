@@ -1,0 +1,15 @@
+{
+  "base": "819376b90bb305143abf781aecaec965ce1e45dc",
+  "variants": {
+    "A": {
+      "baseline_sha256": "f28e800e06bec550b33c281ebba6fc9a92ad5bcc7829d84820fb45196633874e",
+      "source_sha256": "3d928a9a37e0d1865a6ed30472e41f16fde467218b8dfb58801345162b58a4e1",
+      "patch_sha256": "08787c45f3c5f32df282fae66202ab171eac9ee044a6c565534c17bcffefc5ac"
+    },
+    "B": {
+      "baseline_sha256": "c12fa9e1811e5fa3eee776bdd8882e00305d2289db6caa6817b9e9ece4443e27",
+      "source_sha256": "e65b3f1480b81cc665c5471f6d0147d9a88491d28319ff291980829722d18130",
+      "patch_sha256": "970c937c9427067a5a7bfe21fd8d0f0cc694d20529e341e05110cae2c4e131da"
+    }
+  }
+}

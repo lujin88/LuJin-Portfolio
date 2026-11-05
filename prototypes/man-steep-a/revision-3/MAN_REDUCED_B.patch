@@ -1,0 +1,69 @@
+--- a/app/man-truck-bus/man-motion.tsx
++++ b/app/man-truck-bus/man-motion.tsx
+@@ -28,6 +28,7 @@
+   const wide = matchMedia('(min-width: 1001px)');
+   const animated = [...cards,slogan,final,board,note];
+   let active = false;
++  let resumeProgress = 0;
+   let scheduled = 0;
+   let geometry: { top: number; range: number; width: number; height: number; scale: number; targetX: number[] } | undefined;
+   let disposed = false;
+@@ -82,19 +83,44 @@
+     section.dataset.progress=p.toFixed(4);
+   }
+   function queue(){if(active&&!scheduled)scheduled=requestAnimationFrame(render);}
+-  function configure(){
++  function configure(preservePosition = false){
++    const wasActive = active;
++    const before = section.getBoundingClientRect();
++    const stageBefore = stage.getBoundingClientRect();
++    const previousY = scrollY;
++    const sectionTop = before.top + previousY;
++    if (preservePosition && wasActive && geometry) {
++      resumeProgress = clamp((previousY - geometry.top) / geometry.range);
++    }
+     active=!reduce.matches&&wide.matches;
+     section.classList.toggle('is-scrubbed',active);
+     if(scheduled)cancelAnimationFrame(scheduled);
+     scheduled=0;
+     for(const el of animated){el.style.removeProperty('transform');el.style.removeProperty('opacity');}
+     if(active)measure();else section.dataset.progress='static';
++    if (!preservePosition || wasActive === active) return;
++
++    let targetY = previousY;
++    if (before.bottom <= 0 || stageBefore.top < -1) {
++      // Preserve the lower content boundary once the reader is leaving the stage.
++      // A static stage can be taller than the sticky stage, so anchoring its own
++      // bottom edge is not always possible; the following content is stable instead.
++      targetY += section.getBoundingClientRect().height - before.height;
++    } else if (before.top <= 0) {
++      // Keep the visible sticky surface in place; a direct round trip resumes its progress.
++      targetY = sectionTop + (active && geometry ? resumeProgress * geometry.range : 0);
++    }
++    // No animation: a motion preference change must not cause a smooth page scroll.
++    scrollTo({ top: targetY, behavior: 'instant' });
++    if (active) measure();
+   }
+   addEventListener('scroll',queue,{passive:true});
+   const resize = () => active ? measure() : configure();
+   addEventListener('resize',resize);
+-  reduce.addEventListener('change',configure);
+-  wide.addEventListener('change',configure);
++  const reducedChange = () => configure(true);
++  const wideChange = () => configure();
++  reduce.addEventListener('change',reducedChange);
++  wide.addEventListener('change',wideChange);
+   const observer = new ResizeObserver(resize);
+   observer.observe(section.parentElement ?? section);
+   configure();
+@@ -105,8 +131,8 @@
+     if (scheduled) cancelAnimationFrame(scheduled);
+     removeEventListener('scroll',queue);
+     removeEventListener('resize',resize);
+-    reduce.removeEventListener('change',configure);
+-    wide.removeEventListener('change',configure);
++    reduce.removeEventListener('change',reducedChange);
++    wide.removeEventListener('change',wideChange);
+     observer.disconnect();
+     section.classList.remove('is-scrubbed');
+     for (const el of animated) {

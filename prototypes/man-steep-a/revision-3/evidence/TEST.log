@@ -1,0 +1,12 @@
+测试锁被占用，排队中。占用者：
+占用 | pid 62323 开始 2026-11-05 03:48:16 | MAN A R3 QA (代码审查与 QA Claude)
+命令 arch -arm64 ./node_modules/.bin/next build
+（记录的 pid 已退出，锁仍被它留下的子进程占着；看 ps 找浏览器/node 进程，别手动删锁）
+[test-lock] 开始 03:48:24 负载 2.33 2.84 3.68 排队 5 秒
+A 1440 passed []
+A 1024 passed []
+A 390 passed []
+B 1440 passed []
+B 1024 passed []
+B 390 passed []
+[test-lock] 结束 03:49:19 负载 4.23 3.24 3.77 退出码 0
