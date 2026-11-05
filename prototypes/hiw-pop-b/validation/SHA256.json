@@ -1,0 +1,11 @@
+{
+  "hiw-r9.js": "e491824e5a1e6a891ad994ba78d810d4c45250f888ec60ca31350cef22af4b81",
+  "Fox/scene.rml": "8f96df3f918da76a003a5d190d42c0b00a462c01c09fa2930fa54c72cafe7dea",
+  "Bear/scene.rml": "52590672f9685aa733438880c63dda81683d1ed7f4c2877910d0ff498c772442",
+  "Rabbit/scene.rml": "2f785f3e932c117c0da51d2ab1068c1d71308f5e0a86b2eb7dd20a478c0a03ac",
+  "vendor/rive.js": "bdd471f39a2133e775cfa2d6815ceb6b2670ced8fb6df4b142bd59d878dc12b8",
+  "vendor/rive.wasm": "43d09f2c8aa011e7b41003c1f4d4763b80ee2409c166c1cd40b4f65b55c4445a",
+  "Rabbit/build/rabbit.riv": "49f4d0a8bfb05d76ddb03ef8b3d10637703805bc7d402d89c866931458d59842",
+  "Bear/build/bear.riv": "384fab9881042395816a29bed1afecb387bd6bd76df4d5b34eb317523e01714c",
+  "Fox/build/fox.riv": "df14de36d7658ea9fc57e7633b4e839bfcb8de4c1c09cc623c5e1f9df3df102f"
+}
