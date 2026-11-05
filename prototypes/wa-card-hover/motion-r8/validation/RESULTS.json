@@ -1,0 +1,189 @@
+{
+  "baseHead": "273c4285d61ae3725c1202c728678459f6cf9df8",
+  "runs": [
+    {
+      "option": "A",
+      "mode": "NORMAL",
+      "restore": {
+        "max": 0,
+        "changedChannels": 0,
+        "totalChannels": 148248
+      },
+      "movie": {
+        "frames": 375,
+        "method": "Timestamped Chrome screencast",
+        "file": "A_NORMAL.mp4",
+        "quality": {
+          "targetFps": 30,
+          "activeWindows": [
+            [
+              1793838859.899,
+              1793838865.502
+            ]
+          ],
+          "intervals": 337,
+          "missing": 0,
+          "maxGapMs": 16.668081283569336,
+          "dropRate": 0,
+          "stallRate": 0,
+          "status": "pass"
+        }
+      }
+    },
+    {
+      "option": "A",
+      "mode": "SLOW",
+      "restore": {
+        "max": 0,
+        "changedChannels": 0,
+        "totalChannels": 148248
+      },
+      "movie": {
+        "frames": 843,
+        "method": "Timestamped Chrome screencast",
+        "file": "A_SLOW.mp4",
+        "quality": {
+          "targetFps": 30,
+          "activeWindows": [
+            [
+              1793838870.116,
+              1793838882.118
+            ]
+          ],
+          "intervals": 721,
+          "missing": 0,
+          "maxGapMs": 16.668081283569336,
+          "dropRate": 0,
+          "stallRate": 0,
+          "status": "pass"
+        }
+      }
+    },
+    {
+      "option": "A",
+      "mode": "REDUCED",
+      "restore": {
+        "max": 0,
+        "changedChannels": 0,
+        "totalChannels": 148248
+      },
+      "movie": {
+        "frames": 1,
+        "method": "Timestamped Chrome screencast",
+        "file": "A_REDUCED.mp4",
+        "quality": {
+          "targetFps": 30,
+          "activeWindows": [],
+          "intervals": 0,
+          "missing": 0,
+          "maxGapMs": 0,
+          "dropRate": 0,
+          "stallRate": 0,
+          "status": "static"
+        }
+      }
+    },
+    {
+      "option": "B",
+      "mode": "NORMAL",
+      "restore": {
+        "max": 1,
+        "changedChannels": 386,
+        "totalChannels": 148248
+      },
+      "movie": {
+        "frames": 378,
+        "method": "Timestamped Chrome screencast",
+        "file": "B_NORMAL.mp4",
+        "quality": {
+          "targetFps": 30,
+          "activeWindows": [
+            [
+              1793838992.235,
+              1793838997.835
+            ]
+          ],
+          "intervals": 337,
+          "missing": 0,
+          "maxGapMs": 16.668081283569336,
+          "dropRate": 0,
+          "stallRate": 0,
+          "status": "pass"
+        }
+      }
+    },
+    {
+      "option": "B",
+      "mode": "SLOW",
+      "restore": {
+        "max": 1,
+        "changedChannels": 386,
+        "totalChannels": 148248
+      },
+      "movie": {
+        "frames": 804,
+        "method": "Timestamped Chrome screencast",
+        "file": "B_SLOW.mp4",
+        "quality": {
+          "targetFps": 30,
+          "activeWindows": [
+            [
+              1793839002.352,
+              1793839014.354
+            ]
+          ],
+          "intervals": 682,
+          "missing": 17,
+          "maxGapMs": 266.65711402893066,
+          "dropRate": 0.024320457796852647,
+          "stallRate": 0.004398826979472141,
+          "status": "pass"
+        }
+      }
+    },
+    {
+      "option": "B",
+      "mode": "REDUCED",
+      "restore": {
+        "max": 1,
+        "changedChannels": 386,
+        "totalChannels": 148248
+      },
+      "movie": {
+        "frames": 2,
+        "method": "Timestamped Chrome screencast",
+        "file": "B_REDUCED.mp4",
+        "quality": {
+          "targetFps": 30,
+          "activeWindows": [],
+          "intervals": 0,
+          "missing": 0,
+          "maxGapMs": 0,
+          "dropRate": 0,
+          "stallRate": 0,
+          "status": "static"
+        }
+      }
+    }
+  ],
+  "r7RayTransformsStatic": true,
+  "note": "A completed before the recorder carried reduced mode into B and failed; B rerun separately with explicit media reset. Runtime files unchanged between runs. B complete report has zero page errors. A page-error count was not serialized before the failed B assertion.",
+  "locks": [
+    {
+      "start": "01:33:59",
+      "startLoad": "7.38/24.05/30.10",
+      "end": "01:35:06",
+      "endLoad": "5.15/19.87/28.04",
+      "exit": 1,
+      "coverage": "A three modes pass; B recorder setup fails"
+    },
+    {
+      "start": "01:36:14",
+      "startLoad": "4.58/16.86/26.31",
+      "end": "01:37:15",
+      "endLoad": "4.70/14.56/24.75",
+      "exit": 0,
+      "coverage": "B complete"
+    }
+  ]
+}
