@@ -1,5 +1,7 @@
 # How I Work R9 — ordered loop review
 
+**2026-11-05 revision:** current Fox source/binary holds DECIDE and the subtitle visible throughout. The older caption-entry behavior below is superseded by [`caption-hold-review/README.md`](caption-hold-review/README.md), which pairs this asset with the developer's SPEED2/HOLD2 controller. Existing `r6.js` remains the historical controller; use the new review server for this revision. Caption continuity and reduced motion have been checked; see the revision README for evidence and the remaining cross-canvas alignment review.
+
 Request: Buzz `28d42ecec0b23742f5129554a850646734a306a88efe16926506c5c2cb6bac59`, relaying Lu’s feedback `f38159276346b2a4856c84392979028168c5fac17fcd3e08deb6c86e9a93dc03` (2026-11-04). Preview: http://127.0.0.1:4690/index. Branch: `feat/hiw-r9-head-lift-20261104`. This directory is an isolated review copy; it is not imported by the application.
 
 The old image exposed DECIDE from the first frame and animated the fox after it. This revision hides both caption lines initially, brightens the bulb, turns the fox toward the girl, and reveals DECIDE and its subtitle in that order. The full illustration fades out together, resets while invisible, returns to its first pose and rests before the next loop. No new state-machine inputs or states.

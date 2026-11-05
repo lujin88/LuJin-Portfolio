@@ -1,0 +1,16 @@
+{
+  "Bear": {
+    "sourceSha256": "e32d466bdab6164a3992afb07d7da296ba022b5cd6be4fc68ae0a4afd31f3504",
+    "change": "byte-identical to HEAD"
+  },
+  "Rabbit": {
+    "sourceSha256": "1cf282795c32c39b3f1aa705bce0576d3119c83a70f0f54e21961c7a9931ae98",
+    "change": "byte-identical to HEAD"
+  },
+  "Fox": {
+    "sourceSha256": "b6303f0117dca04502d594fe5149da4c7db4c3205c5f5ca26b45b9cbecba324a",
+    "change": "caption opacity and completed-pose keys only"
+  },
+  "head": "07a9da5972eff0a22c56a3153df924fb41f895d3",
+  "developerControllerMatches": true
+}

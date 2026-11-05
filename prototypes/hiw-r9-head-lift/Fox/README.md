@@ -1,4 +1,10 @@
-# Fox — R9 ordered loop
+# Fox — R9 caption hold revision
+
+Current revision (2026-11-05): `build/fox.riv` is **1,775,144 bytes**. DECIDE and the subtitle are visible at their completed position/scale for all720 source frames, including frame0. State machine `ReviewAutoplay`, no inputs, single state `RespondOnce`, 60fps/12s loop and completion event are unchanged. Use the developer's SPEED2/HOLD2 controller to restart at source8.6s. See [`../caption-hold-review/README.md`](../caption-hold-review/README.md) for current integration, build and validation. Editable `scene.rml` and `original.png` remain alongside the binary. Build: zero errors/warnings; no watermark is visible in inspected browser stills; independent visual review remains pending.
+
+The following describes the **previous R9 review**, retained for provenance. Its caption-entry/fade timing and binary size are superseded by the revision above.
+
+## Previous ordered-loop review
 
 Binary: `build/fox.riv`, **1,775,735 bytes**. Editable source: `scene.rml`; raster asset `original.png` is unchanged. Generator order: `../BUILD.py`, `../ADD_SEAM_OVERLAP.py`, `../SEQUENCE_LAYERS.py`.
 

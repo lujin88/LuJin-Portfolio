@@ -1,0 +1,3 @@
+[test-lock] 开始 01:47:15 负载 10.37 9.17 16.22 排队 0 秒
+PASS: three-cycle caption pixels, normal1440/390, slow and reduced
+[test-lock] 结束 01:47:48 负载 9.00 8.92 15.84 退出码 0

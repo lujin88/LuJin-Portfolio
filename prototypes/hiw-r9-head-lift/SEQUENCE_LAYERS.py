@@ -70,15 +70,16 @@ for band in ['Rabbit','Bear','Fox']:
  s=s.replace('<StraightVertex x="1230" y="245"/><StraightVertex x="1080" y="245"/>','<StraightVertex x="1230" y="268"/><StraightVertex x="1080" y="265"/>')
  extras='';extra_keys=''
  if band=='Fox':
-  # Caption patches use the existing illustration's lettering, size and colour.
+  # Keep both original-pixel captions fixed at their completed pose through every reset.
+  # PM 189b2823: SPEED 2 / HOLD 2 controller cuts ReviewAutoplay to frame zero.
   for ident,name,box,cx2,cy2 in [(120001,'DecideOriginalPixels',(1076,130,1350,195),1212,172),(120002,'HumanJudgmentOriginalPixels',(1042,196,1352,226),1197,211)]:
    x1,y1,x2,y2=box;points=[(x1,y1),(x2,y1),(x2,y2),(x1,y2)]
-   extras+=f'<Node id="0:{ident}" name="{name}" x="{cx2}" y="{cy2}" opacity="0">{image_patch(points,cx2,cy2)}</Node>'
+   extras+=f'<Node id="0:{ident}" name="{name}" x="{cx2}" y="{cy2}" opacity="1">{image_patch(points,cx2,cy2)}</Node>'
   extras+='<Shape name="OriginalCaptionCover">'+path([(1035,126),(1360,126),(1360,228),(1035,228)])+'<Fill><SolidColor colorValue="FF080F1A"/></Fill></Shape>'
-  extra_keys+=keys(120001,'opacity',[(0,0),(210,0),(228,1),(570,1),(600,0),(720,0)])
-  extra_keys+=keys(120001,'y',[(0,180),(210,180),(228,168),(246,172),(570,172),(600,180),(720,180)])
-  for prop in ['scaleX','scaleY']:extra_keys+=keys(120001,prop,[(0,.95),(210,.95),(228,1.06),(246,1),(570,1),(600,.95),(720,.95)])
-  extra_keys+=keys(120002,'opacity',[(0,0),(252,0),(276,1),(570,1),(600,0),(720,0)])
+  extra_keys+=keys(120001,'opacity',[(0,1),(720,1)])
+  extra_keys+=keys(120001,'y',[(0,172),(720,172)])
+  for prop in ['scaleX','scaleY']:extra_keys+=keys(120001,prop,[(0,1),(720,1)])
+  extra_keys+=keys(120002,'opacity',[(0,1),(720,1)])
   # Rigid head silhouette rotates to face the girl. Mirrored endpoint is unit scale.
   extras+=f'<Node id="0:120003" name="FoxLooksAtGirl" x="{cx}" y="{cy}" scaleX="-1" opacity="0">{image_patch(head,cx,cy)}</Node>'
   extras+=f'<Node id="0:120004" name="FoxPreviousPose" x="{cx}" y="{cy}">{image_patch(head,cx,cy)}</Node>'
@@ -97,4 +98,4 @@ for band in ['Rabbit','Bear','Fox']:
  s=s.replace('</LinearAnimation>',extra_keys+'</LinearAnimation>')
  p.write_text(s)
  print(band,len(s),'bytes',flush=True)
-(root/'SEQUENCE.json').write_text(json.dumps({'fps':60,'duration':12,'girl':[1,1.7],'bulb':[1.9,2.3],'fox':[2.5,3.2],'decide':[3.5,3.8,4.1],'caption':[4.2,4.6],'hold':[4.6,9],'fade':[9,9.5],'hiddenReset':[9.5,10.5],'return':[10.5,11],'rest':[11,12],'text':'Human judgment in every step','textSource':'original.png, x1042..1352/y196..226; exact raster type retained; font identity not available'},indent=2)+'\n')
+(root/'SEQUENCE.json').write_text(json.dumps({'fps':60,'duration':12,'girl':[1,1.7],'bulb':[1.9,2.3],'fox':[2.5,3.2],'decide':'always visible, completed transform','caption':'always visible','hold':[4.6,9],'fade':[9,9.5],'hiddenReset':[9.5,10.5],'return':[10.5,11],'rest':[11,12],'text':'Human judgment in every step','textSource':'original.png, x1042..1352/y196..226; exact raster type retained; font identity not available'},indent=2)+'\n')

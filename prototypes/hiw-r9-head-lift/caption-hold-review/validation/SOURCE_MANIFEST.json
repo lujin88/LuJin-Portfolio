@@ -1,0 +1,58 @@
+{
+  "Fox/scene.rml": {
+    "sha256": "b6303f0117dca04502d594fe5149da4c7db4c3205c5f5ca26b45b9cbecba324a",
+    "bytes": 5980734
+  },
+  "Fox/build/fox.riv": {
+    "sha256": "bac905502121edf288f7db023ef3d0066f306b9823434cb16e777e1a53a6ad82",
+    "bytes": 1775144
+  },
+  "Bear/scene.rml": {
+    "sha256": "e32d466bdab6164a3992afb07d7da296ba022b5cd6be4fc68ae0a4afd31f3504",
+    "bytes": 11643862
+  },
+  "Bear/build/bear.riv": {
+    "sha256": "6d529f655530275b6fce67c6d3ac0613ba50949d705583ff6957572010de559a",
+    "bytes": 2442607
+  },
+  "Rabbit/scene.rml": {
+    "sha256": "1cf282795c32c39b3f1aa705bce0576d3119c83a70f0f54e21961c7a9931ae98",
+    "bytes": 5567099
+  },
+  "Rabbit/build/rabbit.riv": {
+    "sha256": "aa15b76929f75542242a6e258523a07fbca27e5b69106fb1a99fad09d80cfba5",
+    "bytes": 1616172
+  },
+  "SEQUENCE_LAYERS.py": {
+    "sha256": "2f52661d7f514fba5442334f586ab34c8ff578508a8989d508111fdcccbba644",
+    "bytes": 7168
+  },
+  "SEQUENCE.json": {
+    "sha256": "1b0f5700006a71cf921a5e254f7677fa4b7e28567f96482b836401e093c8a0e7",
+    "bytes": 543
+  },
+  "caption-hold-review/developer-controller.js": {
+    "sha256": "3dfc37f6ab3399ae7b2751f5bd10bf14c02843e13723c0c4655bf3611c138daa",
+    "bytes": 4977
+  },
+  "caption-hold-review/home.html": {
+    "sha256": "908a31a92efd47707044aad2c76df0d1421049081f7d59a9f065ef5bc00efe09",
+    "bytes": 175703
+  },
+  "caption-hold-review/capture.cjs": {
+    "sha256": "28be1dd0473373ff56fd3bec21410ce598891c9a50e438b348fcc96ac36c2aab",
+    "bytes": 5874
+  },
+  "caption-hold-review/record.cjs": {
+    "sha256": "09e658908e941a8ded095f6c9b8c2b5bbe3619081fcb795aa2aa6b07f12b276b",
+    "bytes": 2063
+  },
+  "caption-hold-review/frame-quality.cjs": {
+    "sha256": "674424a581c20439f8f2af779c9a99cfd7e87b59d918808120290d4bcd9e018d",
+    "bytes": 999
+  },
+  "caption-hold-review/serve.cjs": {
+    "sha256": "b9861a8b56b0a02eccf8bc1ee0e023e55662c7fef13313a6ae95c2963998d07d",
+    "bytes": 1790
+  }
+}

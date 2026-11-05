@@ -1,0 +1,188 @@
+{
+  "head": "07a9da5972eff0a22c56a3153df924fb41f895d3",
+  "runs": [
+    {
+      "name": "NORMAL_1440",
+      "width": 1440,
+      "reduced": false,
+      "slow": false,
+      "check": {
+        "samples": 690,
+        "maxDiff": 0,
+        "bright": 1099,
+        "marks": [
+          {
+            "cycle": 1,
+            "ms": 3445.5
+          },
+          {
+            "cycle": 2,
+            "ms": 7741.800000000047
+          },
+          {
+            "cycle": 3,
+            "ms": 12043.699999999953
+          }
+        ],
+        "activeWindows": [
+          [
+            1793839568.432,
+            1793839569.7939
+          ],
+          [
+            1793839572.2601001,
+            1793839574.1101
+          ],
+          [
+            1793839576.56,
+            1793839578.4271998
+          ]
+        ],
+        "errors": [],
+        "speed": 2,
+        "paced": true
+      },
+      "movie": {
+        "frames": 536,
+        "method": "Timestamped Chrome screencast",
+        "file": "NORMAL_1440.mp4",
+        "quality": {
+          "targetFps": 30,
+          "activeWindows": [
+            [
+              1793839568.432,
+              1793839569.7939
+            ],
+            [
+              1793839572.2601001,
+              1793839574.1101
+            ],
+            [
+              1793839576.56,
+              1793839578.4271998
+            ]
+          ],
+          "intervals": 210,
+          "expected": 152,
+          "missing": 38,
+          "maxGapMs": 516.646146774292,
+          "dropRate": 0.25,
+          "stallRate": 0.06666666666666667,
+          "status": "load-affected"
+        }
+      },
+      "errors": [],
+      "requests": [
+        "http://127.0.0.1:4696/assets/motion/how-i-work/r9/bear.riv",
+        "http://127.0.0.1:4696/assets/motion/how-i-work/r9/rabbit.riv",
+        "http://127.0.0.1:4696/assets/motion/how-i-work/r9/fox.riv"
+      ]
+    },
+    {
+      "name": "NORMAL_390",
+      "width": 390,
+      "reduced": false,
+      "slow": false,
+      "check": {
+        "samples": 774,
+        "maxDiff": 0,
+        "bright": 1099,
+        "marks": [
+          {
+            "cycle": 1,
+            "ms": 4086.5
+          },
+          {
+            "cycle": 2,
+            "ms": 8396.399999999907
+          },
+          {
+            "cycle": 3,
+            "ms": 12714
+          }
+        ],
+        "activeWindows": [
+          [
+            1793839596.445,
+            1793839598.2638001
+          ],
+          [
+            1793839600.7138,
+            1793839602.5789
+          ],
+          [
+            1793839605.046,
+            1793839606.897
+          ]
+        ],
+        "errors": [],
+        "speed": 2,
+        "paced": true
+      },
+      "movie": {
+        "frames": 774,
+        "method": "Timestamped Chrome screencast",
+        "file": "NORMAL_390.mp4",
+        "quality": {
+          "targetFps": 30,
+          "activeWindows": [
+            [
+              1793839596.445,
+              1793839598.2638001
+            ],
+            [
+              1793839600.7138,
+              1793839602.5789
+            ],
+            [
+              1793839605.046,
+              1793839606.897
+            ]
+          ],
+          "intervals": 334,
+          "expected": 166,
+          "missing": 0,
+          "maxGapMs": 33.331871032714844,
+          "dropRate": 0,
+          "stallRate": 0,
+          "status": "pass"
+        }
+      },
+      "errors": [],
+      "requests": [
+        "http://127.0.0.1:4696/assets/motion/how-i-work/r9/bear.riv",
+        "http://127.0.0.1:4696/assets/motion/how-i-work/r9/rabbit.riv",
+        "http://127.0.0.1:4696/assets/motion/how-i-work/r9/fox.riv"
+      ]
+    },
+    {
+      "name": "REDUCED_1440",
+      "width": 1440,
+      "reduced": true,
+      "slow": false,
+      "check": {
+        "playing": false,
+        "errors": []
+      },
+      "movie": {
+        "frames": 3,
+        "method": "Timestamped Chrome screencast",
+        "file": "REDUCED_1440.mp4",
+        "quality": {
+          "targetFps": 30,
+          "activeWindows": [],
+          "intervals": 0,
+          "expected": 0,
+          "missing": 0,
+          "maxGapMs": 0,
+          "dropRate": 0,
+          "stallRate": 0,
+          "status": "static"
+        }
+      },
+      "errors": [],
+      "requests": []
+    }
+  ],
+  "headAfter": "07a9da5972eff0a22c56a3153df924fb41f895d3"
+}
