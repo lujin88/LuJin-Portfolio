@@ -1,7 +1,7 @@
 # Automotive work
 
 ## BMW mobile app (Futurice, Munich)
-- Lu led Futurice's six-person design team on the BMW mobile app. She also led the app's design system.
+- Lu led Futurice's six-person design team on the BMW mobile app. She also evolved the app's design system with the team.
 - The team reviewed work weekly with BMW client stakeholders and worked alongside other teams on the app at the same time.
 
 ## Hyundai concept car navigation (Designaffairs, Munich)

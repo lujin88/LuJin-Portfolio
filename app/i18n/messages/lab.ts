@@ -34,10 +34,6 @@ export const construction = {
       documentTitle: 'Lu — ETF Savings Plan',
       eyebrow: 'ETF Savings Plan',
     },
-    system: {
-      documentTitle: 'Lu — Design System',
-      eyebrow: 'Design System',
-    },
   },
   de: {
     title: 'Im Aufbau',
@@ -49,10 +45,6 @@ export const construction = {
     etf: {
       documentTitle: 'Lu — ETF Savings Plan',
       eyebrow: 'ETF Savings Plan',
-    },
-    system: {
-      documentTitle: 'Lu — Design System',
-      eyebrow: 'Design System',
     },
   },
 } as const

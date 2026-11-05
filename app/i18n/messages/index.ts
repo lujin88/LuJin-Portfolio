@@ -41,7 +41,6 @@ export const documentTitleKeys: Record<string, string> = {
   '/ai-companion-pet': 'pet.documentTitle',
   '/man-truck-bus': 'construction.man.documentTitle',
   '/etf-savings-plan': 'construction.etf.documentTitle',
-  '/design-system': 'construction.system.documentTitle',
   '/client-advisory': 'ca.documentTitle',
   '/client-advisor': 'ca.documentTitle',
   '/EON': 'eon.documentTitle',

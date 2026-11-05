@@ -1,5 +1,61 @@
-import { UnderConstructionPage } from '../components/under-construction-page'
-
+import { SiteClosing } from '../components/site-closing'
+import '../components/site-closing-case.css'
+import './case.css';
 export default function ManTruckBusPage() {
-  return <UnderConstructionPage eyebrowKey="construction.man.eyebrow" titleId="man-title" />
+  return <><main><article className="man-case" aria-labelledby="man-title">
+<div className="mc-cover">
+  <div className="mc-cover-inner">
+    <p className="mc-kicker"><img className="mc-man-logo" src="/assets/man-fleet-uptime/man-official.png" alt="MAN" width="348" height="198" /> <span>hackathon</span></p>
+    <h1 id="man-title"><span className="mc-title-line">What's holding up</span> <span className="mc-title-line">the next <em>departure?</em></span></h1>
+    <p className="mc-intro">For the hour before a truck leaves: what's blocking it, and who to call.</p>
+  </div>
+  <figure className="mc-stuttgart-scene"><img src="/assets/man-fleet-uptime/stuttgart-hero.webp" width="826" height="766" alt="A truck parked at the depot. Driver cover needed for the 10:00 departure to Stuttgart." /></figure>
+  </div>
+<div className="mc-width">
+  <dl className="mc-meta"><div><dt>My role</dt><dd>Sole product designer</dd></div><div><dt>Team</dt><dd>3 people · 24-hour hackathon</dd></div><div><dt>Scope</dt><dd>Hackathon: MAN stakeholder interviews and dispatch flow design<br />After: 13 screens</dd></div><div><dt>Recognition</dt><dd>MAN hackathon finalist</dd></div></dl>
+  <section className="mc-section">
+    <div className="mc-copyhead"><h2>A truck can be ready. <br /><em>Its shift can still be at risk.</em></h2></div>
+    <div className="mc-three mc-glance"><div><h3>Problem</h3><p>No driver or no handover keeps a healthy truck in the yard.</p></div><div><h3>Workspace</h3><p>Every departure gets a blocker, an owner and a follow-up time.</p></div><div><h3>Outcome</h3><p>Hackathon finalist. Not yet tested with dispatchers.</p><p className="mc-fiction">All operational data is fictional.</p></div></div>
+  </section>
+  <section className="mc-section mc-context">
+    <div className="mc-context-copy"><h2>Munich depot, <br /><em>09:00.</em></h2><p>24 departures. 4 records available. Which one needs a call first?</p>
+    </div>
+    <figure className="mc-fig"><div className="mc-board-mat"><div className="mc-counter"><strong>4<span>/24</span></strong><small>Shift records</small></div><a href="/assets/man-fleet-uptime/dispatch.webp" target="_blank" rel="noopener" aria-label="View full dispatch board"><img loading="lazy" src="/assets/man-fleet-uptime/dispatch.webp" alt="Dispatch board with four open shifts, their blockers, owners and contact actions" /></a></div></figure>
+  </section>
+</div>
+<section className="mc-evidence"><div className="mc-width">
+  <h2>What does dispatch <br /><em>actually know?</em></h2>
+  <div className="mc-three mc-evidence-grid"><div><h3><i className="mc-signal known"></i> Known</h3><ul><li>Depot check 08:35</li><li>Driver hours</li><li>Customer deadline</li></ul></div><div><h3><i className="mc-signal unknown"></i> Still unknown</h3><ul><li>20 shift records</li><li>018 since 07:10</li><li>031 release time</li></ul></div><div><h3><i className="mc-signal person"></i> Confirmed by a person</h3><ul><li>Who checked, and when</li><li>The driver's answer</li><li>Next owner</li></ul></div></div>
+  <figure className="rec-figure" aria-labelledby="rec-caption"><figcaption id="rec-caption">One record, <em>three views.</em></figcaption>
+ <div className="rec-entry"><span className="rec-id">TGX 042</span><strong>Replacement search opened</strong><span className="rec-by">Max H <i>·</i> 08:20</span></div>
+ <div className="rec-views"><a className="rec-view" href="/assets/man-fleet-uptime/dispatch.webp" target="_blank" rel="noopener" aria-label="Dispatch board"><span className="rec-screen"><img src="/assets/man-fleet-uptime/dispatch.webp" loading="lazy" alt="" /></span><span className="rec-name">Dispatch board</span></a><a className="rec-view" href="/assets/man-fleet-uptime/team.webp" target="_blank" rel="noopener" aria-label="Team changeover"><span className="rec-screen"><img src="/assets/man-fleet-uptime/team.webp" loading="lazy" alt="" /></span><span className="rec-name">Team changeover</span></a><a className="rec-view" href="/assets/man-fleet-uptime/report.webp" target="_blank" rel="noopener" aria-label="Daily report"><span className="rec-screen"><img src="/assets/man-fleet-uptime/report.webp" loading="lazy" alt="" /></span><span className="rec-name">Daily report</span></a></div></figure>
+</div></section>
+<div className="mc-width">
+<section className="mc-section journey"><div className="mc-copyhead"><h2 id="man-flow-title">Follow the <em>10:00 to Stuttgart.</em></h2></div><fieldset className="journey-player" aria-labelledby="man-flow-title"><input className="journey-choice" type="radio" name="man-042-step" id="man-042-step-1" aria-label="01 Spot the gap" defaultChecked /><input className="journey-choice" type="radio" name="man-042-step" id="man-042-step-2" aria-label="02 Compare drivers" /><input className="journey-choice" type="radio" name="man-042-step" id="man-042-step-3" aria-label="03 Ask the driver" /><input className="journey-choice" type="radio" name="man-042-step" id="man-042-step-4" aria-label="04 Prepare handover" /><input className="journey-choice" type="radio" name="man-042-step" id="man-042-step-5" aria-label="05 Pass it on" /><div className="journey-stops"><label htmlFor="man-042-step-1"><b>01</b><span>Spot the gap</span></label><label htmlFor="man-042-step-2"><b>02</b><span>Compare drivers</span></label><label htmlFor="man-042-step-3"><b>03</b><span>Ask the driver</span></label><label htmlFor="man-042-step-4"><b>04</b><span>Prepare handover</span></label><label htmlFor="man-042-step-5"><b>05</b><span>Pass it on</span></label></div><div className="journey-page journey-1">
+<div className="journey-copy"><h3>The 10:00 departure still needs a driver.</h3></div>
+<div className="journey-art"><div className="journey-window"><a href="/assets/man-fleet-uptime/dispatch.webp" target="_blank" rel="noopener" aria-label="Spot the gap"><img loading="lazy" src="/assets/man-fleet-uptime/dispatch.webp" alt="Dispatch board screen for the shift walkthrough" /></a></div><div className="journey-detail mc-lens lens-1" aria-hidden="true"><img loading="lazy" src="/assets/man-fleet-uptime/dispatch.webp" alt="" /></div></div>
+</div><div className="journey-page journey-2">
+<div className="journey-copy"><h3>Sofia clears the driving and rest checks.</h3></div>
+<div className="journey-art"><div className="journey-window"><a href="/assets/man-fleet-uptime/resolve.webp" target="_blank" rel="noopener" aria-label="Compare drivers"><img loading="lazy" src="/assets/man-fleet-uptime/resolve.webp" alt="Shift workspace screen for the shift walkthrough" /></a></div><div className="journey-detail mc-rule-proof"><small>Sofia Keller · Rules check</small><img src="/assets/man-fleet-uptime/rules-cell.webp" alt="Clear. Tachograph download 06:50." loading="lazy" /></div></div>
+</div><div className="journey-page journey-3">
+<div className="journey-copy"><h3>Sofia can accept or decline this shift.</h3></div>
+<div className="journey-art"><div className="journey-window"><a href="/assets/man-fleet-uptime/driver-app.webp" target="_blank" rel="noopener" aria-label="Ask the driver"><img loading="lazy" src="/assets/man-fleet-uptime/driver-app.webp" alt="Driver mobile screen for the shift walkthrough" /></a></div><div className="journey-detail mc-lens lens-3" aria-hidden="true"><img loading="lazy" src="/assets/man-fleet-uptime/driver-app.webp" alt="" /></div></div>
+</div><div className="journey-page journey-4">
+<div className="journey-copy"><h3>Her acceptance unlocks the handover.</h3></div>
+<div className="journey-art"><div className="journey-window"><a href="/assets/man-fleet-uptime/driver.webp" target="_blank" rel="noopener" aria-label="Prepare handover"><img loading="lazy" src="/assets/man-fleet-uptime/driver.webp" alt="Driver handover screen for the shift walkthrough" /></a></div><div className="journey-detail mc-lens lens-4" aria-hidden="true"><img loading="lazy" src="/assets/man-fleet-uptime/driver.webp" alt="" /></div></div>
+</div><div className="journey-page journey-5">
+<div className="journey-copy"><h3>The next dispatcher picks up open work.</h3></div>
+<div className="journey-art"><div className="journey-window"><a href="/assets/man-fleet-uptime/team.webp" target="_blank" rel="noopener" aria-label="Pass it on"><img loading="lazy" src="/assets/man-fleet-uptime/team.webp" alt="Team changeover screen for the shift walkthrough" /></a></div><div className="journey-detail mc-lens lens-5" aria-hidden="true"><img loading="lazy" src="/assets/man-fleet-uptime/team.webp" alt="" /></div></div>
+</div></fieldset></section>
+<section className="mc-section mc-decisions"><h2>Where the details <em>matter.</em></h2>
+<div className="mc-feature"><div className="mc-feature-copy"><span className="mc-index">01</span><h3>Keep the missing records visible.</h3><p>Four records can't support a fleet-wide percentage.</p></div><figure className="mc-paper mc-stat"><a href="/assets/man-fleet-uptime/report.webp" target="_blank" rel="noopener" className="mc-stat-link"><div><small>Fleet uptime</small><strong>Unavailable</strong><span>4 of 24 records</span><div className="mc-ticks" aria-hidden="true"></div></div></a></figure></div>
+<div className="mc-feature mc-reverse"><div className="mc-feature-copy"><span className="mc-index">02</span><h3>Keep the last signal and the last check separate.</h3><p>A 07:10 signal is not a check. The depot check records who and when.</p></div><figure className="mc-paper mc-verifier"><div><small>Last signal · TGX 018</small><strong>07:10</strong><span>Condition unknown</span></div><a href="/assets/man-fleet-uptime/evidence.webp" target="_blank" rel="noopener"><img loading="lazy" src="/assets/man-fleet-uptime/evidence.webp" alt="Vehicle evidence form with Call Munich depot, verifier, time and observed status" /></a></figure></div>
+<div className="mc-feature"><div className="mc-feature-copy"><span className="mc-index">03</span><h3>Let the driver say yes.</h3><p>Handover unlocks only after she accepts.</p></div><figure className="mc-paper mc-offer"><a href="/assets/man-fleet-uptime/driver-app.webp" target="_blank" rel="noopener"><img loading="lazy" src="/assets/man-fleet-uptime/driver-app.webp" alt="Sofia’s shift offer with accept, decline and call dispatch options" /></a></figure></div>
+<div className="mc-feature mc-reverse"><div className="mc-feature-copy"><span className="mc-index">04</span><h3>Show why a driver is excluded.</h3><p>52 h + 5 h 10 min &gt; 56 h weekly limit. The rule is shown; the data can be corrected.</p></div><figure className="mc-paper mc-rules"><a href="/assets/man-fleet-uptime/rules.webp" target="_blank" rel="noopener"><img loading="lazy" src="/assets/man-fleet-uptime/rules.webp" alt="Expanded driver rules table with exclusion reasons, tachograph sources and correction links" /></a></figure></div>
+</section>
+<section className="mc-section mc-method"><div><h2>How I checked <br /><em>the handoffs.</em></h2><p>I prototyped in MagicPath and cross-checked the screens with Claude.</p></div>
+<div className="mc-change"><dl><div><dt>Earlier</dt><dd>The board said "agreement pending". The app already said "Your shift".<span className="mc-proof-pair"><img src="/assets/man-fleet-uptime/board.webp" alt="Archived board for Leon Weber: Agreement pending." loading="lazy" /><img src="/assets/man-fleet-uptime/mobile.webp" alt="Archived driver app: Your shift, Leon Weber." loading="lazy" /></span></dd></div><div><dt>Revised</dt><dd>Leon gets an offer first. Accepting unlocks handover.<img src="/assets/man-fleet-uptime/offer.webp" alt="Revised 018 offer to Leon with accept and decline actions." loading="lazy" /></dd></div></dl></div></section>
+<section className="mc-outcome"><h2>What I'd test next.</h2><ol><li>Can 3–5 dispatchers find the first call to make?</li><li>Time to confirmed cover.</li><li>An on-time baseline before comparing results.</li></ol></section>
+</div>
+</article></main><SiteClosing className="site-closing-case site-closing-case--light mc-closing" /></>;
 }

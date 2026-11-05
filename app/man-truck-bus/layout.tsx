@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import { SHOW_UNFINISHED_CASES } from '@header/lib/site-flags'
-import { ConstructionChrome } from '../components/construction-chrome'
+import { HtmlChrome } from '../html-chrome'
 
 export const metadata: Metadata = {
   title: {
     absolute: 'Lu — MAN Truck & Bus',
   },
-  description: 'MAN Truck & Bus is under construction.',
+  description: 'MAN Fleet Uptime: resolving driver cover, checking vehicle readiness and handing over the next departure.',
 }
 
 export default function ManTruckBusLayout({
@@ -15,6 +13,8 @@ export default function ManTruckBusLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  if (!SHOW_UNFINISHED_CASES) notFound()
-  return <ConstructionChrome activeHref="/man-truck-bus">{children}</ConstructionChrome>
+  return <HtmlChrome activeHref="/man-truck-bus" theme="light" colorScheme="light" backgroundColor="#fffefa">
+    <link rel="stylesheet" href="/styles/shell-components.css" />
+    {children}
+  </HtmlChrome>
 }

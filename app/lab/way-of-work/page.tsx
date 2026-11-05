@@ -1,5 +1,5 @@
-import { HumanAiPage } from './human-ai-page'
+import { WayOfWork } from './field-notes'
 
 export default function Page() {
-  return <HumanAiPage />
+  return <WayOfWork portfolio />
 }

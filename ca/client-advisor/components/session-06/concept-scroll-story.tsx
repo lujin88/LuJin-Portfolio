@@ -4,6 +4,13 @@ import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 
 const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v))
 
+// Shared with ConceptMockupStack so both agree on when the stage is pinned.
+// Below 760px tall the open step can run past the pinned viewport (step 2 body
+// bottom: 750 at 1024w, 727 at 1100–1180w, 708 at 1366w), so fall back to the
+// static layout there.
+export const PIN_MIN_HEIGHT = 760
+export const PIN_HEIGHT_QUERY = `(min-height: ${PIN_MIN_HEIGHT}px)`
+
 export type ConceptItem = {
   title: string
   body: ReactNode
@@ -41,9 +48,7 @@ export function ConceptScrollStory({
   useLayoutEffect(() => {
     const motionMq = window.matchMedia('(prefers-reduced-motion: reduce)')
     const wideMq = window.matchMedia('(min-width: 1024px)')
-    // Below 900px tall, the open step can run past the pinned viewport and stay
-    // off-screen while the stage is sticky, so fall back to the static layout.
-    const tallMq = window.matchMedia('(min-height: 900px)')
+    const tallMq = window.matchMedia(PIN_HEIGHT_QUERY)
 
     let ticking = false
     let last = -1

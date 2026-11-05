@@ -78,6 +78,8 @@ const nextConfig = {
       { source: '/lab/action-center', destination: '/lab/weather-aquarium', permanent: false },
       { source: '/way-of-work', destination: '/lab/way-of-work', permanent: false },
       { source: '/3000', destination: '/index', permanent: false },
+      // /design-system (Forma Finance) was replaced by the BMW design system case.
+      { source: '/design-system', destination: '/bmw-design-system', permanent: false },
       { source: '/3000/index', destination: '/index', permanent: false },
       { source: '/3000/EON', destination: '/EON', permanent: false },
       { source: '/3000/client-advisory', destination: '/client-advisory', permanent: false },

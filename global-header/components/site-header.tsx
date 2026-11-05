@@ -28,7 +28,8 @@ type NavGroup = {
   children: readonly NavLink[]
 }
 
-type NavEntry = ({ kind: 'link' } & Omit<NavLink, 'icon'>) | ({ kind: 'group' } & NavGroup)
+// Top-level links render without a thumbnail, so their icon is optional.
+type NavEntry = ({ kind: 'link' } & Omit<NavLink, 'icon'> & { icon?: NavIcon }) | ({ kind: 'group' } & NavGroup)
 
 const NAV: readonly NavEntry[] = [
   {
@@ -56,7 +57,7 @@ const NAV: readonly NavEntry[] = [
       {
         label: 'MAN Truck & Bus',
         href: '/man-truck-bus',
-        meta: 'Under construction',
+        meta: 'Fleet uptime · Dispatch',
         icon: {
           light: '/assets/images/nav/light/work/man-truck-bus-light.png',
           dark: '/assets/images/nav/dark/work/man-truck-bus-dark.png',
@@ -72,12 +73,12 @@ const NAV: readonly NavEntry[] = [
         },
       },
       {
-        label: 'Design System',
-        href: '/design-system',
-        meta: 'Side project · Design system',
+        label: 'BMW Design System',
+        href: '/bmw-design-system',
+        meta: 'Vehicle controls · Light & dark',
         icon: {
-          light: '/assets/images/nav/light/work/design-system-light.png',
-          dark: '/assets/images/nav/dark/work/design-system-dark.png',
+          light: '/assets/images/nav/light/work/bmw-design-system-light.svg',
+          dark: '/assets/images/nav/dark/work/bmw-design-system-dark.svg',
         },
       },
     ],
@@ -185,7 +186,6 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
     pathname.startsWith('/ai-companion-pet')
   const paperHeader =
     pathname.startsWith('/lab/way-of-work') ||
-    pathname.startsWith('/design-system') ||
     pinnedPaper
   const headerTone = partyHeader ? 'party' : paperHeader ? 'paper' : undefined
   const [menuOpen, setMenuOpen] = useState(false)

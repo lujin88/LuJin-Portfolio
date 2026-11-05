@@ -63,6 +63,10 @@ export function HumanAiPage() {
       dialog.style.setProperty('--dialog-top', `${top}px`)
     }
 
+    // rAF and scroll used to call placeDialog directly, so its first argument was
+    // a timestamp or an Event, both truthy. Keep that: these callers force.
+    const placeDialogForced = () => placeDialog(true)
+
     const onLoad = () => {
       const doc = frame.contentDocument
       if (!doc?.head) return
@@ -71,7 +75,7 @@ export function HumanAiPage() {
       doc.head.appendChild(style)
       dialog = doc.getElementById('projects-dialog') as HTMLDialogElement | null
       dialog?.addEventListener('toggle', () => {
-        requestAnimationFrame(() => placeDialog())
+        requestAnimationFrame(placeDialogForced)
       })
       doc.getElementById('projects-button')?.addEventListener(
         'click',
@@ -89,14 +93,13 @@ export function HumanAiPage() {
       fit()
       placeDialog()
     }
-    const onScroll = () => placeDialog()
     frame.addEventListener('load', onLoad)
-    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('scroll', placeDialogForced, { passive: true })
     window.addEventListener('resize', onResize)
     if (frame.contentDocument?.readyState === 'complete') onLoad()
     return () => {
       frame.removeEventListener('load', onLoad)
-      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('scroll', placeDialogForced)
       window.removeEventListener('resize', onResize)
       observer?.disconnect()
     }
