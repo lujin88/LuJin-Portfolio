@@ -7,7 +7,7 @@ import { BMWOneSource } from './BMWOneSource'
 
 export const metadata: Metadata = {
   title: 'BMW Design System',
-  description: 'Jin Lu on leading six designers on the BMW app, designing remote controls in light and dark, and revisiting vehicle capability reviews with AI.',
+  description: 'Lu Jin on leading six designers on the BMW app, designing remote controls in light and dark, and revisiting vehicle capability reviews with AI.',
 }
 
 export default function MobilityStudy() {

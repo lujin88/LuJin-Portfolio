@@ -4128,8 +4128,8 @@
 
 <script src="/assets/js/advisory-office.js"></script>
 <script>
-  // BMW 一词的去向 Lu 还没定。?bmw=v1（或 a）到 /bmw-design-system，?bmw=v2（或 b）到 /bmw-design-system-v2。
-  // 没带参数时暂时接 v1。语言切换会换掉这段 HTML，所以换完再写一次 href。
+  // Hero "BMW" link: ?bmw=v1 (or a) -> /bmw-design-system, ?bmw=v2 (or b) -> /bmw-design-system-v2.
+  // Default v1. A language switch replaces this HTML, so the href is set again afterwards.
   (function () {
     var pages = { v1: '/bmw-design-system', v2: '/bmw-design-system-v2' };
     function pick() {
