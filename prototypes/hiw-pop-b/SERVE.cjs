@@ -6,6 +6,7 @@ const overrides={
  '/':'index.html','/review':'index.html','/index':process.env.PUBLIC_DIR?'integration.html':'index.html',
  '/assets/vendor/rive/rive.js':'vendor/rive.js','/assets/vendor/rive/rive.wasm':'vendor/rive.wasm',
  '/assets/motion/how-i-work/r9/hiw-r9.js':'hiw-r9.js',
+ '/assets/motion/how-i-work/r9/hiw-r9.css':'hiw-r9.css',
  '/assets/motion/how-i-work/r9/still-crop-ll.webp':'still.webp'
 };
 for(const name of ['bear','rabbit','fox'])overrides['/assets/motion/how-i-work/r9/'+name+'.riv']=name[0].toUpperCase()+name.slice(1)+'/build/'+name+'.riv';

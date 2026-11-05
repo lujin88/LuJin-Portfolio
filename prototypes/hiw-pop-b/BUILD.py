@@ -39,8 +39,16 @@ for name in ['Bear','Rabbit','Fox']:
    def pixel(x,y):
     i=(y*1842+x)*3;return tuple(raw[i:i+3])
    x1,y1,x2,y2=box;cx=(x1+x2)/2;cy=(y1+y2)/2
-   # Above the cloud the backdrop is flat; clear residual antialiasing there.
-   cover(x1,y1,x2,540)
+   # Clear the full stroke and its antialiasing, including the arrow tip.
+   cover(x1-16,y1,x2,590)
+   # Restore one continuous cloud contour. Per-row stroke covers previously
+   # chose the flat backdrop when a scanline crossed the cloud, leaving bars.
+   sh=E.SubElement(scene,'Shape');pa=E.SubElement(sh,'PointsPath',isClosed='true')
+   contour=[(813,537),(805,541),(799,545),(793,549),(788,553),
+            (783,557),(779,561),(775,565),(771,569),(768,573),
+            (765,577),(763,581),(761,585),(759,589),(759,590),(813,590)]
+   for xx,yy in contour:E.SubElement(pa,'StraightVertex',x=str(xx),y=str(yy))
+   E.SubElement(E.SubElement(sh,'Fill'),'SolidColor',colorValue='FF0D1A2F')
    node=E.SubElement(scene,'Node',id=id,x=str(cx),y=str(cy))
    mesh=E.SubElement(E.SubElement(node,'Image',assetId='0:2'),'Mesh')
    indices=[];vertex_count=0
@@ -50,13 +58,6 @@ for name in ['Bear','Rabbit','Fox']:
      if pixel(x,y)[2]<65:x+=1;continue
      start=x
      while x<x2 and pixel(x,y)[2]>=65:x+=1
-     # Cover only the old stroke, sampling the adjacent backdrop per row.
-     # No rectangular plate crosses the irregular cloud boundary.
-     neighbors=[pixel(max(0,start-6),y),pixel(min(1841,x+6),y)]
-     color=(13,26,47) if min(c[2] for c in neighbors)>34 else (8,15,26)
-     sh=E.SubElement(scene,'Shape');pa=E.SubElement(sh,'PointsPath',isClosed='true')
-     for xx,yy in [(start-3,y),(x+3,y),(x+3,y+1),(start-3,y+1)]:E.SubElement(pa,'StraightVertex',x=str(xx),y=str(yy))
-     E.SubElement(E.SubElement(sh,'Fill'),'SolidColor',colorValue='FF'+''.join(f'{c:02X}' for c in color))
      indices.extend(vertex_count+j for j in [3,0,1,1,2,3]);vertex_count+=4
      for xx,yy in [(start,y),(x,y),(x,y+1),(start,y+1)]:E.SubElement(mesh,'MeshVertex',x=str(xx-cx),y=str(yy-cy),u=str(xx/1842),v=str(yy/854))
    encoded=bytearray()
