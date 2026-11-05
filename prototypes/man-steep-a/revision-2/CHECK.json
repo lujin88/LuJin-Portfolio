@@ -1,0 +1,116 @@
+[
+  {
+    "variant": "A",
+    "dims": [
+      {
+        "width": 1440,
+        "height": 900,
+        "stageHeight": 712,
+        "gap": 120,
+        "progress": "1.0000",
+        "overflow": 0,
+        "titles": 1
+      },
+      {
+        "width": 1440,
+        "height": 1000,
+        "stageHeight": 750,
+        "gap": 120,
+        "progress": "1.0000",
+        "overflow": 0,
+        "titles": 1
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "stageHeight": 662,
+        "gap": 120.390625,
+        "progress": "1.0000",
+        "overflow": 0,
+        "titles": 1
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "stageHeight": 988,
+        "gap": 66,
+        "progress": "static",
+        "overflow": 0,
+        "titles": 1
+      }
+    ],
+    "reduced": {
+      "mode": "static",
+      "transforms": [
+        "none",
+        "none",
+        "none",
+        "none"
+      ]
+    },
+    "index": {
+      "url": "http://localhost:4822/index",
+      "title": "Lu — Product & Service Designer"
+    },
+    "returned": "1.0000",
+    "errors": [],
+    "bad": []
+  },
+  {
+    "variant": "B",
+    "dims": [
+      {
+        "width": 1440,
+        "height": 900,
+        "stageHeight": 712,
+        "gap": 120,
+        "progress": "1.0000",
+        "overflow": 0,
+        "titles": 1
+      },
+      {
+        "width": 1440,
+        "height": 1000,
+        "stageHeight": 750,
+        "gap": 120,
+        "progress": "1.0000",
+        "overflow": 0,
+        "titles": 1
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "stageHeight": 662,
+        "gap": 120.390625,
+        "progress": "1.0000",
+        "overflow": 0,
+        "titles": 1
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "stageHeight": 1143,
+        "gap": 66,
+        "progress": "static",
+        "overflow": 0,
+        "titles": 1
+      }
+    ],
+    "reduced": {
+      "mode": "static",
+      "transforms": [
+        "none",
+        "none",
+        "none",
+        "none"
+      ]
+    },
+    "index": {
+      "url": "http://localhost:4822/index",
+      "title": "Lu — Product & Service Designer"
+    },
+    "returned": "1.0000",
+    "errors": [],
+    "bad": []
+  }
+]
