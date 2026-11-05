@@ -3,7 +3,7 @@
 Review-only prototype. Nothing under the site's `app/` or `public/` is changed.
 The requested sequence is pictures and arrows popping in, DECIDE popping in,
 then the original subtitle lettering revealing character by character. The
-7.117-second loop holds its final pose for about two seconds before restarting.
+5.333-second loop holds its final pose for about two seconds before restarting.
 Timing and amplitudes remain a proposal pending Lu's review.
 
 ## Preview
@@ -32,8 +32,13 @@ The full-page snapshot is evidence scaffolding, not a proposed homepage replacem
 `Bear`, `Rabbit`, and `Fox` contain editable `scene.rml`, image assets, and
 compiled `.riv` files. `inputs/*.rml.gz` preserve the unmodified source scenes
 used by `BUILD.py`, compressed to avoid another copy of the large mesh XML.
-They come from the preceding local R9 proposal. The generator amplifies the
-existing character vertex displacement by 1.35, then adds the pop sequence.
+They come from the preceding local R9 proposal. The generator keeps the original image assets and adds the pop sequence.
+R10 compresses the active sequence to 65% of its previous duration: DECIDE
+first appears at frame 137 (2.283 seconds), previously frame 211 (3.517 seconds).
+Localized mesh gestures tap the bear paw and lift the rabbit hand/paper edge;
+the existing right-facing fox head nods toward its laptop. These are stylized
+work gestures, not newly drawn hand or page-turn poses. The final 120 frames
+are static before the hard loop.
 
 ```sh
 python3 prototypes/hiw-pop-b/BUILD.py

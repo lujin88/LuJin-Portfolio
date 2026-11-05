@@ -1,6 +1,6 @@
 from pathlib import Path
 import xml.etree.ElementTree as E
-import shutil,copy,subprocess,base64,gzip
+import shutil,copy,subprocess,base64,gzip,math
 out=Path(__file__).parent
 src=out/'inputs'
 for name in ['Bear','Rabbit','Fox']:
@@ -92,9 +92,63 @@ for name in ['Bear','Rabbit','Fox']:
    keys(id,'opacity',[(0,0),(t,0),(t+1,1),(720,1)])
   additions=[e for e in scene if e not in original_children]
   scene[:]=list(reversed(additions))+original_children
- # Finish pose held for exactly 2s; source reset is a hard cut at frame 427.
- an.set('duration','427')
+ # Compress the active sequence, then keep a genuinely static 120-frame hold.
  for kp in an.iter('KeyedProperty'):
-  for k in list(kp):
-   if k.tag=='KeyFrameDouble' and int(k.get('frame'))>427:kp.remove(k)
+  frames=sorted(kp.findall('KeyFrameDouble'),key=lambda k:int(k.get('frame')))
+  if not frames:continue
+  final=float(frames[-1].get('value'))
+  for left,right in zip(frames,frames[1:]):
+   lf,rf=int(left.get('frame')),int(right.get('frame'))
+   if lf<=307<=rf:
+    ratio=(307-lf)/(rf-lf)
+    final=float(left.get('value'))*(1-ratio)+float(right.get('value'))*ratio
+    break
+  by_frame={}
+  for k in frames:
+   kp.remove(k)
+   f=int(k.get('frame'))
+   if f<=307:
+    k.set('frame',str(round(f*.65)));by_frame[int(k.get('frame'))]=k
+  for f in [200,320]:
+   by_frame[f]=E.Element('KeyFrameDouble',frame=str(f),value=str(final),interpolationType='linear')
+  for f,k in sorted(by_frame.items()):kp.append(k)
+ # Local, smoothly weighted mesh gestures preserve the original artwork.
+ # Apply to each composited layer so overlapping copies cannot ghost.
+ keyed={ko.get('objectId'):ko for ko in an.findall('KeyedObject')}
+ def weight(x,y,cx,cy,rx,ry):
+  q=((x-cx)/rx)**2+((y-cy)/ry)**2
+  return max(0,1-q)**2
+ def gesture(x,y,f):
+  # Three distinct work beats follow the progressing line; all settle before text.
+  def pulse(start,end,cycles):
+   t=(f-start)/(end-start)
+   return math.sin(cycles*math.pi*t)**2 if 0<t<1 else 0
+  bear=pulse(8,72,3);rabbit=pulse(42,112,2)
+  b=weight(x,y,818,684,32,28)*min(1,max(0,(704-y)/8))
+  r=weight(x,y,1008,624,45,30)*min(1,max(0,(642-y)/8))
+  return 8*b*bear+6*r*rabbit, -18*b*bear-16*r*rabbit
+ changed=0
+ for v in a.iter('MeshVertex'):
+  vid=v.get('id')
+  if not vid:continue
+  x,y=float(v.get('x')),float(v.get('y'))
+  gx,gy=float(v.get('u'))*1842,float(v.get('v'))*854
+  if max(sum(abs(n) for n in gesture(gx,gy,f)) for f in range(0,150,4))<.05:continue
+  ko=keyed.get(vid)
+  if ko is None:ko=E.SubElement(an,'KeyedObject',objectId=vid)
+  for axis,base in [('x',x),('y',y)]:
+   for old in list(ko):
+    if old.get('property')==axis:ko.remove(old)
+   kp=E.SubElement(ko,'KeyedProperty',property=axis)
+   for f in list(range(0,151,3))+[200,320]:
+    offset=gesture(gx,gy,f)[0 if axis=='x' else 1]
+    E.SubElement(kp,'KeyFrameDouble',frame=str(f),value=str(base+offset),interpolationType='linear')
+  changed+=1
+ if name=='Fox':
+  # Keep the existing right-facing head and nod toward the laptop while its line arrives.
+  keys('0:120003','opacity',[(0,0),(320,0)])
+  keys('0:120004','opacity',[(0,1),(320,1)])
+  keys('0:120004','rotation',[(0,0),(72,0),(84,.22),(96,0),(108,.22),(120,0),(200,0),(320,0)])
+ an.set('duration','320')
+ print(name,'local gesture vertices',changed,'duration',an.get('duration'))
  r.write(d/'scene.rml',encoding='unicode')

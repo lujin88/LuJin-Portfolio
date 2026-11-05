@@ -1,4 +1,4 @@
-// How I Work R9 B proposal: 427 frames at 60 fps; final pose holds for 2 seconds.
+// How I Work R9 B proposal: 320 frames at 60 fps; final pose holds for 2 seconds.
 // Reduced motion loads no .riv and keeps the still; turning it off again resumes the loop.
 (function initHiwR9(){
  if(window.__hiwR9Cleanup)window.__hiwR9Cleanup();
@@ -8,7 +8,7 @@
  const state=window.hiwR9={ready:false,started:false,failed:false,plays:0,events:[],errors:[],players:[]};
  let visible=false,disposed=false,loading=false;
  // A shared WAAPI clock keeps all three canvas layers in the same phase.
- const fade=plane.animate([{opacity:1},{opacity:1}],{duration:7116.6667,iterations:Infinity});
+ const fade=plane.animate([{opacity:1},{opacity:1}],{duration:5333.3333,iterations:Infinity});
  fade.pause();fade.currentTime=0;state.fade=fade;
  const events=new AbortController();
  // Pause the clock offscreen and in reduced motion; never crossfade the artwork.
@@ -18,7 +18,7 @@
  // Poll on the frame that drives Rive as well as listening for media changes.
  // This keeps the shared clock stopped even if a change callback is delayed.
  let lastReduced=reduce.matches;
- let clockRAF=requestAnimationFrame(function tick(){if(disposed)return;if(reduce.matches!==lastReduced){lastReduced=reduce.matches;update();}if(reduce.matches&&fade.playState!=='paused'){still();}if(state.ready&&!reduce.matches&&fade.playState==='running'){const t=(fade.currentTime%7116.6667)/1000;state.players.forEach(p=>p.scrub('RespondOnce',t));}clockRAF=requestAnimationFrame(tick)});
+ let clockRAF=requestAnimationFrame(function tick(){if(disposed)return;if(reduce.matches!==lastReduced){lastReduced=reduce.matches;update();}if(reduce.matches&&fade.playState!=='paused'){still();}if(state.ready&&!reduce.matches&&fade.playState==='running'){const t=(fade.currentTime%5333.3333)/1000;state.players.forEach(p=>p.scrub('RespondOnce',t));}clockRAF=requestAnimationFrame(tick)});
  const observer=new IntersectionObserver(es=>{visible=es[es.length-1].intersectionRatio>=.3;update();},{threshold:[0,.3]});
  function restore(e){if(e.persisted)initHiwR9();}
  function cleanup(e){cancelAnimationFrame(clockRAF);fade.cancel();disposed=true;observer.disconnect();events.abort();reduce.removeEventListener('change',update);state.players.forEach(p=>p.cleanup());plane.replaceChildren();layers.classList.remove('is-playing');stage.classList.remove('r7-running');if(!e||!e.persisted)window.removeEventListener('pageshow',restore);}

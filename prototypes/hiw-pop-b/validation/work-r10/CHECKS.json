@@ -1,0 +1,50 @@
+[
+  {
+    "mode": "NORMAL",
+    "geometry": {
+      "x": 581.8414306640625,
+      "y": 395.7754821777344,
+      "width": 782.676513671875,
+      "height": 482.8921813964844
+    },
+    "errors": [],
+    "clipStart": 5.188,
+    "clipDuration": 11.5
+  },
+  {
+    "mode": "SLOW",
+    "geometry": {
+      "x": 581.8414306640625,
+      "y": 395.7754821777344,
+      "width": 782.676513671875,
+      "height": 482.8921813964844
+    },
+    "errors": [],
+    "clipStart": 3.917,
+    "clipDuration": 22
+  },
+  {
+    "mode": "REDUCED",
+    "geometry": {
+      "x": 581.8414306640625,
+      "y": 208.7054443359375,
+      "width": 782.676513671875,
+      "height": 482.8922119140625
+    },
+    "errors": [],
+    "clipStart": 0,
+    "clipDuration": 2
+  },
+  {
+    "mode": "MOBILE",
+    "geometry": {
+      "x": 35.69999694824219,
+      "y": 515.8677978515625,
+      "width": 318.59999084472656,
+      "height": 196.56561279296875
+    },
+    "errors": [],
+    "clipStart": 3.851,
+    "clipDuration": 11.5
+  }
+]
