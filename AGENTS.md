@@ -16,6 +16,17 @@ This repo is the canonical site on **port 3000**.
 - First page is `/index`. Always serve the latest full site at `http://localhost:3000/index`.
 - Do not move this app, or lu-portfolio, to 3001.
 
+# 合并
+
+先读 harness-core 的 `AGENTS.md`「合并」。本项目的 PR 合进 main 就会部署到 lujin.me，所以分两种：
+
+- **QA 合**：不改访客看到的东西的 PR：文档、清理、依赖和构建配置、测试、SEO/metadata（noindex、结构化数据、llms.txt）、不影响画面的 bug 修复。QA 在 PR 上贴第一行是 `QA 通过 <sha>` 的评论，确认 Vercel preview 构建通过，再跑 harness-core 的 `scripts/merge-pr.sh lujin88/LuJin-Portfolio <PR 号>`。
+- **Lu 合**：设计 PR，也就是访客看到的东西会变的：布局、样式、文案（包括 `content/ask-lu/` 里 Ask Lu 的回答内容）、图片和视频、动效，以及把 3000 同步进 main 的 PR。拿不准的一律算设计。QA 通过后交项目经理转给 Lu。
+- **怎么判断**：看根目录 `.design-paths`。默认全算设计，只有 `!` 开头的排除清单里的路径算非设计。PR 改到清单外的任何文件就是设计 PR，脚本会加 `design` 标签并停下。一个文件里既有 metadata 又有页面（例如 `page.tsx`、`layout.tsx`），按设计算。
+- 改 `.design-paths`、本文件、`CLAUDE.md`、`.github/workflows/`、`.claude/` 的 PR 只由 Lu 合。
+
+来源：Lu 2026-11-05（Buzz 事件 07543b19）。
+
 # 依赖和 lockfile
 
 本项目用 pnpm，Vercel 按 `pnpm-lock.yaml` 装依赖（frozen，lockfile 和 package.json 对不上就构建失败）。
