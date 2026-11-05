@@ -1,0 +1,25 @@
+# portfolio：默认所有改动都算设计 PR，只由 Lu 合并（Lu，2026-11-05：「除了设计，其余你们合」）。
+# 下面 ! 开头的是排除：只改这些路径的 PR 算非设计，QA 通过、Vercel preview 通过后由 QA 用 merge-pr.sh 合。
+# 一行一个模式，* 可以跨目录。从默认分支读取，改这个文件本身只由 Lu 合并。规则见 AGENTS.md「合并」。
+# 不在排除清单里的，一律算设计。拿不准的不要加进排除清单。
+*
+# 文档和交接（content/ask-lu/ 是 Ask Lu 回答访客用的内容，不在这里，算设计）
+!HANDOFF.md
+!docs/*
+# SEO：抓取规则、站点地图、给 AI 看的简介
+!app/robots.ts
+!app/sitemap.ts
+!public/llms.txt
+!public/llms-full.txt
+# 工具配置。package.json、pnpm-lock.yaml、tsconfig.json 不在这里：Vercel 按 pnpm-lock.yaml 装依赖，
+# 改 scripts、升级依赖、改 paths 都可能改页面，算设计。package-lock.json Vercel 不读，算非设计
+!package-lock.json
+!.gitignore
+!.env.example
+# 测试
+!tests/*
+!e2e/*
+!*.test.ts
+!*.test.tsx
+!*.spec.ts
+!*.spec.tsx
