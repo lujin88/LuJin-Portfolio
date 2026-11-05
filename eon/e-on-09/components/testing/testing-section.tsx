@@ -117,7 +117,7 @@ export function TestingSection() {
               {t('eon.testing.body')}
             </p>
 
-            <div className="mt-10 grid grid-cols-2 gap-3 sm:flex sm:flex-nowrap">
+            <div className="mt-10 grid grid-cols-2 gap-3 md:flex md:flex-nowrap lg:grid xl:flex">
               {evidenceSources.map(({ icon, label, iconClassName }) => (
                 <EvidenceCard key={label} icon={icon} iconClassName={iconClassName} label={label} />
               ))}
