@@ -1,0 +1,98 @@
+[
+  {
+    "v": "A",
+    "w": 1440,
+    "h": 900,
+    "scene": 900,
+    "range": 720,
+    "top": 633.59375,
+    "static": false,
+    "metaTop": 306,
+    "progress": "1.0000",
+    "errors": []
+  },
+  {
+    "v": "A",
+    "w": 1440,
+    "h": 1000,
+    "scene": 1000,
+    "range": 800,
+    "top": 633.59375,
+    "static": false,
+    "metaTop": 299,
+    "progress": "1.0000",
+    "errors": []
+  },
+  {
+    "v": "A",
+    "w": 1024,
+    "h": 768,
+    "scene": 768,
+    "range": 614,
+    "top": 560,
+    "static": false,
+    "metaTop": 296,
+    "progress": "1.0000",
+    "errors": []
+  },
+  {
+    "v": "A",
+    "w": 390,
+    "h": 844,
+    "scene": 0,
+    "range": 0,
+    "top": 674.96875,
+    "static": true,
+    "metaTop": 507,
+    "progress": "static",
+    "errors": []
+  },
+  {
+    "v": "B",
+    "w": 1440,
+    "h": 900,
+    "scene": 900,
+    "range": 720,
+    "top": 633.59375,
+    "static": false,
+    "metaTop": 306,
+    "progress": "1.0000",
+    "errors": []
+  },
+  {
+    "v": "B",
+    "w": 1440,
+    "h": 1000,
+    "scene": 1000,
+    "range": 800,
+    "top": 633.59375,
+    "static": false,
+    "metaTop": 299,
+    "progress": "1.0000",
+    "errors": []
+  },
+  {
+    "v": "B",
+    "w": 1024,
+    "h": 768,
+    "scene": 768,
+    "range": 614,
+    "top": 560,
+    "static": false,
+    "metaTop": 296,
+    "progress": "1.0000",
+    "errors": []
+  },
+  {
+    "v": "B",
+    "w": 390,
+    "h": 844,
+    "scene": 0,
+    "range": 0,
+    "top": 674.96875,
+    "static": true,
+    "metaTop": 507,
+    "progress": "static",
+    "errors": []
+  }
+]

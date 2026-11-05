@@ -1,0 +1,53 @@
+{
+  "method": "Dark text pixels (r<150,g<145,b<139), >12 pixels in a row, x=80..width-80, y=stage-130..stage+70. Blank rows between last note ink and first metadata ink.",
+  "measurements": [
+    {
+      "variant": "A",
+      "width": 1440,
+      "height": 900,
+      "lastInk": 610,
+      "nextInk": 740,
+      "blankPixelRows": 129
+    },
+    {
+      "variant": "A",
+      "width": 1440,
+      "height": 1000,
+      "lastInk": 648,
+      "nextInk": 778,
+      "blankPixelRows": 129
+    },
+    {
+      "variant": "A",
+      "width": 1024,
+      "height": 768,
+      "lastInk": 560,
+      "nextInk": 691,
+      "blankPixelRows": 130
+    },
+    {
+      "variant": "B",
+      "width": 1440,
+      "height": 900,
+      "lastInk": 610,
+      "nextInk": 740,
+      "blankPixelRows": 129
+    },
+    {
+      "variant": "B",
+      "width": 1440,
+      "height": 1000,
+      "lastInk": 648,
+      "nextInk": 778,
+      "blankPixelRows": 129
+    },
+    {
+      "variant": "B",
+      "width": 1024,
+      "height": 768,
+      "lastInk": 560,
+      "nextInk": 691,
+      "blankPixelRows": 130
+    }
+  ]
+}

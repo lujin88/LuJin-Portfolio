@@ -1,0 +1,274 @@
+[
+  {
+    "file": "A_1024_DOWN.mp4",
+    "sha256": "7cb264d93da6530edbf5f08a534de02d13fe3acaa583c223b3b539846079a7fd",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1024,
+        "height": 768
+      }
+    ],
+    "format": {
+      "duration": "13.720000",
+      "size": "767135"
+    }
+  },
+  {
+    "file": "A_1024_UP.mp4",
+    "sha256": "cd46fd4645e095a1ccee6443e2909df539987d5adc95359fa6a9e2ea025ea833",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1024,
+        "height": 768
+      }
+    ],
+    "format": {
+      "duration": "13.960000",
+      "size": "1204214"
+    }
+  },
+  {
+    "file": "A_1440_DOWN.mp4",
+    "sha256": "d5ae8dc6613e0498db036db5863541a6d3c8c4d61c0a5f4eae23711986ffc332",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1440,
+        "height": 900
+      }
+    ],
+    "format": {
+      "duration": "14.880000",
+      "size": "971596"
+    }
+  },
+  {
+    "file": "A_1440_UP.mp4",
+    "sha256": "7b99de27d3bad0e5d5d6770984c20a3982e322c1e0550208def50ab393948bd1",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1440,
+        "height": 900
+      }
+    ],
+    "format": {
+      "duration": "14.800000",
+      "size": "1755289"
+    }
+  },
+  {
+    "file": "A_390_DOWN.mp4",
+    "sha256": "efab1959d1b305b2312b532b374c336616761cd066444efd3d3816e81df01dad",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "format": {
+      "duration": "15.920000",
+      "size": "980084"
+    }
+  },
+  {
+    "file": "A_390_UP.mp4",
+    "sha256": "1b0bd34508a198aa9440ce1581bef49cb8c3e88c44b05cf7e60aa59165839467",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "format": {
+      "duration": "15.560000",
+      "size": "1311124"
+    }
+  },
+  {
+    "file": "A_REDUCED.mp4",
+    "sha256": "33e613ff94b23ab04dd0726a2aaf87add060b6b4a9410874c3fd0faa9a998e49",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1440,
+        "height": 900
+      }
+    ],
+    "format": {
+      "duration": "3.920000",
+      "size": "199144"
+    }
+  },
+  {
+    "file": "A_SLOW.mp4",
+    "sha256": "382ebe86d7e8829cd8499144413218fcca105bc18ea62ca7fac2b92329fbc862",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1440,
+        "height": 900
+      }
+    ],
+    "format": {
+      "duration": "11.800000",
+      "size": "556495"
+    }
+  },
+  {
+    "file": "B_1024_DOWN.mp4",
+    "sha256": "29ca4ca89ff2b77e7e4c10d86cedeab5b119e7a853a4d210067e8b4de8057b3d",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1024,
+        "height": 768
+      }
+    ],
+    "format": {
+      "duration": "13.600000",
+      "size": "813276"
+    }
+  },
+  {
+    "file": "B_1024_UP.mp4",
+    "sha256": "e779167942719f9a2b54744fb079b0e8b25ded7c0c026e100ecee7c2a8460b68",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1024,
+        "height": 768
+      }
+    ],
+    "format": {
+      "duration": "13.840000",
+      "size": "1255309"
+    }
+  },
+  {
+    "file": "B_1440_DOWN.mp4",
+    "sha256": "4f58db1bae236a4b46498590b6fc52c820587a4c2fa2f4ec945988114647bac3",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1440,
+        "height": 900
+      }
+    ],
+    "format": {
+      "duration": "14.200000",
+      "size": "966090"
+    }
+  },
+  {
+    "file": "B_1440_UP.mp4",
+    "sha256": "047ed1d925277c2084c7f29ef98508aa89f3f9552d64a16a2b84a9d9bf9dda05",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1440,
+        "height": 900
+      }
+    ],
+    "format": {
+      "duration": "14.000000",
+      "size": "1608886"
+    }
+  },
+  {
+    "file": "B_390_DOWN.mp4",
+    "sha256": "600a2aa77648b3e9c685d0e8504f068fdaed3d10b45e7fddd993a5e64c172a37",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "format": {
+      "duration": "15.720000",
+      "size": "997839"
+    }
+  },
+  {
+    "file": "B_390_UP.mp4",
+    "sha256": "00331341ad77cb0656384c4e8fbae506e01395b881a43e4cbe2cc90f7e852fa1",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "format": {
+      "duration": "15.840000",
+      "size": "1289143"
+    }
+  },
+  {
+    "file": "B_REDUCED.mp4",
+    "sha256": "1d82864067f69ce2d54543b525fa26f56a08a2b8f2b221b95001adcddd84771c",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1440,
+        "height": 900
+      }
+    ],
+    "format": {
+      "duration": "3.720000",
+      "size": "213429"
+    }
+  },
+  {
+    "file": "B_SLOW.mp4",
+    "sha256": "c3166d78fb25a8c8f288dd330dbc2ea06fe81c79e0c273a819ba75773390a7c9",
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1440,
+        "height": 900
+      }
+    ],
+    "format": {
+      "duration": "11.880000",
+      "size": "613308"
+    }
+  }
+]

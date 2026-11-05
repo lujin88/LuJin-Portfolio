@@ -1,0 +1,10 @@
+{
+  "baseline": "/Users/lu/.buzz/.scratch/qa-ad79-man-1105/spacing",
+  "head": "86fd9d7e8d72d8251c01497cc229111efa06708a",
+  "files": {
+    "app/man-truck-bus/page.tsx": "6500c6d25ba638e0d3d0f3932328ea4ff6350be63b67e2dc9e5aa210dd3ca995",
+    "app/man-truck-bus/case.css": "77f5a5de899c8be93dd0137c37ec43015866335eba1fb4e8f82d9c33c88ff18b",
+    "app/man-truck-bus/layout.tsx": "e4da310a66f7b4904a7d19a4590781170856f5fa2cbbac365d04aebc4c399207"
+  },
+  "preview": "/Users/lu/.buzz/.scratch/man-249a-r2-20261105"
+}

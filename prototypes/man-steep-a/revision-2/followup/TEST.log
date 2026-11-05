@@ -1,0 +1,4 @@
+[test-lock] 开始 03:39:08 负载 1.56 3.03 4.36 排队 0 秒
+{"name":"A_1440_DOWN","width":1440,"height":900,"direction":"DOWN","input":"Playwright synthetic native wheel; 100 CSS px every 160ms; normal playback","errors":[],"bad":[],"backwards":0,"overlap":0,"samples":698}
+{"name":"B_1440_DOWN","width":1440,"height":900,"direction":"DOWN","input":"Playwright synthetic native wheel; 100 CSS px every 160ms; normal playback","errors":[],"bad":[],"backwards":0,"overlap":0,"samples":694}
+[test-lock] 结束 03:42:54 负载 3.71 3.29 4.16 退出码 0
