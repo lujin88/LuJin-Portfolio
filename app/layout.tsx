@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   description:
     'Design leadership across product and service — from early-stage strategy to production-ready systems.',
   icons: {
-    icon: [{ url: '/assets/images/brand/lu-logo.png', type: 'image/png' }],
-    shortcut: '/assets/images/brand/lu-logo.png',
-    apple: '/assets/images/brand/lu-logo.png',
+    icon: [{ url: '/assets/images/brand/favicon-32.png', type: 'image/png', sizes: '32x32' }],
+    shortcut: '/assets/images/brand/favicon-32.png',
+    apple: [{ url: '/assets/images/brand/apple-touch-icon-180.png', sizes: '180x180' }],
   },
 }
 
@@ -46,7 +46,7 @@ export default function RootLayout({
       className={`${caveat.variable} ${poppins.variable} overflow-x-hidden`}
       style={{ backgroundColor: '#0a0a0a', colorScheme: 'dark' }}
     >
-      <body className="min-w-[360px] antialiased">
+      <body className="m-0 min-w-[360px] antialiased">
         <I18nProvider>{children}</I18nProvider>
       </body>
     </html>
