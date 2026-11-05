@@ -11,8 +11,8 @@
 !app/sitemap.ts
 !public/llms.txt
 !public/llms-full.txt
-# lockfile 和工具配置。package.json、tsconfig.json 不在这里：改 scripts、升级依赖、改 paths 都可能改页面，算设计
-!pnpm-lock.yaml
+# 工具配置。package.json、pnpm-lock.yaml、tsconfig.json 不在这里：Vercel 按 pnpm-lock.yaml 装依赖，
+# 改 scripts、升级依赖、改 paths 都可能改页面，算设计。package-lock.json Vercel 不读，算非设计
 !package-lock.json
 !.gitignore
 !.env.example
