@@ -13,15 +13,8 @@
     2.5,
     3.2
   ],
-  "decide": [
-    3.5,
-    3.8,
-    4.1
-  ],
-  "caption": [
-    4.2,
-    4.6
-  ],
+  "decide": "always visible, completed transform",
+  "caption": "always visible",
   "hold": [
     4.6,
     9

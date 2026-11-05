@@ -1,0 +1,11 @@
+[test-lock] 开始 01:45:55 负载 6.26 8.22 16.61 排队 0 秒
+AssertionError [ERR_ASSERTION]: Load-affected recording: repeat once; not deliverable
+    at /Users/lu/.buzz/REPOS/LuJin-Portfolio-original-motion/prototypes/hiw-r9-head-lift/caption-hold-review/capture.cjs:85:10 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+[test-lock] 结束 01:46:57 负载 11.05 9.24 16.37 退出码 1

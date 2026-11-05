@@ -1,0 +1,111 @@
+{
+  "head": "07a9da5972eff0a22c56a3153df924fb41f895d3",
+  "runs": [
+    {
+      "name": "SLOW_1440",
+      "width": 1440,
+      "reduced": false,
+      "slow": true,
+      "check": {
+        "samples": 3073,
+        "maxDiff": 0,
+        "bright": 1099,
+        "marks": [
+          {
+            "cycle": 1,
+            "ms": 16760.699999999953
+          },
+          {
+            "cycle": 2,
+            "ms": 33977.80000000005
+          },
+          {
+            "cycle": 3,
+            "ms": 51182.39999999991
+          }
+        ],
+        "activeWindows": [
+          [
+            1793839352.87,
+            1793839360.2861
+          ],
+          [
+            1793839370.1017,
+            1793839377.5014
+          ],
+          [
+            1793839387.3177,
+            1793839394.7173998
+          ]
+        ],
+        "errors": [],
+        "speed": 0.5,
+        "paced": true
+      },
+      "movie": {
+        "frames": 2980,
+        "method": "Timestamped Chrome screencast",
+        "file": "SLOW_1440.mp4",
+        "quality": {
+          "targetFps": 30,
+          "activeWindows": [
+            [
+              1793839352.87,
+              1793839360.2861
+            ],
+            [
+              1793839370.1017,
+              1793839377.5014
+            ],
+            [
+              1793839387.3177,
+              1793839394.7173998
+            ]
+          ],
+          "intervals": 1321,
+          "expected": 666,
+          "missing": 7,
+          "maxGapMs": 266.65592193603516,
+          "dropRate": 0.010510510510510511,
+          "stallRate": 0.000757002271006813,
+          "status": "pass"
+        }
+      },
+      "errors": [],
+      "requests": [
+        "http://127.0.0.1:4696/assets/motion/how-i-work/r9/bear.riv",
+        "http://127.0.0.1:4696/assets/motion/how-i-work/r9/rabbit.riv",
+        "http://127.0.0.1:4696/assets/motion/how-i-work/r9/fox.riv"
+      ]
+    },
+    {
+      "name": "REDUCED_1440",
+      "width": 1440,
+      "reduced": true,
+      "slow": false,
+      "check": {
+        "playing": false,
+        "errors": []
+      },
+      "movie": {
+        "frames": 2,
+        "method": "Timestamped Chrome screencast",
+        "file": "REDUCED_1440.mp4",
+        "quality": {
+          "targetFps": 30,
+          "activeWindows": [],
+          "intervals": 0,
+          "expected": 0,
+          "missing": 0,
+          "maxGapMs": 0,
+          "dropRate": 0,
+          "stallRate": 0,
+          "status": "static"
+        }
+      },
+      "errors": [],
+      "requests": []
+    }
+  ],
+  "headAfter": "07a9da5972eff0a22c56a3153df924fb41f895d3"
+}
