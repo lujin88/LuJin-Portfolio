@@ -23,3 +23,9 @@ Originating assignment: Buzz channel 4d529583-4dcf-4804-816e-94f63f30634b, event
 Final verification: all 34 scenario records passed across A/B, 1440×900, 1024×768 and 390×844. Sticky toggles at 25/50/85% returned to the original scrollY; below-section, released-tail and static-reading checks preserved the following content boundary within 0.453px. No console/page errors in the six browser contexts. Final test-lock loads: 2.41/3.05/3.49 → 4.77/3.56/3.65. Recording loads: 3.82/3.37/3.70 → 3.82/3.40/3.69. Full-tree diagnostics remain byte-identical to the #66 run (ten baseline errors).
 
 The 85% recordings were captured before the final normalization of the released-stage branch; they exercise the unchanged sticky-stage path. The final check exercises the delivered byte-matched component sources, including the normalized boundary handling.
+
+## QA follow-up: static-origin round trips
+
+QA found that the original boundary mapping was not reversible at B 1024×768, static section +100px: scrollY 660 → 1078 → 560. A direct static → animated → static round trip now restores the original static reading position. A real scroll invalidates this return point, even if the reader scrolls back; viewport changes also invalidate it. Section position and both layout heights must still match.
+
+A/B share the same fix; their CSS, scene geometry and animation timing are unchanged. Follow-up evidence and reproduction scripts are in `roundtrip/`; `TESTED_SOURCES.json` identifies the exact component bytes used by the isolated production build. Earlier evidence above describes the initial submission, not this follow-up.

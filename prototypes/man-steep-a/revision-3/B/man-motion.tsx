@@ -29,6 +29,7 @@ export function ManMotion() {
   const animated = [...cards,slogan,final,board,note];
   let active = false;
   let resumeProgress = 0;
+  let staticReturn: { y: number; animatedY: number; width: number; height: number; top: number; staticHeight: number; animatedHeight: number } | undefined;
   let scheduled = 0;
   let geometry: { top: number; range: number; width: number; height: number; scale: number; targetX: number[] } | undefined;
   let disposed = false;
@@ -82,7 +83,11 @@ export function ManMotion() {
     note.style.opacity=String(between(p,.92,1));
     section.dataset.progress=p.toFixed(4);
   }
-  function queue(){if(active&&!scheduled)scheduled=requestAnimationFrame(render);}
+  function queue(){
+    // Ignore our own instant scroll; any subsequent reading invalidates the return point.
+    if (staticReturn && Math.abs(scrollY - staticReturn.animatedY) > 1) staticReturn = undefined;
+    if(active&&!scheduled)scheduled=requestAnimationFrame(render);
+  }
   function configure(preservePosition = false){
     const wasActive = active;
     const before = section.getBoundingClientRect();
@@ -100,8 +105,18 @@ export function ManMotion() {
     if(active)measure();else section.dataset.progress='static';
     if (!preservePosition || wasActive === active) return;
 
+    const returnPoint = staticReturn;
+    staticReturn = undefined;
     let targetY = previousY;
-    if (before.bottom <= 0 || stageBefore.top < -1) {
+    if (wasActive && returnPoint &&
+        Math.abs(previousY - returnPoint.animatedY) <= 1 &&
+        innerWidth === returnPoint.width && innerHeight === returnPoint.height &&
+        Math.abs(sectionTop - returnPoint.top) <= 1 &&
+        Math.abs(before.height - returnPoint.animatedHeight) <= 1 &&
+        Math.abs(section.getBoundingClientRect().height - returnPoint.staticHeight) <= 1) {
+      // Static -> sticky -> static must be reversible even when their heights differ.
+      targetY = returnPoint.y;
+    } else if (before.bottom <= 0 || stageBefore.top < -1) {
       // Preserve the lower content boundary once the reader is leaving the stage.
       // A static stage can be taller than the sticky stage, so anchoring its own
       // bottom edge is not always possible; the following content is stable instead.
@@ -112,10 +127,17 @@ export function ManMotion() {
     }
     // No animation: a motion preference change must not cause a smooth page scroll.
     scrollTo({ top: targetY, behavior: 'instant' });
-    if (active) measure();
+    if (active) {
+      measure();
+      staticReturn = { y: previousY, animatedY: scrollY, width: innerWidth, height: innerHeight,
+        top: sectionTop, staticHeight: before.height, animatedHeight: section.getBoundingClientRect().height };
+    }
   }
   addEventListener('scroll',queue,{passive:true});
-  const resize = () => active ? measure() : configure();
+  const resize = () => {
+    if (staticReturn && (innerWidth !== staticReturn.width || innerHeight !== staticReturn.height)) staticReturn = undefined;
+    if (active) measure(); else configure();
+  };
   addEventListener('resize',resize);
   const reducedChange = () => configure(true);
   const wideChange = () => configure();

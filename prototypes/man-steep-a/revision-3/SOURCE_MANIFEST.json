@@ -3,13 +3,13 @@
   "variants": {
     "A": {
       "baseline_sha256": "f28e800e06bec550b33c281ebba6fc9a92ad5bcc7829d84820fb45196633874e",
-      "source_sha256": "3d928a9a37e0d1865a6ed30472e41f16fde467218b8dfb58801345162b58a4e1",
-      "patch_sha256": "08787c45f3c5f32df282fae66202ab171eac9ee044a6c565534c17bcffefc5ac"
+      "source_sha256": "d67155a6ec42ffdad0ed151450f1146dbbc4cd90df3761b4c1b0aa79da3226bb",
+      "patch_sha256": "746171f629f28424b51bd7b797f6154ad41271a92012d908e767b7e313d0b575"
     },
     "B": {
       "baseline_sha256": "c12fa9e1811e5fa3eee776bdd8882e00305d2289db6caa6817b9e9ece4443e27",
-      "source_sha256": "e65b3f1480b81cc665c5471f6d0147d9a88491d28319ff291980829722d18130",
-      "patch_sha256": "970c937c9427067a5a7bfe21fd8d0f0cc694d20529e341e05110cae2c4e131da"
+      "source_sha256": "221b9ee74fd748496ea8b7ecca0d7c649725093d2ab3c2cf6ac5774de549f321",
+      "patch_sha256": "f40ead9d742fe5d9ffd0316166b0bf05c5984de144ed664065159d1038e232ab"
     }
   }
 }
