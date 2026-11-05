@@ -6,18 +6,14 @@
 # 文档和交接（content/ask-lu/ 是 Ask Lu 回答访客用的内容，不在这里，算设计）
 !HANDOFF.md
 !docs/*
-!*/AGENTS.md
-!*/CLAUDE.md
 # SEO：抓取规则、站点地图、给 AI 看的简介
 !app/robots.ts
 !app/sitemap.ts
 !public/llms.txt
 !public/llms-full.txt
-# 依赖和工具配置
-!package.json
+# lockfile 和工具配置。package.json、tsconfig.json 不在这里：改 scripts、升级依赖、改 paths 都可能改页面，算设计
 !pnpm-lock.yaml
 !package-lock.json
-!tsconfig.json
 !.gitignore
 !.env.example
 # 测试
