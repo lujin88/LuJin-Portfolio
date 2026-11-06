@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lu Jin — BMW App Design System</title>
+<style>
+  :root{
+    --navy:#142230; --navy-card:#203345; --navy-btn:#173751; --hero:#102133;
+    --ink:#142536; --mute:#506273; --soft:#f3f5f7; --line:#e1e7ec;
+    --on:#f3f7fb; --on-2:#c6d4df; --on-3:#8aa0b3;
+    --gold:#ead09b; --gold-ink:#654c20; --gold-row:#fcf1d9; --gold-bg:rgba(234,208,155,.07);
+    --info:#dfebf6; --info-ink:#183953; --tile-l:#eeeeee; --tile-d:#1d2023;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:16px/1.55 Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+  .eyebrow{font-size:13px;font-weight:600;color:var(--mute)}
+  .dark .eyebrow{color:var(--gold)}
+  h1,h2{font-weight:520;letter-spacing:-3px;line-height:1.02;margin:14px 0 24px}
+  h1{font-size:76px;font-weight:700;letter-spacing:-3.5px}
+  h2{font-size:58px}
+  p{margin:0 0 14px}
+  .split{display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:start}
+  section{padding:120px 0}
+  .dark{background:var(--navy);color:var(--on)}
+  .dark p{color:var(--on-2)}
+  .grey{background:var(--soft)}
+
+  /* HERO */
+  .hero-img{height:420px;background:linear-gradient(180deg,#5b6a78,#26313b);display:flex;align-items:center;justify-content:center;color:#cfd8df;font-size:13px}
+  .hero{background:var(--hero);color:var(--on);padding:64px 0 72px}
+  .hero .sub{font-size:22px;color:var(--on-2);margin:0}
+  .byline{background:var(--soft);padding:28px 0}
+  .byline b{font-size:18px}
+  .byline span{color:var(--mute);font-size:18px}
+  .byline p{color:var(--mute);margin:6px 0 0}
+
+  /* 01 RULES */
+  ol.rules{list-style:none;padding:0;margin:8px 0 0;counter-reset:r}
+  ol.rules li{counter-increment:r;display:grid;grid-template-columns:44px 1fr;padding:12px 0;font-size:17px;max-width:380px}
+  ol.rules li::before{content:"0" counter(r) ".";font:12px ui-monospace,Menlo,monospace;color:var(--mute);padding-top:4px}
+  .demo-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+  .demo-head b{font-size:15px}
+  .seg{display:inline-flex;gap:2px;background:#e9eef2;border-radius:6px;padding:3px}
+  .seg button{font:13px Arial,Helvetica,sans-serif;border:0;background:none;color:var(--ink);border-radius:4px;padding:6px 12px;cursor:pointer}
+  .seg button[aria-pressed="true"]{background:var(--navy-btn);color:#fff}
+  .dark .seg{background:rgba(255,255,255,.06)} .dark .seg button{color:var(--on-2)}
+  .stage{border-radius:10px;padding:20px;transition:background .2s}
+  .stage.light{background:#fff;box-shadow:inset 0 0 0 1px var(--line)}
+  .stage.dark-theme{background:#0f1113}
+  .tiles2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .tile{border-radius:6px;padding:18px 20px;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;font-family:"Arial Narrow",Arial,Helvetica,sans-serif}
+  .tile b{font-size:19px} .tile small{font-size:15px;opacity:.65;display:block;margin-top:2px}
+  .tile svg{width:26px;height:26px}
+  .light .tile{background:var(--tile-l);color:#101317}
+  .dark-theme .tile{background:var(--tile-d);color:#f3f3f3}
+  .infobar{margin-top:12px;border-radius:6px;padding:12px 16px;font-size:15px;background:var(--info);color:var(--info-ink)}
+  .dark-theme .infobar{background:#1c2a36;color:#cfe0ee}
+  .states-row{margin-top:18px}
+  .states-row .lbl{font-size:13px;font-weight:600;margin-bottom:8px}
+
+  /* Fake spreadsheet */
+  .xls{margin:32px 0 0;max-width:460px;background:#fff;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.05),0 10px 28px rgba(20,37,54,.10);overflow:hidden;font:11px Calibri,Arial,sans-serif;color:#222}
+  .xls-bar{display:flex;justify-content:space-between;background:#1f6e43;color:#fff;padding:7px 10px;font-size:11px}
+  .xls table{border-collapse:collapse;width:100%;font-size:11px}
+  .xls th,.xls td{border:1px solid #e1e1e1;padding:4px 6px;white-space:nowrap;text-align:left}
+  .xls th{background:#f3f3f3;color:#666;font-weight:400;text-align:center}
+  .xls .rn{background:#f3f3f3;color:#888;text-align:center;width:22px}
+  .xls tr.hdr td{font-weight:700;background:#fafafa}
+  .xls td.c{background:#e6f2ea} .xls td.e{background:#e7eef8} .xls td.o{background:#f4f4f4;color:#999} .xls td.k{background:#fff4cc}
+  .xls-tabs{display:flex;gap:2px;background:#f3f3f3;border-top:1px solid #ddd;padding:4px 6px;font-size:10px;color:#666;overflow:hidden}
+  .xls-tabs span{padding:2px 8px;border-radius:2px}
+  .xls-tabs .on{background:#fff;color:#1f6e43;font-weight:700;box-shadow:inset 0 -2px 0 #1f6e43}
+  .xls figcaption{font:11px Arial,sans-serif;color:var(--mute);padding:8px 10px;border-top:1px solid #eee}
+
+  /* Image slots */
+  .img{background:#e7ebef;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#7a8a98;font-size:12px;padding:16px;line-height:1.4}
+  .img em{display:block;font-style:normal;font-size:11px;opacity:.8;margin-top:4px}
+  .dark .img,.img.on-dark{background:#22374a;color:#8aa0b3}
+  .phones{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:960px}
+  .phone{aspect-ratio:9/19.5;border-radius:28px}
+  .strip-lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--mute);margin:16px 0 0}
+  .gallery{padding:0 0 120px}
+  .rc .img{aspect-ratio:4/3;margin-bottom:14px;border-radius:8px}
+  .step .img{aspect-ratio:16/10;margin-bottom:14px;border-radius:6px}
+  .wide{aspect-ratio:21/9;margin-top:40px}
+
+  /* Decision */
+  .decision{margin-top:72px;display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:start}
+  .decision h3{font-size:30px;font-weight:600;letter-spacing:-1px;line-height:1.1;margin:10px 0 0}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .opt{border-radius:10px;padding:20px;box-shadow:inset 0 0 0 1px var(--line)}
+  .opt.pick{box-shadow:inset 0 0 0 2px var(--navy-btn)}
+  .opt .k{font-size:12px;font-weight:600;color:var(--mute);margin-bottom:12px}
+  .opt.pick .k{color:var(--navy-btn)}
+  .mini{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+  .mini .tile{min-height:76px;padding:10px 12px}
+  .mini .tile b{font-size:14px} .mini .tile small{font-size:12px} .mini .tile svg{width:18px;height:18px}
+  .mini .tile{background:var(--tile-l);color:#101317}
+  .mini .tile.disabled{opacity:.38}
+  .opt p{font-size:14px;margin:0}
+  .costline{grid-column:2;font-size:14px;color:var(--mute);margin-top:-56px}
+  /* Rule cards */
+  .rulecards{margin-top:72px}
+  .rulecards .lbl{font-size:13px;font-weight:600;margin-bottom:14px}
+  .rc{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .rc > div{background:var(--soft);border-radius:10px;padding:16px 16px 20px}
+  .rc b{display:block;font-size:15px;margin-bottom:6px}
+  .rc p{font-size:14px;color:var(--mute);margin:0}
+  /* Closing */
+  .closing{background:var(--hero);color:var(--on);padding:140px 0}
+  .closing p{font-size:52px;font-weight:520;letter-spacing:-2.5px;line-height:1.08;margin:0;color:var(--on)}
+  .closing p span{color:var(--on-3)}
+
+  /* 02 COST */
+  .table-card{background:#fff;border-radius:13px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 12px 32px rgba(20,37,54,.08);overflow:hidden}
+  .table-card .th{background:var(--navy-btn);color:#fff;display:flex;justify-content:space-between;padding:14px 20px;font-size:14px}
+  .table-card .th span{color:var(--on-2);font-size:12px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{font-weight:500;color:var(--mute);text-align:left;padding:14px 20px;border-bottom:1px solid var(--line)}
+  td{padding:16px 20px;border-bottom:1px solid var(--line)}
+  tr.hl td{background:var(--gold-row);color:var(--gold-ink)}
+
+  /* 03 NOW */
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:56px 0 40px}
+  .step{background:var(--navy-card);border-radius:10px;padding:20px;position:relative}
+  .step .n{font:12px ui-monospace,Menlo,monospace;color:var(--on-3)}
+  .step h3{font-size:17px;font-weight:600;margin:10px 0 6px;color:var(--on)}
+  .step p{font-size:14px;margin:0}
+  .chips{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+  .chip{font-size:11px;border-radius:999px;padding:3px 9px;border:1px solid rgba(243,247,251,.18);color:var(--on-2)}
+  .chip.tool{border-color:var(--gold);color:var(--gold)}
+  .step:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:50%;transform:translate(50%,-50%);color:var(--on-3);font-size:14px;z-index:1}
+
+  /* Review card */
+  .card{background:var(--navy-card);border-radius:13px;padding:28px 28px 24px}
+  .card-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+  .card-head b{font-size:15px} .card-head span{font-size:12px;color:var(--on-3)}
+  .cols,.row{display:grid;grid-template-columns:1.3fr .9fr 1.4fr 1.1fr;gap:12px;align-items:center}
+  .cols{font-size:12px;color:var(--on-3);padding:0 12px 10px;border-bottom:1px solid rgba(243,247,251,.08)}
+  .row{width:100%;background:none;border:0;border-bottom:1px solid rgba(243,247,251,.08);color:var(--on);font:14px Arial,Helvetica,sans-serif;text-align:left;padding:14px 12px;cursor:pointer}
+  .row:hover{background:rgba(255,255,255,.03)}
+  .row[aria-expanded="true"]{background:rgba(255,255,255,.04);border-bottom-color:transparent}
+  .row.new{background:var(--gold-bg);box-shadow:inset 3px 0 0 var(--gold)}
+  .row .muted{color:var(--on-2)}
+  .status{white-space:nowrap;font-size:12px;color:var(--on-3);display:flex;align-items:center;gap:6px}
+  .status.review{color:var(--gold)} .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+  .panel{padding:20px 12px 22px;border-bottom:1px solid rgba(243,247,251,.08);background:rgba(255,255,255,.04)}
+  .row.new + .panel{background:var(--gold-bg);box-shadow:inset 3px 0 0 var(--gold)}
+  .panel-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:12px;color:var(--on-2)}
+  .tiles5{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .tiles5 .tile{min-height:84px;padding:10px}
+  .tiles5 .tile b{font-size:13px} .tiles5 .tile small{font-size:11px} .tiles5 .tile svg{width:16px;height:16px}
+  .tiles5.light .tile{background:var(--tile-l);color:#101317}
+  .tiles5.dark .tile{background:var(--tile-d);color:#f3f3f3;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+  .state-label{font-size:11px;color:var(--on-3);margin-top:6px;text-align:center}
+  .omit{grid-column:1/-1;min-height:84px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--on-3);border:1px dashed rgba(243,247,251,.18);background:repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0 8px,transparent 8px 16px)}
+  .panel-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:18px}
+  .note{font-size:13px;color:var(--on-2)} .note.warn{color:var(--gold)}
+  .approve{font:600 13px Arial,Helvetica,sans-serif;background:var(--on);color:var(--navy-btn);border:0;border-radius:5px;padding:9px 16px;cursor:pointer;white-space:nowrap}
+  .approve[disabled]{background:transparent;color:var(--on-3);box-shadow:inset 0 0 0 1px rgba(243,247,251,.08);cursor:default}
+  .caption{font-size:12px;color:var(--on-3);margin-top:14px}
+
+  .human{display:grid;grid-template-columns:5fr 7fr;gap:72px;margin-top:72px;padding-top:40px;border-top:1px solid rgba(243,247,251,.1)}
+  .human h3{font-size:22px;font-weight:600;margin:0}
+  .human ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:16px 32px}
+  .human li{font-size:15px;color:var(--on-2)} .human li b{color:var(--on);display:block;font-size:15px}
+  details{margin-top:28px;font-size:14px;color:var(--on-2);max-width:420px}
+  summary{cursor:pointer;color:var(--on)}
+
+  footer{background:var(--navy);color:var(--on-2);font-size:13px;border-top:1px solid rgba(243,247,251,.08)}
+  footer .wrap{display:flex;justify-content:space-between;padding:28px 48px}
+  footer a{color:var(--on)}
+
+  @media (max-width:960px){
+    .wrap{padding:0 24px} section{padding:80px 0}
+    .split,.human{grid-template-columns:1fr;gap:40px}
+    h1{font-size:48px;letter-spacing:-2px} h2{font-size:40px;letter-spacing:-2px}
+    .flow{grid-template-columns:1fr 1fr} .step::after{display:none}
+    .cols{display:none} .row{grid-template-columns:1fr auto}
+    .row .c2,.row .c3{grid-column:1;font-size:13px;color:var(--on-2)} .row .status{grid-row:1;grid-column:2}
+    .tiles5{grid-template-columns:repeat(3,1fr)} .human ul{grid-template-columns:1fr}
+    .decision{grid-template-columns:1fr;gap:24px} .opts,.rc{grid-template-columns:1fr} .costline{margin:16px 0 0!important} .closing p{font-size:34px;letter-spacing:-1.5px}
+  }
+.storelinks{display:flex;gap:1.2em;align-items:baseline;flex-wrap:wrap;font:14px/1.6 Arial,sans-serif;margin-top:16px}.storelinks a{color:inherit;text-underline-offset:4px}.drift>div{padding:16px;display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 20px}.drift>div b{min-width:46px}.drift small{display:block;font:inherit;opacity:.85}.drift .patch{background:var(--gold-bg);box-shadow:inset 3px 0 var(--gold);border-radius:5px}.drift button{margin-left:auto}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero-img">Hero image (existing)</div>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--on)">BMW App Design System · 2020 · Futurice</div>
+    <h1>One button<br>for the driver.</h1>
+    <p class="sub">Every model’s rules behind it.</p>
+  </div>
+</header>
+<div class="byline"><div class="wrap">
+  <b>Lu Jin</b> <span>/ Design Lead</span>
+  <p>I led six designers and the BMW app design system.</p>
+</div></div>
+
+<main>
+<section class="gallery" style="padding-top:96px">
+  <div class="wrap">
+    <div class="eyebrow">The BMW app, 2020</div>
+    <div class="phones" style="margin-top:20px">
+      <div class="img phone">Image: Home / vehicle overview<em>phone screen, light</em></div>
+      <div class="img phone">Image: Remote actions<em>phone screen, light</em></div>
+      <div class="img phone">Image: Climate confirm<em>phone screen, dark</em></div>
+      <div class="img phone">Image: Status and charge<em>phone screen, dark</em></div>
+    </div>
+    <div class="strip-lbl"><span>Original screens from the shipped app</span><span>Light and dark mode</span></div><nav class="storelinks" aria-label="Download My BMW"><strong>Get My BMW</strong><a href="https://apps.apple.com/ch/app/my-bmw/id1519034860" target="_blank" rel="noopener">App Store ↗</a><a href="https://play.google.com/store/apps/details?id=de.bmw.connected.mobile20.row" target="_blank" rel="noopener">Google Play ↗</a></nav>
+  </div>
+</section>
+<!-- 01 · 2020 -->
+<section id="built">
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">01 · 2020 · Climate control</div>
+      <h2>One control,<br>three rules.</h2>
+      <ol class="rules">
+        <li>Hide the control where the market doesn’t allow it.</li>
+        <li>Show the run time before confirmation.</li>
+        <li>Show “Running” only after the car replies.</li>
+      </ol>
+    </div>
+    <div>
+      <div class="demo-head">
+        <b>Climate control</b>
+        <div class="seg" role="group" aria-label="Theme" data-group="theme1">
+          <button type="button" data-v="light" aria-pressed="true">Light</button>
+          <button type="button" data-v="dark" aria-pressed="false">Dark</button>
+        </div>
+      </div>
+      <div class="stage light" id="stage1">
+        <div class="tiles2">
+          <div class="tile"><span><b>Climate</b><small id="climateVal">Connecting</small></span><span class="fan"></span></div>
+          <div class="tile"><span><b>Controls</b><small>Remote access</small></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 15l1.5-4.5A2 2 0 0 1 7.4 9h9.2a2 2 0 0 1 1.9 1.5L20 15v3H4z"/><circle cx="7.5" cy="15.5" r="1"/><circle cx="16.5" cy="15.5" r="1"/></svg></div>
+        </div>
+        <div class="infobar" id="infoVal">Request sent. Waiting for the car.</div>
+      </div>
+      <div class="states-row">
+        <div class="lbl">Request states</div>
+        <div class="seg" role="group" aria-label="Request state" data-group="state1">
+          <button type="button" data-v="Available" aria-pressed="false">Available</button>
+          <button type="button" data-v="Confirm" aria-pressed="false">Confirm</button>
+          <button type="button" data-v="Connecting" aria-pressed="true">Connecting</button>
+          <button type="button" data-v="Running" aria-pressed="false">Running</button>
+          <button type="button" data-v="Error" aria-pressed="false">Error</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div style="margin-top:72px">
+      <div class="phones">
+        <div class="img phone">Image: Available<em>Climate entry on the remote screen</em></div>
+        <div class="img phone">Image: Confirm<em>run time shown before sending</em></div>
+        <div class="img phone">Image: Connecting<em>waiting for the car</em></div>
+        <div class="img phone">Image: Running / Error<em>after the car replies or 5 min</em></div>
+      </div>
+      <div class="strip-lbl"><span>The request flow, one screen per state</span><span>Original screens</span></div>
+    </div>
+    <div class="decision">
+      <div>
+        <div class="eyebrow">Decision</div>
+        <h3>Hide it,<br>don’t grey it out.</h3>
+      </div>
+      <div class="opts">
+        <div class="opt">
+          <div class="k">Option A · Greyed out</div>
+          <div class="mini"><div class="tile disabled"><span><b>Climate</b><small>Not available</small></span><span class="fan"></span></div><div class="tile"><span><b>Controls</b><small>Remote access</small></span></div></div>
+          <p>Drivers read a disabled button as a broken app.</p>
+        </div>
+        <div class="opt pick">
+          <div class="k">Option B · Hidden · Our choice</div>
+          <div class="mini"><div class="tile"><span><b>Controls</b><small>Remote access</small></span></div></div>
+          <p>Drivers only see what works for their car and market.</p>
+        </div>
+      </div>
+    </div>
+    <p class="costline" style="margin:16px 0 0 calc(5/12*100% + 30px)">The cost: drivers couldn’t see the feature existed elsewhere. We explained it in Help and in the owner’s manual.</p>
+
+    <div class="rulecards">
+      <div class="lbl">Other components, same system</div>
+      <div class="rc">
+        <div><div class="img">Image: remote actions row</div><b>Remote actions</b><p>Five actions in a fixed order, from lock to climate.</p></div>
+        <div><div class="img">Image: status and charge tile</div><b>Status and charge</b><p>Side by side. Range and its unit get the strongest emphasis.</p></div>
+        <div><div class="img">Image: combined range tile</div><b>Combined range</b><p>Range always paired with its unit, so it reads in miles or kilometres.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · COST -->
+<section id="cost" class="grey">
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">02 · 2020 · The cost</div>
+      <h2>Every new model meant an Excel check.</h2>
+      <p style="max-width:400px;color:var(--mute)">The design held. But which command each car got lived in spreadsheets, outside the system. Every new model added rows, and every yellow cell meant someone checked it by hand.</p>
+      <p style="max-width:400px;color:var(--mute)">Over time, more apps shipped and more developers patched components locally. The same Climate control ended up built several ways, so a design could no longer go straight to code.</p>
+      
+    </div>
+    <figure class="xls" style="max-width:none;margin:0" aria-label="Illustrative spreadsheet">
+        <div class="xls-bar"><span>remote-start-matrix_v14.xlsx</span><span>Sheet 2 of 9</span></div>
+        <table>
+          <thead><tr><th class="rn"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
+          <tr class="hdr"><td class="rn">1</td><td>Series</td><td>Model</td><td>Powertrain</td><td>Market A</td><td>Market B</td><td>Market C</td></tr></thead>
+          <tbody><tr><td class="rn">2</td><td>3 Series</td><td>320i</td><td>Petrol</td><td class="e">Engine start</td><td class="e">Engine start</td><td class="o">Hidden</td></tr><tr><td class="rn">3</td><td>3 Series</td><td>320d</td><td>Diesel</td><td class="e">Engine start</td><td class="o">Hidden</td><td class="o">Hidden</td></tr><tr><td class="rn">4</td><td>3 Series</td><td>330e</td><td>Plug-in hybrid</td><td class="c">Climate</td><td class="c">Climate</td><td class="c">Climate</td></tr><tr><td class="rn">5</td><td>5 Series</td><td>530i</td><td>Petrol</td><td class="e">Engine start</td><td class="k">Check</td><td class="o">Hidden</td></tr><tr><td class="rn">6</td><td>5 Series</td><td>530e</td><td>Plug-in hybrid</td><td class="c">Climate</td><td class="c">Climate</td><td class="k">Check</td></tr><tr><td class="rn">7</td><td>X3</td><td>X3 xDrive30i</td><td>Petrol</td><td class="e">Engine start</td><td class="e">Engine start</td><td class="o">Hidden</td></tr><tr><td class="rn">8</td><td>iX3</td><td>iX3</td><td>Electric</td><td class="c">Climate</td><td class="c">Climate</td><td class="c">Climate</td></tr><tr><td class="rn">9</td><td>X5</td><td>X5 xDrive45e</td><td>Plug-in hybrid</td><td class="c">Climate</td><td class="k">Check</td><td class="c">Climate</td></tr><tr><td class="rn">10</td><td>i3</td><td>i3 120Ah</td><td>Electric</td><td class="c">Climate</td><td class="c">Climate</td><td class="c">Climate</td></tr><tr><td class="rn">11</td><td>X5</td><td>X5 xDrive40i</td><td>Petrol</td><td class="e">Engine start</td><td class="e">Engine start</td><td class="o">Hidden</td></tr></tbody>
+        </table>
+        <div class="xls-tabs"><span>MY2019</span><span class="on">MY2020</span><span>MY2021 draft</span><span>Changes</span><span>Notes</span><span>…</span></div>
+        <figcaption>Illustrative recreation · not the original spreadsheet · markets anonymised</figcaption>
+      </figure>
+  </div>
+</section>
+
+<!-- 03 · NOW -->
+<section id="now" class="dark">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <div class="eyebrow">03 · 2026 · Proposed</div>
+        <h2>Same rules.<br>One source.</h2>
+      </div>
+      <div style="padding-top:44px">
+        <p>If I rebuilt it today, I’d keep the rules next to the components, not in a spreadsheet. AI tools would do the repetitive building and checking. The team would make the calls.</p>
+      </div>
+    </div>
+
+    <div class="flow">
+      <div class="step"><h3>One component, linked</h3><p>Figma ↔ code via Code Connect.</p><div class="chips"><span class="chip">Proposed</span></div></div>
+      <div class="step"><h3>Rules as data</h3><p>Model × market → command.</p><div class="chips"><span class="chip">Proposed</span></div></div>
+      <div class="step"><h3>Drift scan</h3><p>An agent finds every patched copy and compares it to the spec.</p><div class="chips"><span class="chip">Proposed</span></div></div>
+      <div class="step"><h3>Merge or retire</h3><p>Each patch becomes a variant or is retired via pull request.</p><div class="chips"><span class="chip">Proposed</span></div></div>
+    </div>
+
+    <div class="split">
+      <div>
+        <h3 style="font-size:22px;font-weight:600;margin:0 0 12px;color:var(--on)">When a component changes</h3>
+        <p style="max-width:400px">An agent would compare local copies with the linked component. The team would review the differences.</p>
+        <details>
+          <summary>What I’d test next</summary>
+          <p>Warn before sending when the car’s recent signal is weak, instead of after five minutes on Connecting. A missing reply alone can’t explain why a car is unreachable.</p>
+        </details>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-head"><b>Drift report</b><span>Concept · agent preview</span></div>
+          <div class="drift"><div><b>App A</b><span>Matches spec ✓</span></div><div class="patch"><b>App B</b><span>Local patch, custom padding <small aria-live="polite">→ Propose as variant</small></span><button class="approve" type="button">Approve as variant</button></div><div><b>App C</b><span>Fork, Error state missing <small>→ Replace with main component</small></span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="human">
+      <h3>What the team still decides</h3>
+      <ul>
+        <li><b>The rules</b>Where the control appears and what it does.</li>
+        <li><b>The timeout</b>How long Connecting lasts before it fails.</li>
+        <li><b>The words</b>What the error tells a driver in a garage.</li>
+        <li><b>The variants</b>Which patch becomes part of the system.</li>
+        <li><b>The approval</b>Every change the tools flag.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+<section class="closing"><div class="wrap">
+  <p>In 2020, the system held the components.<br><span>Now it has to hold the rules, and every patch has to come back to it.</span></p>
+</div></section>
+
+<footer><div class="wrap"><span>Lu Jin / Design Lead</span><a href="#">Back to top ↑</a></div></footer>
+
+<script>
+  const FAN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="1.6"/><path d="M12 10.4c0-3 .6-6 2.6-6 2 0 2.4 3.2-2.6 6M13.4 12.8c2.6 1.5 4.9 3.5 3.9 5.2-1 1.7-4-.2-3.9-5.2M10.6 12.8c-2.6 1.5-5.5 2.5-6.5.8-1-1.7 1.6-3.6 6.5-.8"/></svg>';
+  document.querySelectorAll(".fan").forEach(e => e.outerHTML = FAN);
+
+  /* 01 demo */
+  const STATE_COPY = {
+    Available:["Off","Tap Climate to start."],
+    Confirm:["Run time","Check the run time, then confirm."],
+    Connecting:["Connecting","Request sent. Waiting for the car."],
+    Running:["Running","The car confirmed. Climate is running."],
+    Error:["Error","The car didn’t reply. Try again later."]
+  };
+  function pressGroup(g, v){ g.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === v)); }
+  document.querySelector('[data-group="theme1"]').addEventListener("click", e => {
+    const b = e.target.closest("button"); if(!b) return; pressGroup(e.currentTarget, b.dataset.v);
+    document.getElementById("stage1").className = "stage " + (b.dataset.v === "dark" ? "dark-theme" : "light");
+  });
+  document.querySelector('[data-group="state1"]').addEventListener("click", e => {
+    const b = e.target.closest("button"); if(!b) return; pressGroup(e.currentTarget, b.dataset.v);
+    const [v, info] = STATE_COPY[b.dataset.v];
+    document.getElementById("climateVal").textContent = v;
+    document.getElementById("infoVal").textContent = info;
+  });
+
+  document.querySelector('.patch .approve').addEventListener('click', function () {
+    this.disabled = true;
+    this.textContent = 'Approved';
+    this.closest('.patch').querySelector('small').textContent = 'Approved as variant ✓';
+  });
+</script>
+</body>
+</html>

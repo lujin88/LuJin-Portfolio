@@ -1,0 +1,174 @@
+/* SiteClosing on case-study routes (Client Advisory, E.ON).
+   Those layouts do not load shell-tokens.css / shell-components.css, so the
+   Index values are restated here, scoped to the wrapper. Keep in sync with
+   public/styles/shell-tokens.css and shell-components.css. */
+
+.site-closing-case {
+  --color-text-1: #f9fbfc;
+  --color-text-3: #777e85;
+  --color-text-4: #595d61;
+  --color-footer-divider: rgba(255, 255, 255, 0.045);
+  --pill-text: #f9fbfc;
+  --pill-border: rgba(249, 251, 252, 0.72);
+  --pill-bg: transparent;
+  --pill-hover-bg: #f9fbfc;
+  --pill-hover-text: #0a0a0a;
+  --focus-ring: #7ea2ff;
+  --content-inset: max(24px, calc((100% - 1440px) / 2));
+  --font-size-contact: clamp(1.6rem, 2.6vw, 2.4rem);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  color: var(--color-text-1);
+  /* Keep each case page's own footer fill (CA navy + bottom glow). */
+  background:
+    linear-gradient(to top, oklch(0.22 0.05 265), transparent 60%),
+    #06101f;
+  font-family: var(--font-poppins), Poppins, ui-sans-serif, system-ui, sans-serif;
+}
+
+/* E.ON closes on its off-white page; same component, light ink. */
+.site-closing-case--light {
+  --color-text-1: #0a0a0a;
+  --color-text-3: #61707a;
+  --color-text-4: #61707a;
+  --color-footer-divider: rgba(10, 10, 10, 0.08);
+  --pill-text: #0a0a0a;
+  --pill-border: rgba(10, 10, 10, 0.72);
+  --pill-hover-bg: #0a0a0a;
+  --pill-hover-text: #f9fbfc;
+  --focus-ring: #0a0a0a;
+  background: #f8f8f6;
+}
+
+.site-closing-case,
+.site-closing-case * { box-sizing: border-box; }
+.site-closing-case .contact-section {
+  position: relative;
+  background: transparent;
+  padding: clamp(6rem, 14vh, 9rem) var(--content-inset) clamp(4.5rem, 10vh, 7rem);
+}
+.site-closing-case .exp-contact {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem 3rem;
+}
+.site-closing-case .contact-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 800ms var(--ease), transform 800ms var(--ease);
+}
+.site-closing-case .contact-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.site-closing-case .exp-contact__heading {
+  margin: 0;
+  font-size: var(--font-size-contact);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: var(--color-text-1);
+}
+.site-closing-case .exp-contact__links {
+  margin: 1rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--color-text-3);
+}
+.site-closing-case .exp-contact__links a {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  transition: color 200ms var(--ease);
+}
+.site-closing-case .exp-contact__links a::before {
+  content: "";
+  position: absolute;
+  inset-block: -0.75rem;
+  inset-inline: -0.2rem;
+}
+.site-closing-case .exp-contact__links a:hover { color: var(--color-text-1); }
+.site-closing-case .exp-contact__sep { color: var(--color-text-4); }
+.site-closing-case .pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  border-radius: 999px;
+  border: 1px solid var(--pill-border);
+  padding: 0 28px;
+  height: 46px;
+  min-height: 46px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--pill-text);
+  background: var(--pill-bg);
+  text-decoration: none;
+  transition:
+    transform 320ms var(--ease),
+    background-color 320ms var(--ease),
+    color 320ms var(--ease),
+    border-color 320ms var(--ease);
+}
+.site-closing-case .pill-btn:hover {
+  background: var(--pill-hover-bg);
+  color: var(--pill-hover-text);
+  border-color: var(--pill-hover-bg);
+  transform: translateY(-2px);
+}
+.site-closing-case .pill-btn:active { transform: translateY(0) scale(0.97); }
+.site-closing-case .pill-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 320ms var(--ease);
+}
+.site-closing-case .pill-btn:hover svg { transform: translateX(3px); }
+.site-closing-case .pill-btn:focus-visible,
+.site-closing-case .exp-contact__links a:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+.site-closing-case .pill-btn:focus-visible { border-radius: 999px; }
+.site-closing-case .exp-footer {
+  position: relative;
+  padding: 4rem var(--content-inset) 2rem;
+  background: transparent;
+  border: 0;
+}
+.site-closing-case .exp-footer::before {
+  content: "";
+  position: absolute;
+  top: 4rem;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  border-top: 1px solid var(--color-footer-divider);
+  pointer-events: none;
+}
+.site-closing-case .site-footer__inner { max-width: none; width: 100%; margin: 0; }
+.site-closing-case .site-footer__bottom { padding-top: 2rem; text-align: left; color: var(--color-text-3); }
+.site-closing-case .site-footer__note { margin: 0; font-size: 0.75rem; line-height: 1.6; }
+
+@media (max-width: 640px) {
+  .site-closing-case .exp-contact { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-closing-case .contact-reveal { opacity: 1 !important; transform: none !important; transition: none; }
+  .site-closing-case .pill-btn,
+  .site-closing-case .pill-btn svg { transition: none; }
+  .site-closing-case .pill-btn:hover,
+  .site-closing-case .pill-btn:hover svg { transform: none; }
+}

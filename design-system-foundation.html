@@ -510,11 +510,43 @@
               <span class="header-contact">Contact me</span>
             </div>
           </div>
+          <div class="header-menu-states" aria-label="Dropdown hover and selected state examples">
+            <div class="header-menu-example">
+              <p class="header-menu-example__label"><strong>Light mode</strong><code>hover #E2E2E2 · selected #0961FF</code></p>
+              <div class="header-menu-preview header-menu-preview--light">
+                <div class="header-menu-row is-hovered">
+                  <span class="header-menu-row__icon" aria-hidden="true">EO</span>
+                  <span>E.ON Solar</span>
+                </div>
+                <div class="header-menu-row is-selected">
+                  <span class="header-menu-row__icon" aria-hidden="true">DS</span>
+                  <span>Design System</span>
+                </div>
+              </div>
+            </div>
+            <div class="header-menu-example">
+              <p class="header-menu-example__label"><strong>Dark mode</strong><code>hover #474747 · selected #7EA2FF</code></p>
+              <div class="header-menu-preview header-menu-preview--dark">
+                <div class="header-menu-row is-hovered">
+                  <span class="header-menu-row__icon" aria-hidden="true">EO</span>
+                  <span>E.ON Solar</span>
+                </div>
+                <div class="header-menu-row is-selected">
+                  <span class="header-menu-row__icon" aria-hidden="true">DS</span>
+                  <span>Design System</span>
+                </div>
+              </div>
+            </div>
+          </div>
           <p class="spec-body" style="margin-top:1rem">
             Anatomy: wordmark 1.75rem / 600 · centered nav 1.0625rem at 72% white · language
             dropdown · pill outline CTA. Height 80px, 96px from md. Scrim until scrollY &gt; 12,
             then glass <code>backdrop-blur-xl</code> with a fade mask. Mobile: hamburger, stacked links,
-            language as a split pair. Hover 200ms. Menu 150ms fade/zoom.
+            language as a split pair. Menu panel uses 0 padding, full-width rows, square row corners,
+            and a 6px panel radius. Hover uses <code>#E2E2E2</code> light / <code>#474747</code> dark.
+            Selected uses a 4px left bar (<code>#0961FF</code> light / <code>#7EA2FF</code> dark)
+            plus 700 text. Selected overrides hover, so pointer hover never removes the bar or weight.
+            Hover 200ms. Menu 150ms fade/zoom.
           </p>
         </article>
 
@@ -882,6 +914,8 @@
           <li>
             <strong>Nav current-state contrast.</strong> About HTML nav-link default is 88% white
             with a text-shadow; other pages use 72% and no shadow. Live React header has no underline.
+            Dropdown hover and selected states are intentionally different: hover is a temporary gray
+            fill; selected is a persistent 4px blue left bar plus 700 text, and selected wins on hover.
           </li>
         </ul>
       </div>

@@ -13,7 +13,6 @@ import {
 import { OnceReveal } from '@eon/components/motion/once-reveal'
 import { ContentContainer } from '@eon/components/content-container'
 import { SectionLabel } from '@eon/components/section-label'
-import { DecisionsPurpleShape } from '@eon/components/decisions/background-shapes'
 import { cn } from '@eon/lib/utils'
 import { useTranslation } from '@i18n/use-translation'
 
@@ -81,7 +80,6 @@ export function DesignDecisionsSection() {
 
   return (
     <section className="relative overflow-x-clip">
-      <DecisionsPurpleShape />
       <ContentContainer className="case-study-section relative z-[1] flex flex-col gap-8">
         <OnceReveal as="header" className="relative flex flex-col gap-4">
           <SectionLabel
@@ -148,7 +146,7 @@ export function DesignDecisionsSection() {
                   {principle.emphasis}
                 </p>
                 <div className="pt-2">
-                  {principle.number === '01' ? <ComparisonPanel /> : null}
+                  {principle.number === '01' ? <ComparisonPanel active={isActive} /> : null}
                   {principle.number === '02' ? (
                     <EasyAnswerPanel household={household} onSelect={setHouseholdId} />
                   ) : null}

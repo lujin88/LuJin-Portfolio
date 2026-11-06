@@ -1,0 +1,23 @@
+.rv-sheet,.rv-output {box-sizing:border-box;font-family:Arial,sans-serif}
+.rv-sheet {background:#fff;color:#19324a;border:1px solid #d1dfe7;border-radius:12px;overflow:hidden}
+.rv-file,.rv-formula {display:flex;align-items:center;gap:12px}
+.rv-file {padding:14px 18px;background:#f5f9fa}.rv-file strong{font-size:15px}.rv-file small{margin-left:auto;color:#496478}
+.rv-gridmark {color:#286e5a;font-size:22px;line-height:1}
+.rv-formula {height:36px;padding:0 16px;color:#42596b;border-block:1px solid #e3ebef;font:12px ui-monospace,monospace}
+.rv-formula b {color:#254f49}.rv-formula i {color:#677f8c;margin-left:14px}
+.rv-sheet table {border-collapse:collapse;width:100%;table-layout:fixed;text-align:left;font-size:clamp(12px,1.15vw,15px)}
+.rv-sheet :is(td,th){height:36px;padding:0 10px;border:1px solid #e4eaee;font-weight:400}
+.rv-sheet tr>:first-child{width:34px;text-align:center;color:#657984;background:#f6f8fa;font-size:11px}
+.rv-sheet thead tr:first-child>*{height:24px;text-align:center;background:#f0f5f7;color:#506778;font-size:11px}
+.rv-sheet thead tr:nth-child(2) th{font-weight:600}
+.rv-sheet tr[data-selected=true] td{background:#f6f9fb;font-weight:600}
+.rv-sheet tr[data-selected=true] td:last-child {background:#fae7ae;color:#4c3919;outline:2px solid #b28c3c;outline-offset:-2px;position:relative}
+.rv-sheet tr[data-selected=true] td:last-child:after {content:"";position:absolute;right:1px;bottom:1px;width:5px;height:5px;background:#99752e}
+.rv-full>summary {cursor:pointer;padding:10px 0;width:fit-content;font-size:13px;color:#405a6e}
+.rv-output {display:grid;grid-template-columns:auto auto minmax(0,1fr) minmax(58px,18%);gap:14px;align-items:center;padding:20px 16px;margin:12px 0 16px;border-radius:9px;background:linear-gradient(110deg,#172a3a,#223e53);color:#f0f5f8}
+.rv-source,.rv-command {display:grid;justify-items:start;gap:6px}
+.rv-output small {color:#b8cad7;font-size:12px}
+.rv-source b {font:600 13px/1.2 Arial,sans-serif}.rv-source b[data-check=true]{background:#fae7ae;color:#4c3919;padding:4px 8px;border-radius:3px}
+.rv-arrow {color:#acbdc7}.rv-command strong{font:500 clamp(18px,2.1vw,30px)/1.06 Arial,sans-serif;letter-spacing:-.035em}
+.rv-command span{color:#bed0dc;font-size:12px}.rv-mark {width:100%;color:#c8deea}
+@media(max-width:600px){.rv-output{grid-template-columns:minmax(0,.7fr) 14px minmax(0,1.3fr);gap:7px;padding:14px 12px}.rv-mark{display:none}.rv-file{padding:12px}.rv-sheet :is(td,th){padding:0 6px}.rv-sheet tr>:first-child{width:22px}}
