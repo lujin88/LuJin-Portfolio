@@ -7,6 +7,7 @@
 .home-showcase-stage { position: relative; }
 .home-case { position: relative; min-height: 100svh; overflow: hidden; background: var(--color-bg-page); }
 .home-case-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 35% center; }
+#omni-model .home-case-image, #omni-model .advisory-office > :is(img, video) { object-position: 0% 100%; }
 .home-case-shade { position: absolute; inset: 0; background: linear-gradient(90deg, transparent 15%, var(--color-bg-page) 59%); }
 .home-case-copy { position: relative; width: 46%; margin-left: 54%; padding: 48px 48px 48px 0; color: var(--color-text-1); }
 .home-eyebrow { font-size: var(--font-size-caption); color: var(--color-theme-hover); font-weight: 600; margin: 0 0 24px; }
@@ -137,3 +138,17 @@
     stroke-dashoffset: 0;
   }
 }
+/* E.ON card: <picture> still inside the shared .advisory-office wrapper
+   (advisory-office.css only targets a direct img child). */
+#omni-model .advisory-office > picture > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 0% 100%; pointer-events: none; }
+#omni-model .advisory-office.is-playing > picture > img { visibility: hidden; }
+@media (prefers-reduced-motion: reduce) { #omni-model .advisory-office.is-playing > picture > img { visibility: visible; } }
+/* E.ON panel outline over the card video: same box and bottom-left cover
+   crop as the video; only shown while the video itself is showing. */
+#omni-model .eon-panel-stroke { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; visibility: hidden; overflow: hidden; }
+#omni-model .advisory-office.is-playing > .eon-panel-stroke { visibility: visible; }
+#omni-model .eon-panel-stroke polyline,
+#omni-model .eon-panel-stroke line { fill: none; stroke: #ffe2a3; stroke-width: 2px; stroke-linecap: round; stroke-linejoin: round; }
+#omni-model .eon-panel-stroke .eon-stroke-fill { fill: #fff; stroke: none; }
+@media (max-width: 767px) { #omni-model .eon-panel-stroke polyline, #omni-model .eon-panel-stroke line { stroke-width: 1.25px; } }
+@media (prefers-reduced-motion: reduce) { #omni-model .eon-panel-stroke { display: none; } }
