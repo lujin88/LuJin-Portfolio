@@ -63,7 +63,7 @@ export function ShowValuePanel({ household }: { household: HouseholdState }) {
                 <Leaf className="size-4 text-foreground" strokeWidth={1.75} aria-hidden="true" />
               </span>
               <p className="text-xs font-medium text-muted-foreground">{t('eon.ui.potentialSavings')}</p>
-              <p className="text-balance text-[clamp(1.35rem,6.5vw,1.65rem)] font-extrabold leading-tight tracking-tight text-[#1f7a4c]">
+              <p className="text-balance text-[clamp(1.35rem,6.5vw,1.65rem)] font-extrabold leading-tight tracking-tight text-[#38684d]">
                 {yearly} {t('eon.ui.year').trim()}
               </p>
               <p className="text-[11px] leading-relaxed text-muted-foreground">
