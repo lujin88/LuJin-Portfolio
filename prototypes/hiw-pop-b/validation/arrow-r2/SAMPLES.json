@@ -1,0 +1,82 @@
+[
+  {
+    "target": 0,
+    "actual": 0,
+    "errors": []
+  },
+  {
+    "target": 20,
+    "actual": 20.009999999999998,
+    "errors": []
+  },
+  {
+    "target": 40,
+    "actual": 41.65999999999999,
+    "errors": []
+  },
+  {
+    "target": 60,
+    "actual": 60.000000000000014,
+    "errors": []
+  },
+  {
+    "target": 80,
+    "actual": 80.00000000000003,
+    "errors": []
+  },
+  {
+    "target": 100,
+    "actual": 101.66,
+    "errors": []
+  },
+  {
+    "target": 120,
+    "actual": 121.66000000000003,
+    "errors": []
+  },
+  {
+    "target": 140,
+    "actual": 141.66000000000003,
+    "errors": []
+  },
+  {
+    "target": 160,
+    "actual": 160.00000000000003,
+    "errors": []
+  },
+  {
+    "target": 180,
+    "actual": 181.66000000000005,
+    "errors": []
+  },
+  {
+    "target": 200,
+    "actual": 201.66000000000005,
+    "errors": []
+  },
+  {
+    "target": 220,
+    "actual": 221.65,
+    "errors": []
+  },
+  {
+    "target": 240,
+    "actual": 241.65000000000003,
+    "errors": []
+  },
+  {
+    "target": 260,
+    "actual": 261.66,
+    "errors": []
+  },
+  {
+    "target": 280,
+    "actual": 281.65,
+    "errors": []
+  },
+  {
+    "target": 300,
+    "actual": 301.66,
+    "errors": []
+  }
+]

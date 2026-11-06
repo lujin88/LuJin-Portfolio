@@ -1,0 +1,26 @@
+[
+  {
+    "width": 1440,
+    "stopLatencyMs": [
+      0,
+      0,
+      0,
+      0.09999999776482582,
+      0
+    ],
+    "stableWhileReduced": true,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "stopLatencyMs": [
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stableWhileReduced": true,
+    "errors": []
+  }
+]

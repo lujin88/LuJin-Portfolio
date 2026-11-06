@@ -1,0 +1,23 @@
+测试锁被占用，排队中。占用者：
+pid 78786 | 开始 2026-11-05 17:19:32 | 目录 /Users/lu/.buzz/.scratch/eon-motion-proto
+命令 arch -arm64 node rec.mjs http://localhost:4712 /Users/lu/.buzz/OUTBOX/EON_MOTION_PROTO_R3_20261105 params_r3.json
+[test-lock] 开始 17:20:53 负载 7.55 7.79 7.64 排队 80 秒
+NORMAL done
+SLOW done
+REDUCED done
+MOBILE done
+[
+  {
+    width: 1440,
+    stopLatencyMs: [ 0, 0, 0, 0.09999999776482582, 0 ],
+    stableWhileReduced: true,
+    errors: []
+  },
+  {
+    width: 390,
+    stopLatencyMs: [ 0.10000000149011612, 0, 0, 0, 0 ],
+    stableWhileReduced: true,
+    errors: []
+  }
+]
+[test-lock] 结束 17:23:18 负载 10.79 9.00 8.15 退出码 0

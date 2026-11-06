@@ -1,0 +1,17 @@
+{
+  "Bear": {
+    "frames": "320",
+    "holdVaryingProperties": []
+  },
+  "Rabbit": {
+    "frames": "320",
+    "holdVaryingProperties": []
+  },
+  "Fox": {
+    "frames": "320",
+    "holdVaryingProperties": []
+  },
+  "decideFirstFrame": 137,
+  "decideSeconds": 2.283333333333333,
+  "leadInReductionPercent": 35.07109004739336
+}

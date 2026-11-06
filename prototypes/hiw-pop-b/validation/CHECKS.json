@@ -1,0 +1,78 @@
+[
+  {
+    "mode": "NORMAL",
+    "errors": [],
+    "rivs": [
+      "http://127.0.0.1:4777/assets/motion/how-i-work/r9/bear.riv",
+      "http://127.0.0.1:4777/assets/motion/how-i-work/r9/rabbit.riv",
+      "http://127.0.0.1:4777/assets/motion/how-i-work/r9/fox.riv"
+    ],
+    "geometry": {
+      "x": 581.8414306640625,
+      "y": 260.575439453125,
+      "width": 782.676513671875,
+      "height": 482.8922119140625
+    },
+    "overflow": true,
+    "width": {
+      "viewport": 1440,
+      "document": 1448
+    }
+  },
+  {
+    "mode": "SLOW",
+    "errors": [],
+    "rivs": [
+      "http://127.0.0.1:4777/assets/motion/how-i-work/r9/bear.riv",
+      "http://127.0.0.1:4777/assets/motion/how-i-work/r9/rabbit.riv",
+      "http://127.0.0.1:4777/assets/motion/how-i-work/r9/fox.riv"
+    ],
+    "geometry": {
+      "x": 581.8414306640625,
+      "y": 260.575439453125,
+      "width": 782.676513671875,
+      "height": 482.8922119140625
+    },
+    "overflow": true,
+    "width": {
+      "viewport": 1440,
+      "document": 1448
+    }
+  },
+  {
+    "mode": "REDUCED",
+    "errors": [],
+    "rivs": [],
+    "geometry": {
+      "x": 581.8414306640625,
+      "y": 260.7054443359375,
+      "width": 782.676513671875,
+      "height": 482.8922119140625
+    },
+    "overflow": false,
+    "width": {
+      "viewport": 1440,
+      "document": 1440
+    }
+  },
+  {
+    "mode": "MOBILE",
+    "errors": [],
+    "rivs": [
+      "http://127.0.0.1:4777/assets/motion/how-i-work/r9/bear.riv",
+      "http://127.0.0.1:4777/assets/motion/how-i-work/r9/rabbit.riv",
+      "http://127.0.0.1:4777/assets/motion/how-i-work/r9/fox.riv"
+    ],
+    "geometry": {
+      "x": 35.69999694824219,
+      "y": 464.767822265625,
+      "width": 318.59999084472656,
+      "height": 196.56561279296875
+    },
+    "overflow": true,
+    "width": {
+      "viewport": 390,
+      "document": 427
+    }
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "base": true,
+    "viewport": 1440,
+    "width": 1448
+  },
+  {
+    "base": false,
+    "viewport": 1440,
+    "width": 1448
+  },
+  {
+    "base": true,
+    "viewport": 390,
+    "width": 427
+  },
+  {
+    "base": false,
+    "viewport": 390,
+    "width": 427
+  }
+]
