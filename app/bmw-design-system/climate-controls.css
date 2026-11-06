@@ -1,0 +1,7 @@
+:where(.mp-climate-controls){container-type:inline-size;width:100%;font-family:"Arial Narrow",Arial,sans-serif;line-height:1.1}
+:where(.mp-climate-controls) .rb-climate{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3.5cqw}
+:where(.mp-climate-controls .rb-tile){box-sizing:border-box;display:flex;flex-direction:column;align-items:flex-start;min-height:29cqw;padding:3.6cqw 4.05cqw;border:0;border-radius:1.5cqw;text-align:left;background:#252527;color:#fff;font-family:inherit}
+:where(.mp-climate-controls .rb-tile b){font-size:3.84cqw;letter-spacing:-.025em}
+:where(.mp-climate-controls .rb-tile>span){font-size:3.43cqw;color:#bababc}
+:where(.mp-climate-controls .rb-tile-bottom){display:flex;margin-top:auto;padding-top:2cqw}
+.mp-climate-controls svg{display:block;width:5.3cqw;height:auto;fill:none;stroke:currentColor;stroke-width:1.45;stroke-linejoin:round;stroke-linecap:round}

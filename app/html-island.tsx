@@ -1,161 +1,70 @@
-'use client'
+import { createHash } from 'node:crypto'
+import { IslandActivator } from './html-island-activate'
 
-import { useLayoutEffect, useRef } from 'react'
+const EXECUTABLE_TYPES = new Set([
+  '',
+  'module',
+  'text/javascript',
+  'application/javascript',
+  'text/ecmascript',
+  'application/ecmascript',
+])
 
-function cloneScript(from: HTMLScriptElement) {
-  const script = document.createElement('script')
-  for (const attr of from.attributes) {
-    script.setAttribute(attr.name, attr.value)
-  }
-  const type = (script.getAttribute('type') || '').toLowerCase()
-  if (type !== 'module') script.async = false
-  script.textContent = from.textContent
-  return script
+// Whole <script>…</script> blocks. Only the opening tag is rewritten.
+// An escaped <\/script> inside source does not end the block, so a string
+// such as innerHTML="<script><\/script>" is left unchanged.
+function neutralizeScripts(html: string) {
+  return html.replace(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi, (full, attrs: string, inner: string) => {
+    const typeMatch = attrs.match(/\btype\s*=\s*(['"])([^'"]*)\1/i)
+    const type = (typeMatch?.[2] ?? '').trim().toLowerCase()
+    if (!EXECUTABLE_TYPES.has(type)) return full
+    const attrsWithoutType = typeMatch ? attrs.replace(typeMatch[0], '') : attrs
+    const orig = type ? ` data-island-type="${type}"` : ''
+    return `<script type="text/plain" data-island-script=""${orig}${attrsWithoutType}>${inner}</script>`
+  })
 }
 
-function isModuleScript(script: HTMLScriptElement) {
-  const type = (script.getAttribute('type') || '').toLowerCase()
-  if (type === 'module') return true
-  return /^\s*import\b/.test(script.textContent ?? '')
+function islandToken(head: string, body: string) {
+  return createHash('sha256').update(head).update('\0').update(body).digest('hex')
 }
 
-function replaceScripts(root: ParentNode, signal: AbortSignal) {
-  const origAdd = EventTarget.prototype.addEventListener
-  EventTarget.prototype.addEventListener = function (type, listener, options) {
-    if (typeof options === 'boolean') {
-      return origAdd.call(this, type, listener, { capture: options, signal })
-    }
-    if (options && typeof options === 'object' && options.signal) {
-      return origAdd.call(this, type, listener, options)
-    }
-    return origAdd.call(this, type, listener, { ...(options ?? {}), signal })
-  }
+function staticHead(head: string) {
+  return head
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi, '')
+    .replace(/<meta\b[^>]*\/?>/gi, '')
+}
 
-  try {
-    root.querySelectorAll('script').forEach((old) => {
-      const next = cloneScript(old)
-      const type = (next.getAttribute('type') || '').toLowerCase()
-      const moduleScript = isModuleScript(next)
-      if (moduleScript) next.type = 'module'
-      const isClassicInline =
-        !moduleScript &&
-        !next.getAttribute('src') &&
-        (!type || type === 'text/javascript' || type === 'application/javascript')
-      // Scope top-level const/let so React Strict Mode remounts can re-run
-      // classic scripts without "already been declared" errors.
-      // Never wrap module scripts — wrapping `import { ... }` throws and
-      // Next.js paints a white error overlay during navigation.
-      if (isClassicInline) {
-        next.textContent = `(function(){\n${next.textContent ?? ''}\n})();`
-      }
-      try {
-        old.replaceWith(next)
-      } catch {
-        next.remove()
-      }
-    })
-  } finally {
-    EventTarget.prototype.addEventListener = origAdd
-  }
+// .reveal / .contact-reveal start at opacity 0, so an SSR body still paints as
+// an empty black page until the island script adds .is-visible. Keep them
+// visible until that script is about to run; the activator then restores the
+// authored hidden state for anything still outside the viewport.
+const PAINT_STYLE = `<style data-island-paint>
+[data-html-island] .reveal,
+[data-html-island] .contact-reveal{opacity:1;transform:none}
+html.island-live [data-html-island] .reveal:not(.is-visible){opacity:0;transform:translateY(28px)}
+html.island-live [data-html-island] .contact-reveal:not(.is-visible){opacity:0;transform:translateY(20px)}
+</style>`
+
+function headScriptTemplate(head: string) {
+  const scripts = head.match(/<script\b[^>]*>[\s\S]*?<\/script>/gi) ?? []
+  if (scripts.length === 0) return ''
+  return `<template data-island-head>${scripts.map((script) => neutralizeScripts(script)).join('')}</template>`
 }
 
 export function HtmlIsland({ head, body }: { head: string; body: string }) {
-  const bodyRef = useRef<HTMLDivElement>(null)
-
-  useLayoutEffect(() => {
-    const staging = document.createElement('div')
-    staging.innerHTML = head
-    const added: HTMLElement[] = []
-    const scripts: HTMLScriptElement[] = []
-
-    Array.from(staging.children).forEach((node) => {
-      const tag = node.tagName
-      if (tag === 'TITLE' || tag === 'META') return
-      if (tag === 'SCRIPT') {
-        scripts.push(node as HTMLScriptElement)
-        return
-      }
-      const imported = document.importNode(node, true)
-      document.head.appendChild(imported)
-      added.push(imported as HTMLElement)
-    })
-
-    let cancelled = false
-    const observers: MutationObserver[] = []
-    const NativeObserver = window.MutationObserver
-    // The Tailwind CDN script keeps a document observer alive after its
-    // <script> node is removed and rewrites utilities (text-ink, borders)
-    // for whatever route mounts next. Track observers it creates so leaving
-    // the island can disconnect them.
-    const TrackingObserver = class extends NativeObserver {
-      constructor(callback: MutationCallback) {
-        super(callback)
-        observers.push(this)
-      }
-    }
-    window.MutationObserver = TrackingObserver
-    const stylesBefore = new Set(document.querySelectorAll('style'))
-
-    const runScripts = async () => {
-      for (const src of scripts) {
-        if (cancelled) return
-        const script = cloneScript(src)
-        added.push(script)
-        if (src.getAttribute('src')) {
-          await new Promise<void>((resolve) => {
-            script.onload = () => resolve()
-            script.onerror = () => resolve()
-            if (cancelled) return
-            document.head.appendChild(script)
-          })
-        } else {
-          try {
-            document.head.appendChild(script)
-          } catch {
-            // Inline config may run before the CDN script finishes; ignore.
-          }
-        }
-      }
-    }
-    void runScripts().finally(() => {
-      if (window.MutationObserver === TrackingObserver) {
-        window.MutationObserver = NativeObserver
-      }
-    })
-
-    return () => {
-      cancelled = true
-      if (window.MutationObserver === TrackingObserver) {
-        window.MutationObserver = NativeObserver
-      }
-      observers.forEach((observer) => observer.disconnect())
-      added.forEach((node) => node.remove())
-      document.querySelectorAll('style').forEach((style) => {
-        if (!stylesBefore.has(style)) style.remove()
-      })
-    }
-  }, [head])
-
-  useLayoutEffect(() => {
-    const root = bodyRef.current
-    if (!root) return
-    const ac = new AbortController()
-    root.innerHTML = body
-    replaceScripts(root, ac.signal)
-    return () => {
-      ac.abort()
-      root.innerHTML = ''
-    }
-  }, [body])
-
+  const markup = `${PAINT_STYLE}${staticHead(head)}${headScriptTemplate(head)}${neutralizeScripts(body)}`
   return (
-    <div
-      ref={bodyRef}
-      // Horizontal clip lives on <html>, not here. overflow-x-hidden on this
-      // wrapper creates a scroll container and kills Index pin-wrap sticky.
-      data-html-island=""
-      className="min-h-svh min-w-[360px]"
-      style={{ background: 'var(--color-bg-page)', color: 'var(--color-text-1)' }}
-    />
+    <>
+      <div
+        // Horizontal clip lives on <html>, not here. overflow-x-hidden on this
+        // wrapper creates a scroll container and kills Index pin-wrap sticky.
+        data-html-island=""
+        className="min-h-svh min-w-[360px]"
+        style={{ background: 'var(--color-bg-page)', color: 'var(--color-text-1)' }}
+        dangerouslySetInnerHTML={{ __html: markup }}
+      />
+      <IslandActivator token={islandToken(head, body)} />
+    </>
   )
 }

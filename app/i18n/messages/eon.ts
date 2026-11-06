@@ -29,7 +29,7 @@ export const eon = {
       title1: 'We had the traffic.',
       title2: 'Not the leads.',
       body1:
-        'E.ON was investing in paid traffic, but too few visitors converted — baseline lead conversion sat around 5.1%. People were researching solar and comparing options, then dropping off before they finished the calculator. We never got their details.',
+        'E.ON paid for traffic, but only about 5.1% converted to leads. People researched solar, then dropped off before finishing the calculator. We never got their details.',
       body2Lead: 'The opportunity wasn’t more traffic.',
       body2Strong: 'It was more value from the traffic we already had.',
     },
@@ -43,12 +43,22 @@ export const eon = {
       insightBody: "Interest was there. Confidence wasn't.",
       photoAlt:
         "Audience research summary: 66.7% of homeowners are aged 40+, alongside profiles of cost-conscious, sustainability-minded, and information-seeking homeowners, over a photo of a family looking at their solar-paneled home at dusk, annotated 'Still exploring. Still deciding.'",
+      evidence: {
+        statLabel: 'Homeowners aged 40+',
+        segments: [
+          { title: 'Cost-conscious homeowners', quote: '“Is it worth it for me?”' },
+          { title: 'Sustainability-minded homeowners', quote: '“A cleaner future.”' },
+          { title: 'Information seekers', quote: '“I just want to understand my options.”' },
+        ],
+        hand1: 'Still exploring.',
+        hand2: 'Still deciding.',
+      },
     },
     journey: {
       eyebrow: 'The Journey',
       title: 'A narrow window, lost at Calculate.',
       hand: 'The solar calculator was a critical step between interest and becoming a lead.',
-      body: 'Homeowners typically decided within 24 hours of their first visit — but over 85% dropped off at Calculate before they got that far. A slow, heavy calculator was costing us the entire decision window.',
+      body: 'Homeowners usually decided within 24 hours — but over 85% dropped off at Calculate. A slow, heavy calculator cost us the whole decision window.',
       steps: ['Visit', 'Explore', 'Calculate', 'Consider', 'Apply', 'Purchase'],
     },
     problem: {
@@ -65,6 +75,12 @@ export const eon = {
       hand2b: 'Many drop-offs.',
       floorAlt: 'Architectural floor-plan sheet of a home, showing detailed wall dimensions',
       houseAlt: 'Solar calculator UI asking the customer to select their roof pitch',
+      pitch: {
+        select: 'Select roof pitch',
+        or: 'or',
+        enter: 'Enter roof pitch',
+        unit: '°',
+      },
     },
     constraint: {
       eyebrow: 'The Design Constraint',
@@ -190,7 +206,7 @@ export const eon = {
       title1: 'Wir hatten den Traffic.',
       title2: 'Nicht die Leads.',
       body1:
-        'E.ON investierte in Paid Traffic, aber zu wenige Besucher konvertierten — die Lead-Conversion lag bei rund 5,1 %. Die Menschen informierten sich über Solar und verglichen Angebote, brachen aber ab, bevor sie den Rechner abgeschlossen hatten. Ihre Kontaktdaten bekamen wir nie.',
+        'E.ON bezahlte für Traffic, doch nur rund 5,1 % wurden zu Leads. Die Menschen informierten sich über Solar und brachen dann vor dem Ende des Rechners ab. Ihre Kontaktdaten bekamen wir nie.',
       body2Lead: 'Die Chance war nicht mehr Traffic.',
       body2Strong: 'Sondern mehr Wert aus dem Traffic, den wir schon hatten.',
     },
@@ -204,12 +220,22 @@ export const eon = {
       insightBody: 'Interesse war da. Sicherheit nicht.',
       photoAlt:
         'Research-Zusammenfassung: 66,7 % der Eigenheimbesitzer sind 40+, dazu Profile kostenbewusster, nachhaltigkeitsorientierter und informationssuchender Haushalte, über einem Foto einer Familie vor ihrem Solarhaus in der Dämmerung, annotiert „Noch am Erkunden. Noch am Entscheiden.“',
+      evidence: {
+        statLabel: 'Eigenheim­besitzer ab 40',
+        segments: [
+          { title: 'Kostenbewusste Eigenheim­besitzer', quote: '„Lohnt sich das für mich?“' },
+          { title: 'Umweltbewusste Eigenheim­besitzer', quote: '„Eine sauberere Zukunft.“' },
+          { title: 'Informations­suchende', quote: '„Ich will einfach verstehen, welche Möglichkeiten ich habe.“' },
+        ],
+        hand1: 'Noch am Erkunden.',
+        hand2: 'Noch am Entscheiden.',
+      },
     },
     journey: {
       eyebrow: 'Die Journey',
       title: 'Ein kurzes Zeitfenster, verloren am Rechner.',
       hand: 'Der Solarrechner war der kritische Schritt zwischen Interesse und Lead.',
-      body: 'Eigenheimbesitzer entschieden meist innerhalb von 24 Stunden nach dem ersten Besuch — doch über 85 % brachen schon beim Rechner ab. Ein langsamer, schwerfälliger Rechner kostete uns das gesamte Entscheidungsfenster.',
+      body: 'Eigenheimbesitzer entschieden meist innerhalb von 24 Stunden — doch über 85 % brachen beim Rechner ab. Ein langsamer, schwerfälliger Rechner kostete uns das ganze Entscheidungsfenster.',
       steps: ['Besuch', 'Erkunden', 'Rechner', 'Abwägen', 'Antrag', 'Kauf'],
     },
     problem: {
@@ -226,6 +252,12 @@ export const eon = {
       hand2b: 'Viele Abbrüche.',
       floorAlt: 'Grundriss eines Hauses mit detaillierten Wandmaßen',
       houseAlt: 'Solarrechner-UI, die nach der Dachneigung fragt',
+      pitch: {
+        select: 'Dachneigung auswählen',
+        or: 'oder',
+        enter: 'Dachneigung eingeben',
+        unit: '°',
+      },
     },
     constraint: {
       eyebrow: 'Die Designhürde',
@@ -267,10 +299,10 @@ export const eon = {
       foundRoof: 'Wir haben Ihr Dach gefunden',
       roofSizeQ: 'Dachfläche?',
       roofInclinationQ: 'Dachneigung?',
-      sunlightQ: 'Sonneneinstrahlung?',
+      sunlightQ: 'Sonnen\u00ADeinstrahlung?',
       roofSize: 'Dachfläche',
       roofInclination: 'Dachneigung',
-      sunlight: 'Sonneneinstrahlung',
+      sunlight: 'Sonnen\u00ADeinstrahlung',
       roofPitch: 'Dachneigung',
       beforeMapAlt: 'Luftbild eines Hausdachs vor der Analyse',
       afterMapAlt: 'Luftbild desselben Dachs mit hervorgehobener Sonneneinstrahlung',
@@ -305,7 +337,7 @@ export const eon = {
       line1: 'Testen mit',
       line2: 'echten Kunden.',
       body: 'Wir haben den neuen Rechner mit Kunden getestet und mehrere Feedback-Quellen kombiniert.',
-      sources: ['Kundenresearch', 'Website-Analytics', 'Hotjar', 'Sales-Feedback'],
+      sources: ['Kunden\u00ADresearch', 'Website-Analytics', 'Hotjar', 'Sales-Feedback'],
       hand1: 'Weniger Aufwand.',
       hand2: 'Schnelleres Verstehen.',
       quote1: 'Es war so viel',

@@ -1,5 +1,5 @@
-import { PlaybookPage } from './playbook-page'
+import { WayOfWork } from './field-notes'
 
 export default function Page() {
-  return <PlaybookPage />
+  return <WayOfWork portfolio />
 }

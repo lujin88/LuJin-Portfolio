@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   description:
     'Design leadership across product and service — from early-stage strategy to production-ready systems.',
   icons: {
-    icon: [{ url: '/assets/images/brand/lu-logo.png', type: 'image/png' }],
-    shortcut: '/assets/images/brand/lu-logo.png',
-    apple: '/assets/images/brand/lu-logo.png',
+    icon: [{ url: '/assets/images/brand/favicon-32.png', type: 'image/png', sizes: '32x32' }],
+    shortcut: '/assets/images/brand/favicon-32.png',
+    apple: [{ url: '/assets/images/brand/apple-touch-icon-180.png', sizes: '180x180' }],
   },
 }
 
@@ -32,6 +32,15 @@ export const viewport: Viewport = {
   colorScheme: 'dark',
   themeColor: '#0a0a0a',
 }
+
+// /index WA card follows the visitor's local season (months 3-5 spring, 6-8
+// summer, 9-11 autumn, 12-2 winter). Set on <html> during the first parse so
+// CSS paints that season's still before first paint. Lives in the root layout
+// because it never re-renders on client navigation (a <script> in a page would
+// trip React's "script tag while rendering" warning). Keep the mapping in sync
+// with the fallback in public/assets/js/wa-season.js.
+const WA_SEASON_EARLY =
+  "(function(){var m=new Date().getMonth();document.documentElement.dataset.waSeason=m>=2&&m<=4?'spring':m>=5&&m<=7?'summer':m>=8&&m<=10?'autumn':'winter'})()"
 
 export default function RootLayout({
   children,
@@ -46,7 +55,10 @@ export default function RootLayout({
       className={`${caveat.variable} ${poppins.variable} overflow-x-hidden`}
       style={{ backgroundColor: '#0a0a0a', colorScheme: 'dark' }}
     >
-      <body className="min-w-[360px] antialiased">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: WA_SEASON_EARLY }} />
+      </head>
+      <body className="m-0 min-w-[360px] antialiased">
         <I18nProvider>{children}</I18nProvider>
       </body>
     </html>

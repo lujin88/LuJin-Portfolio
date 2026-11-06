@@ -15,8 +15,8 @@
   overflow: hidden;
   padding-top: clamp(4.5rem, 8vw, 7rem);
   padding-bottom: clamp(4.5rem, 8vw, 7rem);
-  padding-left: var(--ca-page-pad, clamp(1.5rem, 4vw, 4rem));
-  padding-right: var(--ca-page-pad, clamp(1.5rem, 4vw, 4rem));
+  padding-left: var(--content-inset, 24px);
+  padding-right: var(--content-inset, 24px);
   background:
     radial-gradient(60% 45% at 50% 20%, rgba(28, 74, 150, 0.32), transparent 70%),
     radial-gradient(70% 48% at 50% 100%, rgba(18, 56, 120, 0.26), transparent 72%),
