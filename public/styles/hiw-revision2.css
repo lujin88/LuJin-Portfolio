@@ -1,0 +1,32 @@
+/* HIW revision 2: same artwork and timing as reviewed in PR #52. */
+.ai-decides-section .ad-art-stage {
+  mask-image: none;
+  -webkit-mask-image: none;
+  overflow: visible;
+}
+.ai-decides-section .hiw-video,
+.ai-decides-section .hiw-r2-still {
+  mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201060%20654%22%3E%3Crect%20width%3D%221060%22%20height%3D%22654%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M28%20193%20C190%2075%20812%2072%20987%20262%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%2272%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%22320%22%20y%3D%220%22%20width%3D%22320%22%20height%3D%22101%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201060%20654%22%3E%3Crect%20width%3D%221060%22%20height%3D%22654%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M28%20193%20C190%2075%20812%2072%20987%20262%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%2272%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%22320%22%20y%3D%220%22%20width%3D%22320%22%20height%3D%22101%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E");
+  mask-mode: luminance;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  mix-blend-mode: lighten;
+}
+.ai-decides-section .hiw-decide-layer,
+.hiw-exp-seam__path { display: none !important; }
+.ai-decides-section .ad-art { opacity: 0 !important; }
+.ai-decides-section .hiw-r2-still {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.ai-decides-section .ad-art-stage:has(.hiw-video.is-playing) .hiw-r2-still {
+  visibility: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ai-decides-section .hiw-r2-still { visibility: visible !important; }
+  .ai-decides-section .hiw-video { display: none; }
+}

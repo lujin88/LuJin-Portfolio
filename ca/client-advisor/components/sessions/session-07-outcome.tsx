@@ -1,8 +1,8 @@
 'use client'
 
-import type { CSSProperties, ReactNode } from 'react'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import Image from 'next/image'
-import { BarChart3, Clock, Users } from 'lucide-react'
+import { watchState } from '@/lib/observe-once'
 import { ProcessJourney } from './process-journey'
 import { TiltCard } from './tilt-card'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
@@ -36,7 +36,7 @@ export function Session07Outcome() {
         className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-[linear-gradient(180deg,transparent_0%,var(--ca-bg)_100%)]"
       />
 
-      <div className="relative mx-auto flex h-auto w-full max-w-[1440px] flex-col gap-12 overflow-visible px-6 py-24 sm:px-10 lg:mx-0 lg:max-w-none lg:py-28 lg:pl-[var(--ca-rail)] lg:pr-16 xl:flex-row xl:items-center xl:gap-20 xl:pr-20">
+      <div className="relative mx-auto flex h-auto w-full max-w-[1440px] flex-col gap-12 overflow-visible px-[var(--content-inset,24px)] py-24 lg:mx-0 lg:max-w-none lg:py-28 xl:flex-row xl:items-center xl:gap-20">
         <Editorial />
         <Outcomes />
       </div>
@@ -79,49 +79,97 @@ function Editorial() {
 
 function Outcomes() {
   const { t } = useTranslation()
+  const metrics = [
+    { value: t('ca.outcome.m1Value'), label: t('ca.outcome.m1Label'), image: '/assets/images/client-advisory/sessions/07/card-01.png', imageAlt: t('ca.outcome.m1Alt') },
+    { value: t('ca.outcome.m2Value'), label: t('ca.outcome.m2Label'), image: '/assets/images/client-advisory/sessions/07/card-02.png', imageAlt: t('ca.outcome.m2Alt') },
+    { value: t('ca.outcome.m3Value'), label: t('ca.outcome.m3Label'), eyebrow: t('ca.outcome.reach'), image: '/assets/images/client-advisory/sessions/07/card-03.png', imageAlt: t('ca.outcome.m3Alt') },
+  ]
   return (
-    <ScrollReveal className="flex h-auto w-full flex-col gap-5 overflow-visible xl:w-[62%]">
-      <div className="flex items-baseline justify-between gap-6 px-1 text-[12px] font-medium uppercase tracking-[0.18em] text-[var(--ca-muted)]">
-        <span>{t('ca.outcome.avgFeedback')}</span>
-        <span className="hidden xl:block">{t('ca.outcome.reach')}</span>
-      </div>
+    <div className="flex h-auto w-full flex-col gap-5 overflow-visible xl:w-[62%]">
+      <p className="sr-only">{t('ca.outcome.avgFeedback')}</p>
 
       <div className="grid h-auto grid-cols-1 gap-4 overflow-visible md:grid-cols-2 md:gap-5 xl:grid-cols-3">
-        <MetricCard
-          icon={<Clock className="size-5" strokeWidth={2.2} />}
-          value={t('ca.outcome.m1Value')}
-          label={t('ca.outcome.m1Label')}
-          image="/assets/images/client-advisory/sessions/07/card-01.png"
-          imageAlt={t('ca.outcome.m1Alt')}
-        />
-
-        <MetricCard
-          icon={<BarChart3 className="size-5" strokeWidth={2.2} />}
-          value={t('ca.outcome.m2Value')}
-          label={t('ca.outcome.m2Label')}
-          image="/assets/images/client-advisory/sessions/07/card-02.png"
-          imageAlt={t('ca.outcome.m2Alt')}
-        />
-
-        <MetricCard
-          icon={<Users className="size-5" strokeWidth={2.2} />}
-          value={t('ca.outcome.m3Value')}
-          label={t('ca.outcome.m3Label')}
-          eyebrow={t('ca.outcome.reach')}
-          image="/assets/images/client-advisory/sessions/07/card-03.png"
-          imageAlt={t('ca.outcome.m3Alt')}
-        />
+        {metrics.map((metric, index) => (
+          <MetricCard key={metric.image} index={index} {...metric} />
+        ))}
       </div>
 
-      <p className="max-w-[720px] text-pretty px-1 pt-1 text-[14px] leading-relaxed text-[var(--ca-dim)]">
-        {t('ca.outcome.footnote')}
-      </p>
-    </ScrollReveal>
+      <ScrollReveal className="max-w-[720px] px-1 pt-1" delay={700}>
+        <p className="text-pretty text-[14px] leading-relaxed text-[var(--ca-dim)]">{t('ca.outcome.footnote')}</p>
+      </ScrollReveal>
+    </div>
+  )
+}
+
+// Card rises in, artwork follows, then every number in the value counts up from 0.
+// Each card watches itself, so on one column (390) a card plays when it is reached.
+const STAGGER_MS = 160
+const COUNT_DELAY_MS = 250
+const COUNT_MS = 1400
+
+function useReveal<T extends Element>() {
+  const ref = useRef<T>(null)
+  const [state, setState] = useState<'idle' | 'play' | 'static'>('idle')
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (reduced.matches) {
+      setState('static')
+      return
+    }
+    // Re-read at trigger time: reduced motion may have been switched on since load.
+    return watchState(node, () => setState(reduced.matches ? 'static' : 'play'), 0.3)
+  }, [])
+  return [ref, state] as const
+}
+
+function CountUp({ text, play, delay }: { text: string; play: boolean; delay: number }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  useEffect(() => {
+    const node = ref.current
+    if (!play || !node) return
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (reduced.matches) {
+      // The previous run's cleanup wrote the old text; write the current one.
+      node.textContent = text
+      return
+    }
+    const parts = text.split(/(\d+)/)
+    const render = (k: number) => {
+      node.textContent = parts.map((part, i) => (i % 2 ? String(Math.round(Number(part) * k)) : part)).join('')
+    }
+    render(0)
+    let frame = 0
+    const start = performance.now() + delay
+    const tick = (now: number) => {
+      // Reduced motion switched on mid-count: jump to the final value.
+      if (reduced.matches) {
+        node.textContent = text
+        return
+      }
+      const k = Math.min(1, Math.max(0, (now - start) / COUNT_MS))
+      render(1 - Math.pow(1 - k, 3))
+      if (k < 1) frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => {
+      cancelAnimationFrame(frame)
+      node.textContent = text
+    }
+  }, [text, play, delay])
+  return (
+    <>
+      <span className="sr-only">{text}</span>
+      <span ref={ref} aria-hidden="true" className="tabular-nums">
+        {text}
+      </span>
+    </>
   )
 }
 
 type MetricCardProps = {
-  icon: ReactNode
+  index: number
   value: string
   label: string
   eyebrow?: string
@@ -129,44 +177,47 @@ type MetricCardProps = {
   imageAlt: string
 }
 
-function MetricCard({ icon, value, label, eyebrow, image, imageAlt }: MetricCardProps) {
+function MetricCard({ index, value, label, eyebrow, image, imageAlt }: MetricCardProps) {
+  const [ref, state] = useReveal<HTMLDivElement>()
+  const [wide, setWide] = useState(false)
+  useEffect(() => setWide(window.matchMedia('(min-width: 768px)').matches), [])
+  const delay = wide ? index * STAGGER_MS : 0
   return (
-    <TiltCard className="relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl border border-[var(--ca-line)] bg-[var(--ca-card)] shadow-[0_0_0_1px_rgba(61,139,255,0.04),0_30px_60px_-40px_rgba(61,139,255,0.35)]">
-      <div className="absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]">
-        <Image
-          src={image}
-          alt={imageAlt}
-          fill
-          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw"
-          className="object-cover object-bottom"
-        />
-      </div>
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-[64%] bg-gradient-to-b from-[var(--ca-card)] via-[var(--ca-card)]/90 via-[60%] to-transparent"
-      />
-
-      <div
-        className="relative flex flex-1 flex-col gap-5 p-6 transition-transform duration-500 ease-out"
-        style={{ transform: 'translate3d(var(--tilt-x), var(--tilt-y), 0)' }}
-      >
-        {eyebrow ? <span className="sr-only">{eyebrow}</span> : null}
-
-        <span
-          aria-hidden="true"
-          className="flex size-12 items-center justify-center rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(61,139,255,0.55),rgba(61,139,255,0.18)_70%)] text-[var(--ca-accent-soft)] shadow-[0_0_24px_rgba(61,139,255,0.35),inset_0_0_0_1px_rgba(124,192,255,0.35)]"
-        >
-          {icon}
-        </span>
-
-        <div className="flex flex-col gap-3">
-          <p className="whitespace-nowrap text-[clamp(24px,2.2vw,32px)] font-medium leading-[1.1] tracking-[-0.015em]">
-            {value}
-          </p>
-          <p className="text-pretty text-[15px] leading-[1.55] text-[var(--ca-muted)] sm:text-[16px]">{label}</p>
+    <div
+      ref={ref}
+      className={`ca-outcome-card ${state === 'idle' ? '' : 'is-visible'}`}
+      style={{ '--ca-outcome-delay': `${delay}ms` } as CSSProperties}
+    >
+      <TiltCard className="relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl border border-[var(--ca-line)] bg-[var(--ca-card)] shadow-[0_0_0_1px_rgba(61,139,255,0.04),0_30px_60px_-40px_rgba(61,139,255,0.35)]">
+        <div className="ca-outcome-art absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]">
+          <Image
+            src={image}
+            alt={imageAlt}
+            fill
+            sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover object-bottom"
+          />
         </div>
-      </div>
-    </TiltCard>
+
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[64%] bg-gradient-to-b from-[var(--ca-card)] via-[var(--ca-card)]/90 via-[60%] to-transparent"
+        />
+
+        <div
+          className="relative flex flex-1 flex-col gap-5 p-6 transition-transform duration-500 ease-out"
+          style={{ transform: 'translate3d(var(--tilt-x), var(--tilt-y), 0)' }}
+        >
+          {eyebrow ? <span className="sr-only">{eyebrow}</span> : null}
+
+          <div className="flex flex-col gap-3">
+            <p className="whitespace-nowrap text-[clamp(24px,2.2vw,32px)] font-medium leading-[1.1] tracking-[-0.015em]">
+              <CountUp text={value} play={state === 'play'} delay={delay + COUNT_DELAY_MS} />
+            </p>
+            <p className="text-pretty text-[15px] leading-[1.55] text-[var(--ca-muted)] sm:text-[16px]">{label}</p>
+          </div>
+        </div>
+      </TiltCard>
+    </div>
   )
 }
