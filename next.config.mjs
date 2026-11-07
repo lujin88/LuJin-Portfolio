@@ -77,11 +77,6 @@ const nextConfig = {
       { source: '/lab.html', destination: '/lab/weather-aquarium', permanent: false },
       { source: '/lab/action-center', destination: '/lab/weather-aquarium', permanent: false },
       { source: '/way-of-work', destination: '/lab/way-of-work', permanent: false },
-      // Pages restored from 3000 pending Lu's decision (2026-11-07): keep the old .html URLs pointing at the routes.
-      { source: '/wip.html', destination: '/wip', permanent: false },
-      { source: '/lab/off-we-go-workbench', destination: '/lab/off-we-go', permanent: false },
-      { source: '/about.html', destination: '/about', permanent: false },
-      { source: '/ai-workflow-case.html', destination: '/ai-workflow-case', permanent: false },
       { source: '/3000', destination: '/index', permanent: false },
       // /design-system (Forma Finance) was replaced by the BMW design system case.
       { source: '/design-system', destination: '/bmw-design-system', permanent: false },
