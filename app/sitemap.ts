@@ -10,6 +10,7 @@ const ROUTES = [
   '/lab/weather-aquarium',
   '/lab/party-planner',
   '/lab/way-of-work',
+  '/lab/agent-monitor',
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
