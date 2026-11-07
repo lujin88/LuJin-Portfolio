@@ -59,7 +59,7 @@ export function ComparisonPanel({ active = true }: { active?: boolean }) {
       <div className="flex flex-1 flex-col gap-6 rounded-2xl border border-navy-950/8 bg-card p-3 shadow-[0_20px_60px_rgba(5,20,30,0.08)] sm:flex-row sm:items-center">
         <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-xl sm:h-48 sm:w-48">
           <Image
-            src={mediaUrl('/assets/images/eon/eon 07 map before.png')}
+            src="/assets/images/eon/eon 07 map before.webp"
             alt={t('eon.ui.beforeMapAlt')}
             fill
             className="object-cover"
@@ -84,7 +84,7 @@ export function ComparisonPanel({ active = true }: { active?: boolean }) {
       <div className="flex flex-1 flex-col gap-6 rounded-2xl border border-navy-950/8 bg-card p-3 shadow-[0_20px_60px_rgba(5,20,30,0.08)] sm:flex-row sm:items-center">
         <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-xl sm:h-48 sm:w-48">
           <Image
-            src={mediaUrl('/assets/images/eon/eon 07 map after.png')}
+            src="/assets/images/eon/eon 07 map after.webp"
             alt={t('eon.ui.afterMapAlt')}
             fill
             className="object-cover"

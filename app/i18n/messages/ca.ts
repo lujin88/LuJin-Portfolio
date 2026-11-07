@@ -175,9 +175,15 @@ export const ca = {
       m2Label: 'Saved on more complex proposals.',
       m3Value: '500+',
       m3Label: 'Advisors in trials and the target user base.',
+      // Decorative card photos: empty alt so screen readers skip them.
+      m1Alt: '',
+      m2Alt: '',
+      m3Alt: '',
       footnote:
         'Feedback was consistent across EMEA and CH, the core scope. APAC leaned toward speed over the signal-and-context flow — noted for future markets.',
     },
+    // Decorative background image: empty alt so screen readers skip it.
+    closingAlt: '',
     closing:
       "Complexity doesn't disappear. It gets a place to land — so advisors spend less time managing tools, and more time with the client on the phone.",
   },
@@ -357,9 +363,15 @@ export const ca = {
       m2Label: 'Gespart bei komplexeren Anlagevorschlägen.',
       m3Value: '500+',
       m3Label: 'Berater in Trials und Zielgruppe.',
+      // Decorative card photos: empty alt so screen readers skip them.
+      m1Alt: '',
+      m2Alt: '',
+      m3Alt: '',
       footnote:
         'Das Feedback war in EMEA und der Schweiz, dem Kernfokus, konsistent. APAC legte mehr Wert auf Tempo als auf den Signal-und-Kontext-Flow — notiert für künftige Märkte.',
     },
+    // Decorative background image: empty alt so screen readers skip it.
+    closingAlt: '',
     closing:
       'Komplexität verschwindet nicht. Sie bekommt einen Ort, an dem sie landen kann — damit Berater weniger Zeit mit Tools verbringen und mehr Zeit mit dem Kunden am Telefon.',
   },

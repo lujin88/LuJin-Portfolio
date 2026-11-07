@@ -1,129 +1,151 @@
 'use client'
 
-import { Fragment, useRef } from 'react'
-import {
-  ArrowRight,
-  Calculator,
-  FileText,
-  Home,
-  Leaf,
-  Search,
-  ShoppingCart,
-  type LucideIcon,
-} from 'lucide-react'
-import { cn } from '@eon/lib/utils'
-import { clamp01, useElementProgress, usePrefersReducedMotion } from '@eon/lib/motion/hooks'
+import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react'
+import { ArrowRight, Calculator, Check, FileText, Home, Leaf, Search, ShoppingCart } from 'lucide-react'
+import { usePrefersReducedMotion } from '@eon/lib/motion/hooks'
 import { useTranslation } from '@i18n/use-translation'
+import styles from './journey-sequence.module.css'
 
-function playheadStage(progress: number) {
-  return Math.min(2, (clamp01(progress) / 0.55) * 2)
-}
-
-function proximity(stage: number, index: number) {
-  return Math.max(0, 1 - Math.abs(stage - index) * 1.25)
-}
-
+/** One-shot journey narrative with an interruptible mobile follow. */
 export function JourneySteps() {
   const { ta } = useTranslation()
   const labels = ta('eon.journey.steps')
-  const stepIcons: { Icon: LucideIcon; active?: boolean }[] = [
-    { Icon: Search },
-    { Icon: Leaf },
-    { Icon: Calculator, active: true },
-    { Icon: Home },
-    { Icon: FileText },
-    { Icon: ShoppingCart },
-  ]
-  const steps = stepIcons.map((step, i) => ({
-    ...step,
-    label: labels[i] ?? '',
-  }))
+  const icons = [Search, Leaf, Calculator, Home, FileText, ShoppingCart]
   const ref = useRef<HTMLDivElement>(null)
+  const [ready, setReady] = useState(false)
+  const [started, setStarted] = useState(false)
   const reduced = usePrefersReducedMotion()
-  const progress = useElementProgress(ref, {
-    enterStart: 0.82,
-    enterEnd: 0.18,
-  })
-  const stage = reduced ? 2 : playheadStage(progress)
-  const atRest = reduced || stage >= 1.97
+
+  useEffect(() => {
+    const element = ref.current
+    const section = element?.closest('section')
+    if (!element || !section) return
+    setReady(true)
+    section.dataset.journeyReady = 'true'
+    const start = () => {
+      setStarted(true)
+      section.dataset.journeyStarted = 'true'
+    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      start()
+      return
+    }
+    const observer = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.intersectionRatio >= 0.3)) {
+        start()
+        observer.disconnect()
+      }
+    }, { threshold: 0.3 })
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const rail = ref.current
+    if (!rail || !started || !window.matchMedia('(max-width: 767px)').matches) return
+    let frame = 0
+    let stopped = false
+    const stop = () => {
+      stopped = true
+      cancelAnimationFrame(frame)
+      rail.scrollTo({ left: rail.scrollLeft, behavior: 'instant' })
+    }
+    const target = (index: number) => {
+      const node = rail.querySelector<HTMLElement>(`[data-journey-step="${index}"]`)
+      return node ? Math.min(rail.scrollWidth - rail.clientWidth, Math.max(0, node.offsetLeft + node.offsetWidth / 2 - rail.clientWidth / 2)) : 0
+    }
+    if (reduced) {
+      rail.scrollLeft = target(2)
+      return
+    }
+    // Reuse the node curve for both following and the final return.
+    const ease = (fraction: number) => {
+      let low = 0, high = 1
+      for (let i = 0; i < 12; i++) {
+        const t = (low + high) / 2
+        const x = 3 * (1 - t) ** 2 * t * .23 + 3 * (1 - t) * t ** 2 * .32 + t ** 3
+        if (x < fraction) low = t
+        else high = t
+      }
+      return 1 - (1 - (low + high) / 2) ** 3
+    }
+    const follow = () => {
+      const lead = rail.querySelector('[data-journey-particle="lead"]')
+      const time = Number(lead?.getAnimations()[0]?.currentTime ?? 0)
+      const elapsed = Math.max(0, time - 1800)
+      const hop = Math.min(2, Math.floor(elapsed / 333))
+      const eased = ease(Math.min(1, (elapsed - hop * 333) / 333))
+      const from = hop === 0 ? 0 : target(hop + 2)
+      rail.scrollLeft = time < 1800 ? 0 : from + (target(hop + 3) - from) * eased
+      if (time >= 2800) {
+        const progress = Math.min(1, Math.max(0, (time - 3400) / 500))
+        rail.scrollLeft = target(5) + (target(2) - target(5)) * ease(progress)
+      }
+      if (!stopped && time < 3900) frame = requestAnimationFrame(follow)
+    }
+    let origin: { x: number; y: number } | null = null
+    const down = (event: PointerEvent) => { origin = { x: event.clientX, y: event.clientY } }
+    const move = (event: PointerEvent) => {
+      if (!origin) return
+      const dx = Math.abs(event.clientX - origin.x), dy = Math.abs(event.clientY - origin.y)
+      if (dx > 6 && dx > dy) stop()
+    }
+    const up = () => { origin = null }
+    const wheel = (event: WheelEvent) => { if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) stop() }
+    const key = (event: KeyboardEvent) => { if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) stop() }
+    rail.addEventListener('pointerdown', down, { passive: true })
+    rail.addEventListener('pointermove', move, { passive: true })
+    rail.addEventListener('pointerup', up)
+    rail.addEventListener('pointercancel', up)
+    rail.addEventListener('wheel', wheel, { passive: true })
+    rail.addEventListener('keydown', key)
+    frame = requestAnimationFrame(follow)
+    return () => {
+      cancelAnimationFrame(frame)
+      rail.removeEventListener('pointerdown', down)
+      rail.removeEventListener('pointermove', move)
+      rail.removeEventListener('pointerup', up)
+      rail.removeEventListener('pointercancel', up)
+      rail.removeEventListener('wheel', wheel)
+      rail.removeEventListener('keydown', key)
+    }
+  }, [started, reduced])
 
   return (
-    <div ref={ref} className="relative z-[1] mt-6 overflow-x-auto pt-1 pb-3 md:mt-8">
-      <div className="flex w-max items-start justify-start gap-1">
-        {steps.map((step, i) => {
-          const isPeak = Boolean(step.active)
-          const walkIndex = i <= 2 ? i : null
-          const amount = walkIndex === null || atRest ? (isPeak ? 1 : 0) : proximity(stage, walkIndex)
-
-          const nodeStyle =
-            atRest || walkIndex === null
-              ? undefined
-              : isPeak
-                ? { opacity: 0.38 + amount * 0.62 }
-                : {
-                    opacity: 0.72 + amount * 0.28,
-                    transform: `scale(${(1 + amount * 0.05).toFixed(3)})`,
-                  }
-
-          const labelStyle =
-            atRest || walkIndex === null
-              ? undefined
-              : isPeak
-                ? { opacity: 0.55 + amount * 0.45 }
-                : { opacity: 0.6 + amount * 0.4 }
-
+    <div ref={ref} data-journey-sequence  data-ready={ready}
+      data-started={started || reduced} data-reduced={reduced}
+      className={`${styles.sequence} relative z-[1] mt-6 overflow-x-auto pt-1 pb-16 md:mt-8`}>
+      <div className={`${styles.track} flex w-max items-start justify-start gap-1`}>
+        {icons.map((Icon, i) => {
+          const active = i === 2
+          const arrival = [0, 450, 900, 1800, 2133, 2466][i]
+          const timing = { '--arrival': `${arrival}ms`, '--connector-delay': `${i < 2 ? i * 450 : 1800 + (i - 2) * 333}ms` } as CSSProperties
           return (
-            <Fragment key={step.label}>
-              <div className="flex w-[88px] shrink-0 flex-col items-center md:w-24">
+            <Fragment key={i}>
+              <div data-journey-step={i} className={`${styles.step} ${active ? styles.calculate : ''} ${i > 2 ? styles.future : ''} flex w-[88px] shrink-0 flex-col items-center md:w-24`} style={timing}>
                 <div className="flex h-24 items-center justify-center">
-                  {step.active ? (
-                    <div
-                      className="sc-journey-node flex h-[88px] w-[88px] origin-center items-center justify-center rounded-full bg-navy-800"
-                      style={nodeStyle}
-                    >
-                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-lavender">
-                        <step.Icon
-                          className="h-8 w-8 text-navy-950"
-                          strokeWidth={1.6}
-                        />
-                      </div>
-                    </div>
-                  ) : (
-                    <div
-                      className="sc-journey-node flex h-16 w-16 origin-center items-center justify-center rounded-full border border-navy-border bg-navy-800"
-                      style={nodeStyle}
-                    >
-                      <step.Icon
-                        className="h-6 w-6 text-white/80"
-                        strokeWidth={1.6}
-                      />
-                    </div>
-                  )}
+                  <div data-journey-node className={`${styles.node} relative flex origin-center items-center justify-center rounded-full bg-navy-800 ${active ? 'h-[88px] w-[88px]' : 'h-16 w-16 border border-navy-border'}`}>
+                    {active ? <><span aria-hidden="true" className={styles.halo} /><span aria-hidden="true" className={styles.fill} /></> : <span aria-hidden="true" className={styles.ring} />}
+                    <Icon className={`relative z-[1] ${active ? 'h-8 w-8' : 'h-6 w-6 text-white/80'}`} strokeWidth={1.6} />
+                    {i < 2 && <span aria-hidden="true" className={styles.check}><Check size={12} strokeWidth={2} /></span>}
+                    {active && <span aria-hidden="true" data-journey-spinner className={styles.spinner} />}
+                  </div>
                 </div>
-                <span
-                  className={cn(
-                    'mt-4 text-sm md:text-base',
-                    step.active
-                      ? 'font-semibold text-white'
-                      : 'font-medium text-white/60',
-                  )}
-                  style={labelStyle}
-                >
-                  {step.label}
-                </span>
+                <span className={`${styles.label} mt-4 text-sm md:text-base ${active ? 'font-semibold text-white' : 'font-medium text-white/60'}`}>{labels[i] ?? ''}</span>
+                <span aria-hidden="true" className={styles.underline} />
               </div>
-
-              {i < steps.length - 1 && (
-                <div className="flex h-24 w-8 shrink-0 items-center justify-center md:w-10">
-                  <ArrowRight
-                    className="h-5 w-5 shrink-0 text-white/35"
-                    strokeWidth={1.8}
-                  />
-                </div>
-              )}
+              {i < 5 && <div aria-hidden="true" className={`${styles.connector} ${i >= 2 ? styles.futureConnector : ''} relative flex h-24 w-8 shrink-0 items-center justify-center md:w-10`} style={timing}>
+                <ArrowRight className={`${styles.arrow} h-5 w-5 shrink-0 text-white/35`} strokeWidth={1.8} />
+                <span className={styles.trail} /><span className={styles.dashed} />
+              </div>}
             </Fragment>
           )
         })}
+        <div aria-hidden="true" className={styles.particles}>
+          <span data-journey-particle="lead" className={styles.lead} />
+          {[48, 54, 60, 52, 46].map((distance, i) => <span key={i} data-journey-particle="drop" className={styles.drop} style={{ '--drop-x': `${(i - 2) * 12}px`, '--drop-y': `${distance}px` } as CSSProperties} />)}
+          <span data-journey-particle="survivor" className={styles.survivor} />
+        </div>
       </div>
     </div>
   )

@@ -1375,7 +1375,7 @@ html:has(.pp-landing) #site-content {
 }
 @media (max-width: 900px) {
   .pp-landing .one-link {
-    padding: 2.75rem 1rem 2.5rem;
+    padding: 2.75rem 1.5rem 2.5rem;
   }
   .pp-landing .one-link h2 {
     font-size: 2rem;
