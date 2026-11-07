@@ -1,9 +1,15 @@
 import type { Metadata } from 'next'
 import { HtmlChrome } from '../html-chrome'
+import { socialMetadata } from '../seo'
+
+const TITLE = 'Lu — ETF Savings Plan'
+const DESCRIPTION =
+  'Designing a Swiss ETF savings plan around starting, staying invested and managing change. Explore the interactive prototype.'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Lu — ETF Savings Plan' },
-  description: 'Designing a Swiss ETF savings plan around starting, staying invested and managing change. Explore the interactive prototype.',
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/etf-savings-plan' }),
 }
 
 export default function EtfSavingsPlanLayout({ children }: { children: React.ReactNode }) {

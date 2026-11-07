@@ -1,11 +1,15 @@
 import type { Metadata } from 'next'
 import { HtmlChrome } from '../html-chrome'
+import { socialMetadata } from '../seo'
+
+const TITLE = 'Lu — MAN Truck & Bus'
+const DESCRIPTION =
+  'MAN Fleet Uptime: resolving driver cover, checking vehicle readiness and handing over the next departure.'
 
 export const metadata: Metadata = {
-  title: {
-    absolute: 'Lu — MAN Truck & Bus',
-  },
-  description: 'MAN Fleet Uptime: resolving driver cover, checking vehicle readiness and handing over the next departure.',
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/man-truck-bus' }),
 }
 
 export default function ManTruckBusLayout({
