@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="disc" x2=".8" y2="1"><stop stop-color="#edf2fa"/><stop offset="1" stop-color="#e1eaf6"/></linearGradient>
+    <linearGradient id="body" x2=".25" y2="1"><stop stop-color="#527bb1"/><stop offset="1" stop-color="#3e6096"/></linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="32" fill="url(#disc)"/>
+  <path fill="url(#body)" fill-rule="evenodd" d="M15 31.2 18.8 22c.8-2 2.4-3.1 4.8-3.4a78 78 0 0 1 16.8 0c2.4.3 4 1.4 4.8 3.4l3.8 9.2c1.6 1.2 2.3 3 2.3 5v7.2c0 1.3-1 2.3-2.3 2.3h-3.6c-1.3 0-2.3-1-2.3-2.3v-1H20.9v1c0 1.3-1 2.3-2.3 2.3H15c-1.3 0-2.3-1-2.3-2.3v-7.2c0-2 .7-3.8 2.3-5Zm4-2.7a97 97 0 0 1 26 0L42 22.9c-.4-.8-1.1-1.2-2-1.3a64 64 0 0 0-16 0c-.9.1-1.6.5-2 1.3Zm-2.4 4.7 8.5 1.2-1.2 2.3-6.7-.9Zm30.8 0-8.5 1.2 1.2 2.3 6.7-.9Zm-20.6.9 4.5.5v4.8l-2.3-.3c-1-.2-1.5-.7-1.7-1.7Zm10.4 0-4.5.5v4.8l2.3-.3c1-.2 1.5-.7 1.7-1.7Z"/>
+</svg>
