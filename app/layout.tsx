@@ -18,7 +18,7 @@ const poppins = Poppins({
 
 const DEFAULT_TITLE = 'Lu Jin — Product & Service Designer'
 const DEFAULT_DESCRIPTION =
-  'Design leadership across product and service — from early-stage strategy to production-ready systems.'
+  'Product and service designer for banking, energy and mobility. 10+ years turning complex B2B work into clear tools.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
