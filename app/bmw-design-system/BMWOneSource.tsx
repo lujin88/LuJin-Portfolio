@@ -20,7 +20,7 @@ function applySelection(root:HTMLElement, button:HTMLButtonElement) {
       confirm: ['Confirm', 'Engine run time: 15 minutes. Select Climate to confirm.'],
       connecting: ['Connecting', 'Request sent. Simulate the vehicle response.'],
       running: ['Running', 'Confirmed by the vehicle. Select Climate to stop.'],
-      error: ['Component issue', 'The vehicle reported a fault. Select Climate to retry.']
+      error: ['Didn’t work', 'The car didn’t say why. Select Climate to try again.']
     };
     themes.dataset.phase = next;
     themes.querySelectorAll('[data-state]').forEach(label => label.textContent = states[next][0]);
@@ -32,22 +32,22 @@ function applySelection(root:HTMLElement, button:HTMLButtonElement) {
     const app=root.dataset.app || 'B';
     root.dataset['reviewed'+app]='true';
     button.disabled=true;
-    button.textContent=app==='C'?'Replacement proposed':'Approved as variant';
-    root.querySelector<HTMLElement>('.callout')!.textContent=app==='C'?'Replace with main component · pull request proposed':'Variant approved for a pull request';
+    button.textContent=app==='C'?'Example added':'Rule approved';
+    root.querySelector<HTMLElement>('.callout')!.textContent=app==='C'?'Example added · the team reviews it next':'Rule approved for a pull request';
     return;
   }
   const app=button.dataset.app;
   if(app) {
     root.dataset.app=app;
     root.querySelectorAll('[data-app]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
-    root.querySelector<HTMLElement>('[data-app-title]')!.textContent='App '+app+(app==='A'?' · Matches spec':app==='B'?' · Local patch':' · Fork');
+    root.querySelector<HTMLElement>('[data-app-title]')!.textContent=app==='A'?'Covered':app==='B'?'No rule yet':'Request failed';
     root.querySelector<HTMLElement>('.sample.front')!.dataset.drift=app==='A'?'match':app==='B'?'patch':'missing';
     const action=root.querySelector<HTMLButtonElement>('.confirm')!;
     const reviewed=root.dataset['reviewed'+app]==='true';
     action.hidden=app==='A';
     action.disabled=reviewed;
-    action.textContent=app==='C'?(reviewed?'Replacement proposed':'Replace with main component'):(reviewed?'Approved as variant':'Approve as variant');
-    root.querySelector<HTMLElement>('.callout')!.textContent=app==='A'?'Matches spec ✓':app==='B'?(reviewed?'Variant approved for a pull request':'Custom padding → Propose as variant'):(reviewed?'Replace with main component · pull request proposed':'Error state missing → Replace with main component');
+    action.textContent=app==='C'?(reviewed?'Example added':'Add example to review'):(reviewed?'Rule approved':'Approve rule');
+    root.querySelector<HTMLElement>('.callout')!.textContent=app==='A'?'Matches the rules ✓':app==='B'?(reviewed?'Rule approved for a pull request':'No rule for this market → Propose a rule'):(reviewed?'Example added · the team reviews it next':'No example of this failure → Add it to the review');
     return;
   }
   const rule=button.dataset.rule;
@@ -81,7 +81,7 @@ export function BMWOneSource() {
       I led a six-person design team and the BMW app design system, working across vehicle capabilities, market restrictions, and light and dark modes.
     </p>
     <p className="hero-bridge">
-      A look back at the decisions we made, and how I would evolve the system with AI today.
+      A look back at what we decided in 2020, and a hypothesis for how I’d run the system with AI today.
     </p>
   </header>
   <div className="composition">
@@ -140,7 +140,7 @@ export function BMWOneSource() {
           2026 · Proposed
         </dt>
         <dd>
-          Generate variants for team review
+          AI finds edge cases. Team decides.
         </dd>
       </div>
     </dl>
@@ -166,10 +166,7 @@ export function BMWOneSource() {
         Every market.
       </h2>
       <p className="chapter-copy">
-        We checked each vehicle and market in Excel to decide which controls a driver could use. Where remote engine start was restricted, we omitted the feature.
-      </p>
-      <p className="chapter-copy">
-        A request could reach the server while the car was out of signal. Without a reply from the car, the app stayed on Connecting. The wait was a pain point.
+        We tracked which controls each model and market allowed in Excel. I filtered it row by row: if the law didn’t allow a control, I left the button out.
       </p>
       <div className="book">
         <div className="line labels">
@@ -261,6 +258,9 @@ export function BMWOneSource() {
       </div>
     </div>
   </div>
+  <p className="chapter-copy preview-note">
+    Cars respond slowly, and a car without signal can’t respond at all. We tested how long the app could wait. When a request failed, the car couldn’t say why, so the app could only tell the driver it hadn’t worked.
+  </p>
   <footer className="summary">
     <b>
       Component preview
@@ -288,7 +288,7 @@ export function BMWOneSource() {
         Car confirms
       </button>
       <button type="button" data-reply="error">
-        Component issue
+        Request fails
       </button>
     </div>
     <div className="rule-result" aria-live="polite" aria-atomic="true">
@@ -303,15 +303,15 @@ export function BMWOneSource() {
 </section>
 <aside className="system-gap">
   <p className="overline">
-    The system over time
+    The hard part
   </p>
   <h2>
-    A shared design.
+    One button.
     <br />
-    Different implementations.
+    Many edge cases.
   </h2>
   <p>
-    Over time, more apps shipped and more developers patched components locally. The same Climate control ended up built several ways, so a design could no longer go straight to code.
+    Climate was always one button. Behind it, each model and market needed its own rule, and some edge cases were hard to cover.
   </p>
 </aside>
 <section id="review-desk" className="showcase desk">
@@ -321,41 +321,46 @@ export function BMWOneSource() {
     </span>
   </header>
   <h2 className="chapter-title">
-    Bring every patch
+    AI compares.
     <br />
-    back to the system.
+    The team decides.
   </h2>
+  <div>
   <p className="chapter-copy review-intro">
-    I would link the Figma component to code, store model and market rules as data, and ask an agent to compare local implementations against the spec. The team would decide which patches become shared variants and which are retired.
+    This part is a hypothesis, not something we shipped. I would store the model and market rules as data, linked to the Figma component and its code. AI would compare every case against those rules and collect real examples that no rule covers yet.
   </p>
+  <p className="chapter-copy review-intro">
+    The team would decide what each case should do. Each decision would become a rule the next review starts from.
+  </p>
+  </div>
   <div className="desk-body">
     <div className="drift-selector">
       <h3>
-        Drift report
+        Edge-case report
       </h3>
       <div className="choices">
         <button type="button" data-app="A" aria-pressed="false">
           <b>
-            App A
+            iX3 · Market A
           </b>
           <small>
-            Matches spec ✓
+            Covered by a rule ✓
           </small>
         </button>
         <button type="button" data-app="B" aria-pressed="true">
           <b>
-            App B
+            530i · Market B
           </b>
           <small>
-            Local patch · custom padding
+            New model · no rule yet
           </small>
         </button>
         <button type="button" data-app="C" aria-pressed="false">
           <b>
-            App C
+            320i · Market A
           </b>
           <small>
-            Fork · Error state missing
+            Request failed · no example yet
           </small>
         </button>
       </div>
@@ -363,7 +368,7 @@ export function BMWOneSource() {
     <section className="inspect" aria-live="polite">
       <div className="sample">
         <h2>
-          Main component
+          In the system
         </h2>
         <div className="tile">
           <b data-output>
@@ -373,11 +378,11 @@ export function BMWOneSource() {
             Off
           </small>
         </div>
-        Light
+        One shared Climate control
       </div>
       <div className="sample front" data-drift="patch">
         <h2 data-app-title>
-          App B · Local patch
+          No rule yet
         </h2>
         <div className="tile dark">
           <b data-output>
@@ -388,10 +393,10 @@ export function BMWOneSource() {
           </small>
         </div>
         <div className="callout">
-          Custom padding → Propose as variant
+          No rule for this market → Propose a rule
         </div>
         <button type="button" className="confirm">
-          Approve as variant
+          Approve rule
         </button>
       </div>
     </section>
@@ -416,7 +421,7 @@ export function BMWOneSource() {
         Rules as data
       </b>
       <span>
-        Model × market → command
+        Model × market → button shown or hidden
       </span>
     </li>
     <li>
@@ -424,10 +429,10 @@ export function BMWOneSource() {
         <img src="/lab/bmw-one-source/assets/review-workflow.webp" alt="" />
       </div>
       <b>
-        Drift scan
+        Edge-case scan
       </b>
       <span>
-        Compare each local copy to the spec
+        Collect real cases no rule covers yet
       </span>
     </li>
     <li>
@@ -435,27 +440,24 @@ export function BMWOneSource() {
         <img src="/lab/bmw-one-source/assets/review-workflow.webp" alt="" />
       </div>
       <b>
-        Merge or retire
+        Team decides
       </b>
       <span>
-        Review each patch through a pull request
+        Each new rule goes through a pull request
       </span>
     </li>
   </ol>
   <footer className="team-decides">
     <b>
-      What the team still decides
+      Where AI stops
     </b>
-    <p>
-      The variants — which patch becomes part of the system.
-    </p>
     <p className="future-limit">
-      The proposal would help us scale component review. An unreachable car would still need to reply before the app could confirm it was running.
+      Better examples would make each review faster. AI still couldn’t make a car explain why a request failed, so the app would still only say it didn’t work.
     </p>
   </footer>
 </section>
 <footer className="closing-line">
-  In 2020, the system held the components. Now it has to hold the rules, and every patch has to come back to it.
+  In 2020, the system held the components. Now it should hold the rules: every model, every market, every edge case, in one source.
 </footer>
   </main>
 }

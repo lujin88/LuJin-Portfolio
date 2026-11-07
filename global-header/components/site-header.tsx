@@ -66,7 +66,7 @@ const NAV: readonly NavEntry[] = [
       {
         label: 'ETF Savings Plan',
         href: '/etf-savings-plan',
-        meta: 'Under construction',
+        meta: 'Investing · Interactive prototype',
         icon: {
           light: '/assets/images/nav/light/work/etf-savings-plan-light.png',
           dark: '/assets/images/nav/dark/work/etf-savings-plan-dark.png',

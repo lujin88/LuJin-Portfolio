@@ -1,20 +1,16 @@
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import { SHOW_UNFINISHED_CASES } from '@header/lib/site-flags'
-import { ConstructionChrome } from '../components/construction-chrome'
+import { HtmlChrome } from '../html-chrome'
 
 export const metadata: Metadata = {
-  title: {
-    absolute: 'Lu — ETF Savings Plan',
-  },
-  description: 'ETF Savings Plan is under construction.',
+  title: { absolute: 'Lu — ETF Savings Plan' },
+  description: 'Designing a Swiss ETF savings plan around starting, staying invested and managing change. Explore the interactive prototype.',
 }
 
-export default function EtfSavingsPlanLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
-  if (!SHOW_UNFINISHED_CASES) notFound()
-  return <ConstructionChrome activeHref="/etf-savings-plan">{children}</ConstructionChrome>
+export default function EtfSavingsPlanLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <HtmlChrome activeHref="/etf-savings-plan" theme="light" colorScheme="light" backgroundColor="#fafaf9">
+      <link rel="stylesheet" href="/styles/shell-components.css" />
+      {children}
+    </HtmlChrome>
+  )
 }
