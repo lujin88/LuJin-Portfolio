@@ -180,10 +180,15 @@ function menuMeta(copy: (typeof headerCopy)[keyof typeof headerCopy], meta: stri
 export function SiteHeader({ activeHref }: SiteHeaderProps) {
   const pathname = usePathname()
   const currentHref = activeHref ?? pathname
+  const cinematicHeader =
+    pathname.startsWith('/lab/off-we-go') ||
+    pathname.startsWith('/backup/ai-design-process') ||
+    pathname.startsWith('/backup/way-of-work')
   const partyHeader = pathname.startsWith('/lab/party-planner')
   const pinnedPaper =
     pathname.startsWith('/lab/weather-aquarium') ||
-    pathname.startsWith('/ai-companion-pet')
+    pathname.startsWith('/ai-companion-pet') ||
+    pathname.startsWith('/lab/agent-monitor')
   const paperHeader =
     pathname.startsWith('/lab/way-of-work') ||
     pinnedPaper
@@ -222,11 +227,11 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   }
 
   useEffect(() => {
-    const onScroll = () => setGlassActive(pinnedPaper || window.scrollY > 12)
+    const onScroll = () => setGlassActive(cinematicHeader || pinnedPaper || window.scrollY > 12)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [pinnedPaper])
+  }, [cinematicHeader, pinnedPaper])
 
   useEffect(() => {
     if (closeTimer.current !== null) {

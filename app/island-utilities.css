@@ -2,6 +2,9 @@
 @import "tailwindcss" source(none);
 
 @source "../public/home.html";
+@source "../public/about.html";
+@source "../public/wip.html";
+@source "../public/ai-workflow-case.html";
 
 @theme inline {
   --color-ink: var(--color-bg-page);
