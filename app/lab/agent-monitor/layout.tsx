@@ -2,7 +2,9 @@ import type { Metadata } from 'next'
 
 import { HtmlChrome } from '../../html-chrome'
 
+// Public but not indexed until Lu decides (PM, 2026-11-07). Not in the sitemap.
 export const metadata: Metadata = {
+  robots: { index: false, follow: false },
   title: {
     absolute: 'Lu — Human × AI Practice',
   },
