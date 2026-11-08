@@ -1140,9 +1140,6 @@ footer > hr {
     /* German compounds (Informationsbeschaffung) are wider than a third of the column. */
     overflow-wrap: break-word;
   }
-  .ca-s01 .ca-s01-grid > aside li > p:last-child:lang(de) {
-    hyphens: auto;
-  }
   .ca-s01 .ca-h1 {
     font-size: 60px;
   }
