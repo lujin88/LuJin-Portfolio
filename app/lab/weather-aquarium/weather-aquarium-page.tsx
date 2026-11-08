@@ -206,7 +206,7 @@ const finePointer = () => window.matchMedia('(hover: hover) and (pointer: fine)'
 // playback never changes colour; the webp only covers the time before the clip loads.
 // Loading starts once, a screen before the section. Mouse: loops while hovered, back to
 // frame 0 on leave. Touch: tap toggles (same finePointer() split as PoseButton).
-// Keyboard: plays while focused. Reduced motion: never plays. `active` is owned by the
+// Keyboard: stays static. Reduced motion: never plays. `active` is owned by the
 // page so only one plays at a time.
 function VocabArt({
   item,
@@ -294,16 +294,12 @@ function VocabArt({
         if (event.pointerType === 'touch' || !finePointer()) return
         onActive(false)
       }}
-      onFocus={() => {
-        if (!finePointer()) return
-        onActive(true)
-      }}
       onBlur={() => {
         if (!finePointer()) return
         onActive(false)
       }}
-      onClick={() => {
-        if (finePointer()) return
+      onClick={(event) => {
+        if (event.detail === 0 || finePointer()) return
         onActive(!active)
       }}
     >
