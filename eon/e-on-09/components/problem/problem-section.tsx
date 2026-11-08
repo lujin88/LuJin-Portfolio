@@ -68,49 +68,57 @@ export function ProblemSection() {
             </p>
           </OnceReveal>
 
-          <div className="relative min-h-[470px] overflow-visible md:min-h-[510px]">
-            <div className="absolute left-[50%] top-[10rem] z-[2] w-[44%] max-w-[290px] md:left-[61%] md:top-[10.75rem] md:max-w-[310px]">
-              <OnceReveal
-                className="absolute z-[4] w-[190px] text-left"
-                style={{ top: '-6.35rem', left: '42%' }}
-                fromOpacity={0}
-              >
-                <p className="font-hand text-[22px] font-normal leading-[1.08] text-ink md:text-[26px]">
-                  {t('eon.problem.hand1a')}
-                  <br />
-                  {t('eon.problem.hand1b')}
-                </p>
-                <AnnotationArrow className="pointer-events-none absolute left-[8.15rem] top-[2.05rem] h-[3.15rem] w-[1.95rem] text-[#3d3d3d]" />
-              </OnceReveal>
-              <img
-                src="/assets/images/eon/eon-04-05-floor-plan.webp"
-                alt={t('eon.problem.floorAlt')}
-                className="relative z-[2] h-auto w-full rotate-[8deg]"
-                style={{ filter: 'drop-shadow(0 18px 36px rgba(15,23,42,0.22))' }}
-              />
-            </div>
+          <div>
+            {/* On narrow screens the note needs its own space above the collage. */}
+            <p className="mb-8 font-hand text-[22px] font-normal leading-[1.08] text-ink md:hidden">
+              {t('eon.problem.hand1a')}
+              <br />
+              {t('eon.problem.hand1b')}
+            </p>
+            <div className="relative min-h-[470px] overflow-visible md:min-h-[510px]">
+              <div className="absolute left-[50%] top-[10rem] z-[2] w-[44%] max-w-[290px] md:left-[61%] md:top-[10.75rem] md:max-w-[310px]">
+                <OnceReveal
+                  className="absolute z-[4] hidden w-[190px] text-left md:block"
+                  style={{ top: '-6.35rem', left: '42%' }}
+                  fromOpacity={0}
+                >
+                  <p className="font-hand text-[22px] font-normal leading-[1.08] text-ink md:text-[26px]">
+                    {t('eon.problem.hand1a')}
+                    <br />
+                    {t('eon.problem.hand1b')}
+                  </p>
+                  <AnnotationArrow className="pointer-events-none absolute left-[8.15rem] top-[2.05rem] h-[3.15rem] w-[1.95rem] text-[#3d3d3d]" />
+                </OnceReveal>
+                <img
+                  src="/assets/images/eon/eon-04-05-floor-plan.webp"
+                  alt={t('eon.problem.floorAlt')}
+                  className="relative z-[2] h-auto w-full rotate-[8deg]"
+                  style={{ filter: 'drop-shadow(0 18px 36px rgba(15,23,42,0.22))' }}
+                />
+              </div>
 
-            <div className="absolute left-[1%] -top-3 z-[3] w-[86%] max-w-[500px] md:left-[3%] md:-top-9 md:max-w-[520px]">
-              <img
-                src="/assets/images/eon/eon-04-05-house.png"
-                alt={t('eon.problem.houseAlt')}
-                className="h-auto w-full max-w-[520px] -rotate-[4deg]"
-                style={{
-                  filter:
-                    'drop-shadow(0 22px 28px rgba(20,24,38,0.26)) drop-shadow(0 6px 10px rgba(20,24,38,0.12))',
-                }}
-              />
-              <OnceReveal
-                delay={70}
-                fromOpacity={0}
-                className="relative z-10 ml-[10%] mt-8 w-[230px] md:mt-12"
-              >
-                <p className="origin-left -rotate-[8deg] font-hand text-[22px] font-normal leading-[1.1] text-ink md:text-[26px]">
-                  {t('eon.problem.hand2a')}
-                  <br />
-                  {t('eon.problem.hand2b')}
-                </p>
-              </OnceReveal>
+              <div className="absolute left-[1%] -top-3 z-[3] w-[86%] max-w-[500px] md:left-[3%] md:-top-9 md:max-w-[520px]">
+                <img
+                  src="/assets/images/eon/eon-04-05-house.png"
+                  alt={t('eon.problem.houseAlt')}
+                  className="h-auto w-full max-w-[520px] -rotate-[4deg]"
+                  style={{
+                    filter:
+                      'drop-shadow(0 22px 28px rgba(20,24,38,0.26)) drop-shadow(0 6px 10px rgba(20,24,38,0.12))',
+                  }}
+                />
+                <OnceReveal
+                  delay={70}
+                  fromOpacity={0}
+                  className="relative z-10 ml-[10%] mt-8 w-[230px] md:mt-12"
+                >
+                  <p className="origin-left -rotate-[8deg] font-hand text-[22px] font-normal leading-[1.1] text-ink md:text-[26px]">
+                    {t('eon.problem.hand2a')}
+                    <br />
+                    {t('eon.problem.hand2b')}
+                  </p>
+                </OnceReveal>
+              </div>
             </div>
           </div>
         </div>
