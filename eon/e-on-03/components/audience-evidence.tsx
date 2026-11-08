@@ -114,7 +114,8 @@ export function AudienceEvidence({ alt }: { alt: string }) {
     let lead = 0
     const origin = performance.now()
     const frame = (now: number) => {
-      const p = Math.min((now - origin) / RING_MS, 1)
+      // rAF timestamps can predate origin by a frame; clamp so the count never starts below 0.
+      const p = Math.min(Math.max((now - origin) / RING_MS, 0), 1)
       setStat(p >= 1 ? STAT : Math.round(STAT * easeOutCubic(p) * 10) / 10)
       if (p < 1) raf = requestAnimationFrame(frame)
     }
