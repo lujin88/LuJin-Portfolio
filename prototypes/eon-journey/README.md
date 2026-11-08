@@ -2,9 +2,24 @@
 
 PM #136/#172 requests merging the sequence and no-drops versions. The three component files now use the saved no-drops version (f64cde9): six nodes, no falling particles, a survivor path, the existing shorter timeline and handwritten annotation sequence. The source for this prototype is the actual /EON page on this branch; there is no separate executable HTML implementation. Earlier A/B media below are historical and do not validate this integration.
 
-No new curves or durations were invented. The values come from the preserved no-drops worktree. Normal, slow4 and reduced-motion verification must be rerun on this integrated branch. Mobile auto-follow remains interruptible; real-device horizontal swipe must be tested by Lu before approval.
+No new curves or durations were invented. The values come from the preserved no-drops worktree. Normal, slow4 and reduced-motion verification completed on this integrated branch; see the current evidence below. Mobile auto-follow remains interruptible; real-device horizontal swipe must be tested by Lu before approval.
 
 Rejected: restore falling dots (explicit requested removal); add loops (frequency); animate readable figures (function); keyboard-triggered replay (frequency).
+
+## Current verification evidence
+
+Source commit 21bd9de, verified against the existing server whose Next dev lock identifies this exact worktree at http://127.0.0.1:4691/EON. No other server was stopped. 1440/390 normal, slow4 and reduce passed: six nodes; zero falling particles; zero running animations at the end. Reduced-motion Calculate transform is none. Mobile ends at scrollLeft 129 in this layout. This is browser simulation, not a real-device gesture verdict.
+
+Six recordings, screenshots and results: `/Users/lu/LuJin-Portfolio-worktrees/motion/.motion-review-20261108/eon-integrated/`. Script: sibling `eon-integrated.cjs`. Lock 13:55:19 load 7.94 11.85 16.35 → 13:56:18 load 11.61 12.59 16.37, exit 0.
+
+Real-device checklist for later: open /EON at section 04; swipe the rail horizontally during auto-follow and confirm automatic movement stops, the rail stays manually scrollable, and the page still scrolls vertically. With Reduce Motion enabled, confirm the final Calculate state is visible without automatic follow. PM #145 says real-device work is not scheduled this week.
+
+| Location | Previous | Purpose | Frequency | Preserved motion |
+|---|---|---|---|---|
+| Journey rail | Sequence version includes five falling dots | Explain progression without falling particles | Once per entry session | Existing no-drops transform/opacity timeline, 3450ms lead and 1000ms survivor; existing journey curve retained |
+| Handwritten note | Whole note fades | Explain the Calculate constraint | Once | Existing no-drops letter opacity and arrow reveal values retained; no new timing values |
+| Reduced motion | Alternate animation state | Preserve final information | Always | No running animation; Calculate transform none |
+
 
 ---
 
