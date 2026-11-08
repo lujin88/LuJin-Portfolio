@@ -1,3 +1,13 @@
+# Annotation completion fix — 2026-11-08
+
+Visual QA found the normal-mode annotation prefix missing while reduced motion was complete (#293/#296). Browser evidence showed finished 1ms `steps(1, end)` animations at progress 0.9999999999998899; `fill: both` retained opacity 0. The started-state base style now sets opacity 1 and uses backwards fill only during the delay. Existing duration, step timing and per-character delays are unchanged. No layout or overflow workaround.
+
+Production https://lujin.me/EON at 390 displayed the full annotation; the regression was in this unmerged sequence. Local source is served from this worktree at http://localhost:4620/EON after the old launchd preview was disabled. Evidence and capture scripts: `/Users/lu/LuJin-Portfolio-worktrees/motion/.motion-review-20261108/eon-note-fix/`. The updated capture frames the note near y=250 to clear the fixed header. Prior recordings did not assert character opacity and cannot prove this correction.
+
+Verification: 1440/390 normal, slow4 and reduce all show all 78 English characters at opacity 1, with no running character animations at the end. Lock 14:12:17 load 7.67 10.08 13.04 → 14:13:22 load 10.12 10.32 12.92, exit 0. Typecheck, diff check and frozen install passed. Visual QA must inspect the updated preview; Safari and real devices remain untested.
+
+---
+
 # Current integration — 2026-11-08
 
 PM #136/#172 requests merging the sequence and no-drops versions. The three component files now use the saved no-drops version (f64cde9): six nodes, no falling particles, a survivor path, the existing shorter timeline and handwritten annotation sequence. The source for this prototype is the actual /EON page on this branch; there is no separate executable HTML implementation. Earlier A/B media below are historical and do not validate this integration.
