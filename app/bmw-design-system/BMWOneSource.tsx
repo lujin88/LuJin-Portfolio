@@ -1,6 +1,7 @@
 'use client'
 import type React from 'react'
 import './one-source.css'
+import { useTranslation } from '@i18n/use-translation'
 
 function applySelection(root:HTMLElement, button:HTMLButtonElement) {
 
@@ -63,88 +64,58 @@ function applySelection(root:HTMLElement, button:HTMLButtonElement) {
 }
 
 export function BMWOneSource() {
+  const { t } = useTranslation()
   return <main className="bmw-one-source" id="top" onClick={event => {
     const button = (event.target as HTMLElement).closest('button')
     const section = button?.closest<HTMLElement>('.showcase')
     if (button && section) applySelection(section, button)
   }}>
 <section id="driver-view" className="bmw-driver">
-  <img className="backdrop" src="/assets/images/bmw-system/ix3-landscape.webp" alt="BMW iX3 parked at an alpine overlook at sunset" />
+  {/* Hero C, phone option A (visual OUTBOX/BMW_C_PHONE_AB_20261108): car scene, the real default app screen, copy from messages. */}
+  <img className="backdrop" src="/assets/images/bmw-system/i4-alpine-sunset.webp" alt={t('bmw.hero.backdropAlt')} />
   <header>
     <p>
-      BMW Design System
+      {t('bmw.hero.eyebrow')}
     </p>
     <h1>
-      Same rules. One source.
+      {t('bmw.hero.title')}
     </h1>
     <p className="hero-story">
-      I led a six-person design team and the BMW app design system, working across vehicle capabilities, market restrictions, and light and dark modes.
+      {t('bmw.hero.story')}
     </p>
     <p className="hero-bridge">
-      A look back at what we decided in 2020, and a hypothesis for how I’d run the system with AI today.
+      {t('bmw.hero.bridge')}
     </p>
   </header>
-  <div className="composition">
-    <div className="product">
-      <div className="screen vehicle-phone" role="img" aria-label="Fully charged silver BMW i4 eDrive35. Lock, unlock and headlights in one strip above Status and State of charge.">
-        <div className="screen-region vehicle-header" style={{"aspectRatio": "376/367"}}>
-          <img aria-hidden="true" alt="" src="/lab/bmw-one-source/assets/i4-silver-backdrop.png" style={{"transform": "translateY(-0.000000%)"}} />
-        </div>
-        <div className="vehicle-actions">
-          <span>
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <path d="M7 10V7a5 5 0 0 1 10 0v3 M5 10h14v11H5z M12 14v3">
-              </path>
-            </svg>
-          </span>
-          <span>
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <path d="M9 10V7a5 5 0 0 1 10 0 M4 10h14v11H4z M11 14v3">
-              </path>
-            </svg>
-          </span>
-          <span>
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <path d="M11 5c6-1 11 2 11 7s-5 8-11 7z M2 6h6 M2 10h6 M2 14h6 M2 18h6">
-              </path>
-            </svg>
-          </span>
-        </div>
-        <div className="screen-region vehicle-status" style={{"aspectRatio": "376/120"}}>
-          <img aria-hidden="true" alt="" src="/lab/bmw-one-source/assets/i4-complete.png" style={{"transform": "translateY(-45.030675%)"}} />
-        </div>
-        <div className="screen-region vehicle-lower" style={{"aspectRatio": "376/270"}}>
-          <img aria-hidden="true" alt="" src="/lab/bmw-one-source/assets/i4-complete.png" style={{"transform": "translateY(-66.871166%)"}} />
-        </div>
-      </div>
-      <nav aria-label="Download My BMW">
-        <a href="https://apps.apple.com/ch/app/my-bmw/id1519034860" target="_blank" rel="noopener">
-          <img src="/lab/bmw-one-source/assets/app-store.svg" alt="Download on the App Store" />
-        </a>
-        <a href="https://play.google.com/store/apps/details?id=de.bmw.connected.mobile20.row" target="_blank" rel="noopener">
-          <img className="play" src="/lab/bmw-one-source/assets/google-play.png" alt="Get it on Google Play" />
-        </a>
-      </nav>
-    </div>
-    <dl>
-      <div>
-        <dt>
-          2020
-        </dt>
-        <dd>
-          Check each model in Excel
-        </dd>
-      </div>
-      <div>
-        <dt>
-          2026 · Proposed
-        </dt>
-        <dd>
-          AI finds edge cases. Team decides.
-        </dd>
-      </div>
-    </dl>
+  <div className="screen" role="img" aria-label={t('bmw.hero.phoneLabel')}>
+    <img aria-hidden="true" alt="" src="/assets/images/bmw-system/i4-services.png" width={1320} height={2868} />
   </div>
+  <nav aria-label={t('bmw.hero.downloadLabel')}>
+    <a href="https://apps.apple.com/ch/app/my-bmw/id1519034860" target="_blank" rel="noopener">
+      <img src="/lab/bmw-one-source/assets/app-store.svg" alt={t('bmw.hero.downloadApple')} />
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=de.bmw.connected.mobile20.row" target="_blank" rel="noopener">
+      <img className="play" src="/lab/bmw-one-source/assets/google-play.png" alt={t('bmw.hero.downloadGoogle')} />
+    </a>
+  </nav>
+  <dl>
+    <div>
+      <dt>
+        {t('bmw.hero.thenYear')}
+      </dt>
+      <dd>
+        {t('bmw.hero.then')}
+      </dd>
+    </div>
+    <div>
+      <dt>
+        {t('bmw.hero.nowYear')}
+      </dt>
+      <dd>
+        {t('bmw.hero.now')}
+      </dd>
+    </div>
+  </dl>
 </section>
 <section id="rule-matrix" className="showcase">
   <header>
