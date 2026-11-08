@@ -25,8 +25,7 @@ These are Lu's own side projects, built with AI tools (Claude, Cursor, v0). They
 ## Diandian (AI Pet) — AI dolphin companion
 - A little AI dolphin for young children: they can call it from a phone, or wake it by turning a knob on a small device on the desk.
 - Voice: Gemini will not speak to anyone under 18, so calls go through Volcano Engine instead. Pronunciation did not come across cleanly on the hardware, so that path needed its own workaround.
-- It can listen, tell stories, share a meal and learn a few words of French with the child.
-- TODO(Lu): the homepage says "German and French", the case page says "French". Confirm which, then delete this line.
+- It can listen, tell stories, share a meal and learn a few words of German and French with the child.
 - Parent mode: a small animation studio where kids choose Diandian's expressions and movements on a computer, preview them, and send them to the device.
 - Status: the current prototype sends animations to a phone; the hand-off to the hardware is shown on the site as a concept preview.
 
