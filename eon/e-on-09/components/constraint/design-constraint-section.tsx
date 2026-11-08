@@ -14,7 +14,7 @@ export function DesignConstraintSection() {
           headline: at 260px it sat behind the white title on phones and made it unreadable. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-2 -right-14 z-0 h-32 w-32 rounded-full bg-mint lg:top-10 lg:-right-16 lg:h-[320px] lg:w-[320px]"
+        className="pointer-events-none absolute top-0 -right-12 z-0 h-28 w-28 rounded-full bg-mint lg:top-10 lg:-right-16 lg:h-[320px] lg:w-[320px]"
       />
 
       <ContentContainer className="case-study-section relative z-[2]">
