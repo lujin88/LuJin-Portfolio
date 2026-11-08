@@ -142,6 +142,8 @@
 .bmw-driver .backdrop{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center}
 .bmw-driver::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(5,18,31,.87),rgba(5,18,31,.52) 37%,transparent 70%),linear-gradient(0deg,#071827 0%,rgba(7,24,39,.86) 11%,transparent 38%),linear-gradient(180deg,rgba(5,18,31,.3),transparent 40%)}
 .bmw-driver header{max-width:550px}
+/* Title at visual's size until Lu settles case-study title sizes (PM #1696); family stays DS Poppins. */
+.bmw-driver h1{font-size:56px}
 .bmw-driver header>p:first-child{margin:0 0 16px;font-size:16px;line-height:1.5;color:#c4d3e0}
 .bmw-driver header .hero-story{max-width:none;margin:20px 0 12px;font-size:18px;line-height:1.5;color:#edf2f6}
 .bmw-driver header .hero-bridge{max-width:none;font-size:16px;line-height:1.5;color:#c4d3e0}
@@ -156,6 +158,7 @@
 @media(min-width:601px) and (max-width:1100px){
 .bmw-driver .backdrop{object-position:right center}
 .bmw-driver header{max-width:52%}
+.bmw-driver h1{font-size:48px}
 .bmw-driver header .hero-story{font-size:16px}
 .bmw-driver .screen{width:200px}
 .bmw-driver dl{left:40%;gap:24px}
@@ -166,6 +169,7 @@
 .bmw-driver{min-height:0;padding:calc(64px + 24px) 24px 32px;display:grid;grid-template-columns:min(180px,46%) minmax(0,1fr);grid-template-areas:"head head" "scene scene" "phone dl" "nav nav";column-gap:24px;align-items:start}
 .bmw-driver::before{display:none}
 .bmw-driver header{grid-area:head;max-width:none}
+.bmw-driver h1{font-size:36px}
 .bmw-driver header>p:first-child{margin-bottom:12px;font-size:14px}
 .bmw-driver header .hero-story{margin:16px 0 10px;font-size:16px;line-height:1.45}
 .bmw-driver header .hero-bridge{font-size:14px}
