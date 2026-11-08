@@ -229,7 +229,9 @@
 /* Cards that already have a text row: the hint sits in the flow under it instead of over the picture. */
 .man-case .mc-stat-link .mc-open-hint{position:static;margin-top:8px;padding:0;background:none;box-shadow:none;color:inherit;font-size:13px}
 /* The three record thumbnails are small on phones: arrow only, so the hint never widens the row. */
-.man-case .rec-screen{position:relative}.man-case .rec-view .mc-open-hint{right:6px;bottom:auto;top:6px;padding:4px 7px}.man-case .rec-view .mc-open-text{display:none}
+.man-case .rec-screen{position:relative}.man-case .rec-view .mc-open-hint{right:6px;bottom:auto;top:6px;padding:4px 7px}.man-case .rec-view .mc-open-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .man-case .mc-proof-pair .mc-open-hint{right:4px;bottom:4px;padding:4px 7px;font-size:11px}
 /* The evidence form is ~150px wide on phones: arrow only there, the words would be wider than the picture. */
-@media(max-width:680px){.man-case .mc-verifier .mc-open-text{display:none}}
+@media(max-width:680px){.man-case .mc-verifier .mc-open-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
+/* Screen-reader-only text inside the hints (new-tab note, which image a text card opens). */
+.man-case .mc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
