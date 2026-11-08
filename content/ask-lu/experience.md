@@ -5,7 +5,7 @@
 ## Career
 - Oct 2022 – Sep 2026 · UBS, Zurich · Senior Service Designer
   B2B wealth-management products: tools for wealth advisors, a multi-asset application for bankers and traders, and middle-office payments tooling. Lead Service Designer on the AI advisor workflow concept (see cases/ubs-advisory.md). Contributed to AI components with the design system team (proposing, reviewing, shaping).
-  AI advisor workflow concept: concept tests showed 5–10 minutes saved per client, up to about 30 minutes on complex cases.
+  AI advisor workflow concept: concept tests showed 5–10 minutes saved per client, up to about 30 minutes on complex cases (not measured in production).
 - Oct 2020 – Sep 2022 · AdNovum, Bern · Senior Product Designer
   Data-intensive public-sector applications. Centralised investigation platform for the Swiss police, used across all 26 cantons (see cases/police-platform.md). Also worked on the Zurich E-ID initiative.
 - Jun 2016 – Jul 2020 · Futurice, Munich · Senior Product Designer
