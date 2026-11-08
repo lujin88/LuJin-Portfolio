@@ -1,32 +1,11 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { watchState } from '../../e-on-09/lib/motion/observe-once'
 import { useTranslation } from '@i18n/use-translation'
 
-/*
- * Audience evidence: clean photo + HTML overlay (ring, stat, three segment cards,
- * handwritten note).
- *
- * ≥640px: everything sits on the photo at the positions of the former baked-in JPG,
- *         sized in container units so the composition scales like the old image.
- * <640px: ring + stat stay on the photo; the note and the three cards move below it
- *         at readable sizes (title 14px, quote 13px).
- *
- * Motion (plays once; reduced motion — at load or switched on later — shows the end state):
- *   1. section ~35% in view → ring 0 → 66.7% with the number (1.0s), photo push-in 1 → 1.04
- *   2. when the ring is done (and, on mobile, the card list is in view) → cards one by one
- *      (desktop slide from the left, mobile rise from below), inside each card icon → title → quote
- *   3. after the third card settles → handwritten note
- * Only transform/opacity animate, except the SVG ring stroke and the number text.
- */
-
+// Reading layers are static; the overview photograph carries the page motion.
 const STAT = 66.7
-const RING_MS = 1000
-const CARD_LEAD_MS = 50 // cards may start this much before the ring lands
 const RING_R = 42
 const RING_C = 2 * Math.PI * RING_R
-const REDUCE = '(prefers-reduced-motion: reduce)'
 
 const SEGMENTS = [
   { icon: 'ri-home-4-line', tone: 'bg-lavender' },
@@ -38,100 +17,13 @@ const CARD_STAGGER_MS = 110
 const CARD_MS = 400
 const NOTE_DELAY_MS = (SEGMENTS.length - 1) * CARD_STAGGER_MS + CARD_MS
 
-// ssr = server render before hydration: CSS hides the start state when JS will animate,
-// and shows the final composition when JS is off or reduced motion is on.
-type Phase = 'ssr' | 'static' | 'out' | 'in'
-
-function easeOutCubic(t: number) {
-  return 1 - Math.pow(1 - t, 3)
-}
-
 const d = (ms: number) => ({ ['--d' as string]: `${ms}ms` })
 
 export function AudienceEvidence({ alt }: { alt: string }) {
   const { t, lang } = useTranslation()
-  const rootRef = useRef<HTMLDivElement>(null)
-  const listRef = useRef<HTMLUListElement>(null)
-  // static = final composition (reduced motion). out = armed, waiting. in = playing/played.
-  const [ring, setRing] = useState<Phase>('ssr')
-  const [cards, setCards] = useState<Phase>('ssr')
-  const [stat, setStat] = useState(STAT)
-  const [ringDone, setRingDone] = useState(false)
-  const [listInView, setListInView] = useState(false)
-
-  // Arm, then start watching only after the hidden frame has been painted, so a section that
-  // is already in view at load still animates from its start state instead of skipping it.
-  useEffect(() => {
-    const root = rootRef.current
-    const list = listRef.current
-    if (!root || !list) return
-    const mq = window.matchMedia(REDUCE)
-    if (mq.matches) {
-      setRing('static')
-      setCards('static')
-      return
-    }
-
-    let stopRoot = () => {}
-    let stopList = () => {}
-    let raf1 = 0
-    let raf2 = 0
-
-    setRing('out')
-    setCards('out')
-    setStat(0)
-    raf1 = requestAnimationFrame(() => {
-      raf2 = requestAnimationFrame(() => {
-        stopRoot = watchState(root, (hit) => hit && setRing('in'), 0.35)
-        stopList = watchState(list, (hit) => hit && setListInView(true), 0.2)
-      })
-    })
-
-    // Reduced motion switched on mid-visit: jump to the end state and stop everything.
-    const onChange = () => {
-      if (!mq.matches) return
-      stopRoot()
-      stopList()
-      setRing('static')
-      setCards('static')
-      setStat(STAT)
-    }
-    mq.addEventListener('change', onChange)
-
-    return () => {
-      cancelAnimationFrame(raf1)
-      cancelAnimationFrame(raf2)
-      stopRoot()
-      stopList()
-      mq.removeEventListener('change', onChange)
-    }
-  }, [])
-
-  // Ring + number.
-  useEffect(() => {
-    if (ring !== 'in') return
-    let raf = 0
-    let lead = 0
-    const origin = performance.now()
-    const frame = (now: number) => {
-      // rAF timestamps can predate origin by a frame; clamp so the count never starts below 0.
-      const p = Math.min(Math.max((now - origin) / RING_MS, 0), 1)
-      setStat(p >= 1 ? STAT : Math.round(STAT * easeOutCubic(p) * 10) / 10)
-      if (p < 1) raf = requestAnimationFrame(frame)
-    }
-    raf = requestAnimationFrame(frame)
-    lead = window.setTimeout(() => setRingDone(true), RING_MS - CARD_LEAD_MS)
-    return () => {
-      cancelAnimationFrame(raf)
-      clearTimeout(lead)
-    }
-  }, [ring])
-
-  // Cards wait for the ring; on mobile they also wait until the list is on screen.
-  useEffect(() => {
-    if (cards === 'out' && ringDone && listInView) setCards('in')
-  }, [cards, ringDone, listInView])
-
+  const ring = 'static'
+  const cards = 'static'
+  const stat = STAT
   const progress = stat / 100
   const statText =
     lang === 'de'
@@ -140,7 +32,6 @@ export function AudienceEvidence({ alt }: { alt: string }) {
 
   return (
     <div
-      ref={rootRef}
       data-ring={ring}
       data-cards={cards}
       className="aud-ev relative z-10 w-full [container-type:inline-size]"
@@ -152,7 +43,7 @@ export function AudienceEvidence({ alt }: { alt: string }) {
           src="/assets/images/eon/audience-photo-clean.jpg"
           alt={alt}
           loading="lazy"
-          className="aud-ev-photo absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover"
         />
         {/* Soft left shade so the desktop cards read on the bright foliage. */}
         <div
@@ -217,7 +108,7 @@ export function AudienceEvidence({ alt }: { alt: string }) {
 
       {/* Segment cards: over the photo (≥640) or stacked under it (<640). */}
       <ul
-        ref={listRef}
+
         aria-hidden="true"
         className="mt-4 flex flex-col gap-3 text-white sm:absolute sm:left-[3.6%] sm:top-[30%] sm:mt-0 sm:w-[37.5%] sm:gap-[1.6cqw]"
       >

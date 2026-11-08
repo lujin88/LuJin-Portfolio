@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import { ContentContainer } from '@eon/components/content-container'
 import { SectionLabel } from '@eon/components/section-label'
-import { CountUp } from '@eon/components/motion/count-up'
 import { OnceReveal } from '@eon/components/motion/once-reveal'
 import { useTranslation } from '@i18n/use-translation'
 
@@ -20,7 +19,7 @@ export function ResultsSection() {
       <ContentContainer>
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
           {/* Left: label + headline — kept as one group, shifted up to match the reference */}
-          <OnceReveal className="flex flex-col gap-6 lg:-mt-12">
+          <OnceReveal fromY={0} fromOpacity={1} className="flex flex-col gap-6 lg:-mt-12">
             <SectionLabel
               number="09"
               label={t('eon.results.eyebrow')}
@@ -33,7 +32,7 @@ export function ResultsSection() {
           </OnceReveal>
 
           {/* Right: outcome cards */}
-          <OnceReveal className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <OnceReveal fromY={0} fromOpacity={1} className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {/* Primary result — lead conversion */}
             <div className="flex min-w-0 flex-col gap-6 rounded-3xl bg-mint-light p-8 sm:p-10">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-off-white">
@@ -46,7 +45,7 @@ export function ResultsSection() {
                 />
               </span>
               <div className="flex flex-col gap-2">
-                <CountUp className="text-6xl font-extrabold tracking-[-0.03em] text-ink sm:text-7xl" />
+                <p className="text-6xl font-extrabold tracking-[-0.03em] text-ink sm:text-7xl">+300%</p>
                 <p className="text-base font-medium text-ink-muted sm:text-lg">
                   {t('eon.results.uplift')}
                 </p>

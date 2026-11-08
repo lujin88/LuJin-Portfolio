@@ -16,7 +16,6 @@ export function ChallengeSection() {
       {/* restrained, low-contrast organic color shapes */}
       <div
         aria-hidden="true"
-        data-move="8"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_55%_at_12%_-10%,rgba(160,140,224,0.06),transparent_60%),radial-gradient(60%_50%_at_100%_105%,rgba(126,231,199,0.035),transparent_60%)]"
       />
       <ContentContainer className="relative grid grid-cols-1 items-center gap-6 md:gap-14 lg:grid-cols-2 lg:gap-20">
@@ -35,7 +34,7 @@ export function ChallengeSection() {
         </div>
 
         {/* RIGHT — editorial text block */}
-        <div className="max-w-xl" data-move="48">
+        <div className="max-w-xl">
           {/* section number + label */}
           <SectionLabel
             number="02"

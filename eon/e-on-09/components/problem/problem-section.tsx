@@ -17,7 +17,7 @@ export function ProblemSection() {
 
       <ContentContainer className="relative z-[1] pt-8 pb-8 md:pt-24 md:pb-14">
         <div className="grid gap-6 md:grid-cols-[46fr_54fr] md:items-start md:gap-8">
-          <OnceReveal className="relative z-[2] md:pt-2">
+          <OnceReveal fromY={0} fromOpacity={1} className="relative z-[2] md:pt-2">
             <SectionLabel
               number="05"
               label={t('eon.problem.eyebrow')}
@@ -67,10 +67,9 @@ export function ProblemSection() {
                   alt={t('eon.problem.houseAlt')}
                   className="w-full max-w-[520px] -rotate-[4deg] shadow-[0_22px_28px_rgba(20,24,38,0.26),0_6px_10px_rgba(20,24,38,0.12)]"
                 />
-                <OnceReveal
+                <OnceReveal fromY={0} fromOpacity={1}
                   delay={70}
-                  fromOpacity={0}
-                  className="relative z-10 ml-[10%] mt-8 w-[230px] md:mt-12"
+                    className="relative z-10 ml-[10%] mt-8 w-[230px] md:mt-12"
                 >
                   <p className="origin-left -rotate-[8deg] font-hand text-[22px] font-normal leading-[1.1] text-ink md:text-[26px]">
                     {t('eon.problem.hand2a')}

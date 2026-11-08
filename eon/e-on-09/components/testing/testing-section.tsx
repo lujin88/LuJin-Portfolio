@@ -6,7 +6,6 @@ import { SectionLabel } from '@eon/components/section-label'
 import { ContentContainer } from '@eon/components/content-container'
 import { EvidenceCard } from '@eon/components/testing/evidence-card'
 import { AutoDetectedPill, RoofDetectionCard } from '@eon/components/testing/roof-detection-card'
-import { KineticLines } from '@eon/components/motion/kinetic-lines'
 import { OnceReveal } from '@eon/components/motion/once-reveal'
 import { useTranslation } from '@i18n/use-translation'
 
@@ -84,12 +83,9 @@ export function TestingSection() {
               emphasis="soft"
             />
 
-            <KineticLines
-              className="mt-6 text-pretty text-[52px] font-extrabold leading-[0.98] tracking-[-0.03em] text-navy-950 md:text-[64px] lg:max-xl:max-w-min"
-              lines={[t('eon.testing.line1'), t('eon.testing.line2')]}
-            />
+            <h2 className="mt-6 text-pretty text-[52px] font-extrabold leading-[0.98] tracking-[-0.03em] text-navy-950 md:text-[64px] lg:max-xl:max-w-min">{t('eon.testing.line1')}<br />{t('eon.testing.line2')}</h2>
 
-            <OnceReveal>
+            <OnceReveal fromY={0} fromOpacity={1}>
             <p className="mt-6 max-w-[460px] text-lg leading-relaxed text-navy-text">
               {t('eon.testing.body')}
             </p>
@@ -103,7 +99,7 @@ export function TestingSection() {
           </div>
 
           {/* Right visual: photograph, handwritten note, roof overlay */}
-          <OnceReveal className="relative mx-auto w-full max-w-[520px] pt-6 md:pt-16 lg:mx-0 lg:ml-auto lg:max-w-none lg:pt-2">
+          <OnceReveal fromY={0} fromOpacity={1} className="relative mx-auto w-full max-w-[520px] pt-6 md:pt-16 lg:mx-0 lg:ml-auto lg:max-w-none lg:pt-2">
             <AnnotationGroup
               className="pointer-events-none absolute top-0 z-30 hidden w-[420px] md:block md:-left-2 lg:-left-[9.5rem] lg:max-xl:-left-[6rem] lg:top-2"
               hand1={t('eon.testing.hand1')}

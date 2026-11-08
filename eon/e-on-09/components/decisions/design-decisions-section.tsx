@@ -81,7 +81,7 @@ export function DesignDecisionsSection() {
   return (
     <section className="relative overflow-x-clip">
       <ContentContainer className="case-study-section relative z-[1] flex flex-col gap-8">
-        <OnceReveal as="header" className="relative flex flex-col gap-4">
+        <OnceReveal fromY={0} fromOpacity={1} as="header" className="relative flex flex-col gap-4">
           <SectionLabel
             number="07"
             label={t('eon.decisions.eyebrow')}
@@ -101,7 +101,7 @@ export function DesignDecisionsSection() {
           </p>
         </OnceReveal>
 
-        <OnceReveal>
+        <OnceReveal fromY={0} fromOpacity={1}>
         <div
           role="tablist"
           aria-label={t('eon.decisions.tablist')}
