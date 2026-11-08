@@ -5,31 +5,6 @@ import { ContentContainer } from '@eon/components/content-container'
 import { OnceReveal } from '@eon/components/motion/once-reveal'
 import { useTranslation } from '@i18n/use-translation'
 
-function AnnotationArrow({ className }: { className?: string }) {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 36 58" fill="none" className={className}>
-      <path
-        d="M14 2.2c8.2 7.4 11.6 17.2 7.4 29.6-2.6 7.6-7.8 13.4-13.8 18.2"
-        stroke="currentColor"
-        strokeWidth="1.05"
-        strokeLinecap="round"
-      />
-      <path
-        d="M7.8 49.8 2.4 41.6"
-        stroke="currentColor"
-        strokeWidth="1.05"
-        strokeLinecap="round"
-      />
-      <path
-        d="M7.8 49.8 14.6 45.2"
-        stroke="currentColor"
-        strokeWidth="1.05"
-        strokeLinecap="round"
-      />
-    </svg>
-  )
-}
-
 export function ProblemSection() {
   const { t } = useTranslation()
   return (
@@ -69,26 +44,14 @@ export function ProblemSection() {
           </OnceReveal>
 
           <div>
-            {/* On narrow screens the note needs its own space above the collage. */}
-            <p className="mb-8 font-hand text-[22px] font-normal leading-[1.08] text-ink md:hidden">
+            {/* The note needs its own space above the collage at every viewport. */}
+            <p className="mb-8 font-hand text-[22px] font-normal leading-[1.08] text-ink md:mb-16 md:text-[26px]">
               {t('eon.problem.hand1a')}
               <br />
               {t('eon.problem.hand1b')}
             </p>
             <div className="relative min-h-[470px] overflow-visible md:min-h-[510px]">
               <div className="absolute left-[50%] top-[10rem] z-[2] w-[44%] max-w-[290px] md:left-[61%] md:top-[10.75rem] md:max-w-[310px]">
-                <OnceReveal
-                  className="absolute z-[4] hidden w-[190px] text-left md:block"
-                  style={{ top: '-6.35rem', left: '42%' }}
-                  fromOpacity={0}
-                >
-                  <p className="font-hand text-[22px] font-normal leading-[1.08] text-ink md:text-[26px]">
-                    {t('eon.problem.hand1a')}
-                    <br />
-                    {t('eon.problem.hand1b')}
-                  </p>
-                  <AnnotationArrow className="pointer-events-none absolute left-[8.15rem] top-[2.05rem] h-[3.15rem] w-[1.95rem] text-[#3d3d3d]" />
-                </OnceReveal>
                 <img
                   src="/assets/images/eon/eon-04-05-floor-plan.webp"
                   alt={t('eon.problem.floorAlt')}
