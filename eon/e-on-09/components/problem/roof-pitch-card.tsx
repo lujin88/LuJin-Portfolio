@@ -32,7 +32,9 @@ export function RoofPitchCard({ className, alt }: { className?: string; alt: str
   }
 
   const onType = (raw: string) => {
-    setText(raw.replace(/[^\d]/g, '').slice(0, 2))
+    const clean = raw.replace(/[^\d]/g, '').slice(0, 2)
+    // A roof pitch tops out at 90°.
+    setText(clean === '' ? '' : String(Math.min(90, Number(clean))))
   }
 
   return (
