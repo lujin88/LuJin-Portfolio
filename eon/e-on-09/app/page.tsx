@@ -6,6 +6,7 @@ import { ProblemSection } from '@eon/components/problem/problem-section'
 import { DesignConstraintSection } from '@eon/components/constraint/design-constraint-section'
 import { DesignDecisionsSection } from '@eon/components/decisions/design-decisions-section'
 import { PurpleContinuitySvg } from '@eon/components/purple-continuity-svg'
+import { TestingBackgroundShapes } from '@eon/components/decisions/background-shapes'
 import { TestingSection } from '@eon/components/testing/testing-section'
 import { ResultsSection } from '@eon/components/results-section'
 
@@ -22,6 +23,11 @@ export default function Page() {
         <DesignConstraintSection />
         <div className="theme-decisions relative">
           <DesignDecisionsSection />
+        </div>
+        {/* Testing's shapes bleed up into Decisions. Rendered here, anchored to
+            the Testing top edge, so this opaque layer doesn't cut them off. */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-full">
+          <TestingBackgroundShapes />
         </div>
       </div>
       <TestingSection />
