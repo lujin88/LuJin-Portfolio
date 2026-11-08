@@ -14,14 +14,14 @@ export default function ManTruckBusPage() {
   </div>
 <div className="mc-width">
   <LayerScrollGroup><dl className="mc-meta" data-move="96"><div><dt>My role</dt><dd>Sole product designer</dd></div><div><dt>Team</dt><dd>3 people · 24-hour hackathon</dd></div><div><dt>Scope</dt><dd>Hackathon: MAN stakeholder interviews and dispatch flow design<br />After: 13 screens</dd></div><div><dt>Recognition</dt><dd>MAN hackathon finalist</dd></div></dl></LayerScrollGroup>
-  <LayerScrollGroup as="section" className="mc-section">
+  <LayerScrollGroup as="section" className="mc-section mc-glance-section">
     <div className="mc-copyhead" data-move="96"><h2>A truck can be ready. <br /><em>Its shift can still be at risk.</em></h2></div>
     <div className="mc-three mc-glance" data-move="96"><div><h3>Problem</h3><p>No driver or no handover keeps a healthy truck in the yard.</p></div><div><h3>Workspace</h3><p>Every departure gets a blocker, an owner and a follow-up time.</p></div><div><h3>Outcome</h3><p>Hackathon finalist. Not yet tested with dispatchers.</p><p className="mc-fiction">All operational data is fictional.</p></div></div>
   </LayerScrollGroup>
   <LayerScrollGroup as="section" className="mc-section mc-context">
-    <div className="mc-context-copy" data-move="96"><h2>Munich depot, <br /><em>09:00.</em></h2><p>24 departures. 4 records available. Which one needs a call first?</p>
+    <div className="mc-context-copy" data-move="96"><h2>Munich depot, <br /><em>09:00.</em></h2><p>24 departures. 4 records available. Which one needs a call first?</p><ul className="mc-guide"><li><b>Blocking this shift:</b> why the truck can't leave yet.</li><li><b>Next action:</b> who does what, and by when.</li><li><b>Call:</b> phone the row's contacts directly.</li></ul>
     </div>
-    <figure className="mc-fig" data-move="64"><div className="mc-board-mat"><div className="mc-counter" data-move="32"><strong>4<span>/24</span></strong><small>Shift records</small></div><a href="/assets/man-fleet-uptime/dispatch.webp" target="_blank" rel="noopener" aria-label="View full dispatch board"><img width="1440" height="960" loading="lazy" src="/assets/man-fleet-uptime/dispatch.webp" alt="Dispatch board with four open shifts, their blockers, owners and contact actions" /></a></div></figure>
+    <figure className="mc-fig" data-move="64"><div className="mc-counter" data-move="32"><strong>4<span>/24</span></strong><small>Shift records</small></div><div className="mc-board-mat"><a href="/assets/man-fleet-uptime/dispatch.webp" target="_blank" rel="noopener" aria-label="View full dispatch board"><img width="1440" height="960" loading="lazy" src="/assets/man-fleet-uptime/dispatch.webp" alt="Dispatch board with four open shifts, their blockers, owners and contact actions" /></a></div></figure>
   </LayerScrollGroup>
 </div>
 <section className="mc-evidence"><div className="mc-width"><LayerScrollGroup>

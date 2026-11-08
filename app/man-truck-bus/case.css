@@ -217,3 +217,12 @@
 /* Page gutter (Lu 2026-11-06): body text starts on the footer's left edge.
    --content-inset is the site gutter from shell-tokens.css; its 100% resolves against .man-case/.mc-cover/.mc-evidence, which are full-bleed. */
 .man-case .mc-width,.man-case .mc-cover-inner{width:auto;margin-inline:var(--content-inset)}
+
+/* Context section, Lu's pick A (2026-11-08, OUTBOX/MAN_TIGHT_AB_20261108/SELECTED_A): tighter gap to the section above
+   (40+40 desktop, 24+24 phone), copy top-aligned with the board, 4/24 counter above the card, three reading guides. */
+.man-case .mc-glance-section{padding-bottom:40px}
+.man-case .mc-context{padding-top:40px;align-items:start}
+.man-case .mc-fig>.mc-counter{margin-bottom:24px}
+.man-case .mc-guide{margin:24px 0 0;padding:0;list-style:none;display:grid;gap:16px;max-width:360px;font-size:16px;line-height:1.5}
+.man-case .mc-guide b{font-weight:600}
+@media(max-width:680px){.man-case .mc-glance-section{padding-bottom:24px}.man-case .mc-context{padding-top:24px}.man-case .mc-guide{max-width:none}}
