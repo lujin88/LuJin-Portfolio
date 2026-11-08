@@ -1,0 +1,58 @@
+{
+  "caption": [
+    {
+      "width": 1440,
+      "samples": 992,
+      "minBright": 1099,
+      "maxBright": 1099,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "samples": 992,
+      "minBright": 1099,
+      "maxBright": 1099,
+      "errors": []
+    }
+  ],
+  "modes": [
+    {
+      "name": "slow4",
+      "riv": 3,
+      "loadingCoverHidden": true,
+      "reduceToggle": true
+    },
+    {
+      "name": "reduce",
+      "riv": 0,
+      "loadingCoverHidden": true,
+      "reduceToggle": false
+    }
+  ],
+  "boundary": [
+    {
+      "width": 1440,
+      "reduce": false,
+      "sameLayout": true,
+      "noOverflow": true
+    },
+    {
+      "width": 1440,
+      "reduce": true,
+      "sameLayout": true,
+      "noOverflow": true
+    },
+    {
+      "width": 390,
+      "reduce": false,
+      "sameLayout": true,
+      "noOverflow": true
+    },
+    {
+      "width": 390,
+      "reduce": true,
+      "sameLayout": true,
+      "noOverflow": true
+    }
+  ]
+}
