@@ -88,7 +88,7 @@ export function BMWOneSource() {
     </p>
   </header>
   <div className="screen" role="img" aria-label={t('bmw.hero.phoneLabel')}>
-    <img aria-hidden="true" alt="" src="/assets/images/bmw-system/i4-services.png" width={1320} height={2868} />
+    <img aria-hidden="true" alt="" src="/assets/images/bmw-system/i4-services-600.webp" width={600} height={1304} />
   </div>
   <nav aria-label={t('bmw.hero.downloadLabel')}>
     <a href="https://apps.apple.com/ch/app/my-bmw/id1519034860" target="_blank" rel="noopener">
