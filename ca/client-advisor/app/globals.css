@@ -1066,9 +1066,11 @@ footer > hr {
 .ca-outcome-orbit-dot { transform: translate(718px, 596px); }
 [data-outcome-state="play"] .ca-outcome-edge-reveal {
   animation: ca-outcome-edge-in 1100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--ca-outcome-delay, 0ms) + 250ms);
 }
 [data-outcome-state="play"] .ca-outcome-orbit-dot {
   animation: ca-outcome-orbit-in 1100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--ca-outcome-delay, 0ms) + 250ms);
 }
 @keyframes ca-outcome-edge-in { from { transform: scaleX(0.001); } to { transform: scaleX(1); } }
 @keyframes ca-outcome-orbit-in {

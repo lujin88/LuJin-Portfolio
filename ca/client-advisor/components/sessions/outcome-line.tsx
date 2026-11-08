@@ -7,7 +7,7 @@ export function OutcomeLine({ index }: { index: number }) {
   const id = useId().replace(/:/g, '')
   if (index === 1) {
     return (
-      <svg aria-hidden="true" className="ca-outcome-trace" viewBox="0 0 800 987" preserveAspectRatio="none">
+      <svg aria-hidden="true" className="ca-outcome-trace" viewBox="0 0 800 987" preserveAspectRatio="xMidYMax meet">
         <defs>
           <mask id={`${id}-edge`} maskUnits="userSpaceOnUse" x="220" y="630" width="430" height="185">
             <rect className="ca-outcome-edge-reveal" x="220" y="630" width="430" height="185" fill="white" />
@@ -19,7 +19,7 @@ export function OutcomeLine({ index }: { index: number }) {
   }
   if (index === 2) {
     return (
-      <svg aria-hidden="true" className="ca-outcome-trace" viewBox="0 0 800 974" preserveAspectRatio="none">
+      <svg aria-hidden="true" className="ca-outcome-trace" viewBox="0 0 800 974" preserveAspectRatio="xMidYMax meet">
         <g className="ca-outcome-orbit-dot">
           <circle r="15" fill="#00aaff" opacity="0.16" />
           <circle r="8" fill="#38d9ff" opacity="0.5" />
