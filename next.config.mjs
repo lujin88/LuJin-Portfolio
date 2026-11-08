@@ -40,7 +40,7 @@ const nextConfig = {
   // does not cover public/lab.
   outputFileTracingExcludes: {
     '/*': ['./public/assets/**/*'],
-    '/index': ['./public/lab/**/*'],
+    '/landing': ['./public/lab/**/*'],
   },
   images: {
     unoptimized: true,
@@ -59,12 +59,24 @@ const nextConfig = {
     return [
       {
         // Raw source for the /index HTML island (read from disk by
-        // app/index/page.tsx). Still publicly reachable, so keep it out of
+        // app/landing/page.tsx). Still publicly reachable, so keep it out of
         // search results instead of redirecting it.
         source: '/home.html',
         headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
       },
     ]
+  },
+  async rewrites() {
+    // The home page lives at app/landing, not app/index. A route named
+    // "index" shares its internal name with the root route "/", and on
+    // Vercel the client's ?_rsc= request for /index was matched to "/" and
+    // answered with HTML. The router then fell back to a full reload, which
+    // showed the root layout's black background for ~370 ms. Visitors still
+    // use /index. beforeFiles, so Vercel rewrites the RSC request too
+    // instead of normalising /index to "/" first.
+    return {
+      beforeFiles: [{ source: '/index', destination: '/landing' }],
+    }
   },
   async redirects() {
     return [
