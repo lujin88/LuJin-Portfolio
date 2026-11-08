@@ -12,6 +12,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 This repo is the canonical site on **port 3000**.
 
+- **Which folder serves 3000** (Lu, 2026-11-08, 4A): `~/Desktop/portfolio_perfect`, started by launchd `com.lu.portfolio-perfect-3000` (`~/Library/Application Support/portfolio-perfect/dev-3000.sh`, auto-restarts). It is a separate clone of this repo on its own branch with uncommitted work; "3000 only" files live there. `~/LuJin-Portfolio` is `main` and does not serve 3000. Agent worktrees are under `~/LuJin-Portfolio-worktrees/`. Do not edit `~/Desktop/portfolio_perfect` unless the project manager assigns it; back it up with `daily-backup.sh push ~/Desktop/portfolio_perfect:portfolio-perfect`.
+
 - `http://localhost:3000/` stays empty.
 - First page is `/index`. Always serve the latest full site at `http://localhost:3000/index`.
 - Do not move this app, or lu-portfolio, to 3001.
