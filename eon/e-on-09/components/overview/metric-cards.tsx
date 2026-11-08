@@ -11,7 +11,7 @@ export function MetricCards() {
       {/* Mint metric card */}
       <div className="flex items-center gap-4 rounded-2xl bg-eon-mint px-5 py-5 text-eon-navy">
         <Image
-          src="/assets/images/eon/icon-chart.png"
+          src="/assets/images/eon/icon-chart.webp"
           alt=""
           width={36}
           height={36}
@@ -26,7 +26,7 @@ export function MetricCards() {
       {/* Lilac rollout card */}
       <div className="flex items-center gap-4 rounded-2xl bg-eon-lilac px-5 py-5 text-eon-navy">
         <Image
-          src="/assets/images/eon/icon-world.png"
+          src="/assets/images/eon/icon-world.webp"
           alt=""
           width={36}
           height={36}

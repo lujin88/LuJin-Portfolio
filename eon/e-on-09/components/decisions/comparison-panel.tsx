@@ -5,9 +5,43 @@ import Image from 'next/image'
 import { ComparisonCardHeader } from '@eon/components/decisions/comparison-card-header'
 import { PanelArrow } from '@eon/components/decisions/panel-arrow'
 import { useTranslation } from '@i18n/use-translation'
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
+import { prefersReducedMotion } from '@eon/lib/motion/hooks'
+import { watchState } from '@eon/lib/motion/observe-once'
 
-export function ComparisonPanel() {
+/**
+ * The "After" ticks land one by one: the system fills in what the customer
+ * used to type. Plays when the panel is first seen and again each time
+ * tab 01 is re-selected. Ticks render visible on the server; they are only
+ * hidden on the client, before the first play, so a failed script never
+ * leaves them blank.
+ */
+function useTickRun(active: boolean) {
+  const ref = useRef<HTMLUListElement>(null)
+  const [seen, setSeen] = useState(false)
+  const [run, setRun] = useState(0)
+  const [pending, setPending] = useState(false)
+
+  useLayoutEffect(() => {
+    if (!prefersReducedMotion()) setPending(true)
+  }, [])
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node || !pending) return
+    return watchState(node, (visible) => visible && setSeen(true), 0.6)
+  }, [pending])
+
+  useEffect(() => {
+    if (pending && seen && active) setRun((n) => n + 1)
+  }, [pending, seen, active])
+
+  return { ref, run, hidden: pending && run === 0 }
+}
+
+export function ComparisonPanel({ active = true }: { active?: boolean }) {
   const { t } = useTranslation()
+  const ticks = useTickRun(active)
   const manualFields = [
     { label: t('eon.ui.roofSizeQ'), icon: Scan },
     { label: t('eon.ui.roofInclinationQ'), icon: Triangle },
@@ -24,7 +58,7 @@ export function ComparisonPanel() {
       <div className="flex flex-1 flex-col gap-6 rounded-2xl border border-navy-950/8 bg-card p-3 shadow-[0_20px_60px_rgba(5,20,30,0.08)] sm:flex-row sm:items-center">
         <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-xl sm:h-48 sm:w-48">
           <Image
-            src="/assets/images/eon/eon 07 map before.png"
+            src="/assets/images/eon/eon 07 map before.webp"
             alt={t('eon.ui.beforeMapAlt')}
             fill
             className="object-cover"
@@ -49,13 +83,13 @@ export function ComparisonPanel() {
       <div className="flex flex-1 flex-col gap-6 rounded-2xl border border-navy-950/8 bg-card p-3 shadow-[0_20px_60px_rgba(5,20,30,0.08)] sm:flex-row sm:items-center">
         <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-xl sm:h-48 sm:w-48">
           <Image
-            src="/assets/images/eon/eon 07 map after.png"
+            src="/assets/images/eon/eon 07 map after.webp"
             alt={t('eon.ui.afterMapAlt')}
             fill
             className="object-cover"
           />
           <Image
-            src="/assets/images/eon/eon 07 pin.png"
+            src="/assets/images/eon/eon 07 pin.webp"
             alt=""
             width={512}
             height={512}
@@ -65,15 +99,21 @@ export function ComparisonPanel() {
         </div>
         <div className="min-w-0 flex-1 px-3 py-2 sm:px-2">
           <ComparisonCardHeader tone="after" title={t('eon.ui.foundRoof')}>
-            <ul className="flex flex-col gap-3">
-              {resolvedFields.map(({ label, icon: Icon }) => (
+            <ul ref={ticks.ref} className="flex flex-col gap-3">
+              {resolvedFields.map(({ label, icon: Icon }, index) => (
                 <li key={label} className="flex items-center justify-between gap-3">
                   <span className="flex items-center gap-3">
                     <Icon className="size-5 shrink-0 text-foreground" strokeWidth={1.75} aria-hidden="true" />
                     <span className="text-base font-medium text-foreground">{label}</span>
                   </span>
-                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-accent">
-                    <Check className="size-3.5 text-accent-foreground" strokeWidth={3} aria-hidden="true" />
+                  <span
+                    key={ticks.run}
+                    className={`flex size-6 shrink-0 items-center justify-center rounded-full bg-after ${
+                      ticks.hidden ? 'opacity-0' : ticks.run > 0 ? 'sc-tick' : ''
+                    }`}
+                    style={{ '--sc-tick-delay': `${150 + index * 60}ms` } as CSSProperties}
+                  >
+                    <Check className="size-3.5 text-after-foreground" strokeWidth={3} aria-hidden="true" />
                   </span>
                 </li>
               ))}

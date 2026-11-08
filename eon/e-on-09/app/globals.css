@@ -4,6 +4,7 @@
 @import './scrollcraft-motion.css';
 @source '../../e-on-03';
 @source '../../../global-header/components';
+@source '../components';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -39,6 +40,8 @@
   --color-lavender-insight: var(--lavender-insight);
   --color-mint: var(--mint);
   --color-mint-light: var(--mint-light);
+  --color-after: var(--after);
+  --color-after-foreground: var(--after-foreground);
   --color-blue-soft: var(--blue-soft);
   --color-peach: var(--peach);
   --color-eon-red: var(--eon-red);
@@ -125,8 +128,10 @@
   --content-max-width: 1440px;
   --content-padding-x: 1.5rem;
   --lavender-insight: #9b90c5;
-  --mint: #b9f4d8;
-  --mint-light: #e5f9ee;
+  --mint: #cfeadc;
+  --mint-light: #edf6f0;
+  --after: #b7ddc9;
+  --after-foreground: oklch(0.2 0.06 200);
   --blue-soft: #b9d4ff;
   --peach: #ffdcc3;
   --eon-red: #f32717;
@@ -303,15 +308,9 @@
 
 .content-container {
   width: 100%;
-  max-width: var(--content-max-width);
-  margin-inline: auto;
-  padding-inline: var(--content-padding-x);
-}
-
-@media (width >= 768px) {
-  :root {
-    --content-padding-x: 4rem;
-  }
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: var(--content-inset, 24px);
 }
 
 .site-chrome {
@@ -319,7 +318,8 @@
 }
 
 footer[data-variant='light'] {
-  --footer: #ffffff;
+  /* Same fill as Real impact (bg-off-white). Local 3000 only; port into the contact PR after #32. */
+  --footer: var(--off-white);
   --footer-foreground: #07151f;
   --footer-muted: #5c6b7a;
   --footer-line: rgb(7 21 31 / 8%);
@@ -329,4 +329,73 @@ footer[data-variant='light'] {
 /* Unlayered so the rule stays a hairline and does not fall back to the light --border gray. */
 footer > hr {
   border-top-color: var(--footer-line);
+}
+
+/* E.ON 03 audience evidence — plays once; see e-on-03/components/audience-evidence.tsx */
+.aud-ev {
+  --aud-ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --aud-card-from: translate3d(-2.4cqw, 0, 0);
+}
+@media (max-width: 639.98px) {
+  .aud-ev {
+    --aud-card-from: translate3d(0, 16px, 0);
+  }
+}
+.aud-ev-photo {
+  transform-origin: 62% 45%;
+}
+.aud-ev[data-ring='in'] .aud-ev-photo {
+  transform: scale(1.04);
+  transition: transform 7s var(--aud-ease);
+}
+.aud-ev[data-ring='out'] .aud-ev-ring-fade {
+  opacity: 0;
+}
+.aud-ev[data-ring='in'] .aud-ev-ring-fade {
+  transition: opacity 360ms var(--aud-ease) var(--d, 0ms);
+}
+.aud-ev[data-cards='out'] .aud-ev-card {
+  opacity: 0;
+  transform: var(--aud-card-from);
+}
+.aud-ev[data-cards='in'] .aud-ev-card {
+  transition:
+    opacity 400ms var(--aud-ease) var(--d, 0ms),
+    transform 400ms var(--aud-ease) var(--d, 0ms);
+}
+.aud-ev[data-cards='out'] .aud-ev-fade {
+  opacity: 0;
+  transform: translate3d(0, 6px, 0);
+}
+.aud-ev[data-cards='in'] .aud-ev-fade {
+  transition:
+    opacity var(--dur, 360ms) var(--aud-ease) var(--d, 0ms),
+    transform var(--dur, 360ms) var(--aud-ease) var(--d, 0ms);
+}
+/* Server render, before hydration: when JS will run the entrance, start hidden so a reload
+   inside this section doesn't flash the final state first. No JS / reduced motion → final state. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .aud-ev[data-ring='ssr'] .aud-ev-ring-fade,
+  .aud-ev[data-ring='ssr'] .aud-ev-stat,
+  .aud-ev[data-ring='ssr'] .aud-ev-progress {
+    opacity: 0;
+  }
+  .aud-ev[data-cards='ssr'] .aud-ev-card {
+    opacity: 0;
+    transform: var(--aud-card-from);
+  }
+  .aud-ev[data-cards='ssr'] .aud-ev-fade {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aud-ev .aud-ev-photo,
+  .aud-ev .aud-ev-card,
+  .aud-ev .aud-ev-fade,
+  .aud-ev .aud-ev-ring-fade {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
