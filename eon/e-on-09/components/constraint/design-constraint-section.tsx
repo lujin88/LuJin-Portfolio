@@ -27,7 +27,7 @@ export function DesignConstraintSection() {
           className="mb-10"
         />
 
-        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
+        <div className="grid grid-cols-1 items-start gap-6 md:gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
           {/* Left: headline + copy */}
           <OnceReveal className="max-w-[720px]">
             <h2 className="text-balance text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-white sm:text-[42px] md:text-[48px] lg:text-[46px]">
