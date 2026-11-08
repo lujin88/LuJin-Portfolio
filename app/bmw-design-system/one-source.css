@@ -157,5 +157,7 @@
 /* Car size (Lu 2026-11-06 "车子太大了…缩回去"): back to the pre-11-05 .oc-hero scale. The photo keeps its own 2098:749 ratio at full width from the top
    instead of covering the whole (taller than 100svh) hero, which had blown the car up ~2.2x. Its lower edge fades into the hero blue. <=900px already shows it at natural ratio. */
 @media(min-width:901px){.bmw-driver .backdrop{inset:0 0 auto 0;height:auto;aspect-ratio:2098/749;-webkit-mask-image:linear-gradient(to top,transparent 0,#000 30%);mask-image:linear-gradient(to top,transparent 0,#000 30%)}}
+/* With the car at its natural size its nose sits at ~54% of the width. At 901-1279px the intro paragraphs would run over the headlight, so keep them left of it. */
+@media(min-width:901px) and (max-width:1279px){.bmw-driver header :is(.hero-story,.hero-bridge){max-width:44vw}}
 }
 .bmw-one-source{color-scheme:light;text-align:left}
