@@ -44,6 +44,7 @@ export function JourneySection() {
     <section className="relative overflow-hidden bg-navy-950 text-white">
       <div
         aria-hidden="true"
+        // The paragraph beside it keeps 12rem clear on the right (md:mr) so its white text never sits on the mint.
         className="pointer-events-none absolute -right-40 top-[28%] h-[280px] w-[280px] rounded-full bg-mint md:-right-28 md:h-[300px] md:w-[300px]"
       />
 
@@ -69,7 +70,7 @@ export function JourneySection() {
               <AnnotationArrow className="pointer-events-none mt-1 ml-16 h-[68px] w-[124px] text-white/40 md:absolute md:top-[4.4rem] md:left-[6.75rem] md:mt-0 md:h-[82px] md:w-[168px]" />
             </div>
 
-            <p className="max-w-[560px] text-pretty text-lg leading-relaxed text-white/60 md:pt-1 md:text-xl">
+            <p className="max-w-[560px] text-pretty text-lg leading-relaxed text-white/60 md:pt-1 md:text-xl md:max-[1439px]:mr-[12rem]">
               {t('eon.journey.body')}
             </p>
           </div>
