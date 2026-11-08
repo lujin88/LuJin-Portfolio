@@ -1088,3 +1088,60 @@ footer > hr {
   [data-outcome-state] .ca-outcome-edge-reveal,
   [data-outcome-state] .ca-outcome-orbit-dot { animation: none; }
 }
+
+/*
+ * 1024-1279 (visual OUTBOX/CA_HERO_1024_20261108, visual QA #903): the 220px "At a glance"
+ * column sat on the advisor's face. Here the stats move under the intro in the left column
+ * (intro -> stats -> role), in three columns, and the portrait narrows to 48%.
+ */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .ca-s01 .ca-s01-grid {
+    grid-template-columns: minmax(0, min(52vw, 560px));
+    gap: 0;
+  }
+  .ca-s01 .ca-s01-grid > div:first-child {
+    display: contents;
+  }
+  .ca-s01 .ca-s01-grid > div:first-child > div {
+    order: 1;
+  }
+  .ca-s01 .ca-s01-grid > aside {
+    order: 2;
+    width: 100%;
+    margin-top: 32px;
+    justify-self: stretch;
+    align-self: start;
+  }
+  .ca-s01 .ca-s01-grid > div:first-child > dl {
+    order: 3;
+    margin-top: 32px;
+    padding-top: 0;
+  }
+  .ca-s01 .ca-s01-grid > aside > div[aria-hidden] {
+    display: none;
+  }
+  .ca-s01 .ca-s01-grid > aside > div:last-child {
+    width: 100%;
+  }
+  .ca-s01 .ca-s01-grid > aside ul {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .ca-s01 .ca-s01-grid > aside .ca-eyebrow {
+    margin-bottom: 16px;
+  }
+  .ca-s01 .ca-s01-grid > aside li > p:first-child {
+    font-size: 28px;
+  }
+  .ca-s01 .ca-s01-grid > aside li > p:last-child {
+    max-width: 100%;
+    font-size: 14px;
+  }
+  .ca-s01 .ca-h1 {
+    font-size: 60px;
+  }
+  .ca-s01-photo-shift {
+    width: 48%;
+  }
+}
