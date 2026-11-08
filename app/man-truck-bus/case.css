@@ -3,6 +3,8 @@
 .man-case :where(h1,h2,h3,p,dl,dd,figure,ol,ul){margin:0}
 .man-case :where(h1,h2,h3){text-wrap:balance}
 .man-case img{display:block;max-width:100%;height:auto}
+/* Grid items default to min-width:auto; a failed image (width="1440") then widened its column to 1440px and pushed the copy off screen. */
+.man-case :is(.mc-context,.mc-method,.mc-feature)>*{min-width:0}
 .man-case a{color:inherit}.man-case a:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
 .man-case .mc-width,.man-case .mc-cover-inner{width:min(1184px,calc(100% - clamp(48px,10vw,144px)));margin-inline:auto}
 .man-case h1,.man-case h2,.man-case .mc-feature h3,.man-case .mc-change h3{font-family:var(--serif);font-weight:400;line-height:1.04;letter-spacing:-.05em}
