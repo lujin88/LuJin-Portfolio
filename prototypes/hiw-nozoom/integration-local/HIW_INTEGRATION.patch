@@ -1,0 +1,29 @@
+--- a/public/home.html
++++ b/public/home.html
+@@ -1828,6 +1828,7 @@
+     .hero-media__video { transition: none; transform: none; }
+   }
+ </style>
++<link rel="stylesheet" href="/styles/hiw-revision2.css">
+ </head>
+ 
+ <body class="bg-ink text-text1 min-w-[360px]">
+@@ -2010,7 +2011,8 @@
+     <svg class="ad-art" xmlns="http://www.w3.org/2000/svg" viewBox="720 130 1060 654" width="1060" height="654" role="img" data-i18n-aria="home.how.artLabel" aria-label="Decide: Human judgment in every step. A human designer leads a team of AI assistants, surrounded by sketches, checklists, and an idea bulb.">
+       <image href="/assets/images/how-i-work/ai-decides.webp" x="0" y="0" width="1842" height="854"/>
+     </svg>
+-    <video class="hiw-video" data-src="/assets/videos/how-i-work/illustration-v4-stabilized.mp4" autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
++    <img class="hiw-r2-still" src="/assets/images/how-i-work/hiw-revision2-still.png" width="1060" height="654" alt="" aria-hidden="true">
++    <video class="hiw-video" data-src="/assets/videos/how-i-work/hiw-revision2-web.mp4" autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
+     <svg class="hiw-decide-layer" viewBox="0 0 1060 654" aria-hidden="true">
+       <defs><clipPath id="hiw-label-clip"><rect x="420" y="22" width="160" height="40"/><rect x="325" y="62" width="310" height="36"/></clipPath><clipPath id="hiw-left-clip"><rect x="350" y="0" width="51" height="61"/></clipPath><clipPath id="hiw-right-clip"><rect x="585" y="0" width="45" height="61"/></clipPath></defs>
+ <g class="hiw-decide-label"><g clip-path="url(#hiw-label-clip)"><image href="/assets/images/how-i-work/ai-decides.webp" x="-720" y="-130" width="1842" height="854"/></g></g><g class="hiw-decide-left"><g clip-path="url(#hiw-left-clip)"><image href="/assets/images/how-i-work/ai-decides.webp" x="-720" y="-130" width="1842" height="854"/></g></g><g class="hiw-decide-right"><g clip-path="url(#hiw-right-clip)"><image href="/assets/images/how-i-work/ai-decides.webp" x="-720" y="-130" width="1842" height="854"/></g></g></svg>
+@@ -4051,7 +4053,7 @@
+ </script>
+ 
+ <script>
+-// How I Work: original SVG remains underneath for reduced motion and failures.
++// How I Work: matching still remains underneath for reduced motion and failures.
+ (function initHIWVideo() {
+   if (window.__hiwVideoCleanup) window.__hiwVideoCleanup();
+   var video = document.querySelector('#how-i-work .hiw-video');
