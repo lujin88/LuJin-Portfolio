@@ -56,7 +56,8 @@ function AnnotationGroup({
         <br />
         {hand2}
       </p>
-      <AnnotationArrow className="absolute left-0 top-0 z-40 text-[#5a6180]" />
+      {/* Below 1024 the photo sits elsewhere and the arc crossed the face (visualqa #1676): hidden there, PM #1678. */}
+      <AnnotationArrow className="absolute left-0 top-0 z-40 hidden text-[#5a6180] lg:block" />
     </div>
   )
 }
