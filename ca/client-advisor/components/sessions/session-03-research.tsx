@@ -61,7 +61,7 @@ export function Session03Research() {
           data-move="96"
           className={`${styles.copyCol} flex flex-col justify-center border-t border-[var(--s3-rule)] pt-12 lg:border-t-0 lg:pt-8 lg:pb-0`}
         >
-          <p className={`ca-eyebrow`} data-delay="1">
+          <p className={`ca-eyebrow`}>
             <span className="ca-eyebrow-index">03</span>
             <span aria-hidden="true" className="ca-eyebrow-rule" />
             <span>{t('ca.research.eyebrow')}</span>
@@ -70,32 +70,28 @@ export function Session03Research() {
           <h2
             id="session-03-heading"
             className={`ca-h2 mt-[var(--ca-heading-gap)] max-w-[16ch] font-sans`}
-            data-delay="2"
           >
             {t('ca.research.title')}
           </h2>
 
           <p
             className={`mt-4 max-w-[20ch] text-balance font-sans text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] sm:text-[2.25rem] lg:text-[clamp(2.1rem,2.9vw,2.5rem)]`}
-            data-delay="2"
           >
             {t('ca.research.subhead')}
           </p>
 
           <p
             className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`}
-            data-delay="3"
             dangerouslySetInnerHTML={{ __html: t('ca.research.body1Html') }}
           />
 
           <h3
             className={`mt-12 max-w-[22ch] text-balance font-sans text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] sm:text-[2.25rem] lg:mt-14 lg:text-[clamp(2.1rem,2.9vw,2.5rem)]`}
-            data-delay="2"
           >
             {t('ca.research.heading2')}
           </h3>
 
-          <p className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`} data-delay="3">
+          <p className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`}>
             {t('ca.research.body2')}
           </p>
         </div>

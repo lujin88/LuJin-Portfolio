@@ -32,12 +32,11 @@ export function Session04TheShift() {
               <h2
                 id="session-04-heading"
                 className={`${styles.headline}`}
-                data-delay="1"
               >
                 {t('ca.shift.headline1')} <br />
                 {t('ca.shift.headline2')}
               </h2>
-              <p className={`${styles.body}`} data-delay="2">
+              <p className={`${styles.body}`}>
                 {t('ca.shift.bodyLead')}
                 <br />
                 {t('ca.shift.bodyInstead')}
@@ -54,7 +53,7 @@ export function Session04TheShift() {
                   {t('ca.shift.bodyAsk3')}
                 </strong>
               </p>
-              <p className={`${styles.closing}`} data-delay="3">
+              <p className={`${styles.closing}`}>
                 {t('ca.shift.closing1')}
                 <br />
                 {t('ca.shift.closing2')}
