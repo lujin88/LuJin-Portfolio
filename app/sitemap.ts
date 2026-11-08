@@ -4,7 +4,8 @@ import { SITE_URL } from './seo'
 /**
  * Public, indexable routes: the home page plus every page in the header's Work
  * and Playground menus (global-header/components/site-header.tsx). `/` redirects
- * to `/index`; /home.html is noindex. Pages without a menu entry stay out.
+ * to `/index`; /home.html is noindex. Pages without a menu entry stay out, and so
+ * do noindex pages: /bmw-design-system is public but not indexed (Lu, 2026-11-05).
  */
 const ROUTES = [
   '/index',
@@ -12,7 +13,6 @@ const ROUTES = [
   '/EON',
   '/man-truck-bus',
   '/etf-savings-plan',
-  '/bmw-design-system',
   '/lab/way-of-work',
   '/lab/weather-aquarium',
   '/ai-companion-pet',
