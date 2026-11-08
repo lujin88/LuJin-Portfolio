@@ -1126,7 +1126,7 @@ footer > hr {
   .ca-s01 .ca-s01-grid > aside ul {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
+    gap: 16px;
   }
   .ca-s01 .ca-s01-grid > aside .ca-eyebrow {
     margin-bottom: 16px;
