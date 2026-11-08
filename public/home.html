@@ -4058,10 +4058,11 @@
       var maxScroll = document.documentElement.scrollHeight - innerHeight;
       var restTop = top - Math.max(0, maxScroll - scrollY);
       var lift = Math.min(innerHeight, Math.max(0, top - restTop)) * (narrow.matches ? 0.35 : 0.50);
-      // Wide screens keep at least 72px between the heading and the
-      // Designaffairs last line. Phone stays on the 0.35 lag with no floor.
-      if (!narrow.matches) {
-        var floor = 72;
+      // Keep a floor between the heading and the Designaffairs last line:
+      // 72px on wide screens, 24px on narrow ones. Without a floor the phone
+      // lag lifted the heading onto the last experience entry.
+      {
+        var floor = narrow.matches ? 24 : 72;
         var line = document.querySelector('.exp-content[data-index="3"] .exp-content__desc');
         var heading = block.querySelector('.exp-contact__heading');
         if (line && heading) {
