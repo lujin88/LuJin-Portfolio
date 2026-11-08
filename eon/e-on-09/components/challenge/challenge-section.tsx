@@ -19,7 +19,7 @@ export function ChallengeSection() {
         data-move="8"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_55%_at_12%_-10%,rgba(160,140,224,0.06),transparent_60%),radial-gradient(60%_50%_at_100%_105%,rgba(126,231,199,0.035),transparent_60%)]"
       />
-      <ContentContainer className="relative grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20">
+      <ContentContainer className="relative grid grid-cols-1 items-center gap-6 md:gap-14 lg:grid-cols-2 lg:gap-20">
         {/* LEFT — editorial image */}
         <div data-move="24" data-from-opacity="0.92">
           <div className="relative overflow-hidden rounded-[28px]">

@@ -15,8 +15,8 @@ export function ProblemSection() {
         className="pointer-events-none absolute -left-40 -top-16 z-[1] h-[320px] w-[320px] rounded-full bg-blue-soft md:-left-36 md:-top-20 md:h-[360px] md:w-[360px]"
       />
 
-      <ContentContainer className="relative z-[1] pt-20 pb-12 md:pt-24 md:pb-14">
-        <div className="grid gap-16 md:grid-cols-[46fr_54fr] md:items-start md:gap-8">
+      <ContentContainer className="relative z-[1] pt-8 pb-8 md:pt-24 md:pb-14">
+        <div className="grid gap-6 md:grid-cols-[46fr_54fr] md:items-start md:gap-8">
           <OnceReveal className="relative z-[2] md:pt-2">
             <SectionLabel
               number="05"
@@ -44,14 +44,15 @@ export function ProblemSection() {
             </p>
           </OnceReveal>
 
-          <div>
+          <div className="[container-type:inline-size] md:[container-type:normal]">
             {/* The note needs its own space above the collage at every viewport. */}
             <p className="mb-8 font-hand text-[22px] font-normal leading-[1.08] text-ink md:mb-16 md:text-[26px]">
               {t('eon.problem.hand1a')}
               <br />
               {t('eon.problem.hand1b')}
             </p>
-            <div className="relative min-h-[470px] overflow-visible md:min-h-[510px]">
+            {/* Phones: the collage scales with the column, so the box does too (art bottom + 16px), instead of a fixed 470px. */}
+            <div className="relative min-h-[calc(210px+56cqw)] overflow-visible md:min-h-[510px]">
               <div className="absolute left-[50%] top-[10rem] z-[2] w-[44%] max-w-[290px] md:left-[61%] md:top-[10.75rem] md:max-w-[310px]">
                 <img
                   src="/assets/images/eon/eon-04-05-floor-plan.webp"

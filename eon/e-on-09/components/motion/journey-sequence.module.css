@@ -61,7 +61,8 @@
 @keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes ink { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 @keyframes travel { 0% { opacity: 1; transform: translateX(0); } 13.043478% { transform: translateX(var(--hop)); } 26.086957%,33.333333% { opacity: 1; transform: translateX(calc(2 * var(--hop))); } 33.334%,100% { opacity: 0; transform: translateX(calc(2 * var(--hop))); } }
-@keyframes survivor { 0% { opacity: 1; transform: translateX(0); } 99% { opacity: 1; } 100% { opacity: .5; transform: translateX(calc(3 * var(--hop))); } }
+/* The survivor dot fades out on arrival: left on the cart it read as a stray mark (Lu 2026-11-08). */
+@keyframes survivor { 0% { opacity: 1; transform: translateX(0); } 85% { opacity: 1; } 100% { opacity: 0; transform: translateX(calc(3 * var(--hop))); } }
 @media (min-width:768px) { .sequence { --hop:144px; --start:48px; } }
 @media (prefers-reduced-motion: reduce) {
   .section .sequence *, .section .note, .section .character, .section .annotation path { animation: none !important; }
@@ -74,7 +75,7 @@
   .section .sequence .future { opacity: .6; }
   .section .sequence .dashed { opacity: .25; }
   .section .lead { display: none; }
-  .section .survivor { opacity: .5; transform: translateX(calc(3 * var(--hop))); }
+  .section .survivor { display: none; }
   .section[data-journey-ready="true"] .annotation path { stroke-dashoffset: 0; }
 }
 
