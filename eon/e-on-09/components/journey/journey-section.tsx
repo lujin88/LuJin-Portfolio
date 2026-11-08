@@ -44,8 +44,8 @@ export function JourneySection() {
     <section className="relative overflow-hidden bg-navy-950 text-white">
       <div
         aria-hidden="true"
-        // The paragraph beside it keeps 12rem clear on the right (md:mr) so its white text never sits on the mint.
-        className="pointer-events-none absolute -right-40 top-[28%] h-[280px] w-[280px] rounded-full bg-mint md:-right-28 md:h-[300px] md:w-[300px]"
+        // Tucked into the top-right corner above the title: 28% down, it sat under the title and body text at most widths.
+        className="pointer-events-none absolute -right-40 -top-36 h-[280px] w-[280px] rounded-full bg-mint md:-right-28 md:h-[300px] md:w-[300px]"
       />
 
       <ContentContainer className="relative py-24 md:py-32">
@@ -62,15 +62,16 @@ export function JourneySection() {
             {t('eon.journey.title')}
           </h2>
 
-          <div className="mt-8 flex w-full flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-12">
-            <div className="relative max-w-[380px] pb-8 md:pb-2">
+          {/* Side by side from lg: at 768-1023 the absolute arrow ran across the paragraph. */}
+          <div className="mt-8 flex w-full flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+            <div className="relative max-w-[380px] pb-8 lg:pb-2">
               <p className="-rotate-[6deg] font-hand text-[26px] leading-snug text-white md:text-[28px]">
                 {t('eon.journey.hand')}
               </p>
-              <AnnotationArrow className="pointer-events-none mt-1 ml-16 h-[68px] w-[124px] text-white/40 md:absolute md:top-[4.4rem] md:left-[6.75rem] md:mt-0 md:h-[82px] md:w-[168px]" />
+              <AnnotationArrow className="pointer-events-none mt-1 ml-16 h-[68px] w-[124px] text-white/40 lg:absolute lg:top-[4.4rem] lg:left-[6.75rem] lg:mt-0 lg:h-[82px] lg:w-[168px]" />
             </div>
 
-            <p className="max-w-[560px] text-pretty text-lg leading-relaxed text-white/60 md:pt-1 md:text-xl md:max-[1439px]:mr-[12rem]">
+            <p className="max-w-[560px] text-pretty text-lg leading-relaxed text-white/60 md:pt-1 md:text-xl">
               {t('eon.journey.body')}
             </p>
           </div>
