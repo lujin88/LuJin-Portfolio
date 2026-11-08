@@ -1131,11 +1131,11 @@
        clip seam once it is visible (transition/contact only). */
     -webkit-mask-image:
       linear-gradient(to bottom, #000 58%, transparent 100%),
-      linear-gradient(to right, #000 62%, transparent 98%);
+      linear-gradient(to right, transparent 52%, rgba(0,0,0,.35) 78%, transparent 98%);
     -webkit-mask-composite: source-in;
     mask-image:
       linear-gradient(to bottom, #000 58%, transparent 100%),
-      linear-gradient(to right, #000 62%, transparent 98%);
+      linear-gradient(to right, transparent 52%, rgba(0,0,0,.35) 78%, transparent 98%);
     mask-composite: intersect;
   }
 
@@ -1219,6 +1219,9 @@
      Same path as before. Horizontal: deep blue on the right, transparent
      by the left. The mask eats the mass that used to sit past the line. */
   .exp-arc__sheet {
+    /* Keep the left reading area clear; retain only a faint right-hand wash. */
+    -webkit-mask-image: linear-gradient(to right, transparent 52%, rgba(0,0,0,.35) 78%, transparent 98%);
+    mask-image: linear-gradient(to right, transparent 52%, rgba(0,0,0,.35) 78%, transparent 98%);
     opacity: 0;
     transition: opacity 0.9s var(--exp-ease);
   }
