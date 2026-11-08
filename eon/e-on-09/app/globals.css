@@ -128,9 +128,9 @@
   --content-max-width: 1440px;
   --content-padding-x: 1.5rem;
   --lavender-insight: #9b90c5;
-  --mint: #b9f4d8;
-  --mint-light: #e5f9ee;
-  --after: oklch(0.82 0.14 165);
+  --mint: #cfeadc;
+  --mint-light: #edf6f0;
+  --after: #b7ddc9;
   --after-foreground: oklch(0.2 0.06 200);
   --blue-soft: #b9d4ff;
   --peach: #ffdcc3;
@@ -329,4 +329,73 @@ footer[data-variant='light'] {
 /* Unlayered so the rule stays a hairline and does not fall back to the light --border gray. */
 footer > hr {
   border-top-color: var(--footer-line);
+}
+
+/* E.ON 03 audience evidence — plays once; see e-on-03/components/audience-evidence.tsx */
+.aud-ev {
+  --aud-ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --aud-card-from: translate3d(-2.4cqw, 0, 0);
+}
+@media (max-width: 639.98px) {
+  .aud-ev {
+    --aud-card-from: translate3d(0, 16px, 0);
+  }
+}
+.aud-ev-photo {
+  transform-origin: 62% 45%;
+}
+.aud-ev[data-ring='in'] .aud-ev-photo {
+  transform: scale(1.04);
+  transition: transform 7s var(--aud-ease);
+}
+.aud-ev[data-ring='out'] .aud-ev-ring-fade {
+  opacity: 0;
+}
+.aud-ev[data-ring='in'] .aud-ev-ring-fade {
+  transition: opacity 360ms var(--aud-ease) var(--d, 0ms);
+}
+.aud-ev[data-cards='out'] .aud-ev-card {
+  opacity: 0;
+  transform: var(--aud-card-from);
+}
+.aud-ev[data-cards='in'] .aud-ev-card {
+  transition:
+    opacity 400ms var(--aud-ease) var(--d, 0ms),
+    transform 400ms var(--aud-ease) var(--d, 0ms);
+}
+.aud-ev[data-cards='out'] .aud-ev-fade {
+  opacity: 0;
+  transform: translate3d(0, 6px, 0);
+}
+.aud-ev[data-cards='in'] .aud-ev-fade {
+  transition:
+    opacity var(--dur, 360ms) var(--aud-ease) var(--d, 0ms),
+    transform var(--dur, 360ms) var(--aud-ease) var(--d, 0ms);
+}
+/* Server render, before hydration: when JS will run the entrance, start hidden so a reload
+   inside this section doesn't flash the final state first. No JS / reduced motion → final state. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .aud-ev[data-ring='ssr'] .aud-ev-ring-fade,
+  .aud-ev[data-ring='ssr'] .aud-ev-stat,
+  .aud-ev[data-ring='ssr'] .aud-ev-progress {
+    opacity: 0;
+  }
+  .aud-ev[data-cards='ssr'] .aud-ev-card {
+    opacity: 0;
+    transform: var(--aud-card-from);
+  }
+  .aud-ev[data-cards='ssr'] .aud-ev-fade {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aud-ev .aud-ev-photo,
+  .aud-ev .aud-ev-card,
+  .aud-ev .aud-ev-fade,
+  .aud-ev .aud-ev-ring-fade {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }

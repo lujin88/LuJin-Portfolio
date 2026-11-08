@@ -26,7 +26,6 @@ export function Session03Research() {
             src="/assets/images/client-advisory/session-03-advisor.webp"
             alt={t('ca.research.photoAlt')}
             fill
-            priority
             sizes="100vw"
             className={`object-cover ${styles.photo}`}
           />

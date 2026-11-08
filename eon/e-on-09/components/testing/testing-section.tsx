@@ -146,7 +146,6 @@ export function TestingSection() {
                   width={1372}
                   height={1148}
                   className="h-[380px] w-full object-cover object-[48%_22%] md:h-[400px]"
-                  priority
                 />
               </div>
 

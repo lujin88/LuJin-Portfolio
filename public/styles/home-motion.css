@@ -18,6 +18,13 @@
 .home-case-detail:last-of-type { border-top: 1px solid var(--color-border-divider); padding-top: 20px; }
 .home-case-links { display: flex; align-items: center; gap: 24px; margin-top: 24px; }
 .home-showcase-pinned { height: 350vh; }
+/* Island scripts run after load, so the pin lands after first paint and the
+   browser's scroll restoration. Hold the pinned height until layout() has run
+   once, so the page does not grow by 150vh above the viewport. Same viewport rule
+   as the JS pin check. */
+@media (min-width: 1100px) and (min-height: 760px) and (prefers-reduced-motion: no-preference) {
+  #home-showcase:not([data-pin-ready]) { min-height: 350vh; }
+}
 .home-showcase-pinned .home-showcase-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
 .home-showcase-pinned .home-case { position: absolute; inset: 0; background: transparent; min-height: 0; overflow: visible; }
 .home-showcase-pinned .home-case-copy { position: absolute; top: 50%; transform: translateY(-50%); }
@@ -31,6 +38,13 @@
 .home-project { display: flex; flex-direction: column; color: var(--color-text-1); text-decoration: none; }
 .home-project img,
 .home-project video { width: 100%; aspect-ratio: 1.44; object-fit: cover; }
+/* WA card: season still painted before first paint (app/layout.tsx
+   sets html[data-wa-season] inline); the video poster/clip later cover it. */
+#wa-season-video { background: center / cover no-repeat; }
+html[data-wa-season="spring"] #wa-season-video { background-image: url(/assets/images/home-motion/wa-season-spring.webp); }
+html[data-wa-season="summer"] #wa-season-video { background-image: url(/assets/images/home-motion/wa-season-summer.webp); }
+html[data-wa-season="autumn"] #wa-season-video { background-image: url(/assets/images/home-motion/wa-season-autumn.webp); }
+html[data-wa-season="winter"] #wa-season-video { background-image: url(/assets/images/home-motion/wa-season-winter.webp); }
 /* Clip keeps each Playground picture, including its hover scale, inside the frame. */
 .frame-lag-clip { display: block; overflow: hidden; aspect-ratio: 1.44; }
 .frame-lag-clip :is(img, video) {

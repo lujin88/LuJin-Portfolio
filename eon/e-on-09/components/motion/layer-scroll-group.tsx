@@ -1,7 +1,7 @@
 'use client'
 
 import { useLayoutEffect, useRef, type ElementType, type ReactNode } from 'react'
-import { enterProgress, prefersReducedMotion } from '@eon/lib/motion/hooks'
+import { prefersReducedMotion } from '@eon/lib/motion/hooks'
 
 /**
  * Shared scroll-progress layer engine, adapted from the Index vanilla
@@ -43,6 +43,24 @@ function clearLayers(movers: HTMLElement[]) {
   }
 }
 
+/**
+ * Progress 0 when the group top is at the viewport bottom, 1 at the earlier of the group top
+ * reaching the viewport top or the page reaching its maximum scroll (from the 3000 engine), so the
+ * last blocks on a page still settle although their top can never reach the viewport top.
+ */
+function bottomAwareProgress(group: HTMLElement, scrollOffset = 0) {
+  const vh = window.innerHeight
+  // scrollOffset > 0: where the group was before the page scrolled down by that many px.
+  const top = group.getBoundingClientRect().top + scrollOffset
+  const scroller = document.scrollingElement || document.documentElement
+  const maxScroll = Math.max(0, scroller.scrollHeight - vh)
+  const endTop = Math.max(0, top + window.scrollY - scrollOffset - maxScroll)
+  const span = vh - endTop
+  if (span <= 1) return 1
+  const p = (vh - top) / span
+  return p < 0 ? 0 : p > 1 ? 1 : p
+}
+
 export function LayerScrollGroup({
   children,
   className,
@@ -71,16 +89,18 @@ export function LayerScrollGroup({
     let frame = 0
     const startScrollY = window.scrollY
 
-    const readProgress = () =>
-      enterProgress(group.getBoundingClientRect(), window.innerHeight, 1, 0)
+    const readProgress = () => bottomAwareProgress(group)
 
     const initial = readProgress()
     if (initial >= 0.995) {
       restLayers(movers)
       return
     }
-    // Progress seen before the user's first scroll (load, scroll restoration, anchor jump).
-    let progressBeforeArm = initial
+    // Scroll position the last time this group looked at it. The first user scroll is judged by
+    // where the group was just before that scroll, measured now: images and fonts loading after a
+    // mid-page reload move groups into view without any scroll event, so a value stored at load
+    // time can be stale (Party at 390: RSVP/local were pulled down 32-68px on the first scroll).
+    let lastScrollY = window.scrollY
 
     const write = () => {
       ticking = false
@@ -119,8 +139,8 @@ export function LayerScrollGroup({
     const onScroll = () => {
       if (latched) return
       if (!armed) {
-        const before = progressBeforeArm
-        progressBeforeArm = readProgress()
+        const before = bottomAwareProgress(group, window.scrollY - lastScrollY)
+        lastScrollY = window.scrollY
         if (!userIntent) return
         if (window.scrollY <= startScrollY) return
         // Already on screen when the user starts scrolling (mid-page reload, a section in the
@@ -147,7 +167,21 @@ export function LayerScrollGroup({
     window.addEventListener('keydown', markIntent)
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onResize)
+    // Late-loading images change the page height, and with it the progress near the bottom.
+    const pageResize = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(onResize)
+    pageResize?.observe(document.documentElement)
+    // Reduced motion switched on mid-entry: every layer to rest right away.
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const onReduce = () => {
+      if (!reduce.matches) return
+      latched = true
+      cancelAnimationFrame(frame)
+      restLayers(movers)
+    }
+    reduce.addEventListener('change', onReduce)
     return () => {
+      pageResize?.disconnect()
+      reduce.removeEventListener('change', onReduce)
       cancelAnimationFrame(frame)
       window.removeEventListener('wheel', markIntent)
       window.removeEventListener('touchstart', markIntent)

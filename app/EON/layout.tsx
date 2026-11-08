@@ -4,6 +4,7 @@ import { SiteFooter } from '@eon/components/site-footer'
 import { HtmlTheme } from '../html-theme'
 import { socialMetadata } from '../seo'
 import '@header/header.css'
+import 'remixicon/fonts/remixicon.css'
 import '@eon/app/globals.css'
 
 const TITLE = 'Lu — E.ON Solar'

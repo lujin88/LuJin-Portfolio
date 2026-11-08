@@ -1,5 +1,6 @@
-import { UnderConstructionPage } from '../components/under-construction-page'
+'use client'
+import { ThreeMomentsETFCaseStudyWebsite } from './components/ThreeMomentsETFCaseStudyWebsite'
 
 export default function EtfSavingsPlanPage() {
-  return <UnderConstructionPage eyebrowKey="construction.etf.eyebrow" titleId="etf-title" />
+  return <div className="etf-case"><ThreeMomentsETFCaseStudyWebsite /></div>
 }

@@ -66,7 +66,7 @@ const NAV: readonly NavEntry[] = [
       {
         label: 'ETF Savings Plan',
         href: '/etf-savings-plan',
-        meta: 'Under construction',
+        meta: 'Investing · Interactive prototype',
         icon: {
           light: '/assets/images/nav/light/work/etf-savings-plan-light.png',
           dark: '/assets/images/nav/dark/work/etf-savings-plan-dark.png',
@@ -183,7 +183,8 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   const partyHeader = pathname.startsWith('/lab/party-planner')
   const pinnedPaper =
     pathname.startsWith('/lab/weather-aquarium') ||
-    pathname.startsWith('/ai-companion-pet')
+    pathname.startsWith('/ai-companion-pet') ||
+    pathname.startsWith('/lab/agent-monitor')
   const paperHeader =
     pathname.startsWith('/lab/way-of-work') ||
     pinnedPaper
