@@ -427,9 +427,15 @@
   outline-offset: 3px;
 }
 
-.close svg,
-.navBtn svg {
+.close i,
+.navBtn i {
   display: block;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.close i {
+  font-size: 18px;
 }
 
 .srOnly {

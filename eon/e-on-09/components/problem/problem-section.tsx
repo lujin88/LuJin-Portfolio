@@ -4,6 +4,7 @@ import { SectionLabel } from '@eon/components/section-label'
 import { ContentContainer } from '@eon/components/content-container'
 import { OnceReveal } from '@eon/components/motion/once-reveal'
 import { useTranslation } from '@i18n/use-translation'
+import { RoofPitchCard } from './roof-pitch-card'
 
 function AnnotationArrow({ className }: { className?: string }) {
   return (
@@ -83,7 +84,7 @@ export function ProblemSection() {
                 <AnnotationArrow className="pointer-events-none absolute left-[8.15rem] top-[2.05rem] h-[3.15rem] w-[1.95rem] text-[#3d3d3d]" />
               </OnceReveal>
               <img
-                src="/assets/images/eon/eon 04&05 floor plan.png"
+                src="/assets/images/eon/eon-04-05-floor-plan.webp"
                 alt={t('eon.problem.floorAlt')}
                 className="relative z-[2] h-auto w-full rotate-[8deg]"
                 style={{ filter: 'drop-shadow(0 18px 36px rgba(15,23,42,0.22))' }}
@@ -91,14 +92,9 @@ export function ProblemSection() {
             </div>
 
             <div className="absolute left-[1%] -top-3 z-[3] w-[86%] max-w-[500px] md:left-[3%] md:-top-9 md:max-w-[520px]">
-              <img
-                src="/assets/images/eon/eon 04&05 House.png"
+              <RoofPitchCard
                 alt={t('eon.problem.houseAlt')}
-                className="h-auto w-full max-w-[520px] -rotate-[4deg]"
-                style={{
-                  filter:
-                    'drop-shadow(0 22px 28px rgba(20,24,38,0.26)) drop-shadow(0 6px 10px rgba(20,24,38,0.12))',
-                }}
+                className="w-full max-w-[520px] -rotate-[4deg] shadow-[0_22px_28px_rgba(20,24,38,0.26),0_6px_10px_rgba(20,24,38,0.12)]"
               />
               <OnceReveal
                 delay={70}

@@ -55,8 +55,8 @@
 
 @media (min-width: 1024px) {
   .section {
-    /* Photo rises into 02's last empty navy so the window dissolves in. */
-    margin-top: -5rem;
+    /* Photo starts where 02's bottom fade ends, below its closing line. */
+    margin-top: 0;
     min-height: 100svh;
     scroll-snap-align: start;
     scroll-snap-stop: always;

@@ -21,21 +21,20 @@ export function ChallengeSection() {
       />
       <ContentContainer className="relative grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20">
         {/* LEFT — editorial image */}
-        <div data-move="100" data-from-opacity="0.92">
+        <div data-move="24" data-from-opacity="0.92">
           <div className="relative overflow-hidden rounded-[28px]">
             <Image
-              src="/assets/images/eon/eon-challenge-woman-laptop.png"
+              src="/assets/images/eon/eon-challenge-woman-laptop.webp"
               alt={t('eon.challenge.photoAlt')}
               width={1672}
               height={941}
-              priority
               className="h-auto w-full object-cover"
             />
           </div>
         </div>
 
         {/* RIGHT — editorial text block */}
-        <div className="max-w-xl" data-move="18">
+        <div className="max-w-xl" data-move="48">
           {/* section number + label */}
           <SectionLabel
             number="02"

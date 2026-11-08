@@ -1,244 +1,245 @@
 'use client'
 
-import {
-  useCallback,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-  type CSSProperties,
-  type MouseEvent,
-  type RefObject,
-} from 'react'
+import { useCallback, useEffect, useId, useRef, useState, type RefObject, type CSSProperties } from 'react'
 import { createPortal } from 'react-dom'
-import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { conceptMockups, type ConceptMockup } from './concept-mockups'
 import styles from './concept-mockup-stack.module.css'
+import floating from './concept-floating.module.css'
 import { useTranslation } from '@i18n/use-translation'
 
-const FINE_POINTER = '(hover: hover) and (pointer: fine)'
-
-function isFinePointer() {
-  return window.matchMedia(FINE_POINTER).matches
-}
-
-type Pt = { x: number; y: number }
-
-function sign(p1: Pt, p2: Pt, p3: Pt) {
-  return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y)
-}
-
-function pointInTriangle(p: Pt, a: Pt, b: Pt, c: Pt) {
-  const d1 = sign(p, a, b)
-  const d2 = sign(p, b, c)
-  const d3 = sign(p, c, a)
-  const hasNeg = d1 < 0 || d2 < 0 || d3 < 0
-  const hasPos = d1 > 0 || d2 > 0 || d3 > 0
-  return !(hasNeg && hasPos)
-}
-
-function pointInQuad(p: Pt, quad: Pt[]) {
-  if (quad.length < 4) return false
-  return pointInTriangle(p, quad[0], quad[1], quad[2]) || pointInTriangle(p, quad[0], quad[2], quad[3])
-}
-
-function faceQuad(card: HTMLElement): Pt[] {
-  const probes = [...card.querySelectorAll<HTMLElement>('[data-probe]')]
-  const by = Object.fromEntries(probes.map((probe) => [probe.dataset.probe, probe.getBoundingClientRect()]))
-  if (!by.tl || !by.tr || !by.br || !by.bl) return []
-  return [
-    { x: by.tl.left, y: by.tl.top },
-    { x: by.tr.right, y: by.tr.top },
-    { x: by.br.right, y: by.br.bottom },
-    { x: by.bl.left, y: by.bl.bottom },
-  ]
-}
-
-function pickCardIndex(root: HTMLElement, clientX: number, clientY: number) {
-  const cards = [...root.querySelectorAll<HTMLElement>('[data-stack-hit]')]
-  const point = { x: clientX, y: clientY }
-  for (let i = cards.length - 1; i >= 0; i -= 1) {
-    if (pointInQuad(point, faceQuad(cards[i]))) return i
-  }
-  return null
+// B (Lu 2026-11-04): only book-view, US Tech, client view — scattered → overview in front → result.
+function pose(step: number, index: number) {
+  if (step === 0) return [(index - 1) * 215, (index - 1) * 18, 0.5, (index - 1) * -5, 1]
+  if (step === 1) return index === 0 ? [-45, -35, 0.86, -3, 1] : [175, (index - 1.5) * 150, 0.3, (index - 1.5) * 4, 0.8]
+  // Step 3 (Lu 2026-11-04): client view in front; book-view on top at the side, US Tech below.
+  return index === 2 ? [-20, 0, 0.9, 0, 1] : [190, (index - 0.5) * 150, 0.28, 0, 0.6]
 }
 
 export function ConceptMockupStack() {
   const { t } = useTranslation()
+  const sceneRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
-  const [liftedIndex, setLiftedIndex] = useState<number | null>(null)
-  const [hot, setHot] = useState(false)
-  const [mounted, setMounted] = useState(false)
   const openerRef = useRef<HTMLButtonElement | null>(null)
   const closeRef = useRef<HTMLButtonElement | null>(null)
-  const leaveTimer = useRef(0)
   const titleId = useId()
   const count = conceptMockups.length
-  const lastIndex = count - 1
-  const active = activeIndex == null ? null : conceptMockups[activeIndex]
-  const pageDimmed = hot && activeIndex == null
+  const active = activeIndex === null ? null : conceptMockups[activeIndex]
 
   useEffect(() => {
-    setMounted(true)
-    return () => window.clearTimeout(leaveTimer.current)
-  }, [])
-
-  useEffect(() => {
-    const section = document.getElementById('session-06')
-    if (!section) return
-    if (pageDimmed) section.dataset.stackHot = 'true'
-    else delete section.dataset.stackHot
-    return () => {
-      delete section.dataset.stackHot
+    const scene = sceneRef.current
+    const section = scene?.closest('section')
+    if (!scene || !section) return
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)')
+    const wide = matchMedia('(min-width: 1024px)')
+    const cards = [...scene.querySelectorAll<HTMLButtonElement>('[data-concept-card]')]
+    let frame = 0
+    let settleFrame = 0
+    let previousReduced = reduced.matches
+    let previousWide = wide.matches
+    let wasVisible = false
+    let settling = false
+    let rememberedHash = window.location.hash
+    let pendingSectionHash = rememberedHash === `#${section.id}`
+    const rememberHashTarget = () => {
+      if (rememberedHash === window.location.hash) return
+      rememberedHash = window.location.hash
+      pendingSectionHash = rememberedHash === `#${section.id}`
     }
-  }, [pageDimmed])
-
-  const enterCard = () => {
-    window.clearTimeout(leaveTimer.current)
-    if (isFinePointer()) setHot(true)
-  }
-
-  const leaveCard = () => {
-    window.clearTimeout(leaveTimer.current)
-    leaveTimer.current = window.setTimeout(() => {
-      setLiftedIndex(null)
-      setHot(false)
-    }, 60)
-  }
-
-  const openAt = (index: number, button: HTMLButtonElement) => {
-    openerRef.current = button
-    setHot(false)
-    setLiftedIndex(null)
-    setActiveIndex(index)
-  }
-
-  const onSceneClick = (event: MouseEvent<HTMLDivElement>) => {
-    const index = pickCardIndex(event.currentTarget, event.clientX, event.clientY)
-    if (index == null) return
-    const button = event.currentTarget.querySelectorAll<HTMLButtonElement>('button[data-stack-card]')[index]
-    if (button) openAt(index, button)
-  }
-
-  const onSceneMove = (event: MouseEvent<HTMLDivElement>) => {
-    if (!isFinePointer() || activeIndex != null) return
-    const index = pickCardIndex(event.currentTarget, event.clientX, event.clientY)
-    window.clearTimeout(leaveTimer.current)
-    setLiftedIndex((current) => (current === index ? current : index))
-    setHot(index != null)
-  }
-
-  const onSceneLeave = () => {
-    window.clearTimeout(leaveTimer.current)
-    leaveTimer.current = window.setTimeout(() => {
-      setLiftedIndex(null)
-      setHot(false)
-    }, 60)
-  }
+    let readingAnchor: { element: Element; top: number } | null = null
+    const rememberVisibility = () => {
+      // WebKit can resize/reflow before matchMedia.matches updates. Preserve the old snapshot.
+      if (settling || reduced.matches !== previousReduced || wide.matches !== previousWide ||
+        (innerWidth >= 1024) !== previousWide) return
+      // The parent commits pinned height through React after the CSS media change.
+      if (Boolean(section.style.height) !== (!previousReduced && previousWide)) return
+      rememberHashTarget()
+      const rect = section.getBoundingClientRect()
+      // A smooth fragment scroll emits events before reaching its destination.
+      if (pendingSectionHash && Math.abs(rect.top) < 2) pendingSectionHash = false
+      // Restore only when the reader is inside 06, not when an edge peeks in.
+      const readingLine = innerHeight / 2
+      wasVisible = rect.top <= readingLine && rect.bottom > readingLine
+      readingAnchor = null
+      if (!wasVisible) {
+        const header = document.querySelector('[data-site-header]')
+        const line = Math.max(0, header?.getBoundingClientRect().bottom ?? 0) + 1
+        // Use layout boxes: hit testing can still reflect the previous paint after scrollBy.
+        const anchor = [...document.querySelectorAll('section')].find((element) => {
+          if (element.contains(section) || section.contains(element)) return false
+          const bounds = element.getBoundingClientRect()
+          return bounds.top <= line && bounds.bottom > line
+        })
+        if (anchor) readingAnchor = { element: anchor, top: anchor.getBoundingClientRect().top }
+      }
+    }
+    const update = () => {
+      frame = 0
+      rememberVisibility()
+      if (reduced.matches || !wide.matches) {
+        cards.forEach((card) => { card.style.transform = ''; card.style.opacity = ''; card.style.removeProperty('--z') })
+        return
+      }
+      const rect = section.getBoundingClientRect()
+      const p = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height - innerHeight)))
+      const step = Math.min(2, Math.floor(p * 3))
+      const local = Math.max(0, Math.min(1, (p * 3 - step) / 0.35))
+      const blend = local * local * (3 - 2 * local)
+      const factor = scene.clientWidth / 695
+      // Hand the top layer to client view halfway through the 2→3 transition, once it outgrows book-view.
+      const front = step === 2 && blend >= 0.5 ? 2 : 0
+      cards.forEach((card, index) => {
+        const from = pose(Math.max(0, step - 1), index)
+        const to = pose(step, index)
+        const value = to.map((n, i) => from[i] + (n - from[i]) * blend)
+        card.style.transform = `translate(-50%, -50%) translate3d(${value[0] * factor}px, ${value[1] * factor}px, 0) scale(${value[2]}) rotate(${value[3]}deg)`
+        card.style.opacity = String(value[4])
+        card.style.setProperty('--z', index === front ? '10' : 'auto')
+      })
+    }
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update) }
+    const onScroll = () => { rememberVisibility(); schedule() }
+    const cancelRestore = () => {
+      rememberHashTarget()
+      pendingSectionHash = false
+      // Input can arrive after reflow but before WebKit dispatches the media change.
+      if (!settling && reduced.matches === previousReduced && wide.matches === previousWide &&
+        (innerWidth >= 1024) === previousWide) return
+      cancelAnimationFrame(settleFrame)
+      settling = false
+      wasVisible = false
+      readingAnchor = null
+      rememberedHash = window.location.hash
+      schedule()
+    }
+    const onScrollKey = (event: KeyboardEvent) => {
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'PageUp', 'PageDown', ' ', 'Home', 'End'].includes(event.key)) {
+        cancelRestore()
+      }
+    }
+    const onScrollbarPointer = (event: PointerEvent) => {
+      if (event.target === document.documentElement) cancelRestore()
+    }
+    const onMediaChange = () => {
+      if (reduced.matches === previousReduced && wide.matches === previousWide) return
+      rememberHashTarget()
+      // Retain the destination throughout smooth scrolling, until arrival or user input.
+      if (!settling && pendingSectionHash) {
+        wasVisible = true
+        readingAnchor = null
+      }
+      const restoreSection = wasVisible
+      const anchor = readingAnchor
+      previousReduced = reduced.matches
+      previousWide = wide.matches
+      cancelAnimationFrame(settleFrame)
+      settling = true
+      schedule()
+      const restore = () => {
+        if (restoreSection) {
+          window.scrollTo({ top: section.getBoundingClientRect().top + window.scrollY, behavior: 'instant' })
+        }
+      }
+      const finish = () => {
+        settling = false
+        rememberVisibility()
+        schedule()
+      }
+      settleFrame = requestAnimationFrame(() => {
+        if (restoreSection) restore()
+        // Let CSS, React and native scroll anchoring finish before measuring a residual.
+        settleFrame = requestAnimationFrame(() => {
+          if (restoreSection) {
+            restore()
+            finish()
+            return
+          }
+          if (!anchor?.element.isConnected) {
+            finish()
+            return
+          }
+          let previousTop = anchor.element.getBoundingClientRect().top
+          let previousHeight = section.getBoundingClientRect().height
+          let previousScroll = window.scrollY
+          let stableFrames = 0
+          const settleAnchor = () => {
+            if (!anchor.element.isConnected) { finish(); return }
+            if (Boolean(section.style.height) !== (!reduced.matches && wide.matches)) {
+              stableFrames = 0
+              settleFrame = requestAnimationFrame(settleAnchor)
+              return
+            }
+            const top = anchor.element.getBoundingClientRect().top
+            const height = section.getBoundingClientRect().height
+            const scroll = window.scrollY
+            stableFrames = Math.abs(top - previousTop) < 0.5 &&
+              Math.abs(height - previousHeight) < 0.5 && scroll === previousScroll
+              ? stableFrames + 1 : 0
+            previousTop = top
+            previousHeight = height
+            previousScroll = scroll
+            if (stableFrames < 2) {
+              settleFrame = requestAnimationFrame(settleAnchor)
+              return
+            }
+            // One correction of the remaining delta, never the original layout shift.
+            const delta = top - anchor.top
+            if (Math.abs(delta) >= 1) window.scrollBy({ top: delta, behavior: 'instant' })
+            finish()
+          }
+          settleFrame = requestAnimationFrame(settleAnchor)
+        })
+      })
+    }
+    const observer = new ResizeObserver(schedule)
+    observer.observe(section)
+    observer.observe(scene)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', schedule)
+    window.addEventListener('wheel', cancelRestore, { passive: true, capture: true })
+    window.addEventListener('touchmove', cancelRestore, { passive: true, capture: true })
+    window.addEventListener('keydown', onScrollKey, true)
+    window.addEventListener('pointerdown', onScrollbarPointer, true)
+    reduced.addEventListener('change', onMediaChange)
+    wide.addEventListener('change', onMediaChange)
+    schedule()
+    return () => {
+      cancelAnimationFrame(frame)
+      cancelAnimationFrame(settleFrame)
+      observer.disconnect()
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', schedule)
+      window.removeEventListener('wheel', cancelRestore, true)
+      window.removeEventListener('touchmove', cancelRestore, true)
+      window.removeEventListener('keydown', onScrollKey, true)
+      window.removeEventListener('pointerdown', onScrollbarPointer, true)
+      reduced.removeEventListener('change', onMediaChange)
+      wide.removeEventListener('change', onMediaChange)
+    }
+  }, [])
 
   const close = useCallback(() => {
     setActiveIndex(null)
     openerRef.current?.focus()
   }, [])
-
-  const step = useCallback(
-    (direction: -1 | 1) => {
-      setActiveIndex((current) => {
-        if (current == null) return current
-        return (current + direction + count) % count
-      })
-    },
-    [count],
-  )
+  const step = useCallback((direction: -1 | 1) => {
+    setActiveIndex((current) => current === null ? null : (current + direction + count) % count)
+  }, [count])
 
   return (
-    <div
-      className={styles.scene}
-      onClick={onSceneClick}
-      onMouseMove={onSceneMove}
-      onMouseLeave={onSceneLeave}
-    >
-      <div className={styles.sensor} aria-hidden="true" />
-      <div className={styles.hitStage} aria-hidden="true">
-        {conceptMockups.map((item, index) => (
-          <span
-            key={item.id}
-            className={styles.hitCard}
-            style={{ '--i': index, '--count': count } as CSSProperties}
-            data-stack-hit=""
-          >
-            <span className={`${styles.probe} ${styles.probeTl}`} data-probe="tl" />
-            <span className={`${styles.probe} ${styles.probeTr}`} data-probe="tr" />
-            <span className={`${styles.probe} ${styles.probeBr}`} data-probe="br" />
-            <span className={`${styles.probe} ${styles.probeBl}`} data-probe="bl" />
-          </span>
-        ))}
-      </div>
-      <div className={styles.stage}>
-        {conceptMockups.map((item, index) => (
-          <button
-            key={item.id}
-            type="button"
-            className={styles.card}
-            style={{ '--i': index, '--count': count } as CSSProperties}
-            data-stack-card=""
-            data-front={index === lastIndex ? 'true' : undefined}
-            data-lift={liftedIndex === index ? 'true' : undefined}
-            aria-label={t(`ca.concept.mockups.${item.id}`)}
-            onFocus={() => {
-              setLiftedIndex(index)
-              enterCard()
-            }}
-            onBlur={leaveCard}
-            onClick={(event) => {
-              event.stopPropagation()
-              openAt(index, event.currentTarget)
-            }}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault()
-                event.stopPropagation()
-                openAt(index, event.currentTarget)
-              }
-            }}
-          >
-            <span className={styles.face}>
-              <img src={item.src.src} alt="" draggable={false} />
-            </span>
-            <span className={styles.rim} aria-hidden="true" />
-            <span className={styles.reflect} aria-hidden="true">
-              <img src={item.src.src} alt="" draggable={false} />
-            </span>
-          </button>
-        ))}
-      </div>
-      {mounted
-        ? createPortal(
-            <div
-              className={`${styles.pageDim} ${pageDimmed ? styles.pageDimOn : ''}`}
-              aria-hidden="true"
-            />,
-            document.body,
-          )
-        : null}
-      {mounted && active && activeIndex != null
-        ? createPortal(
-            <Lightbox
-              item={active}
-              index={activeIndex}
-              count={count}
-              titleId={titleId}
-              closeRef={closeRef}
-              closeLabel={t('common.closePreview')}
-              prevLabel={t('common.previousScreen')}
-              nextLabel={t('common.nextScreen')}
-              alt={t(`ca.concept.mockups.${active.id}`)}
-              onClose={close}
-              onStep={step}
-            />,
-            document.body,
-          )
-        : null}
+    <div ref={sceneRef} className={floating.scene} data-concept-variant="B">
+      {conceptMockups.map((item, index) => (
+        <button key={item.id} type="button" data-concept-card={index} className={floating.card}
+          aria-label={t(`ca.concept.mockups.${item.id}`)}
+          onClick={(event) => { openerRef.current = event.currentTarget; setActiveIndex(index) }}>
+          <img src={item.src.src} alt="" loading="lazy" draggable={false} />
+        </button>
+      ))}
+      {active && activeIndex !== null ? createPortal(
+        <Lightbox item={active} index={activeIndex} count={count} titleId={titleId} closeRef={closeRef}
+          closeLabel={t('common.closePreview')} prevLabel={t('common.previousScreen')} nextLabel={t('common.nextScreen')}
+          alt={t(`ca.concept.mockups.${active.id}`)} onClose={close} onStep={step} />,
+        document.body,
+      ) : null}
     </div>
   )
 }
@@ -350,12 +351,13 @@ function Lightbox({
         type="button"
         className={styles.close}
         aria-label={closeLabel}
+        title={closeLabel}
         onClick={(event) => {
           event.stopPropagation()
           onClose()
         }}
       >
-        <X size={18} strokeWidth={1.75} aria-hidden="true" />
+        <i className="ri-close-line" aria-hidden="true" />
       </button>
       {showNav ? (
         <>
@@ -363,23 +365,25 @@ function Lightbox({
             type="button"
             className={`${styles.navBtn} ${styles.navPrev}`}
             aria-label={prevLabel}
+            title={prevLabel}
             onClick={(event) => {
               event.stopPropagation()
               onStep(-1)
             }}
           >
-            <ChevronLeft size={20} strokeWidth={1.75} aria-hidden="true" />
+            <i className="ri-arrow-left-s-line" aria-hidden="true" />
           </button>
           <button
             type="button"
             className={`${styles.navBtn} ${styles.navNext}`}
             aria-label={nextLabel}
+            title={nextLabel}
             onClick={(event) => {
               event.stopPropagation()
               onStep(1)
             }}
           >
-            <ChevronRight size={20} strokeWidth={1.75} aria-hidden="true" />
+            <i className="ri-arrow-right-s-line" aria-hidden="true" />
           </button>
         </>
       ) : null}
