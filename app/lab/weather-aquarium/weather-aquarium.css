@@ -97,6 +97,129 @@
   filter: drop-shadow(0 24px 22px rgb(39 49 37 / 0.16));
   transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
   will-change: transform;
+}
+/* Hero iPad: device photo + a live screen projected onto it (see hero-seasons.tsx). */
+.wa-page .hero-device{
+  position: relative;
+  aspect-ratio: 2048 / 1440;
+}
+.wa-page .hero-device-base{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.wa-page .hero-screen{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2322px;
+  height: 1682px;
+  overflow: hidden;
+  border-radius: 40px;
+  transform-origin: 0 0;
+}
+@property --wipe {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 100%;
+}
+.wa-page .hero-season{
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+}
+.wa-page .hero-season[data-shown='true']{
+  visibility: visible;
+}
+/* Feathered left-to-right wipe: opaque up to the edge, then a 36%-wide soft ramp. */
+.wa-page .hero-season[data-wipe='true']{
+  --wipe: 0%;
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(var(--wipe) * 1.36 - 36%), rgb(0 0 0 / 0.5) calc(var(--wipe) * 1.36 - 18%), transparent calc(var(--wipe) * 1.36));
+  mask-image: linear-gradient(90deg, #000 calc(var(--wipe) * 1.36 - 36%), rgb(0 0 0 / 0.5) calc(var(--wipe) * 1.36 - 18%), transparent calc(var(--wipe) * 1.36));
+  animation: wa-hero-wipe 800ms cubic-bezier(0.45, 0, 0.25, 1) forwards;
+}
+@keyframes wa-hero-wipe {
+  to { --wipe: 100%; }
+}
+.wa-page .hero-season-scene,
+.wa-page .hero-season-panel{
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: block;
+}
+.wa-page .hero-season-scene{
+  top: 0;
+  height: 1376px;
+  object-fit: cover;
+}
+.wa-page .hero-season-panel{
+  top: 1376px;
+  height: 306px;
+}
+.wa-page .hero-pill{
+  position: absolute;
+  z-index: 10;
+  top: 34px;
+  left: 100px;
+  width: 320px;
+  height: 88px;
+  visibility: hidden;
+}
+.wa-page .hero-pill[data-shown='true']{
+  visibility: visible;
+}
+/* Dots: a fixed-size layer over the projected screen, centred where the B frames put the
+   capsule's bottom edge (left/top set inline from hero-seasons.tsx). Each button is one 24px cell, no gaps. */
+.wa-page .hero-dots{
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  padding: 0 8px;
+  border-radius: 16px;
+  background: rgb(0 0 0 / 0.43);
+  transform: translate(-50%, -100%);
+}
+.wa-page .hero-dot{
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.wa-page .hero-dot span{
+  box-sizing: border-box;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid rgb(255 255 255 / 0.75);
+  border-radius: 50%;
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+.wa-page .hero-dot[aria-pressed='true'] span{
+  border-color: #fff;
+  background: #fff;
+}
+.wa-page .hero-dot:focus-visible{
+  outline: none;
+}
+.wa-page .hero-dot:focus-visible span{
+  box-shadow: 0 0 0 2px rgb(0 0 0 / 0.55), 0 0 0 4px #fff;
+}
+@media (max-width: 900px){
+  .wa-page .hero-dot span{
+    width: 7px;
+    height: 7px;
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  .wa-page .hero-season[data-wipe='true']{
+    animation: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
 }.wa-page .section-heading{
   padding-block: 80px 24px;
 }.wa-page .section-heading.compact{

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { SeasonCrossfade } from './season-crossfade'
+import { HeroSeasons } from './hero-seasons'
 import { SiteClosing } from '../../components/site-closing'
 
 const IMG = '/assets/images/lab/weather-aquarium'
@@ -512,7 +513,7 @@ function PoseButton({
 export function WeatherAquariumPage() {
   const rootRef = useRef<HTMLDivElement>(null)
   const heroMediaRef = useRef<HTMLDivElement>(null)
-  const heroDeviceRef = useRef<HTMLImageElement>(null)
+  const heroDeviceRef = useRef<HTMLDivElement>(null)
   const [language, setLanguage] = useState<Lang>('zh')
   const [pose, setPose] = useState(0)
   const [activeTap, setActiveTap] = useState<number | null>(null)
@@ -631,13 +632,7 @@ export function WeatherAquariumPage() {
                 ref={heroMediaRef}
                 aria-label="Weather Aquarium shown on an iPad"
               >
-                <img
-                  ref={heroDeviceRef}
-                  className="hero-device"
-                  src={`${IMG}/hero-device-left-v2.webp`}
-                  alt="An iPad turned to the left, showing the Weather Aquarium app: an autumn lakeside in Kilchberg with a girl, her cat and a boy on the jetty, fish under the water, and the weather panel below"
-                  fetchPriority="high"
-                />
+                <HeroSeasons ref={heroDeviceRef} />
               </div>
             </div>
           </div>

@@ -6,6 +6,23 @@ import styles from './season-crossfade.module.css'
 
 const seasons = ['spring', 'summer', 'autumn', 'winter'] as const
 
+// Lindt scenes shared with the hero iPad (hero-seasons.tsx). Alt follows UX 文案 300924d1
+// minus the iPad clause and the weather panel, which these scene-only frames do not show.
+const ALT = {
+  en: {
+    spring: 'The Weather Aquarium app in spring: cherry blossom and tulips, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
+    summer: 'The Weather Aquarium app in summer: green trees and flowers, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
+    autumn: 'The Weather Aquarium app in autumn: golden leaves, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
+    winter: 'The Weather Aquarium app in winter: snow on the roofs and trees, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
+  },
+  de: {
+    spring: 'Die App Weather Aquarium im Frühling: Kirschblüten und Tulpen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
+    summer: 'Die App Weather Aquarium im Sommer: grüne Bäume und Blumen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
+    autumn: 'Die App Weather Aquarium im Herbst: goldenes Laub, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
+    winter: 'Die App Weather Aquarium im Winter: Schnee auf Dächern und Bäumen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
+  },
+} as const
+
 export function SeasonCrossfade() {
   const { langCode } = useSiteLanguage()
   const labels = {
@@ -77,12 +94,12 @@ export function SeasonCrossfade() {
       {seasons.map((season, index) => (
         <img
           key={season}
-          src={index === 0 || (springLoaded && motionAllowed) ? `/assets/images/lab/weather-aquarium/season-${season}-approved.webp` : undefined}
+          src={index === 0 || (springLoaded && motionAllowed) ? `/assets/images/lab/weather-aquarium/hero-season-${season}.webp` : undefined}
           fetchPriority={index === 0 ? 'high' : 'low'}
-          width={1836}
-          height={857}
+          width={1619}
+          height={959}
           onLoad={(event) => { void onFrameLoad(event.currentTarget, index) }}
-          alt={index === active ? `The Alpine lake in ${season}` : ''}
+          alt={index === active ? ALT[langCode][season] : ''}
           aria-hidden={index !== active}
           className={styles.frame}
           data-active={index === active}
