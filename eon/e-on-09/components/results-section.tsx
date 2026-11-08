@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import { ContentContainer } from '@eon/components/content-container'
 import { SectionLabel } from '@eon/components/section-label'
-import { CountUp } from '@eon/components/motion/count-up'
 import { OnceReveal } from '@eon/components/motion/once-reveal'
 import { useTranslation } from '@i18n/use-translation'
 
@@ -46,7 +45,7 @@ export function ResultsSection() {
                 />
               </span>
               <div className="flex flex-col gap-2">
-                <CountUp className="text-6xl font-extrabold tracking-[-0.03em] text-ink sm:text-7xl" />
+                <p className="text-6xl font-extrabold tracking-[-0.03em] text-ink sm:text-7xl">+300%</p>
                 <p className="text-base font-medium text-ink-muted sm:text-lg">
                   {t('eon.results.uplift')}
                 </p>
