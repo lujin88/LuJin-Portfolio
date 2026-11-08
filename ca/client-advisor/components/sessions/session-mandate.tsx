@@ -1,6 +1,6 @@
 'use client'
+import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
 
-import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { useTranslation } from '@i18n/use-translation'
 import styles from './session-mandate.module.css'
 
@@ -102,11 +102,11 @@ export function SessionMandate() {
       aria-labelledby="mandate-heading"
       className="ca-s02 relative w-full overflow-visible bg-transparent font-sans text-[var(--ca-text)]"
     >
-      <div className={styles.mandate}>
+      <LayerScrollGroup className={styles.mandate}>
         <MandateIcons />
-        <div className={styles.atmosphere} aria-hidden="true" />
+        <div className={styles.atmosphere} data-move="24" aria-hidden="true" />
 
-        <ScrollReveal className={styles.copy}>
+        <div className={styles.copy} data-move="96">
           <p className="ca-eyebrow">
             <span className="ca-eyebrow-index">02</span>
             <span className="ca-eyebrow-rule" aria-hidden="true" />
@@ -139,7 +139,7 @@ export function SessionMandate() {
               {t('ca.mandate.body2')}
             </p>
           </div>
-        </ScrollReveal>
+        </div>
 
         <div className={styles.toolStack} aria-label="Separate tools used by advisors">
           <RearPanel side="left" />
@@ -164,7 +164,7 @@ export function SessionMandate() {
           </div>
         </div>
 
-        <aside className={styles.annotation}>
+        <aside className={styles.annotation} data-move="96">
           <p>
             {t('ca.mandate.note1')}
             {'\n'}
@@ -173,7 +173,7 @@ export function SessionMandate() {
             {t('ca.mandate.note3')}
           </p>
         </aside>
-      </div>
+      </LayerScrollGroup>
     </section>
   )
 }
