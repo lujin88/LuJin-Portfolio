@@ -1059,3 +1059,30 @@ main {
 footer > hr {
   border-top-color: var(--footer-line);
 }
+
+/* CA07: a single explanatory pass, using existing outcome timing/curve values. */
+.ca-outcome-trace { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.ca-outcome-edge-reveal { transform-box: fill-box; transform-origin: left center; }
+.ca-outcome-orbit-dot { transform: translate(718px, 596px); }
+[data-outcome-state="play"] .ca-outcome-edge-reveal {
+  animation: ca-outcome-edge-in 1100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+[data-outcome-state="play"] .ca-outcome-orbit-dot {
+  animation: ca-outcome-orbit-in 1100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes ca-outcome-edge-in { from { transform: scaleX(0.001); } to { transform: scaleX(1); } }
+@keyframes ca-outcome-orbit-in {
+  0% { transform: translate(522px, 627px); opacity: 0; }
+  25% { transform: translate(574px, 602px); opacity: 1; }
+  50% { transform: translate(626px, 584px); opacity: 1; }
+  75% { transform: translate(678px, 582px); opacity: 1; }
+  100% { transform: translate(718px, 596px); opacity: 1; }
+}
+@media (max-width: 767px) {
+  [data-outcome-state="play"] .ca-outcome-edge-reveal,
+  [data-outcome-state="play"] .ca-outcome-orbit-dot { animation-duration: 700ms; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-outcome-state] .ca-outcome-edge-reveal,
+  [data-outcome-state] .ca-outcome-orbit-dot { animation: none; }
+}
