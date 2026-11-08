@@ -138,6 +138,8 @@
     stroke-dashoffset: 0;
   }
 }
+/* E.ON card rooftop still: no video, so it is not an .advisory-office stage. */
+#omni-model .eon-roof > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; pointer-events: none; }
 /* E.ON card: <picture> still inside the shared .advisory-office wrapper
    (advisory-office.css only targets a direct img child). */
 #omni-model .advisory-office > picture > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 0% 100%; pointer-events: none; }
