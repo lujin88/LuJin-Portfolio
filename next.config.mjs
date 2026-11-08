@@ -67,15 +67,16 @@ const nextConfig = {
     ]
   },
   async rewrites() {
-    return [
-      // The home page lives at app/landing, not app/index. A route named
-      // "index" shares its internal name with the root route "/", and on
-      // Vercel the client's ?_rsc= request for /index was matched to "/" and
-      // answered with HTML. The router then fell back to a full reload, which
-      // showed the root layout's black background for ~370 ms. Visitors still
-      // use /index.
-      { source: '/index', destination: '/landing' },
-    ]
+    // The home page lives at app/landing, not app/index. A route named
+    // "index" shares its internal name with the root route "/", and on
+    // Vercel the client's ?_rsc= request for /index was matched to "/" and
+    // answered with HTML. The router then fell back to a full reload, which
+    // showed the root layout's black background for ~370 ms. Visitors still
+    // use /index. beforeFiles, so Vercel rewrites the RSC request too
+    // instead of normalising /index to "/" first.
+    return {
+      beforeFiles: [{ source: '/index', destination: '/landing' }],
+    }
   },
   async redirects() {
     return [
