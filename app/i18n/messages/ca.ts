@@ -123,7 +123,7 @@ export const ca = {
         'A prioritized overview on the existing dashboard. One click opens the full context; next steps appear as recommendations.',
       path3Title: 'The result',
       path3Body:
-        'One experience that unifies client context, portfolio, and research — without adding to the pile. 500+ client signals, one view.',
+        'One experience that unifies client context, portfolio, and research — without adding to the pile. Client signals in one view.',
       mockups: {
         'book-view': 'UBS advisor book view with clients, opportunities, and market highlights',
         'us-tech': 'US Tech client view with CIO commentary and recommended products',
@@ -311,7 +311,7 @@ export const ca = {
         'Ein priorisierter Überblick auf dem bestehenden Dashboard. Ein Klick öffnet den vollen Kontext; nächste Schritte erscheinen als Empfehlungen.',
       path3Title: 'Das Ergebnis',
       path3Body:
-        'Ein Erlebnis, das Kundenkontext, Portfolio und Research verbindet — ohne den Stapel zu vergrößern. 500+ Kundensignale, eine Sicht.',
+        'Ein Erlebnis, das Kundenkontext, Portfolio und Research verbindet — ohne den Stapel zu vergrößern. Kundensignale in einer Sicht.',
       mockups: {
         'book-view': 'UBS-Berateransicht mit Kunden, Opportunities und Markthighlights',
         'us-tech': 'US-Tech-Kundensicht mit CIO-Kommentar und empfohlenen Produkten',

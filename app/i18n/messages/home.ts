@@ -23,7 +23,7 @@ export const home = {
     },
     eon: {
       eyebrow: 'Solar · E.ON',
-      titleHtml: 'Solar landing page redesign',
+      titleHtml: 'Solar landing page & calculator redesign',
       role: 'Lead Product Designer',
       storyTitle: 'From complexity to conversion',
       storyBody: 'A complex investment, made easier to understand and trust.',
@@ -35,7 +35,7 @@ export const home = {
       cta: 'Explore case study',
       weatherMeta: 'Rive motion',
       petMeta: 'Voice · Hardware',
-      gratulaMeta: 'Launching soon',
+      gratulaMeta: 'Prototype',
     },
     how: {
       kicker: 'How I work',
@@ -104,7 +104,7 @@ export const home = {
     },
     eon: {
       eyebrow: 'Solar · E.ON',
-      titleHtml: 'Redesign der Solar-Landingpage',
+      titleHtml: 'Redesign von Solar-Landingpage und Rechner',
       role: 'Lead Product Designerin',
       storyTitle: 'Von Komplexität zu Conversion',
       storyBody: 'Eine komplexe Investition, leichter zu verstehen und zu vertrauen.',
@@ -116,7 +116,7 @@ export const home = {
       cta: 'Case Study ansehen',
       weatherMeta: 'Rive Motion',
       petMeta: 'Stimme · Hardware',
-      gratulaMeta: 'Startet bald',
+      gratulaMeta: 'Prototyp',
     },
     how: {
       kicker: 'Wie ich arbeite',
