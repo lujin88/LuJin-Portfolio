@@ -10,10 +10,11 @@ export function DesignConstraintSection() {
   const { t } = useTranslation()
   return (
     <section className="relative z-[1] bg-navy-950">
-      {/* Decorative mint circle, top-right */}
+      {/* Decorative mint circle, top-right. Below lg it is smaller and ends above the
+          headline: at 260px it sat behind the white title on phones and made it unreadable. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-12 -right-16 z-0 h-[260px] w-[260px] rounded-full bg-mint md:top-10 md:h-[320px] md:w-[320px]"
+        className="pointer-events-none absolute top-0 -right-12 z-0 h-28 w-28 rounded-full bg-mint lg:top-10 lg:-right-16 lg:h-[320px] lg:w-[320px]"
       />
 
       <ContentContainer className="case-study-section relative z-[2]">
