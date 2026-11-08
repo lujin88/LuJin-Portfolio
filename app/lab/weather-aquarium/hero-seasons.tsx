@@ -119,7 +119,7 @@ export const HeroSeasons = forwardRef<HTMLDivElement>(function HeroSeasons(_, re
                 fetchPriority={season === DEFAULT ? 'high' : 'low'}
                 draggable={false}
               />
-              <img className="hero-season-panel" src={`${IMG}/hero-panel-${season}.webp`} alt="" draggable={false} />
+              <img className="hero-season-panel" src={`${IMG}/hero-panel-${season}-${langCode}.webp`} alt="" draggable={false} />
             </div>
           )
         })}
@@ -128,7 +128,7 @@ export const HeroSeasons = forwardRef<HTMLDivElement>(function HeroSeasons(_, re
             key={season}
             className="hero-pill"
             data-shown={season === active}
-            src={`${IMG}/hero-pill-${season}.png`}
+            src={`${IMG}/hero-pill-${season}-${langCode}.png`}
             alt=""
             draggable={false}
           />

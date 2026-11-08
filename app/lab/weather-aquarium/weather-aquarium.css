@@ -162,7 +162,8 @@
   z-index: 10;
   top: 34px;
   left: 100px;
-  width: 320px;
+  /* EN/DE labels are 520 wide so the German copy fits (same height and position as before). */
+  width: 520px;
   height: 88px;
   visibility: hidden;
 }
