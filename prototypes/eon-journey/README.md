@@ -1,3 +1,13 @@
+# Current integration — 2026-11-08
+
+PM #136/#172 requests merging the sequence and no-drops versions. The three component files now use the saved no-drops version (f64cde9): six nodes, no falling particles, a survivor path, the existing shorter timeline and handwritten annotation sequence. The source for this prototype is the actual /EON page on this branch; there is no separate executable HTML implementation. Earlier A/B media below are historical and do not validate this integration.
+
+No new curves or durations were invented. The values come from the preserved no-drops worktree. Normal, slow4 and reduced-motion verification must be rerun on this integrated branch. Mobile auto-follow remains interruptible; real-device horizontal swipe must be tested by Lu before approval.
+
+Rejected: restore falling dots (explicit requested removal); add loops (frequency); animate readable figures (function); keyboard-triggered replay (frequency).
+
+---
+
 # E.ON journey A/B review prototype
 
 Draft selection round for section 04. Replaces the scroll-coupled playhead without new copy. Not integrated into the canonical 3000 site. No Rive asset or input contract is introduced.
