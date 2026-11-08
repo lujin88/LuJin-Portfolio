@@ -1,6 +1,6 @@
 'use client'
+import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
 
-import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import styles from './session-03-research.module.css'
 import { useTranslation } from '@i18n/use-translation'
@@ -11,40 +11,9 @@ const bodyText =
 export function Session03Research() {
   const { t } = useTranslation()
   const advisorQuotes = [t('ca.research.quote1'), t('ca.research.quote2')]
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const section = sectionRef.current
-    if (!section) return
-
-    const revealEls = Array.from(
-      section.querySelectorAll<HTMLElement>(`.${styles.reveal}`),
-    )
-    const show = () => {
-      revealEls.forEach((el) => el.classList.add(styles.isVisible))
-    }
-
-    const motionMq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    if (motionMq.matches || typeof IntersectionObserver === 'undefined') {
-      show()
-      return
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (!entries.some((entry) => entry.isIntersecting)) return
-        show()
-        io.disconnect()
-      },
-      { threshold: 0.01 },
-    )
-    io.observe(section)
-    return () => io.disconnect()
-  }, [])
 
   return (
     <section
-      ref={sectionRef}
       id="session-03-research"
       aria-labelledby="session-03-heading"
       className={`session-03 relative z-0 flex w-full overflow-visible text-[var(--s3-text)] ${styles.section}`}
@@ -64,13 +33,13 @@ export function Session03Research() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,19,38,0.45)_0%,rgba(9,19,38,0.7)_32%,rgba(9,19,38,0.94)_48%,rgba(9,19,38,0.98)_100%)] lg:bg-[linear-gradient(90deg,rgba(9,19,38,0.18)_0%,rgba(9,19,38,0.28)_42%,rgba(9,19,38,0.72)_78%,var(--s3-bg,rgb(9,19,38))_100%)]" />
       </div>
 
-      <div
+      <LayerScrollGroup
         className={`${styles.grid} relative z-10 mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-y-14 px-[var(--content-inset,24px)] pb-10 pt-24 lg:grid-cols-[minmax(0,58fr)_minmax(0,42fr)] lg:pb-12 lg:pt-16`}
       >
-        <div className={`${styles.quotesCol} flex flex-col justify-center lg:self-start lg:py-8`}>
+        <div data-move="96" className={`${styles.quotesCol} flex flex-col justify-center lg:self-start lg:py-8`}>
           <ul
             aria-label={t('ca.research.quotesLabel')}
-            className={`${styles.reveal} flex w-full flex-col gap-y-10 pl-0 font-sans text-[1.15rem] font-normal leading-[1.4] tracking-[-0.005em] text-[var(--s3-text)] sm:text-[1.35rem] lg:gap-y-16 lg:text-[clamp(1.25rem,1.55vw,1.55rem)]`}
+            className={`flex w-full flex-col gap-y-10 pl-0 font-sans text-[1.15rem] font-normal leading-[1.4] tracking-[-0.005em] text-[var(--s3-text)] sm:text-[1.35rem] lg:gap-y-16 lg:text-[clamp(1.25rem,1.55vw,1.55rem)]`}
           >
             {advisorQuotes.map((quote, i) => (
               <li
@@ -88,9 +57,10 @@ export function Session03Research() {
         </div>
 
         <div
+          data-move="96"
           className={`${styles.copyCol} flex flex-col justify-center border-t border-[var(--s3-rule)] pt-12 lg:border-t-0 lg:pt-8 lg:pb-0`}
         >
-          <p className={`${styles.reveal} ca-eyebrow`} data-delay="1">
+          <p className={`ca-eyebrow`}>
             <span className="ca-eyebrow-index">03</span>
             <span aria-hidden="true" className="ca-eyebrow-rule" />
             <span>{t('ca.research.eyebrow')}</span>
@@ -98,37 +68,33 @@ export function Session03Research() {
 
           <h2
             id="session-03-heading"
-            className={`${styles.reveal} ca-h2 mt-[var(--ca-heading-gap)] max-w-[16ch] font-sans`}
-            data-delay="2"
+            className={`ca-h2 mt-[var(--ca-heading-gap)] max-w-[16ch] font-sans`}
           >
             {t('ca.research.title')}
           </h2>
 
           <p
-            className={`${styles.reveal} mt-4 max-w-[20ch] text-balance font-sans text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] sm:text-[2.25rem] lg:text-[clamp(2.1rem,2.9vw,2.5rem)]`}
-            data-delay="2"
+            className={`mt-4 max-w-[20ch] text-balance font-sans text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] sm:text-[2.25rem] lg:text-[clamp(2.1rem,2.9vw,2.5rem)]`}
           >
             {t('ca.research.subhead')}
           </p>
 
           <p
-            className={`${styles.reveal} mt-6 max-w-[46ch] text-pretty ${bodyText}`}
-            data-delay="3"
+            className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`}
             dangerouslySetInnerHTML={{ __html: t('ca.research.body1Html') }}
           />
 
           <h3
-            className={`${styles.reveal} mt-12 max-w-[22ch] text-balance font-sans text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] sm:text-[2.25rem] lg:mt-14 lg:text-[clamp(2.1rem,2.9vw,2.5rem)]`}
-            data-delay="2"
+            className={`mt-12 max-w-[22ch] text-balance font-sans text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] sm:text-[2.25rem] lg:mt-14 lg:text-[clamp(2.1rem,2.9vw,2.5rem)]`}
           >
             {t('ca.research.heading2')}
           </h3>
 
-          <p className={`${styles.reveal} mt-6 max-w-[46ch] text-pretty ${bodyText}`} data-delay="3">
+          <p className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`}>
             {t('ca.research.body2')}
           </p>
         </div>
-      </div>
+      </LayerScrollGroup>
     </section>
   )
 }

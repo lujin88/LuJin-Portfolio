@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { watchState } from '@/lib/observe-once'
 import { ProcessJourney } from './process-journey'
 import { TiltCard } from './tilt-card'
+import { OutcomeLine } from './outcome-line'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { useTranslation } from '@i18n/use-translation'
 
@@ -185,18 +186,20 @@ function MetricCard({ index, value, label, eyebrow, image, imageAlt }: MetricCar
   return (
     <div
       ref={ref}
+      data-outcome-state={state}
       className={`ca-outcome-card ${state === 'idle' ? '' : 'is-visible'}`}
       style={{ '--ca-outcome-delay': `${delay}ms` } as CSSProperties}
     >
       <TiltCard className="relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl border border-[var(--ca-line)] bg-[var(--ca-card)] shadow-[0_0_0_1px_rgba(61,139,255,0.04),0_30px_60px_-40px_rgba(61,139,255,0.35)]">
-        <div className="ca-outcome-art absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]">
+        <div className={index === 0 ? "ca-outcome-art absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]" : "ca-outcome-art absolute inset-0"}>
           <Image
             src={image}
             alt={imageAlt}
             fill
             sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw"
-            className="object-cover object-bottom"
+            className={index === 0 ? "object-cover object-bottom" : "object-contain object-bottom"}
           />
+          <OutcomeLine index={index} />
         </div>
 
         <div
