@@ -18,10 +18,9 @@
 .dashed { display: none; position: absolute; inset-inline: 0; top: calc(50% - 1.5px); border-top: 3px dashed var(--lavender); opacity: .25; }
 .underline { display: none; position: absolute; width: 70%; height: 2px; bottom: -7px; background: var(--lavender); transform-origin: left; }
 .particles { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
-.lead, .drop, .survivor { position: absolute; border-radius: 50%; background: var(--lavender); opacity: 0; }
+.lead, .survivor { position: absolute; border-radius: 50%; background: var(--lavender); opacity: 0; }
 .lead { left: calc(var(--start) - 6px); top: 42px; width: 12px; height: 12px; }
-.drop, .survivor { left: calc(var(--start) + 2 * var(--hop) - 3px); top: 45px; width: 6px; height: 6px; }
-.drop { left: calc(var(--start) + 2 * var(--hop) - 4px); top: 98px; width: 8px; height: 8px; background: #c9b5f4; }
+.survivor { left: calc(var(--start) + 2 * var(--hop) - 3px); top: 45px; width: 6px; height: 6px; }
 .lead { background: #c9b5f4; }
 .survivor { width: 8px; height: 8px; background: #c9b5f4; }
 .sequence .future { opacity: .6; }
@@ -33,7 +32,7 @@
 .sequence[data-ready="true"] .trail, .sequence[data-ready="true"] .underline { transform: scaleX(0); }
 .sequence[data-ready="true"] .future { opacity: 1; }
 .sequence[data-ready="true"] .dashed { opacity: 0; }
-.section[data-journey-ready="true"] .note { opacity: 0; }
+.section[data-journey-ready="true"] .character { opacity: 0; }
 .section[data-journey-ready="true"] .annotation path { stroke-dasharray: 1; stroke-dashoffset: 1; }
 
 .sequence[data-started="true"] .step:not(.future) .node,
@@ -46,11 +45,14 @@
 .sequence[data-started="true"] .future .label { animation: future-a 300ms ease-out var(--arrival) both; }
 .sequence[data-started="true"] .trail { animation: draw 450ms var(--journey-ease) var(--connector-delay) both; }
 .sequence[data-started="true"] .futureConnector .trail { animation-duration: 333ms; }
-.sequence[data-started="true"] .lead { animation: travel 3900ms var(--journey-ease) both; }
-.sequence[data-started="true"] .drop { animation: drop 650ms ease-in 1150ms forwards; }
-.sequence[data-started="true"] .survivor { animation: survivor 1000ms linear 1800ms forwards; }
-.section[data-journey-started="true"] .note { animation: light 600ms ease-out 1400ms both; }
-.section[data-journey-started="true"] .annotation path { animation: ink 600ms ease-out 1400ms both; }
+.sequence[data-started="true"] .lead { animation: travel 3450ms var(--journey-ease) both; }
+.sequence[data-started="true"] .survivor { animation: survivor 1000ms linear 1350ms forwards; }
+.section[data-journey-started="true"] .annotation path { animation: ink 450ms ease-out 1150ms both; }
+.section[data-journey-started="true"] .annotation path:not(:first-child) { animation-duration: 150ms; animation-delay: 1600ms; }
+/* Keep the completed text in the base style. A 1ms stepped animation can finish
+   just below progress 1 due to floating-point rounding; forwards fill kept letters hidden. */
+.section[data-journey-started="true"] .character { opacity: 1; animation: character 1ms steps(1, end) var(--character-delay) backwards; }
+@keyframes character { from { opacity: 0; } to { opacity: 1; } }
 @keyframes light { from { opacity: 0; } to { opacity: 1; } }
 @keyframes illuminate { from { opacity: .45; } to { opacity: 1; } }
 @keyframes halo { from { opacity: 0; } to { opacity: .14; } }
@@ -58,13 +60,12 @@
 @keyframes future-a { from { opacity: .45; } to { opacity: .6; } }
 @keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes ink { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
-@keyframes travel { 0% { opacity: 1; transform: translateX(0); } 11.538% { transform: translateX(var(--hop)); } 23.077%,29.487% { opacity: 1; transform: translateX(calc(2 * var(--hop))); } 29.488%,100% { opacity: 0; transform: translateX(calc(2 * var(--hop))); } }
-@keyframes drop { 0% { opacity: 1; transform: translate(var(--drop-x),0); } 80% { opacity: 1; transform: translate(var(--drop-x),calc(var(--drop-y) * .75)); } 100% { opacity: 0; transform: translate(var(--drop-x),var(--drop-y)); } }
+@keyframes travel { 0% { opacity: 1; transform: translateX(0); } 13.043478% { transform: translateX(var(--hop)); } 26.086957%,33.333333% { opacity: 1; transform: translateX(calc(2 * var(--hop))); } 33.334%,100% { opacity: 0; transform: translateX(calc(2 * var(--hop))); } }
 @keyframes survivor { 0% { opacity: 1; transform: translateX(0); } 99% { opacity: 1; } 100% { opacity: .5; transform: translateX(calc(3 * var(--hop))); } }
 @media (min-width:768px) { .sequence { --hop:144px; --start:48px; } }
 @media (prefers-reduced-motion: reduce) {
-  .section .sequence *, .section .note, .section .annotation path { animation: none !important; }
-  .section .sequence .node, .section .sequence .label, .section .sequence .fill, .section .sequence .ring, .section .sequence .check, .section .sequence .spinner, .section[data-journey-ready="true"] .note { opacity: 1; }
+  .section .sequence *, .section .note, .section .character, .section .annotation path { animation: none !important; }
+  .section .sequence .node, .section .sequence .label, .section .sequence .fill, .section .sequence .ring, .section .sequence .check, .section .sequence .spinner, .section[data-journey-ready="true"] .note, .section[data-journey-ready="true"] .character { opacity: 1; }
   .section .sequence .node { transform: none; }
   .section .sequence .calculate .node { color: var(--navy-950); }
   .section .sequence .halo { opacity: .14; }
@@ -72,7 +73,7 @@
   .section .sequence .future .ring { opacity: 0; }
   .section .sequence .future { opacity: .6; }
   .section .sequence .dashed { opacity: .25; }
-  .section .lead, .section .drop { display: none; }
+  .section .lead { display: none; }
   .section .survivor { opacity: .5; transform: translateX(calc(3 * var(--hop))); }
   .section[data-journey-ready="true"] .annotation path { stroke-dashoffset: 0; }
 }
@@ -84,7 +85,7 @@
 .sequence:not([data-ready="true"]) .trail, .sequence:not([data-ready="true"]) .underline { transform: scaleX(0); }
 .sequence:not([data-ready="true"]) .future { opacity: 1; }
 .sequence:not([data-ready="true"]) .dashed { opacity: 0; }
-.section:not([data-journey-ready="true"]) .note { opacity: 0; }
+.section:not([data-journey-ready="true"]) .character { opacity: 0; }
 .section:not([data-journey-ready="true"]) .annotation path { stroke-dasharray: 1; stroke-dashoffset: 1; }
 
 }

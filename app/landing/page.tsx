@@ -11,8 +11,6 @@ import { readPublicHtmlPage } from '../read-public-html'
  */
 const HOME_VIDEO_POSTERS: Record<string, string> = {
   '/assets/videos/home/hero.mp4': '/assets/images/posters/home-hero.webp',
-  '/assets/videos/client-advisory/CA-office-call-loop.mp4':
-    '/assets/images/posters/ca-office-call-loop.webp',
   '/assets/videos/eon/solar-calculator-hero.mp4':
     '/assets/images/posters/eon-solar-calculator-hero.webp',
 }
