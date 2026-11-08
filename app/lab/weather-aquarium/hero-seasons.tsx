@@ -30,20 +30,20 @@ const COPY = {
     group: 'Choose a season',
     labels: { spring: 'Spring', summer: 'Summer', autumn: 'Autumn', winter: 'Winter' },
     alt: {
-      spring: 'An iPad turned to the left, showing the Weather Aquarium app in spring: cherry blossom and tulips, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake and the weather panel below',
-      summer: 'An iPad turned to the left, showing the Weather Aquarium app in summer: green trees and flowers, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake and the weather panel below',
-      autumn: 'An iPad turned to the left, showing the Weather Aquarium app in autumn: golden leaves, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake and the weather panel below',
-      winter: 'An iPad turned to the left, showing the Weather Aquarium app in winter: snow on the roofs and trees, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake and the weather panel below',
+      spring: 'An iPad turned to the left, showing the Weather Aquarium app in spring: cherry blossom and tulips, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake, and below, a weather panel showing sample data',
+      summer: 'An iPad turned to the left, showing the Weather Aquarium app in summer: green trees and flowers, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake, and below, a weather panel showing sample data',
+      autumn: 'An iPad turned to the left, showing the Weather Aquarium app in autumn: golden leaves, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake, and below, a weather panel showing sample data',
+      winter: 'An iPad turned to the left, showing the Weather Aquarium app in winter: snow on the roofs and trees, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake, and below, a weather panel showing sample data',
     },
   },
   de: {
     group: 'Jahreszeit wählen',
     labels: { spring: 'Frühling', summer: 'Sommer', autumn: 'Herbst', winter: 'Winter' },
     alt: {
-      spring: 'Ein nach links gedrehtes iPad mit der App Weather Aquarium im Frühling: Kirschblüten und Tulpen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See und darunter die Wetteranzeige',
-      summer: 'Ein nach links gedrehtes iPad mit der App Weather Aquarium im Sommer: grüne Bäume und Blumen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See und darunter die Wetteranzeige',
-      autumn: 'Ein nach links gedrehtes iPad mit der App Weather Aquarium im Herbst: goldenes Laub, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See und darunter die Wetteranzeige',
-      winter: 'Ein nach links gedrehtes iPad mit der App Weather Aquarium im Winter: Schnee auf Dächern und Bäumen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See und darunter die Wetteranzeige',
+      spring: 'Ein nach links gedrehtes iPad mit der App Weather Aquarium im Frühling: Kirschblüten und Tulpen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See und darunter die Wetteranzeige mit Beispieldaten',
+      summer: 'Ein nach links gedrehtes iPad mit der App Weather Aquarium im Sommer: grüne Bäume und Blumen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See und darunter die Wetteranzeige mit Beispieldaten',
+      autumn: 'Ein nach links gedrehtes iPad mit der App Weather Aquarium im Herbst: goldenes Laub, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See und darunter die Wetteranzeige mit Beispieldaten',
+      winter: 'Ein nach links gedrehtes iPad mit der App Weather Aquarium im Winter: Schnee auf Dächern und Bäumen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See und darunter die Wetteranzeige mit Beispieldaten',
     },
   },
 } as const

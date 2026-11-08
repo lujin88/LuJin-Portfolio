@@ -10,16 +10,16 @@ const seasons = ['spring', 'summer', 'autumn', 'winter'] as const
 // minus the iPad clause and the weather panel, which these scene-only frames do not show.
 const ALT = {
   en: {
-    spring: 'The Weather Aquarium app in spring: cherry blossom and tulips, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
-    summer: 'The Weather Aquarium app in summer: green trees and flowers, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
-    autumn: 'The Weather Aquarium app in autumn: golden leaves, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
-    winter: 'The Weather Aquarium app in winter: snow on the roofs and trees, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
+    spring: 'A spring scene from the Weather Aquarium app: cherry blossom and tulips, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
+    summer: 'A summer scene from the Weather Aquarium app: green trees and flowers, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
+    autumn: 'An autumn scene from the Weather Aquarium app: golden leaves, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
+    winter: 'A winter scene from the Weather Aquarium app: snow on the roofs and trees, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
   },
   de: {
-    spring: 'Die App Weather Aquarium im Frühling: Kirschblüten und Tulpen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
-    summer: 'Die App Weather Aquarium im Sommer: grüne Bäume und Blumen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
-    autumn: 'Die App Weather Aquarium im Herbst: goldenes Laub, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
-    winter: 'Die App Weather Aquarium im Winter: Schnee auf Dächern und Bäumen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
+    spring: 'Eine Frühlingsszene aus der App Weather Aquarium: Kirschblüten und Tulpen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
+    summer: 'Eine Sommerszene aus der App Weather Aquarium: grüne Bäume und Blumen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
+    autumn: 'Eine Herbstszene aus der App Weather Aquarium: goldenes Laub, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
+    winter: 'Eine Winterszene aus der App Weather Aquarium: Schnee auf Dächern und Bäumen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
   },
 } as const
 
