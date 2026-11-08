@@ -6,13 +6,12 @@ import { usePrefersReducedMotion } from '@eon/lib/motion/hooks'
 import { useTranslation } from '@i18n/use-translation'
 import styles from './journey-sequence.module.css'
 
-/** Review prototype: ?journey=A or ?journey=B. Replaces the scroll playhead. */
+/** One-shot journey narrative with an interruptible mobile follow. */
 export function JourneySteps() {
   const { ta } = useTranslation()
   const labels = ta('eon.journey.steps')
   const icons = [Search, Leaf, Calculator, Home, FileText, ShoppingCart]
   const ref = useRef<HTMLDivElement>(null)
-  const [variant, setVariant] = useState<'A' | 'B'>('A')
   const [ready, setReady] = useState(false)
   const [started, setStarted] = useState(false)
   const reduced = usePrefersReducedMotion()
@@ -21,10 +20,7 @@ export function JourneySteps() {
     const element = ref.current
     const section = element?.closest('section')
     if (!element || !section) return
-    const mode = new URLSearchParams(window.location.search).get('journey') === 'B' ? 'B' : 'A'
-    setVariant(mode)
     setReady(true)
-    section.dataset.journeyVariant = mode
     section.dataset.journeyReady = 'true'
     const start = () => {
       setStarted(true)
@@ -44,15 +40,86 @@ export function JourneySteps() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    const rail = ref.current
+    if (!rail || !started || !window.matchMedia('(max-width: 767px)').matches) return
+    let frame = 0
+    let stopped = false
+    const stop = () => {
+      stopped = true
+      cancelAnimationFrame(frame)
+      rail.scrollTo({ left: rail.scrollLeft, behavior: 'instant' })
+    }
+    const target = (index: number) => {
+      const node = rail.querySelector<HTMLElement>(`[data-journey-step="${index}"]`)
+      return node ? Math.min(rail.scrollWidth - rail.clientWidth, Math.max(0, node.offsetLeft + node.offsetWidth / 2 - rail.clientWidth / 2)) : 0
+    }
+    if (reduced) {
+      rail.scrollLeft = target(2)
+      return
+    }
+    // Reuse the node curve for both following and the final return.
+    const ease = (fraction: number) => {
+      let low = 0, high = 1
+      for (let i = 0; i < 12; i++) {
+        const t = (low + high) / 2
+        const x = 3 * (1 - t) ** 2 * t * .23 + 3 * (1 - t) * t ** 2 * .32 + t ** 3
+        if (x < fraction) low = t
+        else high = t
+      }
+      return 1 - (1 - (low + high) / 2) ** 3
+    }
+    const follow = () => {
+      const lead = rail.querySelector('[data-journey-particle="lead"]')
+      const time = Number(lead?.getAnimations()[0]?.currentTime ?? 0)
+      const elapsed = Math.max(0, time - 1800)
+      const hop = Math.min(2, Math.floor(elapsed / 333))
+      const eased = ease(Math.min(1, (elapsed - hop * 333) / 333))
+      const from = hop === 0 ? 0 : target(hop + 2)
+      rail.scrollLeft = time < 1800 ? 0 : from + (target(hop + 3) - from) * eased
+      if (time >= 2800) {
+        const progress = Math.min(1, Math.max(0, (time - 3400) / 500))
+        rail.scrollLeft = target(5) + (target(2) - target(5)) * ease(progress)
+      }
+      if (!stopped && time < 3900) frame = requestAnimationFrame(follow)
+    }
+    let origin: { x: number; y: number } | null = null
+    const down = (event: PointerEvent) => { origin = { x: event.clientX, y: event.clientY } }
+    const move = (event: PointerEvent) => {
+      if (!origin) return
+      const dx = Math.abs(event.clientX - origin.x), dy = Math.abs(event.clientY - origin.y)
+      if (dx > 6 && dx > dy) stop()
+    }
+    const up = () => { origin = null }
+    const wheel = (event: WheelEvent) => { if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) stop() }
+    const key = (event: KeyboardEvent) => { if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) stop() }
+    rail.addEventListener('pointerdown', down, { passive: true })
+    rail.addEventListener('pointermove', move, { passive: true })
+    rail.addEventListener('pointerup', up)
+    rail.addEventListener('pointercancel', up)
+    rail.addEventListener('wheel', wheel, { passive: true })
+    rail.addEventListener('keydown', key)
+    frame = requestAnimationFrame(follow)
+    return () => {
+      cancelAnimationFrame(frame)
+      rail.removeEventListener('pointerdown', down)
+      rail.removeEventListener('pointermove', move)
+      rail.removeEventListener('pointerup', up)
+      rail.removeEventListener('pointercancel', up)
+      rail.removeEventListener('wheel', wheel)
+      rail.removeEventListener('keydown', key)
+    }
+  }, [started, reduced])
+
   return (
-    <div ref={ref} data-journey-sequence data-variant={variant} data-ready={ready}
+    <div ref={ref} data-journey-sequence  data-ready={ready}
       data-started={started || reduced} data-reduced={reduced}
-      className={`${styles.sequence} relative z-[1] mt-6 overflow-x-auto pt-1 pb-3 md:mt-8`}>
+      className={`${styles.sequence} relative z-[1] mt-6 overflow-x-auto pt-1 pb-16 md:mt-8`}>
       <div className={`${styles.track} flex w-max items-start justify-start gap-1`}>
         {icons.map((Icon, i) => {
           const active = i === 2
-          const arrival = variant === 'A' ? [0, 450, 900, 1800, 2133, 2466][i] : [0, 350, 700, 1100, 1100, 1100][i]
-          const timing = { '--arrival': `${arrival}ms`, '--connector-delay': `${variant === 'A' ? (i < 2 ? i * 450 : 1800 + (i - 2) * 333) : i * 350}ms` } as CSSProperties
+          const arrival = [0, 450, 900, 1800, 2133, 2466][i]
+          const timing = { '--arrival': `${arrival}ms`, '--connector-delay': `${i < 2 ? i * 450 : 1800 + (i - 2) * 333}ms` } as CSSProperties
           return (
             <Fragment key={i}>
               <div data-journey-step={i} className={`${styles.step} ${active ? styles.calculate : ''} ${i > 2 ? styles.future : ''} flex w-[88px] shrink-0 flex-col items-center md:w-24`} style={timing}>

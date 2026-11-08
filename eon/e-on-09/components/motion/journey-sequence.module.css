@@ -21,16 +21,10 @@
 .lead, .drop, .survivor { position: absolute; border-radius: 50%; background: var(--lavender); opacity: 0; }
 .lead { left: calc(var(--start) - 6px); top: 42px; width: 12px; height: 12px; }
 .drop, .survivor { left: calc(var(--start) + 2 * var(--hop) - 3px); top: 45px; width: 6px; height: 6px; }
-.drop { left: calc(var(--start) + 2 * var(--hop) - 4px); top: 44px; width: 8px; height: 8px; border: 1px solid var(--navy-950); }
-.lead { border: 1px solid var(--navy-950); }
-.sequence[data-variant="B"] .check { display: flex; }
-.sequence[data-variant="B"] .spinner, .sequence[data-variant="B"] .underline { display: block; }
-.sequence[data-variant="B"] .future .underline, .sequence[data-variant="B"] .particles { display: none; }
-.sequence[data-variant="B"] .futureConnector .dashed { display: block; }
-.sequence[data-variant="B"] .futureConnector .trail { display: none; }
-.sequence[data-variant="B"] .futureConnector .arrow { opacity: 0; }
-.sequence[data-variant="B"] .future { opacity: .35; }
-.sequence[data-variant="A"] .future { opacity: .6; }
+.drop { left: calc(var(--start) + 2 * var(--hop) - 4px); top: 98px; width: 8px; height: 8px; background: #c9b5f4; }
+.lead { background: #c9b5f4; }
+.survivor { width: 8px; height: 8px; background: #c9b5f4; }
+.sequence .future { opacity: .6; }
 
 /* Initial, enhanced state. Without JS the complete static narrative remains. */
 .sequence[data-ready="true"] .node, .sequence[data-ready="true"] .label { opacity: .45; }
@@ -39,7 +33,6 @@
 .sequence[data-ready="true"] .trail, .sequence[data-ready="true"] .underline { transform: scaleX(0); }
 .sequence[data-ready="true"] .future { opacity: 1; }
 .sequence[data-ready="true"] .dashed { opacity: 0; }
-.sequence[data-ready="true"][data-variant="B"] .futureConnector .arrow { opacity: 1; }
 .section[data-journey-ready="true"] .note { opacity: 0; }
 .section[data-journey-ready="true"] .annotation path { stroke-dasharray: 1; stroke-dashoffset: 1; }
 
@@ -49,53 +42,49 @@
 .sequence[data-started="true"] .step.calculate .node { animation: calculate 250ms cubic-bezier(0.23, 1, 0.32, 1) var(--arrival) both; }
 .sequence[data-started="true"] .fill { animation: light 250ms ease-out var(--arrival) both; }
 .sequence[data-started="true"] .halo { animation: halo 250ms ease-out var(--arrival) both; }
-.sequence[data-started="true"][data-variant="A"] .future .node,
-.sequence[data-started="true"][data-variant="A"] .future .label { animation: future-a 300ms ease-out var(--arrival) both; }
+.sequence[data-started="true"] .future .node,
+.sequence[data-started="true"] .future .label { animation: future-a 300ms ease-out var(--arrival) both; }
 .sequence[data-started="true"] .trail { animation: draw 450ms var(--journey-ease) var(--connector-delay) both; }
-.sequence[data-started="true"][data-variant="A"] .futureConnector .trail { animation-duration: 333ms; }
-.sequence[data-started="true"][data-variant="A"] .lead { animation: travel 2800ms var(--journey-ease) both; }
-.sequence[data-started="true"][data-variant="A"] .drop { animation: drop 650ms ease-in 1150ms forwards; }
-.sequence[data-started="true"][data-variant="A"] .survivor { animation: survivor 1000ms linear 1800ms forwards; }
-.sequence[data-started="true"][data-variant="B"] .check { animation: check 150ms ease-out var(--arrival) both; }
-.sequence[data-started="true"][data-variant="B"] .spinner { animation: light 150ms ease-out 700ms both, spin 900ms linear 700ms both; }
-.sequence[data-started="true"][data-variant="B"] .trail { animation-duration: 350ms; }
-.sequence[data-started="true"][data-variant="B"] .underline { animation: draw 300ms var(--journey-ease) var(--arrival) both; }
-.sequence[data-started="true"][data-variant="B"] .future .node,
-.sequence[data-started="true"][data-variant="B"] .future .label { animation: future-b 500ms ease-out 1100ms both; }
-.sequence[data-started="true"][data-variant="B"] .dashed { animation: dashed 500ms ease-out 1100ms both; }
-.sequence[data-started="true"][data-variant="B"] .futureConnector .arrow { animation: hide 500ms ease-out 1100ms both; }
+.sequence[data-started="true"] .futureConnector .trail { animation-duration: 333ms; }
+.sequence[data-started="true"] .lead { animation: travel 3900ms var(--journey-ease) both; }
+.sequence[data-started="true"] .drop { animation: drop 650ms ease-in 1150ms forwards; }
+.sequence[data-started="true"] .survivor { animation: survivor 1000ms linear 1800ms forwards; }
 .section[data-journey-started="true"] .note { animation: light 600ms ease-out 1400ms both; }
 .section[data-journey-started="true"] .annotation path { animation: ink 600ms ease-out 1400ms both; }
-.section[data-journey-started="true"][data-journey-variant="B"] .note,
-.section[data-journey-started="true"][data-journey-variant="B"] .annotation path { animation-delay: 1100ms; animation-duration: 500ms; }
 @keyframes light { from { opacity: 0; } to { opacity: 1; } }
 @keyframes illuminate { from { opacity: .45; } to { opacity: 1; } }
 @keyframes halo { from { opacity: 0; } to { opacity: .14; } }
 @keyframes calculate { from { opacity: .45; transform: scale(1); color: white; } to { opacity: 1; transform: scale(1.08); color: var(--navy-950); } }
 @keyframes future-a { from { opacity: .45; } to { opacity: .6; } }
-@keyframes future-b { from { opacity: .45; } to { opacity: .35; } }
-@keyframes dashed { from { opacity: 0; } to { opacity: .25; } }
-@keyframes hide { from { opacity: 1; } to { opacity: 0; } }
 @keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-@keyframes check { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
-@keyframes spin { from { transform: rotate(90deg); } to { transform: rotate(900deg); } }
 @keyframes ink { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
-@keyframes travel { 0% { opacity: 1; transform: translateX(0); } 16.071% { transform: translateX(var(--hop)); } 32.142%,41.071% { opacity: 1; transform: translateX(calc(2 * var(--hop))); } 41.072%,100% { opacity: 0; transform: translateX(calc(2 * var(--hop))); } }
+@keyframes travel { 0% { opacity: 1; transform: translateX(0); } 11.538% { transform: translateX(var(--hop)); } 23.077%,29.487% { opacity: 1; transform: translateX(calc(2 * var(--hop))); } 29.488%,100% { opacity: 0; transform: translateX(calc(2 * var(--hop))); } }
 @keyframes drop { 0% { opacity: 1; transform: translate(var(--drop-x),0); } 80% { opacity: 1; transform: translate(var(--drop-x),calc(var(--drop-y) * .75)); } 100% { opacity: 0; transform: translate(var(--drop-x),var(--drop-y)); } }
-@keyframes survivor { 0% { opacity: .35; transform: translateX(0); } 99% { opacity: .35; } 100% { opacity: 0; transform: translateX(calc(3 * var(--hop))); } }
+@keyframes survivor { 0% { opacity: 1; transform: translateX(0); } 99% { opacity: 1; } 100% { opacity: .5; transform: translateX(calc(3 * var(--hop))); } }
 @media (min-width:768px) { .sequence { --hop:144px; --start:48px; } }
 @media (prefers-reduced-motion: reduce) {
   .section .sequence *, .section .note, .section .annotation path { animation: none !important; }
-  .section .sequence .node, .section .sequence .label, .section .sequence .fill, .section .sequence .ring, .section .sequence .check, .section .sequence .spinner, .section .note { opacity: 1; }
+  .section .sequence .node, .section .sequence .label, .section .sequence .fill, .section .sequence .ring, .section .sequence .check, .section .sequence .spinner, .section[data-journey-ready="true"] .note { opacity: 1; }
   .section .sequence .node { transform: none; }
   .section .sequence .calculate .node { color: var(--navy-950); }
   .section .sequence .halo { opacity: .14; }
   .section .sequence .trail, .section .sequence .underline { transform: scaleX(1); }
   .section .sequence .future .ring { opacity: 0; }
-  .section .sequence[data-variant="A"] .future { opacity: .6; }
-  .section .sequence[data-variant="B"] .future { opacity: .35; }
-  .section .sequence[data-variant="B"] .futureConnector .arrow { opacity: 0; }
+  .section .sequence .future { opacity: .6; }
   .section .sequence .dashed { opacity: .25; }
-  .section .particles { display: none; }
-  .section .annotation path { stroke-dashoffset: 0; }
+  .section .lead, .section .drop { display: none; }
+  .section .survivor { opacity: .5; transform: translateX(calc(3 * var(--hop))); }
+  .section[data-journey-ready="true"] .annotation path { stroke-dashoffset: 0; }
+}
+
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+.sequence:not([data-ready="true"]) .node, .sequence:not([data-ready="true"]) .label { opacity: .45; }
+.sequence:not([data-ready="true"]) .fill, .sequence:not([data-ready="true"]) .halo, .sequence:not([data-ready="true"]) .ring, .sequence:not([data-ready="true"]) .check, .sequence:not([data-ready="true"]) .spinner { opacity: 0; }
+.sequence:not([data-ready="true"]) .calculate .node { color: white; }
+.sequence:not([data-ready="true"]) .trail, .sequence:not([data-ready="true"]) .underline { transform: scaleX(0); }
+.sequence:not([data-ready="true"]) .future { opacity: 1; }
+.sequence:not([data-ready="true"]) .dashed { opacity: 0; }
+.section:not([data-journey-ready="true"]) .note { opacity: 0; }
+.section:not([data-journey-ready="true"]) .annotation path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+
 }

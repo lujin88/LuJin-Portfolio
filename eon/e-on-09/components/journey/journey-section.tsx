@@ -48,7 +48,7 @@ export function JourneySection() {
     <section data-journey-section className={`${styles.section} relative overflow-hidden bg-navy-950 text-white`}>
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-40 top-[28%] h-[280px] w-[280px] rounded-full bg-mint md:-right-28 md:h-[300px] md:w-[300px]"
+        className="pointer-events-none absolute -right-16 top-4 h-24 w-24 rounded-full bg-mint md:-right-28 md:top-[28%] md:h-[300px] md:w-[300px]"
       />
 
       <ContentContainer className="relative py-24 md:py-32">
