@@ -48,12 +48,13 @@ function clearLayers(movers: HTMLElement[]) {
  * reaching the viewport top or the page reaching its maximum scroll (from the 3000 engine), so the
  * last blocks on a page still settle although their top can never reach the viewport top.
  */
-function bottomAwareProgress(group: HTMLElement) {
+function bottomAwareProgress(group: HTMLElement, scrollOffset = 0) {
   const vh = window.innerHeight
-  const top = group.getBoundingClientRect().top
+  // scrollOffset > 0: where the group was before the page scrolled down by that many px.
+  const top = group.getBoundingClientRect().top + scrollOffset
   const scroller = document.scrollingElement || document.documentElement
   const maxScroll = Math.max(0, scroller.scrollHeight - vh)
-  const endTop = Math.max(0, top + window.scrollY - maxScroll)
+  const endTop = Math.max(0, top + window.scrollY - scrollOffset - maxScroll)
   const span = vh - endTop
   if (span <= 1) return 1
   const p = (vh - top) / span
@@ -95,8 +96,11 @@ export function LayerScrollGroup({
       restLayers(movers)
       return
     }
-    // Progress seen before the user's first scroll (load, scroll restoration, anchor jump).
-    let progressBeforeArm = initial
+    // Scroll position the last time this group looked at it. The first user scroll is judged by
+    // where the group was just before that scroll, measured now: images and fonts loading after a
+    // mid-page reload move groups into view without any scroll event, so a value stored at load
+    // time can be stale (Party at 390: RSVP/local were pulled down 32-68px on the first scroll).
+    let lastScrollY = window.scrollY
 
     const write = () => {
       ticking = false
@@ -135,8 +139,8 @@ export function LayerScrollGroup({
     const onScroll = () => {
       if (latched) return
       if (!armed) {
-        const before = progressBeforeArm
-        progressBeforeArm = readProgress()
+        const before = bottomAwareProgress(group, window.scrollY - lastScrollY)
+        lastScrollY = window.scrollY
         if (!userIntent) return
         if (window.scrollY <= startScrollY) return
         // Already on screen when the user starts scrolling (mid-page reload, a section in the
