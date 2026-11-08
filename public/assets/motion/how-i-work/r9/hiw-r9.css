@@ -20,5 +20,3 @@
    masks let the lower layer's original arrow leak through the edited layer. */
 .ai-decides-section .hiw-plane canvas{mask-image:none;-webkit-mask-image:none}
 
-/* Blend the case section into the illustration background without extra space or motion. */
-.ai-decides-section{background:linear-gradient(to bottom,var(--color-bg-page),var(--ad-bg) clamp(48px,12vw,160px))}
