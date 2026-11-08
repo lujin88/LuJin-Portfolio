@@ -1401,6 +1401,13 @@
   .exp-content[data-index="2"][data-status="previous"] .exp-content__bar {
     opacity: 1;
   }
+  /* UBS and AdNovum keep their stems too once previous (Lu 2026-11-05: "它还是
+     会消失"). UBS needs data-stem in the selector to outrank the --ubs-line
+     relay fade above; that fade no longer shows once AdNovum is active. */
+  .exp-content[data-index="0"][data-stem="on"][data-status="previous"] .exp-content__bar,
+  .exp-content[data-index="1"][data-status="previous"] .exp-content__bar {
+    opacity: 1;
+  }
   @media (min-width: 768px) {
     .exp-heading { font-size: var(--font-size-heading-lg); }
     .exp-content[data-index="0"] .exp-content__node {
@@ -1484,7 +1491,11 @@
        so the original .exp-field bleed simply feathers out over the top of
        Contact as it always did over the footer. */
     background: transparent;
-    padding: clamp(6rem, 14vh, 9rem) var(--content-inset) clamp(4.5rem, 10vh, 7rem);
+    /* Wide screens (Lu 2026-11-05 "宽屏又挤得太紧"): ~120px more between the
+       Designaffairs tail end and "Have an opportunity" than the old
+       clamp(6rem, 14vh, 9rem); the floor is high so 800px-tall laptops stay
+       close to 1440x900. Phones + reduced motion keep 48px (rule below). */
+    padding: clamp(14rem, 27.5vh, 16.5rem) var(--content-inset) clamp(4.5rem, 10vh, 7rem);
   }
 
   .exp-contact {
@@ -1664,7 +1675,7 @@
       content: "";
       display: block;
       width: 1px;
-      height: 72px;
+      height: 24px;
       margin-left: -1.5rem;
       background: linear-gradient(to bottom, rgba(126, 162, 255, 0.4), rgba(126, 162, 255, 0));
     }
@@ -1672,6 +1683,15 @@
     .exp-contact {
       flex-direction: column; align-items: flex-start; gap: 1.5rem;
     }
+  }
+  /* Stacked list (phones + reduced motion): its end (36px item margin + 48px
+     sticky padding + Contact's then clamp(6rem, 14vh, 9rem) top padding) left ~200px
+     between the Designaffairs fade tail and "Have an opportunity". Lu
+     2026-11-05: tail 24px (was 72), tail end to heading 48px. */
+  @media (max-width: 640px), (prefers-reduced-motion: reduce) {
+    .exp-content[data-index="3"] { margin-bottom: 0; }
+    .exp-sticky { padding-bottom: 0; }
+    .contact-section { padding-top: 48px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1854,6 +1874,38 @@
       transition-delay: 0.8s;
     }
   }
+  /* AdNovum, Futurice, Designaffairs: same stroke as UBS (Lu 2026-11-05).
+     The bar draws from the "+" down to the dot over 1s when the item turns
+     active; the dot appears once the stroke reaches it. Leaving keeps the
+     full bar and fades it, as before. The relay variant overrides the
+     scroll-driven clip on AdNovum. */
+  @media (min-width: 641px) and (prefers-reduced-motion: no-preference) {
+    .exp-content[data-index="1"] .exp-content__bar,
+    .exp-content[data-index="2"] .exp-content__bar,
+    .exp-content[data-index="3"] .exp-content__bar,
+    .exp-content[data-index="1"][data-relay="on"] .exp-content__bar {
+      clip-path: none;
+      transform: scaleY(0);
+      transform-origin: top center;
+      transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    }
+    .exp-content[data-index="1"]:not([data-status="hidden"]) .exp-content__bar,
+    .exp-content[data-index="2"]:not([data-status="hidden"]) .exp-content__bar,
+    .exp-content[data-index="3"]:not([data-status="hidden"]) .exp-content__bar {
+      transform: scaleY(1);
+    }
+    .exp-content[data-index="1"][data-status="active"] .exp-content__bar,
+    .exp-content[data-index="2"][data-status="active"] .exp-content__bar,
+    .exp-content[data-index="3"][data-status="active"] .exp-content__bar {
+      transition: transform 1s ease-in-out;
+    }
+    .exp-dot[data-index="1"],
+    .exp-dot[data-index="2"],
+    .exp-dot[data-index="3"] { transition: opacity 200ms ease-out; }
+    .exp-dot[data-index="1"]:not([data-status="hidden"]),
+    .exp-dot[data-index="2"]:not([data-status="hidden"]),
+    .exp-dot[data-index="3"]:not([data-status="hidden"]) { transition-delay: 0.8s; }
+  }
 </style>
 <link rel="stylesheet" href="/assets/motion/how-i-work/r9/hiw-r9.css">
 <link rel="stylesheet" href="/styles/advisory-office.css">
@@ -2017,7 +2069,7 @@
     <h2 id="home-playground-title">Playground</h2>
     <div class="home-project-grid">
       <!-- WA and AI Pet: still images until the new videos are ready (V6 videos pulled 2026-11-03). -->
-      <a class="home-project" href="/lab/weather-aquarium"><img src="/assets/images/home-motion/weather-autumn-lake.jpg" alt="" width="864" height="600" loading="lazy" decoding="async" /><h3>Weather Aquarium</h3><p class="home-project-meta" data-i18n="home.playground.weatherMeta">Rive motion</p><p>A 2.5D weather world for iPad — helping children understand the day and discover new words.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="home-project" href="/lab/weather-aquarium"><video id="wa-season-video" preload="none" aria-label="Weather Aquarium project preview" width="864" height="600" muted loop playsinline disablepictureinpicture></video><script src="/assets/js/wa-season.js"></script><h3>Weather Aquarium</h3><p class="home-project-meta" data-i18n="home.playground.weatherMeta">Rive motion</p><p>A 2.5D weather world for iPad — helping children understand the day and discover new words.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       <a class="home-project" href="/ai-companion-pet"><img src="/assets/images/home-motion/ai-pet-zh.webp" alt="" width="864" height="600" loading="lazy" decoding="async" /><h3>AI Pet</h3><p class="home-project-meta" data-i18n="home.playground.petMeta">Voice · Hardware</p><p>A little friend to listen, tell stories, share a meal, and learn a few words of German and French.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       <a class="home-project" href="/lab/party-planner"><video data-src="/assets/videos/home/gratula-pip.mp4" preload="none" poster="/assets/images/home-motion/gratula-pip.jpg" aria-label="Gratula project preview" width="864" height="600" muted playsinline data-loop-gap="2000" disablepictureinpicture></video><h3>Gratula</h3><p class="home-project-meta" data-i18n="home.playground.gratulaMeta">Launching soon</p><p>From ideas to invitations, a simpler way to plan a party they’ll always remember.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
@@ -2084,7 +2136,7 @@
 
         <div class="exp-curve-clip" aria-hidden="true">
         <div class="exp-curve" id="exp-curve" aria-hidden="true">
-          <img class="exp-curve__glow" src="/assets/images/experience/blue-glow.webp" alt="" decoding="async" />
+          <img class="exp-curve__glow" src="/assets/images/experience/blue-glow.webp" alt="" loading="lazy" decoding="async" />
           <svg class="exp-arc" viewBox="0 0 1468 1555" fill="none" preserveAspectRatio="none">
             <defs>
               <clipPath id="exp-arc-clip">
@@ -2387,13 +2439,22 @@
       if (!scheduled && pinned) { scheduled = true; requestAnimationFrame(render); }
     }
     function layout() {
-      showcase.classList.remove('home-showcase-pinned');
-      scenes.forEach(scene => { scene.inert = false; });
-      [...images, ...copies, ...shades].forEach(el => {
-        el.style.removeProperty('transform'); el.style.removeProperty('opacity'); el.style.removeProperty('visibility');
-      });
-      pinned = !reduce.matches && innerWidth >= 1100 && innerHeight >= 760 && copies.every(copy => copy.scrollHeight + 96 <= innerHeight);
-      showcase.classList.toggle('home-showcase-pinned', pinned);
+      // Measuring below forces a layout with the pin removed. Hold the current
+      // height through it, or scroll anchoring shifts the page by the pin
+      // height on every call (load, fonts, language switch).
+      showcase.style.minHeight = showcase.getBoundingClientRect().height + 'px';
+      try {
+        showcase.classList.remove('home-showcase-pinned');
+        scenes.forEach(scene => { scene.inert = false; });
+        [...images, ...copies, ...shades].forEach(el => {
+          el.style.removeProperty('transform'); el.style.removeProperty('opacity'); el.style.removeProperty('visibility');
+        });
+        pinned = !reduce.matches && innerWidth >= 1100 && innerHeight >= 760 && copies.every(copy => copy.scrollHeight + 96 <= innerHeight);
+        showcase.classList.toggle('home-showcase-pinned', pinned);
+        showcase.dataset.pinReady = '';
+      } finally {
+        showcase.style.removeProperty('min-height');
+      }
       render();
       configureHero();
     }
@@ -4123,7 +4184,7 @@
   })();
 </script>
 
-<script src="/assets/vendor/rive/rive.js"></script>
+<script src="/assets/motion/how-i-work/r9/vendor/rive.js"></script>
 <script src="/assets/motion/how-i-work/r9/hiw-r9.js"></script>
 
 <script src="/assets/js/advisory-office.js"></script>

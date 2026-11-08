@@ -92,7 +92,7 @@
   perspective: 1200px;
 }.wa-page .hero-device{
   width: min(100%, 840px);
-  transform: translate3d(0, 0, 0) rotateZ(-0.75deg);
+  transform: translate3d(0, 0, 0) rotateZ(0.75deg);
   transform-origin: 52% 55%;
   filter: drop-shadow(0 24px 22px rgb(39 49 37 / 0.16));
   transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -288,7 +288,48 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}.wa-page .vocab-art--clip{
+  /* Same box as .vocab-art; a button only so the clip can be focused and tapped. */
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: default;
+  container-type: size;
+  -webkit-tap-highlight-color: transparent;
+}.wa-page .vocab-art--clip:focus-visible{
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+}.wa-page .vocab-video{
+  /* Where the webp is drawn (measured on 3000): it is a grid item whose automatic minimum
+     height is its content height, so it always fills the box width; a shorter one is
+     centred vertically, a taller one starts at the box top and overflows downward.
+     The clip is placed so subjects align. */
+  --rw: 100cqw;
+  position: absolute;
+  left: calc(var(--rw) * var(--clip-x));
+  top: calc(max(0px, (100cqh - var(--rw) / var(--ratio)) / 2) + var(--rw) * var(--clip-y));
+  width: calc(var(--rw) * var(--clip-w));
+  max-width: none;
+  height: auto;
+  aspect-ratio: 1112 / 834;
+  /* Two gradients (set inline per clip) intersect into a feathered rectangle. */
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  opacity: 0;
+  pointer-events: none;
+}.wa-page .vocab-art--clip.is-ready .vocab-video{
+  opacity: 1;
+}.wa-page .vocab-art--clip.is-ready img{
+  visibility: hidden;
 }.wa-page .vocab-row{
+  /* Above the clips: rain falls behind the speak button and label. */
+  position: relative;
+  z-index: 1;
   display: flex;
   gap: 12px;
   align-items: center;

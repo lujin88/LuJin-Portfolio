@@ -64,6 +64,11 @@ const nextConfig = {
         source: '/home.html',
         headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
       },
+      {
+        // Raw source for the /lab/agent-monitor HTML island; same reason as home.html.
+        source: '/agent-monitor.html',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
     ]
   },
   async rewrites() {
