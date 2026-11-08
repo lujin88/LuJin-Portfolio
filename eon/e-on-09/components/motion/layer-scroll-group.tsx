@@ -79,6 +79,8 @@ export function LayerScrollGroup({
       restLayers(movers)
       return
     }
+    // Progress seen before the user's first scroll (load, scroll restoration, anchor jump).
+    let progressBeforeArm = initial
 
     const write = () => {
       ticking = false
@@ -117,8 +119,18 @@ export function LayerScrollGroup({
     const onScroll = () => {
       if (latched) return
       if (!armed) {
+        const before = progressBeforeArm
+        progressBeforeArm = readProgress()
         if (!userIntent) return
         if (window.scrollY <= startScrollY) return
+        // Already on screen when the user starts scrolling (mid-page reload, a section in the
+        // first viewport on phones, anchor jump): the layers are at rest, and writing
+        // (1 - progress) * distance now would make them jump down. Stay at rest instead.
+        if (before > 0) {
+          latched = true
+          restLayers(movers)
+          return
+        }
         armed = true
       }
       requestWrite()
