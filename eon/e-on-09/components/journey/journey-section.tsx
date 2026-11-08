@@ -1,6 +1,7 @@
 'use client'
 
 import type { CSSProperties } from 'react'
+
 import { SectionLabel } from '@eon/components/section-label'
 import { ContentContainer } from '@eon/components/content-container'
 import { JourneySteps } from '@eon/components/motion/journey-steps'
@@ -55,7 +56,7 @@ export function JourneySection() {
       />
 
       <ContentContainer className="relative py-8 md:py-32">
-        <OnceReveal>
+        <OnceReveal fromY={0} fromOpacity={1}>
         <SectionLabel
           number="04"
           label={t('eon.journey.eyebrow')}

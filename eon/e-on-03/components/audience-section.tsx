@@ -18,7 +18,7 @@ export function AudienceSection() {
 
       <ContentContainer className="case-study-section relative grid grid-cols-1 items-center gap-6 md:gap-14 lg:grid-cols-[42%_58%] lg:gap-10">
         {/* Left column — narrative */}
-        <OnceReveal className="max-w-[560px]">
+        <OnceReveal fromY={0} fromOpacity={1} className="max-w-[560px]">
           <SectionLabel
             number="03"
             label={t('eon.audience.eyebrow')}

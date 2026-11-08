@@ -29,7 +29,7 @@ export function DesignConstraintSection() {
 
         <div className="grid grid-cols-1 items-start gap-6 md:gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
           {/* Left: headline + copy */}
-          <OnceReveal className="max-w-[720px]">
+          <OnceReveal fromY={0} fromOpacity={1} className="max-w-[720px]">
             <h2 className="text-balance text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-white sm:text-[42px] md:text-[48px] lg:text-[46px]">
               <span className="font-bold">{t('eon.constraint.titleBold')}</span>
               <br />
@@ -43,7 +43,7 @@ export function DesignConstraintSection() {
           </OnceReveal>
 
           {/* Right: design question card */}
-          <OnceReveal className="relative lg:mt-2">
+          <OnceReveal fromY={0} fromOpacity={1} className="relative lg:mt-2">
             <div className="relative z-10 rounded-3xl border border-navy-border bg-navy-800/80 p-8 shadow-[0_20px_60px_rgba(5,20,30,0.18)] backdrop-blur-md md:p-10">
               <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-lavender-light">
                 <Lightbulb className="h-5 w-5 text-navy-950" strokeWidth={1.75} />

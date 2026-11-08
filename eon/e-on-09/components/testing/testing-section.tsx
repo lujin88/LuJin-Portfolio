@@ -88,7 +88,7 @@ export function TestingSection() {
               lines={[t('eon.testing.line1'), t('eon.testing.line2')]}
             />
 
-            <OnceReveal>
+            <OnceReveal fromY={0} fromOpacity={1}>
             <p className="mt-6 max-w-[460px] text-lg leading-relaxed text-navy-text">
               {t('eon.testing.body')}
             </p>
@@ -102,7 +102,7 @@ export function TestingSection() {
           </div>
 
           {/* Right visual: photograph, handwritten note, roof overlay */}
-          <OnceReveal className="relative mx-auto w-full max-w-[520px] pt-6 md:pt-16 lg:mx-0 lg:ml-auto lg:max-w-none lg:pt-2">
+          <OnceReveal fromY={0} fromOpacity={1} className="relative mx-auto w-full max-w-[520px] pt-6 md:pt-16 lg:mx-0 lg:ml-auto lg:max-w-none lg:pt-2">
             <AnnotationGroup
               className="pointer-events-none absolute top-0 z-30 hidden w-[420px] md:block md:-left-2 lg:-left-[9.5rem] lg:max-xl:-left-[6rem] lg:top-2"
               hand1={t('eon.testing.hand1')}
