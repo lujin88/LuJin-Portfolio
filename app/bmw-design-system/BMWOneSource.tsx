@@ -140,7 +140,7 @@ export function BMWOneSource() {
           2026 · Proposed
         </dt>
         <dd>
-          AI finds edge cases. Team decides.
+          AI flags edge cases. Team decides.
         </dd>
       </div>
     </dl>
