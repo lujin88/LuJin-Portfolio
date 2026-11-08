@@ -145,7 +145,7 @@
 @media(max-width:900px){
  .bmw-driver{display:flex;flex-direction:column;gap:0;min-height:auto;padding:0;background:#0e2131}
  .bmw-driver::before{display:none}
- .bmw-driver header{order:0;padding:32px 22px 24px}
+ .bmw-driver header{order:0;padding:calc(64px + 32px) 22px 24px}
  .bmw-driver .backdrop{position:static;order:1;z-index:auto;display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
  .bmw-driver .composition{order:2;display:grid;grid-template-columns:1fr;gap:20px;padding:20px 22px 27px}
  .bmw-driver .product{display:block;margin:0}
@@ -153,6 +153,8 @@
  .bmw-driver nav{justify-content:flex-start}
  .bmw-driver dl{margin:0}
 }
+/* The site header is fixed and 64px tall: start the hero below it so the logo does not sit on the kicker (from #75, which also changes the gutters). */
+@media(min-width:901px){.bmw-driver{padding-top:calc(64px + clamp(22px,4vh,52px))}}
 
 }
 .bmw-one-source{color-scheme:light;text-align:left}
