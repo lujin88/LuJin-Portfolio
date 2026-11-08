@@ -1,4 +1,5 @@
 'use client'
+import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
 
 import type { CSSProperties } from 'react'
 
@@ -34,11 +35,12 @@ function LockIcon() {
 function OneLinkSection() {
   return (
     <section className="one-link" aria-labelledby="one-link-title">
-      <div className="one-link-intro">
+      <LayerScrollGroup>
+      <div className="one-link-intro" data-move="96">
         <h2 id="one-link-title">One link. Three things parents need.</h2>
         <p>Everything a guest family needs, from one invitation link.</p>
       </div>
-      <div className="one-link-grid">
+      <div className="one-link-grid" data-move="64">
         <article className="one-link-card">
           <div className="one-link-kicker">
             <span className="one-link-label">RSVP</span>
@@ -106,6 +108,7 @@ function OneLinkSection() {
           </div>
         </article>
       </div>
+      </LayerScrollGroup>
     </section>
   )
 }
@@ -229,10 +232,11 @@ export function PartyPlannerPage() {
 
         <PartyPlannerCanvas>
           <section id="plan" className="plan-section" aria-labelledby="plan-title">
-            <h2 className="section-title" id="plan-title">
+            <LayerScrollGroup>
+            <h2 className="section-title" id="plan-title" data-move="96">
               Four details in. One beautiful plan out.
             </h2>
-            <div className="panel plan">
+            <div className="panel plan" data-move="64">
               <div className="plan-copy">
                 <div className="eyebrow">Your party plan</div>
                 <ul className="plan-facts" aria-label="Party details">
@@ -306,12 +310,17 @@ export function PartyPlannerPage() {
                 </article>
               </div>
             </div>
+            </LayerScrollGroup>
           </section>
 
           <section id="rsvp" className="rsvp-section" aria-labelledby="rsvp-title">
-            <div className="panel rsvp">
+            <LayerScrollGroup>
+            <div className="panel rsvp" data-move="64">
+              {/* Title sits on the panel: +32 on top of the panel's 64 (same as MAN's D layer). */}
+              <div data-move="32">
               <h2 id="rsvp-title">One reply in. Everything stays current.</h2>
               <p className="sub">No recounting. No tabs to update.</p>
+              </div>
 
               <div className="guest-card" aria-label="Guests and RSVPs">
                 <div className="guest-head">
@@ -399,13 +408,15 @@ export function PartyPlannerPage() {
                 <Icon name="i-spark" />
               </span>
             </div>
+            </LayerScrollGroup>
           </section>
 
           <section id="local" className="local-section" aria-labelledby="local-title">
-            <h2 className="section-title" id="local-title">
+            <LayerScrollGroup>
+            <h2 className="section-title" id="local-title" data-move="96">
               Local knowledge. Your final choice.
             </h2>
-            <div className="panel local">
+            <div className="panel local" data-move="64">
               <div className="eyebrow">Curated near Zürich</div>
               <h3>
                 Three good
@@ -464,6 +475,7 @@ export function PartyPlannerPage() {
                 </article>
               </div>
             </div>
+            </LayerScrollGroup>
           </section>
 
           <IconSprite />
@@ -471,6 +483,9 @@ export function PartyPlannerPage() {
 
           <section id="party-day" className="closing" aria-labelledby="closing-title">
             <div className="closing-bleed" aria-hidden="true">
+              <LayerScrollGroup>
+              {/* Props keep their own rotate(); the 24px layer moves this full-size wrapper instead. */}
+              <div data-move="24" style={{ position: 'absolute', inset: 0 }}>
               <img
                 className="closing-prop party-close"
                 src={assets.party}
@@ -497,12 +512,17 @@ export function PartyPlannerPage() {
               <Confetti tone="pk" className="cc10" />
               <Confetti tone="mt" className="cc11" />
               <Confetti tone="yl" className="cc12" />
+              </div>
+              </LayerScrollGroup>
             </div>
-            <h2 className="section-title" id="closing-title">
+            <LayerScrollGroup as="h2" className="section-title">
+              {/* Only 14px above the (static) phone at every width: 10px travel. */}
+              <span id="closing-title" data-move="10" style={{ display: 'block' }}>
               Be there for the candles.
               <br />
               We’ll hold the details.
-            </h2>
+              </span>
+            </LayerScrollGroup>
             <a
               href={prototypeUrl}
               className="phone day-phone"

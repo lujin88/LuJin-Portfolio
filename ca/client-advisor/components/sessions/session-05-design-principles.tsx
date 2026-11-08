@@ -1,9 +1,9 @@
 'use client'
+import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
 
 import { useState } from 'react'
 import Image from 'next/image'
 import styles from './session-05-design-principles.module.css'
-import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { useTranslation } from '@i18n/use-translation'
 
 const principleArt = [
@@ -24,7 +24,7 @@ function PrincipleCard({
   const [isFlipped, setIsFlipped] = useState(false)
 
   return (
-    <ScrollReveal as="li" fadeOnly className={styles.card}>
+    <li className={styles.card} data-move="64">
       <button
         type="button"
         className={`${styles.cardInner} ${isFlipped ? styles.flipped : ''}`}
@@ -59,7 +59,7 @@ function PrincipleCard({
           <span className={styles.cardText}>{principle.body}</span>
         </span>
       </button>
-    </ScrollReveal>
+    </li>
   )
 }
 
@@ -92,18 +92,20 @@ export function Session05DesignPrinciples() {
       className={`${styles.section} font-sans`}
       aria-labelledby="s05-headline"
     >
-      <div className={styles.inner}>
-        <ScrollReveal as="header" className={styles.header}>
-          <p className="ca-eyebrow">
+      {/* One group: header and cards sit 8px apart on phones, so they must share one progress.
+          Header text travels 68 (= cards 64 + 4, under the 8px gap) instead of 96. */}
+      <LayerScrollGroup className={styles.inner}>
+        <header className={styles.header}>
+          <p className="ca-eyebrow" data-move="68">
             <span className="ca-eyebrow-index">05</span>
             <span className="ca-eyebrow-rule" aria-hidden="true" />
             <span>{t('ca.principles.eyebrow')}</span>
           </p>
-          <h2 id="s05-headline" className={styles.headline}>
+          <h2 id="s05-headline" className={styles.headline} data-move="68">
             {t('ca.principles.headline')}
           </h2>
-          <p className={styles.intro}>{t('ca.principles.intro')}</p>
-        </ScrollReveal>
+          <p className={styles.intro} data-move="68">{t('ca.principles.intro')}</p>
+        </header>
 
         <ul className={styles.grid} role="list">
           {principles.map((principle) => (
@@ -115,7 +117,7 @@ export function Session05DesignPrinciples() {
             />
           ))}
         </ul>
-      </div>
+      </LayerScrollGroup>
     </section>
   )
 }
