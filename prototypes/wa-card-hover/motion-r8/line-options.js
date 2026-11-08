@@ -1,32 +1,14 @@
-// Review-only replacement for the rejected ray proposals (Scranton #640).
-// No generated rays, production wiring, keyboard or touch animation.
-const card = document.querySelector('[data-word="sun"]');
-const art = card.querySelector('.vocab-art');
-const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-const fine = matchMedia('(hover: hover) and (pointer: fine)');
-const tokens = getComputedStyle(document.documentElement);
-const duration = parseFloat(tokens.getPropertyValue('--duration-interaction')) || 320;
-const ease = tokens.getPropertyValue('--ease').trim() || 'cubic-bezier(.22,1,.36,1)';
-let motion;
-let played = false;
-const reset = () => { motion?.cancel(); motion = undefined; };
-document.querySelector('#mode').textContent = 'Sun · one small hop · no added rays';
-card.addEventListener('pointerenter', event => {
-  if (event.pointerType !== 'mouse' || !fine.matches || reduced.matches || document.hidden || played) return;
-  played = true;
-  reset();
-  motion = art.animate([
-    {transform: 'translateY(0px)', easing: ease},
-    {transform: 'translateY(-6px)', offset: .5, easing: ease},
-    {transform: 'translateY(0px)'}
-  ], {duration, iterations: 1, fill: 'none'});
-});
-// Finish the short hop on leave; avoid snapping mid-air. Re-entry never stacks.
-card.addEventListener('pointerleave', () => { played = false; });
-const stop = () => { reset(); played = false; };
-reduced.addEventListener('change', stop);
-fine.addEventListener('change', stop);
-document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
-new IntersectionObserver(entries => { if (!entries[0].isIntersecting) stop(); }).observe(card);
-window.waR8 = {inspect: () => ({running: motion?.playState === 'running', transform: getComputedStyle(art).transform, rays:card.querySelectorAll('.r7-art').length})};
-document.documentElement.dataset.r8Ready = 'true';
+// Review-only halo proposal. Original bitmap is sliced by SVG masks; no new rays.
+const card=document.querySelector('[data-word="sun"]'), art=card.querySelector('.vocab-art'), poster=art.querySelector('img');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)'),fine=matchMedia('(hover: hover) and (pointer: fine)');
+const tokens=getComputedStyle(document.documentElement),duration=parseFloat(tokens.getPropertyValue('--duration-reveal')),ease=tokens.getPropertyValue('--ease').trim();
+const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');
+svg.setAttribute('viewBox','0 0 1344 1200');svg.setAttribute('aria-hidden','true');svg.classList.add('sun-layers');
+svg.innerHTML=`<defs><image id="sun-source" width="1344" height="1200" href="${poster.src}"/><mask id="sun-halo-mask"><rect width="1344" height="1034" fill="white"/><ellipse cx="656" cy="610" rx="245" ry="237" fill="black"/></mask><clipPath id="sun-core"><ellipse cx="656" cy="610" rx="246" ry="238"/></clipPath><clipPath id="sun-shadow"><rect y="1034" width="1344" height="166"/></clipPath></defs><g class="sun-shadow" style="transform-origin:656px 1075px"><use href="#sun-source" clip-path="url(#sun-shadow)"/></g><g class="sun-halo" style="transform-origin:656px 610px"><use href="#sun-source" mask="url(#sun-halo-mask)"/></g><use class="sun-core" href="#sun-source" clip-path="url(#sun-core)"/>`;
+art.append(svg);
+const css=document.createElement('style');css.textContent='.wa-page .vocab-item[data-word="sun"] .vocab-art{position:relative}.sun-layers{position:absolute;pointer-events:none;display:none;overflow:visible}.wa-page .vocab-item[data-word="sun"][data-halo="true"] .sun-layers{display:block}.wa-page .vocab-item[data-word="sun"][data-halo="true"] .vocab-art>img{opacity:0}';document.head.append(css);
+function align(){const p=poster.getBoundingClientRect(),a=art.getBoundingClientRect();Object.assign(svg.style,{left:`${p.left-a.left}px`,top:`${p.top-a.top}px`,width:`${p.width}px`,height:`${p.height}px`})}new ResizeObserver(align).observe(poster);poster.addEventListener('load',align);align();
+let animations=[],played=false;const reset=()=>{animations.forEach(a=>a.cancel());animations=[];delete card.dataset.halo};
+card.addEventListener('pointerenter',e=>{if(e.pointerType!=='mouse'||!fine.matches||reduced.matches||document.hidden||played)return;played=true;reset();align();card.dataset.halo='true';const opts={duration,easing:ease,iterations:1,fill:'none'};animations=[svg.querySelector('.sun-halo').animate([{transform:'rotate(0deg)'},{transform:'rotate(22.5deg)',offset:.5},{transform:'rotate(0deg)'}],opts),svg.querySelector('.sun-shadow').animate([{transform:'translateX(0px) scaleX(1)',opacity:1},{transform:'translateX(8px) scaleX(.97)',opacity:.8,offset:.5},{transform:'translateX(0px) scaleX(1)',opacity:1}],opts)];const current=animations;Promise.all(current.map(a=>a.finished)).then(()=>{if(current===animations)delete card.dataset.halo}).catch(()=>{});});
+card.addEventListener('pointerleave',()=>{played=false});const stop=()=>{reset();played=false};reduced.addEventListener('change',stop);fine.addEventListener('change',stop);document.addEventListener('visibilitychange',()=>{if(document.hidden)stop()});new IntersectionObserver(es=>{if(!es[0].isIntersecting)stop()}).observe(card);
+window.waR8={inspect:()=>({running:animations.some(a=>a.playState==='running'),rays:card.querySelectorAll('.r7-art').length,core:getComputedStyle(svg.querySelector('.sun-core')).transform}),seek:t=>{animations.forEach(a=>{a.pause();a.currentTime=t})}};document.querySelector('#mode').textContent='Sun fixed · halo turns once · shadow shifts subtly';document.documentElement.dataset.r8Ready='true';

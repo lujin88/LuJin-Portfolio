@@ -1,11 +1,9 @@
-# WA sun — one small hop, no added rays
+# Sun halo proposal — replaces rejected hop and rays
 
-Replaces A/B rays rejected by Lu (#637), assigned by PM #640. Review only; no production integration or generation call. Open motion-r8/scene.html through the parent prototype static server. Query A/B no longer changes behavior.
+Lu #813 / PM #816: sun body stays fixed, original outer halo turns a small arc once, ground shadow moves subtly. This prototype interprets halo as the existing eight petal-like rays; it adds no ray strokes. SVG masks slice the original transparent artwork into core, halo and shadow without editing the source file. The core stays fixed. Halo rotates22.5° and returns; shadow shifts8 source pixels, scales to.97 and opacity.8 then restores. Amplitudes await Lu.
 
-Plan: occasional portfolio hover feedback; the original sun illustration translates up6px then returns once over the existing --duration-interaction320ms and --ease cubic-bezier(.22,1,.36,1). Its baked-in shadow travels with this intact illustration: this is a deliberately small first prototype, not a separately rigged sun/shadow. No extra ray strokes or scale. Text, audio control and card layout stay fixed.
+Duration uses existing --duration-reveal800ms and --ease; no new timing token. Hover once; no repeat while held. Keyboard/touch/reduced motion remain still. Offscreen/hidden/reduced change cancels. Original poster restored at end. Label/audio control never moves. This is review only, not production wiring.
 
-Mouse hover only. Staying hovered never repeats. Leaving lets the short hop finish instead of snapping. Re-entry cancels any previous animation so animations do not stack. Reduced motion, touch, keyboard, offscreen and hidden document stay/static reset. Existing artwork/other prototype pages unchanged. No new gestures.
+Denied: jumping (Lu rejected), extra rays (Lu rejected), whole-image rotation (moves core/shadow), continuous loops (frequency), keyboard-triggered decoration (role constraint).
 
-Rejected: new ray strokes (Lu rejected), infinite bounce (frequency), moving labels/audio button (function), scaling whole card (does not match requested object movement).6px is a review amplitude awaiting Lu; timing/curve reuse existing tokens. Normal/4×slow/reduce evidence stays outside main. Independent visual approval still needed; Safari/physical devices not tested.
-
-Verification: capture-hop.cjs creates small normal/4×slow/reduced GIFs by sampling the actual paused WAAPI animation at 20 fps. They are deterministic timing previews, not realtime performance recordings. Historical capture.cjs belongs to rejected A/B rays and is not a test of this version.
+Evidence OUTBOX/WA_SUN_HALO_20261108: normal/slow4/reduce GIF, checks.json. capture-hop.cjs now samples the halo implementation's WAAPI at20fps, deterministic timing previews rather than realtime performance recordings. Historical capture.cjs is obsolete A/B rays. Realtime recordings and independent visual review needed before production. Mask seam and shadow/petal overlap require visual inspection; original image is preserved. Safari and physical devices not tested.
