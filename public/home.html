@@ -501,6 +501,17 @@
     backdrop-filter: blur(16px);
   }
   .ask-chat[hidden] { display: none; }
+  /* Below 1024px the button sits too close to the top for an upward panel:
+     a long answer grew it past the page top, taking the title and close button with it. */
+  @media (max-width: 1023px) {
+    .ask-chat {
+      top: calc(100% + 0.75rem);
+      bottom: auto;
+      max-height: min(24rem, 60svh);
+    }
+    /* Open downward, the panel reaches the client logo bar (z-index 20); lift the copy above it while open. */
+    .hero-copy-wrap:has(.ask-chat:not([hidden])) { z-index: 25; }
+  }
   .ask-chat__bar {
     display: flex;
     align-items: center;
