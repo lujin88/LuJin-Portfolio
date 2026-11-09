@@ -7,6 +7,4 @@
   background:radial-gradient(ellipse at 18% 28%,#b7dbfa 0%,#d5eaff 24%,transparent 59%),radial-gradient(ellipse at 85% 70%,#f7d6ed 0%,transparent 58%),radial-gradient(ellipse at 88% 5%,#b7dbfa 0%,transparent 50%);
   transform:translate3d(calc(var(--fluid-p,0) * 10% - 5%),calc(var(--fluid-p,0) * 8% - 4%),0) rotate(calc(var(--fluid-p,0) * 10deg - 5deg)) scale(calc(1 + var(--fluid-p,0) * .08))}
 :where(.etf-case) .fluid-bg-veil {position:absolute;inset:0;background:rgb(250 250 249 / .12)}
-/* One composition: the per-phone washes would double the colour. */
-:where(.etf-case) .case-site:has(.fluid-bg) .phone-stage::before,:where(.etf-case) .case-site:has(.fluid-bg) .phone-stage::after {opacity:0}
 @media(prefers-reduced-motion:reduce){:where(.etf-case) .fluid-bg-wash {transform:none;will-change:auto}}
