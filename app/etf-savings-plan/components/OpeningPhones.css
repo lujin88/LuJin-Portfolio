@@ -68,6 +68,14 @@
 }
 :where(.etf-case) .live-phone-viewport::-webkit-scrollbar {display:none}
 :where(.etf-case) .live-phone-content {width:390px}
+/* Scale the 390px demo screen to its frame in CSS, so the first frame is right before
+   any script runs (it used to render at full size until hydration; visualqa #2880,
+   PM #2892). tan(atan2(a, b)) turns the length ratio a/b into a plain number zoom
+   accepts. Browsers without container units or trig keep LivePhone's JS zoom. */
+@supports (zoom: tan(atan2(100cqw, 390px))) {
+  :where(.etf-case) .live-phone-viewport.demo-viewport {container-type:inline-size}
+  :where(.etf-case) .live-phone-content {zoom:tan(atan2(100cqw, 390px))}
+}
 :where(.etf-case) .live-phone-viewport .ff,:where(.etf-case) .live-phone-viewport .ff-phone {min-height:844px}
 :where(.etf-case) .story-live-slot {width:100%}
 :where(.etf-case) .story-live-slot[hidden] {display:none}
