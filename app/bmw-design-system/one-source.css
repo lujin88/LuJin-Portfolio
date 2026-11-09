@@ -161,8 +161,9 @@
 .bmw-driver header{max-width:52%}
 .bmw-driver header .hero-story{font-size:16px}
 .bmw-driver .screen{width:200px}
-/* Keep at least 32px between the 200px phone (+5px borders) and the timeline at 601-700px (QA #1924). */
-.bmw-driver dl{left:max(40%,calc(var(--content-inset) + 210px + 32px));gap:24px}
+/* Keep at least 32px between the left column and the timeline at 601-800px (QA #1924, visual QA #3497).
+   The widest thing in that column is the 267px store-badge row, not the 210px phone. */
+.bmw-driver dl{left:max(40%,calc(var(--content-inset) + 267px + 32px));gap:24px}
 .bmw-driver dd{font-size:18px}
 }
 /* Phones: copy, then the car scene, then the phone beside the 2020/2026 timeline, then the store badges. */
