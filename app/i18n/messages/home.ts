@@ -10,6 +10,7 @@ export const home = {
     askLuSend: 'Send',
     askLuGreeting: 'Hi! I’m Lu’s AI assistant. Ask about her work, experience, or process.',
     askLuPlaceholder: 'Ask about Lu’s work…',
+    askLuNotice: 'Please don’t share personal or confidential information.',
     partnersLabel: 'Clients I’ve designed for',
     ca: {
       eyebrow: 'Client Advisory · UBS',
@@ -90,6 +91,7 @@ export const home = {
     askLuGreeting:
       'Hallo! Ich bin Lus KI-Assistent. Fragen Sie nach ihrer Arbeit, Erfahrung oder Arbeitsweise.',
     askLuPlaceholder: 'Fragen Sie nach Lus Arbeit…',
+    askLuNotice: 'Bitte keine persönlichen oder vertraulichen Informationen eingeben.',
     partnersLabel: 'Kunden, für die ich gestaltet habe',
     ca: {
       eyebrow: 'Client Advisory · UBS',

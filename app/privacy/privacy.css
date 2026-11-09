@@ -1,0 +1,44 @@
+/* /privacy: plain reading page on the site's dark shell. Type from shell-tokens.css. */
+.privacy__article {
+  box-sizing: border-box;
+  max-width: calc(42rem + 2 * var(--content-inset, 24px));
+  margin: 0 auto;
+  padding: calc(64px + 4rem) var(--content-inset, 24px) 4rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--font-size-body, 1rem);
+  line-height: var(--leading-relaxed, 1.65);
+}
+.privacy__article h1 {
+  margin: 0 0 1.5rem;
+  color: #fff;
+  font-size: var(--font-size-heading-lg);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-display);
+}
+@media (max-width: 900px) {
+  .privacy__article h1 { font-size: var(--font-size-heading); }
+}
+.privacy__article h2 {
+  margin: 2.25rem 0 0.5rem;
+  color: #fff;
+  font-size: 1.125rem;
+  line-height: 1.3;
+}
+.privacy__article p { margin: 0 0 0.75rem; }
+.privacy__article a,
+.privacy__link-button {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.privacy__link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+.privacy__updated { margin-top: 2.5rem; color: rgba(255, 255, 255, 0.55); }
+.privacy__toggle { margin-top: 1.5rem; }
+.privacy__toggle .pill-btn { font-family: inherit; }
