@@ -9,7 +9,9 @@
   display:grid;grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);
   gap:clamp(18px,3vw,58px);align-items:center;
 }
-:where(.etf-case) .opening-text h1 {font-size:clamp(48px,5.45vw,84px);line-height:.99;letter-spacing:-.065em;color:#192031;margin:0 0 24px}
+/* Opening title at the home page H2 size (Lu 2026-11-09, #1865): 2.25rem, 1.9rem up to 900px. */
+:where(.etf-case) .opening-text h1 {font-size:var(--font-size-heading-lg);line-height:var(--leading-heading);letter-spacing:var(--tracking-display);color:#192031;margin:0 0 24px}
+@media(max-width:900px){:where(.etf-case) .opening-text h1 {font-size:var(--font-size-heading)}}
 :where(.etf-case) .case-opening .case-intro {font-size:clamp(17px,1.55vw,22px);color:#546074;line-height:1.48;max-width:34ch;margin:0}
 :where(.etf-case) .demo-launch,:where(.etf-case) .story-try,:where(.etf-case) .demo-bar button {cursor:pointer;font:inherit}
 :where(.etf-case) .demo-launch {display:inline-flex;gap:22px;align-items:center;padding:12px 19px;margin-top:24px;border:0;border-radius:24px;background:#20283a;color:white;font-weight:600}
@@ -38,7 +40,7 @@
   :where(.etf-case) .opening-pin {display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,3svh,32px)}
   :where(.etf-case) .opening-text{text-align:center}
   :where(.etf-case) .case-opening .case-intro {margin:0 auto;max-width:38ch}
-  :where(.etf-case) .opening-text h1 {font-size:clamp(38px,min(9vw,6.8svh),60px);margin-bottom:12px}
+  :where(.etf-case) .opening-text h1 {margin-bottom:12px}
   :where(.etf-case) .demo-launch {margin-top:14px;padding:9px 16px}
   :where(.etf-case) .opening-pair {width:100%;gap:3.5vw}
   :where(.etf-case) .opening-handset {width:min(29vw,21svh,210px)}
@@ -46,7 +48,7 @@
 }
 @media(max-height:520px) and (orientation:landscape){
   :where(.etf-case) .opening-pin {display:grid;grid-template-columns:1fr 1fr}
-  :where(.etf-case) .opening-text {text-align:left}:where(.etf-case) .opening-text h1 {font-size:36px}
+  :where(.etf-case) .opening-text {text-align:left}
   :where(.etf-case) .opening-pair {gap:14px}:where(.etf-case) .opening-handset{width:min(30%,30svh)}
 }
 @media(max-width:480px){
