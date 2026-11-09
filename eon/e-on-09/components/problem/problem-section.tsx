@@ -16,7 +16,7 @@ export function ProblemSection() {
       />
 
       <ContentContainer className="relative z-[1] pt-20 pb-12 max-sm:pt-6 max-sm:pb-0 md:pt-24 md:pb-14">
-        <div className="grid gap-16 md:grid-cols-[46fr_54fr] md:items-start md:gap-8">
+        <div className="grid gap-6 md:grid-cols-[46fr_54fr] md:items-start md:gap-8">
           <OnceReveal className="relative z-[2] md:pt-2">
             <SectionLabel
               number="05"
