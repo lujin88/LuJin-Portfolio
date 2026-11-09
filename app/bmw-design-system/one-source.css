@@ -141,7 +141,11 @@
 /* Hero C, phone option A (visual OUTBOX/BMW_C_PHONE_AB_20261108; Lu picked A, #1845).
    Normal flow, so longer German copy pushes the phone down instead of running into it.
    Hero text is DS Poppins like the H1 (Lu #3313, visual BMW_FONT_REVIEW_1109 PR113-HERO-CHECK). */
-.bmw-driver{box-sizing:border-box;position:relative;isolation:isolate;overflow:hidden;min-height:1000px;padding:calc(64px + 40px) var(--content-inset) 16px;background:#0e2131;color:#fff;font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif}
+.bmw-driver{box-sizing:border-box;position:relative;isolation:isolate;overflow:hidden;min-height:1000px;padding:calc(64px + 40px) var(--content-inset) 16px var(--hero-inset);background:#0e2131;color:#fff;font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif}
+/* Left column (title, phone, store badges) sits further in than the site's 24px inset, so the
+   framed phone has room from the screen edge (Lu #4462; visual #4526, option A: hero only). */
+.bmw-driver{--hero-inset:max(64px,var(--content-inset))}
+@media(max-width:1100px){.bmw-driver{--hero-inset:40px}}
 .bmw-driver .backdrop{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center}
 .bmw-driver::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(5,18,31,.87),rgba(5,18,31,.52) 37%,transparent 70%),linear-gradient(0deg,#071827 0%,rgba(7,24,39,.86) 11%,transparent 38%),linear-gradient(180deg,rgba(5,18,31,.3),transparent 40%)}
 .bmw-driver header{max-width:550px}
@@ -163,7 +167,7 @@
 .bmw-driver .screen{width:200px}
 /* Keep at least 32px between the left column and the timeline at 601-800px (QA #1924, visual QA #3497).
    The widest thing in that column is the 267px store-badge row, not the 210px phone. */
-.bmw-driver dl{left:max(40%,calc(var(--content-inset) + 267px + 32px));gap:24px}
+.bmw-driver dl{left:max(40%,calc(var(--hero-inset) + 267px + 32px));gap:24px}
 .bmw-driver dd{font-size:18px}
 }
 /* Phones: copy, then the car scene, then the phone beside the 2020/2026 timeline, then the store badges. */
