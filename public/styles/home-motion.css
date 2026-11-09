@@ -84,7 +84,7 @@ html[data-wa-season="winter"] #wa-season-video { background-image: url(/assets/i
   .home-case-title { max-width: 700px; }
   .home-case-detail { max-width: 700px; }
 }
-@media (max-width: 639px) {
+@media (max-width: 720px) {
   #home-playground { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
   .home-project-grid { grid-template-columns: 1fr; gap: var(--space-xl); }
   #home-playground h2 { margin-bottom: var(--space-lg); }

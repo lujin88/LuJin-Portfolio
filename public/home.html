@@ -1778,6 +1778,10 @@
     line-height: 1.4;
     color: rgba(255, 255, 255, 0.48);
   }
+  /* The logo row is wider than the screen on phones; clip it sideways so it no longer
+     widens the document (+18px at 601-640, QA #2899), which iOS Safari lets you drag.
+     clip, not hidden: the vertical fade above the bar must stay visible. */
+  .logo-bar { overflow-x: clip; }
   .logo-bar__scroller {
     overflow-x: auto;
     overflow-y: hidden;
