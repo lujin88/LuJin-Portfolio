@@ -749,7 +749,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                                     {navLabel(copy, child.label)}
                                   </span>
                                   {child.meta ? (
-                                    <span className="mt-0.5 block text-[0.75rem] leading-snug text-header-foreground/55">
+                                    <span className="header-menu-meta mt-0.5 block text-[0.75rem] leading-snug">
                                       {menuMeta(copy, child.meta)}
                                     </span>
                                   ) : null}
@@ -979,7 +979,7 @@ function NavDropdown({
                         {navLabel(copy, child.label)}
                       </span>
                       {child.meta ? (
-                        <span className="mt-0.5 block text-[0.75rem] leading-snug text-header-foreground/55">
+                        <span className="header-menu-meta mt-0.5 block text-[0.75rem] leading-snug">
                           {menuMeta(copy, child.meta)}
                         </span>
                       ) : null}

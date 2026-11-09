@@ -269,3 +269,13 @@
 [data-site-header][data-header-tone='paper'] :is(ul[role='list'], ul[role='listbox']) {
   box-shadow: 0 18px 48px -12px rgb(17 17 17 / 16%);
 }
+
+/* Work menu meta (Wealth · Service design). Dark header keeps 55% of
+   --header-foreground. Paper 55% on white is 4.12:1 (visualqa #4016);
+   #595959 is ≥4.5 on white and on paper hover fills. */
+[data-site-header] .header-menu-meta {
+  color: color-mix(in srgb, var(--header-foreground) 55%, transparent);
+}
+[data-site-header][data-header-tone='paper'] .header-menu-meta {
+  color: #595959;
+}
