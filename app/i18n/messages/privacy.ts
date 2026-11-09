@@ -27,7 +27,7 @@ export const privacy = {
     rightsTitle: 'Your rights',
     rightsBody:
       'To ask what data relates to you, or to have it deleted, email me at the address above. You can also complain to the Swiss Federal Data Protection and Information Commissioner (FDPIC) or to the data protection authority in your EU country.',
-    updated: 'Last updated: November 2026',
+    updated: 'Last updated: 9 November 2026',
     optOut: 'Don’t record my visits',
     optedOut: 'Recording is off in this browser.',
     optIn: 'Turn recording back on',
@@ -61,7 +61,7 @@ export const privacy = {
     rightsTitle: 'Ihre Rechte',
     rightsBody:
       'Wenn Sie wissen möchten, welche Daten Sie betreffen, oder deren Löschung wünschen, schreiben Sie mir an die oben genannte Adresse. Sie können sich auch beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) oder bei der Datenschutzbehörde Ihres EU-Landes beschweren.',
-    updated: 'Stand: November 2026',
+    updated: 'Stand: 9. November 2026',
     optOut: 'Meine Besuche nicht aufzeichnen',
     optedOut: 'Die Aufzeichnung ist in diesem Browser ausgeschaltet.',
     optIn: 'Aufzeichnung wieder einschalten',
