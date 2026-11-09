@@ -10,8 +10,6 @@ export const privacy = {
     legalBasis: 'Legal basis: legitimate interest in running and improving the site (Art. 6(1)(f) GDPR).',
     hostingTitle: 'Hosting',
     hostingBody: 'The site runs on Vercel (USA). To deliver the pages, the server logs your IP address, the time and the pages you open.',
-    // Remove once the /ai-ui-process pages self-host their fonts.
-    hostingFonts: 'The Playbook pages in How I work still load fonts from Google Fonts (USA), which shares your IP address with Google.',
     statsTitle: 'Visit statistics',
     statsBody:
       'I use Vercel Web Analytics and PostHog (EU servers) to count visits and see which pages are read. Neither uses cookies, and PostHog stores no visitor ID in your browser. PostHog records how you move through a page, such as scrolling, clicks and the page content shown to you. Text you type and the Ask Lu conversation are masked and never recorded. Recordings are kept for a limited period. You can turn PostHog off, including recording, with the button at the end of this page.',
@@ -43,8 +41,6 @@ export const privacy = {
     hostingTitle: 'Hosting',
     hostingBody:
       'Die Website läuft bei Vercel (USA). Um die Seiten auszuliefern, protokolliert der Server Ihre IP-Adresse, die Uhrzeit und die aufgerufenen Seiten.',
-    hostingFonts:
-      'Die Playbook-Seiten unter „Wie ich arbeite“ laden Schriften noch von Google Fonts (USA); dabei wird Ihre IP-Adresse an Google übermittelt.',
     statsTitle: 'Besuchsstatistik',
     statsBody:
       'Ich nutze Vercel Web Analytics und PostHog (Server in der EU), um Besuche zu zählen und zu sehen, welche Seiten gelesen werden. Beide verwenden keine Cookies, und PostHog speichert keine Besucher-ID in Ihrem Browser. PostHog zeichnet auf, wie Sie sich auf einer Seite bewegen, etwa Scrollen, Klicks und die angezeigten Seiteninhalte. Was Sie eingeben und das Gespräch mit Ask Lu werden maskiert und nie aufgezeichnet. Aufzeichnungen werden für begrenzte Zeit gespeichert. Mit der Schaltfläche am Ende dieser Seite können Sie PostHog einschließlich der Aufzeichnung ausschalten.',

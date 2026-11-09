@@ -8,7 +8,7 @@ import './privacy.css'
 
 const SECTIONS = [
   ['responsibleTitle', ['responsibleBody', 'legalBasis']],
-  ['hostingTitle', ['hostingBody', 'hostingFonts']],
+  ['hostingTitle', ['hostingBody']],
   ['statsTitle', ['statsBody']],
   ['askTitle', ['askBody']],
   ['abroadTitle', []],
