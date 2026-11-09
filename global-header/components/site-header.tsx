@@ -187,6 +187,8 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
     pathname.startsWith('/lab/agent-monitor')
   const paperHeader =
     pathname.startsWith('/lab/way-of-work') ||
+    pathname.startsWith('/man-truck-bus') ||
+    pathname.startsWith('/etf-savings-plan') ||
     pinnedPaper
   const headerTone = partyHeader ? 'party' : paperHeader ? 'paper' : undefined
   const [menuOpen, setMenuOpen] = useState(false)

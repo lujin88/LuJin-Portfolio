@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 import { HtmlChrome } from '../../html-chrome'
 import { socialMetadata } from '../../seo'
@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/lab/agent-monitor' }),
+}
+
+export const viewport: Viewport = {
+  colorScheme: 'light',
+  themeColor: '#fcfaf7',
 }
 
 export default function AgentMonitorLayout({
@@ -28,9 +33,9 @@ export default function AgentMonitorLayout({
       <style
         dangerouslySetInnerHTML={{
           __html: `
-[data-site-header] {
+[data-site-header][data-header-tone='paper'] {
   --header-scrim: #fcfaf7;
-  --header-glass: rgba(252, 250, 247, 0.92);
+  --header-glass: #fcfaf7;
   --header-foreground: #141827;
   --header-line: rgba(20, 24, 39, 0.14);
   --header-menu: #ffffff;
