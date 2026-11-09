@@ -18,8 +18,7 @@
 :where(.etf-case) .closing {margin:22px 0 0}
 :where(.etf-case) .shared-phone {position:sticky;align-self:start;top:0;height:min(100svh,860px);display:grid;place-items:center}
 :where(.etf-case) .phone-stage {position:relative;display:grid;place-items:center;isolation:isolate;width:100%}
-:where(.etf-case) .phone-stage::before {content:"";position:absolute;width:98%;height:66%;z-index:-1;border-radius:60% 42% 58% 42%;background:linear-gradient(120deg,#d5eaff,#f7d6ed);transform:rotate(-13deg)}
-:where(.etf-case) .down.phone-stage::before {background:linear-gradient(120deg,#e0edff,#b7dbfa);transform:rotate(9deg)}
+:where(.etf-case) .phone-stage::before {display:none}
 :where(.etf-case) .device {position:relative;inset:auto;height:712px;width:390px;zoom:clamp(.64,calc(100svh / 800px),1)}
 :where(.etf-case) .glass {padding-bottom:25px}:where(.etf-case) .footer-box p {font-weight:400;font-size:12px;line-height:1.4;margin-top:4px}:where(.etf-case) .footer-box a {color:#3546bd}
 :where(.etf-case) .inline-phone {display:none}
