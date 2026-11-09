@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Lu — Product & Service Designer</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
 
 <link rel="stylesheet" href="/styles/shell-tokens.css" />
 <link rel="stylesheet" href="/styles/home-motion.css" />
@@ -21,7 +18,7 @@
   }
   body {
     background: var(--color-bg-page);
-    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     min-width: 360px;
   }
@@ -242,7 +239,7 @@
 
   /* LAB — oversized editorial index numeral (Poppins italic; Display is Poppins site-wide) */
   .lab-index {
-    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-poppins-italic), var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
     font-style: italic;
     font-size: clamp(2.5rem, 5vw, 3.25rem);
     line-height: 1;
@@ -562,6 +559,13 @@
     padding: 0.65rem 0.9rem;
   }
   .ask-chat__form input::placeholder { color: rgba(255, 255, 255, 0.45); }
+  .ask-chat__notice {
+    margin: 0;
+    padding: 0 0.9rem 0.7rem;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.55);
+  }
   .ask-lu:focus-visible,
   .ask-chat__close:focus-visible,
   .ask-chat__send:focus-visible,
@@ -715,7 +719,7 @@
   }
   .ai-decides-section .ad-cta {
     margin-top: 37px;
-    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
     text-decoration: none;
   }
   .ai-decides-section .ad-art-stage {
@@ -1446,7 +1450,7 @@
   }
   .exp-content__eyebrow {
     display: block;
-    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-poppins-italic), var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
     font-style: italic;
     font-size: var(--font-size-caption);
     color: var(--color-text-3);
@@ -1817,7 +1821,8 @@
   .logo-bar__item img.logo-bar__mark--telekom { height: 18px; }
   .logo-bar__item img.logo-bar__mark--bosch { height: 18px; }
   .logo-bar__item img.logo-bar__mark--ubs { height: 20px; }
-  .logo-bar__item img.logo-bar__mark--isc { height: 20px; }
+  /* ISC-EJPD as text: its logo carries the Swiss federal coat of arms (legal #2052). */
+  .logo-bar__wordmark { font-size: 13px; font-weight: 600; line-height: 20px; letter-spacing: 0.04em; white-space: nowrap; color: inherit; }
   .logo-bar__item img.logo-bar__mark--man { height: 22px; }
   .logo-bar__item img.logo-bar__mark--hyundai { height: 10px; }
   @media (min-width: 768px) {
@@ -1937,7 +1942,7 @@
         <p class="hero-kicker" data-i18n="home.heroKicker">Product designer · Enterprise & regulated UX</p>
         <h1 data-i18n="home.heroTitle">Simplify complexity. Design with AI.</h1>
         <div class="hero-lede">
-          <p data-i18n-html="home.heroBody"><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, <span style="white-space:nowrap">5–10 min</span> saved per client in concept tests.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 4× lead conversion rate.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW</a> app: led design team &amp; design system.</span></p>
+          <p data-i18n-html="home.heroBody"><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, <span style="white-space:nowrap">5–10 min</span> saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW</a> app: led design team &amp; design system.</span></p>
         </div>
         <div class="ask-lu-wrap">
           <button id="ask-lu" type="button" class="ask-lu" aria-expanded="false" aria-controls="ask-lu-chat">
@@ -1960,6 +1965,7 @@
                 <i class="ri-arrow-up-line" aria-hidden="true"></i>
               </button>
             </form>
+            <p class="ask-chat__notice" data-i18n="home.askLuNotice">Please don't share personal or confidential information.</p>
           </div>
         </div>
       </div>
@@ -1998,7 +2004,7 @@
               <img class="logo-bar__mark--ubs" src="/assets/images/logo/ubs-logo.svg" alt="UBS" width="300" height="110" />
             </li>
             <li class="logo-bar__item">
-              <img class="logo-bar__mark--isc" src="/assets/images/logo/isc-ejpd-logo.svg" alt="ISC-EJPD" width="108" height="36" />
+              <span class="logo-bar__wordmark">ISC-EJPD</span>
             </li>
             <li class="logo-bar__item">
               <a href="/man-truck-bus" aria-label="MAN Fleet Uptime"><img class="logo-bar__mark--man" src="/assets/images/logo/man-logo.svg" alt="MAN" width="24" height="14" /></a>
@@ -2051,8 +2057,8 @@
           <p data-i18n="home.eon.storyBody">A complex investment, made easier to understand and trust.</p>
         </div>
         <div class="home-case-detail">
-          <h3 data-i18n="home.eon.metricTitle">300% increase in lead conversion</h3>
-          <p data-i18n="home.eon.metricBody">Within two months, from a 5.1% baseline in Germany. Later adapted for the UK.</p>
+          <h3 data-i18n="home.eon.metricTitle">300% more solar leads</h3>
+          <p data-i18n="home.eon.metricBody">Later adapted for the UK.</p>
         </div>
         <div class="home-case-links">
           <a href="/EON" class="pill-btn">
@@ -2276,7 +2282,7 @@
 <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
   <div class="site-footer__inner">
     <div class="site-footer__bottom">
-      <p class="site-footer__note text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span></p>
+      <p class="site-footer__note text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span> <span aria-hidden="true">·</span> <a href="/privacy" data-i18n="common.footerPrivacy" style="color:inherit;text-underline-offset:0.2em">Privacy</a></p>
     </div>
   </div>
 </footer>

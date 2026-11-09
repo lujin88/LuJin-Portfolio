@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { HtmlChrome } from '../html-chrome'
 import { socialMetadata } from '../seo'
 
@@ -12,10 +12,16 @@ export const metadata: Metadata = {
   ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/etf-savings-plan' }),
 }
 
+export const viewport: Viewport = {
+  colorScheme: 'light',
+  themeColor: '#fafaf9',
+}
+
 export default function EtfSavingsPlanLayout({ children }: { children: React.ReactNode }) {
   return (
     <HtmlChrome activeHref="/etf-savings-plan" theme="light" colorScheme="light" backgroundColor="#fafaf9">
       <link rel="stylesheet" href="/styles/shell-components.css" />
+      <style>{`[data-site-header][data-header-tone="paper"]{--header-scrim:#fafaf9;--header-glass:#fafaf9;--header-menu:#fff;--header-menu-item:#e8e8ea}`}</style>
       {children}
     </HtmlChrome>
   )

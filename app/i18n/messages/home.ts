@@ -4,12 +4,13 @@ export const home = {
     heroKicker: 'Product designer · Enterprise & regulated UX',
     heroTitle: 'Simplify complexity. Design with AI.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, <span style="white-space:nowrap">5–10 min</span> saved per client in concept tests.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 4× lead conversion rate.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW app</a>: led design team &amp; design system.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, <span style="white-space:nowrap">5–10 min</span> saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW app</a>: led design team &amp; design system.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Close chat',
     askLuSend: 'Send',
     askLuGreeting: 'Hi! I’m Lu’s AI assistant. Ask about her work, experience, or process.',
     askLuPlaceholder: 'Ask about Lu’s work…',
+    askLuNotice: 'Please don’t share personal or confidential information.',
     partnersLabel: 'Clients I’ve designed for',
     ca: {
       eyebrow: 'Client Advisory · UBS',
@@ -27,8 +28,8 @@ export const home = {
       role: 'Lead Product Designer',
       storyTitle: 'From complexity to conversion',
       storyBody: 'A complex investment, made easier to understand and trust.',
-      metricTitle: '300% increase in lead conversion',
-      metricBody: 'Within two months, from a 5.1% baseline in Germany. Later adapted for the UK.',
+      metricTitle: '300% more solar leads',
+      metricBody: 'Later adapted for the UK.',
       cta: 'Explore case study',
     },
     playground: {
@@ -83,13 +84,14 @@ export const home = {
     heroKicker: 'Product Designerin · Enterprise- & regulierte UX',
     heroTitle: 'Komplexität vereinfachen. Mit KI gestalten.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow, in Konzepttests <span style="white-space:nowrap">5–10&nbsp;Min.</span> pro Kunde gespart.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: Anfragequote vervierfacht.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow, <span style="white-space:nowrap">5–10&nbsp;Min.</span> pro Kunde gespart.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300&nbsp;% mehr Leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Chat schließen',
     askLuSend: 'Senden',
     askLuGreeting:
       'Hallo! Ich bin Lus KI-Assistent. Fragen Sie nach ihrer Arbeit, Erfahrung oder Arbeitsweise.',
     askLuPlaceholder: 'Fragen Sie nach Lus Arbeit…',
+    askLuNotice: 'Bitte keine persönlichen oder vertraulichen Informationen eingeben.',
     partnersLabel: 'Kunden, für die ich gestaltet habe',
     ca: {
       eyebrow: 'Client Advisory · UBS',
@@ -108,8 +110,8 @@ export const home = {
       role: 'Lead Product Designerin',
       storyTitle: 'Von Komplexität zu Conversion',
       storyBody: 'Eine komplexe Investition, leichter zu verstehen und zu vertrauen.',
-      metricTitle: '300 % mehr Lead-Conversion',
-      metricBody: 'In zwei Monaten, ausgehend von 5,1 % in Deutschland. Später für Großbritannien adaptiert.',
+      metricTitle: '300 % mehr Solar-Leads',
+      metricBody: 'Später für Großbritannien adaptiert.',
       cta: 'Case Study ansehen',
     },
     playground: {
