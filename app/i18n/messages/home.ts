@@ -27,8 +27,8 @@ export const home = {
       role: 'Lead Product Designer',
       storyTitle: 'From complexity to conversion',
       storyBody: 'A complex investment, made easier to understand and trust.',
-      metricTitle: '300% increase in lead conversion',
-      metricBody: 'From a 5.1% baseline in Germany. Later adapted for the UK.',
+      metricTitle: '300% more solar leads',
+      metricBody: 'Later adapted for the UK.',
       cta: 'Explore case study',
     },
     playground: {
@@ -108,8 +108,8 @@ export const home = {
       role: 'Lead Product Designerin',
       storyTitle: 'Von Komplexität zu Conversion',
       storyBody: 'Eine komplexe Investition, leichter zu verstehen und zu vertrauen.',
-      metricTitle: '300 % mehr Lead-Conversion',
-      metricBody: 'Ausgehend von 5,1 % in Deutschland. Später für Großbritannien adaptiert.',
+      metricTitle: '300 % mehr Solar-Leads',
+      metricBody: 'Später für Großbritannien adaptiert.',
       cta: 'Case Study ansehen',
     },
     playground: {
