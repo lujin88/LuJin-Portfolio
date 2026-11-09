@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Lu — Product & Service Designer</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
 
 <link rel="stylesheet" href="/styles/shell-tokens.css" />
 <link rel="stylesheet" href="/styles/home-motion.css" />
@@ -21,7 +18,7 @@
   }
   body {
     background: var(--color-bg-page);
-    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     min-width: 360px;
   }
@@ -242,7 +239,7 @@
 
   /* LAB — oversized editorial index numeral (Poppins italic; Display is Poppins site-wide) */
   .lab-index {
-    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-poppins-italic), var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
     font-style: italic;
     font-size: clamp(2.5rem, 5vw, 3.25rem);
     line-height: 1;
@@ -562,6 +559,13 @@
     padding: 0.65rem 0.9rem;
   }
   .ask-chat__form input::placeholder { color: rgba(255, 255, 255, 0.45); }
+  .ask-chat__notice {
+    margin: 0;
+    padding: 0 0.9rem 0.7rem;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.55);
+  }
   .ask-lu:focus-visible,
   .ask-chat__close:focus-visible,
   .ask-chat__send:focus-visible,
@@ -715,7 +719,7 @@
   }
   .ai-decides-section .ad-cta {
     margin-top: 37px;
-    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
     text-decoration: none;
   }
   .ai-decides-section .ad-art-stage {
@@ -1446,7 +1450,7 @@
   }
   .exp-content__eyebrow {
     display: block;
-    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-poppins-italic), var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
     font-style: italic;
     font-size: var(--font-size-caption);
     color: var(--color-text-3);
@@ -1961,6 +1965,7 @@
                 <i class="ri-arrow-up-line" aria-hidden="true"></i>
               </button>
             </form>
+            <p class="ask-chat__notice" data-i18n="home.askLuNotice">Please don't share personal or confidential information.</p>
           </div>
         </div>
       </div>

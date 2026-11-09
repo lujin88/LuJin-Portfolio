@@ -1,7 +1,16 @@
 import type { Metadata, Viewport } from 'next'
+import { Inter } from 'next/font/google'
 
 import { HtmlChrome } from '../../html-chrome'
 import { socialMetadata } from '../../seo'
+
+// Self-hosted Inter for public/agent-monitor.html (was an @import from Google Fonts; legal #2367).
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-inter',
+  display: 'swap',
+})
 
 const TITLE = 'Lu — Human × AI Practice'
 const DESCRIPTION = 'A human-led design practice: Agent Monitor, AI Team, and Design OS.'
@@ -29,7 +38,9 @@ export default function AgentMonitorLayout({
       colorScheme="light"
       backgroundColor="#fcfaf7"
     >
-      {children}
+      <div className={inter.variable} style={{ display: 'contents' }}>
+        {children}
+      </div>
       <style
         dangerouslySetInnerHTML={{
           __html: `

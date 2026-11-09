@@ -1,4 +1,5 @@
 import posthog from 'posthog-js'
+import { recordingOptedOut } from './app/recording-opt-out'
 
 /**
  * PostHog product analytics (EU Cloud).
@@ -25,7 +26,8 @@ function persistenceMode(value: string | undefined): PersistenceMode {
 
 const key = process.env.NEXT_PUBLIC_POSTHOG_KEY
 
-if (key) {
+// Visitors who chose "Don't record my visits" on /privacy get no PostHog at all.
+if (key && !recordingOptedOut()) {
   posthog.init(key, {
     api_host: POSTHOG_HOST,
     defaults: '2026-08-30',

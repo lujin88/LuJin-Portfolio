@@ -1,6 +1,7 @@
 'use client'
 
 import { useLayoutEffect, useRef } from 'react'
+import Link from 'next/link'
 import { useTranslation } from '@i18n'
 
 const EMAIL = 'lu.jin.ixd@gmail.com'
@@ -78,7 +79,9 @@ export function SiteClosing({ className }: { className?: string }) {
               <span>{t('common.footerRights')}</span>
               <span className="site-footer__analytics">
                 <span aria-hidden="true">·</span>
-                <span>{t('common.footerAnalytics')}</span>
+                <Link href="/privacy" style={{ color: 'inherit', textUnderlineOffset: '0.2em' }}>
+                  {t('common.footerPrivacy')}
+                </Link>
               </span>
             </p>
           </div>
