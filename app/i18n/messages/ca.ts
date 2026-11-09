@@ -134,7 +134,7 @@ export const ca = {
       },
     },
     ui: {
-      aria: 'UBS advisory workflow interface showing a portfolio review and proposal with three investment options',
+      aria: 'Advisory workflow concept: a portfolio review and a proposal with three illustrative options',
       navClients: 'Clients',
       navResearch: 'Research',
       navOpportunities: 'Opportunities',
@@ -322,7 +322,7 @@ export const ca = {
       },
     },
     ui: {
-      aria: 'UBS-Advisory-Interface mit Portfolio-Review und Anlagevorschlag mit drei Anlageoptionen',
+      aria: 'Konzept eines Beratungs-Workflows: Portfolio-Review und ein Vorschlag mit drei illustrativen Optionen',
       navClients: 'Kunden',
       navResearch: 'Research',
       navOpportunities: 'Opportunities',
