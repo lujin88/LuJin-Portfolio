@@ -125,10 +125,10 @@ export const ca = {
       path3Body:
         'One experience that unifies client context, portfolio, and research — without adding to the pile. 500+ client signals, one view.',
       mockups: {
-        'book-view': 'UBS advisor book view with clients, opportunities, and market highlights',
-        'us-tech': 'US Tech client view with CIO commentary and recommended products',
-        'client-page': 'Investment Hub client page',
-        'client-view': 'Investment Hub client view',
+        'book-view': 'Advisor overview of clients and opportunities (concept, recreated)',
+        'us-tech': 'Client view with research commentary and product ideas (concept, recreated)',
+        'client-page': 'Client page (concept, recreated)',
+        'client-view': 'Client detail view (concept, recreated)',
         'proposal-creation': 'Portfolio proposal creation with selectable options',
         'review-execute': 'Review and execute screen for the tailored investment proposal',
       },
@@ -313,10 +313,10 @@ export const ca = {
       path3Body:
         'Ein Erlebnis, das Kundenkontext, Portfolio und Research verbindet — ohne den Stapel zu vergrößern. 500+ Kundensignale, eine Sicht.',
       mockups: {
-        'book-view': 'UBS-Berateransicht mit Kunden, Opportunities und Markthighlights',
-        'us-tech': 'US-Tech-Kundensicht mit CIO-Kommentar und empfohlenen Produkten',
-        'client-page': 'Investment-Hub-Kundenseite',
-        'client-view': 'Investment-Hub-Kundenansicht',
+        'book-view': 'Beraterübersicht mit Kunden und Opportunities (Konzept, nachgebaut)',
+        'us-tech': 'Kundensicht mit Research-Kommentar und Produktideen (Konzept, nachgebaut)',
+        'client-page': 'Kundenseite (Konzept, nachgebaut)',
+        'client-view': 'Kundendetailansicht (Konzept, nachgebaut)',
         'proposal-creation': 'Erstellung eines Anlagevorschlags mit auswählbaren Optionen',
         'review-execute': 'Prüfen und Ausführen des maßgeschneiderten Anlagevorschlags',
       },
