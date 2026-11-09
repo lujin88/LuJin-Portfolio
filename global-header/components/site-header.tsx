@@ -48,7 +48,7 @@ const NAV: readonly NavEntry[] = [
       {
         label: 'E.ON',
         href: '/EON',
-        meta: 'E-commerce · +300% conversion',
+        meta: 'Energy · 300% more leads',
         icon: {
           light: '/assets/images/nav/light/work/eon-light.png',
           dark: '/assets/images/nav/dark/work/eon-dark.png',
