@@ -146,7 +146,8 @@ export default function CompanionPetLayout({
 }
 .dd-closing .site-footer__inner { max-width: none; width: 100%; margin: 0; }
 .dd-closing .site-footer__bottom { padding-top: 2rem; text-align: left; color: var(--color-text-3); }
-.dd-closing .site-footer__note { margin: 0; font-size: var(--font-size-footer-note); line-height: 1.6; }
+.dd-closing .site-footer__note { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font-size: var(--font-size-footer-note); line-height: 1.6; }
+.dd-closing .site-footer__analytics { display: inline-flex; align-items: center; gap: inherit; }
 @media (max-width: 640px) {
   .dd-closing .exp-contact { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
 }
