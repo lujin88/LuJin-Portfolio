@@ -10,9 +10,12 @@ import { KineticLines } from '@eon/components/motion/kinetic-lines'
 import { OnceReveal } from '@eon/components/motion/once-reveal'
 import { useTranslation } from '@i18n/use-translation'
 
-// Visual's redraw (Lu #1473): one arc from under the handwriting to the person at the laptop,
+// Visual's redraw (Lu #1473): one arc from under the handwriting toward the person at the laptop,
 // in AnnotationGroup coordinates (OUTBOX/EON_ARROW_R2_20261108/arrow-1440.svg).
-function AnnotationArrow({ className }: { className?: string }) {
+// Lu #3691: the arrow stops outside the photo. The photo's left edge is at x=184 here at 1024-1279px
+// and x=240 from 1280px (the group moves 56px), so the tip ends 14px before it at each width.
+function AnnotationArrow({ className, tipX }: { className?: string; tipX: number }) {
+  const tipY = 200
   return (
     <svg
       aria-hidden="true"
@@ -24,13 +27,13 @@ function AnnotationArrow({ className }: { className?: string }) {
       className={className}
     >
       <path
-        d="M110.3 68.3C120.5 166.9 212.6 210 315 220"
+        d={`M110.3 68.3C114 150 ${tipX - 40} ${tipY - 8} ${tipX} ${tipY}`}
         stroke="currentColor"
         strokeWidth="1.7"
         strokeLinecap="round"
       />
       <path
-        d="M299 210Q309 217 315 220Q308 225 300 228"
+        d={`M${tipX - 16} ${tipY - 10}Q${tipX - 6} ${tipY - 3} ${tipX} ${tipY}Q${tipX - 7} ${tipY + 5} ${tipX - 15} ${tipY + 8}`}
         stroke="currentColor"
         strokeWidth="1.7"
         strokeLinecap="round"
@@ -57,7 +60,8 @@ function AnnotationGroup({
         {hand2}
       </p>
       {/* Below 1024 the photo sits elsewhere and the arc crossed the face (visualqa #1676): hidden there, PM #1678. */}
-      <AnnotationArrow className="absolute left-0 top-0 z-40 hidden text-[#5a6180] lg:block" />
+      <AnnotationArrow tipX={170} className="absolute left-0 top-0 z-40 hidden text-[#5a6180] lg:block xl:hidden" />
+      <AnnotationArrow tipX={226} className="absolute left-0 top-0 z-40 hidden text-[#5a6180] xl:block" />
     </div>
   )
 }
