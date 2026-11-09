@@ -897,6 +897,15 @@
   @media (max-width: 900px) {
     .ai-decides-section .ad-layout { padding-top: calc(5rem + 1.5rem); }
   }
+  /* Phones: Gratula card button -> HOW I WORK eyebrow ~214-230px -> 64px (new chapter,
+     visual MOBILE_SPACING_1109/RULES.md), 32px each side of the background change.
+     The 100dvh minimum also centred the copy, adding space that grew with screen height. */
+  @media (max-width: 600px) {
+    section#home-playground { padding-bottom: 32px; }
+    #how-i-work,
+    #how-i-work .ad-layout { min-height: 0; }
+    #how-i-work .ad-layout { padding-top: 32px; }
+  }
 
   .case-block {
     box-sizing: border-box;

@@ -29,6 +29,8 @@ export function OpeningPhones() {
       if (!element) return;
       let progress: number;
       if (phone.matches) {
+        // Reduced motion settles the pair for good: switching back must not replay the spread.
+        if (reduceMotion.matches) settled = true;
         progress = settled ? 1 : progressOnPhone(element);
         if (progress >= 1) settled = true;
       } else {

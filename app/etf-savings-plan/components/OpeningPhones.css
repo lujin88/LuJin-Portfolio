@@ -55,7 +55,6 @@
 }
 @media(prefers-reduced-motion:reduce){
   :where(.etf-case) .opening-sequence {height:auto}:where(.etf-case) .opening-pin {position:relative}
-  :where(.etf-case) .opening-handset,:where(.etf-case) .opening-handset + .opening-handset {transform:translate3d(calc(var(--spread-distance) * var(--spread-progress)),calc(-12px * var(--spread-progress)),0) none}
 }
 
 
