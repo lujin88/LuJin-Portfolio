@@ -905,6 +905,17 @@
     #how-i-work,
     #how-i-work .ad-layout { min-height: 0; }
     #how-i-work .ad-layout { padding-top: 32px; }
+    /* E.ON button -> Playground title 64px, 32px each side of the background change
+       (was 72 + 80). Playground cards 48px apart (was 80). Visual CANDIDATES-v3. */
+    #home-showcase .home-case:last-child .home-case-copy { padding-bottom: 32px; }
+    section#home-playground { padding-top: 32px; }
+    #home-playground .home-project-grid { row-gap: 48px; }
+    /* How I Work art -> MY EXPERIENCE 64px at rest (was ~251): 12px scale slack under
+       the art + 32px seam wash + 20px list top. The seam was 120px for the arc
+       stroke into the timeline (Lu 2026-10-30), which R9 hides and phones never had. */
+    #how-i-work .ad-layout { padding-bottom: 0; }
+    div.hiw-exp-seam { height: 32px; }
+    #experience .exp-sticky { padding-top: 20px; }
   }
 
   .case-block {
