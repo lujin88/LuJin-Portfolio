@@ -688,3 +688,12 @@ html:has(.wa-page) {
   .wa-page .motion-section { padding-bottom: 0; }
   .wa-closing.site-closing.site-closing .contact-section { padding-top: 31px; }
 }
+/* Phones: 02 -> 03 and 03 -> 04 are 48px from the last caption / vocab item to the next
+   eyebrow (visual CANDIDATES-v3). They were 176 and 188px: each section's bottom padding
+   stacked on the next one's top. Galleries, vocab grid and pose canvas keep their size. */
+@media (max-width: 640px) {
+  .wa-page .editions-section,
+  .wa-page .learning-section { padding-bottom: 0; }
+  .wa-page .learning-section,
+  .wa-page .motion-section { padding-top: 48px; }
+}
