@@ -23,7 +23,7 @@ Lu first proposed a new place on screen for the AI layer; stakeholders asked to 
 AI embedded into the advisors' existing workflow, rather than a separate new tool: helping them prioritise, surface relevant information, and respond to clients at the right moment. When a client calls, the advisor sees who the client is and what they may need.
 
 ## Outcome
-Concept testing pointed to time savings from less searching, synthesising information and switching between systems: 5–10 minutes for a simple case, up to about 30 minutes for a complex case, which averages out to more than 10 minutes saved per client interaction. Advisors' main concern was delivery quality: whether AI-surfaced information would be good enough to use as is.
+Concept testing pointed to time savings from less searching, synthesising information and switching between systems: 5–10 minutes for a simple case, up to about 30 minutes for a complex case. Advisors' main concern was delivery quality: whether AI-surfaced information would be good enough to use as is.
 
 ## Confidentiality
 Internal details, screens and data are confidential. Lu can walk through the process in an interview.
