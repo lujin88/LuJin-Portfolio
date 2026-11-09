@@ -162,7 +162,7 @@ export const ca = {
       eyebrow: 'The Outcome',
       title: 'Tested with the people it’s for.',
       subhead: 'Validated with advisors, for more focused client conversations.',
-      body: "I led concept testing with advisors — including stakeholders who had favoured a dashboard — to see how the model held up against real workflows.",
+      body: "I led concept testing with advisors to see how the model held up against real workflows.",
       journeyAria: 'Concept, Mockup, Test',
       concept: 'Concept',
       mockup: 'Mockup',
@@ -180,7 +180,7 @@ export const ca = {
       m2Alt: '',
       m3Alt: '',
       footnote:
-        'Feedback was consistent across the markets we tested.',
+        'Feedback informed the next iteration.',
     },
     // Decorative background image: empty alt so screen readers skip it.
     closingAlt: '',
@@ -350,7 +350,7 @@ export const ca = {
       eyebrow: 'Das Ergebnis',
       title: 'Getestet mit denen, für die es gemacht ist.',
       subhead: 'Mit Beratern validiert — für fokussiertere Kundengespräche.',
-      body: 'Ich habe Konzepttests mit Beratern geleitet — auch mit Stakeholdern, die ein Dashboard bevorzugt hatten —, um zu sehen, wie das Modell in echten Workflows trägt.',
+      body: 'Ich habe Konzepttests mit Beratern geleitet, um zu sehen, wie sich das Modell in realen Arbeitsabläufen bewährt.',
       journeyAria: 'Konzept, Mockup, Test',
       concept: 'Konzept',
       mockup: 'Mockup',
@@ -368,7 +368,7 @@ export const ca = {
       m2Alt: '',
       m3Alt: '',
       footnote:
-        'Das Feedback war in allen getesteten Märkten konsistent.',
+        'Das Feedback floss in die nächste Iteration ein.',
     },
     // Decorative background image: empty alt so screen readers skip it.
     closingAlt: '',
