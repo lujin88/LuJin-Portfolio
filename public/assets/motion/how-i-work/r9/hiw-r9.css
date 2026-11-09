@@ -13,9 +13,10 @@
 /* CSS gradient masks use alpha, including the reduced-motion SVG still. */
 .ai-decides-section .ad-art{mask-mode:alpha}
 
-/* The loading still shares the normal loop's caption-free first frame. */
-@media(prefers-reduced-motion:reduce){.hiw-caption-loading-cover{display:none}}
+/* Keep the still caption visible while loading, on failure, and in reduced motion. */
+.hiw-caption-loading-cover{display:none}
 
 /* Composite the three Rive canvases before fading the outer edges. Separate
    masks let the lower layer's original arrow leak through the edited layer. */
 .ai-decides-section .hiw-plane canvas{mask-image:none;-webkit-mask-image:none}
+
