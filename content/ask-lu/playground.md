@@ -31,7 +31,7 @@ These are Lu's own side projects, built with AI tools (Claude, Cursor, v0). They
 ## Gratula — kids' birthday party planner
 - Turns four details (theme, age, budget, date) into one plan for a child's birthday: invitations, RSVPs, local suppliers and the party-day schedule.
 - Guest families reply from the invitation link, with no app and no account. A shared wishlist prevents duplicate gifts.
-- Privacy by design: only the host sees dietary notes and phone numbers, guests never see each other's details, and guest data is set to be removed after 30 days.
+- Privacy: designed so that only the host sees dietary notes and phone numbers, guests never see each other's details, and guest data is removed after 30 days.
 - Suggests a few checked local options near Zurich (cake, venue, entertainer) within 10 km, instead of many open tabs.
 - Design decision: guest headcounts were dropped from the RSVP. Yes or no plus an allergy note was enough.
 - Status: working prototype that can be opened from the case study page.
