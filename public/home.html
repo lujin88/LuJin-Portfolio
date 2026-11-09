@@ -1171,6 +1171,10 @@
     left: 0;
     width: 100vw;
     height: 100vh;
+    /* 100vw starts after the body margin and would stick out on the right.
+       Pull it back to the viewport without widening the page. */
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
     margin-bottom: -100vh;
     isolation: isolate;
     pointer-events: none;
@@ -1431,8 +1435,8 @@
   }
   /* Desktop: the title's first line sits level with the UBS date, in the
      blank left of the timeline. Its right edge stays 48px clear of the
-     vertical line. 390px and below keep the stacked list. */
-  @media (min-width: 641px) {
+     vertical line. 767px and below keep the stacked list. */
+  @media (min-width: 768px) {
     .exp-content[data-index="0"] .exp-lead {
       position: absolute;
       z-index: 5;
@@ -1620,7 +1624,7 @@
   }
 
   @media (max-width: 1024px) {
-    .exp-content { width: min(320px, 44vw); }
+    .exp-content { box-sizing: border-box; width: min(320px, 44vw); }
     .exp-dot[data-index="1"] { left: 58%; }
     .exp-content[data-index="1"] { left: 58%; }
   }
@@ -1651,9 +1655,10 @@
     #omni-model .pin-sticky h2 { margin-bottom: 2rem; }
   }
 
-  /* narrow screens + reduced motion: the curved-arc pin doesn't read —
-     fall back to a plain stacked list */
-  @media (max-width: 640px), (prefers-reduced-motion: reduce) {
+  /* ≤767 and reduced motion: the curved-arc pin doesn't read —
+     fall back to a plain stacked list. 641–767 used to keep the arc, and
+     the 280px cards ran past the right edge. */
+  @media (max-width: 767px), (prefers-reduced-motion: reduce) {
     .exp-track { height: auto; }
     .exp-sticky { position: static; height: auto; display: block; overflow: visible; padding: 6rem 0 3rem; }
     .exp-intro {
@@ -1668,6 +1673,7 @@
     .exp-header { position: static; transform: none; padding: 0 1.25rem 1.75rem; }
     .exp-coord {
       position: relative; left: auto; transform: none !important;
+      box-sizing: border-box;
       width: 100%; max-width: 52rem; height: auto;
       margin: 0; padding: 0 1.25rem;
     }
@@ -1680,6 +1686,7 @@
     .exp-content[data-index="2"],
     .exp-content[data-index="3"] {
       position: relative; top: auto; bottom: auto; left: auto; right: auto;
+      box-sizing: border-box;
       width: 100%; max-width: none; opacity: 1 !important;
       text-align: left; margin: 0 0 2.25rem; padding: 0 0 0 1.5rem;
       border-left: 1px solid rgba(var(--exp-blue), 0.4);
@@ -1703,7 +1710,7 @@
      sticky padding + Contact's then clamp(6rem, 14vh, 9rem) top padding) left ~200px
      between the Designaffairs fade tail and "Have an opportunity". Lu
      2026-11-05: tail 24px (was 72), tail end to heading 48px. */
-  @media (max-width: 640px), (prefers-reduced-motion: reduce) {
+  @media (max-width: 767px), (prefers-reduced-motion: reduce) {
     .exp-content[data-index="3"] { margin-bottom: 0; }
     .exp-sticky { padding-bottom: 0; }
     .contact-section { padding-top: 48px; }
@@ -1870,7 +1877,7 @@
     .hero-media__video { transition: none; transform: none; }
   }
   /* UBS: 1s turn (same as the other markers) and top-to-bottom stroke. */
-  @media (min-width: 641px) and (prefers-reduced-motion: no-preference) {
+  @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
     .exp-content[data-index="0"] .exp-content__plus {
       transition: transform 1s ease-in-out, opacity 1s ease-in-out;
     }
@@ -1895,7 +1902,7 @@
      active; the dot appears once the stroke reaches it. Leaving keeps the
      full bar and fades it, as before. The relay variant overrides the
      scroll-driven clip on AdNovum. */
-  @media (min-width: 641px) and (prefers-reduced-motion: no-preference) {
+  @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
     .exp-content[data-index="1"] .exp-content__bar,
     .exp-content[data-index="2"] .exp-content__bar,
     .exp-content[data-index="3"] .exp-content__bar,
@@ -2989,7 +2996,7 @@
 
     function expMeasureIntroOffset() {
       if (expIntro && expContents[0]) {
-        expStageDrop = window.matchMedia('(max-width: 640px)').matches ? 0 : 140;
+        expStageDrop = window.matchMedia('(max-width: 767px)').matches ? 0 : 140;
         expIntro.style.setProperty('--exp-stage-drop', expStageDrop + 'px');
         // Keep a consistent visual gap regardless of viewport height or copy
         // wrapping. offsetTop is measured in the untransformed coordinate box.
@@ -3408,7 +3415,7 @@
       var c3 = rel(turnX + dirx * depart, turnY + diry * depart);
       var c4 = rel(join.x, landY - Math.max(40, spanY * 0.42));
       var land = rel(join.x, landY);
-      var narrow = window.matchMedia('(max-width: 640px)').matches;
+      var narrow = window.matchMedia('(max-width: 767px)').matches;
       var d;
       if (narrow) {
         // No timeline bar on the stacked list. Stop on the illustration
@@ -3445,7 +3452,7 @@
       var vh = window.innerHeight || 1;
       var seamR = seam.getBoundingClientRect();
       // The stacked list has no stem to hand off to. Keep its old fade.
-      if (window.matchMedia('(max-width: 640px)').matches) {
+      if (window.matchMedia('(max-width: 767px)').matches) {
         return clamp(-seamR.bottom / 280, 0, 1);
       }
       if (!(landY > 0)) return clamp((vh * 0.12 - seamR.bottom) / (vh * 0.28), 0, 1);
@@ -4052,7 +4059,7 @@
   // clears it.
   (function initContactLag() {
     var reduce = matchMedia('(prefers-reduced-motion: reduce)');
-    var narrow = matchMedia('(max-width: 768px)');
+    var narrow = matchMedia('(max-width: 767px)');
     var section = document.getElementById('contact');
     var block = section && section.querySelector('.exp-contact');
     if (!block) return;

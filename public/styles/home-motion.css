@@ -131,7 +131,7 @@ html[data-wa-season="winter"] #wa-season-video { background-image: url(/assets/i
   overflow: visible;
   z-index: 3;
 }
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   /* The stacked list has no timeline bar. Keep the stroke free to meet the
      illustration above the seam, and clip anything that would paint into
      the experience list below. */
