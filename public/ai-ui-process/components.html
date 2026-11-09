@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AI 时代的组件库</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap">
+
+<link rel="stylesheet" href="/fonts/source-sans-3/source-sans-3.css"><link rel="stylesheet" href="/fonts/jetbrains-mono/jetbrains-mono.css">
 <style>
 /* Layout: page tabs, title, sticky section bar with density + language, then sections that fold to one line each in Brief view */
 :root{
   --bg:#f4f5f7; --surface:#ffffff; --fg:#1a1d24; --muted:#5f6674; --line:#d3d7df;
   --accent:#2453c4; --accent-soft:#e8eefb; --ok:#1d7a5a; --ok-soft:#e6f3ed; --code:#f0f2f5; --band:#eceef2;
-  --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --f-body:"Source Sans 3","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",system-ui,sans-serif;
   --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
@@ -554,7 +554,7 @@ body.has-shell section a:not([class]){color:var(--accent);text-decoration:underl
 .sh-pop kbd{font:600 10.5px ui-monospace,Menlo,monospace;border:1px solid var(--sh-line);border-radius:5px;padding:1px 5px;background:var(--sh-bg)}
 @media (max-width:760px){.sh-pop{min-width:0;max-height:60vh}.sh-pop .foot{display:none}}
 </style>
-<style id="tokens-figma-css">#tokens td code{white-space:normal!important;overflow-wrap:anywhere}@media (max-width:640px){#tokens table{min-width:0!important;width:100%!important}}#tokens .figshot{margin:14px 0 18px}#tokens .figshot img{display:block;width:100%;height:auto;border-radius:12px}#tokens .figshot figcaption{margin-top:8px;font-size:14px;line-height:1.6;color:var(--fg)}@media (max-width:640px){#tokens table,#tokens tbody,#tokens tr,#tokens td{display:block}#tokens thead{display:none}#tokens tr{padding:10px 0;border-top:1px solid var(--line)}#tokens tr:first-child{border-top:0}#tokens td{border:0!important;padding:2px 14px!important}#tokens td:first-child{font-weight:700}}#tokens ul.figchk{margin:4px 0 0;padding-left:20px;display:grid;gap:6px}</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style id="tokens-figma-css">#tokens td code{white-space:normal!important;overflow-wrap:anywhere}@media (max-width:640px){#tokens table{min-width:0!important;width:100%!important}}#tokens .figshot{margin:14px 0 18px}#tokens .figshot img{display:block;width:100%;height:auto;border-radius:12px}#tokens .figshot figcaption{margin-top:8px;font-size:14px;line-height:1.6;color:var(--fg)}@media (max-width:640px){#tokens table,#tokens tbody,#tokens tr,#tokens td{display:block}#tokens thead{display:none}#tokens tr{padding:10px 0;border-top:1px solid var(--line)}#tokens tr:first-child{border-top:0}#tokens td{border:0!important;padding:2px 14px!important}#tokens td:first-child{font-weight:700}}#tokens ul.figchk{margin:4px 0 0;padding-left:20px;display:grid;gap:6px}</style>
 <link rel="stylesheet" href="port-chrome.css">
 </head>
 <body><!--shell--><header class="port-header" data-port-header>
