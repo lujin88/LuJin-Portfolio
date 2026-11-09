@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef } from 'react'
+import { useTranslation } from '../../i18n/use-translation'
 import './field-notes.css'
 import { SiteClosing } from '../../components/site-closing'
 import { Icon } from '../../components/remix-icon'
@@ -21,7 +22,6 @@ const sceneLoops = [heroLoop, selectionLoop, scoreLoop, handoffLoop]
 const scenes = [
   {
     name:'worktable', art:hero, sourceHeight:465, height:431, entrySide:1,
-    alt:'A long-haired designer lifts a note between her fingers while a rabbit sorts papers and a bear works at a laptop.',
     erase:'M0 320H77V364H0Z M469 76L521 62L526 106Q511 101 505 105Q498 112 508 119L472 131Z',
     eraseLine:'M-4 337C58 325 55 399 121 421C166 438 212 434 224 408C234 386 206 393 201 413C190 445 237 454 297 436C371 415 413 402 464 447',
     wash:'M474 80L518 68L521 107Q501 103 508 118L476 126Z',
@@ -38,7 +38,6 @@ const scenes = [
     detail:'M494 90l6 5 10 -13',detailAt:.62
   },{
     name:'selection',art:selecting,sourceHeight:394,height:394,entrySide:-1,
-    alt:'The designer and rabbit reach out with notes. The slip in her fingers leads into the few notes kept on the board.',
     erase:'M671 15H746V64H671Z M531 51H741V338H531Z M388 94L432 85L445 132L399 144L392 129Q404 119 398 110L389 111Z',
     eraseLine:'',
     wash:'M391 100L430 89L441 130L399 141L394 122Z M597 95L658 96L655 149L597 147Z M596 167L657 168L658 217L598 218Z M599 239L659 238L658 290L600 288Z',
@@ -54,7 +53,6 @@ const scenes = [
     detail:'M620 95q1 -11 9 -10q8 1 6 11q-2 7 -8 7q-7 -1 -7 -8 M620 166q1 -10 8 -10q9 1 7 10q-2 8 -8 8q-6 -1 -7 -8 M620 238q0 -10 9 -10q8 1 7 10q-1 9 -8 8q-7 0 -8 -8',detailAt:.74
   },{
     name:'judgement',art:scoring,sourceHeight:375,height:375,entrySide:1,
-    alt:'A bear, rabbit and fox review the work. The designer points at the open rulebook and moves her hand to the next item.',
     erase: 'M356 319L368 315L400 321L526 315L530 374L354 374Z',
     eraseLine: '',
     wash: '',
@@ -65,7 +63,6 @@ const scenes = [
     detail: '',detailAt:.77
   },{
     name:'handoff',art:handoff,sourceHeight:340,height:340,entrySide:-1,
-    alt:'The designer holds out a rules sheet. Its corner opens into the frame around a blue car.',
     erase:'M382 67L758 66L759 310L382 310Z',
     // Restore the detailed vehicle inside the area cleared for the animated frame.
     keep:'M416 259L415 228L428 201L474 186L519 154Q539 143 580 145Q619 143 650 159L685 186L713 192L728 211L730 264L697 265Q689 282 666 283L643 282Q627 277 622 264L520 265Q508 283 487 283Q464 284 452 264Z',
@@ -80,30 +77,15 @@ const scenes = [
   }
 ]
 
-const chapters = [
-  {
-    id:'idea', label:'From idea to live', title:'AI pushes back. I decide.',
-    context:'Before any screen, I write the core task in one sentence. AI cuts every feature that doesn\'t serve it and argues against my key ideas.',
-    decision:'For Gratula, a kids\' party planner, guest headcounts left the RSVP. Yes or no plus an allergy note was enough.'
-  },
-  {
-    id:'team', label:'Running an agent team', title:'Agents iterate. I sign off.',
-    context:'One agent frames the problem, one designs, one scores the result against my rules. A low score means another round. No design ships until I\'ve reviewed it.',
-    decision:'What I change in review goes back into the rules.'
-  },
-  {
-    id:'handoff', label:'Handing off to engineering', title:'I hand over more than screens.',
-    context:'Before handover, I check accessibility and work through fixes with QA. With the PO, I define the KPIs and the tracking events that measure them.',
-    decision:'On the BMW app in 2020, market and model rules lived in a spreadsheet, outside the system. Now my rules live in one place my agents read.'
-  }
-]
+const chapterIds = ['idea', 'team', 'handoff'] as const
 
 function Scene({index}:{index:number}){
+  const { t } = useTranslation()
   const scene=scenes[index]
   const mask='ww-paper-'+scene.name
   return <svg className={'ww-drawing '+(index===0?'ww-hero-art':'ww-art')}
     width={800} height={scene.height} viewBox={`0 0 800 ${scene.height}`}
-    data-contour={scene.stroke} data-side={scene.entrySide} role="img" aria-label={scene.alt}>
+    data-contour={scene.stroke} data-side={scene.entrySide} role="img" aria-label={t(`fieldNotes.scene.${index+1}.alt`)}>
     <defs><mask id={mask} maskUnits="userSpaceOnUse" x="0" y="0" width="800" height={scene.height}>
       <rect width="800" height={scene.height} fill="white"/>
       <path d={scene.erase} fill="black"/>
@@ -308,29 +290,30 @@ function mountDrawing(page:HTMLElement) {
 }
 
 export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
+  const { t, lang } = useTranslation()
   const ref=useRef<HTMLElement>(null)
-  useEffect(()=>{if(ref.current) return mountDrawing(ref.current)},[])
+  useEffect(()=>{if(ref.current) return mountDrawing(ref.current)},[lang])
   const base=portfolio?'':'http://localhost:3000'
   return <>
   <main ref={ref} className={'ww-page'+(portfolio?' ww-portfolio':'')} id="ww-top">
     <svg className="ww-trail" aria-hidden="true"><path className="ww-ink"/><circle r="2.6"/></svg>
     {!portfolio&&<nav className="ww-nav" aria-label="Portfolio"><a href={base+'/index'} target="_blank" rel="noreferrer">Lu Jin</a><div><a href={base+'/index'} target="_blank" rel="noreferrer">Work</a><a href="#ww-top" aria-current="page">Lab</a><a href={base+'/about'} target="_blank" rel="noreferrer">About</a></div></nav>}
     <header className="ww-hero">
-      <h1>Making is fast now.<br/>Judging is the <span className="ww-word">work.</span></h1>
+      <h1>{t('fieldNotes.hero.h1a')}<br/>{t('fieldNotes.hero.h1b')} <span className="ww-word">{t('fieldNotes.hero.h1c')}</span></h1>
       <Scene index={0}/>
-      <p className="ww-intro">I turn my judgement into rules my agents follow. Where the rules don&apos;t reach, I decide.</p>
+      <p className="ww-intro">{t('fieldNotes.hero.intro')}</p>
     </header>
-    {chapters.map((c,i)=><section className={'ww-chapter ww-c'+i} id={'ww-'+c.id} key={c.id}>
-      <div className="ww-copy"><div className="ww-label"><b>0{i+1}</b>{c.label}</div><h2>{c.title}</h2><p>{c.context}</p><p>{c.decision}</p></div>
+    {chapterIds.map((id,i)=><section className={'ww-chapter ww-c'+i} id={'ww-'+id} key={id}>
+      <div className="ww-copy"><div className="ww-label"><b>0{i+1}</b>{t(`fieldNotes.ch.${id}.label`)}</div><h2>{t(`fieldNotes.ch.${id}.title`)}</h2><p>{t(`fieldNotes.ch.${id}.context`)}</p><p>{t(`fieldNotes.ch.${id}.decision`)}</p></div>
       <figure><Scene index={i+1}/>
       </figure></section>)}
     <section className="ww-finale" aria-labelledby="ww-finale-title">
       <img className="ww-archive" src={rulebox} data-still={rulebox} data-motion={rabbitMotion} width={1536} height={1024}
-        alt="The rabbit files a checked rule card in a blue index box." />
+        alt={t('fieldNotes.finale.alt')} />
       <div className="ww-finale-copy">
-        <p className="ww-finale-kicker">In 2020, the system held the components.</p>
-        <h2 id="ww-finale-title">Now it should hold the rules.</h2>
-        <a className="ww-case-btn pill-btn" href={base+'/bmw-design-system'} target={portfolio?undefined:'_blank'} rel="noreferrer"><span>Explore the BMW case</span><Icon name="arrow-right-up-line" className="ww-case-icon" /></a>
+        <p className="ww-finale-kicker">{t('fieldNotes.finale.kicker')}</p>
+        <h2 id="ww-finale-title">{t('fieldNotes.finale.title')}</h2>
+        <a className="ww-case-btn pill-btn" href={base+'/bmw-design-system'} target={portfolio?undefined:'_blank'} rel="noreferrer"><span>{t('fieldNotes.finale.cta')}</span><Icon name="arrow-right-up-line" className="ww-case-icon" /></a>
       </div>
     </section>
     </main>
