@@ -9,7 +9,7 @@
   display:grid;grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);
   gap:clamp(18px,3vw,58px);align-items:center;
 }
-:where(.etf-case) .opening-text h1 {font-size:clamp(48px,5.45vw,84px);line-height:.99;letter-spacing:-.065em;color:#192031;margin:0 0 24px}
+:where(.etf-case) .opening-text h1 {font-size:clamp(48px,5.45vw,84px);line-height:.99;font-weight:700;letter-spacing:-.04em;color:#192031;margin:0 0 24px}
 :where(.etf-case) .case-opening .case-intro {font-size:clamp(17px,1.55vw,22px);color:#546074;line-height:1.48;max-width:34ch;margin:0}
 :where(.etf-case) .demo-launch,:where(.etf-case) .story-try,:where(.etf-case) .demo-bar button {cursor:pointer;font:inherit}
 :where(.etf-case) .demo-launch {display:inline-flex;gap:22px;align-items:center;padding:12px 19px;margin-top:24px;border:0;border-radius:24px;background:#20283a;color:white;font-weight:600}
