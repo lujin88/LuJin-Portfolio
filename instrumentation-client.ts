@@ -31,5 +31,15 @@ if (key) {
     defaults: '2026-08-30',
     persistence: persistenceMode(process.env.NEXT_PUBLIC_POSTHOG_PERSISTENCE),
     person_profiles: 'identified_only',
+    // Session replay stays on (Lu 2026-11-09, #2419) but never records what visitors
+    // type: every input value is masked, and the Ask Lu conversation (public/home.html
+    // #ask-lu-log) shows visitors' questions as page text, so it is blocked entirely.
+    session_recording: {
+      maskAllInputs: true,
+      blockSelector: '#ask-lu-log',
+    },
+    // A visitor's "don't record my visits" choice (posthog.opt_out_capturing) has to
+    // survive reloads even though the visitor id itself lives only in memory.
+    opt_out_capturing_persistence_type: 'localStorage',
   })
 }
