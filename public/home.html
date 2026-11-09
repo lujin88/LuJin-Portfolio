@@ -1146,11 +1146,11 @@
        clip seam once it is visible (transition/contact only). */
     -webkit-mask-image:
       linear-gradient(to bottom, #000 58%, transparent 100%),
-      linear-gradient(to right, #000 62%, transparent 98%);
+      linear-gradient(to right, transparent 52%, rgba(0,0,0,.35) 78%, transparent 98%);
     -webkit-mask-composite: source-in;
     mask-image:
       linear-gradient(to bottom, #000 58%, transparent 100%),
-      linear-gradient(to right, #000 62%, transparent 98%);
+      linear-gradient(to right, transparent 52%, rgba(0,0,0,.35) 78%, transparent 98%);
     mask-composite: intersect;
   }
 
@@ -2170,26 +2170,13 @@
                 <stop offset="0.85" stop-color="rgb(28, 100, 248)" stop-opacity="0.007"></stop>
                 <stop offset="1" stop-color="rgb(36, 116, 255)" stop-opacity="0"></stop>
               </radialGradient>
-              <!-- Lu 2026-11-04: glow stays under the line (same clip), no tail running
-                   left toward Designaffairs, centre a little right toward the bend.
-                   Right clip of #exp-sheet-below is a vertical line at x=1365, so
-                   that side still fades to 0 before it. Mask: 0 left of x=150,
-                   smoothstep up to full at 1180 (a linear 900-1150 ramp read as a
-                   straight vertical edge), full to 1290, 0 again by 1365. -->
-              <linearGradient id="exp-sheet-right" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="1365" y2="0">
-                <stop offset="0.0000" stop-color="#fff" stop-opacity="0.000"></stop>
-                <stop offset="0.0848" stop-color="#fff" stop-opacity="0.028"></stop>
-                <stop offset="0.1695" stop-color="#fff" stop-opacity="0.104"></stop>
-                <stop offset="0.2543" stop-color="#fff" stop-opacity="0.216"></stop>
-                <stop offset="0.3391" stop-color="#fff" stop-opacity="0.352"></stop>
-                <stop offset="0.4239" stop-color="#fff" stop-opacity="0.500"></stop>
-                <stop offset="0.5086" stop-color="#fff" stop-opacity="0.648"></stop>
-                <stop offset="0.5934" stop-color="#fff" stop-opacity="0.784"></stop>
-                <stop offset="0.6782" stop-color="#fff" stop-opacity="0.896"></stop>
-                <stop offset="0.7630" stop-color="#fff" stop-opacity="0.972"></stop>
-                <stop offset="0.8477" stop-color="#fff"></stop>
-                <stop offset="0.9383" stop-color="#fff"></stop>
-                <stop offset="1.0000" stop-color="#fff" stop-opacity="0.000"></stop>
+              <!-- Native SVG mask: no blue in the left reading area; faint right wash. -->
+              <linearGradient id="exp-sheet-right" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1468" y2="0">
+                <stop offset="0" stop-color="#fff" stop-opacity="0"></stop>
+                <stop offset="0.52" stop-color="#fff" stop-opacity="0"></stop>
+                <stop offset="0.78" stop-color="#fff" stop-opacity="0.35"></stop>
+                <stop offset="0.98" stop-color="#fff" stop-opacity="0"></stop>
+                <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
               </linearGradient>
               <mask id="exp-sheet-right-mask" maskUnits="userSpaceOnUse" mask-type="luminance" x="0" y="0" width="1468" height="1555">
                 <rect x="0" y="0" width="1468" height="1555" fill="url(#exp-sheet-right)"></rect>
