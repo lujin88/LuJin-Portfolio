@@ -1,15 +1,15 @@
 'use client'
 
-import posthog from 'posthog-js'
 import { useEffect, useState } from 'react'
 import { useTranslation } from '@i18n'
 import { recordingOptedOut, setRecordingOptedOut } from '../recording-opt-out'
 
 /**
- * "Don't record my visits". Opting out stops PostHog on this page and keeps it
- * from starting on any later page (see app/recording-opt-out.ts). Turning it back
- * on reloads so PostHog initialises again. Hidden when the site runs without
- * PostHog (no NEXT_PUBLIC_POSTHOG_KEY).
+ * "Don't record my visits". Both directions only flip our own flag and reload, so
+ * instrumentation-client.ts decides on the next load whether PostHog starts at all
+ * (see app/recording-opt-out.ts). Deliberately no posthog.opt_out_capturing(): it
+ * stores a second flag of its own that would keep PostHog off after "turn back on"
+ * (QA #2507). Hidden when the site runs without PostHog (no NEXT_PUBLIC_POSTHOG_KEY).
  */
 export function RecordingToggle() {
   const { t } = useTranslation()
@@ -47,8 +47,7 @@ export function RecordingToggle() {
         className="pill-btn"
         onClick={() => {
           setRecordingOptedOut(true)
-          if (posthog.__loaded) posthog.opt_out_capturing()
-          setState('off')
+          window.location.reload()
         }}
       >
         <span>{t('privacy.optOut')}</span>
