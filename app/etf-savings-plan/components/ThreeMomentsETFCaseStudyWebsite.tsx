@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import './Moment.css';
 import { OpeningPhones } from './OpeningPhones';
 import { LivePhone } from './LivePhone';
-import { FluidBackground } from './FluidBackground';
 const moments = [{
   id: 'before-starting',
   kind: 'setup',
@@ -62,7 +61,6 @@ export const ThreeMomentsETFCaseStudyWebsite = () => {
     };
   }, []);
   return <div className="case-site" id="top">
-<FluidBackground />
 <main><section className="case-opening" aria-labelledby="case-title">
     <OpeningPhones />
   </section>

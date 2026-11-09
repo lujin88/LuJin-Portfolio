@@ -13,7 +13,7 @@
 :where(.etf-case) .case-opening .case-intro {font-size:clamp(17px,1.55vw,22px);color:#546074;line-height:1.48;max-width:34ch;margin:0}
 :where(.etf-case) .demo-launch,:where(.etf-case) .story-try,:where(.etf-case) .demo-bar button {cursor:pointer;font:inherit}
 :where(.etf-case) .demo-launch {display:inline-flex;gap:22px;align-items:center;padding:12px 19px;margin-top:24px;border:0;border-radius:24px;background:#20283a;color:white;font-weight:600}
-:where(.etf-case) .opening-pair {display:flex;justify-content:center;align-items:center;gap:clamp(12px,1.8vw,28px);perspective:1100px;min-width:0}
+:where(.etf-case) .opening-pair {display:flex;justify-content:center;align-items:center;gap:clamp(12px,1.8vw,28px);perspective:1100px;min-width:0;position:relative;isolation:isolate;overflow:visible}
 :where(.etf-case) .opening-handset,:where(.etf-case) .story-handset {
   appearance:none;cursor:pointer;position:relative;display:block;line-height:0;
   padding:clamp(3px,.4vw,6px);border-radius:12% / 5.55%;border:1px solid #b8bec7;
@@ -81,3 +81,32 @@
 :where(.etf-case) .live-phone-viewport .ff,:where(.etf-case) .live-phone-viewport .ff-phone {min-height:844px}
 :where(.etf-case) .story-live-slot {width:100%}
 :where(.etf-case) .story-live-slot[hidden] {display:none}
+
+/* Lu #3904 C: coral + lavender only behind the phones. Static. Selectors from visual #3806. */
+:where(.etf-case) .opening-pair::before,
+:where(.etf-case) .opening-pair::after {
+  content:"";position:absolute;z-index:-1;pointer-events:none;
+  width:68%;height:68%;left:0;top:27%;
+  border-radius:56% 44% 62% 38% / 42% 58% 42% 58%;
+  background:#f2a080;transform:rotate(-16deg);
+}
+:where(.etf-case) .opening-pair::after {
+  background:#b8a8eb;left:30%;top:4%;width:64%;height:76%;transform:rotate(19deg);
+}
+:where(.etf-case) .story-handset {isolation:isolate}
+:where(.etf-case) .story-handset::before,
+:where(.etf-case) .story-handset::after {
+  content:"";position:absolute;z-index:-1;pointer-events:none;
+  width:115%;height:62%;left:-16%;top:24%;
+  border-radius:60% 40% 53% 47%;
+  background:#f2a080;transform:rotate(-18deg);
+}
+:where(.etf-case) .story-handset::after {
+  background:#b8a8eb;width:98%;height:56%;left:20%;top:11%;transform:rotate(16deg);
+}
+@media(max-width:850px){
+  :where(.etf-case) .opening-pair::before {width:63%;left:2%}
+  :where(.etf-case) .opening-pair::after {width:61%;left:33%}
+  :where(.etf-case) .story-handset::before {width:105%;left:-7%}
+  :where(.etf-case) .story-handset::after {width:95%;left:10%}
+}
