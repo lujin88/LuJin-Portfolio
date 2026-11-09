@@ -615,9 +615,8 @@ export function WeatherAquariumPage() {
             <div className="hero-grid">
               <div className="hero-copy reveal">
                 <h1>
-                  Weather
-                  <br />
-                  Aquarium
+                  <span className="wa-title-line">Weather</span>{' '}
+                  <span className="wa-title-line">Aquarium</span>
                 </h1>
                 <p>
                   A 2.5D weather world for iPad — helping children understand the day and discover
