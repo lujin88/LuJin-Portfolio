@@ -1,4 +1,4 @@
-:where(.etf-case) .case-site {background:#f8f9fb;color:#0b3558;font-family:"Avenir Next",Inter,Arial,sans-serif;display:flow-root}
+:where(.etf-case) .case-site {background:#f8f9fb;color:#0b3558;font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif;display:flow-root}
 :where(.etf-case) .case-site * {box-sizing:border-box}
 :where(.etf-case) .case-site :where(h1,h2,h3,p){margin:0}
 :where(.etf-case) .case-site a {color:inherit;text-underline-offset:4px}
