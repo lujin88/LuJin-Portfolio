@@ -277,6 +277,9 @@ html:has(.pp-landing) #site-content {
   position: relative;
   z-index: 8;
   min-width: 0;
+  /* The phone is pulled left into this column (.hero-phone left); keep the copy clear of it.
+     The old display-size nowrap H1 used to push the column wide enough (visualqa #2391). */
+  padding-inline-end: calc(clamp(4rem, 8vw, 8rem) + 35px);
 }
 .pp-landing .hero-brand {
   margin: 0 0 0.9rem;
@@ -411,6 +414,7 @@ html:has(.pp-landing) #site-content {
   }
   .pp-landing .hero-copy {
     max-width: 28rem;
+    padding-inline-end: 0;
   }
   .pp-landing .hero h1 {
     font-size: var(--font-size-heading);
