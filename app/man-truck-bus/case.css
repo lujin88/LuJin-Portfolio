@@ -130,8 +130,9 @@
 .man-case .mc-rule-proof small{display:block;margin-bottom:5px}
 .man-case .mc-rule-proof img{width:100%;height:auto;display:block;border-radius:4px}
 .man-case .mc-proof-pair{display:grid;align-items:center;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.man-case .mc-proof-pair img,.man-case .mc-change dd>img{display:block;width:100%;height:auto;border-radius:6px}
+.man-case .mc-proof-pair img,.man-case .mc-change dd>img,.man-case .mc-change dd>a.mc-open>img{display:block;width:100%;height:auto;border-radius:6px}
 .man-case .mc-change dd>img{max-width:285px;margin-top:10px}
+.man-case .mc-change dd>a.mc-open{max-width:285px;margin-top:10px}
 @media(max-width:680px){.man-case .journey-copy h3{font-size:28px;max-width:22ch}.man-case .mc-rule-proof{width:180px;padding:8px 10px}.man-case .mc-proof-pair{grid-template-columns:1fr}.man-case .mc-proof-pair img{max-width:240px}}
 
 .man-case .mc-cover-art picture,.man-case .mc-title-line{display:block}
@@ -217,3 +218,20 @@
 /* Page gutter (Lu 2026-11-06): body text starts on the footer's left edge.
    --content-inset is the site gutter from shell-tokens.css; its 100% resolves against .man-case/.mc-cover/.mc-evidence, which are full-bleed. */
 .man-case .mc-width,.man-case .mc-cover-inner{width:auto;margin-inline:var(--content-inset)}
+
+/* Every screenshot that opens its full-size image says so, on phones too (no hover there). */
+.man-case a.mc-open{position:relative;color:inherit}
+/* Only the three newly linked images need block links; the existing links keep their own display (grid on phones for .rec-view). */
+.man-case .mc-proof-pair>a.mc-open,.man-case .mc-change dd>a.mc-open{display:block}
+.man-case .mc-open-hint{position:absolute;right:8px;bottom:8px;z-index:2;display:inline-flex;align-items:center;gap:4px;padding:5px 9px;border-radius:999px;background:#fffdf8eb;color:#1f1a15;font-size:12px;font-weight:550;line-height:1;box-shadow:0 2px 8px #33221118;pointer-events:none;white-space:nowrap}
+.man-case .mc-open-hint i{font-style:normal;color:var(--rose)}
+.man-case a.mc-open:hover .mc-open-hint,.man-case a.mc-open:focus-visible .mc-open-hint{text-decoration:underline;text-underline-offset:3px}
+/* Cards that already have a text row: the hint sits in the flow under it instead of over the picture. */
+.man-case .mc-stat-link .mc-open-hint{position:static;margin-top:8px;padding:0;background:none;box-shadow:none;color:inherit;font-size:13px}
+/* The three record thumbnails are small on phones: arrow only, so the hint never widens the row. */
+.man-case .rec-screen{position:relative}.man-case .rec-view .mc-open-hint{right:6px;bottom:auto;top:6px;padding:4px 7px}.man-case .rec-view .mc-open-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.man-case .mc-proof-pair .mc-open-hint{right:4px;bottom:4px;padding:4px 7px;font-size:11px}
+/* The evidence form is ~150px wide on phones: arrow only there, the words would be wider than the picture. */
+@media(max-width:680px){.man-case .mc-verifier .mc-open-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
+/* Screen-reader-only text inside the hints (new-tab note, which image a text card opens). */
+.man-case .mc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
