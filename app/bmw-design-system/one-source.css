@@ -129,21 +129,21 @@
 
 /* DS type (Lu 2026-11-05: Poppins, "以 Design System 为准"): H1 = display editorial, chapter H2 = DS section title. */
 .bmw-driver h1,.showcase .chapter-title,.showcase.desk .chapter-title,.desk .chapter-title,.system-gap h2{font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif;font-weight:var(--font-weight-semibold,600)}
-.bmw-driver h1{font-size:var(--font-size-display-editorial);line-height:var(--leading-editorial);letter-spacing:var(--tracking-editorial)}
+/* Case-study opening title = home page title size (Lu 2026-11-09, #1847; visual design-spec-v2): 36px, 30.4px at <=900px. */
+.bmw-driver h1{font-size:var(--font-size-heading-lg);line-height:var(--leading-heading);letter-spacing:var(--tracking-display)}
+@media(max-width:900px){.bmw-driver h1{font-size:var(--font-size-heading)}}
 .showcase .chapter-title,.showcase.desk .chapter-title,.desk .chapter-title,.system-gap h2{font-size:clamp(var(--font-size-heading),3vw,var(--font-size-heading-lg));line-height:var(--leading-heading);letter-spacing:-.025em}
 
 /* Page gutter (Lu 2026-11-06): body text starts on the footer's left edge (site --content-inset).
-   Inside @scope so it outranks the scoped 4vw/5vw paddings above. At <=900px the hero keeps padding 0 and pads header/.composition by 24px, which already equals the inset. */
+   Inside @scope so it outranks the scoped 4vw/5vw paddings above. The hero (.bmw-driver) sets its own inset padding below. */
 .showcase,.system-gap,.closing-line{padding-inline:var(--content-inset)}
 /* At the 24px edge the kicker sat under the fixed 64px site header logo, so the hero starts below the header (as on MAN). */
-/* Hero C, phone option A (visual OUTBOX/BMW_C_PHONE_AB_20261108; PM 2026-11-08, pending Lu's A/B).
+/* Hero C, phone option A (visual OUTBOX/BMW_C_PHONE_AB_20261108; Lu picked A, #1845).
    Normal flow, so longer German copy pushes the phone down instead of running into it. */
 .bmw-driver{box-sizing:border-box;position:relative;isolation:isolate;overflow:hidden;min-height:1000px;padding:calc(64px + 40px) var(--content-inset) 16px;background:#0e2131;color:#fff;font-family:Arial,Helvetica,sans-serif}
 .bmw-driver .backdrop{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center}
 .bmw-driver::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(5,18,31,.87),rgba(5,18,31,.52) 37%,transparent 70%),linear-gradient(0deg,#071827 0%,rgba(7,24,39,.86) 11%,transparent 38%),linear-gradient(180deg,rgba(5,18,31,.3),transparent 40%)}
 .bmw-driver header{max-width:550px}
-/* Title at visual's size until Lu settles case-study title sizes (PM #1696); family stays DS Poppins. */
-.bmw-driver h1{font-size:56px}
 .bmw-driver header>p:first-child{margin:0 0 16px;font-size:16px;line-height:1.5;color:#c4d3e0}
 .bmw-driver header .hero-story{max-width:none;margin:20px 0 12px;font-size:18px;line-height:1.5;color:#edf2f6}
 .bmw-driver header .hero-bridge{max-width:none;font-size:16px;line-height:1.5;color:#c4d3e0}
@@ -158,10 +158,10 @@
 @media(min-width:601px) and (max-width:1100px){
 .bmw-driver .backdrop{object-position:right center}
 .bmw-driver header{max-width:52%}
-.bmw-driver h1{font-size:48px}
 .bmw-driver header .hero-story{font-size:16px}
 .bmw-driver .screen{width:200px}
-.bmw-driver dl{left:40%;gap:24px}
+/* Keep at least 32px between the 200px phone (+5px borders) and the timeline at 601-700px (QA #1924). */
+.bmw-driver dl{left:max(40%,calc(var(--content-inset) + 210px + 32px));gap:24px}
 .bmw-driver dd{font-size:18px}
 }
 /* Phones: copy, then the car scene, then the phone beside the 2020/2026 timeline, then the store badges. */
@@ -169,7 +169,6 @@
 .bmw-driver{min-height:0;padding:calc(64px + 24px) 24px 32px;display:grid;grid-template-columns:min(180px,46%) minmax(0,1fr);grid-template-areas:"head head" "scene scene" "phone dl" "nav nav";column-gap:24px;align-items:start}
 .bmw-driver::before{display:none}
 .bmw-driver header{grid-area:head;max-width:none}
-.bmw-driver h1{font-size:36px}
 .bmw-driver header>p:first-child{margin-bottom:12px;font-size:14px}
 .bmw-driver header .hero-story{margin:16px 0 10px;font-size:16px;line-height:1.45}
 .bmw-driver header .hero-bridge{font-size:14px}
