@@ -81,3 +81,15 @@
 :where(.etf-case) .live-phone-viewport .ff,:where(.etf-case) .live-phone-viewport .ff-phone {min-height:844px}
 :where(.etf-case) .story-live-slot {width:100%}
 :where(.etf-case) .story-live-slot[hidden] {display:none}
+/* Phones (Lu 2026-11-09 #2577, visual MOBILE_SPACING_1109/etf-proposal.css): the pinned
+   100svh stage left ~274px between the phones and "Before starting". Normal flow
+   instead, phones shown in their end pose. The scroll script writes the spread
+   variables inline on .opening-sequence; redefining them on .opening-pin overrides
+   that, so the phones cannot snap from tilted to flat. */
+@media(max-width:600px){
+  .etf-case .opening-sequence {height:auto}
+  .etf-case .opening-pin {
+    position:relative;height:auto;min-height:0;padding-top:112px;justify-content:flex-start;gap:24px;
+    --spread-progress:0;--tilt:0deg;--turn:0deg;--pitch:0deg;
+  }
+}

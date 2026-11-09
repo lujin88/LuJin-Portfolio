@@ -45,3 +45,8 @@
 }
 
 :where(.etf-case) .case-site{overflow-x:clip}
+/* Phones: 48px from the opening phones to the first chapter; eyebrow 8px, heading to text 16px (visual RULES.md). */
+@media(max-width:600px){
+  .etf-case .story {margin-top:48px}
+  .etf-case .story-copy>article>h2 {margin-top:8px;margin-bottom:16px}
+}
