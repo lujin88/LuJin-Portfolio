@@ -7,7 +7,7 @@ import './closing.css'
 import { BMWOneSource } from './BMWOneSource'
 
 const DESCRIPTION =
-  'Lu Jin on leading six designers on the BMW app, designing remote controls in light and dark, and revisiting vehicle capability reviews with AI.'
+  'Lu Jin on leading a six-person design team on the BMW app, designing remote controls in light and dark, and revisiting vehicle capability reviews with AI.'
 
 // og/twitter title = the rendered <title> (root template 'Lu Jin — %s').
 // Set here, not in layout.tsx: the layout also covers /bmw-design-system/ideas/*, which must not share this canonical.
