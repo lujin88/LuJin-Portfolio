@@ -54,7 +54,7 @@ export function JourneySection() {
         className="pointer-events-none absolute -right-16 top-4 h-24 w-24 rounded-full bg-mint md:-right-28 md:top-[28%] md:h-[300px] md:w-[300px]"
       />
 
-      <ContentContainer className="relative py-8 md:py-32">
+      <ContentContainer className="relative py-24 max-sm:pb-0 md:py-32">
         <OnceReveal>
         <SectionLabel
           number="04"

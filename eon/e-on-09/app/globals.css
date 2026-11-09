@@ -305,6 +305,11 @@
 .case-study-section {
   padding-block: 4rem;
 }
+/* Phones: 05 -> 06 eyebrow. 05's illustration box keeps its own space; the section
+   edges drop to 0 (05) and 24px (06) (visual MOBILE_SPACING_1109/RULES.md). */
+@media (max-width: 639.98px) {
+  .case-study-section.eon-s06 { padding-top: 1.5rem; }
+}
 
 /* Phones read E.ON as one continuous page (Lu 2026-11-08): 32px per section edge. */
 @media (max-width: 767px) {

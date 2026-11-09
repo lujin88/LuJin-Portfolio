@@ -58,8 +58,7 @@ function Editorial() {
       </p>
 
       <p className="max-w-[46ch] text-pretty text-[16px] leading-[1.6] text-[var(--ca-muted)]">
-        I led concept testing with advisors — including the stakeholder who&apos;d pushed for the dashboard — to see how
-        the model held up against real workflows.
+        I led concept testing with advisors to see how the model held up against real workflows.
       </p>
 
       <p className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-2 text-[16px] font-medium text-[var(--ca-accent-soft)] sm:text-[18px]">
@@ -114,8 +113,7 @@ function Outcomes() {
       </div>
 
       <p className="max-w-[720px] text-pretty px-1 pt-1 text-[14px] leading-relaxed text-[var(--ca-dim)]">
-        Feedback was consistent across EMEA and CH, where the concept was primarily scoped. APAC leaned toward speed
-        over the signal-and-context flow — a nuance noted for future markets, outside this project&apos;s core focus.
+        Feedback informed the next iteration.
       </p>
     </div>
   )

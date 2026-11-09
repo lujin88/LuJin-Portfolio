@@ -116,7 +116,7 @@ export function JourneySteps() {
     // scaled Calculate halo, which reaches ~10px above the row, from being cut flat.
     <div ref={ref} data-journey-sequence  data-ready={ready}
       data-started={started || reduced} data-reduced={reduced}
-      className={`${styles.sequence} relative z-[1] mt-3 overflow-x-auto pt-4 pb-4 md:mt-5 md:pb-16`}>
+      className={`${styles.sequence} relative z-[1] mt-3 overflow-x-auto pt-4 pb-16 max-sm:pb-6 md:mt-5`}>
       <div className={`${styles.track} flex w-max items-start justify-start gap-1`}>
         {icons.map((Icon, i) => {
           const active = i === 2

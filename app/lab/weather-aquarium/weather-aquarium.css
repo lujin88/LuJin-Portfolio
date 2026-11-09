@@ -680,3 +680,11 @@ html:has(.wa-page) {
   .wa-closing .contact-reveal { opacity: 1 !important; transform: none !important; transition: none; }
   .wa-closing .pill-btn, .wa-closing .pill-btn:hover { transition: none; transform: none; }
 }
+
+/* Phones: last character label -> contact heading 64px (visual MOBILE_SPACING_1109/RULES.md).
+   The pose track keeps its own 33px under the labels (scroll room); the section
+   drops its 96px and the contact top makes up the rest. */
+@media (max-width: 640px) {
+  .wa-page .motion-section { padding-bottom: 0; }
+  .wa-closing.site-closing.site-closing .contact-section { padding-top: 31px; }
+}

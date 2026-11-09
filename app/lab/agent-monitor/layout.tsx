@@ -1,7 +1,16 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
+import { Inter } from 'next/font/google'
 
 import { HtmlChrome } from '../../html-chrome'
 import { socialMetadata } from '../../seo'
+
+// Self-hosted Inter for public/agent-monitor.html (was an @import from Google Fonts; legal #2367).
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-inter',
+  display: 'swap',
+})
 
 const TITLE = 'Lu — Human × AI Practice'
 const DESCRIPTION = 'A human-led design practice: Agent Monitor, AI Team, and Design OS.'
@@ -10,6 +19,13 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/lab/agent-monitor' }),
+  // Internal tool page with no menu entry: reachable by link, not indexed (PM 2026-11-08).
+  robots: { index: false, follow: false },
+}
+
+export const viewport: Viewport = {
+  colorScheme: 'light',
+  themeColor: '#fcfaf7',
 }
 
 export default function AgentMonitorLayout({
@@ -24,13 +40,15 @@ export default function AgentMonitorLayout({
       colorScheme="light"
       backgroundColor="#fcfaf7"
     >
-      {children}
+      <div className={inter.variable} style={{ display: 'contents' }}>
+        {children}
+      </div>
       <style
         dangerouslySetInnerHTML={{
           __html: `
-[data-site-header] {
+[data-site-header][data-header-tone='paper'] {
   --header-scrim: #fcfaf7;
-  --header-glass: rgba(252, 250, 247, 0.92);
+  --header-glass: #fcfaf7;
   --header-foreground: #141827;
   --header-line: rgba(20, 24, 39, 0.14);
   --header-menu: #ffffff;

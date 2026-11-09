@@ -1,0 +1,18 @@
+/* Phones: 48px from the Let's talk button to the copyright line (Lu 2026-11-09 #2577,
+   visual MOBILE_SPACING_1109/RULES.md). It was ~180px: contact bottom padding +
+   footer top padding + footer row padding. The divider sits in the middle of the gap.
+   Every page restyles SiteClosing with its own wrapper class (.site-closing-case,
+   .dd-closing, .am-site-closing, .ww-closing, .wa-closing, .pp-site-closing), so the
+   doubled class outranks those two-class rules whatever order the CSS loads in. */
+@media (max-width: 640px) {
+  /* Last section -> contact heading: 64px (new chapter). Pages zero their own trailing
+     space; the heading's browser-default h2 margin is dropped so 64 is the real gap. */
+  .site-closing.site-closing .contact-section { padding-top: 64px; padding-bottom: 16px; }
+  .site-closing.site-closing .exp-contact__heading { margin-top: 0; }
+  .site-closing.site-closing .exp-footer {
+    --footer-rule-inset: 16px;
+    padding-top: 16px;
+  }
+  .site-closing.site-closing .exp-footer::before { top: 16px; }
+  .site-closing.site-closing .site-footer__bottom { padding-top: 16px; }
+}

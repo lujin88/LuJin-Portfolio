@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Lu — Product & Service Designer</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
 
 <link rel="stylesheet" href="/styles/shell-tokens.css" />
 <link rel="stylesheet" href="/styles/home-motion.css" />
@@ -21,7 +18,7 @@
   }
   body {
     background: var(--color-bg-page);
-    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     min-width: 360px;
   }
@@ -242,7 +239,7 @@
 
   /* LAB — oversized editorial index numeral (Poppins italic; Display is Poppins site-wide) */
   .lab-index {
-    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-poppins-italic), var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
     font-style: italic;
     font-size: clamp(2.5rem, 5vw, 3.25rem);
     line-height: 1;
@@ -504,6 +501,17 @@
     backdrop-filter: blur(16px);
   }
   .ask-chat[hidden] { display: none; }
+  /* Below 1024px the button sits too close to the top for an upward panel:
+     a long answer grew it past the page top, taking the title and close button with it. */
+  @media (max-width: 1023px) {
+    .ask-chat {
+      top: calc(100% + 0.75rem);
+      bottom: auto;
+      max-height: min(24rem, 60svh);
+    }
+    /* Open downward, the panel reaches the client logo bar (z-index 20); lift the copy above it while open. */
+    .hero-copy-wrap:has(.ask-chat:not([hidden])) { z-index: 25; }
+  }
   .ask-chat__bar {
     display: flex;
     align-items: center;
@@ -562,6 +570,13 @@
     padding: 0.65rem 0.9rem;
   }
   .ask-chat__form input::placeholder { color: rgba(255, 255, 255, 0.45); }
+  .ask-chat__notice {
+    margin: 0;
+    padding: 0 0.9rem 0.7rem;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.55);
+  }
   .ask-lu:focus-visible,
   .ask-chat__close:focus-visible,
   .ask-chat__send:focus-visible,
@@ -629,6 +644,51 @@
   }
   @media (max-width: 900px) {
     .hero-copy h1 { max-width: none; }
+  }
+  /* Phones (Lu 2026-11-09 #2577, visual MOBILE_SPACING_1109/RULES.md): normal flow
+     copy -> Ask Lu -> portrait -> logos. The 100dvh hero with the portrait pinned to
+     its bottom left 146-249px of empty dark between Ask Lu and the portrait.
+     #hero raises specificity over the hero's Tailwind height utilities and the
+     reduced-motion rule. Touch phones only show the still, so nothing scrubs here. */
+  @media (max-width: 600px) {
+    #hero .hero-pin-section {
+      flex-direction: column;
+      align-items: stretch;
+      height: auto;
+      min-height: 0;
+      padding-top: 96px;
+      padding-bottom: 0;
+    }
+    #hero .hero-copy-wrap { order: 0; }
+    #hero .hero-copy h1 { margin-bottom: 0; }
+    #hero .hero-lede { margin-top: 16px; }
+    #hero .ask-lu-wrap { margin-top: 24px; }
+    #hero .hero-media {
+      position: relative;
+      inset: auto;
+      order: 1;
+      flex: none;
+      width: 100%;
+      height: 300px;
+      margin-top: 24px;
+    }
+    #hero .hero-media__video {
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-position: 50% 0%;
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 15%, #000 90%, transparent);
+      mask-image: linear-gradient(to bottom, transparent, #000 15%, #000 90%, transparent);
+    }
+    #hero .hero-scrim { display: none; }
+    #hero .logo-bar {
+      position: relative;
+      inset: auto;
+      order: 2;
+      padding-block: 24px;
+      padding-bottom: max(24px, env(safe-area-inset-bottom));
+    }
+    #hero .logo-bar::before { content: none; }
   }
   @media (min-width: 768px) {
     .hero-pin-section { --logo-overlay-space: 8.5rem; }
@@ -715,7 +775,7 @@
   }
   .ai-decides-section .ad-cta {
     margin-top: 37px;
-    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
     text-decoration: none;
   }
   .ai-decides-section .ad-art-stage {
@@ -836,6 +896,15 @@
   .ai-decides-section .ad-eyebrow { text-transform: uppercase; }
   @media (max-width: 900px) {
     .ai-decides-section .ad-layout { padding-top: calc(5rem + 1.5rem); }
+  }
+  /* Phones: Gratula card button -> HOW I WORK eyebrow ~214-230px -> 64px (new chapter,
+     visual MOBILE_SPACING_1109/RULES.md), 32px each side of the background change.
+     The 100dvh minimum also centred the copy, adding space that grew with screen height. */
+  @media (max-width: 600px) {
+    section#home-playground { padding-bottom: 32px; }
+    #how-i-work,
+    #how-i-work .ad-layout { min-height: 0; }
+    #how-i-work .ad-layout { padding-top: 32px; }
   }
 
   .case-block {
@@ -1131,11 +1200,11 @@
        clip seam once it is visible (transition/contact only). */
     -webkit-mask-image:
       linear-gradient(to bottom, #000 58%, transparent 100%),
-      linear-gradient(to right, #000 62%, transparent 98%);
+      linear-gradient(to right, transparent 52%, rgba(0,0,0,.35) 78%, transparent 98%);
     -webkit-mask-composite: source-in;
     mask-image:
       linear-gradient(to bottom, #000 58%, transparent 100%),
-      linear-gradient(to right, #000 62%, transparent 98%);
+      linear-gradient(to right, transparent 52%, rgba(0,0,0,.35) 78%, transparent 98%);
     mask-composite: intersect;
   }
 
@@ -1156,6 +1225,10 @@
     left: 0;
     width: 100vw;
     height: 100vh;
+    /* 100vw starts after the body margin and would stick out on the right.
+       Pull it back to the viewport without widening the page. */
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
     margin-bottom: -100vh;
     isolation: isolate;
     pointer-events: none;
@@ -1416,8 +1489,8 @@
   }
   /* Desktop: the title's first line sits level with the UBS date, in the
      blank left of the timeline. Its right edge stays 48px clear of the
-     vertical line. 390px and below keep the stacked list. */
-  @media (min-width: 641px) {
+     vertical line. 767px and below keep the stacked list. */
+  @media (min-width: 768px) {
     .exp-content[data-index="0"] .exp-lead {
       position: absolute;
       z-index: 5;
@@ -1446,7 +1519,7 @@
   }
   .exp-content__eyebrow {
     display: block;
-    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-poppins-italic), var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
     font-style: italic;
     font-size: var(--font-size-caption);
     color: var(--color-text-3);
@@ -1605,7 +1678,7 @@
   }
 
   @media (max-width: 1024px) {
-    .exp-content { width: min(320px, 44vw); }
+    .exp-content { box-sizing: border-box; width: min(320px, 44vw); }
     .exp-dot[data-index="1"] { left: 58%; }
     .exp-content[data-index="1"] { left: 58%; }
   }
@@ -1636,9 +1709,10 @@
     #omni-model .pin-sticky h2 { margin-bottom: 2rem; }
   }
 
-  /* narrow screens + reduced motion: the curved-arc pin doesn't read —
-     fall back to a plain stacked list */
-  @media (max-width: 640px), (prefers-reduced-motion: reduce) {
+  /* ≤767 and reduced motion: the curved-arc pin doesn't read —
+     fall back to a plain stacked list. 641–767 used to keep the arc, and
+     the 280px cards ran past the right edge. */
+  @media (max-width: 767px), (prefers-reduced-motion: reduce) {
     .exp-track { height: auto; }
     .exp-sticky { position: static; height: auto; display: block; overflow: visible; padding: 6rem 0 3rem; }
     .exp-intro {
@@ -1653,6 +1727,7 @@
     .exp-header { position: static; transform: none; padding: 0 1.25rem 1.75rem; }
     .exp-coord {
       position: relative; left: auto; transform: none !important;
+      box-sizing: border-box;
       width: 100%; max-width: 52rem; height: auto;
       margin: 0; padding: 0 1.25rem;
     }
@@ -1665,6 +1740,7 @@
     .exp-content[data-index="2"],
     .exp-content[data-index="3"] {
       position: relative; top: auto; bottom: auto; left: auto; right: auto;
+      box-sizing: border-box;
       width: 100%; max-width: none; opacity: 1 !important;
       text-align: left; margin: 0 0 2.25rem; padding: 0 0 0 1.5rem;
       border-left: 1px solid rgba(var(--exp-blue), 0.4);
@@ -1688,10 +1764,17 @@
      sticky padding + Contact's then clamp(6rem, 14vh, 9rem) top padding) left ~200px
      between the Designaffairs fade tail and "Have an opportunity". Lu
      2026-11-05: tail 24px (was 72), tail end to heading 48px. */
-  @media (max-width: 640px), (prefers-reduced-motion: reduce) {
+  @media (max-width: 767px), (prefers-reduced-motion: reduce) {
     .exp-content[data-index="3"] { margin-bottom: 0; }
     .exp-sticky { padding-bottom: 0; }
     .contact-section { padding-top: 48px; }
+  }
+  /* Phones: 48px from Let's talk to the copyright line, same as SiteClosing
+     (app/components/site-closing-mobile.css). Was ~180px. */
+  @media (max-width: 640px) {
+    .contact-section { padding-bottom: 16px; }
+    .site-footer.exp-footer { --footer-rule-inset: 16px; padding-top: 16px; }
+    .site-footer__bottom { padding-top: 16px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1756,6 +1839,10 @@
     line-height: 1.4;
     color: rgba(255, 255, 255, 0.48);
   }
+  /* The logo row is wider than the screen on phones; clip it sideways so it no longer
+     widens the document (+18px at 601-640, QA #2899), which iOS Safari lets you drag.
+     clip, not hidden: the vertical fade above the bar must stay visible. */
+  .logo-bar { overflow-x: clip; }
   .logo-bar__scroller {
     overflow-x: auto;
     overflow-y: hidden;
@@ -1817,7 +1904,8 @@
   .logo-bar__item img.logo-bar__mark--telekom { height: 18px; }
   .logo-bar__item img.logo-bar__mark--bosch { height: 18px; }
   .logo-bar__item img.logo-bar__mark--ubs { height: 20px; }
-  .logo-bar__item img.logo-bar__mark--isc { height: 20px; }
+  /* ISC-EJPD as text: its logo carries the Swiss federal coat of arms (legal #2052). */
+  .logo-bar__wordmark { font-size: 13px; font-weight: 600; line-height: 20px; letter-spacing: 0.04em; white-space: nowrap; color: inherit; }
   .logo-bar__item img.logo-bar__mark--man { height: 22px; }
   .logo-bar__item img.logo-bar__mark--hyundai { height: 10px; }
   @media (min-width: 768px) {
@@ -1854,7 +1942,7 @@
     .hero-media__video { transition: none; transform: none; }
   }
   /* UBS: 1s turn (same as the other markers) and top-to-bottom stroke. */
-  @media (min-width: 641px) and (prefers-reduced-motion: no-preference) {
+  @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
     .exp-content[data-index="0"] .exp-content__plus {
       transition: transform 1s ease-in-out, opacity 1s ease-in-out;
     }
@@ -1879,7 +1967,7 @@
      active; the dot appears once the stroke reaches it. Leaving keeps the
      full bar and fades it, as before. The relay variant overrides the
      scroll-driven clip on AdNovum. */
-  @media (min-width: 641px) and (prefers-reduced-motion: no-preference) {
+  @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
     .exp-content[data-index="1"] .exp-content__bar,
     .exp-content[data-index="2"] .exp-content__bar,
     .exp-content[data-index="3"] .exp-content__bar,
@@ -1937,7 +2025,7 @@
         <p class="hero-kicker" data-i18n="home.heroKicker">Product designer · Enterprise & regulated UX</p>
         <h1 data-i18n="home.heroTitle">Simplify complexity. Design with AI.</h1>
         <div class="hero-lede">
-          <p data-i18n-html="home.heroBody"><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, 10+ min saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 4× lead conversion rate.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW</a> app: led design team &amp; design system.</span></p>
+          <p data-i18n-html="home.heroBody"><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, 5–10 min saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW</a> app: led design team &amp; design system.</span></p>
         </div>
         <div class="ask-lu-wrap">
           <button id="ask-lu" type="button" class="ask-lu" aria-expanded="false" aria-controls="ask-lu-chat">
@@ -1960,6 +2048,7 @@
                 <i class="ri-arrow-up-line" aria-hidden="true"></i>
               </button>
             </form>
+            <p class="ask-chat__notice" data-i18n="home.askLuNotice">Please don't share personal or confidential information.</p>
           </div>
         </div>
       </div>
@@ -1998,7 +2087,7 @@
               <img class="logo-bar__mark--ubs" src="/assets/images/logo/ubs-logo.svg" alt="UBS" width="300" height="110" />
             </li>
             <li class="logo-bar__item">
-              <img class="logo-bar__mark--isc" src="/assets/images/logo/isc-ejpd-logo.svg" alt="ISC-EJPD" width="108" height="36" />
+              <span class="logo-bar__wordmark">ISC-EJPD</span>
             </li>
             <li class="logo-bar__item">
               <a href="/man-truck-bus" aria-label="MAN Fleet Uptime"><img class="logo-bar__mark--man" src="/assets/images/logo/man-logo.svg" alt="MAN" width="24" height="14" /></a>
@@ -2051,8 +2140,8 @@
           <p data-i18n="home.eon.storyBody">A complex investment, made easier to understand and trust.</p>
         </div>
         <div class="home-case-detail">
-          <h3 data-i18n="home.eon.metricTitle">300% increase in lead conversion</h3>
-          <p data-i18n="home.eon.metricBody">Within two months, from a 5.1% baseline in Germany. Later adapted for the UK.</p>
+          <h3 data-i18n="home.eon.metricTitle">300% more solar leads</h3>
+          <p data-i18n="home.eon.metricBody">Later adapted for the UK.</p>
         </div>
         <div class="home-case-links">
           <a href="/EON" class="pill-btn">
@@ -2153,26 +2242,13 @@
                 <stop offset="0.85" stop-color="rgb(28, 100, 248)" stop-opacity="0.007"></stop>
                 <stop offset="1" stop-color="rgb(36, 116, 255)" stop-opacity="0"></stop>
               </radialGradient>
-              <!-- Lu 2026-11-04: glow stays under the line (same clip), no tail running
-                   left toward Designaffairs, centre a little right toward the bend.
-                   Right clip of #exp-sheet-below is a vertical line at x=1365, so
-                   that side still fades to 0 before it. Mask: 0 left of x=150,
-                   smoothstep up to full at 1180 (a linear 900-1150 ramp read as a
-                   straight vertical edge), full to 1290, 0 again by 1365. -->
-              <linearGradient id="exp-sheet-right" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="1365" y2="0">
-                <stop offset="0.0000" stop-color="#fff" stop-opacity="0.000"></stop>
-                <stop offset="0.0848" stop-color="#fff" stop-opacity="0.028"></stop>
-                <stop offset="0.1695" stop-color="#fff" stop-opacity="0.104"></stop>
-                <stop offset="0.2543" stop-color="#fff" stop-opacity="0.216"></stop>
-                <stop offset="0.3391" stop-color="#fff" stop-opacity="0.352"></stop>
-                <stop offset="0.4239" stop-color="#fff" stop-opacity="0.500"></stop>
-                <stop offset="0.5086" stop-color="#fff" stop-opacity="0.648"></stop>
-                <stop offset="0.5934" stop-color="#fff" stop-opacity="0.784"></stop>
-                <stop offset="0.6782" stop-color="#fff" stop-opacity="0.896"></stop>
-                <stop offset="0.7630" stop-color="#fff" stop-opacity="0.972"></stop>
-                <stop offset="0.8477" stop-color="#fff"></stop>
-                <stop offset="0.9383" stop-color="#fff"></stop>
-                <stop offset="1.0000" stop-color="#fff" stop-opacity="0.000"></stop>
+              <!-- Native SVG mask: no blue in the left reading area; faint right wash. -->
+              <linearGradient id="exp-sheet-right" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1468" y2="0">
+                <stop offset="0" stop-color="#fff" stop-opacity="0"></stop>
+                <stop offset="0.52" stop-color="#fff" stop-opacity="0"></stop>
+                <stop offset="0.78" stop-color="#fff" stop-opacity="0.35"></stop>
+                <stop offset="0.98" stop-color="#fff" stop-opacity="0"></stop>
+                <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
               </linearGradient>
               <mask id="exp-sheet-right-mask" maskUnits="userSpaceOnUse" mask-type="luminance" x="0" y="0" width="1468" height="1555">
                 <rect x="0" y="0" width="1468" height="1555" fill="url(#exp-sheet-right)"></rect>
@@ -2276,7 +2352,7 @@
 <footer class="site-footer exp-footer relative pt-16 pb-8 px-6">
   <div class="site-footer__inner">
     <div class="site-footer__bottom">
-      <p class="site-footer__note text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span></p>
+      <p class="site-footer__note text-xs"><span data-i18n="common.footerRights">© 2026 Lu Jin. All rights reserved.</span> <span aria-hidden="true">·</span> <a href="/privacy" data-i18n="common.footerPrivacy" style="color:inherit;text-underline-offset:0.2em">Privacy</a></p>
     </div>
   </div>
 </footer>
@@ -2985,7 +3061,7 @@
 
     function expMeasureIntroOffset() {
       if (expIntro && expContents[0]) {
-        expStageDrop = window.matchMedia('(max-width: 640px)').matches ? 0 : 140;
+        expStageDrop = window.matchMedia('(max-width: 767px)').matches ? 0 : 140;
         expIntro.style.setProperty('--exp-stage-drop', expStageDrop + 'px');
         // Keep a consistent visual gap regardless of viewport height or copy
         // wrapping. offsetTop is measured in the untransformed coordinate box.
@@ -3404,7 +3480,7 @@
       var c3 = rel(turnX + dirx * depart, turnY + diry * depart);
       var c4 = rel(join.x, landY - Math.max(40, spanY * 0.42));
       var land = rel(join.x, landY);
-      var narrow = window.matchMedia('(max-width: 640px)').matches;
+      var narrow = window.matchMedia('(max-width: 767px)').matches;
       var d;
       if (narrow) {
         // No timeline bar on the stacked list. Stop on the illustration
@@ -3441,7 +3517,7 @@
       var vh = window.innerHeight || 1;
       var seamR = seam.getBoundingClientRect();
       // The stacked list has no stem to hand off to. Keep its old fade.
-      if (window.matchMedia('(max-width: 640px)').matches) {
+      if (window.matchMedia('(max-width: 767px)').matches) {
         return clamp(-seamR.bottom / 280, 0, 1);
       }
       if (!(landY > 0)) return clamp((vh * 0.12 - seamR.bottom) / (vh * 0.28), 0, 1);
@@ -4048,7 +4124,7 @@
   // clears it.
   (function initContactLag() {
     var reduce = matchMedia('(prefers-reduced-motion: reduce)');
-    var narrow = matchMedia('(max-width: 768px)');
+    var narrow = matchMedia('(max-width: 767px)');
     var section = document.getElementById('contact');
     var block = section && section.querySelector('.exp-contact');
     if (!block) return;
@@ -4058,10 +4134,11 @@
       var maxScroll = document.documentElement.scrollHeight - innerHeight;
       var restTop = top - Math.max(0, maxScroll - scrollY);
       var lift = Math.min(innerHeight, Math.max(0, top - restTop)) * (narrow.matches ? 0.35 : 0.50);
-      // Wide screens keep at least 72px between the heading and the
-      // Designaffairs last line. Phone stays on the 0.35 lag with no floor.
-      if (!narrow.matches) {
-        var floor = 72;
+      // Keep a floor between the heading and the Designaffairs last line:
+      // 72px on wide screens, 24px on narrow ones. Without a floor the phone
+      // lag lifted the heading onto the last experience entry.
+      {
+        var floor = narrow.matches ? 24 : 72;
         var line = document.querySelector('.exp-content[data-index="3"] .exp-content__desc');
         var heading = block.querySelector('.exp-contact__heading');
         if (line && heading) {
