@@ -209,7 +209,7 @@ export const ca = {
       ],
       glance: 'Auf einen Blick',
       glance1Value: '5–10 Min.',
-      glance1Label: 'pro Kunde bei der Informationsbeschaffung gespart',
+      glance1Label: 'pro Kunde bei der Informations\u00ADbeschaffung gespart',
       glance2Value: '500+',
       glance2Label: 'Client Advisors in Trials und Zielgruppe',
       glance3Value: '30 Min.',
@@ -254,7 +254,7 @@ export const ca = {
     shift: {
       eyebrow: 'Der Perspektivwechsel',
       headline1: 'Von der Informationssuche',
-      headline2: 'zur Entscheidungsunterstützung.',
+      headline2: 'zur Entscheidungshilfe.',
       bodyLead: 'Die Recherche hat die Frage verändert.',
       bodyInstead: 'Statt zu fragen',
       bodyOld: '„Wie helfen wir Beratern, schneller zu suchen?“',
@@ -280,7 +280,7 @@ export const ca = {
     },
     principles: {
       eyebrow: 'Design Principles',
-      headline: 'Das Modell in Designentscheidungen übersetzen.',
+      headline: 'Das Modell in Design\u00ADentscheidungen übersetzen.',
       intro:
         'Eine Bedingung: Es durfte sich nicht wie ein weiteres Tool anfühlen. Signal → Kontext → Handeln wurde das Modell — ein Prinzip für jeden Moment.',
       p1Title: 'Zeigen, was zählt',
@@ -358,7 +358,7 @@ export const ca = {
       avgFeedback: 'Durchschnittliches Feedback aus dem Test',
       reach: 'Reichweite',
       m1Value: '5–10 Min.',
-      m1Label: 'Gespart pro Kunde bei der Informationsbeschaffung.',
+      m1Label: 'Gespart pro Kunde bei der Informations\u00ADbeschaffung.',
       m2Value: 'Bis zu 30 Min.',
       m2Label: 'Gespart bei komplexeren Anlagevorschlägen.',
       m3Value: '500+',
