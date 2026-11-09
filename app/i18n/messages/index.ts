@@ -6,6 +6,7 @@ import { wow } from './wow'
 import { ca } from './ca'
 import { eon } from './eon'
 import { privacy } from './privacy'
+import { bmw } from './bmw'
 
 export const dictionaries = {
   en: {
@@ -18,6 +19,7 @@ export const dictionaries = {
     ca: ca.en,
     eon: eon.en,
     privacy: privacy.en,
+    bmw: bmw.en,
   },
   de: {
     common: common.de,
@@ -29,6 +31,7 @@ export const dictionaries = {
     ca: ca.de,
     eon: eon.de,
     privacy: privacy.de,
+    bmw: bmw.de,
   },
 } as const satisfies Record<LangCode, unknown>
 
