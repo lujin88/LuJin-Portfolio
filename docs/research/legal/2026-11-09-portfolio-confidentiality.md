@@ -33,3 +33,14 @@
 - 第 3、9 条的文案：@copy。
 - 第 4、5 条：@visual 改 logo 墙；第 5 条需要 Lu 回答。
 - 第 6、7 条：需要 Lu 回答，放进 PM 的待问清单。
+
+## 补充：访客数据和隐私说明（QA 审查第 9 条，2026-11-09 下午）
+
+不是法律意见。网站现在没有隐私说明页，只有页脚一行「Visit statistics via PostHog (EU).」（`app/i18n/messages/common.ts:10`）。
+
+| # | 项目 | 问题 | 证据 | 依据 | 建议怎么改 | 影响 | 阻塞上线吗 |
+|---|---|---|---|---|---|---|---|
+| P1 | PostHog 录屏 | QA 在 /client-advisory 上看到加载了 `posthog-recorder.js`，说明 PostHog 项目设置里开着 session replay。代码里没有关它（`instrumentation-client.ts` 没设 `disable_session_recording`），所以开不开由 PostHog 后台决定。录屏会记下鼠标、点击、页面内容，也可能记下访客在 Ask Lu 里打的字。页脚只说「Besuchsstatistik」（访问统计），没提录屏 | QA AUDIT.md 第 9 条；`instrumentation-client.ts` | 告知义务：DSG Art. 19 https://www.fedlex.admin.ch/eli/cc/2022/491/de#art_19 ；面向欧盟访客时 GDPR Art. 13 https://eur-lex.europa.eu/eli/reg/2016/679/oj ；德国访客的设备访问规则 TDDDG §25 https://www.gesetze-im-internet.de/ttdsg/__25.html ；PostHog 自己的录屏隐私设置说明 https://posthog.com/docs/session-replay/privacy | 作品集用不着录屏，建议**在 PostHog 后台关掉 session replay**，只留匿名的页面统计（现在是 `memory` 模式，不存 cookie，这点做得对）。要留录屏的话，至少把所有输入框遮住（`maskAllInputs`），并在隐私说明里写明 | 中 | 否，但建议尽快，Lu 在 PostHog 后台点一下就能关 |
+| P2 | Ask Lu | 访客问的问题会发给 Anthropic（美国）生成回答；为了限流，访客 IP 会存进 Upstash 一小时（`app/api/ask-lu/route.ts:36`，20 次/小时）。这两点网站上都没写 | `app/api/ask-lu/route.ts` | 跨境提供个人数据：DSG Art. 16 https://www.fedlex.admin.ch/eli/cc/2022/491/de#art_16 ；告知义务同上 | 在隐私说明里写清楚；Ask Lu 输入框下面加一行小字：回答由 AI 生成，问题会发给 Anthropic 处理，别输入个人信息 | 中 | 否 |
+| P3 | 隐私说明页 | 没有。现在用到的服务：Vercel（托管，服务器日志里有 IP）、PostHog EU（统计）、Anthropic（Ask Lu）、Upstash（限流用的 IP，存 1 小时） | `app/` 里没有 privacy 或 datenschutz 页 | DSG Art. 19；GDPR Art. 13 | 加一个简短的 /privacy 页（英德两版）：负责人（Lu、Zurich、邮箱）、用了哪些服务、各存什么、存多久、访客能联系谁；页脚那行统计说明改成链到这一页。正文由 @copy 写，我给要点清单 | 中 | 否 |
+| P4 | Impressum | 没有。瑞士法律对个人作品集一般不强制要求 Impressum（UWG Art. 3 Abs. 1 lit. s 管的是网上卖东西或卖服务）；德国的 Impressum 义务（DDG §5）原则上管的是在德国的提供者 | — | UWG Art. 3 https://www.fedlex.admin.ch/eli/cc/1988/223_223_223/de#art_3 ；DDG §5 https://www.gesetze-im-internet.de/ddg/__5.html | 待确认，建议问律师。成本最低的做法：在隐私页里一起写上姓名、城市、邮箱，就相当于一个简单的联系信息 | 小 | 否 |
