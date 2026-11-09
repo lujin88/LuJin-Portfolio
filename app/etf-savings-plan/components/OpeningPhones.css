@@ -78,6 +78,10 @@
   .live-phone-content {zoom:tan(atan2(100cqw, 390px))}
 }
 :where(.etf-case) .live-phone-viewport .ff,:where(.etf-case) .live-phone-viewport .ff-phone {min-height:844px}
+/* Screens taller than the 844px phone screen showed only a sliver of the bottom button until
+   you scrolled inside the phone (visual QA #4639). Pin the bottom bar like a real app does,
+   so the button is whole on first view and the content scrolls under it. */
+:where(.etf-case) .live-phone-viewport .ff footer {position:sticky;bottom:0;z-index:1}
 :where(.etf-case) .story-live-slot {width:100%}
 :where(.etf-case) .story-live-slot[hidden] {display:none}
 /* Phones (Lu 2026-11-09 #2577, visual MOBILE_SPACING_1109/etf-proposal.css): the pinned
