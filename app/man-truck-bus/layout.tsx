@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { HtmlChrome } from '../html-chrome'
 import { socialMetadata } from '../seo'
 
@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/man-truck-bus' }),
 }
 
+export const viewport: Viewport = {
+  colorScheme: 'light',
+  themeColor: '#fffefa',
+}
+
 export default function ManTruckBusLayout({
   children,
 }: Readonly<{
@@ -19,6 +24,7 @@ export default function ManTruckBusLayout({
 }>) {
   return <HtmlChrome activeHref="/man-truck-bus" theme="light" colorScheme="light" backgroundColor="#fffefa">
     <link rel="stylesheet" href="/styles/shell-components.css" />
+    <style>{`[data-site-header][data-header-tone="paper"]{--header-scrim:#fffefa;--header-glass:#fffefa;--header-menu:#fff;--header-menu-item:#e8e8ea}`}</style>
     {children}
   </HtmlChrome>
 }
