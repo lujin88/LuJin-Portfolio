@@ -1,4 +1,4 @@
 # Not part of the site build: nothing in app/, lib/, eon/, ca/, global-*/ or next.config imports from these.
 # Do not add eon/ or ca/ here: the build imports them (@eon/* in tsconfig, app/EON/page.tsx).
-design/
-docs/
+/design/
+/docs/
