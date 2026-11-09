@@ -278,5 +278,5 @@
   color: color-mix(in srgb, var(--header-foreground) 55%, transparent);
 }
 [data-site-header][data-header-tone='paper'] .header-menu-meta {
-  color: #595d61;
+  color: var(--color-text-4, #595d61);
 }
