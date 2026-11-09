@@ -28,7 +28,7 @@ export const home = {
       storyTitle: 'From complexity to conversion',
       storyBody: 'A complex investment, made easier to understand and trust.',
       metricTitle: '300% increase in lead conversion',
-      metricBody: 'Within two months, from a 5.1% baseline in Germany. Later adapted for the UK.',
+      metricBody: 'From a 5.1% baseline in Germany. Later adapted for the UK.',
       cta: 'Explore case study',
     },
     playground: {
@@ -109,7 +109,7 @@ export const home = {
       storyTitle: 'Von Komplexität zu Conversion',
       storyBody: 'Eine komplexe Investition, leichter zu verstehen und zu vertrauen.',
       metricTitle: '300 % mehr Lead-Conversion',
-      metricBody: 'In zwei Monaten, ausgehend von 5,1 % in Deutschland. Später für Großbritannien adaptiert.',
+      metricBody: 'Ausgehend von 5,1 % in Deutschland. Später für Großbritannien adaptiert.',
       cta: 'Case Study ansehen',
     },
     playground: {
