@@ -56,7 +56,7 @@ export const ca = {
       title: 'Understanding the work.',
       subhead: 'One need. A whole service behind it.',
       body1Html:
-        'I interviewed 17 client advisors, mostly in Switzerland Wealth Management, plus EMEA and APAC<sup class="ml-px text-[0.65em] leading-none">*</sup> for comparison — following how they moved across 10+ tools and turned what they found into a decision for the client.',
+        'I interviewed 17 client advisors across several regions — following how they moved across 10+ tools and turned what they found into a decision for the client.',
       heading2: 'The information existed. The advisor had to connect it.',
       body2:
         'The friction wasn’t only access. It was stitching together 10+ disconnected tools — in the moment, under pressure.',
@@ -162,7 +162,7 @@ export const ca = {
       eyebrow: 'The Outcome',
       title: 'Tested with the people it’s for.',
       subhead: 'Validated with advisors, for more focused client conversations.',
-      body: "I led concept testing with advisors — including the stakeholder who'd pushed for the dashboard — to see how the model held up against real workflows.",
+      body: "I led concept testing with advisors to see how the model held up against real workflows.",
       journeyAria: 'Concept, Mockup, Test',
       concept: 'Concept',
       mockup: 'Mockup',
@@ -180,7 +180,7 @@ export const ca = {
       m2Alt: '',
       m3Alt: '',
       footnote:
-        'Feedback was consistent across EMEA and CH, the core scope. APAC leaned toward speed over the signal-and-context flow — noted for future markets.',
+        'Feedback informed the next iteration.',
     },
     // Decorative background image: empty alt so screen readers skip it.
     closingAlt: '',
@@ -244,7 +244,7 @@ export const ca = {
       title: 'Die Arbeit verstehen.',
       subhead: 'Ein Bedarf. Ein ganzer Service dahinter.',
       body1Html:
-        'Ich habe 17 Client Advisors interviewt, vor allem aus Switzerland Wealth Management, ergänzt um EMEA und APAC<sup class="ml-px text-[0.65em] leading-none">*</sup> zum Vergleich — und verfolgt, wie sie sich durch 10+ Tools bewegten und daraus eine Entscheidung für den Kunden machten.',
+        'Ich habe 17 Client Advisors aus mehreren Regionen interviewt — und verfolgt, wie sie sich durch 10+ Tools bewegten und daraus eine Entscheidung für den Kunden machten.',
       heading2: 'Die Information war da. Der Berater musste sie verbinden.',
       body2:
         'Die Reibung war nicht nur der Zugang. Es war das Zusammenfügen von 10+ getrennten Tools — im Moment, unter Druck.',
@@ -350,7 +350,7 @@ export const ca = {
       eyebrow: 'Das Ergebnis',
       title: 'Getestet mit denen, für die es gemacht ist.',
       subhead: 'Mit Beratern validiert — für fokussiertere Kundengespräche.',
-      body: 'Ich habe Konzepttests mit Beratern geleitet — auch mit dem Stakeholder, der sich für das Dashboard starkgemacht hatte —, um zu sehen, wie das Modell in echten Workflows trägt.',
+      body: 'Ich habe Konzepttests mit Beratern geleitet, um zu sehen, wie sich das Modell in realen Arbeitsabläufen bewährt.',
       journeyAria: 'Konzept, Mockup, Test',
       concept: 'Konzept',
       mockup: 'Mockup',
@@ -368,7 +368,7 @@ export const ca = {
       m2Alt: '',
       m3Alt: '',
       footnote:
-        'Das Feedback war in EMEA und der Schweiz, dem Kernfokus, konsistent. APAC legte mehr Wert auf Tempo als auf den Signal-und-Kontext-Flow — notiert für künftige Märkte.',
+        'Das Feedback floss in die nächste Iteration ein.',
     },
     // Decorative background image: empty alt so screen readers skip it.
     closingAlt: '',

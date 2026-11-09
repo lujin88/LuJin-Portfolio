@@ -4,7 +4,7 @@ export const home = {
     heroKicker: 'Product designer · Enterprise & regulated UX',
     heroTitle: 'Simplify complexity. Design with AI.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, 10+ min saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 4× lead conversion rate.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW app</a>: led design team &amp; design system.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, 5–10 min saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW app</a>: led design team &amp; design system.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Close chat',
     askLuSend: 'Send',
@@ -28,8 +28,8 @@ export const home = {
       role: 'Lead Product Designer',
       storyTitle: 'From complexity to conversion',
       storyBody: 'A complex investment, made easier to understand and trust.',
-      metricTitle: '300% increase in lead conversion',
-      metricBody: 'Within two months, from a 5.1% baseline in Germany. Later adapted for the UK.',
+      metricTitle: '300% more solar leads',
+      metricBody: 'Later adapted for the UK.',
       cta: 'Explore case study',
     },
     playground: {
@@ -84,7 +84,7 @@ export const home = {
     heroKicker: 'Product Designerin · Enterprise- & regulierte UX',
     heroTitle: 'Komplexität vereinfachen. Mit KI gestalten.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow, 10+&nbsp;Min. pro Kunde gespart.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: Anfragequote vervierfacht.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow, 5–10&nbsp;Min. pro Kunde gespart.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300&nbsp;% mehr Leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Chat schließen',
     askLuSend: 'Senden',
@@ -110,8 +110,8 @@ export const home = {
       role: 'Lead Product Designerin',
       storyTitle: 'Von Komplexität zu Conversion',
       storyBody: 'Eine komplexe Investition, leichter zu verstehen und zu vertrauen.',
-      metricTitle: '300 % mehr Lead-Conversion',
-      metricBody: 'In zwei Monaten, ausgehend von 5,1 % in Deutschland. Später für Großbritannien adaptiert.',
+      metricTitle: '300 % mehr Solar-Leads',
+      metricBody: 'Später für Großbritannien adaptiert.',
       cta: 'Case Study ansehen',
     },
     playground: {
