@@ -227,24 +227,24 @@
 .man-case .mc-arrival-last{visibility:hidden}
 .man-case .mc-arrival:is([data-phase=playing],[data-phase=ended]) video{opacity:1}
 .man-case .mc-arrival[data-phase=still] .mc-arrival-last{visibility:visible}
-/* The note on the trailer's front corner, after the truck has stopped. */
-.man-case .mc-arrival-note{--x:74.2%;--y:58.9%;position:absolute;left:var(--x);bottom:calc(100% - var(--y) + 40px);--lead:30%;transform:translateX(calc(-1 * var(--lead)));margin:0;padding:12px 18px;border-radius:12px;background:rgba(255,253,249,.92);box-shadow:0 8px 24px rgba(60,40,20,.12);color:#1f1a14;white-space:nowrap;opacity:0;transform-origin:var(--lead) 100%;pointer-events:none}
-.man-case .mc-arrival-note span{display:flex;align-items:center;gap:8px;font-size:15px;color:#6b5a45}
+/* The note on the parked truck. TruckArrival places it (left/top) and aims the leader (--len, --ang) at
+   the anchor point in the clip (visual #4741 desktop, #4824 phone); until then it is hidden. */
+.man-case .mc-arrival-note{--lx:28px;position:absolute;left:0;top:0;margin:0;padding:14px 22px;border-radius:14px;background:rgba(255,253,249,.92);box-shadow:0 8px 24px rgba(60,40,20,.12);color:#1f1a14;white-space:nowrap;opacity:0;transform-origin:var(--lx) 100%;pointer-events:none}
+.man-case .mc-arrival-note span{display:flex;align-items:center;gap:8px;font-size:16px;color:#3b342c}
 .man-case .mc-arrival-note span::before{content:"";width:9px;height:9px;border-radius:50%;background:#c98a14}
-.man-case .mc-arrival-note strong{display:block;margin-top:2px;font-size:20px;font-weight:600;letter-spacing:-.02em}
-.man-case .mc-arrival-note::after{content:"";position:absolute;left:var(--lead);top:100%;width:1px;height:40px;background:#c98a14}
+.man-case .mc-arrival-note strong{display:block;margin-top:4px;font-size:22px;font-weight:600;letter-spacing:-.02em}
+.man-case .mc-arrival-note::after{content:"";position:absolute;left:var(--lx);top:100%;width:1px;height:var(--len,0px);background:#c98a14;transform-origin:top left;transform:rotate(var(--ang,0deg))}
 .man-case .mc-arrival:is([data-phase=ended],[data-phase=still]) .mc-arrival-note{opacity:1;animation:mc-note-pop .32s cubic-bezier(.2,.9,.3,1.2) .15s both}
-@keyframes mc-note-pop{from{opacity:0;transform:translateX(calc(-1 * var(--lead))) translateY(6px) scale(.92)}to{opacity:1;transform:translateX(calc(-1 * var(--lead)))}}
+@keyframes mc-note-pop{from{opacity:0;transform:translateY(6px) scale(.92)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.man-case .mc-arrival-note{animation:none!important}.man-case .mc-arrival-last{visibility:visible}.man-case .mc-arrival video{display:none}}
-/* Phones: the clip is full width and sits on the bottom; the sky colour fills above it (visual #4711). */
+/* Phones: the clip is full width and sits on the bottom, the sky colour fills above it and the clip's
+   top 40px fades into it (visual #4711, #4735). */
 @media(max-width:600px){
-  .man-case .mc-cover{min-height:760px}
+  .man-case .mc-cover{min-height:760px;background:#e0cfbf}
   .man-case .mc-cover-inner{padding-top:calc(64px + 40px);margin-inline:24px;max-width:none}
-  .man-case .mc-arrival::after{background:linear-gradient(180deg,#f9eadc 5%,rgba(249,234,220,.92) 30%,rgba(249,234,220,0) 54%)}
-  .man-case .mc-arrival-frame{width:100cqw;aspect-ratio:9/16;left:0;top:auto;bottom:0}
-  .man-case .mc-arrival-note{--x:72.8%;--y:59.8%;--lead:70%;padding:9px 13px}
-  .man-case .mc-arrival-note span{font-size:12px}
-  .man-case .mc-arrival-note strong{font-size:16px}
-  .man-case .mc-arrival-note::after{height:28px}
-  .man-case .mc-arrival-note{bottom:calc(100% - var(--y) + 28px)}
+  .man-case .mc-arrival::after{display:none}
+  .man-case .mc-arrival-frame{width:100cqw;aspect-ratio:9/16;left:0;top:auto;bottom:0;-webkit-mask-image:linear-gradient(transparent,#000 40px);mask-image:linear-gradient(transparent,#000 40px)}
+  .man-case .mc-arrival-note{--lx:56px;padding:10px 14px}
+  .man-case .mc-arrival-note span{font-size:14px}
+  .man-case .mc-arrival-note strong{font-size:18px}
 }
