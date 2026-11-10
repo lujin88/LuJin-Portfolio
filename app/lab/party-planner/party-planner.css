@@ -1411,3 +1411,10 @@ html:has(.pp-landing) #site-content {
     min-height: 2.75rem;
   }
 }
+
+/* Phones: closing tagline -> contact heading 64px across the colour change: 24px left in
+   the blue closing, 40px above the heading (visual MOBILE_SPACING_1109/RULES.md). */
+@media (max-width: 640px) {
+  .pp-landing .closing { padding-bottom: 24px; }
+  .pp-landing .pp-site-closing.site-closing.site-closing .contact-section { padding-top: 40px; }
+}

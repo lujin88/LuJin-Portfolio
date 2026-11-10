@@ -17,7 +17,7 @@ export function DesignConstraintSection() {
         className="pointer-events-none absolute top-0 -right-12 z-0 h-28 w-28 rounded-full bg-mint lg:top-10 lg:-right-16 lg:h-[320px] lg:w-[320px]"
       />
 
-      <ContentContainer className="case-study-section relative z-[2]">
+      <ContentContainer className="case-study-section eon-s06 relative z-[2]">
         {/* Section label */}
         <SectionLabel
           number="06"

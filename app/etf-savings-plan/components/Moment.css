@@ -45,3 +45,13 @@
 }
 
 :where(.etf-case) .case-site{overflow-x:clip}
+/* Phones: 48px from the opening phones to the first chapter; eyebrow 8px, heading to text 16px (visual RULES.md). */
+@media(max-width:600px){
+  .etf-case .story {margin-top:48px}
+  .etf-case .story-copy>article>h2 {margin-top:8px;margin-bottom:16px}
+}
+/* Phones: last chapter -> contact heading 64px. The stacked chapters' 50px bottom margin
+   stacked on the contact's own 64px top (114px); only the last chapter drops it. */
+@media(max-width:640px){
+  .etf-case .story article:last-child {margin-bottom:0}
+}

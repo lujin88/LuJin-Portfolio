@@ -645,6 +645,51 @@
   @media (max-width: 900px) {
     .hero-copy h1 { max-width: none; }
   }
+  /* Phones (Lu 2026-11-09 #2577, visual MOBILE_SPACING_1109/RULES.md): normal flow
+     copy -> Ask Lu -> portrait -> logos. The 100dvh hero with the portrait pinned to
+     its bottom left 146-249px of empty dark between Ask Lu and the portrait.
+     #hero raises specificity over the hero's Tailwind height utilities and the
+     reduced-motion rule. Touch phones only show the still, so nothing scrubs here. */
+  @media (max-width: 600px) {
+    #hero .hero-pin-section {
+      flex-direction: column;
+      align-items: stretch;
+      height: auto;
+      min-height: 0;
+      padding-top: 96px;
+      padding-bottom: 0;
+    }
+    #hero .hero-copy-wrap { order: 0; }
+    #hero .hero-copy h1 { margin-bottom: 0; }
+    #hero .hero-lede { margin-top: 16px; }
+    #hero .ask-lu-wrap { margin-top: 24px; }
+    #hero .hero-media {
+      position: relative;
+      inset: auto;
+      order: 1;
+      flex: none;
+      width: 100%;
+      height: 300px;
+      margin-top: 24px;
+    }
+    #hero .hero-media__video {
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-position: 50% 0%;
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 15%, #000 90%, transparent);
+      mask-image: linear-gradient(to bottom, transparent, #000 15%, #000 90%, transparent);
+    }
+    #hero .hero-scrim { display: none; }
+    #hero .logo-bar {
+      position: relative;
+      inset: auto;
+      order: 2;
+      padding-block: 24px;
+      padding-bottom: max(24px, env(safe-area-inset-bottom));
+    }
+    #hero .logo-bar::before { content: none; }
+  }
   @media (min-width: 768px) {
     .hero-pin-section { --logo-overlay-space: 8.5rem; }
   }
@@ -851,6 +896,26 @@
   .ai-decides-section .ad-eyebrow { text-transform: uppercase; }
   @media (max-width: 900px) {
     .ai-decides-section .ad-layout { padding-top: calc(5rem + 1.5rem); }
+  }
+  /* Phones: Gratula card button -> HOW I WORK eyebrow ~214-230px -> 64px (new chapter,
+     visual MOBILE_SPACING_1109/RULES.md), 32px each side of the background change.
+     The 100dvh minimum also centred the copy, adding space that grew with screen height. */
+  @media (max-width: 600px) {
+    section#home-playground { padding-bottom: 32px; }
+    #how-i-work,
+    #how-i-work .ad-layout { min-height: 0; }
+    #how-i-work .ad-layout { padding-top: 32px; }
+    /* E.ON button -> Playground title 64px, 32px each side of the background change
+       (was 72 + 80). Playground cards 48px apart (was 80). Visual CANDIDATES-v3. */
+    #home-showcase .home-case:last-child .home-case-copy { padding-bottom: 32px; }
+    section#home-playground { padding-top: 32px; }
+    #home-playground .home-project-grid { row-gap: 48px; }
+    /* How I Work art -> MY EXPERIENCE 64px at rest (was ~251): 12px scale slack under
+       the art + 32px seam wash + 20px list top. The seam was 120px for the arc
+       stroke into the timeline (Lu 2026-10-30), which R9 hides and phones never had. */
+    #how-i-work .ad-layout { padding-bottom: 0; }
+    div.hiw-exp-seam { height: 32px; }
+    #experience .exp-sticky { padding-top: 20px; }
   }
 
   .case-block {
@@ -1714,6 +1779,13 @@
     .exp-content[data-index="3"] { margin-bottom: 0; }
     .exp-sticky { padding-bottom: 0; }
     .contact-section { padding-top: 48px; }
+  }
+  /* Phones: 48px from Let's talk to the copyright line, same as SiteClosing
+     (app/components/site-closing-mobile.css). Was ~180px. */
+  @media (max-width: 640px) {
+    .contact-section { padding-bottom: 16px; }
+    .site-footer.exp-footer { --footer-rule-inset: 16px; padding-top: 16px; }
+    .site-footer__bottom { padding-top: 16px; }
   }
 
   @media (prefers-reduced-motion: reduce) {

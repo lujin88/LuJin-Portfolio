@@ -114,7 +114,7 @@ export function JourneySteps() {
   return (
     <div ref={ref} data-journey-sequence  data-ready={ready}
       data-started={started || reduced} data-reduced={reduced}
-      className={`${styles.sequence} relative z-[1] mt-6 overflow-x-auto pt-1 pb-16 md:mt-8`}>
+      className={`${styles.sequence} relative z-[1] mt-6 overflow-x-auto pt-1 pb-16 max-sm:pb-6 md:mt-8`}>
       <div className={`${styles.track} flex w-max items-start justify-start gap-1`}>
         {icons.map((Icon, i) => {
           const active = i === 2

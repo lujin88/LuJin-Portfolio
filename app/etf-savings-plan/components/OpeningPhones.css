@@ -55,7 +55,6 @@
 }
 @media(prefers-reduced-motion:reduce){
   :where(.etf-case) .opening-sequence {height:auto}:where(.etf-case) .opening-pin {position:relative}
-  :where(.etf-case) .opening-handset,:where(.etf-case) .opening-handset + .opening-handset {transform:translate3d(calc(var(--spread-distance) * var(--spread-progress)),calc(-12px * var(--spread-progress)),0) none}
 }
 
 
@@ -81,3 +80,14 @@
 :where(.etf-case) .live-phone-viewport .ff,:where(.etf-case) .live-phone-viewport .ff-phone {min-height:844px}
 :where(.etf-case) .story-live-slot {width:100%}
 :where(.etf-case) .story-live-slot[hidden] {display:none}
+/* Phones (Lu 2026-11-09 #2577, visual MOBILE_SPACING_1109/etf-proposal.css): the pinned
+   100svh stage left ~274px between the phones and "Before starting". Normal flow
+   instead; OpeningPhones.tsx drives the spread from the page's own scroll. */
+@media(max-width:600px){
+  .etf-case .opening-sequence {height:auto}
+  .etf-case .opening-pin {position:relative;height:auto;min-height:0;padding-top:112px;justify-content:flex-start;gap:24px}
+}
+/* Reduced motion: end pose, no transform (the old 'translate3d(...) none' value was invalid). */
+@media(prefers-reduced-motion:reduce){
+  .etf-case .opening-handset,.etf-case .opening-handset + .opening-handset {transform:none}
+}
