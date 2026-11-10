@@ -4,7 +4,7 @@ export const home = {
     heroKicker: 'Product designer · Enterprise & regulated UX',
     heroTitle: 'Simplify complexity. Design with AI.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, 5–10 min saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW app</a>: led design team &amp; design system.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, <span style="white-space:nowrap">5–10 min</span> saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW app</a>: led design team &amp; design system.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Close chat',
     askLuSend: 'Send',
@@ -24,7 +24,7 @@ export const home = {
     },
     eon: {
       eyebrow: 'Solar · E.ON',
-      titleHtml: 'Solar landing page redesign',
+      titleHtml: 'Solar landing page & calculator redesign',
       role: 'Lead Product Designer',
       storyTitle: 'From complexity to conversion',
       storyBody: 'A complex investment, made easier to understand and trust.',
@@ -36,7 +36,7 @@ export const home = {
       cta: 'Explore case study',
       weatherMeta: 'Rive motion',
       petMeta: 'Voice · Hardware',
-      gratulaMeta: 'Launching soon',
+      gratulaMeta: 'Prototype',
     },
     how: {
       kicker: 'How I work',
@@ -84,7 +84,7 @@ export const home = {
     heroKicker: 'Product Designerin · Enterprise- & regulierte UX',
     heroTitle: 'Komplexität vereinfachen. Mit KI gestalten.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow, 5–10&nbsp;Min. pro Kunde gespart.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300&nbsp;% mehr Leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow, <span style="white-space:nowrap">5–10&nbsp;Min.</span> pro Kunde gespart.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300&nbsp;% mehr Leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Chat schließen',
     askLuSend: 'Senden',
@@ -106,7 +106,7 @@ export const home = {
     },
     eon: {
       eyebrow: 'Solar · E.ON',
-      titleHtml: 'Redesign der Solar-Landingpage',
+      titleHtml: 'Redesign von Solar-Landingpage und Rechner',
       role: 'Lead Product Designerin',
       storyTitle: 'Von Komplexität zu Conversion',
       storyBody: 'Eine komplexe Investition, leichter zu verstehen und zu vertrauen.',
@@ -118,7 +118,7 @@ export const home = {
       cta: 'Case Study ansehen',
       weatherMeta: 'Rive Motion',
       petMeta: 'Stimme · Hardware',
-      gratulaMeta: 'Startet bald',
+      gratulaMeta: 'Prototyp',
     },
     how: {
       kicker: 'Wie ich arbeite',
