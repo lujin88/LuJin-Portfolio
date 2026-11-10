@@ -86,15 +86,17 @@
   .section[data-journey-ready="true"] .annotation path { stroke-dashoffset: 0; }
 }
 
-@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
-.sequence:not([data-ready="true"]) .node, .sequence:not([data-ready="true"]) .label { opacity: .45; }
-.sequence:not([data-ready="true"]) .fill, .sequence:not([data-ready="true"]) .halo, .sequence:not([data-ready="true"]) .ring, .sequence:not([data-ready="true"]) .check, .sequence:not([data-ready="true"]) .spinner { opacity: 0; }
-.sequence:not([data-ready="true"]) .calculate .node { color: white; }
-.sequence:not([data-ready="true"]) .trail, .sequence:not([data-ready="true"]) .underline { transform: scaleX(0); }
-.sequence:not([data-ready="true"]) .future { opacity: 1; }
-.sequence:not([data-ready="true"]) .dashed { opacity: 0; }
-.sequence:not([data-ready="true"]) .arrow { opacity: 1; }
-.section:not([data-journey-ready="true"]) .character { opacity: 0; }
-.section:not([data-journey-ready="true"]) .annotation path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+/* Hidden start state only while JS runs the sequence (JS_EARLY in app/layout.tsx);
+   (scripting: enabled) alone stays true when the JS files fail to load. */
+@media (prefers-reduced-motion: no-preference) {
+:global(html[data-js]) .sequence:not([data-ready="true"]) .node, :global(html[data-js]) .sequence:not([data-ready="true"]) .label { opacity: .45; }
+:global(html[data-js]) .sequence:not([data-ready="true"]) .fill, :global(html[data-js]) .sequence:not([data-ready="true"]) .halo, :global(html[data-js]) .sequence:not([data-ready="true"]) .ring, :global(html[data-js]) .sequence:not([data-ready="true"]) .check, :global(html[data-js]) .sequence:not([data-ready="true"]) .spinner { opacity: 0; }
+:global(html[data-js]) .sequence:not([data-ready="true"]) .calculate .node { color: white; }
+:global(html[data-js]) .sequence:not([data-ready="true"]) .trail, :global(html[data-js]) .sequence:not([data-ready="true"]) .underline { transform: scaleX(0); }
+:global(html[data-js]) .sequence:not([data-ready="true"]) .future { opacity: 1; }
+:global(html[data-js]) .sequence:not([data-ready="true"]) .dashed { opacity: 0; }
+:global(html[data-js]) .sequence:not([data-ready="true"]) .arrow { opacity: 1; }
+:global(html[data-js]) .section:not([data-journey-ready="true"]) .character { opacity: 0; }
+:global(html[data-js]) .section:not([data-journey-ready="true"]) .annotation path { stroke-dasharray: 1; stroke-dashoffset: 1; }
 
 }

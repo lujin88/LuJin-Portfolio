@@ -1040,6 +1040,14 @@ main {
   transform: none;
 }
 
+/* No JS (or it failed): end state, see JS_EARLY in app/layout.tsx. */
+html:not([data-js]) .ca-scroll-reveal,
+html:not([data-js]) .ca-outcome-card,
+html:not([data-js]) .ca-outcome-card .ca-outcome-art {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ca-outcome-card,
   .ca-outcome-card .ca-outcome-art {

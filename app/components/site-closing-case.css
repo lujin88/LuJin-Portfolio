@@ -62,7 +62,8 @@
   transform: translateY(20px);
   transition: opacity 800ms var(--ease), transform 800ms var(--ease);
 }
-.site-closing-case .contact-reveal.is-visible {
+.site-closing-case .contact-reveal.is-visible,
+html:not([data-js]) .site-closing-case .contact-reveal {
   opacity: 1;
   transform: translateY(0);
 }

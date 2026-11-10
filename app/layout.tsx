@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Caveat, Poppins } from 'next/font/google'
 import { I18nProvider } from './i18n/use-translation'
+import { JsReady } from './js-ready'
 import { SITE_NAME, SITE_URL, socialMetadata } from './seo'
 
 const caveat = Caveat({
@@ -56,6 +57,13 @@ export const viewport: Viewport = {
 const WA_SEASON_EARLY =
   "(function(){var m=new Date().getMonth();document.documentElement.dataset.waSeason=m>=2&&m<=4?'spring':m>=5&&m<=7?'summer':m>=8&&m<=10?'autumn':'winter'})()"
 
+// Entrance animations start hidden only under html[data-js]; without it, CSS shows
+// their end state. Set here so no-JS visitors never get the attribute. If React
+// hasn't hydrated 3s later (scripts blocked or failed), drop it so the content
+// shows instead of staying transparent.
+const JS_EARLY =
+  "(function(){var d=document.documentElement;d.setAttribute('data-js','');setTimeout(function(){if(!d.hasAttribute('data-hydrated'))d.removeAttribute('data-js')},3000)})()"
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -70,9 +78,11 @@ export default function RootLayout({
       style={{ backgroundColor: '#0a0a0a', colorScheme: 'dark' }}
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: JS_EARLY }} />
         <script dangerouslySetInnerHTML={{ __html: WA_SEASON_EARLY }} />
       </head>
       <body className="m-0 min-w-[360px] antialiased">
+        <JsReady />
         <I18nProvider>{children}</I18nProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

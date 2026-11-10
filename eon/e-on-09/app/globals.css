@@ -386,18 +386,20 @@ footer > hr {
     transform var(--dur, 360ms) var(--aud-ease) var(--d, 0ms);
 }
 /* Server render, before hydration: when JS will run the entrance, start hidden so a reload
-   inside this section doesn't flash the final state first. No JS / reduced motion → final state. */
-@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
-  .aud-ev[data-ring='ssr'] .aud-ev-ring-fade,
-  .aud-ev[data-ring='ssr'] .aud-ev-stat,
-  .aud-ev[data-ring='ssr'] .aud-ev-progress {
+   inside this section doesn't flash the final state first. Gated on html[data-js] (JS_EARLY in
+   app/layout.tsx), not (scripting: enabled), which stays true when the JS files fail to load.
+   No JS / reduced motion → final state. */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-js] .aud-ev[data-ring='ssr'] .aud-ev-ring-fade,
+  html[data-js] .aud-ev[data-ring='ssr'] .aud-ev-stat,
+  html[data-js] .aud-ev[data-ring='ssr'] .aud-ev-progress {
     opacity: 0;
   }
-  .aud-ev[data-cards='ssr'] .aud-ev-card {
+  html[data-js] .aud-ev[data-cards='ssr'] .aud-ev-card {
     opacity: 0;
     transform: var(--aud-card-from);
   }
-  .aud-ev[data-cards='ssr'] .aud-ev-fade {
+  html[data-js] .aud-ev[data-cards='ssr'] .aud-ev-fade {
     opacity: 0;
     transform: translate3d(0, 6px, 0);
   }
