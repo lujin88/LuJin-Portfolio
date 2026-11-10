@@ -1,4 +1,4 @@
-:where(.etf-case) .case-site {color:#192031;background:#fafaf9}
+:where(.etf-case) .case-site {color:#192031;background:#fffdfb}
 :where(.etf-case) .case-site .case-opening {text-align:left;padding:0}
 :where(.etf-case) .opening-sequence {
   --spread-progress:1; --spread-distance:clamp(14px,2vw,30px); --tilt:14deg; --turn:19deg; --pitch:8deg;
@@ -96,16 +96,17 @@
   .etf-case .opening-handset,.etf-case .opening-handset + .opening-handset {transform:none}
 }
 
-/* Lu #3904 C: coral + lavender only behind the phones. Static. Selectors from visual #3806. */
+/* Pale coral + misty lavender shapes behind the phones (Lu #5086 A, visual ETF_PALE_1109/v2 A.css).
+   Static. The page colour behind them comes from ChapterBackdrop. Selectors from visual #3806. */
 :where(.etf-case) .opening-pair::before,
 :where(.etf-case) .opening-pair::after {
   content:"";position:absolute;z-index:-1;pointer-events:none;
   width:68%;height:68%;left:0;top:27%;
   border-radius:56% 44% 62% 38% / 42% 58% 42% 58%;
-  background:#f2a080;transform:rotate(-16deg);
+  background:#fae0d4;transform:rotate(-16deg);
 }
 :where(.etf-case) .opening-pair::after {
-  background:#b8a8eb;left:30%;top:4%;width:64%;height:76%;transform:rotate(19deg);
+  background:#e8e0f8;left:30%;top:4%;width:64%;height:76%;transform:rotate(19deg);
 }
 :where(.etf-case) .story-handset {isolation:isolate}
 :where(.etf-case) .story-handset::before,
@@ -113,10 +114,10 @@
   content:"";position:absolute;z-index:-1;pointer-events:none;
   width:115%;height:62%;left:-16%;top:24%;
   border-radius:60% 40% 53% 47%;
-  background:#f2a080;transform:rotate(-18deg);
+  background:#fae0d4;transform:rotate(-18deg);
 }
 :where(.etf-case) .story-handset::after {
-  background:#b8a8eb;width:98%;height:56%;left:20%;top:11%;transform:rotate(16deg);
+  background:#e8e0f8;width:98%;height:56%;left:20%;top:11%;transform:rotate(16deg);
 }
 @media(max-width:850px){
   :where(.etf-case) .opening-pair::before {width:63%;left:2%}
