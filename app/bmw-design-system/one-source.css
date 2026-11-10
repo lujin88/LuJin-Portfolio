@@ -201,8 +201,10 @@
 .bmw-driver .backdrop{z-index:-3;max-width:none;object-fit:cover;filter:blur(2px);-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%),linear-gradient(0deg,transparent,#000 12%);mask-image:linear-gradient(90deg,transparent,#000 30%),linear-gradient(0deg,transparent,#000 12%);-webkit-mask-composite:source-in;mask-composite:intersect}
 /* Ground shadow under the car (front wheel to rear wheel), in photo coordinates. */
 .bmw-driver::after{content:"";z-index:-2;background:radial-gradient(25% 4% at 74.5% 71.6%,rgba(2,7,12,.78),rgba(2,7,12,.4) 55%,transparent)}
-/* Veil under the copy column only, fading out right after it; the sunset glow on the right stays clear. */
-.bmw-driver::before{z-index:-1;background:linear-gradient(90deg,rgba(5,18,31,.82),rgba(5,18,31,.72) calc(var(--hero-inset) + var(--copy-w)),transparent calc(var(--hero-inset) + var(--copy-w) + 220px)),linear-gradient(0deg,rgba(5,18,31,.5),transparent 24%)}
+/* Veil under the copy column only, fading out after it; the sunset glow on the right stays clear.
+   Darken blend plus a long eased fade (Lu #7067/#7068): the veil only darkens what is lighter than it, so the
+   already dark hero colour stays as it is and the photo goes darker gradually, with no visible edge. */
+.bmw-driver::before{z-index:-1;mix-blend-mode:darken;--veil-end:calc(var(--hero-inset) + var(--copy-w));background:linear-gradient(90deg,rgba(5,18,31,.85),rgba(5,18,31,.8) calc(var(--veil-end) - 120px),rgba(5,18,31,.62) var(--veil-end),rgba(5,18,31,.38) calc(var(--veil-end) + 140px),rgba(5,18,31,.16) calc(var(--veil-end) + 280px),rgba(5,18,31,.04) calc(var(--veil-end) + 400px),transparent calc(var(--veil-end) + 480px)),linear-gradient(0deg,rgba(5,18,31,.5),rgba(5,18,31,.2) 14%,transparent 30%)}
 .bmw-driver header{grid-area:head;max-width:none}
 .bmw-driver nav{grid-area:nav;margin-top:28px}
 .bmw-driver .screen{grid-area:phone;align-self:start;justify-self:end;box-sizing:border-box;width:var(--phone-w);margin:var(--phone-top) calc(.253*var(--scene-w) - 10px - var(--phone-w)/2 - var(--content-inset)) 0 0;border-radius:28px;box-shadow:0 0 0 1px #abaeac,0 24px 60px #030b13b0}
