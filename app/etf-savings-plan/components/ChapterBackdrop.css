@@ -1,0 +1,11 @@
+/* Lu #5086 A: pale coral -> misty lavender -> warm white, one colour per chapter
+   (visual ETF_PALE_1109/v2 A, motion ETF_BMW_MOTION_1109/v2). Three flat layers on warm-white
+   paper; only their opacity changes, so the page height and layout never move. The layer sits
+   inside .case-site and its sticky field keeps one viewport of colour in view. */
+:where(.etf-case) .case-site {position:relative;isolation:isolate}
+:where(.etf-case) .chapter-backdrop {position:absolute;inset:0;z-index:-1;overflow:clip;pointer-events:none}
+:where(.etf-case) .chapter-backdrop-field {position:sticky;top:0;height:100vh;height:100lvh}
+:where(.etf-case) .chapter-backdrop i {position:absolute;inset:0;opacity:0}
+:where(.etf-case) .chapter-backdrop i:nth-child(1) {background:#fae0d4}
+:where(.etf-case) .chapter-backdrop i:nth-child(2) {background:#e8e0f8}
+:where(.etf-case) .chapter-backdrop i:nth-child(3) {background:#fffdfb}
