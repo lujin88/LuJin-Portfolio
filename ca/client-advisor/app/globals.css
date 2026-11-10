@@ -262,7 +262,8 @@
     overflow-x: hidden;
     scroll-behavior: smooth;
   }
-  * {
+  /* Scoped to the CA page (qa #5876); :where keeps the bare `*` specificity of 0. */
+  :where(body:has(.ca-s01-s03)) * {
     @apply border-border outline-ring/50;
   }
   /* Scoped to the CA page: client-side navigation keeps this stylesheet loaded,
@@ -272,7 +273,8 @@
     color: var(--ca-text);
     -webkit-font-smoothing: antialiased;
   }
-  body::before {
+  /* Grain overlay: CA page only (qa #5876). */
+  body:has(.ca-s01-s03)::before {
     content: '';
     position: fixed;
     inset: 0;
