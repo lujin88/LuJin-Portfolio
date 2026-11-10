@@ -23,7 +23,8 @@
 .card:first-child { z-index: var(--z, 10); }
 .card:focus-visible { outline: 3px solid #7cc4ff; outline-offset: 4px; z-index: 20; }
 .card img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-@media (max-width: 1023px), (prefers-reduced-motion: reduce) {
+/* Static whenever ConceptScrollStory is not pinned (PIN_MIN_HEIGHT = 760). */
+@media (max-width: 1023px), (max-height: 759.98px), (prefers-reduced-motion: reduce) {
   .scene { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; height: auto; }
   .card { position: relative; left: auto; top: auto; width: 100%; transform: none !important; opacity: 1 !important; border-radius: 5px; box-shadow: 0 8px 20px rgb(0 0 0 / 16%); }
   .card:first-child { grid-column: 1 / -1; }

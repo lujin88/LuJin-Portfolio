@@ -56,9 +56,9 @@ function timeBuffered(video: HTMLVideoElement, time: number) {
  *    snapped to I-frames (~0.25s). Chrome also does not flip video.seeking
  *    synchronously, so overlapping seeks fought. A 2560 all-intra High file
  *    then failed VideoToolbox (NSOSStatus -12909) and froze currentTime.
- *    Fix: 1920 Main / level 4.0 all-intra (`-bf 0 -g 1`), pendingSeek cleared
- *    on seeked + 80ms timeout, epsilon = 1/24s. Do not pause() on `play`
- *    during scrub; that aborts in-flight seeks.
+ *    Fix applied: 1920×1080 Main / level 4.0 all-intra (`-bf 0 -g 1`),
+ *    pendingSeek cleared on seeked + 80ms timeout, epsilon = 1/24s.
+ *    Do not pause() on `play` during scrub; that aborts in-flight seeks.
  */
 export function useScrollScrub(
   videoRef: RefObject<HTMLVideoElement | null>,

@@ -6,6 +6,7 @@ import { conceptMockups, type ConceptMockup } from './concept-mockups'
 import styles from './concept-mockup-stack.module.css'
 import floating from './concept-floating.module.css'
 import { useTranslation } from '@i18n/use-translation'
+import { PIN_HEIGHT_QUERY, PIN_MIN_HEIGHT } from './concept-scroll-story'
 
 // B (Lu 2026-11-04): only book-view, US Tech, client view — scattered → overview in front → result.
 function pose(step: number, index: number) {
@@ -31,11 +32,16 @@ export function ConceptMockupStack() {
     if (!scene || !section) return
     const reduced = matchMedia('(prefers-reduced-motion: reduce)')
     const wide = matchMedia('(min-width: 1024px)')
+    // Same predicate as ConceptScrollStory: pinned only when wide and tall enough.
+    const tall = matchMedia(PIN_HEIGHT_QUERY)
+    const pinned = () => !reduced.matches && wide.matches && tall.matches
+    const tallEnough = () => innerHeight >= PIN_MIN_HEIGHT
     const cards = [...scene.querySelectorAll<HTMLButtonElement>('[data-concept-card]')]
     let frame = 0
     let settleFrame = 0
     let previousReduced = reduced.matches
     let previousWide = wide.matches
+    let previousTall = tall.matches
     let wasVisible = false
     let settling = false
     let rememberedHash = window.location.hash
@@ -49,9 +55,10 @@ export function ConceptMockupStack() {
     const rememberVisibility = () => {
       // WebKit can resize/reflow before matchMedia.matches updates. Preserve the old snapshot.
       if (settling || reduced.matches !== previousReduced || wide.matches !== previousWide ||
-        (innerWidth >= 1024) !== previousWide) return
+        tall.matches !== previousTall || (innerWidth >= 1024) !== previousWide ||
+        tallEnough() !== previousTall) return
       // The parent commits pinned height through React after the CSS media change.
-      if (Boolean(section.style.height) !== (!previousReduced && previousWide)) return
+      if (Boolean(section.style.height) !== (!previousReduced && previousWide && previousTall)) return
       rememberHashTarget()
       const rect = section.getBoundingClientRect()
       // A smooth fragment scroll emits events before reaching its destination.
@@ -75,7 +82,7 @@ export function ConceptMockupStack() {
     const update = () => {
       frame = 0
       rememberVisibility()
-      if (reduced.matches || !wide.matches) {
+      if (!pinned()) {
         cards.forEach((card) => { card.style.transform = ''; card.style.opacity = ''; card.style.removeProperty('--z') })
         return
       }
@@ -103,7 +110,8 @@ export function ConceptMockupStack() {
       pendingSectionHash = false
       // Input can arrive after reflow but before WebKit dispatches the media change.
       if (!settling && reduced.matches === previousReduced && wide.matches === previousWide &&
-        (innerWidth >= 1024) === previousWide) return
+        tall.matches === previousTall && (innerWidth >= 1024) === previousWide &&
+        tallEnough() === previousTall) return
       cancelAnimationFrame(settleFrame)
       settling = false
       wasVisible = false
@@ -120,7 +128,8 @@ export function ConceptMockupStack() {
       if (event.target === document.documentElement) cancelRestore()
     }
     const onMediaChange = () => {
-      if (reduced.matches === previousReduced && wide.matches === previousWide) return
+      if (reduced.matches === previousReduced && wide.matches === previousWide &&
+        tall.matches === previousTall) return
       rememberHashTarget()
       // Retain the destination throughout smooth scrolling, until arrival or user input.
       if (!settling && pendingSectionHash) {
@@ -131,6 +140,7 @@ export function ConceptMockupStack() {
       const anchor = readingAnchor
       previousReduced = reduced.matches
       previousWide = wide.matches
+      previousTall = tall.matches
       cancelAnimationFrame(settleFrame)
       settling = true
       schedule()
@@ -161,9 +171,11 @@ export function ConceptMockupStack() {
           let previousHeight = section.getBoundingClientRect().height
           let previousScroll = window.scrollY
           let stableFrames = 0
+          let frames = 0
           const settleAnchor = () => {
-            if (!anchor.element.isConnected) { finish(); return }
-            if (Boolean(section.style.height) !== (!reduced.matches && wide.matches)) {
+            // Bounded: never leave a rAF loop running if the layout never settles.
+            if (!anchor.element.isConnected || ++frames > 120) { finish(); return }
+            if (Boolean(section.style.height) !== pinned()) {
               stableFrames = 0
               settleFrame = requestAnimationFrame(settleAnchor)
               return
@@ -201,6 +213,7 @@ export function ConceptMockupStack() {
     window.addEventListener('pointerdown', onScrollbarPointer, true)
     reduced.addEventListener('change', onMediaChange)
     wide.addEventListener('change', onMediaChange)
+    tall.addEventListener('change', onMediaChange)
     schedule()
     return () => {
       cancelAnimationFrame(frame)
@@ -214,6 +227,7 @@ export function ConceptMockupStack() {
       window.removeEventListener('pointerdown', onScrollbarPointer, true)
       reduced.removeEventListener('change', onMediaChange)
       wide.removeEventListener('change', onMediaChange)
+      tall.removeEventListener('change', onMediaChange)
     }
   }, [])
 
@@ -231,7 +245,7 @@ export function ConceptMockupStack() {
         <button key={item.id} type="button" data-concept-card={index} className={floating.card}
           aria-label={t(`ca.concept.mockups.${item.id}`)}
           onClick={(event) => { openerRef.current = event.currentTarget; setActiveIndex(index) }}>
-          <img src={item.src.src} alt="" loading="lazy" draggable={false} />
+          <img src={item.src.src} alt="" draggable={false} loading="lazy" decoding="async" />
         </button>
       ))}
       {active && activeIndex !== null ? createPortal(

@@ -17,7 +17,7 @@ export const headerCopy = {
     },
     meta: {
       'Wealth · Service design': 'Wealth · Service design',
-      'Solar · +300% leads': 'Solar · +300% leads',
+      'Energy · 300% more leads': 'Energy · 300% more leads',
       'Rive motion': 'Rive motion',
       'Fleet uptime · Dispatch': 'Fleet uptime · Dispatch',
       'Under construction': 'Under construction',
@@ -52,7 +52,7 @@ export const headerCopy = {
     },
     meta: {
       'Wealth · Service design': 'Wealth · Service Design',
-      'Solar · +300% leads': 'Solar · +300 % Anfragen',
+      'Energy · 300% more leads': 'Energie · 300 % mehr Leads',
       'Rive motion': 'Rive Motion',
       'Fleet uptime · Dispatch': 'Flottenverfügbarkeit · Disposition',
       'Under construction': 'Im Aufbau',

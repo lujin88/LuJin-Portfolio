@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslation } from '@i18n/use-translation'
+import { mediaUrl } from '../../../../lib/media-url'
 
 export function HeroSection() {
   const { t, ta } = useTranslation()
@@ -24,11 +25,12 @@ export function HeroSection() {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
+            poster="/assets/images/posters/ca-hero.webp"
             disablePictureInPicture
             aria-hidden="true"
           >
-            <source src="/assets/videos/client-advisory/hero.mp4" type="video/mp4" />
+            <source src={mediaUrl('/assets/videos/client-advisory/hero.mp4')} type="video/mp4" />
           </video>
         </div>
       </div>
@@ -94,10 +96,11 @@ export function HeroSection() {
             muted
             playsInline
             preload="metadata"
+            poster="/assets/images/posters/ca-hero.webp"
             disablePictureInPicture
             aria-hidden="true"
           >
-            <source src="/assets/videos/client-advisory/hero.mp4" type="video/mp4" />
+            <source src={mediaUrl('/assets/videos/client-advisory/hero.mp4')} type="video/mp4" />
           </video>
           <div
             aria-hidden="true"

@@ -6,7 +6,7 @@ export type Screen = 'entry' | 'd' | 'e' | 'f' | 'bank' | 'pending' | 'declined'
 const images = {
   calendar: "/assets/etf-savings-plan/calendar.png",
   transfer: "/assets/etf-savings-plan/transfer.webp",
-  orbit: "/assets/etf-savings-plan/orbit.png"
+  orbit: "/assets/etf-savings-plan/orbit.webp"
 };
 function Status() {
   return <div className="ff-status" aria-hidden="true"><b>9:41</b><svg width="60" height="13" viewBox="0 0 60 13"><path fill="currentColor" d="M1 9h3v4H1zm5-3h3v7H6zm5-3h3v10h-3zm5-3h3v13h-3zm7 4q7-7 14 0l-2 2q-5-5-10 0zm4 4q3.5-4 7 0l-3.5 4z" /><rect x="40" y="1" width="17" height="10" rx="3" fill="none" stroke="currentColor" /><rect x="42" y="3" width="13" height="6" rx="1" fill="currentColor" /></svg></div>;

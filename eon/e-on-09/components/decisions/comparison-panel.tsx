@@ -2,6 +2,7 @@
 
 import { Check, Scan, Sun, Triangle } from 'lucide-react'
 import Image from 'next/image'
+import { mediaUrl } from '../../../../lib/media-url'
 import { ComparisonCardHeader } from '@eon/components/decisions/comparison-card-header'
 import { PanelArrow } from '@eon/components/decisions/panel-arrow'
 import { useTranslation } from '@i18n/use-translation'

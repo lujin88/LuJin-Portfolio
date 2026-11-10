@@ -2,7 +2,7 @@ const CONTACT_EMAIL = 'lu.jin.ixd@gmail.com'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lu-jin-28008689/'
 const GITHUB_URL = 'https://github.com/lujin88'
 const CV_URL =
-  'https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view'
+  '/cv/lu-jin-cv.pdf'
 
 const contactLinks = [
   { label: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },

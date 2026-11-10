@@ -2,6 +2,7 @@ import { SiteClosing } from '../components/site-closing'
 import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
 import '../components/site-closing-case.css'
 import './case.css';
+import { TruckArrival } from './TruckArrival'
 export default function ManTruckBusPage() {
   return <><main><article className="man-case" aria-labelledby="man-title">
 <div className="mc-cover">
@@ -10,7 +11,7 @@ export default function ManTruckBusPage() {
     <h1 id="man-title"><span className="mc-title-line">Leaving</span> <span className="mc-title-line">at <em>10:00?</em></span></h1>
     <p className="mc-intro">For the hour before a truck leaves: what's blocking it, and who to call.</p>
   </div>
-  <figure className="mc-stuttgart-scene"><img src="/assets/man-fleet-uptime/stuttgart-hero.webp" width="826" height="766" alt="A truck parked at the depot. Driver cover needed for the 10:00 departure to Stuttgart." /></figure>
+  <TruckArrival />
   </div>
 <div className="mc-width">
   <LayerScrollGroup><dl className="mc-meta" data-move="96"><div><dt>My role</dt><dd>Sole product designer</dd></div><div><dt>Team</dt><dd>3 people · 24-hour hackathon</dd></div><div><dt>Scope</dt><dd>Hackathon: MAN stakeholder interviews and dispatch flow design<br />After: 13 screens</dd></div><div><dt>Recognition</dt><dd>MAN hackathon finalist</dd></div></dl></LayerScrollGroup>

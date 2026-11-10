@@ -72,16 +72,16 @@ export function JourneySteps() {
     const follow = () => {
       const lead = rail.querySelector('[data-journey-particle="lead"]')
       const time = Number(lead?.getAnimations()[0]?.currentTime ?? 0)
-      const elapsed = Math.max(0, time - 1800)
+      const elapsed = Math.max(0, time - 1350)
       const hop = Math.min(2, Math.floor(elapsed / 333))
       const eased = ease(Math.min(1, (elapsed - hop * 333) / 333))
       const from = hop === 0 ? 0 : target(hop + 2)
-      rail.scrollLeft = time < 1800 ? 0 : from + (target(hop + 3) - from) * eased
-      if (time >= 2800) {
-        const progress = Math.min(1, Math.max(0, (time - 3400) / 500))
+      rail.scrollLeft = time < 1350 ? 0 : from + (target(hop + 3) - from) * eased
+      if (time >= 2350) {
+        const progress = Math.min(1, Math.max(0, (time - 2950) / 500))
         rail.scrollLeft = target(5) + (target(2) - target(5)) * ease(progress)
       }
-      if (!stopped && time < 3900) frame = requestAnimationFrame(follow)
+      if (!stopped && time < 3450) frame = requestAnimationFrame(follow)
     }
     let origin: { x: number; y: number } | null = null
     const down = (event: PointerEvent) => { origin = { x: event.clientX, y: event.clientY } }
@@ -112,14 +112,16 @@ export function JourneySteps() {
   }, [started, reduced])
 
   return (
+    // overflow-x:auto also clips vertically: pt-4 (with mt trimmed by the same 12px) keeps the
+    // scaled Calculate halo, which reaches ~10px above the row, from being cut flat.
     <div ref={ref} data-journey-sequence  data-ready={ready}
       data-started={started || reduced} data-reduced={reduced}
-      className={`${styles.sequence} relative z-[1] mt-6 overflow-x-auto pt-1 pb-16 md:mt-8`}>
+      className={`${styles.sequence} relative z-[1] mt-3 overflow-x-auto pt-4 pb-16 max-sm:pb-6 md:mt-5`}>
       <div className={`${styles.track} flex w-max items-start justify-start gap-1`}>
         {icons.map((Icon, i) => {
           const active = i === 2
-          const arrival = [0, 450, 900, 1800, 2133, 2466][i]
-          const timing = { '--arrival': `${arrival}ms`, '--connector-delay': `${i < 2 ? i * 450 : 1800 + (i - 2) * 333}ms` } as CSSProperties
+          const arrival = [0, 450, 900, 1350, 1683, 2016][i]
+          const timing = { '--arrival': `${arrival}ms`, '--connector-delay': `${i < 2 ? i * 450 : 1350 + (i - 2) * 333}ms` } as CSSProperties
           return (
             <Fragment key={i}>
               <div data-journey-step={i} className={`${styles.step} ${active ? styles.calculate : ''} ${i > 2 ? styles.future : ''} flex w-[88px] shrink-0 flex-col items-center md:w-24`} style={timing}>
@@ -143,7 +145,6 @@ export function JourneySteps() {
         })}
         <div aria-hidden="true" className={styles.particles}>
           <span data-journey-particle="lead" className={styles.lead} />
-          {[48, 54, 60, 52, 46].map((distance, i) => <span key={i} data-journey-particle="drop" className={styles.drop} style={{ '--drop-x': `${(i - 2) * 12}px`, '--drop-y': `${distance}px` } as CSSProperties} />)}
           <span data-journey-particle="survivor" className={styles.survivor} />
         </div>
       </div>

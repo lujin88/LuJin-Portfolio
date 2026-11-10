@@ -4,12 +4,13 @@ export const home = {
     heroKicker: 'Product designer · Enterprise & regulated UX',
     heroTitle: 'Simplify complexity. Design with AI.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow concept, 10+ min saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads in two months.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW app</a>: led the design team, shaped the design system.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, <span style="white-space:nowrap">5–10 min</span> saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW app</a>: led design team &amp; design system.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Close chat',
     askLuSend: 'Send',
     askLuGreeting: 'Hi! I’m Lu’s AI assistant. Ask about her work, experience, or process.',
     askLuPlaceholder: 'Ask about Lu’s work…',
+    askLuNotice: 'Please don’t share personal or confidential information.',
     partnersLabel: 'Clients I’ve designed for',
     ca: {
       eyebrow: 'Client Advisory · UBS',
@@ -23,25 +24,25 @@ export const home = {
     },
     eon: {
       eyebrow: 'Solar · E.ON',
-      titleHtml: 'Solar landing page redesign',
+      titleHtml: 'Solar landing page & calculator redesign',
       role: 'Lead Product Designer',
       storyTitle: 'From complexity to conversion',
       storyBody: 'A complex investment, made easier to understand and trust.',
-      metricTitle: '300% increase in lead conversion',
-      metricBody: 'Within two months, from a 5.1% baseline in Germany. Later adapted for the UK.',
+      metricTitle: '300% more solar leads',
+      metricBody: 'Later adapted for the UK.',
       cta: 'Explore case study',
     },
     playground: {
       cta: 'Explore case study',
       weatherMeta: 'Rive motion',
       petMeta: 'Voice · Hardware',
-      gratulaMeta: 'Launching soon',
+      gratulaMeta: 'Prototype',
     },
     how: {
       kicker: 'How I work',
       titleHtml: 'AI drafts.<em>I decide.</em>',
       bodyHtml:
-        'AI drafts and iterates with me at every step.<br class="ad-desktop-break"> I decide the problem, the direction, and what<br class="ad-desktop-break"> ships.',
+        'AI drafts and iterates with me at every step.<br class="hiw-desktop-break"> I decide the problem, the direction, and what<br class="hiw-desktop-break"> ships.',
       cta: 'Explore how I work',
       artLabel:
         'Decide: Human judgment in every step. A human designer leads a team of AI assistants, surrounded by sketches, checklists, and an idea bulb.',
@@ -83,13 +84,14 @@ export const home = {
     heroKicker: 'Product Designerin · Enterprise- & regulierte UX',
     heroTitle: 'Komplexität vereinfachen. Mit KI gestalten.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestütztes Workflow-Konzept, 10+&nbsp;Min. pro Kunde gespart.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300&nbsp;% mehr Anfragen in zwei Monaten.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW-App</a>: Designteam geleitet, Designsystem mitgestaltet.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow, <span style="white-space:nowrap">5–10&nbsp;Min.</span> pro Kunde gespart.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300&nbsp;% mehr Leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Chat schließen',
     askLuSend: 'Senden',
     askLuGreeting:
       'Hallo! Ich bin Lus KI-Assistent. Fragen Sie nach ihrer Arbeit, Erfahrung oder Arbeitsweise.',
     askLuPlaceholder: 'Fragen Sie nach Lus Arbeit…',
+    askLuNotice: 'Bitte keine persönlichen oder vertraulichen Informationen eingeben.',
     partnersLabel: 'Kunden, für die ich gestaltet habe',
     ca: {
       eyebrow: 'Client Advisory · UBS',
@@ -104,25 +106,25 @@ export const home = {
     },
     eon: {
       eyebrow: 'Solar · E.ON',
-      titleHtml: 'Redesign der Solar-Landingpage',
+      titleHtml: 'Redesign von Solar-Landingpage und Rechner',
       role: 'Lead Product Designerin',
       storyTitle: 'Von Komplexität zu Conversion',
       storyBody: 'Eine komplexe Investition, leichter zu verstehen und zu vertrauen.',
-      metricTitle: '300 % mehr Lead-Conversion',
-      metricBody: 'In zwei Monaten, ausgehend von 5,1 % in Deutschland. Später für Großbritannien adaptiert.',
+      metricTitle: '300 % mehr Solar-Leads',
+      metricBody: 'Später für Großbritannien adaptiert.',
       cta: 'Case Study ansehen',
     },
     playground: {
       cta: 'Case Study ansehen',
       weatherMeta: 'Rive Motion',
       petMeta: 'Stimme · Hardware',
-      gratulaMeta: 'Startet bald',
+      gratulaMeta: 'Prototyp',
     },
     how: {
       kicker: 'Wie ich arbeite',
       titleHtml: 'KI entwirft.<em>Ich entscheide.</em>',
       bodyHtml:
-        'KI entwirft und iteriert in jedem Schritt mit mir.<br class="ad-desktop-break"> Ich entscheide über Problem, Richtung und was<br class="ad-desktop-break"> live geht.',
+        'KI entwirft und iteriert in jedem Schritt mit mir.<br class="hiw-desktop-break"> Ich entscheide über Problem, Richtung und was<br class="hiw-desktop-break"> live geht.',
       cta: 'Arbeitsweise ansehen',
       artLabel:
         'Entscheiden: Menschliches Urteil in jedem Schritt. Eine Designerin führt KI-Assistenten, umgeben von Skizzen, Checklisten und einer Ideenbirne.',

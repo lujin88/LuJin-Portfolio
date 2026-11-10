@@ -669,7 +669,9 @@ html:has(.wa-page) {
 }
 .wa-closing .site-footer__inner { max-width: none; width: 100%; margin: 0; }
 .wa-closing .site-footer__bottom { padding-top: 2rem; text-align: left; color: var(--color-text-3); }
-.wa-closing .site-footer__note { margin: 0; font-size: var(--font-size-footer-note); line-height: 1.6; }
+.wa-closing .site-footer__note { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font-size: var(--font-size-footer-note); line-height: 1.6; }
+/* Separator + analytics note wrap as one unit, as in shell-components.css (not loaded here). */
+.wa-closing .site-footer__analytics { display: inline-flex; align-items: center; gap: inherit; }
 @media (max-width: 640px) {
   .wa-closing .exp-contact { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
 }
@@ -677,4 +679,21 @@ html:has(.wa-page) {
   html:has(.wa-page) { scroll-behavior: auto; }
   .wa-closing .contact-reveal { opacity: 1 !important; transform: none !important; transition: none; }
   .wa-closing .pill-btn, .wa-closing .pill-btn:hover { transition: none; transform: none; }
+}
+
+/* Phones: last character label -> contact heading 64px (visual MOBILE_SPACING_1109/RULES.md).
+   The pose track keeps its own 33px under the labels (scroll room); the section
+   drops its 96px and the contact top makes up the rest. */
+@media (max-width: 640px) {
+  .wa-page .motion-section { padding-bottom: 0; }
+  .wa-closing.site-closing.site-closing .contact-section { padding-top: 31px; }
+}
+/* Phones: 02 -> 03 and 03 -> 04 are 48px from the last caption / vocab item to the next
+   eyebrow (visual CANDIDATES-v3). They were 176 and 188px: each section's bottom padding
+   stacked on the next one's top. Galleries, vocab grid and pose canvas keep their size. */
+@media (max-width: 640px) {
+  .wa-page .editions-section,
+  .wa-page .learning-section { padding-bottom: 0; }
+  .wa-page .learning-section,
+  .wa-page .motion-section { padding-top: 48px; }
 }

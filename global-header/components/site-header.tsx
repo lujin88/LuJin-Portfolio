@@ -48,7 +48,7 @@ const NAV: readonly NavEntry[] = [
       {
         label: 'E.ON',
         href: '/EON',
-        meta: 'Solar · +300% leads',
+        meta: 'Energy · 300% more leads',
         icon: {
           light: '/assets/images/nav/light/work/eon-light.webp',
           dark: '/assets/images/nav/dark/work/eon-dark.webp',
@@ -180,10 +180,6 @@ function menuMeta(copy: (typeof headerCopy)[keyof typeof headerCopy], meta: stri
 export function SiteHeader({ activeHref }: SiteHeaderProps) {
   const pathname = usePathname()
   const currentHref = activeHref ?? pathname
-  const cinematicHeader =
-    pathname.startsWith('/lab/off-we-go') ||
-    pathname.startsWith('/backup/ai-design-process') ||
-    pathname.startsWith('/backup/way-of-work')
   const partyHeader = pathname.startsWith('/lab/party-planner')
   const pinnedPaper =
     pathname.startsWith('/lab/weather-aquarium') ||
@@ -191,6 +187,8 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
     pathname.startsWith('/lab/agent-monitor')
   const paperHeader =
     pathname.startsWith('/lab/way-of-work') ||
+    pathname.startsWith('/man-truck-bus') ||
+    pathname.startsWith('/etf-savings-plan') ||
     pinnedPaper
   const headerTone = partyHeader ? 'party' : paperHeader ? 'paper' : undefined
   const [menuOpen, setMenuOpen] = useState(false)
@@ -227,11 +225,11 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   }
 
   useEffect(() => {
-    const onScroll = () => setGlassActive(cinematicHeader || pinnedPaper || window.scrollY > 12)
+    const onScroll = () => setGlassActive(pinnedPaper || window.scrollY > 12)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [cinematicHeader, pinnedPaper])
+  }, [pinnedPaper])
 
   useEffect(() => {
     if (closeTimer.current !== null) {
@@ -428,7 +426,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       <div
         aria-hidden="true"
         className={cn(
-          'pointer-events-none absolute inset-x-0 top-0 h-28 bg-[linear-gradient(to_bottom,color-mix(in_oklab,var(--header-scrim)_76%,transparent)_0%,color-mix(in_oklab,var(--header-scrim)_18%,transparent)_58%,transparent_100%)] transition-opacity duration-500 ease-out',
+          'header-scrim-layer pointer-events-none absolute inset-x-0 top-0 h-28 bg-[linear-gradient(to_bottom,color-mix(in_oklab,var(--header-scrim)_76%,transparent)_0%,color-mix(in_oklab,var(--header-scrim)_18%,transparent)_58%,transparent_100%)] transition-opacity duration-500 ease-out',
           MOTION_SAFE,
           glassActive ? 'opacity-0' : 'opacity-100',
         )}
@@ -436,7 +434,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       <div
         aria-hidden="true"
         className={cn(
-          'pointer-events-none absolute inset-x-0 top-0 h-28 bg-header-glass/70 backdrop-blur-md transition-opacity duration-500 ease-out [mask-image:linear-gradient(to_bottom,black_0%,black_52%,transparent_100%)]',
+          'header-glass-layer pointer-events-none absolute inset-x-0 top-0 h-28 bg-header-glass/70 backdrop-blur-md transition-opacity duration-500 ease-out [mask-image:linear-gradient(to_bottom,black_0%,black_52%,transparent_100%)]',
           MOTION_SAFE,
           glassActive ? 'opacity-100' : 'opacity-0',
         )}
@@ -452,7 +450,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           )}
         >
           <img
-            src="/assets/images/brand/lu-logo-96.png"
+            src="/assets/images/brand/lu-logo-64.webp"
             alt="Lu"
             width={32}
             height={32}
@@ -751,7 +749,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                                     {navLabel(copy, child.label)}
                                   </span>
                                   {child.meta ? (
-                                    <span className="mt-0.5 block text-[0.75rem] leading-snug text-header-foreground/55">
+                                    <span className="header-menu-meta mt-0.5 block text-[0.75rem] leading-snug">
                                       {menuMeta(copy, child.meta)}
                                     </span>
                                   ) : null}
@@ -981,7 +979,7 @@ function NavDropdown({
                         {navLabel(copy, child.label)}
                       </span>
                       {child.meta ? (
-                        <span className="mt-0.5 block text-[0.75rem] leading-snug text-header-foreground/55">
+                        <span className="header-menu-meta mt-0.5 block text-[0.75rem] leading-snug">
                           {menuMeta(copy, child.meta)}
                         </span>
                       ) : null}

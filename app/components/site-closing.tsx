@@ -1,13 +1,15 @@
 'use client'
 
 import { useLayoutEffect, useRef } from 'react'
+import Link from 'next/link'
 import { useTranslation } from '@i18n'
+import './site-closing-mobile.css'
 
 const EMAIL = 'lu.jin.ixd@gmail.com'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lu-jin-28008689/'
 const GITHUB_URL = 'https://github.com/lujin88'
 const CV_URL =
-  'https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link'
+  '/cv/lu-jin-cv.pdf'
 
 export function SiteClosing({ className }: { className?: string }) {
   const { t } = useTranslation()
@@ -36,7 +38,7 @@ export function SiteClosing({ className }: { className?: string }) {
   }, [])
 
   return (
-    <div className={className}>
+    <div className={className ? `site-closing ${className}` : 'site-closing'}>
       <section id="contact" className="contact-section">
         <div ref={contactRef} className="exp-contact contact-reveal">
           <div className="exp-contact__lead">
@@ -76,6 +78,12 @@ export function SiteClosing({ className }: { className?: string }) {
           <div className="site-footer__bottom">
             <p className="site-footer__note">
               <span>{t('common.footerRights')}</span>
+              <span className="site-footer__analytics">
+                <span aria-hidden="true">·</span>
+                <Link href="/privacy" style={{ color: 'inherit', textUnderlineOffset: '0.2em' }}>
+                  {t('common.footerPrivacy')}
+                </Link>
+              </span>
             </p>
           </div>
         </div>

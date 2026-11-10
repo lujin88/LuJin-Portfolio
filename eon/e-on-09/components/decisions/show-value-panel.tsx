@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { Leaf } from 'lucide-react'
+import { mediaUrl } from '../../../../lib/media-url'
 import { ComparisonCardHeader } from '@eon/components/decisions/comparison-card-header'
 import { PanelArrow } from '@eon/components/decisions/panel-arrow'
 import { formatEurPerYear, type HouseholdState } from '@eon/components/decisions/household-states'

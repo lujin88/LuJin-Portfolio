@@ -1,5 +1,6 @@
 'use client'
 
+import type { CSSProperties } from 'react'
 import { SectionLabel } from '@eon/components/section-label'
 import { ContentContainer } from '@eon/components/content-container'
 import { JourneySteps } from '@eon/components/motion/journey-steps'
@@ -44,6 +45,8 @@ function AnnotationArrow({ className }: { className?: string }) {
 
 export function JourneySection() {
   const { t } = useTranslation()
+  const characters = Array.from(t('eon.journey.hand'))
+  const interval = Math.min(50, 1498 / Math.max(1, characters.length))
   return (
     <section data-journey-section className={`${styles.section} relative overflow-hidden bg-navy-950 text-white`}>
       <div
@@ -51,7 +54,7 @@ export function JourneySection() {
         className="pointer-events-none absolute -right-16 top-4 h-24 w-24 rounded-full bg-mint md:-right-28 md:top-[28%] md:h-[300px] md:w-[300px]"
       />
 
-      <ContentContainer className="relative py-24 md:py-32">
+      <ContentContainer className="relative py-24 max-sm:pb-0 md:py-32">
         <OnceReveal>
         <SectionLabel
           number="04"
@@ -66,9 +69,10 @@ export function JourneySection() {
           </h2>
 
           <div className="mt-8 flex w-full flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-12">
-            <div className={`${styles.note} relative max-w-[380px] pb-8 md:pb-2`}>
+            <span className="sr-only">{t('eon.journey.hand')}</span>
+            <div className={`${styles.note} relative hidden max-w-[380px] pb-8 md:block md:pb-2`}>
               <p className="-rotate-[6deg] font-hand text-[26px] leading-snug text-white md:text-[28px]">
-                {t('eon.journey.hand')}
+                {characters.map((character, index) => <span aria-hidden="true" key={index} className={styles.character} style={{ '--character-delay': `${1751 + index * interval}ms` } as CSSProperties}>{character}</span>)}
               </p>
               <AnnotationArrow className={`${styles.annotation} pointer-events-none mt-1 ml-16 h-[68px] w-[124px] text-white/40 md:absolute md:top-[4.4rem] md:left-[6.75rem] md:mt-0 md:h-[82px] md:w-[168px]`} />
             </div>

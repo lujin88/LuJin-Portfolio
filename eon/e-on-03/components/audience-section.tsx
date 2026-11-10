@@ -16,7 +16,7 @@ export function AudienceSection() {
         className="pointer-events-none absolute -left-40 top-1/3 h-[420px] w-[420px] rounded-full bg-purple opacity-[0.07] blur-3xl"
       />
 
-      <ContentContainer className="case-study-section relative grid grid-cols-1 items-center gap-14 lg:grid-cols-[42%_58%] lg:gap-10">
+      <ContentContainer className="case-study-section relative grid grid-cols-1 items-center gap-6 md:gap-14 lg:grid-cols-[42%_58%] lg:gap-10">
         {/* Left column — narrative */}
         <OnceReveal className="max-w-[560px]">
           <SectionLabel

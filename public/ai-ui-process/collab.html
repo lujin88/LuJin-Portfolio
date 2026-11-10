@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>协作和沟通</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap">
+
+<link rel="stylesheet" href="/fonts/source-sans-3/source-sans-3.css"><link rel="stylesheet" href="/fonts/jetbrains-mono/jetbrains-mono.css">
 <style>
 /* Layout: page tabs, title, sticky section bar with density + language, then sections that fold to one line each in Brief view */
 :root{
   --bg:#f4f5f7; --surface:#ffffff; --fg:#1a1d24; --muted:#5f6674; --line:#d3d7df;
   --accent:#2453c4; --accent-soft:#e8eefb; --ok:#1d7a5a; --ok-soft:#e6f3ed; --code:#f0f2f5; --band:#eceef2;
-  --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --f-body:"Source Sans 3","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",system-ui,sans-serif;
   --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
@@ -341,7 +341,7 @@ body.has-shell section a:not([class]){color:var(--accent);text-decoration:underl
 .sh-pop kbd{font:600 10.5px ui-monospace,Menlo,monospace;border:1px solid var(--sh-line);border-radius:5px;padding:1px 5px;background:var(--sh-bg)}
 @media (max-width:760px){.sh-pop{min-width:0;max-height:60vh}.sh-pop .foot{display:none}}
 </style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+
 <link rel="stylesheet" href="port-chrome.css">
 </head>
 <body><!--shell--><header class="port-header" data-port-header>
@@ -367,7 +367,6 @@ body.has-shell section a:not([class]){color:var(--accent);text-decoration:underl
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="port-menu" role="group">
-          <a href="/lab/agent-monitor">Agent Monitor</a>
           <a href="/lab/party-planner">Gratula</a>
         </div>
       </div>
@@ -383,7 +382,6 @@ body.has-shell section a:not([class]){color:var(--accent);text-decoration:underl
     <a href="/client-advisory">Client Advisory</a>
     <a href="/EON">E.ON</a>
     <p class="port-mobile-label">Playground</p>
-    <a href="/lab/agent-monitor">Agent Monitor</a>
     <a href="/lab/party-planner">Gratula</a>
     <a href="mailto:lu.jin.ixd@gmail.com"><span class="sh-en">Contact Me</span><span class="sh-de">Kontakt</span><span class="sh-zh">联系我</span></a>
   </div>
@@ -1069,7 +1067,7 @@ Links: [Projektdokument] [Designs] [decisions.md]</pre><button class="copy" type
           <span class="sep" aria-hidden="true">·</span>
           <a href="https://github.com/lujin88" target="_blank" rel="noopener noreferrer">GitHub</a>
           <span class="sep" aria-hidden="true">·</span>
-          <a href="https://drive.google.com/file/d/1HwHV8VnyhIIKHyNj86n5MSCLeoYsx0Ut/view?usp=drive_link" target="_blank" rel="noopener noreferrer"><span class="sh-en">Download CV</span><span class="sh-de">Lebenslauf</span><span class="sh-zh">下载简历</span></a>
+          <a href="/cv/lu-jin-cv.pdf" target="_blank" rel="noopener noreferrer"><span class="sh-en">Download CV</span><span class="sh-de">Lebenslauf</span><span class="sh-zh">下载简历</span></a>
         </p>
       </div>
       <a class="port-pill" href="mailto:lu.jin.ixd@gmail.com"><span class="sh-en">Let's Talk</span><span class="sh-de">Lass uns sprechen</span><span class="sh-zh">聊聊</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>

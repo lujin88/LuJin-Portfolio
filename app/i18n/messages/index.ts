@@ -1,12 +1,12 @@
 import type { LangCode } from '@header/lib/language'
 import { common } from './common'
 import { home } from './home'
-import { construction, lab, pet, wip } from './lab'
-import { owg } from './owg'
+import { construction, lab, pet } from './lab'
 import { wow } from './wow'
-import { ai } from './ai'
 import { ca } from './ca'
 import { eon } from './eon'
+import { privacy } from './privacy'
+import { bmw } from './bmw'
 
 export const dictionaries = {
   en: {
@@ -15,12 +15,11 @@ export const dictionaries = {
     lab: lab.en,
     pet: pet.en,
     construction: construction.en,
-    wip: wip.en,
-    owg: owg.en,
     wow: wow.en,
-    ai: ai.en,
     ca: ca.en,
     eon: eon.en,
+    privacy: privacy.en,
+    bmw: bmw.en,
   },
   de: {
     common: common.de,
@@ -28,12 +27,11 @@ export const dictionaries = {
     lab: lab.de,
     pet: pet.de,
     construction: construction.de,
-    wip: wip.de,
-    owg: owg.de,
     wow: wow.de,
-    ai: ai.de,
     ca: ca.de,
     eon: eon.de,
+    privacy: privacy.de,
+    bmw: bmw.de,
   },
 } as const satisfies Record<LangCode, unknown>
 
@@ -44,16 +42,14 @@ export const documentTitleKeys: Record<string, string> = {
   '/index': 'home.documentTitle',
   '/lab': 'lab.documentTitle',
   '/lab/way-of-work': 'wow.documentTitle',
-  '/lab/off-we-go': 'owg.documentTitle',
   '/lab/party-planner': 'lab.partyPlannerTitle',
   '/lab/weather-aquarium': 'lab.weatherAquariumTitle',
   '/ai-companion-pet': 'pet.documentTitle',
   '/man-truck-bus': 'construction.man.documentTitle',
   '/etf-savings-plan': 'construction.etf.documentTitle',
-  '/ai-workflow-case': 'ai.documentTitle',
-  '/wip': 'wip.documentTitle',
   '/client-advisory': 'ca.documentTitle',
   '/client-advisor': 'ca.documentTitle',
   '/EON': 'eon.documentTitle',
   '/eon-solar': 'eon.documentTitle',
+  '/privacy': 'privacy.documentTitle',
 }

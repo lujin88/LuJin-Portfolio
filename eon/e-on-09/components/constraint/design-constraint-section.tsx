@@ -10,13 +10,14 @@ export function DesignConstraintSection() {
   const { t } = useTranslation()
   return (
     <section className="relative z-[1] bg-navy-950">
-      {/* Decorative mint circle, top-right */}
+      {/* Decorative mint circle, top-right. Below lg it is smaller and ends above the
+          headline: at 260px it sat behind the white title on phones and made it unreadable. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-12 -right-16 z-0 h-[260px] w-[260px] rounded-full bg-mint md:top-10 md:h-[320px] md:w-[320px]"
+        className="pointer-events-none absolute top-0 -right-12 z-0 h-28 w-28 rounded-full bg-mint lg:top-10 lg:-right-16 lg:h-[320px] lg:w-[320px]"
       />
 
-      <ContentContainer className="case-study-section relative z-[2]">
+      <ContentContainer className="case-study-section eon-s06 relative z-[2]">
         {/* Section label */}
         <SectionLabel
           number="06"
@@ -26,7 +27,7 @@ export function DesignConstraintSection() {
           className="mb-10"
         />
 
-        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
+        <div className="grid grid-cols-1 items-start gap-6 md:gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
           {/* Left: headline + copy */}
           <OnceReveal className="max-w-[720px]">
             <h2 className="text-balance text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-white sm:text-[42px] md:text-[48px] lg:text-[46px]">

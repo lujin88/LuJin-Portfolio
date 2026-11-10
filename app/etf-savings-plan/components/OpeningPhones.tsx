@@ -7,14 +7,38 @@ export function OpeningPhones() {
     const element = sequence.current;
     if (!element) return;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    // Phones (<=600px): no sticky stage or 66svh runway (OpeningPhones.css). The
+    // spread is driven by the page's natural scroll until the pair is 24px under
+    // the site header, then stays settled (motion MOTION_ETF_MOBILE_1109/PLAN.md).
+    const phone = window.matchMedia('(max-width: 600px)');
+    let settled = false;
     let frame = 0;
+    function progressOnPhone(el: HTMLDivElement) {
+      const pair = el.querySelector<HTMLElement>('.opening-pair');
+      if (!pair) return 1;
+      const header = document.querySelector('[data-site-header]');
+      const headerBottom = header ? header.getBoundingClientRect().bottom : 64;
+      const sequenceTop = el.getBoundingClientRect().top + window.scrollY;
+      const pairTop = pair.getBoundingClientRect().top + window.scrollY;
+      const travel = pairTop - sequenceTop - (headerBottom + 24);
+      if (travel <= 0) return 1;
+      return Math.max(0, Math.min(1, (window.scrollY - sequenceTop) / travel));
+    }
     function paint() {
       frame = 0;
       if (!element) return;
-      const rect = element.getBoundingClientRect();
-      const pinTop = parseFloat(getComputedStyle(element.firstElementChild!).top) || 0;
-      const distance = Math.max(1, rect.height - element.firstElementChild!.clientHeight);
-      const progress = Math.max(0, Math.min(1, (pinTop - rect.top) / distance));
+      let progress: number;
+      if (phone.matches) {
+        // Reduced motion settles the pair for good: switching back must not replay the spread.
+        if (reduceMotion.matches) settled = true;
+        progress = settled ? 1 : progressOnPhone(element);
+        if (progress >= 1) settled = true;
+      } else {
+        const rect = element.getBoundingClientRect();
+        const pinTop = parseFloat(getComputedStyle(element.firstElementChild!).top) || 0;
+        const distance = Math.max(1, rect.height - element.firstElementChild!.clientHeight);
+        progress = Math.max(0, Math.min(1, (pinTop - rect.top) / distance));
+      }
       const remainingTilt = reduceMotion.matches ? 0 : 1 - progress * progress * (3 - 2 * progress);
       element.style.setProperty('--spread-progress', remainingTilt.toFixed(4));
       element.style.setProperty('--tilt', (remainingTilt * 14).toFixed(3) + 'deg');
@@ -24,6 +48,13 @@ export function OpeningPhones() {
     function schedule() {
       if (!frame) frame = requestAnimationFrame(paint);
     }
+    // Touching or tabbing into a live phone settles the pair at once, so the
+    // shell never moves while someone is using the demo.
+    function settle() {
+      if (!phone.matches || settled) return;
+      settled = true;
+      schedule();
+    }
     paint();
     window.addEventListener('scroll', schedule, {
       passive: true,
@@ -31,11 +62,20 @@ export function OpeningPhones() {
     });
     window.addEventListener('resize', schedule);
     reduceMotion.addEventListener('change', schedule);
+    phone.addEventListener('change', schedule);
+    element.addEventListener('pointerdown', settle);
+    element.addEventListener('focusin', settle);
+    const resize = new ResizeObserver(schedule);
+    resize.observe(element);
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener('scroll', schedule, true);
       window.removeEventListener('resize', schedule);
       reduceMotion.removeEventListener('change', schedule);
+      phone.removeEventListener('change', schedule);
+      element.removeEventListener('pointerdown', settle);
+      element.removeEventListener('focusin', settle);
+      resize.disconnect();
     };
   }, []);
   return <div className="opening-sequence" ref={sequence}>

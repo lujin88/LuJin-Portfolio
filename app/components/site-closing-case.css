@@ -159,7 +159,9 @@
 }
 .site-closing-case .site-footer__inner { max-width: none; width: 100%; margin: 0; }
 .site-closing-case .site-footer__bottom { padding-top: 2rem; text-align: left; color: var(--color-text-3); }
-.site-closing-case .site-footer__note { margin: 0; font-size: 0.75rem; line-height: 1.6; }
+.site-closing-case .site-footer__note { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font-size: 0.75rem; line-height: 1.6; }
+/* Separator + analytics note wrap as one unit, as in shell-components.css. */
+.site-closing-case .site-footer__analytics { display: inline-flex; align-items: center; gap: inherit; }
 
 @media (max-width: 640px) {
   .site-closing-case .exp-contact { flex-direction: column; align-items: flex-start; gap: 1.5rem; }

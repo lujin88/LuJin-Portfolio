@@ -2,7 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "git": {
     "deploymentEnabled": {
-      "backup/**": false
+      "backup/**": false,
+      "snapshot/**": false,
+      "pr-shots/**": false,
+      "pr-assets/**": false
     }
   }
 }

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import './Moment.css';
 import { OpeningPhones } from './OpeningPhones';
 import { LivePhone } from './LivePhone';
+import { ChapterBackdrop } from './ChapterBackdrop';
 const moments = [{
   id: 'before-starting',
   kind: 'setup',
@@ -24,6 +25,7 @@ const moments = [{
   body: 'A down month may prompt a change of plan. Pause comes first, with a date it resumes by itself. Stop ends future purchases only. The units already bought stay invested, and the app says what to cancel at your bank.',
   screen: 'm' as const
 }];
+const chapterIds = moments.map(moment => moment.id);
 function Phone({index}:{index:number}) {
   return <div className="story-handset"><LivePhone initial={moments[index].screen}/></div>;
 }
@@ -61,6 +63,7 @@ export const ThreeMomentsETFCaseStudyWebsite = () => {
     };
   }, []);
   return <div className="case-site" id="top">
+<ChapterBackdrop chapterIds={chapterIds} />
 <main><section className="case-opening" aria-labelledby="case-title">
     <OpeningPhones />
   </section>

@@ -1,8 +1,10 @@
 import type { StaticImageData } from 'next/image'
 
-import bookView from '../../../image/CAWB.webp'
-import clientView from '../../../image/Investment Hub - Client View 1.webp'
-import usTech from '../../../image/US Tech.webp'
+// Neutral placeholders (2026-11-09): the UBS screens were removed for confidentiality.
+// Swap in visual's recreated concept frames when legal has cleared them.
+import bookView from '../../../image/concept-placeholder-book.png'
+import clientView from '../../../image/concept-placeholder-client.png'
+import usTech from '../../../image/concept-placeholder-research.png'
 
 export type ConceptMockup = {
   id: string
@@ -20,16 +22,16 @@ export const conceptMockups: ConceptMockup[] = [
   {
     id: 'book-view',
     src: bookView,
-    alt: 'UBS advisor book view with clients, opportunities, and market highlights',
+    alt: 'Advisor overview of clients and opportunities (concept, recreated)',
   },
   {
     id: 'us-tech',
     src: usTech,
-    alt: 'US Tech client view with CIO commentary and recommended products',
+    alt: 'Client view with research commentary and product ideas (concept, recreated)',
   },
   {
     id: 'client-view',
     src: clientView,
-    alt: 'Investment Hub client view',
+    alt: 'Client detail view (concept, recreated)',
   },
 ]
