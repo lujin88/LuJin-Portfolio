@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { SeasonCrossfade } from './season-crossfade'
 import { SiteClosing } from '../../components/site-closing'
+import { useSiteLanguage } from '@header/lib/language'
 
 const IMG = '/assets/images/lab/weather-aquarium'
 
@@ -13,19 +14,19 @@ type Lang = 'zh' | 'en' | 'de' | 'fr'
 const DICTIONARY: Record<Lang, { locale: string; words: Record<Word, string> }> = {
   zh: {
     locale: 'zh-CN',
-    words: { perch: '河鲈', church: '教堂', sun: '太阳', rain: '雨', coat: '外套', hat: '帽子' },
+    words: { perch: '河鲈', church: '教堂', sun: '太阳', rain: '雨', coat: '雨衣', hat: '毛线帽' },
   },
   en: {
     locale: 'en-US',
-    words: { perch: 'Perch', church: 'Church', sun: 'Sun', rain: 'Rain', coat: 'Coat', hat: 'Hat' },
+    words: { perch: 'Perch', church: 'Church', sun: 'Sun', rain: 'Rain', coat: 'Rain jacket', hat: 'Woolly hat' },
   },
   de: {
     locale: 'de-DE',
-    words: { perch: 'Egli', church: 'Kirche', sun: 'Sonne', rain: 'Regen', coat: 'Mantel', hat: 'Mütze' },
+    words: { perch: 'Egli', church: 'Kirche', sun: 'Sonne', rain: 'Regen', coat: 'Regenjacke', hat: 'Mütze' },
   },
   fr: {
     locale: 'fr-FR',
-    words: { perch: 'Perche', church: 'Église', sun: 'Soleil', rain: 'Pluie', coat: 'Manteau', hat: 'Bonnet' },
+    words: { perch: 'Perche', church: 'Église', sun: 'Soleil', rain: 'Pluie', coat: 'Imperméable', hat: 'Bonnet' },
   },
 }
 
@@ -60,7 +61,7 @@ const VOCAB: { word: Word; alt: string; src: string; ratio: number; clip: VocabC
   { word: 'sun', alt: 'Sun', src: `${IMG}/vocab-sun.webp`, ratio: 1314 / 1197, clip: { file: 'vocab-sun-trim.mp4', w: 1.9819, x: -0.4958, y: -0.286, motion: [334, 151, 772, 632] } },
   // Drops reach the clip's bottom edge, so the bottom 20% fades instead (Lu-approved first version).
   { word: 'rain', alt: 'Rain cloud', src: `${IMG}/vocab-rain.webp`, ratio: 1377 / 1142, clip: { file: 'vocab-rain-v1.mp4', w: 1.6965, x: -0.3624, y: -0.2242, motion: [345, 196, 816, 834], fadeBottom: true } },
-  { word: 'coat', alt: 'Yellow raincoat', src: `${IMG}/vocab-coat.webp`, ratio: 1312 / 1199, clip: { file: 'vocab-coat-trim.mp4', w: 1.9263, x: -0.4701, y: -0.2654, motion: [356, 162, 772, 658] } },
+  { word: 'coat', alt: 'Yellow rain jacket', src: `${IMG}/vocab-coat.webp`, ratio: 1312 / 1199, clip: { file: 'vocab-coat-trim.mp4', w: 1.9263, x: -0.4701, y: -0.2654, motion: [356, 162, 772, 658] } },
   { word: 'hat', alt: 'Red winter hat', src: `${IMG}/vocab-hat.webp`, ratio: 1374 / 1145, clip: { file: 'vocab-hat-v1.mp4', w: 1.7905, x: -0.3997, y: -0.2456, motion: [338, 167, 786, 651] } },
 ]
 
@@ -510,7 +511,13 @@ export function WeatherAquariumPage() {
   const rootRef = useRef<HTMLDivElement>(null)
   const heroMediaRef = useRef<HTMLDivElement>(null)
   const heroDeviceRef = useRef<HTMLImageElement>(null)
-  const [language, setLanguage] = useState<Lang>('zh')
+  // Word language follows the page (EN/DE) until the visitor picks one; Chinese and French are a tap away.
+  const { langCode } = useSiteLanguage()
+  const [language, setLanguage] = useState<Lang>(langCode)
+  const pickedLanguage = useRef(false)
+  useEffect(() => {
+    if (!pickedLanguage.current) setLanguage(langCode)
+  }, [langCode])
   const [pose, setPose] = useState(0)
   const [activeTap, setActiveTap] = useState<number | null>(null)
   const [activeVocab, setActiveVocab] = useState<Word | null>(null)
@@ -685,13 +692,16 @@ export function WeatherAquariumPage() {
                   <p className="section-copy">Switch the language to explore every object.</p>
                 </div>
 
-                <div className="language-toggle" role="group" aria-label="Choose language">
+                <div className="language-toggle" role="group" aria-label={langCode === 'de' ? 'Sprache wählen' : 'Choose language'}>
                   {LANGUAGES.map((item) => (
                     <button
                       key={item.id}
                       type="button"
                       aria-pressed={language === item.id}
-                      onClick={() => setLanguage(item.id)}
+                      onClick={() => {
+                        pickedLanguage.current = true
+                        setLanguage(item.id)
+                      }}
                     >
                       {item.label}
                     </button>
@@ -714,7 +724,7 @@ export function WeatherAquariumPage() {
                         <button
                           className="speak-button"
                           type="button"
-                          aria-label={`Listen to ${label}`}
+                          aria-label={langCode === 'de' ? `${label} anhören` : `Listen to ${label}`}
                           onClick={() => speak(item.word)}
                         >
                           <i className="ri-volume-up-line" aria-hidden="true" />
