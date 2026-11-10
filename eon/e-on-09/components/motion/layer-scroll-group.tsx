@@ -61,20 +61,17 @@ function writeLayers(movers: HTMLElement[], amount: number) {
   }
 }
 
-/**
- * Progress 0 when the group top is at the viewport bottom, 1 at the earlier of the group top
- * reaching the viewport top or the page reaching its maximum scroll (from the 3000 engine), so the
- * last blocks on a page still settle although their top can never reach the viewport top.
- */
-function bottomAwareProgress(group: HTMLElement, scrollOffset = 0) {
+/** Progress from layout. Reads layout only; never writes. */
+function readProgress(group: HTMLElement) {
   const vh = window.innerHeight
-  // scrollOffset > 0: where the group was before the page scrolled down by that many px.
-  const top = group.getBoundingClientRect().top + scrollOffset
+  const top = group.getBoundingClientRect().top
   const scroller = document.scrollingElement || document.documentElement
   const maxScroll = Math.max(0, scroller.scrollHeight - vh)
-  const endTop = Math.max(0, top + window.scrollY - scrollOffset - maxScroll)
+  // Group top (viewport coords) once the page is scrolled to the bottom.
+  const topAtMaxScroll = top + window.scrollY - maxScroll
+  const endTop = Math.max(0, topAtMaxScroll)
   const span = vh - endTop
-  if (span <= 1) return 1
+  if (span <= 1) return 1 // no scroll range left in which to travel
   const p = (vh - top) / span
   return p < 0 ? 0 : p > 1 ? 1 : p
 }
@@ -125,18 +122,12 @@ export function LayerScrollGroup({
     let furthest = 0
     let easeIn = visibleAtMount ? 0 : 1
 
-    const readProgress = () => bottomAwareProgress(group)
-
-    const initial = readProgress()
-    if (initial >= 0.995) {
+    const settle = () => {
+      latched = true
+      cancelAnimationFrame(frame)
       restLayers(movers)
       teardown()
     }
-    // Scroll position the last time this group looked at it. The first user scroll is judged by
-    // where the group was just before that scroll, measured now: images and fonts loading after a
-    // mid-page reload move groups into view without any scroll event, so a value stored at load
-    // time can be stale (Party at 390: RSVP/local were pulled down 32-68px on the first scroll).
-    let lastScrollY = window.scrollY
 
     const update = () => {
       frame = 0
@@ -165,20 +156,9 @@ export function LayerScrollGroup({
     // after an anchor jump (96px offset painted, then snapped to 0).
     const onScroll = () => {
       if (latched) return
-      if (!armed) {
-        const before = bottomAwareProgress(group, window.scrollY - lastScrollY)
-        lastScrollY = window.scrollY
-        if (!userIntent) return
-        if (window.scrollY <= startScrollY) return
-        // Already on screen when the user starts scrolling (mid-page reload, a section in the
-        // first viewport on phones, anchor jump): the layers are at rest, and writing
-        // (1 - progress) * distance now would make them jump down. Stay at rest instead.
-        if (before > 0) {
-          latched = true
-          restLayers(movers)
-          return
-        }
-        armed = true
+      if (frame) {
+        cancelAnimationFrame(frame)
+        frame = 0
       }
       update()
     }
@@ -192,27 +172,14 @@ export function LayerScrollGroup({
       for (const type of INPUT_EVENTS) window.removeEventListener(type, onFirstInput, true)
     }
 
-    window.addEventListener('wheel', markIntent, { passive: true })
-    window.addEventListener('touchstart', markIntent, { passive: true })
-    window.addEventListener('pointerdown', markIntent, { passive: true })
-    window.addEventListener('keydown', markIntent)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onResize)
-    // Late-loading images change the page height, and with it the progress near the bottom.
-    const pageResize = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(onResize)
-    pageResize?.observe(document.documentElement)
-    // Reduced motion switched on mid-entry: every layer to rest right away.
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
     const onReduce = () => {
-      if (!reduce.matches) return
-      latched = true
-      cancelAnimationFrame(frame)
-      restLayers(movers)
+      if (media.matches) settle()
     }
-    reduce.addEventListener('change', onReduce)
-    return () => {
-      pageResize?.disconnect()
-      reduce.removeEventListener('change', onReduce)
+
+    const ro = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(request)
+
+    function teardown() {
       cancelAnimationFrame(frame)
       frame = 0
       removeInputListeners()
