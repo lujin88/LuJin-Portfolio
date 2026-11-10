@@ -42,7 +42,7 @@ export const home = {
       kicker: 'How I work',
       titleHtml: 'AI drafts.<em>I decide.</em>',
       bodyHtml:
-        'AI drafts and iterates with me at every step.<br class="ad-desktop-break"> I decide the problem, the direction, and what<br class="ad-desktop-break"> ships.',
+        'AI drafts and iterates with me at every step.<br class="hiw-desktop-break"> I decide the problem, the direction, and what<br class="hiw-desktop-break"> ships.',
       cta: 'Explore how I work',
       artLabel:
         'Decide: Human judgment in every step. A human designer leads a team of AI assistants, surrounded by sketches, checklists, and an idea bulb.',
@@ -124,7 +124,7 @@ export const home = {
       kicker: 'Wie ich arbeite',
       titleHtml: 'KI entwirft.<em>Ich entscheide.</em>',
       bodyHtml:
-        'KI entwirft und iteriert in jedem Schritt mit mir.<br class="ad-desktop-break"> Ich entscheide über Problem, Richtung und was<br class="ad-desktop-break"> live geht.',
+        'KI entwirft und iteriert in jedem Schritt mit mir.<br class="hiw-desktop-break"> Ich entscheide über Problem, Richtung und was<br class="hiw-desktop-break"> live geht.',
       cta: 'Arbeitsweise ansehen',
       artLabel:
         'Entscheiden: Menschliches Urteil in jedem Schritt. Eine Designerin führt KI-Assistenten, umgeben von Skizzen, Checklisten und einer Ideenbirne.',

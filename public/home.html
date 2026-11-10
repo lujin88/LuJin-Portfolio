@@ -728,7 +728,7 @@
   .ai-decides-section *,
   .ai-decides-section *::before,
   .ai-decides-section *::after { box-sizing: border-box; }
-  .ai-decides-section .ad-layout {
+  .ai-decides-section .hiw-layout {
     width: min(100%, 1842px);
     min-height: 854px;
     margin-inline: auto;
@@ -738,8 +738,8 @@
     align-items: center;
     gap: 75px;
   }
-  .ai-decides-section .ad-copy { position: relative; z-index: 1; transform: translateY(48px); }
-  .ai-decides-section .ad-eyebrow {
+  .ai-decides-section .hiw-copy { position: relative; z-index: 1; transform: translateY(48px); }
+  .ai-decides-section .hiw-eyebrow {
     margin: 0 0 16px;
     color: #5b9dff;
     font-size: 19px;
@@ -747,7 +747,7 @@
     line-height: 25px;
     letter-spacing: 5.1px;
   }
-  .ai-decides-section .ad-heading {
+  .ai-decides-section .hiw-heading {
     margin: 0;
     font-family: "Times New Roman", Times, serif;
     font-size: 84px;
@@ -755,7 +755,7 @@
     line-height: 1.03;
     letter-spacing: -.8px;
   }
-  .ai-decides-section .ad-heading em {
+  .ai-decides-section .hiw-heading em {
     display: block;
     color: #80aaff;
     font-family: inherit;
@@ -764,7 +764,7 @@
     line-height: 1.04;
     letter-spacing: -1.3px;
   }
-  .ai-decides-section .ad-description {
+  .ai-decides-section .hiw-description {
     max-width: 550px;
     margin: 28px 0 0;
     color: var(--ad-muted);
@@ -773,12 +773,12 @@
     line-height: 35px;
     letter-spacing: .12px;
   }
-  .ai-decides-section .ad-cta {
+  .ai-decides-section .hiw-cta {
     margin-top: 37px;
     font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
     text-decoration: none;
   }
-  .ai-decides-section .ad-art-stage {
+  .ai-decides-section .hiw-art-stage {
     position: relative;
     display: block;
     width: 100%;
@@ -789,7 +789,7 @@
     -webkit-mask-image: linear-gradient(to right, transparent, #000 1.5%, #000 98.5%, transparent);
     mask-image: linear-gradient(to right, transparent, #000 1.5%, #000 98.5%, transparent);
   }
-  .ai-decides-section .ad-art {
+  .ai-decides-section .hiw-art {
     display: block;
     width: 100%;
     height: 100%;
@@ -806,22 +806,22 @@
   .ai-decides-section .hiw-video.is-playing { opacity: 1; }
 
   /* HIW V4 review: one common scale and transparent cutout for burned-in arc/title. */
-  .ai-decides-section .ad-art-stage { scale: .9; background: var(--ad-bg); }
-  .ai-decides-section .ad-art,
+  .ai-decides-section .hiw-art-stage { scale: .9; background: var(--ad-bg); }
+  .ai-decides-section .hiw-art,
   .ai-decides-section .hiw-video {
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201060%20654%22%3E%3Crect%20width%3D%221060%22%20height%3D%22654%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M28%20193%20C190%2075%20812%2072%20987%20262%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%2272%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%22320%22%20y%3D%220%22%20width%3D%22320%22%20height%3D%22101%22%20fill%3D%22black%22%2F%3E%3C%2Fsvg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201060%20654%22%3E%3Crect%20width%3D%221060%22%20height%3D%22654%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M28%20193%20C190%2075%20812%2072%20987%20262%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%2272%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%22320%22%20y%3D%220%22%20width%3D%22320%22%20height%3D%22101%22%20fill%3D%22black%22%2F%3E%3C%2Fsvg%3E");
     mask-size: 100% 100%; mask-repeat: no-repeat; mask-mode: luminance; mix-blend-mode: lighten;
   }
   .ai-decides-section .hiw-video { transition: none; }
-  .ai-decides-section .ad-art-stage:has(.hiw-video.is-playing) .ad-art { opacity: 0; }
+  .ai-decides-section .hiw-art-stage:has(.hiw-video.is-playing) .hiw-art { opacity: 0; }
   .ai-decides-section .hiw-decide-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: lighten; }
   .hiw-decide-label { animation: hiw-decide-settle 320ms ease-out both; }
   .hiw-decide-left { animation: hiw-decide-accent 8s ease-out infinite; }
   .hiw-decide-right { animation: hiw-decide-accent 8s 160ms ease-out infinite; }
   @keyframes hiw-decide-settle { from { opacity: .55; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes hiw-decide-accent { 0%, 6%, 100% { opacity: 1; } 2% { opacity: .4; } }
-  .ad-art-stage:not(.hiw-motion-visible) .hiw-decide-layer g { animation-play-state: paused; }
+  .hiw-art-stage:not(.hiw-motion-visible) .hiw-decide-layer g { animation-play-state: paused; }
   @media (prefers-reduced-motion: reduce) {
     .hiw-decide-layer g { animation: none !important; opacity: 1; transform: none; }
     .ai-decides-section .hiw-video { transition: none; }
@@ -850,34 +850,34 @@
     height: 100%;
   }
   @media (min-width: 901px) and (max-width: 1600px) {
-    .ai-decides-section .ad-layout { min-height: clamp(640px, 46.36vw, 854px); padding: 60px 4vw 65px 5.25vw; grid-template-columns: minmax(0, 32.8fr) minmax(0, 63.2fr); gap: 4%; }
-    .ai-decides-section .ad-copy { transform: translateY(30px); }
-    .ai-decides-section .ad-eyebrow { font-size: clamp(13px, 1.04vw, 19px); letter-spacing: 4px; }
-    .ai-decides-section .ad-heading { font-size: clamp(51px, 4.56vw, 84px); }
-    .ai-decides-section .ad-heading em { font-size: clamp(57px, 4.89vw, 90px); }
-    .ai-decides-section .ad-description { margin-top: 24px; font-size: clamp(17px, 1.25vw, 23px); line-height: 1.55; }
-    .ai-decides-section .ad-cta { margin-top: 29px; }
+    .ai-decides-section .hiw-layout { min-height: clamp(640px, 46.36vw, 854px); padding: 60px 4vw 65px 5.25vw; grid-template-columns: minmax(0, 32.8fr) minmax(0, 63.2fr); gap: 4%; }
+    .ai-decides-section .hiw-copy { transform: translateY(30px); }
+    .ai-decides-section .hiw-eyebrow { font-size: clamp(13px, 1.04vw, 19px); letter-spacing: 4px; }
+    .ai-decides-section .hiw-heading { font-size: clamp(51px, 4.56vw, 84px); }
+    .ai-decides-section .hiw-heading em { font-size: clamp(57px, 4.89vw, 90px); }
+    .ai-decides-section .hiw-description { margin-top: 24px; font-size: clamp(17px, 1.25vw, 23px); line-height: 1.55; }
+    .ai-decides-section .hiw-cta { margin-top: 29px; }
   }
   @media (max-width: 900px) {
-    .ai-decides-section .ad-layout { min-height: auto; padding: 54px 28px 34px; grid-template-columns: 1fr; gap: 26px; }
-    .ai-decides-section .ad-copy { width: min(100%, 580px); margin-inline: auto; transform: none; }
-    .ai-decides-section .ad-eyebrow { font-size: 13px; line-height: 20px; letter-spacing: 4px; margin-bottom: 18px; }
-    .ai-decides-section .ad-heading { font-size: clamp(54px, 9.5vw, 78px); line-height: 1.04; }
-    .ai-decides-section .ad-heading em { font-size: clamp(60px, 10.5vw, 84px); }
-    .ai-decides-section .ad-description { margin-top: 24px; font-size: 18px; line-height: 29px; }
-    .ai-decides-section .ad-desktop-break { display: none; }
-    .ai-decides-section .ad-cta { margin-top: 26px; }
-    .ai-decides-section .ad-art-stage { width: min(100%, 720px); margin-inline: auto; transform: none; }
+    .ai-decides-section .hiw-layout { min-height: auto; padding: 54px 28px 34px; grid-template-columns: 1fr; gap: 26px; }
+    .ai-decides-section .hiw-copy { width: min(100%, 580px); margin-inline: auto; transform: none; }
+    .ai-decides-section .hiw-eyebrow { font-size: 13px; line-height: 20px; letter-spacing: 4px; margin-bottom: 18px; }
+    .ai-decides-section .hiw-heading { font-size: clamp(54px, 9.5vw, 78px); line-height: 1.04; }
+    .ai-decides-section .hiw-heading em { font-size: clamp(60px, 10.5vw, 84px); }
+    .ai-decides-section .hiw-description { margin-top: 24px; font-size: 18px; line-height: 29px; }
+    .ai-decides-section .hiw-desktop-break { display: none; }
+    .ai-decides-section .hiw-cta { margin-top: 26px; }
+    .ai-decides-section .hiw-art-stage { width: min(100%, 720px); margin-inline: auto; transform: none; }
   }
   @media (max-width: 480px) {
-    .ai-decides-section .ad-layout { padding: 42px 24px 24px; gap: 27px; }
-    .ai-decides-section .ad-art-stage { width: calc(100% + 28px); max-width: none; margin-left: -14px; }
+    .ai-decides-section .hiw-layout { padding: 42px 24px 24px; gap: 27px; }
+    .ai-decides-section .hiw-art-stage { width: calc(100% + 28px); max-width: none; margin-left: -14px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .ai-decides-section .ad-cta,
-    .ai-decides-section .ad-cta svg { transition: none; }
-    .ai-decides-section .ad-cta:hover,
-    .ai-decides-section .ad-cta:hover svg { transform: none; }
+    .ai-decides-section .hiw-cta,
+    .ai-decides-section .hiw-cta svg { transition: none; }
+    .ai-decides-section .hiw-cta:hover,
+    .ai-decides-section .hiw-cta:hover svg { transform: none; }
   }
 
   /* One index screen: fill the viewport, share the content rail, clear the fixed header. */
@@ -886,16 +886,16 @@
     display: flex;
     flex-direction: column;
   }
-  .ai-decides-section .ad-layout {
+  .ai-decides-section .hiw-layout {
     width: 100%;
     flex: 1 0 auto;
     min-height: 100dvh;
     padding-inline: var(--content-inset);
     padding-top: calc(6rem + 1.5rem);
   }
-  .ai-decides-section .ad-eyebrow { text-transform: uppercase; }
+  .ai-decides-section .hiw-eyebrow { text-transform: uppercase; }
   @media (max-width: 900px) {
-    .ai-decides-section .ad-layout { padding-top: calc(5rem + 1.5rem); }
+    .ai-decides-section .hiw-layout { padding-top: calc(5rem + 1.5rem); }
   }
   /* Phones: Gratula card button -> HOW I WORK eyebrow ~214-230px -> 64px (new chapter,
      visual MOBILE_SPACING_1109/RULES.md), 32px each side of the background change.
@@ -903,8 +903,8 @@
   @media (max-width: 600px) {
     section#home-playground { padding-bottom: 32px; }
     #how-i-work,
-    #how-i-work .ad-layout { min-height: 0; }
-    #how-i-work .ad-layout { padding-top: 32px; }
+    #how-i-work .hiw-layout { min-height: 0; }
+    #how-i-work .hiw-layout { padding-top: 32px; }
     /* E.ON button -> Playground title 64px, 32px each side of the background change
        (was 72 + 80). Playground cards 48px apart (was 80). Visual CANDIDATES-v3. */
     #home-showcase .home-case:last-child .home-case-copy { padding-bottom: 32px; }
@@ -913,7 +913,7 @@
     /* How I Work art -> MY EXPERIENCE 64px at rest (was ~251): 12px scale slack under
        the art + 32px seam wash + 20px list top. The seam was 120px for the arc
        stroke into the timeline (Lu 2026-10-30), which R9 hides and phones never had. */
-    #how-i-work .ad-layout { padding-bottom: 0; }
+    #how-i-work .hiw-layout { padding-bottom: 0; }
     div.hiw-exp-seam { height: 32px; }
     #experience .exp-sticky { padding-top: 20px; }
   }
@@ -2176,18 +2176,18 @@
 </section>
 
 <section id="how-i-work" class="ai-decides-section" aria-labelledby="how-i-work-title">
-  <div class="ad-layout">
-    <div class="ad-copy">
-      <p class="ad-eyebrow" data-i18n="home.how.kicker">How I work</p>
-      <h2 class="ad-heading" id="how-i-work-title" data-i18n-html="home.how.titleHtml">AI drafts.<em>I decide.</em></h2>
-      <p class="ad-description" data-i18n-html="home.how.bodyHtml">AI drafts and iterates with me at every step.<br class="ad-desktop-break"> I decide the problem, the direction, and what<br class="ad-desktop-break"> ships.</p>
-      <a class="pill-btn ad-cta" href="/lab/way-of-work">
+  <div class="hiw-layout">
+    <div class="hiw-copy">
+      <p class="hiw-eyebrow" data-i18n="home.how.kicker">How I work</p>
+      <h2 class="hiw-heading" id="how-i-work-title" data-i18n-html="home.how.titleHtml">AI drafts.<em>I decide.</em></h2>
+      <p class="hiw-description" data-i18n-html="home.how.bodyHtml">AI drafts and iterates with me at every step.<br class="hiw-desktop-break"> I decide the problem, the direction, and what<br class="hiw-desktop-break"> ships.</p>
+      <a class="pill-btn hiw-cta" href="/lab/way-of-work">
         <span data-i18n="home.how.cta">Explore how I work</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
-    <div class="ad-art-stage">
-    <svg class="ad-art" xmlns="http://www.w3.org/2000/svg" viewBox="720 130 1060 654" width="1060" height="654" role="img" data-i18n-aria="home.how.artLabel" aria-label="Decide: Human judgment in every step. A human designer leads a team of AI assistants, surrounded by sketches, checklists, and an idea bulb.">
+    <div class="hiw-art-stage">
+    <svg class="hiw-art" xmlns="http://www.w3.org/2000/svg" viewBox="720 130 1060 654" width="1060" height="654" role="img" data-i18n-aria="home.how.artLabel" aria-label="Decide: Human judgment in every step. A human designer leads a team of AI assistants, surrounded by sketches, checklists, and an idea bulb.">
       <image href="/assets/motion/how-i-work/r9/still-crop-ll.webp" x="720" y="130" width="1060" height="654"/>
       <rect class="hiw-caption-loading-cover" x="1035" y="126" width="325" height="102" fill="#080f1a"/>
       <path d="M 730 228 L 1720 228 L 1720 420 L 1670 420 L 1590 344 L 1480 310 L 1360 295 L 1230 268 L 1080 265 L 950 299 L 850 322 L 800 355 L 730 355 Z" fill="#080f1a"/>
@@ -3370,7 +3370,7 @@
     var seam = document.querySelector('.hiw-exp-seam');
     var wash = seam && seam.querySelector('.hiw-exp-seam__wash');
     var path = seam && seam.querySelector('.hiw-exp-seam__path');
-    var art = document.querySelector('.ad-art');
+    var art = document.querySelector('.hiw-art');
     if (!seam || !wash || !path || !art) return;
 
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -3993,8 +3993,8 @@
     // crops the picture. In the single column
     // the stage sits under the copy, so the lift also stops 24px below the
     // copy instead of sliding behind the button.
-    add(how, how && (how.querySelector('.ad-art-stage') || how.querySelector('.ad-art')), true);
-    var howCopy = how && how.querySelector('.ad-copy');
+    add(how, how && (how.querySelector('.hiw-art-stage') || how.querySelector('.hiw-art')), true);
+    var howCopy = how && how.querySelector('.hiw-copy');
     // Showcase handoff stays the fan (transform on the two case images).
     // The same 0.35 lag applies while the pinned stage is still rising
     // (Client Advisory entering) and after it leaves the top (E.ON leaving).
