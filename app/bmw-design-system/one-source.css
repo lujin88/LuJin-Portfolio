@@ -170,16 +170,17 @@
 .bmw-driver dl{left:max(40%,calc(var(--hero-inset) + 267px + 32px));gap:24px}
 .bmw-driver dd{font-size:18px}
 }
-/* Phones: copy, then the car scene, then the phone beside the 2020/2026 timeline, then the store badges. */
+/* Phones: copy, then the phone beside the 2020/2026 timeline, then the store badges. */
 @media(max-width:600px){
-.bmw-driver{min-height:0;padding:calc(64px + 24px) 24px 32px;display:grid;grid-template-columns:min(180px,46%) minmax(0,1fr);grid-template-areas:"head head" "scene scene" "phone dl" "nav nav";column-gap:24px;align-items:start}
+.bmw-driver{min-height:0;padding:calc(64px + 24px) 24px 32px;display:grid;grid-template-columns:min(180px,46%) minmax(0,1fr);grid-template-areas:"head head" "phone dl" "nav nav";column-gap:24px;align-items:start}
 .bmw-driver::before{display:none}
 .bmw-driver header{grid-area:head;max-width:none}
 .bmw-driver header>p:first-child{margin-bottom:12px;font-size:14px}
 .bmw-driver header .hero-story{margin:16px 0 10px;font-size:16px;line-height:1.45}
 .bmw-driver header .hero-bridge{font-size:14px}
-.bmw-driver .backdrop{grid-area:scene;position:static;z-index:auto;width:calc(100% + 48px);max-width:none;height:280px;margin:16px -24px 0;object-fit:cover;object-position:center;-webkit-mask-image:linear-gradient(transparent,#000 18%,#000 80%,transparent);mask-image:linear-gradient(transparent,#000 18%,#000 80%,transparent)}
-.bmw-driver .screen{grid-area:phone;width:100%;margin-top:16px;border-width:4px;border-radius:20px}
+/* One car only (Lu #5896): no scene photo on phones, just the app screen. */
+.bmw-driver .backdrop{display:none}
+.bmw-driver .screen{grid-area:phone;width:100%;margin-top:32px;border-width:4px;border-radius:20px}
 .bmw-driver dl{grid-area:dl;position:static;flex-direction:column;gap:16px;margin-top:32px}
 .bmw-driver dl>div+div{padding:16px 0 0;border-left:0;border-top:1px solid #ffffff40}
 .bmw-driver dd{font-size:16px}
@@ -187,31 +188,38 @@
 .bmw-driver nav img{height:32px}
 .bmw-driver nav .play{height:48px;margin:-8px}
 }
-/* Hero layout A (Lu #5309; visual #5620, visual QA #5621): from 601px up the phone stands on the left and the
-   copy sits to its right. Phones (<=600px) keep the layout above. These rules override the earlier hero rules. */
+/* Hero from 601px up (Lu #5896, #5975): copy on the left, phone on the right.
+   One car only: the photo's car stands on the road behind the phone, slightly blurred, centred on the car shown
+   on the phone screen. Phones (<=600px) show the app screen only, without the photo.
+   The car is at 74.7% / 59.5% of the 3:2 photo. --scene-w is the photo width. The phone is pushed in from the
+   right so its centre meets the car's centre, and the photo's top is set so the car's centre meets the screen car
+   (0.97 phone widths below the phone's top). */
 @media(min-width:601px){
-.bmw-driver{display:grid;grid-template-columns:var(--phone-w) minmax(0,1fr);grid-template-rows:auto 1fr auto;grid-template-areas:"phone head" "phone ." "nav dl";column-gap:56px;align-content:start;min-height:900px;padding-bottom:32px;--phone-w:310px;--scrim:rgba(5,18,31,.72)}
-.bmw-driver .screen{grid-area:phone;align-self:start;box-sizing:border-box;width:var(--phone-w);margin-top:0;border-radius:28px}
-.bmw-driver nav{grid-area:nav;align-self:end}
-.bmw-driver header{grid-area:head;position:relative;max-width:540px}
-/* Dark backing behind the copy only, feathered about 100px on every side so it has no visible edge.
-   Keeps text over the sky at 4.5:1 or better against the brightest pixel behind it. */
-.bmw-driver header::before{content:"";position:absolute;z-index:-1;inset:-96px;background:var(--scrim);filter:blur(48px)}
+.bmw-driver{display:grid;grid-template-columns:var(--copy-w) minmax(0,1fr);grid-template-rows:auto auto 1fr;grid-template-areas:"head phone" "nav phone" "dl phone";column-gap:var(--gap);align-content:start;min-height:0;padding-bottom:max(40px,calc(var(--hero-min) - var(--phone-bottom)));--hero-min:900px;--phone-bottom:calc(104px + var(--phone-top) + 10px + var(--phone-w)*1304/600);--phone-w:290px;--copy-w:460px;--gap:72px;--scene-w:1767px;--phone-top:16px}
+.bmw-driver .backdrop,.bmw-driver::after{position:absolute;inset:calc(104px + var(--phone-top) + .969*var(--phone-w) - .3967*var(--scene-w)) -10px auto auto;width:var(--scene-w);height:auto;aspect-ratio:3/2}
+/* Left and bottom edges fade into the hero colour, so the photo has no visible edge at any width. */
+.bmw-driver .backdrop{z-index:-3;max-width:none;object-fit:cover;filter:blur(2px);-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%),linear-gradient(0deg,transparent,#000 12%);mask-image:linear-gradient(90deg,transparent,#000 30%),linear-gradient(0deg,transparent,#000 12%);-webkit-mask-composite:source-in;mask-composite:intersect}
+/* Ground shadow under the car (front wheel to rear wheel), in photo coordinates. */
+.bmw-driver::after{content:"";z-index:-2;background:radial-gradient(25% 4% at 74.5% 71.6%,rgba(2,7,12,.78),rgba(2,7,12,.4) 55%,transparent)}
+/* Veil under the copy column only, fading out right after it; the sunset glow on the right stays clear. */
+.bmw-driver::before{z-index:-1;background:linear-gradient(90deg,rgba(5,18,31,.82),rgba(5,18,31,.72) calc(var(--hero-inset) + var(--copy-w)),transparent calc(var(--hero-inset) + var(--copy-w) + 220px)),linear-gradient(0deg,rgba(5,18,31,.5),transparent 24%)}
+.bmw-driver header{grid-area:head;max-width:none}
+.bmw-driver nav{grid-area:nav;margin-top:28px}
+.bmw-driver .screen{grid-area:phone;align-self:start;justify-self:end;box-sizing:border-box;width:var(--phone-w);margin:var(--phone-top) calc(.253*var(--scene-w) - 10px - var(--phone-w)/2 - var(--content-inset)) 0 0;border-radius:28px;box-shadow:0 0 0 1px #abaeac,0 24px 60px #030b13b0}
 /* Timeline in the grid (not absolute), so longer German copy pushes it down instead of running into it. */
-.bmw-driver dl{grid-area:dl;position:relative;inset:auto;align-self:end;justify-self:end;width:min(700px,100%);max-width:none;margin-top:32px}
+/* Timeline's bottom edge level with the phone's bottom edge (Lu #6017, #6020), at every width.
+   No min-height on the grid: it would stretch the 1fr row past the phone. The hero's minimum height comes from
+   padding-bottom instead (--phone-bottom = header offset + phone top + 2x5px border + screen at 600:1304).
+   margin-top keeps a gap above the timeline; longer German copy pushes it, and the phone row, down. */
+.bmw-driver dl{grid-area:dl;position:relative;inset:auto;align-self:end;max-width:none;margin-top:48px;gap:24px}
 }
 @media(min-width:601px) and (max-width:1100px){
-.bmw-driver{--phone-w:210px;column-gap:32px;min-height:760px}
-/* Centred, the sunset stays to the right of the copy column instead of behind it. */
-.bmw-driver .backdrop{object-position:center}
+/* The photo scales with the width; the copy column gives way first, so the phone always fits. */
+.bmw-driver{--hero-min:760px;--phone-w:clamp(200px,26vw,280px);--gap:32px;--scene-w:122vw;--copy-w:min(360px,calc(100vw - var(--hero-inset) - var(--gap) - var(--phone-w)/2 - .253*var(--scene-w)))}
 .bmw-driver .screen{border-radius:22px}
-.bmw-driver header{max-width:460px}
-/* The 267px store-badge row is wider than the 210px phone: keep 32px between it and the timeline. */
-.bmw-driver dl{width:min(700px,calc(100% - 57px))}
-/* Here the timeline sits on the car, not on the dark ground: a small backing of its own. */
-.bmw-driver dl::before{content:"";position:absolute;z-index:-1;inset:-40px;background:var(--scrim);filter:blur(24px)}
+.bmw-driver dl{margin-top:32px}
 }
-/* Narrow tablets: the column beside the phone is too tight for two timeline columns. */
+/* Narrow tablets: the copy column is too tight for two timeline columns. */
 @media(min-width:601px) and (max-width:800px){
 .bmw-driver dl{flex-direction:column;gap:16px}
 .bmw-driver dl>div+div{padding:16px 0 0;border-left:0;border-top:1px solid #ffffff40}
