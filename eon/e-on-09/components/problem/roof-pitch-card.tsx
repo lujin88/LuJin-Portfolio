@@ -6,8 +6,9 @@ import { useTranslation } from '@i18n/use-translation'
 
 /*
  * Interactive version of the former `eon-04-05-house.png` card.
- * Click a house → it turns colored, its degree turns red, the others fade; the input follows.
- * Type a number → the closest house is highlighted.
+ * Two ways in, one at a time (Lu 2026-11-08): click a house → it turns colored, its degree turns
+ * red, the others fade, and the input is cleared. Type a number → no house is selected and all four
+ * are disabled (grey, not clickable). Clear the input → the houses come back with the last pick.
  * House art: one colored PNG per pitch (same canvas and baseline); unselected = 35% opacity.
  */
 
@@ -16,29 +17,24 @@ type Pitch = (typeof PITCHES)[number]
 
 const houseSrc = (deg: Pitch) => `/assets/images/eon/roof-pitch/house-${deg}-on.png`
 
-function closestPitch(value: number): Pitch {
-  return PITCHES.reduce((best, p) => (Math.abs(p - value) < Math.abs(best - value) ? p : best), PITCHES[0])
-}
-
 export function RoofPitchCard({ className, alt }: { className?: string; alt: string }) {
   const { t } = useTranslation()
-  const [selected, setSelected] = useState<Pitch>(30)
-  const [text, setText] = useState('30')
+  const [picked, setPicked] = useState<Pitch>(30)
+  const [text, setText] = useState('')
+  const typed = text !== ''
   const inputId = useId()
   const groupId = useId()
   const radioName = useId()
 
   const pick = (deg: Pitch) => {
-    setSelected(deg)
-    setText(String(deg))
+    setPicked(deg)
+    setText('')
   }
 
   const onType = (raw: string) => {
     const clean = raw.replace(/[^\d]/g, '').slice(0, 2)
-    setText(clean)
-    if (clean === '') return
-    const n = Math.min(90, Number(clean))
-    setSelected(closestPitch(n))
+    // A roof pitch tops out at 90°.
+    setText(clean === '' ? '' : String(Math.min(90, Number(clean))))
   }
 
   return (
@@ -56,11 +52,14 @@ export function RoofPitchCard({ className, alt }: { className?: string; alt: str
 
       <div role="radiogroup" aria-labelledby={groupId} className="-mx-[7.1cqw] mt-[3.4cqw] grid grid-cols-4 items-end">
         {PITCHES.map((deg) => {
-          const on = deg === selected
+          const on = !typed && deg === picked
           return (
             <label
               key={deg}
-              className="group relative flex cursor-pointer flex-col items-center gap-[2.2cqw] rounded-2xl has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[#f32717]/50"
+              className={cn(
+                'group relative flex flex-col items-center gap-[2.2cqw] rounded-2xl has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[#f32717]/50',
+                typed ? 'cursor-not-allowed' : 'cursor-pointer',
+              )}
             >
               {/* Native radio: arrow keys, Tab and screen readers work without extra ARIA. */}
               <input
@@ -68,6 +67,7 @@ export function RoofPitchCard({ className, alt }: { className?: string; alt: str
                 name={radioName}
                 value={deg}
                 checked={on}
+                disabled={typed}
                 onChange={() => pick(deg)}
                 className="sr-only"
               />
@@ -79,13 +79,13 @@ export function RoofPitchCard({ className, alt }: { className?: string; alt: str
                 aria-hidden="true"
                 className={cn(
                   'block aspect-square w-[19cqw] object-contain transition-opacity duration-200 ease-out',
-                  on ? 'opacity-100' : 'opacity-35 group-hover:opacity-55',
+                  typed ? 'opacity-25 grayscale' : on ? 'opacity-100' : 'opacity-35 group-hover:opacity-55',
                 )}
               />
               <span
                 className={cn(
                   'text-[3.1cqw] leading-none tabular-nums transition-colors duration-200',
-                  on ? 'text-[#f32717]' : 'text-[#8c8c8c] group-hover:text-[#5c5c5c]',
+                  typed ? 'text-[#c8c8c8]' : on ? 'text-[#f32717]' : 'text-[#8c8c8c] group-hover:text-[#5c5c5c]',
                 )}
               >
                 {deg}°

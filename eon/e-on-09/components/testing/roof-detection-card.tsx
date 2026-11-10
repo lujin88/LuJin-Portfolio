@@ -58,7 +58,8 @@ export function RoofDetectionCard() {
 export function AutoDetectedPill() {
   const { t } = useTranslation()
   return (
-    <div className="flex items-center gap-1.5 rounded-full bg-background px-2.5 py-1.5 shadow-[0_8px_20px_rgba(5,20,30,0.1)]">
+    // w-max + nowrap: the label broke at its hyphen ("Auto-/detected") when the pill was squeezed.
+    <div className="flex w-max items-center gap-1.5 whitespace-nowrap rounded-full bg-background px-2.5 py-1.5 shadow-[0_8px_20px_rgba(5,20,30,0.1)]">
       <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-mint">
         <Check className="h-3 w-3 text-navy-950" strokeWidth={2.75} aria-hidden="true" />
       </span>
