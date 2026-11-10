@@ -52,7 +52,7 @@ export default function RootLayout({
         <div className="site-chrome">
           <SiteHeader activeHref="/" />
         </div>
-        <div className="pt-20 md:pt-24">{children}</div>
+        <div className="pt-16">{children}</div>
         <div className="site-chrome">
           <SiteFooter variant="light" />
         </div>

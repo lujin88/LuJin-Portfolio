@@ -1,0 +1,46 @@
+.v7 {--muted:#425b70;--mist:#edf3f8;--night:#142230}
+.v7-block,.v7-archive {padding:clamp(46px,6vw,92px) var(--g)}
+.v7-split {display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.5fr);gap:clamp(30px,5vw,80px);align-items:center}
+.v7 .v7-split>p,.v7 .v7-split>div>p {max-width:48ch}
+.v7-archive {background:linear-gradient(148deg,#f6f9fb,#e3edf5 68%,#d6e5ed)}
+.v7-phones,.v7-strip,.v7-flow {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2.3vw,36px)}
+.v7-phones {margin:28px auto 18px;max-width:1020px}
+.v7-screen {aspect-ratio: .456;position:relative;overflow:hidden;border:4px solid #17202a;border-radius:clamp(14px,2vw,29px);box-shadow:0 14px 24px -16px #0b243f99;background:#19222d}
+.v7-screen img{width:100%;height:100%;object-fit:cover}.v7-screen.poster img{position:absolute;width:141%;height:140%;max-width:none;left:-20.5%;top:-33%;object-fit:fill}
+.v7-phones figcaption,.v7-strip figcaption{margin-top:12px;font-size:14px;font-weight:600}
+.v7 small {font-size:12px}.v7-archive>small{display:block;text-align:right;color:var(--muted)}
+.v7-climate{border-radius:13px;overflow:hidden;background:#f3f6f9}.v7-climate .oc-sample{padding:clamp(16px,2.5vw,38px)}.v7-receipt{margin-top:12px;padding:12px 16px;border-radius:6px;background:#ffffffd9;color:#142536;font-size:14px}
+.v7-strip {margin-block:clamp(36px,6vw,84px);gap:14px}.v7-excerpt{background:#1a2025;aspect-ratio:1.54;border-radius:10px;overflow:hidden;display:grid;align-items:center;position:relative}
+.v7-excerpt img{width:100%;height:100%;object-fit:cover;position:absolute}.ex-Available img{object-position:center 83%}.ex-Confirm img{object-position:center 15%}.ex-Error img{object-position:center 53%}.ex-Connecting{padding:10%;background:linear-gradient(145deg,#263d52,#162536)}.v7-strip figcaption{display:flex;justify-content:space-between;gap:4px;flex-wrap:wrap}.v7-strip small{font-weight:400;color:var(--muted)}
+.v7-options,.v7-library{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.v7-options article{padding:clamp(14px,2vw,26px);border-radius:13px;background:#f2f4f6}.v7-options article:last-child{background:#dfedf5}.v7-options h3{margin:8px 0 18px}.decision-tiles .rb-tile{min-height:78px;padding:9px}.decision-tiles .rb-tile b,.decision-tiles .rb-tile>span{font-size:12px}.choice-0 .rb-tile:first-child{opacity:.38}.choice-1 .rb-tile:first-child{display:none}.v7-options p,.v7-library p,.v7-costnote,.v7-flow p{font-size:14px;line-height:1.5}.v7-options p,.v7-costnote{margin-top:14px!important;color:var(--muted)}.v7 .decision{margin-bottom:68px}.v7-library{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:18px}.v7-library article>div{padding:18px;background:#e9eff4;border-radius:10px;display:flex;align-items:center;min-height:125px}.v7-library h3{margin:14px 0 5px}
+.v7-cost{background:var(--mist)}.v7 .xls{border-radius:13px;background:white;min-width:0;overflow:hidden;box-shadow:0 16px 36px -24px #15344e88}.xls-bar,.xls-tabs,.xls figcaption{display:flex;gap:14px;padding:10px 14px;font-size:12px}.xls-bar{justify-content:space-between;background:#254657;color:white}.v7-scroll{overflow:auto}.xls table{width:100%;min-width:510px;font-size:12px;border-collapse:collapse}.xls td,.xls th{padding:6px 8px;border:1px solid #e1e8ed;text-align:left}.xls th,.xls .rn,.xls .hdr,.xls-tabs{background:#eff3f6}.xls .k{background:#f7df9d;font-weight:bold}.xls .o{color:#617589}.xls-tabs{flex-wrap:wrap}.xls-tabs .on{font-weight:bold}.xls figcaption{color:var(--muted)}
+.v7-night{background:var(--night);color:#edf6fc}.v7-night .oc-kicker,.v7-flow article>small{color:#ead09b}.v7-night p{color:#c7d7e4}.v7-flow{margin:40px 0 64px;gap:16px}.v7-flow h3{margin:6px 0}.v7-diagram{height:144px;border-radius:10px;display:grid;place-items:center;margin-bottom:15px;background:linear-gradient(155deg,#354f66,#213548);overflow:hidden;padding:12px}.v7-diagram pre{font-size:clamp(10px,1vw,14px);color:#cfebfc}.data-mini{width:90%;display:grid;gap:6px;font-size:12px}.data-mini b{display:flex;justify-content:space-between;background:#192d40;padding:6px 8px;border-radius:4px}.data-mini em{color:#e8cf95;font-style:normal}.variant-mini{width:95%;display:grid;gap:5px}.variant-mini .oc-sample{padding:0;background:transparent}.variant-mini .rb-tile{min-height:42px;padding:5px}.variant-mini .rb-tile b,.variant-mini .rb-tile span{font-size:9px}
+.v7-human{margin-top:60px}.v7-human dl{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px}.v7-human dt{font-weight:600}.v7-human dd{color:#b9cbd8;font-size:14px;margin-top:4px}.v7-end p{font-size:clamp(24px,3vw,48px);letter-spacing:-.04em;line-height:1.15}.v7-end a{display:inline-block;margin-top:24px;font-size:14px}
+@media(max-width:959px){.v7-split{grid-template-columns:1fr}.v7-flow,.v7-human dl{grid-template-columns:repeat(2,minmax(0,1fr))}.v7-phones,.v7-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.v7-night .oc-review{min-width:0}.v7-phones{max-width:520px}}
+@media(max-width:600px){.v7-library,.v7-options{grid-template-columns:1fr}.v7-library article{display:grid;grid-template-columns:1fr 1fr;column-gap:14px;align-items:center}.v7-library article>div{grid-row:span 2;min-height:90px;padding:10px}.v7-library h3{margin:0}.v7-flow{gap:20px 10px}.v7-diagram{height:110px;padding:5px}.v7-flow article{min-width:0}.data-mini b{font-size:10px}.v7-strip figcaption{display:grid}.v7-options article{display:grid;grid-template-columns:1fr 1.3fr;gap:3px 12px}.decision-tiles{grid-column:2;grid-row:1/3}.v7-options article p{grid-column:span 2}.v7 .v7-options h3{margin:0}}
+
+/* One continuous gallery; keep the next handset in view on small screens. */
+.v7-archive {padding-block:clamp(22px,3vw,42px)}
+.v7-phones {max-width:864px;gap:clamp(12px,1.6vw,22px);margin-block:14px}
+.v7-block {padding-block:clamp(32px,3.8vw,58px)}
+.v7 .decision {margin:clamp(28px,3vw,44px) 0 0}
+.v7 .decision h2 {font-size:clamp(32px,3.4vw,54px)}
+.v7-secondary {margin-top:24px}
+.v7-secondary>summary {display:list-item;width:fit-content;padding:10px 0;cursor:pointer;font-weight:600;font-size:14px;color:inherit}
+.v7-secondary .v7-flow {margin:16px 0 0}
+.v7-cost .v7-scroll {max-height:228px;overscroll-behavior:contain}
+.v7-cost .v7-scroll thead {position:sticky;top:0;background:#eff3f6}
+.v7-climate .oc-sample {padding:16px clamp(16px,2vw,26px)}
+.v7-climate .oc-tools,.v7-climate .oc-states {padding-block:12px}
+@media(max-width:959px) {
+ .v7-phones {display:flex;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;max-width:none;align-items:start;padding-bottom:10px;scrollbar-width:thin}
+ .v7-phones figure {flex:0 0 clamp(164px,49vw,220px);scroll-snap-align:start}
+}
+@media(max-width:600px) {
+ .v7 .v7-split {gap:18px}
+ .v7 .v7-split h2 {margin-bottom:14px}
+ .v7 .oc-rules {margin-bottom:0}
+ .v7 .oc-rules li {margin-bottom:5px}
+ .v7-options {gap:8px}
+ .v7-secondary {margin-top:16px}
+}

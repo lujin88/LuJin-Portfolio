@@ -66,7 +66,9 @@ export function EasyAnswerPanel({
             <p className="text-sm font-semibold text-foreground">{t('eon.ui.occupancyQ')}</p>
             <p className="mt-1 text-xs text-muted-foreground">{t('eon.ui.occupancyHint')}</p>
 
-            <div className="mt-5 grid w-[78%] grid-cols-5 gap-3" role="radiogroup" aria-label={t('eon.ui.occupancyAria')}>
+            {/* Below sm the body column starts after the 5.25rem "After" pill + 0.75rem gap, which left
+                ~22px per button at 390px. Pull the row out to the card's full width there. */}
+            <div className="mt-5 -ml-[6rem] grid w-[calc(100%+6rem)] grid-cols-5 gap-2 sm:ml-0 sm:w-[78%] sm:gap-3 lg:w-full xl:w-[78%]" role="radiogroup" aria-label={t('eon.ui.occupancyAria')}>
               {occupancyOptions.map(({ value, icon: Icon }) => {
                 const selected = value === household.id
                 return (
@@ -78,7 +80,7 @@ export function EasyAnswerPanel({
                     onClick={() => onSelect(value)}
                     className={cn(
                       'flex cursor-pointer flex-col items-center gap-1 rounded-2xl py-2.5',
-                      selected ? 'bg-accent' : 'border border-navy-950/8 bg-card',
+                      selected ? 'bg-mint' : 'border border-navy-950/8 bg-card',
                     )}
                   >
                     <Icon

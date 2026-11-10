@@ -18,7 +18,6 @@ export const common = {
     closePreview: 'Close preview',
     previousScreen: 'Previous screen',
     nextScreen: 'Next screen',
-    documentTitleAbout: 'Lu — About',
   },
   de: {
     exploreNow: 'Jetzt entdecken',
@@ -40,6 +39,5 @@ export const common = {
     closePreview: 'Vorschau schließen',
     previousScreen: 'Vorheriger Screen',
     nextScreen: 'Nächster Screen',
-    documentTitleAbout: 'Lu — Über mich',
   },
 } as const

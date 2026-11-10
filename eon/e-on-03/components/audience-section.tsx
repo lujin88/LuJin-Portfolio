@@ -1,9 +1,9 @@
 'use client'
 
-import Image from "next/image"
 import { ContentContainer } from "../../e-on-09/components/content-container"
 import { OnceReveal } from "../../e-on-09/components/motion/once-reveal"
 import { SectionLabel } from "../../e-on-09/components/section-label"
+import { AudienceEvidence } from './audience-evidence'
 import { useTranslation } from '@i18n/use-translation'
 
 export function AudienceSection() {
@@ -45,26 +45,18 @@ export function AudienceSection() {
           </div>
         </OnceReveal>
 
-        {/* Right column — locked editorial evidence asset, presented as-is */}
-        <OnceReveal className="relative lg:pl-6">
+        {/* Right column — clean photo with HTML evidence overlay (ring, segments, note) */}
+        {/* No OnceReveal here: AudienceEvidence runs its own entrance (replace, not stack). */}
+        <div className="relative lg:pl-6">
           <img
             src="/assets/images/eon/eon 03 green_shape_traced_path.svg"
             alt=""
             aria-hidden="true"
-            className="pointer-events-none absolute -left-6 top-[38%] z-0 h-auto w-[210px] max-w-none sm:-left-8 sm:w-[240px] lg:-left-10 lg:w-[280px]"
+            className="pointer-events-none absolute -left-6 top-[14%] z-0 sm:top-[38%] h-auto w-[210px] max-w-none sm:-left-8 sm:w-[240px] lg:-left-10 lg:w-[280px]"
           />
 
-          <div className="relative z-10 aspect-[7/5] w-full overflow-hidden rounded-[28px] border border-slide-line/60 shadow-[0_16px_40px_rgba(5,20,30,0.2)]">
-            <Image
-              src="/assets/images/eon/audience-evidence.jpg"
-              alt={t('eon.audience.photoAlt')}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 58vw"
-            />
-          </div>
-        </OnceReveal>
+          <AudienceEvidence alt={t('eon.audience.photoAlt')} />
+        </div>
       </ContentContainer>
     </section>
   )
