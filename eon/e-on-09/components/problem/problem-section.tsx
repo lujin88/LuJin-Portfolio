@@ -45,14 +45,14 @@ export function ProblemSection() {
           </OnceReveal>
 
           <div className="[container-type:inline-size] md:[container-type:normal]">
-            {/* The note needs its own space above the collage at every viewport. */}
-            <p className="mb-8 font-hand text-[22px] font-normal leading-[1.08] text-ink md:mb-16 md:text-[26px]">
+            {/* The note needs its own space above the collage. Phones show no handwritten notes (Lu 2026-11-10). */}
+            <p className="mb-8 max-sm:hidden font-hand text-[22px] font-normal leading-[1.08] text-ink md:mb-16 md:text-[26px]">
               {t('eon.problem.hand1a')}
               <br />
               {t('eon.problem.hand1b')}
             </p>
             {/* Phones: the collage scales with the column, so the box does too (art bottom + 16px), instead of a fixed 470px. */}
-            <div className="relative min-h-[calc(210px+56cqw)] overflow-visible md:min-h-[510px]">
+            <div className="relative min-h-[calc(210px+56cqw)] overflow-visible max-sm:mt-6 md:min-h-[510px]">
               <div className="absolute left-[50%] top-[10rem] z-[2] w-[44%] max-w-[290px] md:left-[61%] md:top-[10.75rem] md:max-w-[310px]">
                 <img
                   src="/assets/images/eon/eon-04-05-floor-plan.webp"
@@ -70,7 +70,7 @@ export function ProblemSection() {
                 <OnceReveal
                   delay={70}
                   fromOpacity={0}
-                  className="relative z-10 ml-[10%] mt-8 w-[230px] md:mt-12"
+                  className="relative z-10 ml-[10%] mt-8 w-[230px] max-sm:hidden md:mt-12"
                 >
                   <p className="origin-left -rotate-[8deg] font-hand text-[22px] font-normal leading-[1.1] text-ink md:text-[26px]">
                     {t('eon.problem.hand2a')}
