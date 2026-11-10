@@ -426,7 +426,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       <div
         aria-hidden="true"
         className={cn(
-          'pointer-events-none absolute inset-x-0 top-0 h-28 bg-[linear-gradient(to_bottom,color-mix(in_oklab,var(--header-scrim)_76%,transparent)_0%,color-mix(in_oklab,var(--header-scrim)_18%,transparent)_58%,transparent_100%)] transition-opacity duration-500 ease-out',
+          'header-scrim-layer pointer-events-none absolute inset-x-0 top-0 h-28 bg-[linear-gradient(to_bottom,color-mix(in_oklab,var(--header-scrim)_76%,transparent)_0%,color-mix(in_oklab,var(--header-scrim)_18%,transparent)_58%,transparent_100%)] transition-opacity duration-500 ease-out',
           MOTION_SAFE,
           glassActive ? 'opacity-0' : 'opacity-100',
         )}
@@ -434,7 +434,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       <div
         aria-hidden="true"
         className={cn(
-          'pointer-events-none absolute inset-x-0 top-0 h-28 bg-header-glass/70 backdrop-blur-md transition-opacity duration-500 ease-out [mask-image:linear-gradient(to_bottom,black_0%,black_52%,transparent_100%)]',
+          'header-glass-layer pointer-events-none absolute inset-x-0 top-0 h-28 bg-header-glass/70 backdrop-blur-md transition-opacity duration-500 ease-out [mask-image:linear-gradient(to_bottom,black_0%,black_52%,transparent_100%)]',
           MOTION_SAFE,
           glassActive ? 'opacity-100' : 'opacity-0',
         )}

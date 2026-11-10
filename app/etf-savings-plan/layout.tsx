@@ -21,14 +21,11 @@ export default function EtfSavingsPlanLayout({ children }: { children: React.Rea
   return (
     <HtmlChrome activeHref="/etf-savings-plan" theme="light" colorScheme="light" backgroundColor="#fffdfb">
       <link rel="stylesheet" href="/styles/shell-components.css" />
-      {/* ETF only (pm #5097): the header shows the chapter colour under it instead of a grey-white
-          band. Child 2 is the header's gradient scrim, child 3 its blurred glass (site-header.tsx).
-          The scrim is dropped and the glass stays on as a light warm-white tint with blur. With the
-          phone menu open the bar turns solid so it matches the menu panel below it. */}
-      <style>{`[data-site-header][data-header-tone="paper"]{--header-scrim:#fffdfb;--header-glass:#fffdfb;--header-menu:#fff;--header-menu-item:#e8e8ea}
-[data-site-header][data-header-tone="paper"]>div[aria-hidden="true"]:nth-child(2){display:none}
-[data-site-header][data-header-tone="paper"]>div[aria-hidden="true"]:nth-child(3){opacity:1;background:rgb(255 253 251 / .3);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
-[data-site-header][data-header-tone="paper"]:has(#mobile-nav:not([inert]))>div[aria-hidden="true"]:nth-child(3){background:#fffdfb;-webkit-mask-image:none;mask-image:none;height:4rem}`}</style>
+      {/* ETF header (qa #5745, pm #5746): same two layers as every other paper page, the gradient
+          scrim (.header-scrim-layer) and the 70% blurred glass (.header-glass-layer) from
+          site-header.tsx. Only their colour follows this page's warm white. A lighter glass let the
+          previous chapter's text show through the navigation, so it is not overridden here. */}
+      <style>{`[data-site-header][data-header-tone="paper"]{--header-scrim:#fffdfb;--header-glass:#fffdfb;--header-menu:#fff;--header-menu-item:#e8e8ea}`}</style>
       {children}
     </HtmlChrome>
   )
