@@ -2,7 +2,6 @@
 @import "tailwindcss" source(none);
 
 @source "../public/home.html";
-@source "../public/about.html";
 @source "../public/wip.html";
 @source "../public/ai-workflow-case.html";
 
@@ -16,4 +15,12 @@
   --color-accent-hover: var(--color-theme-hover);
   --font-sans: Poppins, ui-sans-serif, system-ui, sans-serif;
   --font-serif: Poppins, ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Tailwind v3's preflight gave buttons a pointer cursor; v4 dropped it. */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }

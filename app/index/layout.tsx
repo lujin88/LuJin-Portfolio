@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import 'remixicon/fonts/remixicon.css'
+import '../island-utilities.css'
 import { HtmlChrome } from '../html-chrome'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Lu — Product & Service Designer',
+    absolute: 'Lu — Product Designer',
   },
 }
 
