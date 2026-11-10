@@ -149,7 +149,7 @@ export function AudienceEvidence({ alt }: { alt: string }) {
       <div className="relative aspect-[7/5] w-full overflow-hidden rounded-[28px] border border-slide-line/60 bg-slide-bg shadow-[0_16px_40px_rgba(5,20,30,0.2)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/assets/images/eon/audience-photo-clean.jpg"
+          src="/assets/images/eon/audience-photo-clean.webp"
           alt={alt}
           loading="lazy"
           className="aud-ev-photo absolute inset-0 h-full w-full object-cover"

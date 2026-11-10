@@ -2,7 +2,7 @@
 // Reduced motion loads no .riv and keeps the still; turning it off again resumes the loop.
 (function initHiwR9(){
  if(window.__hiwR9Cleanup)window.__hiwR9Cleanup();
- const stage=document.querySelector('#how-i-work .ad-art-stage');if(!stage)return;
+ const stage=document.querySelector('#how-i-work .hiw-art-stage');if(!stage)return;
  const layers=stage.querySelector('.hiw-plays'),plane=layers.querySelector('.hiw-plane'),reduce=matchMedia('(prefers-reduced-motion: reduce)');
  const base='/assets/motion/how-i-work/r9/';
  const state=window.hiwR9={ready:false,started:false,failed:false,plays:0,errors:[],players:[]};

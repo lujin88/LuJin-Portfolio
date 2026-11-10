@@ -15,7 +15,7 @@ import { useTranslation } from '@i18n/use-translation'
 const PITCHES = [15, 30, 45, 60] as const
 type Pitch = (typeof PITCHES)[number]
 
-const houseSrc = (deg: Pitch) => `/assets/images/eon/roof-pitch/house-${deg}-on.png`
+const houseSrc = (deg: Pitch) => `/assets/images/eon/roof-pitch/house-${deg}-on.webp`
 
 export function RoofPitchCard({ className, alt }: { className?: string; alt: string }) {
   const { t } = useTranslation()

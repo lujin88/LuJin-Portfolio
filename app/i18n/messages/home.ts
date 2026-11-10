@@ -1,6 +1,6 @@
 export const home = {
   en: {
-    documentTitle: 'Lu — Product & Service Designer',
+    documentTitle: 'Lu — Product Designer',
     heroKicker: 'Product designer · Enterprise & regulated UX',
     heroTitle: 'Simplify complexity. Design with AI.',
     heroBody:
@@ -19,7 +19,7 @@ export const home = {
       storyTitle: 'From searching to advising',
       storyBody: 'One AI-supported view that surfaces the right information at the right moment.',
       metricTitle: 'Designed for 500+ advisors',
-      metricBody: 'Concept tests: 5–10 min saved per client, up to 30 min on complex proposals.',
+      metricBody: 'Concept tests: 5–10 min saved on simple cases, up to 30 on complex ones.',
       cta: 'Explore case study',
     },
     eon: {
@@ -42,7 +42,7 @@ export const home = {
       kicker: 'How I work',
       titleHtml: 'AI drafts.<em>I decide.</em>',
       bodyHtml:
-        'AI drafts and iterates with me at every step.<br class="ad-desktop-break"> I decide the problem, the direction, and what<br class="ad-desktop-break"> ships.',
+        'AI drafts and iterates with me at every step.<br class="hiw-desktop-break"> I decide the problem, the direction, and what<br class="hiw-desktop-break"> ships.',
       cta: 'Explore how I work',
       artLabel:
         'Decide: Human judgment in every step. A human designer leads a team of AI assistants, surrounded by sketches, checklists, and an idea bulb.',
@@ -80,7 +80,7 @@ export const home = {
     },
   },
   de: {
-    documentTitle: 'Lu — Produkt- & Service-Designerin',
+    documentTitle: 'Lu — Product Designerin',
     heroKicker: 'Product Designerin · Enterprise- & regulierte UX',
     heroTitle: 'Komplexität vereinfachen. Mit KI gestalten.',
     heroBody:
@@ -101,7 +101,7 @@ export const home = {
       storyBody: 'Eine KI-gestützte Sicht, die die richtige Information im richtigen Moment zeigt.',
       metricTitle: 'Gestaltet für über 500 Berater',
       metricBody:
-        'Konzepttest: 5–10 Min. pro Kunde gespart, bis zu 30 Min. bei komplexen Anlagevorschlägen.',
+        'Konzepttest: 5–10 Min. bei einfachen Fällen, bis zu 30 Min. bei komplexen.',
       cta: 'Case Study ansehen',
     },
     eon: {
@@ -124,7 +124,7 @@ export const home = {
       kicker: 'Wie ich arbeite',
       titleHtml: 'KI entwirft.<em>Ich entscheide.</em>',
       bodyHtml:
-        'KI entwirft und iteriert in jedem Schritt mit mir.<br class="ad-desktop-break"> Ich entscheide über Problem, Richtung und was<br class="ad-desktop-break"> live geht.',
+        'KI entwirft und iteriert in jedem Schritt mit mir.<br class="hiw-desktop-break"> Ich entscheide über Problem, Richtung und was<br class="hiw-desktop-break"> live geht.',
       cta: 'Arbeitsweise ansehen',
       artLabel:
         'Entscheiden: Menschliches Urteil in jedem Schritt. Eine Designerin führt KI-Assistenten, umgeben von Skizzen, Checklisten und einer Ideenbirne.',
@@ -144,19 +144,19 @@ export const home = {
       '1': {
         eyebrow: 'Okt. 2020 — Sep. 2022',
         title: 'AdNovum · Bern',
-        role: 'Senior Product Designer',
+        role: 'Senior Product Designerin',
         desc: 'Datentabellen, Filter und Sammelaktionen für eine schweizweite Plattform.',
       },
       '2': {
         eyebrow: 'Jun. 2016 — Jul. 2020',
         title: 'Futurice · München',
-        role: 'Senior Product Designer',
+        role: 'Senior Product Designerin',
         desc: 'Digitale Produkte von Research bis Launch. Leitung eines sechsköpfigen Designteams.',
       },
       '3': {
         eyebrow: 'Sep. 2014 — Jun. 2016',
         title: 'Designaffairs (Accenture) · München',
-        role: 'Usability Engineer',
+        role: 'Usability Engineerin',
         desc: 'UX-Konzepte und Prototypen für Connected Products sowie B2B-Designsysteme.',
       },
     },

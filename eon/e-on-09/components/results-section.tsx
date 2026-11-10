@@ -38,7 +38,7 @@ export function ResultsSection() {
             <div className="flex min-w-0 flex-col gap-6 rounded-3xl bg-mint-light p-8 sm:p-10">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-off-white">
                 <Image
-                  src="/assets/images/eon/eon 09 - icon - chart.png"
+                  src="/assets/images/eon/eon 09 - icon - chart.webp"
                   alt=""
                   width={512}
                   height={512}
@@ -64,7 +64,7 @@ export function ResultsSection() {
               />
               <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-off-white">
                 <Image
-                  src="/assets/images/eon/eon 09 - con - World.png"
+                  src="/assets/images/eon/eon 09 - con - World.webp"
                   alt=""
                   width={512}
                   height={512}
