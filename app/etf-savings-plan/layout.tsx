@@ -14,14 +14,18 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: 'light',
-  themeColor: '#fafaf9',
+  themeColor: '#fffdfb',
 }
 
 export default function EtfSavingsPlanLayout({ children }: { children: React.ReactNode }) {
   return (
-    <HtmlChrome activeHref="/etf-savings-plan" theme="light" colorScheme="light" backgroundColor="#fafaf9">
+    <HtmlChrome activeHref="/etf-savings-plan" theme="light" colorScheme="light" backgroundColor="#fffdfb">
       <link rel="stylesheet" href="/styles/shell-components.css" />
-      <style>{`[data-site-header][data-header-tone="paper"]{--header-scrim:#fafaf9;--header-glass:#fafaf9;--header-menu:#fff;--header-menu-item:#e8e8ea}`}</style>
+      {/* ETF header (qa #5745, pm #5746): same two layers as every other paper page, the gradient
+          scrim (.header-scrim-layer) and the 70% blurred glass (.header-glass-layer) from
+          site-header.tsx. Only their colour follows this page's warm white. A lighter glass let the
+          previous chapter's text show through the navigation, so it is not overridden here. */}
+      <style>{`[data-site-header][data-header-tone="paper"]{--header-scrim:#fffdfb;--header-glass:#fffdfb;--header-menu:#fff;--header-menu-item:#e8e8ea}`}</style>
       {children}
     </HtmlChrome>
   )
