@@ -11,7 +11,7 @@ const patrickHand = Patrick_Hand({
   display: 'swap',
 })
 
-const TITLE = 'Lu — Gratula'
+const TITLE = 'Lu Jin — Gratula'
 const DESCRIPTION =
   'Gratula turns four practical details into one calm plan for a child’s birthday — invitations, RSVPs, local suppliers and the party-day schedule.'
 
