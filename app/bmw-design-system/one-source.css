@@ -187,31 +187,34 @@
 .bmw-driver nav img{height:32px}
 .bmw-driver nav .play{height:48px;margin:-8px}
 }
-/* PREVIEW ONLY (Lu #5309, pm #5312, #5561): hero layout A, phone on the left with the copy to its right,
-   switched on by data-layout="a". Phones (<=600px) keep the layout above. Not final: the switch goes once Lu picks. */
+/* Hero layout A (Lu #5309; visual #5620, visual QA #5621): from 601px up the phone stands on the left and the
+   copy sits to its right. Phones (<=600px) keep the layout above. These rules override the earlier hero rules. */
 @media(min-width:601px){
-.bmw-driver[data-layout=a]{display:grid;grid-template-columns:var(--phone-w) minmax(0,1fr);grid-template-rows:auto 1fr auto;grid-template-areas:"phone head" "phone ." "nav dl";column-gap:56px;align-content:start;min-height:900px;padding-bottom:32px;--phone-w:310px}
-.bmw-driver[data-layout=a] .screen{grid-area:phone;align-self:start;box-sizing:border-box;width:var(--phone-w);margin-top:0;border-radius:28px}
-.bmw-driver[data-layout=a] nav{grid-area:nav;align-self:end}
-.bmw-driver[data-layout=a] header{grid-area:head;position:relative;max-width:540px}
-/* Dark, feathered scrim behind the copy only, so text over the bright sky keeps >=4.5:1 and the sunset stays visible elsewhere. */
-.bmw-driver[data-layout=a] header::before{content:"";position:absolute;z-index:-1;inset:-72px;background:rgba(5,18,31,.9);filter:blur(28px)}
+.bmw-driver{display:grid;grid-template-columns:var(--phone-w) minmax(0,1fr);grid-template-rows:auto 1fr auto;grid-template-areas:"phone head" "phone ." "nav dl";column-gap:56px;align-content:start;min-height:900px;padding-bottom:32px;--phone-w:310px;--scrim:rgba(5,18,31,.72)}
+.bmw-driver .screen{grid-area:phone;align-self:start;box-sizing:border-box;width:var(--phone-w);margin-top:0;border-radius:28px}
+.bmw-driver nav{grid-area:nav;align-self:end}
+.bmw-driver header{grid-area:head;position:relative;max-width:540px}
+/* Dark backing behind the copy only, feathered about 100px on every side so it has no visible edge.
+   Keeps text over the sky at 4.5:1 or better against the brightest pixel behind it. */
+.bmw-driver header::before{content:"";position:absolute;z-index:-1;inset:-96px;background:var(--scrim);filter:blur(48px)}
 /* Timeline in the grid (not absolute), so longer German copy pushes it down instead of running into it. */
-.bmw-driver[data-layout=a] dl{grid-area:dl;position:static;inset:auto;align-self:end;justify-self:end;width:min(700px,100%);max-width:none;margin-top:32px}
+.bmw-driver dl{grid-area:dl;position:relative;inset:auto;align-self:end;justify-self:end;width:min(700px,100%);max-width:none;margin-top:32px}
 }
 @media(min-width:601px) and (max-width:1100px){
-.bmw-driver[data-layout=a]{--phone-w:210px;column-gap:32px;min-height:760px}
-.bmw-driver[data-layout=a] .screen{border-radius:22px}
-.bmw-driver[data-layout=a] header{max-width:none}
+.bmw-driver{--phone-w:210px;column-gap:32px;min-height:760px}
+/* Centred, the sunset stays to the right of the copy column instead of behind it. */
+.bmw-driver .backdrop{object-position:center}
+.bmw-driver .screen{border-radius:22px}
+.bmw-driver header{max-width:460px}
 /* The 267px store-badge row is wider than the 210px phone: keep 32px between it and the timeline. */
-.bmw-driver[data-layout=a] dl{position:relative;width:min(700px,calc(100% - 57px))}
-/* Here the timeline sits on the car, not on the dark ground: same scrim as the copy. */
-.bmw-driver[data-layout=a] dl::before{content:"";position:absolute;z-index:-1;inset:-32px;background:rgba(5,18,31,.9);filter:blur(16px)}
+.bmw-driver dl{width:min(700px,calc(100% - 57px))}
+/* Here the timeline sits on the car, not on the dark ground: a small backing of its own. */
+.bmw-driver dl::before{content:"";position:absolute;z-index:-1;inset:-40px;background:var(--scrim);filter:blur(24px)}
 }
 /* Narrow tablets: the column beside the phone is too tight for two timeline columns. */
 @media(min-width:601px) and (max-width:800px){
-.bmw-driver[data-layout=a] dl{flex-direction:column;gap:16px}
-.bmw-driver[data-layout=a] dl>div+div{padding:16px 0 0;border-left:0;border-top:1px solid #ffffff40}
+.bmw-driver dl{flex-direction:column;gap:16px}
+.bmw-driver dl>div+div{padding:16px 0 0;border-left:0;border-top:1px solid #ffffff40}
 }
 }
 .bmw-one-source{color-scheme:light;text-align:left}
