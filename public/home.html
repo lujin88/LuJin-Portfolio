@@ -1192,32 +1192,6 @@
   /* reference raster: saturated deep-blue / navy atmospheric glow with the
      curve light baked in. Positioned so its curve tracks the %-anchored
      dots (viewBox region 0 0 1468 971 of the arc coordinate space). */
-  .exp-curve__glow {
-    position: absolute;
-    left: 10.25%;
-    top: 11.45%;
-    width: 78.35%;
-    height: 40.6%;
-    object-fit: fill;
-    /* The blue atmosphere is a TRANSITION effect, NOT a timeline background.
-       It stays fully absent while the experience entries read (--exp-f == 0)
-       and only emerges — together with .exp-field — once the timeline is done
-       and Contact is revealing. The curve LINE itself (.exp-arc__path) is a
-       separate element and is always drawn, so the timeline still has its arc. */
-    opacity: var(--exp-f);
-    pointer-events: none;
-    /* bottom fade + a soft RIGHT-edge fade so the raster's baked hard vertical
-       boundary dissolves into the blue field instead of reading as a
-       clip seam once it is visible (transition/contact only). */
-    -webkit-mask-image:
-      linear-gradient(to bottom, #000 58%, transparent 100%),
-      linear-gradient(to right, transparent 52%, rgba(0,0,0,.35) 78%, transparent 98%);
-    -webkit-mask-composite: source-in;
-    mask-image:
-      linear-gradient(to bottom, #000 58%, transparent 100%),
-      linear-gradient(to right, transparent 52%, rgba(0,0,0,.35) 78%, transparent 98%);
-    mask-composite: intersect;
-  }
 
   /* ── atmosphere carrier ────────────────────────────────────────────
      The ONE .exp-field lives in here, NOT in #exp-coord. As a <body> child
@@ -1302,11 +1276,6 @@
   /* Futurice → Designaffairs sheet: a blue wash under the line.
      Same path as before. Horizontal: deep blue on the right, transparent
      by the left. The mask eats the mass that used to sit past the line. */
-  .exp-arc__sheet {
-    opacity: 0;
-    transition: opacity 0.9s var(--exp-ease);
-  }
-  .exp-coord:has(.exp-dot[data-index="3"]:not([data-status="hidden"])) .exp-arc__sheet { opacity: 1; }
 
   /* 4 fixed dots — CSS-anchored to the same points as their content.
      Plain solid white, no glow. Dot 0 waits for the seam (data-stem).
@@ -2236,40 +2205,12 @@
 
         <div class="exp-curve-clip" aria-hidden="true">
         <div class="exp-curve" id="exp-curve" aria-hidden="true">
-          <img class="exp-curve__glow" src="/assets/images/experience/blue-glow.webp" alt="" loading="lazy" decoding="async" />
           <svg class="exp-arc" viewBox="0 0 1468 1555" fill="none" preserveAspectRatio="none">
             <defs>
               <clipPath id="exp-arc-clip">
                 <path d="M1366.32 295.46C1420.23 86.8392 644.588 38.2593 250.028 40.047C1448.11 56.8065 1425.07 264.488 1319.08 357.804C1186.6 474.45 724.986 547.971 412.486 735.914C147.019 895.571 80.492 1104.38 84.14 1195.77C85.292 1432.19 93.7016 1766.8 118.124 1213.87C148.652 522.716 1298.92 556.235 1366.32 295.46Z"></path>
               </clipPath>
-              <clipPath id="exp-sheet-below" clipPathUnits="userSpaceOnUse">
-                <path d="M1365.3 274.7C1365.3 306.2 1344.6 335.3 1319.1 357.8C1186.6 474.45 724.986 547.971 412.486 735.914C147.019 895.571 80.492 1104.38 84.14 1195.77L84.14 1555L1365.3 1555Z"></path>
-              </clipPath>
-              <radialGradient id="exp-sheet-radial" gradientUnits="userSpaceOnUse" cx="1200" cy="492" r="210" gradientTransform="translate(1200 492) rotate(150) scale(3.4 1.05) translate(-1200 -492)">
-                <stop offset="0" stop-color="rgb(36, 116, 255)" stop-opacity="0.260"></stop>
-                <stop offset="0.2" stop-color="rgb(36, 116, 255)" stop-opacity="0.187"></stop>
-                <stop offset="0.45" stop-color="rgb(32, 108, 252)" stop-opacity="0.078"></stop>
-                <stop offset="0.66" stop-color="rgb(28, 100, 248)" stop-opacity="0.026"></stop>
-                <stop offset="0.85" stop-color="rgb(28, 100, 248)" stop-opacity="0.007"></stop>
-                <stop offset="1" stop-color="rgb(36, 116, 255)" stop-opacity="0"></stop>
-              </radialGradient>
-              <!-- Native SVG mask: no blue in the left reading area; faint right wash. -->
-              <linearGradient id="exp-sheet-right" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1468" y2="0">
-                <stop offset="0" stop-color="#fff" stop-opacity="0"></stop>
-                <stop offset="0.52" stop-color="#fff" stop-opacity="0"></stop>
-                <stop offset="0.78" stop-color="#fff" stop-opacity="0.35"></stop>
-                <stop offset="0.98" stop-color="#fff" stop-opacity="0"></stop>
-                <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
-              </linearGradient>
-              <mask id="exp-sheet-right-mask" maskUnits="userSpaceOnUse" mask-type="luminance" x="0" y="0" width="1468" height="1555">
-                <rect x="0" y="0" width="1468" height="1555" fill="url(#exp-sheet-right)"></rect>
-              </mask>
             </defs>
-            <g class="exp-arc__sheet">
-              <g clip-path="url(#exp-sheet-below)" mask="url(#exp-sheet-right-mask)">
-                <rect x="0" y="200" width="1468" height="1400" fill="url(#exp-sheet-radial)"></rect>
-              </g>
-            </g>
             <path class="exp-arc__path" id="exp-arc-path" clip-path="url(#exp-arc-clip)" d="M1366.32 295.46C1420.23 86.8392 644.588 38.2593 250.028 40.047C1448.11 56.8065 1425.07 264.488 1319.08 357.804C1186.6 474.45 724.986 547.971 412.486 735.914C147.019 895.571 80.492 1104.38 84.14 1195.77C85.292 1432.19 93.7016 1766.8 118.124 1213.87C148.652 522.716 1298.92 556.235 1366.32 295.46Z"></path>
           </svg>
         </div>
@@ -3201,7 +3142,7 @@
       const fieldEased = fieldRaw * fieldRaw * (3 - 2 * fieldRaw);
       const field = Math.round(fieldEased * EXP_F_PEAK * 50) / 50;
       if (field !== expLastField) {
-        expCoord.style.setProperty('--exp-f', field);            // .exp-curve__glow (inside #exp-coord)
+        expCoord.style.setProperty('--exp-f', field);            // (the curve glow was removed, Lu 2026-11-10)
         if (expAtmos) expAtmos.style.setProperty('--exp-f', field); // .exp-field (now in the carrier)
         expLastField = field;
       }
