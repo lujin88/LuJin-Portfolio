@@ -632,7 +632,7 @@ export function WeatherAquariumPage() {
                   ref={heroDeviceRef}
                   className="hero-device"
                   src={`${IMG}/hero-device-left-v2.webp`}
-                  alt="An iPad turned to the left, showing the Weather Aquarium app: an autumn lakeside in Kilchberg with a girl, her cat and a boy on the jetty, fish under the water, and the weather panel below"
+                  alt="An iPad turned to the left, showing the Weather Aquarium app: an autumn lakeside by Lake Zurich with a girl, her cat and a boy on the jetty, fish under the water, and the weather panel below"
                   fetchPriority="high"
                 />
               </div>
