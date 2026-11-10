@@ -12,7 +12,7 @@ const inter = Inter({
   display: 'swap',
 })
 
-const TITLE = 'Lu — Human × AI Practice'
+const TITLE = 'Lu Jin — Human × AI Practice'
 const DESCRIPTION = 'A human-led design practice: Agent Monitor, AI Team, and Design OS.'
 
 export const metadata: Metadata = {
