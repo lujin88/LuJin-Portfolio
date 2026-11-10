@@ -2117,7 +2117,7 @@
 <section id="home-showcase" aria-label="Selected work">
   <div class="home-showcase-stage">
     <article id="model-series" class="home-case" aria-labelledby="case-ca-title">
-      <div class="home-case-image advisory-office"><img src="/assets/images/home-motion/ubs.jpg" alt="" /><video data-src="/assets/videos/home/advisory-office-web.mp4" poster="/assets/images/home-motion/ubs.jpg" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+      <div class="home-case-image advisory-office"><img src="/assets/images/home-motion/ubs.webp" alt="" /><video data-src="/assets/videos/home/advisory-office-web.mp4" poster="/assets/images/home-motion/ubs.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
       <div class="home-case-shade"></div>
       <div class="home-case-copy">
         <p class="home-eyebrow" data-i18n="home.ca.eyebrow">Client Advisory · UBS</p>
@@ -2129,7 +2129,7 @@
         </div>
         <div class="home-case-detail">
           <h3 data-i18n="home.ca.metricTitle">Designed for 500+ advisors</h3>
-          <p data-i18n="home.ca.metricBody">Concept tests: 5–10 min saved per client, up to 30 min on complex proposals.</p>
+          <p data-i18n="home.ca.metricBody">Concept tests: 5–10 min saved on simple cases, up to 30 on complex ones.</p>
         </div>
         <div class="home-case-links">
           <a href="/client-advisory" class="pill-btn">
@@ -2171,7 +2171,7 @@
       <!-- WA and AI Pet: still images until the new videos are ready (V6 videos pulled 2026-11-03). -->
       <a class="home-project" href="/lab/weather-aquarium"><video id="wa-season-video" preload="none" aria-label="Weather Aquarium project preview" width="864" height="600" muted loop playsinline disablepictureinpicture></video><script src="/assets/js/wa-season.js"></script><h3>Weather Aquarium</h3><p class="home-project-meta" data-i18n="home.playground.weatherMeta">Rive motion</p><p>A 2.5D weather world for iPad — helping children understand the day and discover new words.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       <a class="home-project" href="/ai-companion-pet"><img src="/assets/images/home-motion/ai-pet-zh.webp" alt="" width="864" height="600" loading="lazy" decoding="async" /><h3>AI Pet</h3><p class="home-project-meta" data-i18n="home.playground.petMeta">Voice · Hardware</p><p>A little friend to listen, tell stories, share a meal, and learn a few words of German and French.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="home-project" href="/lab/party-planner"><video data-src="/assets/videos/home/gratula-pip.mp4" preload="none" poster="/assets/images/home-motion/gratula-pip.jpg" aria-label="Gratula project preview" width="864" height="600" muted playsinline data-loop-gap="2000" disablepictureinpicture></video><h3>Gratula</h3><p class="home-project-meta" data-i18n="home.playground.gratulaMeta">Prototype</p><p>From ideas to invitations, a simpler way to plan a party they’ll always remember.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="home-project" href="/lab/party-planner"><video data-src="/assets/videos/home/gratula-pip.mp4" preload="none" poster="/assets/images/home-motion/gratula-pip.webp" aria-label="Gratula project preview" width="864" height="600" muted playsinline data-loop-gap="2000" disablepictureinpicture></video><h3>Gratula</h3><p class="home-project-meta" data-i18n="home.playground.gratulaMeta">Prototype</p><p>From ideas to invitations, a simpler way to plan a party they’ll always remember.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -2548,6 +2548,14 @@
     // Sections whose box is still in the right place when reduced motion
     // flips. Experience is not one of them: its track height is CSS, and
     // that CSS has already swapped by the time the change event runs.
+    function blockAt(y) {
+      var nodes = document.querySelectorAll('#hero, #home-showcase, #home-playground, #how-i-work, #contact');
+      for (var i = 0; i < nodes.length; i++) {
+        var rect = nodes[i].getBoundingClientRect();
+        if (rect.top <= y && rect.bottom > y) return nodes[i];
+      }
+      return null;
+    }
     function blockAtViewportTop() {
       var nodes = document.querySelectorAll('#hero, #home-showcase, #home-playground, #how-i-work, #contact');
       var best = null;
@@ -2719,13 +2727,21 @@
         var card = progress >= 0.5 ? scenes[1] : scenes[0];
         cardPlan = { mode: 'unpin', card: card, top: card.getBoundingClientRect().top };
       } else if (!wasPinned && inShowcase && !reduce.matches && canPin) {
+        // Pin only when a scene is what the visitor is looking at. With just
+        // the showcase's last pixels above the fold (reduced motion switched
+        // off while reading Playground), keep the block under the middle of
+        // the viewport where it is instead of jumping back to scene 1.
         var mid = innerHeight / 2;
-        var seen = scenes[0];
+        var seen = null;
         for (var i = 0; i < scenes.length; i++) {
           var srect = scenes[i].getBoundingClientRect();
           if (srect.top <= mid && srect.bottom > mid) seen = scenes[i];
         }
-        cardPlan = { mode: 'pin', card: seen };
+        if (seen) cardPlan = { mode: 'pin', card: seen };
+        else {
+          var midBlock = blockAt(mid);
+          if (midBlock) cardPlan = { mode: 'keep', card: midBlock, top: midBlock.getBoundingClientRect().top };
+        }
       }
 
       var expPlan = null;
@@ -2747,7 +2763,7 @@
       layout();
 
       function restore() {
-        if (cardPlan && cardPlan.mode === 'unpin' && cardPlan.card.isConnected) {
+        if (cardPlan && (cardPlan.mode === 'unpin' || cardPlan.mode === 'keep') && cardPlan.card.isConnected) {
           jumpScroll(window.scrollY + cardPlan.card.getBoundingClientRect().top - cardPlan.top);
           return;
         }
