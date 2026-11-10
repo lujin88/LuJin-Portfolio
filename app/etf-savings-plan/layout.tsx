@@ -4,7 +4,7 @@ import { socialMetadata } from '../seo'
 
 const TITLE = 'Lu — ETF Savings Plan'
 const DESCRIPTION =
-  'Designing a Swiss ETF savings plan around starting, staying invested and managing change. Explore the interactive prototype.'
+  'A Swiss ETF savings plan designed for the months after you start: before the first payment, in a down month, and when you want to stop. Explore the interactive prototype.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

@@ -82,7 +82,7 @@ export function OpeningPhones() {
     <div className="opening-pin">
       <div className="opening-text">
         <h1 id="case-title">From interested<br />to sticking with it</h1>
-        <p className="case-intro">A Swiss ETF savings plan you can start, adjust or pause.</p>
+        <p className="case-intro">Most savings plans help you start. I designed this Swiss one for the months after. You see costs in francs before you start, including stamp duty, and pay by eBill or standing order.</p>
       </div>
       <div className="opening-pair">
         {(['d', 'e'] as const).map(key => <div className="opening-handset" key={key}>
