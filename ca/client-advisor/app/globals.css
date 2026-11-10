@@ -265,7 +265,9 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
+  /* Scoped to the CA page: client-side navigation keeps this stylesheet loaded,
+     so a bare `body` turned the next page's body navy (qa #5828). */
+  body:has(.ca-s01-s03) {
     background-color: var(--ca-bg);
     color: var(--ca-text);
     -webkit-font-smoothing: antialiased;
