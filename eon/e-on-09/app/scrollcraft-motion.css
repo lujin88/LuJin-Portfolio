@@ -42,6 +42,18 @@
   transform: none;
 }
 
+/* Decisions "After" ticks land one by one. */
+@keyframes sc-tick-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+.sc-tick {
+  animation: sc-tick-in 180ms var(--sc-ease-out) var(--sc-tick-delay, 0ms) both;
+}
+
 .sc-count {
   font-variant-numeric: tabular-nums;
 }
@@ -59,6 +71,10 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .sc-tick {
+    animation: none;
   }
 
   .sc-challenge-photo,
