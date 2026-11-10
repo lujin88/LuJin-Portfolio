@@ -15,8 +15,10 @@ import { useTranslation } from '@i18n/use-translation'
  *
  * Motion (plays once; reduced motion — at load or switched on later — shows the end state):
  *   1. section ~35% in view → ring 0 → 66.7% with the number (1.0s), photo push-in 1 → 1.04
- *   2. when the ring is done (and, on mobile, the card list is in view) → cards one by one
- *      (desktop slide from the left, mobile rise from below), inside each card icon → title → quote
+ *   2. when the ring is done (and, on mobile, the card list is in view) → cards one by one,
+ *      350ms apart (desktop slide from the left, mobile rise from below). Inside each card the
+ *      icon fades in with a slight scale (400ms), then title and quote fade in (500ms) from
+ *      200ms / 300ms after the icon (Lu 2026-11-10: block by block, slower)
  *   3. after the third card settles → handwritten note
  * Only transform/opacity animate, except the SVG ring stroke and the number text.
  */
@@ -34,9 +36,11 @@ const SEGMENTS = [
   { icon: 'ri-file-list-3-line', tone: 'bg-[#b9d4ff]' },
 ] as const
 
-const CARD_STAGGER_MS = 110
-const CARD_MS = 400
-const NOTE_DELAY_MS = (SEGMENTS.length - 1) * CARD_STAGGER_MS + CARD_MS
+const CARD_STAGGER_MS = 350
+const TITLE_AFTER_ICON_MS = 200
+const QUOTE_AFTER_ICON_MS = 300
+const TEXT_MS = 500
+const NOTE_DELAY_MS = (SEGMENTS.length - 1) * CARD_STAGGER_MS + QUOTE_AFTER_ICON_MS + TEXT_MS
 
 // ssr = server render before hydration: CSS hides the start state when JS will animate,
 // and shows the final composition when JS is off or reduced motion is on.
@@ -231,21 +235,21 @@ export function AudienceEvidence({ alt }: { alt: string }) {
             >
               <span
                 aria-hidden="true"
-                className={`aud-ev-fade flex size-12 shrink-0 items-center justify-center rounded-full text-[#07151f] sm:size-[8.4cqw] ${seg.tone}`}
-                style={d(base + 90)}
+                className={`aud-ev-icon flex size-12 shrink-0 items-center justify-center rounded-full text-[#07151f] sm:size-[8.4cqw] ${seg.tone}`}
+                style={d(base)}
               >
                 <i className={`${seg.icon} text-[24px] leading-none sm:text-[3.6cqw]`} />
               </span>
               <span className="min-w-0">
                 <span
                   className="aud-ev-fade block text-[14px] font-semibold leading-[1.3] sm:text-[1.8cqw]"
-                  style={d(base + 180)}
+                  style={{ ...d(base + TITLE_AFTER_ICON_MS), ['--dur' as string]: `${TEXT_MS}ms` }}
                 >
                   {t(`eon.audience.evidence.segments.${i}.title`)}
                 </span>
                 <span
                   className="aud-ev-fade mt-1 block text-[13px] leading-[1.35] text-white/75 sm:mt-[0.6cqw] sm:text-[1.65cqw]"
-                  style={d(base + 270)}
+                  style={{ ...d(base + QUOTE_AFTER_ICON_MS), ['--dur' as string]: `${TEXT_MS}ms` }}
                 >
                   {t(`eon.audience.evidence.segments.${i}.quote`)}
                 </span>

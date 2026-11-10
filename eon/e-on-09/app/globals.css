@@ -380,6 +380,15 @@ footer > hr {
   opacity: 0;
   transform: translate3d(0, 6px, 0);
 }
+.aud-ev[data-cards='out'] .aud-ev-icon {
+  opacity: 0;
+  transform: scale(0.85);
+}
+.aud-ev[data-cards='in'] .aud-ev-icon {
+  transition:
+    opacity 400ms var(--aud-ease) var(--d, 0ms),
+    transform 400ms var(--aud-ease) var(--d, 0ms);
+}
 .aud-ev[data-cards='in'] .aud-ev-fade {
   transition:
     opacity var(--dur, 360ms) var(--aud-ease) var(--d, 0ms),
@@ -401,11 +410,16 @@ footer > hr {
     opacity: 0;
     transform: translate3d(0, 6px, 0);
   }
+  .aud-ev[data-cards='ssr'] .aud-ev-icon {
+    opacity: 0;
+    transform: scale(0.85);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .aud-ev .aud-ev-photo,
   .aud-ev .aud-ev-card,
   .aud-ev .aud-ev-fade,
+  .aud-ev .aud-ev-icon,
   .aud-ev .aud-ev-ring-fade {
     opacity: 1 !important;
     transform: none !important;
