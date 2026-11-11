@@ -113,7 +113,7 @@ export function ToolsPage() {
         <p className="tools-back">
           <a href="/lab/way-of-work">← How I Work</a>
         </p>
-        <h1 className="tools-sr-only">Playground tools</h1>
+        <h1 className="tools-sr-only">Tools I built</h1>
         {SECTIONS.map((s) => (
           <section
             key={s.id}
