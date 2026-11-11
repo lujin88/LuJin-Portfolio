@@ -321,7 +321,21 @@ export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
       <p className="ww-intro">I turn my judgement into rules my agents follow. Where the rules don&apos;t reach, I decide.</p>
     </header>
     {chapters.map((c,i)=><section className={'ww-chapter ww-c'+i} id={'ww-'+c.id} key={c.id}>
-      <div className="ww-copy"><div className="ww-label"><b>0{i+1}</b>{c.label}</div><h2>{c.title}</h2><p>{c.context}</p><p>{c.decision}</p></div>
+      <div className="ww-copy">
+        <div className="ww-label"><b>0{i+1}</b>{c.label}</div>
+        <h2>{c.title}</h2>
+        <p>{c.context}</p>
+        <p>{c.decision}</p>
+        {c.id === 'team' ? (
+          <a
+            className="ww-case-btn pill-btn"
+            href={portfolio ? '/lab/tools' : `${base}/lab/tools`}
+          >
+            <span>Explore my agent tools</span>
+            <Icon name="arrow-right-up-line" className="ww-case-icon" />
+          </a>
+        ) : null}
+      </div>
       <figure><Scene index={i+1}/>
       </figure></section>)}
     <section className="ww-finale" aria-labelledby="ww-finale-title">
@@ -333,13 +347,6 @@ export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
         <a className="ww-case-btn pill-btn" href={base+'/bmw-design-system'} target={portfolio?undefined:'_blank'} rel="noreferrer"><span>Explore the BMW case</span><Icon name="arrow-right-up-line" className="ww-case-icon" /></a>
       </div>
     </section>
-    <p className="ww-tools-entry">
-      Three agent tools in Playground —{' '}
-      <a className="ww-case-link" href={portfolio ? '/lab/tools' : base + '/lab/tools'}>
-        Agent Monitor, Scranton, Pixel Office
-      </a>
-      .
-    </p>
     </main>
   {portfolio&&<SiteClosing className="ww-closing" />}
   </>
