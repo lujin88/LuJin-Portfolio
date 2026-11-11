@@ -1,6 +1,6 @@
 export const home = {
   en: {
-    documentTitle: 'Lu — Product Designer',
+    documentTitle: 'Lu Jin — Product Designer',
     heroKicker: 'Product designer · Enterprise & regulated UX',
     heroTitle: 'Simplify complexity. Design with AI.',
     heroBody:
@@ -80,7 +80,7 @@ export const home = {
     },
   },
   de: {
-    documentTitle: 'Lu — Product Designerin',
+    documentTitle: 'Lu Jin — Product Designerin',
     heroKicker: 'Product Designerin · Enterprise- & regulierte UX',
     heroTitle: 'Komplexität vereinfachen. Mit KI gestalten.',
     heroBody:
