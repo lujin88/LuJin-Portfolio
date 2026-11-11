@@ -36,10 +36,9 @@
 
 .tools-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-  align-items: center;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: start;
   gap: clamp(16px, 4vw, 32px);
-  min-height: clamp(240px, 32vw, 300px);
   margin-bottom: clamp(24px, 4vw, 32px);
 }
 
@@ -90,16 +89,20 @@
   outline-offset: 3px;
 }
 
-.tools-hero__illus-wrap {
+.tools-hero__illus {
   justify-self: end;
-  width: min(100%, min(43vw, 480px));
-  overflow: visible;
-  will-change: transform;
+  width: min(100%, clamp(280px, 37.5vw, 540px));
 }
 
-.tools-hero__illus-wrap .ww-art {
+.tools-hero__illus-blend {
+  mix-blend-mode: multiply;
+}
+
+.tools-hero__illus-img {
+  display: block;
   width: 100%;
   height: auto;
+  opacity: 0.92;
 }
 
 .tools-rail {
@@ -108,7 +111,8 @@
   gap: 24px;
   border-top: 1px solid var(--line);
   padding-top: 24px;
-  margin-bottom: clamp(32px, 6vw, 56px);
+  margin-bottom: 0;
+  border-bottom: none;
 }
 
 .tools-card {
@@ -364,7 +368,14 @@
 .tools-page .tools-closing .contact-section {
   position: relative;
   background: transparent;
-  padding: clamp(4rem, 10vh, 6rem) var(--pad, 24px) clamp(3rem, 8vh, 4.5rem);
+  border-top: none;
+  padding: clamp(2.5rem, 6vh, 3.5rem) var(--pad, 24px) clamp(3rem, 8vh, 4.5rem);
+}
+
+.tools-page .tools-closing.site-closing::before,
+.tools-page .tools-closing .contact-section::before {
+  content: none;
+  display: none;
 }
 
 .tools-page .tools-closing .exp-contact {
@@ -580,10 +591,10 @@
     min-height: 0;
   }
 
-  .tools-hero__illus-wrap {
+  .tools-hero__illus {
     width: min(100%, 380px);
     margin-top: 8px;
-    justify-self: center;
+    align-self: center;
   }
 
   .tools-rail {
