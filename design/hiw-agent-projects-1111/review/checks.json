@@ -37,7 +37,7 @@
     "height": 900,
     "overflow": false,
     "images": true,
-    "title": "Playground — Agent Monitor"
+    "title": "Playground — Tools"
   },
   {
     "name": "landing",
@@ -45,6 +45,6 @@
     "height": 844,
     "overflow": false,
     "images": true,
-    "title": "Playground — Agent Monitor"
+    "title": "Playground — Tools"
   }
 ]

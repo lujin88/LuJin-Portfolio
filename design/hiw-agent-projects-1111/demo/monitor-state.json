@@ -1,0 +1,60 @@
+{
+  "now": 1794386049849,
+  "local": false,
+  "sessions": [
+    {
+      "id": "demo-0",
+      "source": "codex",
+      "status": "needs_action",
+      "title": "Choose a layout for the demo page",
+      "project": "Demo studio",
+      "updatedAt": 1794386049849,
+      "startedAt": 1794385749849,
+      "message": "Please choose between the two sample layouts."
+    },
+    {
+      "id": "demo-1",
+      "source": "claude",
+      "status": "done",
+      "title": "Review the demo button labels",
+      "project": "Demo studio",
+      "updatedAt": 1794385989849,
+      "startedAt": 1794385749849,
+      "message": "Fictional task for the portfolio demo."
+    },
+    {
+      "id": "demo-2",
+      "source": "codex",
+      "status": "running",
+      "title": "Build the sample navigation",
+      "project": "Demo studio",
+      "updatedAt": 1794385929849,
+      "startedAt": 1794385749849,
+      "message": "Fictional task for the portfolio demo."
+    },
+    {
+      "id": "demo-3",
+      "source": "claude",
+      "status": "running",
+      "title": "Check the mobile layout",
+      "project": "Demo studio",
+      "updatedAt": 1794385869849,
+      "startedAt": 1794385749849,
+      "message": "Fictional task for the portfolio demo."
+    },
+    {
+      "id": "demo-4",
+      "source": "cursor",
+      "status": "running",
+      "title": "Prepare the sample preview",
+      "project": "Demo studio",
+      "updatedAt": 1794385809849,
+      "startedAt": 1794385749849,
+      "message": "Fictional task for the portfolio demo."
+    }
+  ],
+  "usage": {},
+  "reviewWindow": {
+    "start": 1794299649849
+  }
+}
