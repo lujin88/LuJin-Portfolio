@@ -3,16 +3,20 @@
 import { useEffect, useRef } from 'react'
 import { SiteClosing } from '../../components/site-closing'
 import { ToolsHeroIllus } from './tools-hero-illus'
+import { ToolsCardMedia } from './tools-card-media'
 import './tools-page.css'
 
 const IMG = '/assets/images/lab/hiw-tools'
+const VID = '/assets/videos/lab/hiw-tools'
 
 const PROJECTS = [
   {
     id: 'monitor',
     title: 'Agent Monitor',
     body: 'See the work in progress.',
-    image: `${IMG}/monitor-real-demo-v3.png`,
+    poster: `${IMG}/monitor-real-demo-v3.png`,
+    videoWebm: `${VID}/monitor-card-loop-v1.webm`,
+    videoMp4: `${VID}/monitor-card-loop-v1.mp4`,
     alt: 'Agent Monitor demo interface',
     mediaClass: 'monitor',
     href: 'https://github.com/lujin88/agent-monitor',
@@ -21,7 +25,9 @@ const PROJECTS = [
     id: 'scranton',
     title: 'Scranton',
     body: 'Keep the team in one conversation.',
-    image: `${IMG}/scranton-real-demo-v3.png`,
+    poster: `${IMG}/scranton-real-demo-v3.png`,
+    videoWebm: `${VID}/scranton-card-loop-v1.webm`,
+    videoMp4: `${VID}/scranton-card-loop-v1.mp4`,
     alt: 'Scranton demo workspace interface',
     mediaClass: 'scranton',
     href: 'https://github.com/lujin88/Scranton',
@@ -30,7 +36,7 @@ const PROJECTS = [
     id: 'office',
     title: 'Pixel Office',
     body: 'See the team share a space.',
-    image: `${IMG}/office-v4.gif`,
+    poster: `${IMG}/office-v4.gif`,
     alt: 'Pixel Office demo scene',
     mediaClass: 'office',
     href: 'https://github.com/lujin88/agent-monitor/tree/main/pixel-min',
@@ -103,10 +109,15 @@ export function ToolsPage() {
         <div className="tools-rail">
           {PROJECTS.map((p) => (
             <article key={p.id} id={p.id} className="tools-card" tabIndex={-1}>
-              <div className={`tools-card__media tools-card__media--${p.mediaClass}`}>
-                <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
-              </div>
+              <ToolsCardMedia
+                mediaClass={p.mediaClass}
+                alt={p.alt}
+                poster={p.poster}
+                videoWebm={'videoWebm' in p ? p.videoWebm : undefined}
+                videoMp4={'videoMp4' in p ? p.videoMp4 : undefined}
+              />
               <h3>{p.title}</h3>
+              <p>{p.body}</p>
               <a
                 className="tools-card__github"
                 href={p.href}
@@ -115,7 +126,6 @@ export function ToolsPage() {
               >
                 GitHub ↗
               </a>
-              <p>{p.body}</p>
             </article>
           ))}
         </div>
