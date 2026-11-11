@@ -22,13 +22,9 @@ html:has(.tools-page),body:has(.tools-page){margin:0;background:#f5f1e4;color-sc
   .tools-section:has(.wide-full) .tools-media.wide-full{margin-top:clamp(24px,4vw,40px)}
 }
 .tools-media.office{background:#fffdf5}
-.tools-media.office img{image-rendering:pixelated;object-fit:cover}
-.tools-media.wide-full.office{min-height:min(44vw,480px);padding:0}
-.tools-media.wide-full.office img{width:100%;height:100%;min-height:min(44vw,480px);object-fit:cover;display:block}
-@media(max-width:719px){
-  .tools-media.wide-full.office{min-height:min(72vw,320px);padding:0}
-  .tools-media.wide-full.office img{min-height:min(72vw,320px)}
-}
+.tools-media.office img{image-rendering:pixelated;object-fit:contain}
+.tools-media.wide-full.office{aspect-ratio:16/9;min-height:0}
+.tools-media.wide-full.office img{width:100%;height:100%;object-fit:contain;display:block}
 .tools-media .tools-demo{position:absolute;bottom:12px;left:12px;padding:2px 8px;background:#fffdf5;font-size:12px;color:#595d61}
 .tools-closing{--color-text-1:#272a25;--color-text-3:#505449;--color-text-4:#8a8d80;--pill-border:#272a25;--pill-text:#272a25;--pill-bg:transparent;--pill-hover-bg:#272a25;--pill-hover-text:#f5f1e4;--pill-hover-shadow:none;color:#272a25;background:var(--paper);font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif;max-width:min(1440px,100%);margin-inline:auto;width:100%}
 .tools-page .tools-closing .contact-section{position:relative;background:transparent;padding:clamp(4rem,10vh,6rem) var(--pad,24px) clamp(3rem,8vh,4.5rem)}
