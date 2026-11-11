@@ -31,7 +31,7 @@
 .tools-main {
   max-width: min(1440px, 100%);
   margin-inline: auto;
-  padding: clamp(96px, 10vw, 128px) var(--pad) clamp(48px, 8vw, 80px);
+  padding: clamp(104px, 12vw, 168px) var(--pad) clamp(48px, 8vw, 80px);
 }
 
 .tools-hero {
@@ -578,7 +578,7 @@
 
 @media (max-width: 719px) {
   .tools-main {
-    padding-top: clamp(88px, 14vw, 104px);
+    padding-top: clamp(96px, 16vw, 112px);
   }
 
   .tools-hero {
