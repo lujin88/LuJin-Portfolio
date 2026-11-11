@@ -57,7 +57,7 @@ const NAV: readonly NavEntry[] = [
       {
         label: 'MAN Truck & Bus',
         href: '/man-truck-bus',
-        meta: 'Hackathon · Fleet dispatch',
+        meta: 'Fleet uptime · Dispatch',
         icon: {
           light: '/assets/images/nav/light/work/man-truck-bus-light.webp',
           dark: '/assets/images/nav/dark/work/man-truck-bus-dark.webp',
@@ -155,7 +155,9 @@ function hrefMatches(href: string, currentHref: string, pathname: string) {
   if (href === '/EON' && candidates.includes('/eon-solar')) return true
   if (
     href === '/lab/way-of-work' &&
-    candidates.some((value) => value === href || value.startsWith(`${href}/`))
+    candidates.some(
+      (value) => value === href || value.startsWith(`${href}/`) || value === '/lab/tools',
+    )
   ) {
     return true
   }
@@ -186,6 +188,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
     pathname.startsWith('/ai-companion-pet') ||
     pathname.startsWith('/lab/agent-monitor')
   const paperHeader =
+    pathname.startsWith('/lab/tools') ||
     pathname.startsWith('/lab/way-of-work') ||
     pathname.startsWith('/man-truck-bus') ||
     pathname.startsWith('/etf-savings-plan') ||
