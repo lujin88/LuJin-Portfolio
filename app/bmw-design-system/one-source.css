@@ -163,8 +163,6 @@
 .bmw-driver dl>div+div{padding-left:24px;border-left:1px solid #ffffff40}
 .bmw-driver dt{font-size:14px;line-height:1.5;color:#c4d3e0}
 .bmw-driver dd{margin:8px 0 0;font-size:20px;line-height:1.25;letter-spacing:-.025em;color:#fff}
-.bmw-driver dl.hero-meta{max-width:min(920px,calc(100% - var(--content-inset)))}
-.bmw-driver dl.hero-meta dd{font-size:clamp(16px,1.35vw,20px)}
 @media(min-width:601px) and (max-width:1100px){
 .bmw-driver .backdrop{object-position:right center}
 .bmw-driver header{max-width:52%}
