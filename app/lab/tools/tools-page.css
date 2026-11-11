@@ -124,16 +124,16 @@
 .tools-card__github {
   display: inline-block;
   margin: 10px 0 0;
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.4;
-  font-weight: 500;
-  color: #2455cc;
-  text-decoration: none;
+  font-weight: 400;
+  color: #272a25;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .tools-card__github:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  color: #141827;
 }
 
 .tools-card__github:focus-visible {
@@ -145,7 +145,7 @@
 .tools-card__media {
   background: #e8e6df;
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: 8px;
   overflow: hidden;
   position: relative;
   aspect-ratio: 1.55;
