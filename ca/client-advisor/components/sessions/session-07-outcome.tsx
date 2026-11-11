@@ -30,7 +30,7 @@ export function Session07Outcome() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-1/2 bg-[radial-gradient(ellipse_at_top,rgba(61,139,255,0.10),transparent_60%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-1/2 bg-[radial-gradient(ellipse_at_top,rgba(61,139,255,0.10),transparent_60%)] [-webkit-mask-image:linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.5)_25%,#000_60%)] [mask-image:linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.5)_25%,#000_60%)]"
       />
       <div
         aria-hidden="true"
