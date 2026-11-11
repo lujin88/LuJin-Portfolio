@@ -737,6 +737,11 @@ export function WeatherAquariumPage() {
                   new words.
                 </p>
                 <div className="hero-meta">Experience · Motion Graphic</div>
+                <p className="wa-lab-tools">
+                  <a href="/lab/tools">Agent tools</a>
+                  <span aria-hidden="true"> · </span>
+                  Monitor, Scranton, Pixel Office
+                </p>
               </div>
 
               <div

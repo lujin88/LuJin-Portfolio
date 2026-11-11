@@ -89,24 +89,6 @@ const NAV: readonly NavEntry[] = [
     label: 'Playground',
     children: [
       {
-        label: 'Tools',
-        href: '/lab/tools',
-        meta: 'Monitor · Scranton · Office',
-        icon: {
-          light: '/assets/images/nav/light/playground/weather-aquarium-light.webp',
-          dark: '/assets/images/nav/dark/playground/weather-aquarium-dark.webp',
-        },
-      },
-      {
-        label: 'Agent Monitor',
-        href: '/lab/agent-monitor',
-        meta: 'Live dashboard',
-        icon: {
-          light: '/assets/images/nav/light/playground/weather-aquarium-light.webp',
-          dark: '/assets/images/nav/dark/playground/weather-aquarium-dark.webp',
-        },
-      },
-      {
         label: 'Weather Aquarium',
         href: '/lab/weather-aquarium',
         meta: 'Rive motion',
@@ -202,8 +184,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   const pinnedPaper =
     pathname.startsWith('/lab/weather-aquarium') ||
     pathname.startsWith('/ai-companion-pet') ||
-    pathname.startsWith('/lab/agent-monitor') ||
-    pathname.startsWith('/lab/tools')
+    pathname.startsWith('/lab/agent-monitor')
   const paperHeader =
     pathname.startsWith('/lab/way-of-work') ||
     pathname.startsWith('/man-truck-bus') ||

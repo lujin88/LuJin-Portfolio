@@ -1,4 +1,4 @@
-.tools-page{--paper:#f5f1e4;--ink:#272a25;background:var(--paper);color:var(--ink);font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif}
+.tools-page{--paper:#f5f1e4;--ink:#272a25;background:var(--paper);color:var(--ink);font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif;overflow-x:clip}
 .tools-page *{box-sizing:border-box}
 .tools-main{max-width:min(1440px,100%);margin-inline:auto;padding:clamp(72px,8vw,120px) var(--pad,24px) clamp(80px,10vw,140px)}
 .tools-section{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.65fr);gap:clamp(24px,5vw,48px);align-content:center;min-height:min(800px,100svh);scroll-margin-top:88px;padding:clamp(48px,8vw,80px) 0}
@@ -6,7 +6,7 @@
 .tools-section p{margin:24px 0 0;max-width:26ch;font-size:clamp(16px,1.2vw,18px);line-height:1.5;grid-column:1;grid-row:2}
 .tools-media{grid-column:2;grid-row:1/span 2;background:#fffdf5;border:1px solid #d0d2c0;border-radius:16px;overflow:hidden;aspect-ratio:1.6;min-height:280px;position:relative}
 .tools-media img{width:100%;height:100%;object-fit:contain;display:block}
-.tools-media.wide-full{grid-column:1/-1;width:100vw;margin-left:calc(50% - 50vw);border-radius:0;border-inline:0;min-height:min(52vw,560px);aspect-ratio:auto;padding:clamp(24px,5vw,48px) clamp(20px,4vw,40px)}
+.tools-media.wide-full{grid-column:1/-1;width:100%;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);border-radius:0;border-inline:0;min-height:min(52vw,560px);aspect-ratio:auto;padding:clamp(24px,5vw,48px) clamp(20px,4vw,40px)}
 .tools-media.office{background:#111214}
 .tools-media.office img{image-rendering:pixelated}
 .tools-media .tools-demo{position:absolute;bottom:12px;left:12px;padding:2px 8px;background:#fffdf5;font-size:10px;color:#595d61}
@@ -15,9 +15,9 @@
   .tools-section h2{font-size:34px;align-self:start}
   .tools-section p{margin-top:0;order:1}
   .tools-media{order:2;width:100%}
-  .tools-media.wide-full{width:100vw;margin-left:calc(50% - 50vw);padding:20px 16px;min-height:220px}
+  .tools-media.wide-full{width:100%;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding:20px 16px;min-height:220px}
 }
-@media (prefers-reduced-motion: no-preference){
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference){
   .tools-section:not(.tools-section--in){opacity:0;transform:translate3d(0,28px,0)}
   .tools-section.tools-section--in{animation:tools-section-in .6s cubic-bezier(.22,1,.36,1) both}
   @media(min-width:720px){

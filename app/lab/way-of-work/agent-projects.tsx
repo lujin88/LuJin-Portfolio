@@ -13,7 +13,7 @@ const PROJECTS = [
     href: '/lab/tools#monitor',
     image: `${IMG}/monitor-real-demo-v3.png`,
     alt: 'Agent Monitor demo interface',
-    mediaClass: 'monitor wide-full',
+    mediaClass: 'monitor',
     demoLabel: 'Demo data',
   },
   {
@@ -23,7 +23,7 @@ const PROJECTS = [
     href: '/lab/tools#scranton',
     image: `${IMG}/scranton-real-demo-v3.png`,
     alt: 'Scranton demo workspace interface',
-    mediaClass: 'scranton wide-full',
+    mediaClass: 'scranton',
     demoLabel: 'Demo workspace',
   },
   {
@@ -39,7 +39,7 @@ const PROJECTS = [
 
 export function AgentProjects() {
   const sectionRef = useRef<HTMLElement>(null)
-  const railRef = useRef<HTMLDivElement>(null)
+  const railRef = useRef<HTMLUListElement>(null)
   const [atStart, setAtStart] = useState(true)
   const [atEnd, setAtEnd] = useState(false)
 
@@ -80,7 +80,7 @@ export function AgentProjects() {
 
   const move = (dir: -1 | 1) => {
     const rail = railRef.current
-    const card = rail?.querySelector<HTMLElement>('.ww-projects-card')
+    const card = rail?.querySelector<HTMLElement>('.ww-projects-rail > li')
     if (!rail || !card) return
     rail.scrollBy({ left: dir * (card.offsetWidth + 24), behavior: 'smooth' })
     window.setTimeout(syncEdges, 320)
@@ -96,27 +96,28 @@ export function AgentProjects() {
           →
         </button>
       </div>
-      <div
+      <ul
         className="ww-projects-rail"
         ref={railRef}
         onScroll={syncEdges}
         tabIndex={0}
-        role="list"
         aria-label="Explore the three projects"
       >
         {PROJECTS.map((p) => (
-          <a key={p.id} className="ww-projects-card" href={p.href} role="listitem">
-            <div className={`ww-projects-media ${p.mediaClass}`}>
-              <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
-              {'demoLabel' in p && p.demoLabel ? (
-                <span className="ww-projects-demo">{p.demoLabel}</span>
-              ) : null}
-            </div>
-            <h3>{p.title}</h3>
-            <p>{p.body}</p>
-          </a>
+          <li key={p.id}>
+            <a className="ww-projects-card" href={p.href}>
+              <div className={`ww-projects-media ${p.mediaClass}`}>
+                <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
+                {'demoLabel' in p && p.demoLabel ? (
+                  <span className="ww-projects-demo">{p.demoLabel}</span>
+                ) : null}
+              </div>
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   )
 }
