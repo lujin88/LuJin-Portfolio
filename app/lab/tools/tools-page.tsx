@@ -65,6 +65,10 @@ export function ToolsPage() {
   return (
     <div className="tools-page">
       <main className="tools-main" ref={mainRef}>
+        <p className="tools-back">
+          <a href="/lab/way-of-work">← How I Work</a>
+        </p>
+        <h1 className="tools-sr-only">Playground tools</h1>
         {SECTIONS.map((s) => (
           <section key={s.id} id={s.id} className="tools-section" aria-labelledby={`${s.id}-title`}>
             <h2 id={`${s.id}-title`}>{s.title}</h2>
@@ -78,7 +82,7 @@ export function ToolsPage() {
           </section>
         ))}
       </main>
-      <SiteClosing />
+      <SiteClosing className="tools-closing" />
     </div>
   )
 }
