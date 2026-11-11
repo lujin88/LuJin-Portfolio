@@ -103,6 +103,11 @@
   mix-blend-mode: multiply;
 }
 
+/* Parallax transform on the SVG; keep blend off a transformed ancestor (visualqa #7829) */
+.tools-page .tools-hero__illus-wrap .ww-drawing {
+  isolation: auto;
+}
+
 .tools-rail {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

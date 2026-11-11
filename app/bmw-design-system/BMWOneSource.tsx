@@ -98,7 +98,7 @@ export function BMWOneSource() {
       <img className="play" src="/lab/bmw-one-source/assets/google-play.png" alt={t('bmw.hero.downloadGoogle')} />
     </a>
   </nav>
-  <dl>
+  <dl className="hero-meta">
     <div>
       <dt>
         {t('bmw.hero.thenYear')}
