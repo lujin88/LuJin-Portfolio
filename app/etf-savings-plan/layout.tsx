@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { HtmlChrome } from '../html-chrome'
 import { socialMetadata } from '../seo'
 
-const TITLE = 'Lu — ETF Savings Plan'
+const TITLE = 'Lu Jin — ETF Savings Plan'
 const DESCRIPTION =
   'A Swiss ETF savings plan designed for the months after you start: before the first payment, in a down month, and when you want to stop. Explore the interactive prototype.'
 
