@@ -47,6 +47,8 @@
   color: #254eaf; font-size: 16px; font-weight: 500;
 }
 .ww-case-link:hover { color: var(--ink); }
+.ww-tools-entry{margin:0 auto clamp(48px,7vw,96px);padding:0 var(--gutter);max-width:var(--ww-well);font-size:var(--font-size-body-lg,17px);line-height:1.7;color:var(--ink)}
+.ww-tools-entry .ww-case-link{margin-top:0}
 @media (max-width: 719px) {
   .ww-finale { width: 80%; grid-template-columns: 1fr; gap: 25px; margin: 84px auto 64px; }
   .ww-archive { width: min(100%, 380px); justify-self: center; }

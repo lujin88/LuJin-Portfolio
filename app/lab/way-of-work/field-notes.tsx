@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react'
 import './field-notes.css'
 import { SiteClosing } from '../../components/site-closing'
 import { Icon } from '../../components/remix-icon'
-import { AgentProjects } from './agent-projects'
 
 const hero = '/lab/way-of-work/field-notes/worktable.webp'
 const selecting = '/lab/way-of-work/field-notes/selection-still-v20.webp'
@@ -325,7 +324,6 @@ export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
       <div className="ww-copy"><div className="ww-label"><b>0{i+1}</b>{c.label}</div><h2>{c.title}</h2><p>{c.context}</p><p>{c.decision}</p></div>
       <figure><Scene index={i+1}/>
       </figure></section>)}
-    <AgentProjects />
     <section className="ww-finale" aria-labelledby="ww-finale-title">
       <img className="ww-archive" src={rulebox} data-still={rulebox} data-motion={rabbitMotion} width={1536} height={1024}
         alt="The rabbit files a checked rule card in a blue index box." />
@@ -335,6 +333,13 @@ export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
         <a className="ww-case-btn pill-btn" href={base+'/bmw-design-system'} target={portfolio?undefined:'_blank'} rel="noreferrer"><span>Explore the BMW case</span><Icon name="arrow-right-up-line" className="ww-case-icon" /></a>
       </div>
     </section>
+    <p className="ww-tools-entry">
+      Three agent tools in Playground —{' '}
+      <a className="ww-case-link" href={portfolio ? '/lab/tools' : base + '/lab/tools'}>
+        Agent Monitor, Scranton, Pixel Office
+      </a>
+      .
+    </p>
     </main>
   {portfolio&&<SiteClosing className="ww-closing" />}
   </>
