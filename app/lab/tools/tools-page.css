@@ -101,13 +101,6 @@
   display: block;
   width: 100%;
   height: auto;
-  overflow: visible;
-  isolation: isolate;
-  mix-blend-mode: multiply;
-}
-
-.tools-hero-illus__ensemble {
-  opacity: 0.92;
   mix-blend-mode: multiply;
 }
 
