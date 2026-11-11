@@ -11,7 +11,7 @@
 .ww-page a:is(.ww-scroll,.ww-case):hover{background:#deedcb}
 .ww-chapter{position:relative;display:grid;grid-template-columns:1.18fr .82fr;align-items:center;gap:clamp(24px,5vw,92px);width:min(87%,1360px);margin:clamp(110px,12vw,200px) auto 0;scroll-margin-top:100px;min-height:clamp(260px,26vw,420px)}
 .ww-chapter .ww-copy{grid-column:2;grid-row:1}.ww-chapter figure{position:relative;grid-column:1;grid-row:1}.ww-c1{grid-template-columns:.82fr 1.18fr}.ww-c1 .ww-copy{grid-column:1}.ww-c1 figure{grid-column:2}
-.ww-copy{position:relative;z-index:4}.ww-copy .ww-label{font-size:13px}.ww-label b{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#ebd988;font-size:12px;font-weight:600}.ww-c1 .ww-label b{background:#c1d9f1}.ww-c2 .ww-label b{background:#b9dfa0}
+.ww-copy{position:relative;z-index:4}.ww-copy .ww-label{font-size:13px}.ww-label b{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#c2daf4;font-size:12px;font-weight:600}
 .ww-copy h2,.ww-end h2{font:500 clamp(46px,5.45vw,84px)/.96 Inter,"Helvetica Neue",Arial,sans-serif;letter-spacing:-.065em;text-wrap:balance}
 .ww-copy h2{margin:17px 0 14px;max-width:11ch}.ww-copy p{max-width:32ch;font-size:clamp(16px,1.3vw,21px);line-height:1.42;letter-spacing:-.016em}
 .ww-art{width:100%;height:auto;display:block;mix-blend-mode:multiply}
