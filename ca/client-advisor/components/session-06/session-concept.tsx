@@ -5,7 +5,7 @@ import { ConceptMockupStack } from './concept-mockup-stack'
 import { ConceptScrollStory } from './concept-scroll-story'
 import { useTranslation } from '@i18n/use-translation'
 
-const SHOW_CONCEPT_STACK = true
+const SHOW_CONCEPT_STACK = false
 
 const bodyClass =
   'mt-[0.35rem] max-w-[34rem] text-pretty text-[15px] font-normal leading-[1.55] text-[var(--ca-text-2)] xl:text-base'
@@ -37,6 +37,9 @@ export function SessionConcept() {
     },
   ]
 
+  // Hidden until visual's recreated frames are cleared (PM #2300): the UBS screens
+  // were removed for confidentiality, and grey placeholders read as broken images.
+  // Set SHOW_CONCEPT_STACK back to true and swap the files in concept-mockups.ts.
   const visual = SHOW_CONCEPT_STACK ? (
     <ScrollReveal fadeOnly className="relative w-full">
       <ConceptMockupStack />
