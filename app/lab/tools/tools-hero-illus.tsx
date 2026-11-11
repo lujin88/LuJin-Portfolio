@@ -1,28 +1,23 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { Scene } from '../way-of-work/field-notes'
-import '../way-of-work/field-notes.css'
+import { useEffect, useRef, useState } from 'react'
 
-const JUDGEMENT = 2
+const STILL = '/lab/way-of-work/field-notes/score.webp'
+const MOTION = '/lab/way-of-work/field-notes/score-loop-v21.webp'
 
 export function ToolsHeroIllus() {
-  const rootRef = useRef<HTMLDivElement>(null)
+  const parallaxRef = useRef<HTMLDivElement>(null)
+  const [src, setSrc] = useState(STILL)
 
   useEffect(() => {
-    const root = rootRef.current
+    const root = parallaxRef.current
     if (!root) return
-    const scene = root.querySelector<SVGSVGElement>('.ww-drawing')
-    const image = scene?.querySelector<SVGImageElement>('.ww-ensemble')
-    if (!scene || !image) return
-
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
     let visible = false
 
     const sync = () => {
-      const url =
-        visible && !reduced.matches ? image.dataset.motion! : image.dataset.still!
-      if (image.getAttribute('href') !== url) image.setAttribute('href', url)
+      const next = visible && !reduced.matches ? MOTION : STILL
+      setSrc((prev) => (prev === next ? prev : next))
     }
 
     const io = new IntersectionObserver(
@@ -32,7 +27,7 @@ export function ToolsHeroIllus() {
       },
       { threshold: 0.15 },
     )
-    io.observe(scene)
+    io.observe(root)
     const onReduced = () => sync()
     reduced.addEventListener('change', onReduced)
     sync()
@@ -44,8 +39,17 @@ export function ToolsHeroIllus() {
   }, [])
 
   return (
-    <div className="tools-hero__illus-wrap" ref={rootRef} data-tools-parallax="0.1">
-      <Scene index={JUDGEMENT} />
+    <div className="tools-hero__illus" ref={parallaxRef} data-tools-parallax="0.1">
+      <div className="tools-hero__illus-blend">
+        <img
+          className="tools-hero__illus-img"
+          src={src}
+          width={800}
+          height={375}
+          alt="A bear, rabbit and fox review the work. The designer points at the open rulebook."
+          decoding="async"
+        />
+      </div>
     </div>
   )
 }

@@ -15,7 +15,7 @@ const PROJECTS = [
     image: `${IMG}/monitor-real-demo-v3.png`,
     alt: 'Agent Monitor demo interface',
     mediaClass: 'monitor',
-    demoLabel: 'Demo data',
+    href: 'https://github.com/lujin88/agent-monitor',
   },
   {
     id: 'scranton',
@@ -24,7 +24,7 @@ const PROJECTS = [
     image: `${IMG}/scranton-real-demo-v3.png`,
     alt: 'Scranton demo workspace interface',
     mediaClass: 'scranton',
-    demoLabel: 'Demo workspace',
+    href: 'https://github.com/lujin88/Scranton',
   },
   {
     id: 'office',
@@ -107,18 +107,33 @@ export function ToolsPage() {
         </section>
 
         <div className="tools-rail">
-          {PROJECTS.map((p) => (
-            <article key={p.id} id={p.id} className="tools-card" tabIndex={-1}>
-              <div className={`tools-card__media tools-card__media--${p.mediaClass}`}>
-                <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
-                {'demoLabel' in p && p.demoLabel ? (
-                  <span className="tools-card__demo">{p.demoLabel}</span>
-                ) : null}
-              </div>
-              <h3>{p.title}</h3>
-              <p>{p.body}</p>
-            </article>
-          ))}
+          {PROJECTS.map((p) => {
+            const body = (
+              <>
+                <div className={`tools-card__media tools-card__media--${p.mediaClass}`}>
+                  <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
+                </div>
+                <h3>{p.title}</h3>
+                <p>{p.body}</p>
+              </>
+            )
+            return (
+              <article key={p.id} id={p.id} className="tools-card" tabIndex={-1}>
+                {'href' in p && p.href ? (
+                  <a
+                    className="tools-card__link"
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {body}
+                  </a>
+                ) : (
+                  body
+                )}
+              </article>
+            )
+          })}
         </div>
       </main>
 
