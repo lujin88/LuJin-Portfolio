@@ -1,6 +1,7 @@
 'use client'
 
 import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
+import { useTranslation } from '@i18n/use-translation'
 
 const APP_SCREEN = '/lab/bmw-one-source/assets/i4-complete.png'
 const REVIEW_FLOW = '/lab/bmw-one-source/assets/review-workflow.webp'
@@ -24,9 +25,20 @@ function FanIcon({ compact }: { compact?: boolean }) {
 }
 
 export function BMWLowerB() {
+  const { t } = useTranslation()
   return (
     <div className="bmw-lower-b v3 b">
       <LayerScrollGroup as="section" className="pad lead">
+        <dl className="then-now">
+          <div>
+            <dt>{t('bmw.hero.thenYear')}</dt>
+            <dd>{t('bmw.hero.then')}</dd>
+          </div>
+          <div>
+            <dt>{t('bmw.hero.nowYear')}</dt>
+            <dd>{t('bmw.hero.now')}</dd>
+          </div>
+        </dl>
         <div data-move="96">
           <div className="rubric">Inside the design system</div>
           <h2>
