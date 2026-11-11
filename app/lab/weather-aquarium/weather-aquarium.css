@@ -84,20 +84,6 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-}.wa-page .wa-lab-tools{
-  margin: 16px 0 0;
-  max-width: 36rem;
-  color: var(--muted);
-  font-size: var(--font-size-body);
-  line-height: 1.6;
-}.wa-page .wa-lab-tools a{
-  color: var(--ink);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}.wa-page .wa-lab-tools a:focus-visible{
-  outline: 2px solid var(--signal);
-  outline-offset: 3px;
 }.wa-page .hero-media{
   display: grid;
   place-items: center;
