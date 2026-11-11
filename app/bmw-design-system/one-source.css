@@ -181,18 +181,20 @@
 }
 /* Phones: copy, then the phone beside the 2020/2026 timeline, then the store badges. */
 @media(max-width:600px){
-.bmw-driver{min-height:0;padding:calc(64px + 24px) 24px 32px;display:grid;grid-template-columns:min(180px,46%) minmax(0,1fr);grid-template-areas:"head head" "phone dl" "nav nav";column-gap:24px;align-items:start}
+.bmw-driver{min-height:0;padding:calc(64px + 24px) 24px 32px;display:grid;grid-template-columns:min(180px,46%) minmax(0,1fr);grid-template-areas:"head head" "meta meta" "phone nav";column-gap:24px;align-items:start}
 .bmw-driver::before{display:none}
 .bmw-driver header{grid-area:head;max-width:none}
 .bmw-driver header>p:first-child{margin-bottom:12px;font-size:14px}
-.bmw-driver header .hero-story{margin:16px 0 10px;font-size:16px;line-height:1.45}
+.bmw-driver header .hero-story{margin:16px 0 10px;font-size:16px;line-height:1.5}
 .bmw-driver header .hero-bridge{font-size:14px}
 /* One car only (Lu #5896): no scene photo on phones, just the app screen. */
 .bmw-driver .backdrop{display:none}
-.bmw-driver .screen{grid-area:phone;width:100%;margin-top:32px;border-width:4px;border-radius:20px}
+.bmw-driver .screen{grid-area:phone;width:100%;margin-top:20px;border-width:4px;border-radius:20px}
 .bmw-driver dl{grid-area:dl;position:static;flex-direction:column;gap:16px;margin-top:32px}
 .bmw-driver dl>div+div{padding:16px 0 0;border-left:0;border-top:1px solid #ffffff40}
-.bmw-driver dl.hero-meta>div{min-width:0;max-width:100%}
+.bmw-driver dl.hero-meta{grid-area:meta;margin-top:20px;max-width:100%;width:100%;flex-direction:column;align-items:flex-start;gap:10px}
+.bmw-driver dl.hero-meta>div{min-width:0;max-width:100%;width:100%}
+.bmw-driver dl.hero-meta>div+div{padding:0;border-top:0}
 .bmw-driver dd{font-size:16px}
 .bmw-driver nav{grid-area:nav;margin-top:32px}
 .bmw-driver nav img{height:32px}
