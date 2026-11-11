@@ -165,6 +165,28 @@
   transform: rotateY(180deg);
 }
 
+/* WebKit ignores backface-visibility on these overflow:hidden faces (the
+   back's text showed through the front as mirrored copy). Also switch each
+   face's visibility at the point where the card is edge on (the ease-out curve
+   is 50% rotated at ~0.085s of 0.65s), so only the face that is turned toward the reader is ever painted. */
+.faceBack {
+  visibility: hidden;
+  transition: visibility 0s linear 0.085s;
+}
+
+.flipped .faceBack {
+  visibility: visible;
+}
+
+.faceFront {
+  visibility: visible;
+  transition: visibility 0s linear 0.085s;
+}
+
+.flipped .faceFront {
+  visibility: hidden;
+}
+
 .artwork {
   position: absolute;
   inset: 0;
@@ -278,6 +300,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cardInner,
+  .faceFront,
+  .faceBack,
   .artworkImg {
     transition: none;
   }
