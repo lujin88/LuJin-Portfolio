@@ -5,7 +5,9 @@ import { ConceptMockupStack } from './concept-mockup-stack'
 import { ConceptScrollStory } from './concept-scroll-story'
 import { useTranslation } from '@i18n/use-translation'
 
-const SHOW_CONCEPT_STACK = false
+// LOCAL ONLY (PM #7553): true shows the grey placeholders for layout review on 3000.
+// Must be false (or legal-cleared art) before this goes to main.
+const SHOW_CONCEPT_STACK = true
 
 const bodyClass =
   'mt-[0.35rem] max-w-[34rem] text-pretty text-[15px] font-normal leading-[1.55] text-[var(--ca-text-2)] xl:text-base'
