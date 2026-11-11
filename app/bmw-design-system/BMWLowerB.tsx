@@ -1,9 +1,17 @@
+'use client'
+
+import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
+
 const APP_SCREEN = '/lab/bmw-one-source/assets/i4-complete.png'
 const REVIEW_FLOW = '/lab/bmw-one-source/assets/review-workflow.webp'
 
-function FanIcon() {
+function FanIcon({ compact }: { compact?: boolean }) {
   return (
-    <svg style={{ width: 56, height: 56, display: 'inline-block' }} viewBox="0 0 32 32" aria-hidden="true">
+    <svg
+      style={compact ? undefined : { width: 56, height: 56, display: 'inline-block' }}
+      viewBox="0 0 32 32"
+      aria-hidden="true"
+    >
       <g fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round">
         <path transform="rotate(0 16 16)" d="M14 14C9 6 15 1 20 3c4 2 3 6-1 7-2 1-3 2-3 4" />
         <path transform="rotate(90 16 16)" d="M14 14C9 6 15 1 20 3c4 2 3 6-1 7-2 1-3 2-3 4" />
@@ -18,15 +26,17 @@ function FanIcon() {
 export function BMWLowerB() {
   return (
     <div className="bmw-lower-b v3 b">
-      <section className="pad lead">
-        <div className="rubric">Inside the design system</div>
-        <h2>
-          One control.
-          <br />
-          More than <span className="keep-words">one layer.</span>
-        </h2>
-        <p>A design system has to carry the appearance, the state and the rules that make the component available.</p>
-      </section>
+      <LayerScrollGroup as="section" className="pad lead">
+        <div data-move="96">
+          <div className="rubric">Inside the design system</div>
+          <h2>
+            One control.
+            <br />
+            More than <span className="keep-words">one layer.</span>
+          </h2>
+          <p>A design system has to carry the appearance, the state and the rules that make the component available.</p>
+        </div>
+      </LayerScrollGroup>
 
       <section className="anatomy">
         <div className="notes">
@@ -39,22 +49,22 @@ export function BMWLowerB() {
             <p>Model and market determine what the driver can use.</p>
           </div>
         </div>
-        <div className="layers">
-          <div className="layer back">
+        <LayerScrollGroup className="layers">
+          <div className="layer back" data-move="32">
             <h3 style={{ marginTop: 0, fontSize: 21 }}>Model × market</h3>
           </div>
-          <div className="layer middle">
+          <div className="layer middle" data-move="48">
             <small>Appearance</small>
             <h3>Light / dark</h3>
           </div>
-          <div className="layer front">
+          <div className="layer front" data-move="64">
             <span className="fan">
               <FanIcon />
             </span>
             <h3>Climate</h3>
             <div className="bottom">Request sent · waiting for vehicle</div>
           </div>
-        </div>
+        </LayerScrollGroup>
         <div className="notes">
           <div>
             <h3>State</h3>
@@ -68,12 +78,14 @@ export function BMWLowerB() {
       </section>
       <p className="anatomy-caption">Component anatomy · illustrative recreation, not an original specification.</p>
 
-      <section className="pad role-band">
-        <h2>
-          My role,
-          <br />
-          and the scope.
-        </h2>
+      <LayerScrollGroup as="section" className="pad role-band">
+        <div data-move="96">
+          <h2>
+            My role,
+            <br />
+            and the scope.
+          </h2>
+        </div>
         <div>
           <p>
             I led a six-person team that designed the new My BMW app and its design system, for iOS and Android. The
@@ -99,17 +111,19 @@ export function BMWLowerB() {
             services and bookings, notifications, news and marketing, in-app purchases, vehicle setup and settings.
           </p>
         </div>
-      </section>
+      </LayerScrollGroup>
 
       <section className="pad demo-section" id="climate-study">
-        <div className="heading">
-          <h2>
-            See the app.
-            <br />
-            Try the rule.
-          </h2>
-          <p>Where can a control appear? What happens after a tap? The component preview lets you explore both.</p>
-        </div>
+        <LayerScrollGroup className="heading">
+          <div data-move="96">
+            <h2>
+              See the app.
+              <br />
+              Try the rule.
+            </h2>
+            <p>Where can a control appear? What happens after a tap? The component preview lets you explore both.</p>
+          </div>
+        </LayerScrollGroup>
         <div className="preview-grid">
           <div className="rule-controls">
             <h3>Choose a model & market</h3>
@@ -156,12 +170,26 @@ export function BMWLowerB() {
             <h3>Try Climate</h3>
             <div className="themes" data-phase="off">
               <button type="button" data-climate className="tile" aria-label="Try Climate in light mode">
+                <span className="tile-top">
+                  <span className="tile-fan">
+                    <FanIcon compact />
+                  </span>
+                  <small className="tile-badge" data-state>
+                    Off
+                  </small>
+                </span>
                 <b>Climate</b>
-                <small data-state>Off</small>
               </button>
               <button type="button" data-climate className="tile dark" aria-label="Try Climate in dark mode">
+                <span className="tile-top">
+                  <span className="tile-fan">
+                    <FanIcon compact />
+                  </span>
+                  <small className="tile-badge" data-state>
+                    Off
+                  </small>
+                </span>
                 <b>Climate</b>
-                <small data-state>Off</small>
               </button>
             </div>
             <div className="sim-response" hidden>
@@ -181,11 +209,11 @@ export function BMWLowerB() {
         </div>
       </section>
 
-      <section className="pad review-flow">
-        <div className="artifact">
+      <LayerScrollGroup as="section" className="pad review-flow">
+        <div className="artifact" data-move="64">
           <img src={REVIEW_FLOW} alt="Existing magnifier inspecting component variants" />
         </div>
-        <div>
+        <div data-move="96">
           <div className="rubric">Today · A proposal</div>
           <h2>
             Make the missing
@@ -198,10 +226,10 @@ export function BMWLowerB() {
           </div>
           <p>The decision stays with the team. The new rule stays with the component.</p>
         </div>
-      </section>
+      </LayerScrollGroup>
 
-      <section className="pad transfer">
-        <div>
+      <LayerScrollGroup as="section" className="pad transfer">
+        <div data-move="96">
           <h2>
             Could this work
             <br />
@@ -231,7 +259,7 @@ export function BMWLowerB() {
             The system should carry the rule.
           </p>
         </div>
-      </section>
+      </LayerScrollGroup>
 
       <aside className="dark-conclusion">
         In 2020, the system held the components. Now it should hold the rules: every model, every market, every edge
