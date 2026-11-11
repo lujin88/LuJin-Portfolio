@@ -97,11 +97,9 @@
   will-change: transform;
 }
 
-.tools-hero-illus {
-  display: block;
+.tools-hero__illus-wrap .ww-art {
   width: 100%;
   height: auto;
-  mix-blend-mode: multiply;
 }
 
 .tools-rail {
