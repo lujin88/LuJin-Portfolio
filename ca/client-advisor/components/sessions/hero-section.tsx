@@ -20,13 +20,11 @@ export function HeroSection() {
       for (const video of videos) {
         if (mq.matches) {
           video.pause()
-          try {
-            video.currentTime = 0
-          } catch {
-            /* seek may fail before metadata */
-          }
+          video.load()
         } else if (document.visibilityState === 'visible') {
           void video.play().catch(() => {})
+        } else {
+          video.pause()
         }
       }
     }
@@ -56,7 +54,6 @@ export function HeroSection() {
           <video
             ref={desktopVideoRef}
             className="ca-s01-video h-full w-full object-cover"
-            autoPlay
             loop
             muted
             playsInline
@@ -127,7 +124,6 @@ export function HeroSection() {
           <video
             ref={mobileVideoRef}
             className="h-full w-full object-cover object-center"
-            autoPlay
             loop
             muted
             playsInline
