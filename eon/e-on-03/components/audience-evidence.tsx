@@ -238,7 +238,7 @@ export function AudienceEvidence({ alt }: { alt: string }) {
             >
               <span
                 aria-hidden="true"
-                className={`aud-ev-icon flex size-12 shrink-0 items-center justify-center rounded-full text-[#07151f] sm:size-[8.4cqw] ${seg.tone}`}
+                className={`aud-ev-fade aud-ev-icon flex size-12 shrink-0 items-center justify-center rounded-full text-[#07151f] sm:size-[8.4cqw] ${seg.tone}`}
                 style={d(base + ICON_AFTER_CARD_MS)}
               >
                 <i className={`${seg.icon} text-[24px] leading-none sm:text-[3.6cqw]`} />
