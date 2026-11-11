@@ -20,6 +20,9 @@
 .photoFrame {
   position: absolute;
   inset: 0;
+  /* Photo rises out of the background colour instead of starting on a hard edge. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 min(40svh, 24rem));
+  mask-image: linear-gradient(to bottom, transparent 0, #000 min(40svh, 24rem));
 }
 
 .photo {

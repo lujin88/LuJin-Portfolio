@@ -29,6 +29,9 @@
   background:
     radial-gradient(ellipse 24% 40% at 56% 106%, #003975 0%, #00346cda 27%, #00295155 53%, transparent 95%),
     radial-gradient(ellipse 45% 52% at 55% 68%, #001b3440 0%, transparent 80%);
+  /* Fade the field out before the box edge so the glow never ends in a hard line. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
 }
 
 @media (min-width: 1024px) {
