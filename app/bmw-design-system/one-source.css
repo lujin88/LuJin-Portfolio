@@ -163,8 +163,8 @@
 .bmw-driver dl>div+div{padding-left:24px;border-left:1px solid #ffffff40}
 .bmw-driver dt{font-size:14px;line-height:1.5;color:#c4d3e0}
 .bmw-driver dd{margin:8px 0 0;font-size:20px;line-height:1.25;letter-spacing:-.025em;color:#fff}
-.bmw-driver dl.hero-meta{max-width:min(920px,calc(100% - var(--content-inset)))}
-.bmw-driver dl.hero-meta>div{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.45em;row-gap:.15em}
+.bmw-driver dl.hero-meta{max-width:min(920px,calc(100% - var(--content-inset));flex-wrap:wrap;row-gap:12px}
+.bmw-driver dl.hero-meta>div{flex:none;flex-wrap:nowrap;min-width:max-content;max-width:100%;display:flex;align-items:baseline;column-gap:.45em}
 .bmw-driver dl.hero-meta dt,.bmw-driver dl.hero-meta dd{margin:0;display:inline}
 .bmw-driver dl.hero-meta dt::after{content:"·";margin-inline:.45em 0;color:#ffffff66;font-weight:400}
 .bmw-driver dl.hero-meta dd{font-size:clamp(16px,1.35vw,20px);white-space:nowrap}
@@ -191,6 +191,8 @@
 .bmw-driver .screen{grid-area:phone;width:100%;margin-top:32px;border-width:4px;border-radius:20px}
 .bmw-driver dl{grid-area:dl;position:static;flex-direction:column;gap:16px;margin-top:32px}
 .bmw-driver dl>div+div{padding:16px 0 0;border-left:0;border-top:1px solid #ffffff40}
+.bmw-driver dl.hero-meta>div{min-width:0;max-width:100%}
+.bmw-driver dl.hero-meta dd{font-size:clamp(14px,3.6vw,16px)}
 .bmw-driver dd{font-size:16px}
 .bmw-driver nav{grid-area:nav;margin-top:32px}
 .bmw-driver nav img{height:32px}
