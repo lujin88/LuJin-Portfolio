@@ -31,7 +31,7 @@
 .tools-main {
   max-width: min(1440px, 100%);
   margin-inline: auto;
-  padding: clamp(20px, 3vw, 32px) var(--pad) clamp(48px, 8vw, 80px);
+  padding: clamp(96px, 10vw, 128px) var(--pad) clamp(48px, 8vw, 80px);
 }
 
 .tools-hero {
@@ -39,8 +39,8 @@
   grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
   align-items: center;
   gap: clamp(16px, 4vw, 32px);
-  min-height: clamp(220px, 32vw, 288px);
-  margin-bottom: clamp(16px, 3vw, 24px);
+  min-height: clamp(240px, 32vw, 300px);
+  margin-bottom: clamp(24px, 4vw, 32px);
 }
 
 .tools-hero__title {
@@ -53,62 +53,73 @@
 
 .tools-hero__lead {
   margin: clamp(12px, 2vw, 20px) 0 0;
-  max-width: 36ch;
+  max-width: 38ch;
   font-size: clamp(16px, 1.2vw, 18px);
   line-height: 1.5;
   color: var(--ink);
 }
 
-.tools-hero__illus {
-  width: 100%;
-  height: clamp(180px, 28vw, 280px);
-  object-fit: contain;
-  mix-blend-mode: multiply;
-  justify-self: end;
-  will-change: transform;
-}
-
-.tools-rail-controls {
+.tools-hero__jump {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid var(--line);
-  padding-top: 16px;
-  margin-bottom: 16px;
-  font-size: 14px;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(16px, 2.5vw, 24px);
 }
 
-.tools-rail-controls__buttons button {
-  font: inherit;
-  width: 44px;
-  height: 44px;
+.tools-hero__pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 9px 20px;
   border: 1px solid var(--ink);
   border-radius: 999px;
+  font-size: 14px;
   background: transparent;
-  color: var(--ink);
-  cursor: pointer;
-  margin-left: 8px;
+  color: inherit;
+  text-decoration: none;
 }
 
-.tools-rail-controls__buttons button:focus-visible {
+.tools-hero__pill:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.tools-hero__pill:focus-visible {
   outline: 2px solid #2455cc;
   outline-offset: 3px;
 }
 
-.tools-rail {
-  display: flex;
-  overflow-x: auto;
-  scrollbar-width: none;
-  gap: 24px;
-  padding-bottom: 4px;
+.tools-hero__illus-wrap {
+  justify-self: end;
+  width: min(100%, 420px);
+  max-height: min(340px, 42vw);
+  overflow: hidden;
+  will-change: transform;
 }
 
-.tools-rail::-webkit-scrollbar {
-  display: none;
+.tools-hero-illus {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.tools-hero-illus__ensemble {
+  opacity: 0.92;
+  mix-blend-mode: multiply;
+}
+
+.tools-rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  margin-bottom: clamp(32px, 6vw, 56px);
 }
 
 .tools-card {
-  flex: 0 0 43%;
   min-width: 0;
   position: relative;
 }
@@ -126,19 +137,27 @@
 }
 
 .tools-card__media {
-  background: #fffdf5;
+  background: #e8e6df;
   border: 1px solid var(--line);
   border-radius: 16px;
   overflow: hidden;
   position: relative;
-  height: 212px;
+  aspect-ratio: 1.55;
 }
 
 .tools-card__media img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
+}
+
+.tools-card__media--monitor img {
+  object-position: 50% 18%;
+}
+
+.tools-card__media--scranton img {
+  object-position: 12% 50%;
 }
 
 .tools-card__media--office {
@@ -147,7 +166,8 @@
 
 .tools-card__media--office img {
   image-rendering: pixelated;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: 58% 42%;
 }
 
 .tools-card__demo {
@@ -174,19 +194,6 @@
   line-height: 1.5;
   max-width: 36ch;
   min-height: 24px;
-}
-
-.tools-card__pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 9px 20px;
-  border: 1px solid var(--ink);
-  border-radius: 999px;
-  font-size: 14px;
-  margin-top: 16px;
-  background: transparent;
 }
 
 .tools-card__link::after {
@@ -570,36 +577,29 @@
 }
 
 @media (max-width: 719px) {
+  .tools-main {
+    padding-top: clamp(88px, 14vw, 104px);
+  }
+
   .tools-hero {
     display: flex;
     flex-direction: column;
     min-height: 0;
   }
 
-  .tools-hero__illus {
+  .tools-hero__illus-wrap {
+    width: 100%;
+    max-height: 220px;
     margin-top: 8px;
-    height: 190px;
-  }
-
-  .tools-rail-controls {
-    display: none;
   }
 
   .tools-rail {
-    display: grid;
     grid-template-columns: 1fr;
     gap: 32px;
-    overflow: visible;
-    border-top: 1px solid var(--line);
-    padding-top: 24px;
-  }
-
-  .tools-card {
-    flex: none;
   }
 
   .tools-card__media {
-    height: 190px;
+    aspect-ratio: 1.55;
   }
 
   .tools-card p {
