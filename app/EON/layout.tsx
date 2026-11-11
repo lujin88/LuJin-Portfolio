@@ -7,7 +7,7 @@ import '@header/header.css'
 import 'remixicon/fonts/remixicon.css'
 import '@eon/app/globals.css'
 
-const TITLE = 'Lu — E.ON Solar'
+const TITLE = 'Lu Jin — E.ON Solar'
 const DESCRIPTION =
   'Case study: redesigning a high-friction solar calculator journey to turn existing traffic into qualified leads.'
 

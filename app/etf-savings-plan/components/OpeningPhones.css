@@ -96,8 +96,9 @@
   .etf-case .opening-handset,.etf-case .opening-handset + .opening-handset {transform:none}
 }
 
-/* Pale coral + misty lavender shapes behind the phones (Lu #5086 A, visual ETF_PALE_1109/v2 A.css).
-   Static. The page colour behind them comes from ChapterBackdrop. Selectors from visual #3806. */
+/* Pale coral + misty lavender shapes behind the opening phones only (Lu #5086 A, visual
+   ETF_PALE_1109/v2 A.css). Static. The chapter phone has none: on the coral and lavender
+   chapter colours they blended in, so only the page colour changes there (Lu #6325, #6736). */
 :where(.etf-case) .opening-pair::before,
 :where(.etf-case) .opening-pair::after {
   content:"";position:absolute;z-index:-1;pointer-events:none;
@@ -108,20 +109,7 @@
 :where(.etf-case) .opening-pair::after {
   background:#e8e0f8;left:30%;top:4%;width:64%;height:76%;transform:rotate(19deg);
 }
-:where(.etf-case) .story-handset {isolation:isolate}
-:where(.etf-case) .story-handset::before,
-:where(.etf-case) .story-handset::after {
-  content:"";position:absolute;z-index:-1;pointer-events:none;
-  width:115%;height:62%;left:-16%;top:24%;
-  border-radius:60% 40% 53% 47%;
-  background:#fae0d4;transform:rotate(-18deg);
-}
-:where(.etf-case) .story-handset::after {
-  background:#e8e0f8;width:98%;height:56%;left:20%;top:11%;transform:rotate(16deg);
-}
 @media(max-width:850px){
   :where(.etf-case) .opening-pair::before {width:63%;left:2%}
   :where(.etf-case) .opening-pair::after {width:61%;left:33%}
-  :where(.etf-case) .story-handset::before {width:105%;left:-7%}
-  :where(.etf-case) .story-handset::after {width:95%;left:10%}
 }
