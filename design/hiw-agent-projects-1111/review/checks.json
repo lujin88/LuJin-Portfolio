@@ -1,0 +1,50 @@
+[
+  {
+    "name": "a",
+    "width": 1440,
+    "height": 900,
+    "overflow": false,
+    "images": true,
+    "title": "A — How I Work project entrances"
+  },
+  {
+    "name": "a",
+    "width": 390,
+    "height": 844,
+    "overflow": false,
+    "images": true,
+    "title": "A — How I Work project entrances"
+  },
+  {
+    "name": "b",
+    "width": 1440,
+    "height": 900,
+    "overflow": false,
+    "images": true,
+    "title": "B — How I Work project entrances"
+  },
+  {
+    "name": "b",
+    "width": 390,
+    "height": 844,
+    "overflow": false,
+    "images": true,
+    "title": "B — How I Work project entrances"
+  },
+  {
+    "name": "landing",
+    "width": 1440,
+    "height": 900,
+    "overflow": false,
+    "images": true,
+    "title": "Playground — Agent Monitor"
+  },
+  {
+    "name": "landing",
+    "width": 390,
+    "height": 844,
+    "overflow": false,
+    "images": true,
+    "title": "Playground — Agent Monitor"
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "variant": "a",
+    "arrowMoves": true,
+    "arrowReturns": true,
+    "keyboardLink": true
+  },
+  {
+    "variant": "b",
+    "arrowMoves": true,
+    "arrowReturns": true,
+    "keyboardLink": true
+  }
+]
