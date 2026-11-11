@@ -85,22 +85,18 @@ export function BMWOneSource() {
       <img className="play" src="/lab/bmw-one-source/assets/google-play.png" alt={t('bmw.hero.downloadGoogle')} />
     </a>
   </nav>
-  <dl>
+  <dl className="hero-meta">
     <div>
-      <dt>
-        {t('bmw.hero.thenYear')}
-      </dt>
-      <dd>
-        {t('bmw.hero.then')}
-      </dd>
+      <dt>{t('bmw.hero.roleLabel')}</dt>
+      <dd>{t('bmw.hero.role')}</dd>
     </div>
     <div>
-      <dt>
-        {t('bmw.hero.nowYear')}
-      </dt>
-      <dd>
-        {t('bmw.hero.now')}
-      </dd>
+      <dt>{t('bmw.hero.teamLabel')}</dt>
+      <dd>{t('bmw.hero.team')}</dd>
+    </div>
+    <div>
+      <dt>{t('bmw.hero.scopeLabel')}</dt>
+      <dd>{t('bmw.hero.scope')}</dd>
     </div>
   </dl>
 </section>
