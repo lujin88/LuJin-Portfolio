@@ -39,6 +39,8 @@ const PROJECTS = [
   },
 ] as const
 
+const RAIL_PROJECTS = PROJECTS.filter((p) => !BLEED_IDS.has(p.id))
+
 function ProjectMedia({
   p,
   framed,
@@ -63,14 +65,15 @@ export function AgentProjects() {
   const railRef = useRef<HTMLUListElement>(null)
   const [atStart, setAtStart] = useState(true)
   const [atEnd, setAtEnd] = useState(false)
+  const showRailControls = RAIL_PROJECTS.length > 1
 
   const syncEdges = useCallback(() => {
     const rail = railRef.current
-    if (!rail || window.matchMedia('(max-width: 719px)').matches) return
+    if (!rail || !showRailControls || window.matchMedia('(max-width: 719px)').matches) return
     const max = rail.scrollWidth - rail.clientWidth
     setAtStart(rail.scrollLeft <= 4)
     setAtEnd(max <= 4 || rail.scrollLeft >= max - 4)
-  }, [])
+  }, [showRailControls])
 
   useEffect(() => {
     syncEdges()
@@ -120,25 +123,26 @@ export function AgentProjects() {
           </a>
         ))}
       </div>
-      <div className="ww-projects-controls" aria-hidden={false}>
-        <button type="button" aria-label="Previous projects" disabled={atStart} onClick={() => move(-1)}>
-          ←
-        </button>
-        <button type="button" aria-label="Next projects" disabled={atEnd} onClick={() => move(1)}>
-          →
-        </button>
-      </div>
+      {showRailControls ? (
+        <div className="ww-projects-controls" aria-hidden={false}>
+          <button type="button" aria-label="Previous projects" disabled={atStart} onClick={() => move(-1)}>
+            ←
+          </button>
+          <button type="button" aria-label="Next projects" disabled={atEnd} onClick={() => move(1)}>
+            →
+          </button>
+        </div>
+      ) : null}
       <ul
         className="ww-projects-rail"
         ref={railRef}
-        onScroll={syncEdges}
-        tabIndex={0}
-        aria-label="Explore the three projects"
+        onScroll={showRailControls ? syncEdges : undefined}
+        aria-label="Pixel Office"
       >
-        {PROJECTS.map((p) => (
-          <li key={p.id} className={BLEED_IDS.has(p.id) ? 'ww-projects-rail-text' : undefined}>
+        {RAIL_PROJECTS.map((p) => (
+          <li key={p.id}>
             <a className="ww-projects-card" href={p.href}>
-              {!BLEED_IDS.has(p.id) ? <ProjectMedia p={p} framed /> : null}
+              <ProjectMedia p={p} framed />
               <h3>{p.title}</h3>
               <p>{p.body}</p>
             </a>
