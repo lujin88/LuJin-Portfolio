@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SiteClosing } from '../../components/site-closing'
 import './tools-page.css'
 
@@ -15,6 +15,8 @@ const SECTIONS = [
     alt: 'Agent Monitor demo interface',
     mediaClass: 'monitor wide-full',
     demoLabel: 'Demo data',
+    zoomable: true,
+    compact: true,
   },
   {
     id: 'scranton',
@@ -24,6 +26,8 @@ const SECTIONS = [
     alt: 'Scranton demo workspace interface',
     mediaClass: 'scranton wide-full',
     demoLabel: 'Demo workspace',
+    zoomable: true,
+    compact: true,
   },
   {
     id: 'office',
@@ -35,8 +39,20 @@ const SECTIONS = [
   },
 ] as const
 
+type Lightbox = { src: string; alt: string }
+
 export function ToolsPage() {
   const mainRef = useRef<HTMLElement>(null)
+  const lightboxRef = useRef<HTMLDialogElement>(null)
+  const [lightbox, setLightbox] = useState<Lightbox | null>(null)
+
+  useEffect(() => {
+    const dialog = lightboxRef.current
+    if (!dialog) return
+    if (lightbox) {
+      if (!dialog.open) dialog.showModal()
+    } else if (dialog.open) dialog.close()
+  }, [lightbox])
 
   useEffect(() => {
     const root = mainRef.current
@@ -70,11 +86,27 @@ export function ToolsPage() {
         </p>
         <h1 className="tools-sr-only">Playground tools</h1>
         {SECTIONS.map((s) => (
-          <section key={s.id} id={s.id} className="tools-section" aria-labelledby={`${s.id}-title`}>
+          <section
+            key={s.id}
+            id={s.id}
+            className={`tools-section${'compact' in s && s.compact ? ' tools-section--compact' : ''}`}
+            aria-labelledby={`${s.id}-title`}
+          >
             <h2 id={`${s.id}-title`}>{s.title}</h2>
             <p>{s.body}</p>
             <div className={`tools-media ${s.mediaClass}`}>
-              <img src={s.image} alt={s.alt} loading="lazy" decoding="async" />
+              {'zoomable' in s && s.zoomable ? (
+                <button
+                  type="button"
+                  className="tools-zoom-trigger"
+                  aria-label={`View full size: ${s.alt}`}
+                  onClick={() => setLightbox({ src: s.image, alt: s.alt })}
+                >
+                  <img src={s.image} alt={s.alt} loading="lazy" decoding="async" />
+                </button>
+              ) : (
+                <img src={s.image} alt={s.alt} loading="lazy" decoding="async" />
+              )}
               {'demoLabel' in s && s.demoLabel ? (
                 <span className="tools-demo">{s.demoLabel}</span>
               ) : null}
@@ -83,6 +115,23 @@ export function ToolsPage() {
         ))}
       </main>
       <SiteClosing className="tools-closing" />
+      <dialog
+        ref={lightboxRef}
+        className="tools-lightbox"
+        onClose={() => setLightbox(null)}
+        aria-label={lightbox?.alt}
+      >
+        <form method="dialog" className="tools-lightbox__bar">
+          <button type="submit" className="tools-lightbox__close">
+            Close
+          </button>
+        </form>
+        {lightbox ? (
+          <div className="tools-lightbox__scroll">
+            <img src={lightbox.src} alt={lightbox.alt} />
+          </div>
+        ) : null}
+      </dialog>
     </div>
   )
 }
