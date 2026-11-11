@@ -95,13 +95,6 @@ export function ToolsPage() {
               <br />
               A closer look at how I work with my agents.
             </p>
-            <div className="tools-hero__jump">
-              {PROJECTS.map((p) => (
-                <a key={p.id} className="tools-hero__pill" href={`#${p.id}`}>
-                  {p.title}
-                </a>
-              ))}
-            </div>
           </div>
           <ToolsHeroIllus />
         </section>

@@ -98,10 +98,10 @@ const chapters = [
   }
 ]
 
-export function Scene({index}:{index:number}){
+export function Scene({index, heroArt}:{index:number; heroArt?:boolean}){
   const scene=scenes[index]
   const mask='ww-paper-'+scene.name
-  return <svg className={'ww-drawing '+(index===0?'ww-hero-art':'ww-art')}
+  return <svg className={'ww-drawing '+(index===0||heroArt?'ww-hero-art':'ww-art')}
     width={800} height={scene.height} viewBox={`0 0 800 ${scene.height}`}
     data-contour={scene.stroke} data-side={scene.entrySide} role="img" aria-label={scene.alt}>
     <defs><mask id={mask} maskUnits="userSpaceOnUse" x="0" y="0" width="800" height={scene.height}>
