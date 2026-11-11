@@ -13,12 +13,51 @@ const REPO = path.join(__dirname, '..')
 const OUT = path.join(REPO, 'public/assets/videos/lab/hiw-tools')
 const ASSETS = path.join(REPO, 'assets/videos/lab/hiw-tools')
 const MONITOR = '/Users/lu/agent-monitor-worktrees/visual-demo-1111'
+const MONITOR_STATE = path.join(MONITOR, 'state.json')
+const MONITOR_DEMO_STATE = path.join(__dirname, 'hiw-tools-monitor-demo-state.json')
+const EMPTY_CODEX_DIR = path.join(OUT, '.monitor-no-codex')
 const KEY = fs.readFileSync(path.join(MONITOR, 'token.txt'), 'utf8').trim()
 
 fs.mkdirSync(OUT, { recursive: true })
 fs.mkdirSync(ASSETS, { recursive: true })
 
 const VIEW = { width: 1120, height: 720 }
+
+function seedMonitorDemoState() {
+  const now = Date.now()
+  const template = JSON.parse(fs.readFileSync(MONITOR_DEMO_STATE, 'utf8'))
+  for (const s of Object.values(template)) {
+    s.startedAt = now - 120_000
+    s.updatedAt = now - 30_000
+    if (s.progress) {
+      s.progress.startedAt = s.startedAt
+      s.progress.observedAt = now - 15_000
+    }
+  }
+  template['claude:copy-pass'].updatedAt = now - 90_000
+  fs.writeFileSync(MONITOR_STATE, JSON.stringify(template))
+}
+
+function startAuthenticationAsk() {
+  const controller = new AbortController()
+  const done = fetch('http://127.0.0.1:7781/ask', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-key': KEY },
+    signal: controller.signal,
+    body: JSON.stringify({
+      source: 'cursor',
+      session: 'hiw-tools-card-loop',
+      tool: 'Start authentication',
+      command: 'Sign in to approve the portfolio preview deploy.',
+      description: 'Authenticate once, then confirm in the popup.',
+      project: 'LuJin-Portfolio',
+    }),
+  }).catch(() => {})
+  return () => {
+    controller.abort()
+    return done
+  }
+}
 
 async function recordMonitor(browser) {
   const dir = fs.mkdtempSync(path.join(OUT, '.rec-mon-'))
@@ -30,28 +69,23 @@ async function recordMonitor(browser) {
   await page.goto(`http://127.0.0.1:7781/?key=${encodeURIComponent(KEY)}`, {
     waitUntil: 'domcontentloaded',
   })
-  await page.waitForTimeout(900)
-
-  await fetch('http://127.0.0.1:7781/ask', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      source: 'codex',
-      session: 'demo-loop',
-      tool: 'Apply layout',
-      command: 'pnpm exec next build --no-lint',
-      description: 'Approve this fictional demo build for the portfolio preview.',
-      project: 'Demo studio',
-    }),
-  }).catch(() => {})
-
   await page.waitForTimeout(1200)
-  const allow = page.locator('[data-decision="allow"]').first()
-  if (await allow.isVisible().catch(() => false)) {
-    await allow.click()
-    await page.waitForTimeout(2200)
-  }
-  await page.waitForTimeout(2000)
+
+  const releaseAsk = startAuthenticationAsk()
+  await page.waitForTimeout(1400)
+  const review = page.getByRole('button', { name: 'Review & approve' }).first()
+  await review.waitFor({ state: 'visible', timeout: 15_000 })
+  await page.waitForTimeout(600)
+  await review.click()
+
+  const dialog = page.locator('.approval-dialog[open]')
+  await dialog.waitFor({ state: 'visible', timeout: 5000 })
+  await page.waitForTimeout(800)
+  await dialog.getByRole('button', { name: 'Approve' }).click()
+  await page.waitForTimeout(1600)
+  await dialog.waitFor({ state: 'hidden', timeout: 8000 }).catch(() => {})
+  await releaseAsk()
+  await page.waitForTimeout(2400)
   await context.close()
   const webm = fs.readdirSync(dir).find((f) => f.endsWith('.webm'))
   if (!webm) throw new Error('monitor recording missing')
@@ -177,9 +211,19 @@ async function main() {
   /** @type {import('child_process').ChildProcess | undefined} */
   let scrantonProc
   if (!skipServers) {
+    fs.mkdirSync(EMPTY_CODEX_DIR, { recursive: true })
+    seedMonitorDemoState()
     monitorProc = spawn('node', ['server.js'], {
       cwd: MONITOR,
-      env: { ...process.env, PORT: '7781' },
+      env: {
+        ...process.env,
+        PORT: '7781',
+        CODEX_SESSIONS_DIR: EMPTY_CODEX_DIR,
+        CHAT_WATCH: 'off',
+        CODEX_USAGE: 'off',
+        CLAUDE_USAGE: 'off',
+        MONITOR_NOTIFICATIONS: 'off',
+      },
       stdio: 'ignore',
       detached: true,
     })
@@ -200,7 +244,9 @@ async function main() {
       headless: true,
     })
     await recordMonitor(browser)
-    await recordScranton(browser)
+    if (process.env.SKIP_SCRANTON !== '1') {
+      await recordScranton(browser)
+    }
     await browser.close()
     for (const name of [
       'monitor-card-loop-v1.webm',

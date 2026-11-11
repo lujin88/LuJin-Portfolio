@@ -1,0 +1,31 @@
+{
+  "cursor:portfolio-tools": {
+    "id": "cursor:portfolio-tools",
+    "source": "cursor",
+    "status": "running",
+    "title": "Update /lab/tools card media",
+    "project": "LuJin-Portfolio",
+    "message": "Recording card preview loops",
+    "startedAt": 0,
+    "updatedAt": 0,
+    "progress": {
+      "completedActions": 2,
+      "lastActivity": "Layout pass finished",
+      "observedAt": 0,
+      "startedAt": 0,
+      "source": "local-events"
+    },
+    "stateSource": "local-lifecycle"
+  },
+  "claude:copy-pass": {
+    "id": "claude:copy-pass",
+    "source": "claude",
+    "status": "done",
+    "title": "Tools card descriptions",
+    "project": "LuJin-Portfolio",
+    "message": "Fictional task for the portfolio preview",
+    "startedAt": 0,
+    "updatedAt": 0,
+    "completionReason": "hook"
+  }
+}
