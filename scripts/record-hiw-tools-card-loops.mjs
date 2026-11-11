@@ -21,7 +21,11 @@ const MONITOR_DEMO_USAGE = path.join(__dirname, 'hiw-tools-monitor-demo-usage.js
 const EMPTY_CODEX_DIR = path.join(OUT, '.monitor-no-codex')
 const KEY = fs.readFileSync(path.join(MONITOR, 'token.txt'), 'utf8').trim()
 
-const SCRANTON_URL = process.env.SCRANTON_RECORD_URL || 'http://127.0.0.1:8300/'
+const SCRANTON_URL =
+  process.env.SCRANTON_RECORD_URL || 'http://127.0.0.1:8341/'
+const SCRANTON_CHANNEL = process.env.SCRANTON_RECORD_CHANNEL || 'demo-studio'
+/** Drop Scranton loader / welcome from card loops (isolated demo only). */
+const SCRANTON_TRIM_SEC = Number(process.env.SCRANTON_TRIM_SEC) || 3.2
 /** Record slightly wider so Live activity fits 3 agents; crop to card size. */
 const RECORD_VIEW = { width: 1280, height: 720 }
 const OUTPUT_VIEW = { width: 1120, height: 720 }
@@ -49,11 +53,13 @@ function seedMonitorDemoState() {
   fs.writeFileSync(MONITOR_USAGE, JSON.stringify(usage))
 }
 
-function exportCardVideo(rawWebm, webmPath, mp4Path) {
+function exportCardVideo(rawWebm, webmPath, mp4Path, trimStartSec = 0) {
+  const trim = trimStartSec > 0 ? ['-ss', String(trimStartSec)] : []
   execFileSync(
     'ffmpeg',
     [
       '-y',
+      ...trim,
       '-i',
       rawWebm,
       '-an',
@@ -73,6 +79,7 @@ function exportCardVideo(rawWebm, webmPath, mp4Path) {
     'ffmpeg',
     [
       '-y',
+      ...trim,
       '-i',
       rawWebm,
       '-an',
@@ -135,8 +142,24 @@ async function recordMonitorTheme(browser, theme) {
   })
   const page = await context.newPage()
   await page.addInitScript((mode) => {
-    document.documentElement.dataset.theme = mode
-    document.documentElement.style.colorScheme = mode
+    const lockedHour = mode === 'dark' ? 20 : 10
+    const RealDate = Date
+    function PatchedDate(...args) {
+      if (args.length) return new RealDate(...args)
+      const d = new RealDate()
+      return new Proxy(d, {
+        get(target, prop) {
+          if (prop === 'getHours') return () => lockedHour
+          const val = target[prop]
+          return typeof val === 'function' ? val.bind(target) : val
+        },
+      })
+    }
+    PatchedDate.now = RealDate.now
+    PatchedDate.parse = RealDate.parse
+    PatchedDate.UTC = RealDate.UTC
+    PatchedDate.prototype = RealDate.prototype
+    window.Date = PatchedDate
   }, theme)
 
   await page.goto(`http://127.0.0.1:7781/?key=${encodeURIComponent(KEY)}`, {
@@ -203,14 +226,17 @@ async function recordScrantonTheme(browser, theme) {
     colorScheme: theme === 'dark' ? 'dark' : 'light',
   })
   const page = await context.newPage()
-  await page.addInitScript((mode) => {
+  await page.addInitScript(({ mode, channel }) => {
     try {
       localStorage.setItem('scranton-theme', mode)
-      localStorage.setItem('agentchattr-channel', 'lu-portfolio')
+      localStorage.setItem('agentchattr-channel', channel)
       localStorage.setItem('agentchattr-channel-sidebar-mode', '1')
+      localStorage.setItem('scranton-welcome-hidden', '1')
+      localStorage.setItem('scranton-welcome-seen', '1')
+      localStorage.setItem('help_seen', '1')
     } catch {}
     document.documentElement.dataset.theme = mode
-  }, theme)
+  }, { mode: theme, channel: SCRANTON_CHANNEL })
 
   await page.goto(SCRANTON_URL, { waitUntil: 'domcontentloaded', timeout: 30_000 })
   await page.locator('#messages-loader.hidden').waitFor({ state: 'attached', timeout: 30_000 }).catch(() => {})
@@ -219,35 +245,27 @@ async function recordScrantonTheme(browser, theme) {
     undefined,
     { timeout: 30_000 },
   )
-  await page.evaluate(() => {
-    if (typeof switchChannel === 'function') switchChannel('lu-portfolio')
-  })
+  await page.evaluate((channel) => {
+    if (typeof switchChannel === 'function') switchChannel(channel)
+    document.getElementById('sc-welcome')?.classList.add('hidden')
+    document.body.classList.remove('sc-welcome-open')
+  }, SCRANTON_CHANNEL)
   await page.waitForTimeout(800)
 
   const messages = page.locator(
-    '#messages .message.sc-msg:not(.join-msg)[data-channel="lu-portfolio"]',
+    `#messages .message.sc-msg:not(.join-msg)[data-channel="${SCRANTON_CHANNEL}"]`,
   )
   await messages.first().waitFor({ state: 'visible', timeout: 30_000 })
+  await page.locator('#sc-welcome:not(.hidden)').waitFor({ state: 'hidden', timeout: 3000 }).catch(() => {})
 
-  const report = page.locator('.sc-side-label', { hasText: 'Report' }).first()
-  if (await report.isVisible().catch(() => false)) {
-    await report.click()
-    await page.waitForTimeout(700)
-    const channelAgain = page.locator('.channel-sidebar-row[data-channel="lu-portfolio"]')
-    if (await channelAgain.isVisible().catch(() => false)) {
-      await channelAgain.click()
-      await page.waitForTimeout(600)
-    }
-  }
-
-  await page.waitForTimeout(1400)
+  await page.waitForTimeout(2200)
   await context.close()
   const webm = fs.readdirSync(dir).find((f) => f.endsWith('.webm'))
   if (!webm) throw new Error(`scranton ${theme} recording missing`)
   const raw = path.join(dir, webm)
   const webmOut = path.join(OUT, `${base}.webm`)
   const mp4Out = path.join(OUT, `${base}.mp4`)
-  exportCardVideo(raw, webmOut, mp4Out)
+  exportCardVideo(raw, webmOut, mp4Out, SCRANTON_TRIM_SEC)
   fs.rmSync(dir, { recursive: true, force: true })
   return { base, webmOut, mp4Out }
 }
