@@ -89,6 +89,24 @@ const NAV: readonly NavEntry[] = [
     label: 'Playground',
     children: [
       {
+        label: 'Tools',
+        href: '/lab/tools',
+        meta: 'Monitor · Scranton · Office',
+        icon: {
+          light: '/assets/images/nav/light/playground/weather-aquarium-light.webp',
+          dark: '/assets/images/nav/dark/playground/weather-aquarium-dark.webp',
+        },
+      },
+      {
+        label: 'Agent Monitor',
+        href: '/lab/agent-monitor',
+        meta: 'Live dashboard',
+        icon: {
+          light: '/assets/images/nav/light/playground/weather-aquarium-light.webp',
+          dark: '/assets/images/nav/dark/playground/weather-aquarium-dark.webp',
+        },
+      },
+      {
         label: 'Weather Aquarium',
         href: '/lab/weather-aquarium',
         meta: 'Rive motion',

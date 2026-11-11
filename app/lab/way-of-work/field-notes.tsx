@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import './field-notes.css'
 import { SiteClosing } from '../../components/site-closing'
 import { Icon } from '../../components/remix-icon'
+import { AgentProjects } from './agent-projects'
 
 const hero = '/lab/way-of-work/field-notes/worktable.webp'
 const selecting = '/lab/way-of-work/field-notes/selection-still-v20.webp'
@@ -324,6 +325,7 @@ export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
       <div className="ww-copy"><div className="ww-label"><b>0{i+1}</b>{c.label}</div><h2>{c.title}</h2><p>{c.context}</p><p>{c.decision}</p></div>
       <figure><Scene index={i+1}/>
       </figure></section>)}
+    <AgentProjects />
     <section className="ww-finale" aria-labelledby="ww-finale-title">
       <img className="ww-archive" src={rulebox} data-still={rulebox} data-motion={rabbitMotion} width={1536} height={1024}
         alt="The rabbit files a checked rule card in a blue index box." />

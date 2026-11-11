@@ -14,6 +14,8 @@ const ROUTES = [
   '/man-truck-bus',
   '/etf-savings-plan',
   '/lab/way-of-work',
+  '/lab/tools',
+  '/lab/agent-monitor',
   '/lab/weather-aquarium',
   '/ai-companion-pet',
   '/lab/party-planner',
