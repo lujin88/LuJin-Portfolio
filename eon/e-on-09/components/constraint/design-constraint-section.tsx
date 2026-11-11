@@ -17,7 +17,7 @@ export function DesignConstraintSection() {
         className="pointer-events-none absolute top-0 -right-12 z-0 h-28 w-28 rounded-full bg-mint lg:top-10 lg:-right-16 lg:h-[320px] lg:w-[320px]"
       />
 
-      <ContentContainer className="case-study-section relative z-[2]">
+      <ContentContainer className="case-study-section eon-s06 relative z-[2]">
         {/* Section label */}
         <SectionLabel
           number="06"
@@ -27,7 +27,7 @@ export function DesignConstraintSection() {
           className="mb-10"
         />
 
-        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
+        <div className="grid grid-cols-1 items-start gap-6 md:gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
           {/* Left: headline + copy */}
           <OnceReveal className="max-w-[720px]">
             <h2 className="text-balance text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-white sm:text-[42px] md:text-[48px] lg:text-[46px]">

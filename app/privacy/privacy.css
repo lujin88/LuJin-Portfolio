@@ -42,3 +42,11 @@
 .privacy__updated { margin-top: 2.5rem; color: rgba(255, 255, 255, 0.55); }
 .privacy__toggle { margin-top: 1.5rem; }
 .privacy__toggle .pill-btn { font-family: inherit; }
+
+/* Phones: last line -> contact heading 64px (visual MOBILE_SPACING_1109/RULES.md). The
+   article's 4rem bottom padding and the last paragraph's margin stacked on the contact's
+   own 64px top (140px). */
+@media (max-width: 640px) {
+  .privacy__article { padding-bottom: 0; }
+  .privacy__article > :last-child { margin-bottom: 0; }
+}

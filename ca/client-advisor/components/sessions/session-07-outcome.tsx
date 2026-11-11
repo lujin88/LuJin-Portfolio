@@ -37,7 +37,7 @@ export function Session07Outcome() {
         className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-[linear-gradient(180deg,transparent_0%,var(--ca-bg)_100%)]"
       />
 
-      <div className="relative mx-auto flex h-auto w-full max-w-[1440px] flex-col gap-12 overflow-visible px-[var(--content-inset,24px)] py-24 lg:mx-0 lg:max-w-none lg:py-28 xl:flex-row xl:items-center xl:gap-20">
+      <div className="relative mx-auto flex h-auto w-full max-w-[1440px] flex-col gap-12 overflow-visible px-[var(--content-inset,24px)] py-24 max-sm:pt-[34px] lg:mx-0 lg:max-w-none lg:py-28 xl:flex-row xl:items-center xl:gap-20">
         <Editorial />
         <Outcomes />
       </div>

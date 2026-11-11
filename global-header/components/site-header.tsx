@@ -41,8 +41,8 @@ const NAV: readonly NavEntry[] = [
         href: '/client-advisory',
         meta: 'Wealth · Service design',
         icon: {
-          light: '/assets/images/nav/light/work/client-advisory-light.png',
-          dark: '/assets/images/nav/dark/work/client-advisory-dark.png',
+          light: '/assets/images/nav/light/work/client-advisory-light.webp',
+          dark: '/assets/images/nav/dark/work/client-advisory-dark.webp',
         },
       },
       {
@@ -50,8 +50,8 @@ const NAV: readonly NavEntry[] = [
         href: '/EON',
         meta: 'Energy · 300% more leads',
         icon: {
-          light: '/assets/images/nav/light/work/eon-light.png',
-          dark: '/assets/images/nav/dark/work/eon-dark.png',
+          light: '/assets/images/nav/light/work/eon-light.webp',
+          dark: '/assets/images/nav/dark/work/eon-dark.webp',
         },
       },
       {
@@ -59,8 +59,8 @@ const NAV: readonly NavEntry[] = [
         href: '/man-truck-bus',
         meta: 'Fleet uptime · Dispatch',
         icon: {
-          light: '/assets/images/nav/light/work/man-truck-bus-light.png',
-          dark: '/assets/images/nav/dark/work/man-truck-bus-dark.png',
+          light: '/assets/images/nav/light/work/man-truck-bus-light.webp',
+          dark: '/assets/images/nav/dark/work/man-truck-bus-dark.webp',
         },
       },
       {
@@ -68,8 +68,8 @@ const NAV: readonly NavEntry[] = [
         href: '/etf-savings-plan',
         meta: 'Investing · Interactive prototype',
         icon: {
-          light: '/assets/images/nav/light/work/etf-savings-plan-light.png',
-          dark: '/assets/images/nav/dark/work/etf-savings-plan-dark.png',
+          light: '/assets/images/nav/light/work/etf-savings-plan-light.webp',
+          dark: '/assets/images/nav/dark/work/etf-savings-plan-dark.webp',
         },
       },
       {
@@ -93,8 +93,8 @@ const NAV: readonly NavEntry[] = [
         href: '/lab/weather-aquarium',
         meta: 'Rive motion',
         icon: {
-          light: '/assets/images/nav/light/playground/weather-aquarium-light.png',
-          dark: '/assets/images/nav/dark/playground/weather-aquarium-dark.png',
+          light: '/assets/images/nav/light/playground/weather-aquarium-light.webp',
+          dark: '/assets/images/nav/dark/playground/weather-aquarium-dark.webp',
         },
       },
       {
@@ -102,8 +102,8 @@ const NAV: readonly NavEntry[] = [
         href: '/ai-companion-pet',
         meta: 'Voice · Hardware',
         icon: {
-          light: '/assets/images/nav/light/playground/ai-pet-light.png',
-          dark: '/assets/images/nav/dark/playground/ai-pet-dark.png',
+          light: '/assets/images/nav/light/playground/ai-pet-light.webp',
+          dark: '/assets/images/nav/dark/playground/ai-pet-dark.webp',
         },
       },
       {
@@ -111,8 +111,8 @@ const NAV: readonly NavEntry[] = [
         href: '/lab/party-planner',
         meta: 'Launching soon',
         icon: {
-          light: '/assets/images/nav/light/playground/gratula-light.png',
-          dark: '/assets/images/nav/dark/playground/gratula-dark.png',
+          light: '/assets/images/nav/light/playground/gratula-light.webp',
+          dark: '/assets/images/nav/dark/playground/gratula-dark.webp',
         },
       },
     ],
@@ -426,7 +426,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       <div
         aria-hidden="true"
         className={cn(
-          'pointer-events-none absolute inset-x-0 top-0 h-28 bg-[linear-gradient(to_bottom,color-mix(in_oklab,var(--header-scrim)_76%,transparent)_0%,color-mix(in_oklab,var(--header-scrim)_18%,transparent)_58%,transparent_100%)] transition-opacity duration-500 ease-out',
+          'header-scrim-layer pointer-events-none absolute inset-x-0 top-0 h-28 bg-[linear-gradient(to_bottom,color-mix(in_oklab,var(--header-scrim)_76%,transparent)_0%,color-mix(in_oklab,var(--header-scrim)_18%,transparent)_58%,transparent_100%)] transition-opacity duration-500 ease-out',
           MOTION_SAFE,
           glassActive ? 'opacity-0' : 'opacity-100',
         )}
@@ -434,7 +434,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       <div
         aria-hidden="true"
         className={cn(
-          'pointer-events-none absolute inset-x-0 top-0 h-28 bg-header-glass/70 backdrop-blur-md transition-opacity duration-500 ease-out [mask-image:linear-gradient(to_bottom,black_0%,black_52%,transparent_100%)]',
+          'header-glass-layer pointer-events-none absolute inset-x-0 top-0 h-28 bg-header-glass/70 backdrop-blur-md transition-opacity duration-500 ease-out [mask-image:linear-gradient(to_bottom,black_0%,black_52%,transparent_100%)]',
           MOTION_SAFE,
           glassActive ? 'opacity-100' : 'opacity-0',
         )}
@@ -749,7 +749,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                                     {navLabel(copy, child.label)}
                                   </span>
                                   {child.meta ? (
-                                    <span className="mt-0.5 block text-[0.75rem] leading-snug text-header-foreground/55">
+                                    <span className="header-menu-meta mt-0.5 block text-[0.75rem] leading-snug">
                                       {menuMeta(copy, child.meta)}
                                     </span>
                                   ) : null}
@@ -979,7 +979,7 @@ function NavDropdown({
                         {navLabel(copy, child.label)}
                       </span>
                       {child.meta ? (
-                        <span className="mt-0.5 block text-[0.75rem] leading-snug text-header-foreground/55">
+                        <span className="header-menu-meta mt-0.5 block text-[0.75rem] leading-snug">
                           {menuMeta(copy, child.meta)}
                         </span>
                       ) : null}

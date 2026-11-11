@@ -1,6 +1,6 @@
 export const eon = {
   en: {
-    documentTitle: 'Lu — E.ON Solar',
+    documentTitle: 'Lu Jin — E.ON Solar',
     description:
       'Case study: redesigning a high-friction solar calculator journey to turn existing traffic into qualified leads.',
     overview: {
@@ -42,7 +42,7 @@ export const eon = {
       insight: 'Key insight',
       insightBody: "Interest was there. Confidence wasn't.",
       photoAlt:
-        "Audience research summary: 66.7% of homeowners are aged 40+, alongside profiles of cost-conscious, sustainability-minded, and information-seeking homeowners, over a photo of a family looking at their solar-paneled home at dusk, annotated 'Still exploring. Still deciding.'",
+        'Audience research summary: 66.7% of our audience were homeowners aged 40+, alongside profiles of cost-conscious, sustainability-minded, and information-seeking homeowners, over a photo of a family looking at their solar-paneled home at dusk, annotated ‘Still exploring. Still deciding.’',
       evidence: {
         statLabel: 'Homeowners aged 40+',
         segments: [
@@ -162,9 +162,6 @@ export const eon = {
       sources: ['Customer research', 'Website analytics', 'Hotjar', 'Sales feedback'],
       hand1: 'Less effort.',
       hand2: 'Faster understanding.',
-      quote1: 'It was so much',
-      quote2: 'easier than I expected.',
-      attribution: 'Sarah K., Germany',
       womanAlt: 'Woman smiling while looking at the solar calculator on her laptop',
       houseAlt: 'Aerial view of a house with solar panels installed on its roof',
     },
@@ -177,7 +174,7 @@ export const eon = {
     },
   },
   de: {
-    documentTitle: 'Lu — E.ON Solar',
+    documentTitle: 'Lu Jin — E.ON Solar',
     description:
       'Case Study: Neugestaltung einer reibungsreichen Solarrechner-Strecke, um bestehenden Traffic in qualifizierte Leads zu verwandeln.',
     overview: {
@@ -219,7 +216,7 @@ export const eon = {
       insight: 'Zentrale Erkenntnis',
       insightBody: 'Interesse war da. Sicherheit nicht.',
       photoAlt:
-        'Research-Zusammenfassung: 66,7 % der Eigenheimbesitzer sind 40+, dazu Profile kostenbewusster, nachhaltigkeitsorientierter und informationssuchender Haushalte, über einem Foto einer Familie vor ihrem Solarhaus in der Dämmerung, annotiert „Noch am Erkunden. Noch am Entscheiden.“',
+        'Research-Zusammenfassung: 66,7 % unserer Zielgruppe waren Eigenheimbesitzer ab 40, dazu Profile kostenbewusster, nachhaltigkeitsorientierter und informationssuchender Haushalte, über einem Foto einer Familie vor ihrem Solarhaus in der Dämmerung, annotiert „Noch am Erkunden. Noch am Entscheiden.“',
       evidence: {
         statLabel: 'Eigenheim­besitzer ab 40',
         segments: [
@@ -340,9 +337,6 @@ export const eon = {
       sources: ['Kunden\u00ADresearch', 'Website-Analytics', 'Hotjar', 'Sales-Feedback'],
       hand1: 'Weniger Aufwand.',
       hand2: 'Schnelleres Verstehen.',
-      quote1: 'Es war so viel',
-      quote2: 'einfacher als erwartet.',
-      attribution: 'Sarah K., Deutschland',
       womanAlt: 'Frau lächelt, während sie den Solarrechner auf ihrem Laptop betrachtet',
       houseAlt: 'Luftaufnahme eines Hauses mit Solarpanels auf dem Dach',
     },

@@ -1,4 +1,4 @@
-:where(.etf-case) .case-site {color:#192031;background:#fafaf9}
+:where(.etf-case) .case-site {color:#192031;background:#fffdfb}
 :where(.etf-case) .case-site .case-opening {text-align:left;padding:0}
 :where(.etf-case) .opening-sequence {
   --spread-progress:1; --spread-distance:clamp(14px,2vw,30px); --tilt:14deg; --turn:19deg; --pitch:8deg;
@@ -9,11 +9,11 @@
   display:grid;grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);
   gap:clamp(18px,3vw,58px);align-items:center;
 }
-:where(.etf-case) .opening-text h1 {font-size:clamp(48px,5.45vw,84px);line-height:.99;letter-spacing:-.065em;color:#192031;margin:0 0 24px}
+:where(.etf-case) .opening-text h1 {font-size:clamp(48px,5.45vw,84px);line-height:.99;font-weight:700;letter-spacing:-.04em;color:#192031;margin:0 0 24px}
 :where(.etf-case) .case-opening .case-intro {font-size:clamp(17px,1.55vw,22px);color:#546074;line-height:1.48;max-width:34ch;margin:0}
 :where(.etf-case) .demo-launch,:where(.etf-case) .story-try,:where(.etf-case) .demo-bar button {cursor:pointer;font:inherit}
 :where(.etf-case) .demo-launch {display:inline-flex;gap:22px;align-items:center;padding:12px 19px;margin-top:24px;border:0;border-radius:24px;background:#20283a;color:white;font-weight:600}
-:where(.etf-case) .opening-pair {display:flex;justify-content:center;align-items:center;gap:clamp(12px,1.8vw,28px);perspective:1100px;min-width:0}
+:where(.etf-case) .opening-pair {display:flex;justify-content:center;align-items:center;gap:clamp(12px,1.8vw,28px);perspective:1100px;min-width:0;position:relative;isolation:isolate;overflow:visible}
 :where(.etf-case) .opening-handset,:where(.etf-case) .story-handset {
   appearance:none;cursor:pointer;position:relative;display:block;line-height:0;
   padding:clamp(3px,.4vw,6px);border-radius:12% / 5.55%;border:1px solid #b8bec7;
@@ -55,7 +55,6 @@
 }
 @media(prefers-reduced-motion:reduce){
   :where(.etf-case) .opening-sequence {height:auto}:where(.etf-case) .opening-pin {position:relative}
-  :where(.etf-case) .opening-handset,:where(.etf-case) .opening-handset + .opening-handset {transform:translate3d(calc(var(--spread-distance) * var(--spread-progress)),calc(-12px * var(--spread-progress)),0) none}
 }
 
 
@@ -67,7 +66,50 @@
   text-align:left;
 }
 :where(.etf-case) .live-phone-viewport::-webkit-scrollbar {display:none}
-:where(.etf-case) .live-phone-content {width:390px}
+.live-phone-content {width:390px}
+/* Scale the 390px demo screen to its frame in CSS, so the first frame is right before
+   any script runs (it used to render at full size until hydration; visualqa #2880,
+   PM #2892). tan(atan2(a, b)) turns the length ratio a/b into a plain number zoom
+   accepts. Browsers without container units or trig keep LivePhone's JS zoom.
+   Not scoped to .etf-case: LivePhone skips its JS zoom whenever this is supported,
+   so the rule has to reach every place LivePhone renders (QA #2947). */
+@supports (zoom: tan(atan2(100cqw, 390px))) {
+  .live-phone-viewport.demo-viewport {container-type:inline-size}
+  .live-phone-content {zoom:tan(atan2(100cqw, 390px))}
+}
 :where(.etf-case) .live-phone-viewport .ff,:where(.etf-case) .live-phone-viewport .ff-phone {min-height:844px}
+/* Screens taller than the 844px phone screen showed only a sliver of the bottom button until
+   you scrolled inside the phone (visual QA #4639). Pin the bottom bar like a real app does,
+   so the button is whole on first view and the content scrolls under it. */
+:where(.etf-case) .live-phone-viewport .ff footer {position:sticky;bottom:0;z-index:1}
 :where(.etf-case) .story-live-slot {width:100%}
 :where(.etf-case) .story-live-slot[hidden] {display:none}
+/* Phones (Lu 2026-11-09 #2577, visual MOBILE_SPACING_1109/etf-proposal.css): the pinned
+   100svh stage left ~274px between the phones and "Before starting". Normal flow
+   instead; OpeningPhones.tsx drives the spread from the page's own scroll. */
+@media(max-width:600px){
+  .etf-case .opening-sequence {height:auto}
+  .etf-case .opening-pin {position:relative;height:auto;min-height:0;padding-top:112px;justify-content:flex-start;gap:24px}
+}
+/* Reduced motion: end pose, no transform (the old 'translate3d(...) none' value was invalid). */
+@media(prefers-reduced-motion:reduce){
+  .etf-case .opening-handset,.etf-case .opening-handset + .opening-handset {transform:none}
+}
+
+/* Pale coral + misty lavender shapes behind the opening phones only (Lu #5086 A, visual
+   ETF_PALE_1109/v2 A.css). Static. The chapter phone has none: on the coral and lavender
+   chapter colours they blended in, so only the page colour changes there (Lu #6325, #6736). */
+:where(.etf-case) .opening-pair::before,
+:where(.etf-case) .opening-pair::after {
+  content:"";position:absolute;z-index:-1;pointer-events:none;
+  width:68%;height:68%;left:0;top:27%;
+  border-radius:56% 44% 62% 38% / 42% 58% 42% 58%;
+  background:#fae0d4;transform:rotate(-16deg);
+}
+:where(.etf-case) .opening-pair::after {
+  background:#e8e0f8;left:30%;top:4%;width:64%;height:76%;transform:rotate(19deg);
+}
+@media(max-width:850px){
+  :where(.etf-case) .opening-pair::before {width:63%;left:2%}
+  :where(.etf-case) .opening-pair::after {width:61%;left:33%}
+}

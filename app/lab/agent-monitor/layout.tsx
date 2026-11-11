@@ -12,13 +12,15 @@ const inter = Inter({
   display: 'swap',
 })
 
-const TITLE = 'Lu — Human × AI Practice'
+const TITLE = 'Lu Jin — Human × AI Practice'
 const DESCRIPTION = 'A human-led design practice: Agent Monitor, AI Team, and Design OS.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/lab/agent-monitor' }),
+  // Internal tool page with no menu entry: reachable by link, not indexed (PM 2026-11-08).
+  robots: { index: false, follow: false },
 }
 
 export const viewport: Viewport = {

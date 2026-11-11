@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useTranslation } from '@i18n'
+import './site-closing-mobile.css'
 
 const EMAIL = 'lu.jin.ixd@gmail.com'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lu-jin-28008689/'
@@ -37,7 +38,7 @@ export function SiteClosing({ className }: { className?: string }) {
   }, [])
 
   return (
-    <div className={className}>
+    <div className={className ? `site-closing ${className}` : 'site-closing'}>
       <section id="contact" className="contact-section">
         <div ref={contactRef} className="exp-contact contact-reveal">
           <div className="exp-contact__lead">

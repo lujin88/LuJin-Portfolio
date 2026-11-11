@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lu — Product & Service Designer</title>
+<title>Lu Jin — Product Designer</title>
 
 
 <link rel="stylesheet" href="/styles/shell-tokens.css" />
@@ -501,6 +501,17 @@
     backdrop-filter: blur(16px);
   }
   .ask-chat[hidden] { display: none; }
+  /* Below 1024px the button sits too close to the top for an upward panel:
+     a long answer grew it past the page top, taking the title and close button with it. */
+  @media (max-width: 1023px) {
+    .ask-chat {
+      top: calc(100% + 0.75rem);
+      bottom: auto;
+      max-height: min(24rem, 60svh);
+    }
+    /* Open downward, the panel reaches the client logo bar (z-index 20); lift the copy above it while open. */
+    .hero-copy-wrap:has(.ask-chat:not([hidden])) { z-index: 25; }
+  }
   .ask-chat__bar {
     display: flex;
     align-items: center;
@@ -634,6 +645,51 @@
   @media (max-width: 900px) {
     .hero-copy h1 { max-width: none; }
   }
+  /* Phones (Lu 2026-11-09 #2577, visual MOBILE_SPACING_1109/RULES.md): normal flow
+     copy -> Ask Lu -> portrait -> logos. The 100dvh hero with the portrait pinned to
+     its bottom left 146-249px of empty dark between Ask Lu and the portrait.
+     #hero raises specificity over the hero's Tailwind height utilities and the
+     reduced-motion rule. Touch phones only show the still, so nothing scrubs here. */
+  @media (max-width: 600px) {
+    #hero .hero-pin-section {
+      flex-direction: column;
+      align-items: stretch;
+      height: auto;
+      min-height: 0;
+      padding-top: 96px;
+      padding-bottom: 0;
+    }
+    #hero .hero-copy-wrap { order: 0; }
+    #hero .hero-copy h1 { margin-bottom: 0; }
+    #hero .hero-lede { margin-top: 16px; }
+    #hero .ask-lu-wrap { margin-top: 24px; }
+    #hero .hero-media {
+      position: relative;
+      inset: auto;
+      order: 1;
+      flex: none;
+      width: 100%;
+      height: 300px;
+      margin-top: 24px;
+    }
+    #hero .hero-media__video {
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-position: 50% 0%;
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 15%, #000 90%, transparent);
+      mask-image: linear-gradient(to bottom, transparent, #000 15%, #000 90%, transparent);
+    }
+    #hero .hero-scrim { display: none; }
+    #hero .logo-bar {
+      position: relative;
+      inset: auto;
+      order: 2;
+      padding-block: 24px;
+      padding-bottom: max(24px, env(safe-area-inset-bottom));
+    }
+    #hero .logo-bar::before { content: none; }
+  }
   @media (min-width: 768px) {
     .hero-pin-section { --logo-overlay-space: 8.5rem; }
   }
@@ -672,7 +728,7 @@
   .ai-decides-section *,
   .ai-decides-section *::before,
   .ai-decides-section *::after { box-sizing: border-box; }
-  .ai-decides-section .ad-layout {
+  .ai-decides-section .hiw-layout {
     width: min(100%, 1842px);
     min-height: 854px;
     margin-inline: auto;
@@ -682,8 +738,8 @@
     align-items: center;
     gap: 75px;
   }
-  .ai-decides-section .ad-copy { position: relative; z-index: 1; transform: translateY(48px); }
-  .ai-decides-section .ad-eyebrow {
+  .ai-decides-section .hiw-copy { position: relative; z-index: 1; transform: translateY(48px); }
+  .ai-decides-section .hiw-eyebrow {
     margin: 0 0 16px;
     color: #5b9dff;
     font-size: 19px;
@@ -691,7 +747,7 @@
     line-height: 25px;
     letter-spacing: 5.1px;
   }
-  .ai-decides-section .ad-heading {
+  .ai-decides-section .hiw-heading {
     margin: 0;
     font-family: "Times New Roman", Times, serif;
     font-size: 84px;
@@ -699,7 +755,7 @@
     line-height: 1.03;
     letter-spacing: -.8px;
   }
-  .ai-decides-section .ad-heading em {
+  .ai-decides-section .hiw-heading em {
     display: block;
     color: #80aaff;
     font-family: inherit;
@@ -708,7 +764,7 @@
     line-height: 1.04;
     letter-spacing: -1.3px;
   }
-  .ai-decides-section .ad-description {
+  .ai-decides-section .hiw-description {
     max-width: 550px;
     margin: 28px 0 0;
     color: var(--ad-muted);
@@ -717,12 +773,12 @@
     line-height: 35px;
     letter-spacing: .12px;
   }
-  .ai-decides-section .ad-cta {
+  .ai-decides-section .hiw-cta {
     margin-top: 37px;
     font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
     text-decoration: none;
   }
-  .ai-decides-section .ad-art-stage {
+  .ai-decides-section .hiw-art-stage {
     position: relative;
     display: block;
     width: 100%;
@@ -733,7 +789,7 @@
     -webkit-mask-image: linear-gradient(to right, transparent, #000 1.5%, #000 98.5%, transparent);
     mask-image: linear-gradient(to right, transparent, #000 1.5%, #000 98.5%, transparent);
   }
-  .ai-decides-section .ad-art {
+  .ai-decides-section .hiw-art {
     display: block;
     width: 100%;
     height: 100%;
@@ -750,22 +806,22 @@
   .ai-decides-section .hiw-video.is-playing { opacity: 1; }
 
   /* HIW V4 review: one common scale and transparent cutout for burned-in arc/title. */
-  .ai-decides-section .ad-art-stage { scale: .9; background: var(--ad-bg); }
-  .ai-decides-section .ad-art,
+  .ai-decides-section .hiw-art-stage { scale: .9; background: var(--ad-bg); }
+  .ai-decides-section .hiw-art,
   .ai-decides-section .hiw-video {
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201060%20654%22%3E%3Crect%20width%3D%221060%22%20height%3D%22654%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M28%20193%20C190%2075%20812%2072%20987%20262%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%2272%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%22320%22%20y%3D%220%22%20width%3D%22320%22%20height%3D%22101%22%20fill%3D%22black%22%2F%3E%3C%2Fsvg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201060%20654%22%3E%3Crect%20width%3D%221060%22%20height%3D%22654%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M28%20193%20C190%2075%20812%2072%20987%20262%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%2272%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%22320%22%20y%3D%220%22%20width%3D%22320%22%20height%3D%22101%22%20fill%3D%22black%22%2F%3E%3C%2Fsvg%3E");
     mask-size: 100% 100%; mask-repeat: no-repeat; mask-mode: luminance; mix-blend-mode: lighten;
   }
   .ai-decides-section .hiw-video { transition: none; }
-  .ai-decides-section .ad-art-stage:has(.hiw-video.is-playing) .ad-art { opacity: 0; }
+  .ai-decides-section .hiw-art-stage:has(.hiw-video.is-playing) .hiw-art { opacity: 0; }
   .ai-decides-section .hiw-decide-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: lighten; }
   .hiw-decide-label { animation: hiw-decide-settle 320ms ease-out both; }
   .hiw-decide-left { animation: hiw-decide-accent 8s ease-out infinite; }
   .hiw-decide-right { animation: hiw-decide-accent 8s 160ms ease-out infinite; }
   @keyframes hiw-decide-settle { from { opacity: .55; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes hiw-decide-accent { 0%, 6%, 100% { opacity: 1; } 2% { opacity: .4; } }
-  .ad-art-stage:not(.hiw-motion-visible) .hiw-decide-layer g { animation-play-state: paused; }
+  .hiw-art-stage:not(.hiw-motion-visible) .hiw-decide-layer g { animation-play-state: paused; }
   @media (prefers-reduced-motion: reduce) {
     .hiw-decide-layer g { animation: none !important; opacity: 1; transform: none; }
     .ai-decides-section .hiw-video { transition: none; }
@@ -794,34 +850,34 @@
     height: 100%;
   }
   @media (min-width: 901px) and (max-width: 1600px) {
-    .ai-decides-section .ad-layout { min-height: clamp(640px, 46.36vw, 854px); padding: 60px 4vw 65px 5.25vw; grid-template-columns: minmax(0, 32.8fr) minmax(0, 63.2fr); gap: 4%; }
-    .ai-decides-section .ad-copy { transform: translateY(30px); }
-    .ai-decides-section .ad-eyebrow { font-size: clamp(13px, 1.04vw, 19px); letter-spacing: 4px; }
-    .ai-decides-section .ad-heading { font-size: clamp(51px, 4.56vw, 84px); }
-    .ai-decides-section .ad-heading em { font-size: clamp(57px, 4.89vw, 90px); }
-    .ai-decides-section .ad-description { margin-top: 24px; font-size: clamp(17px, 1.25vw, 23px); line-height: 1.55; }
-    .ai-decides-section .ad-cta { margin-top: 29px; }
+    .ai-decides-section .hiw-layout { min-height: clamp(640px, 46.36vw, 854px); padding: 60px 4vw 65px 5.25vw; grid-template-columns: minmax(0, 32.8fr) minmax(0, 63.2fr); gap: 4%; }
+    .ai-decides-section .hiw-copy { transform: translateY(30px); }
+    .ai-decides-section .hiw-eyebrow { font-size: clamp(13px, 1.04vw, 19px); letter-spacing: 4px; }
+    .ai-decides-section .hiw-heading { font-size: clamp(51px, 4.56vw, 84px); }
+    .ai-decides-section .hiw-heading em { font-size: clamp(57px, 4.89vw, 90px); }
+    .ai-decides-section .hiw-description { margin-top: 24px; font-size: clamp(17px, 1.25vw, 23px); line-height: 1.55; }
+    .ai-decides-section .hiw-cta { margin-top: 29px; }
   }
   @media (max-width: 900px) {
-    .ai-decides-section .ad-layout { min-height: auto; padding: 54px 28px 34px; grid-template-columns: 1fr; gap: 26px; }
-    .ai-decides-section .ad-copy { width: min(100%, 580px); margin-inline: auto; transform: none; }
-    .ai-decides-section .ad-eyebrow { font-size: 13px; line-height: 20px; letter-spacing: 4px; margin-bottom: 18px; }
-    .ai-decides-section .ad-heading { font-size: clamp(54px, 9.5vw, 78px); line-height: 1.04; }
-    .ai-decides-section .ad-heading em { font-size: clamp(60px, 10.5vw, 84px); }
-    .ai-decides-section .ad-description { margin-top: 24px; font-size: 18px; line-height: 29px; }
-    .ai-decides-section .ad-desktop-break { display: none; }
-    .ai-decides-section .ad-cta { margin-top: 26px; }
-    .ai-decides-section .ad-art-stage { width: min(100%, 720px); margin-inline: auto; transform: none; }
+    .ai-decides-section .hiw-layout { min-height: auto; padding: 54px 28px 34px; grid-template-columns: 1fr; gap: 26px; }
+    .ai-decides-section .hiw-copy { width: min(100%, 580px); margin-inline: auto; transform: none; }
+    .ai-decides-section .hiw-eyebrow { font-size: 13px; line-height: 20px; letter-spacing: 4px; margin-bottom: 18px; }
+    .ai-decides-section .hiw-heading { font-size: clamp(54px, 9.5vw, 78px); line-height: 1.04; }
+    .ai-decides-section .hiw-heading em { font-size: clamp(60px, 10.5vw, 84px); }
+    .ai-decides-section .hiw-description { margin-top: 24px; font-size: 18px; line-height: 29px; }
+    .ai-decides-section .hiw-desktop-break { display: none; }
+    .ai-decides-section .hiw-cta { margin-top: 26px; }
+    .ai-decides-section .hiw-art-stage { width: min(100%, 720px); margin-inline: auto; transform: none; }
   }
   @media (max-width: 480px) {
-    .ai-decides-section .ad-layout { padding: 42px 24px 24px; gap: 27px; }
-    .ai-decides-section .ad-art-stage { width: calc(100% + 28px); max-width: none; margin-left: -14px; }
+    .ai-decides-section .hiw-layout { padding: 42px 24px 24px; gap: 27px; }
+    .ai-decides-section .hiw-art-stage { width: calc(100% + 28px); max-width: none; margin-left: -14px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .ai-decides-section .ad-cta,
-    .ai-decides-section .ad-cta svg { transition: none; }
-    .ai-decides-section .ad-cta:hover,
-    .ai-decides-section .ad-cta:hover svg { transform: none; }
+    .ai-decides-section .hiw-cta,
+    .ai-decides-section .hiw-cta svg { transition: none; }
+    .ai-decides-section .hiw-cta:hover,
+    .ai-decides-section .hiw-cta:hover svg { transform: none; }
   }
 
   /* One index screen: fill the viewport, share the content rail, clear the fixed header. */
@@ -830,16 +886,36 @@
     display: flex;
     flex-direction: column;
   }
-  .ai-decides-section .ad-layout {
+  .ai-decides-section .hiw-layout {
     width: 100%;
     flex: 1 0 auto;
     min-height: 100dvh;
     padding-inline: var(--content-inset);
     padding-top: calc(6rem + 1.5rem);
   }
-  .ai-decides-section .ad-eyebrow { text-transform: uppercase; }
+  .ai-decides-section .hiw-eyebrow { text-transform: uppercase; }
   @media (max-width: 900px) {
-    .ai-decides-section .ad-layout { padding-top: calc(5rem + 1.5rem); }
+    .ai-decides-section .hiw-layout { padding-top: calc(5rem + 1.5rem); }
+  }
+  /* Phones: Gratula card button -> HOW I WORK eyebrow ~214-230px -> 64px (new chapter,
+     visual MOBILE_SPACING_1109/RULES.md), 32px each side of the background change.
+     The 100dvh minimum also centred the copy, adding space that grew with screen height. */
+  @media (max-width: 600px) {
+    section#home-playground { padding-bottom: 32px; }
+    #how-i-work,
+    #how-i-work .hiw-layout { min-height: 0; }
+    #how-i-work .hiw-layout { padding-top: 32px; }
+    /* E.ON button -> Playground title 64px, 32px each side of the background change
+       (was 72 + 80). Playground cards 48px apart (was 80). Visual CANDIDATES-v3. */
+    #home-showcase .home-case:last-child .home-case-copy { padding-bottom: 32px; }
+    section#home-playground { padding-top: 32px; }
+    #home-playground .home-project-grid { row-gap: 48px; }
+    /* How I Work art -> MY EXPERIENCE 64px at rest (was ~251): 12px scale slack under
+       the art + 32px seam wash + 20px list top. The seam was 120px for the arc
+       stroke into the timeline (Lu 2026-10-30), which R9 hides and phones never had. */
+    #how-i-work .hiw-layout { padding-bottom: 0; }
+    div.hiw-exp-seam { height: 32px; }
+    #experience .exp-sticky { padding-top: 20px; }
   }
 
   .case-block {
@@ -1116,32 +1192,6 @@
   /* reference raster: saturated deep-blue / navy atmospheric glow with the
      curve light baked in. Positioned so its curve tracks the %-anchored
      dots (viewBox region 0 0 1468 971 of the arc coordinate space). */
-  .exp-curve__glow {
-    position: absolute;
-    left: 10.25%;
-    top: 11.45%;
-    width: 78.35%;
-    height: 40.6%;
-    object-fit: fill;
-    /* The blue atmosphere is a TRANSITION effect, NOT a timeline background.
-       It stays fully absent while the experience entries read (--exp-f == 0)
-       and only emerges — together with .exp-field — once the timeline is done
-       and Contact is revealing. The curve LINE itself (.exp-arc__path) is a
-       separate element and is always drawn, so the timeline still has its arc. */
-    opacity: var(--exp-f);
-    pointer-events: none;
-    /* bottom fade + a soft RIGHT-edge fade so the raster's baked hard vertical
-       boundary dissolves into the blue field instead of reading as a
-       clip seam once it is visible (transition/contact only). */
-    -webkit-mask-image:
-      linear-gradient(to bottom, #000 58%, transparent 100%),
-      linear-gradient(to right, #000 62%, transparent 98%);
-    -webkit-mask-composite: source-in;
-    mask-image:
-      linear-gradient(to bottom, #000 58%, transparent 100%),
-      linear-gradient(to right, #000 62%, transparent 98%);
-    mask-composite: intersect;
-  }
 
   /* ── atmosphere carrier ────────────────────────────────────────────
      The ONE .exp-field lives in here, NOT in #exp-coord. As a <body> child
@@ -1160,6 +1210,10 @@
     left: 0;
     width: 100vw;
     height: 100vh;
+    /* 100vw starts after the body margin and would stick out on the right.
+       Pull it back to the viewport without widening the page. */
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
     margin-bottom: -100vh;
     isolation: isolate;
     pointer-events: none;
@@ -1222,11 +1276,6 @@
   /* Futurice → Designaffairs sheet: a blue wash under the line.
      Same path as before. Horizontal: deep blue on the right, transparent
      by the left. The mask eats the mass that used to sit past the line. */
-  .exp-arc__sheet {
-    opacity: 0;
-    transition: opacity 0.9s var(--exp-ease);
-  }
-  .exp-coord:has(.exp-dot[data-index="3"]:not([data-status="hidden"])) .exp-arc__sheet { opacity: 1; }
 
   /* 4 fixed dots — CSS-anchored to the same points as their content.
      Plain solid white, no glow. Dot 0 waits for the seam (data-stem).
@@ -1420,8 +1469,8 @@
   }
   /* Desktop: the title's first line sits level with the UBS date, in the
      blank left of the timeline. Its right edge stays 48px clear of the
-     vertical line. 390px and below keep the stacked list. */
-  @media (min-width: 641px) {
+     vertical line. 767px and below keep the stacked list. */
+  @media (min-width: 768px) {
     .exp-content[data-index="0"] .exp-lead {
       position: absolute;
       z-index: 5;
@@ -1609,7 +1658,7 @@
   }
 
   @media (max-width: 1024px) {
-    .exp-content { width: min(320px, 44vw); }
+    .exp-content { box-sizing: border-box; width: min(320px, 44vw); }
     .exp-dot[data-index="1"] { left: 58%; }
     .exp-content[data-index="1"] { left: 58%; }
   }
@@ -1640,9 +1689,10 @@
     #omni-model .pin-sticky h2 { margin-bottom: 2rem; }
   }
 
-  /* narrow screens + reduced motion: the curved-arc pin doesn't read —
-     fall back to a plain stacked list */
-  @media (max-width: 640px), (prefers-reduced-motion: reduce) {
+  /* ≤767 and reduced motion: the curved-arc pin doesn't read —
+     fall back to a plain stacked list. 641–767 used to keep the arc, and
+     the 280px cards ran past the right edge. */
+  @media (max-width: 767px), (prefers-reduced-motion: reduce) {
     .exp-track { height: auto; }
     .exp-sticky { position: static; height: auto; display: block; overflow: visible; padding: 6rem 0 3rem; }
     .exp-intro {
@@ -1657,6 +1707,7 @@
     .exp-header { position: static; transform: none; padding: 0 1.25rem 1.75rem; }
     .exp-coord {
       position: relative; left: auto; transform: none !important;
+      box-sizing: border-box;
       width: 100%; max-width: 52rem; height: auto;
       margin: 0; padding: 0 1.25rem;
     }
@@ -1669,6 +1720,7 @@
     .exp-content[data-index="2"],
     .exp-content[data-index="3"] {
       position: relative; top: auto; bottom: auto; left: auto; right: auto;
+      box-sizing: border-box;
       width: 100%; max-width: none; opacity: 1 !important;
       text-align: left; margin: 0 0 2.25rem; padding: 0 0 0 1.5rem;
       border-left: 1px solid rgba(var(--exp-blue), 0.4);
@@ -1692,10 +1744,17 @@
      sticky padding + Contact's then clamp(6rem, 14vh, 9rem) top padding) left ~200px
      between the Designaffairs fade tail and "Have an opportunity". Lu
      2026-11-05: tail 24px (was 72), tail end to heading 48px. */
-  @media (max-width: 640px), (prefers-reduced-motion: reduce) {
+  @media (max-width: 767px), (prefers-reduced-motion: reduce) {
     .exp-content[data-index="3"] { margin-bottom: 0; }
     .exp-sticky { padding-bottom: 0; }
     .contact-section { padding-top: 48px; }
+  }
+  /* Phones: 48px from Let's talk to the copyright line, same as SiteClosing
+     (app/components/site-closing-mobile.css). Was ~180px. */
+  @media (max-width: 640px) {
+    .contact-section { padding-bottom: 16px; }
+    .site-footer.exp-footer { --footer-rule-inset: 16px; padding-top: 16px; }
+    .site-footer__bottom { padding-top: 16px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1760,6 +1819,10 @@
     line-height: 1.4;
     color: rgba(255, 255, 255, 0.48);
   }
+  /* The logo row is wider than the screen on phones; clip it sideways so it no longer
+     widens the document (+18px at 601-640, QA #2899), which iOS Safari lets you drag.
+     clip, not hidden: the vertical fade above the bar must stay visible. */
+  .logo-bar { overflow-x: clip; }
   .logo-bar__scroller {
     overflow-x: auto;
     overflow-y: hidden;
@@ -1859,7 +1922,7 @@
     .hero-media__video { transition: none; transform: none; }
   }
   /* UBS: 1s turn (same as the other markers) and top-to-bottom stroke. */
-  @media (min-width: 641px) and (prefers-reduced-motion: no-preference) {
+  @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
     .exp-content[data-index="0"] .exp-content__plus {
       transition: transform 1s ease-in-out, opacity 1s ease-in-out;
     }
@@ -1884,7 +1947,7 @@
      active; the dot appears once the stroke reaches it. Leaving keeps the
      full bar and fades it, as before. The relay variant overrides the
      scroll-driven clip on AdNovum. */
-  @media (min-width: 641px) and (prefers-reduced-motion: no-preference) {
+  @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
     .exp-content[data-index="1"] .exp-content__bar,
     .exp-content[data-index="2"] .exp-content__bar,
     .exp-content[data-index="3"] .exp-content__bar,
@@ -1942,7 +2005,7 @@
         <p class="hero-kicker" data-i18n="home.heroKicker">Product designer · Enterprise & regulated UX</p>
         <h1 data-i18n="home.heroTitle">Simplify complexity. Design with AI.</h1>
         <div class="hero-lede">
-          <p data-i18n-html="home.heroBody"><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, 5–10 min saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW</a> app: led design team &amp; design system.</span></p>
+          <p data-i18n-html="home.heroBody"><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, <span style="white-space:nowrap">5–10 min</span> saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW</a> app: led design team &amp; design system.</span></p>
         </div>
         <div class="ask-lu-wrap">
           <button id="ask-lu" type="button" class="ask-lu" aria-expanded="false" aria-controls="ask-lu-chat">
@@ -2023,7 +2086,7 @@
 <section id="home-showcase" aria-label="Selected work">
   <div class="home-showcase-stage">
     <article id="model-series" class="home-case" aria-labelledby="case-ca-title">
-      <div class="home-case-image advisory-office"><img src="/assets/images/home-motion/ubs.jpg" alt="" /><video data-src="/assets/videos/home/advisory-office-web.mp4" poster="/assets/images/home-motion/ubs.jpg" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+      <div class="home-case-image advisory-office"><img src="/assets/images/home-motion/ubs.webp" alt="" /><video data-src="/assets/videos/home/advisory-office-web.mp4" poster="/assets/images/home-motion/ubs.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
       <div class="home-case-shade"></div>
       <div class="home-case-copy">
         <p class="home-eyebrow" data-i18n="home.ca.eyebrow">Client Advisory · UBS</p>
@@ -2035,7 +2098,7 @@
         </div>
         <div class="home-case-detail">
           <h3 data-i18n="home.ca.metricTitle">Designed for 500+ advisors</h3>
-          <p data-i18n="home.ca.metricBody">Concept tests: 5–10 min saved per client, up to 30 min on complex proposals.</p>
+          <p data-i18n="home.ca.metricBody">Concept tests: 5–10 min saved on simple cases, up to 30 on complex ones.</p>
         </div>
         <div class="home-case-links">
           <a href="/client-advisory" class="pill-btn">
@@ -2050,7 +2113,7 @@
       <div class="home-case-shade"></div>
       <div class="home-case-copy">
         <p class="home-eyebrow" data-i18n="home.eon.eyebrow">Solar · E.ON</p>
-        <h2 id="case-eon-title" class="home-case-title" data-i18n-html="home.eon.titleHtml">Solar landing page redesign</h2>
+        <h2 id="case-eon-title" class="home-case-title" data-i18n-html="home.eon.titleHtml">Solar landing page &amp; calculator redesign</h2>
         <p class="case-card__role" data-i18n="home.eon.role">Lead Product Designer</p>
         <div class="home-case-detail">
           <h3 data-i18n="home.eon.storyTitle">From complexity to conversion</h3>
@@ -2074,27 +2137,26 @@
   <div class="home-playground-inner">
     <h2 id="home-playground-title">Playground</h2>
     <div class="home-project-grid">
-      <!-- WA and AI Pet: still images until the new videos are ready (V6 videos pulled 2026-11-03). -->
       <a class="home-project" href="/lab/weather-aquarium"><video id="wa-season-video" preload="none" aria-label="Weather Aquarium project preview" width="864" height="600" muted loop playsinline disablepictureinpicture></video><script src="/assets/js/wa-season.js"></script><h3>Weather Aquarium</h3><p class="home-project-meta" data-i18n="home.playground.weatherMeta">Rive motion</p><p>A 2.5D weather world for iPad — helping children understand the day and discover new words.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="home-project" href="/ai-companion-pet"><img src="/assets/images/home-motion/ai-pet-zh.webp" alt="" width="864" height="600" loading="lazy" decoding="async" /><h3>AI Pet</h3><p class="home-project-meta" data-i18n="home.playground.petMeta">Voice · Hardware</p><p>A little friend to listen, tell stories, share a meal, and learn a few words of German and French.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="home-project" href="/lab/party-planner"><video data-src="/assets/videos/home/gratula-pip.mp4" preload="none" poster="/assets/images/home-motion/gratula-pip.jpg" aria-label="Gratula project preview" width="864" height="600" muted playsinline data-loop-gap="2000" disablepictureinpicture></video><h3>Gratula</h3><p class="home-project-meta" data-i18n="home.playground.gratulaMeta">Launching soon</p><p>From ideas to invitations, a simpler way to plan a party they’ll always remember.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="home-project" href="/ai-companion-pet"><video id="ai-pet-video" data-src="/assets/videos/home/ai-pet-dolphin.mp4" preload="none" poster="/assets/images/home-motion/ai-pet-dolphin.webp" aria-hidden="true" width="864" height="600" muted loop playsinline disablepictureinpicture></video><h3>AI Pet</h3><p class="home-project-meta" data-i18n="home.playground.petMeta">Voice · Hardware</p><p>A little friend to listen, tell stories, share a meal, and learn a few words of German and French.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="home-project" href="/lab/party-planner"><video data-src="/assets/videos/home/gratula-pip.mp4" preload="none" poster="/assets/images/home-motion/gratula-pip.webp" aria-label="Gratula project preview" width="864" height="600" muted playsinline data-loop-gap="2000" disablepictureinpicture></video><h3>Gratula</h3><p class="home-project-meta" data-i18n="home.playground.gratulaMeta">Prototype</p><p>From ideas to invitations, a simpler way to plan a party they’ll always remember.</p><span class="pill-btn"><span data-i18n="home.playground.cta">Explore case study</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
   </div>
 </section>
 
 <section id="how-i-work" class="ai-decides-section" aria-labelledby="how-i-work-title">
-  <div class="ad-layout">
-    <div class="ad-copy">
-      <p class="ad-eyebrow" data-i18n="home.how.kicker">How I work</p>
-      <h2 class="ad-heading" id="how-i-work-title" data-i18n-html="home.how.titleHtml">AI drafts.<em>I decide.</em></h2>
-      <p class="ad-description" data-i18n-html="home.how.bodyHtml">AI drafts and iterates with me at every step.<br class="ad-desktop-break"> I decide the problem, the direction, and what<br class="ad-desktop-break"> ships.</p>
-      <a class="pill-btn ad-cta" href="/lab/way-of-work">
+  <div class="hiw-layout">
+    <div class="hiw-copy">
+      <p class="hiw-eyebrow" data-i18n="home.how.kicker">How I work</p>
+      <h2 class="hiw-heading" id="how-i-work-title" data-i18n-html="home.how.titleHtml">AI drafts.<em>I decide.</em></h2>
+      <p class="hiw-description" data-i18n-html="home.how.bodyHtml">AI drafts and iterates with me at every step.<br class="hiw-desktop-break"> I decide the problem, the direction, and what<br class="hiw-desktop-break"> ships.</p>
+      <a class="pill-btn hiw-cta" href="/lab/way-of-work">
         <span data-i18n="home.how.cta">Explore how I work</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
-    <div class="ad-art-stage">
-    <svg class="ad-art" xmlns="http://www.w3.org/2000/svg" viewBox="720 130 1060 654" width="1060" height="654" role="img" data-i18n-aria="home.how.artLabel" aria-label="Decide: Human judgment in every step. A human designer leads a team of AI assistants, surrounded by sketches, checklists, and an idea bulb.">
+    <div class="hiw-art-stage">
+    <svg class="hiw-art" xmlns="http://www.w3.org/2000/svg" viewBox="720 130 1060 654" width="1060" height="654" role="img" data-i18n-aria="home.how.artLabel" aria-label="Decide: Human judgment in every step. A human designer leads a team of AI assistants, surrounded by sketches, checklists, and an idea bulb.">
       <image href="/assets/motion/how-i-work/r9/still-crop-ll.webp" x="720" y="130" width="1060" height="654"/>
       <rect class="hiw-caption-loading-cover" x="1035" y="126" width="325" height="102" fill="#080f1a"/>
       <path d="M 730 228 L 1720 228 L 1720 420 L 1670 420 L 1590 344 L 1480 310 L 1360 295 L 1230 268 L 1080 265 L 950 299 L 850 322 L 800 355 L 730 355 Z" fill="#080f1a"/>
@@ -2142,53 +2204,12 @@
 
         <div class="exp-curve-clip" aria-hidden="true">
         <div class="exp-curve" id="exp-curve" aria-hidden="true">
-          <img class="exp-curve__glow" src="/assets/images/experience/blue-glow.webp" alt="" loading="lazy" decoding="async" />
           <svg class="exp-arc" viewBox="0 0 1468 1555" fill="none" preserveAspectRatio="none">
             <defs>
               <clipPath id="exp-arc-clip">
                 <path d="M1366.32 295.46C1420.23 86.8392 644.588 38.2593 250.028 40.047C1448.11 56.8065 1425.07 264.488 1319.08 357.804C1186.6 474.45 724.986 547.971 412.486 735.914C147.019 895.571 80.492 1104.38 84.14 1195.77C85.292 1432.19 93.7016 1766.8 118.124 1213.87C148.652 522.716 1298.92 556.235 1366.32 295.46Z"></path>
               </clipPath>
-              <clipPath id="exp-sheet-below" clipPathUnits="userSpaceOnUse">
-                <path d="M1365.3 274.7C1365.3 306.2 1344.6 335.3 1319.1 357.8C1186.6 474.45 724.986 547.971 412.486 735.914C147.019 895.571 80.492 1104.38 84.14 1195.77L84.14 1555L1365.3 1555Z"></path>
-              </clipPath>
-              <radialGradient id="exp-sheet-radial" gradientUnits="userSpaceOnUse" cx="1200" cy="492" r="210" gradientTransform="translate(1200 492) rotate(150) scale(3.4 1.05) translate(-1200 -492)">
-                <stop offset="0" stop-color="rgb(36, 116, 255)" stop-opacity="0.260"></stop>
-                <stop offset="0.2" stop-color="rgb(36, 116, 255)" stop-opacity="0.187"></stop>
-                <stop offset="0.45" stop-color="rgb(32, 108, 252)" stop-opacity="0.078"></stop>
-                <stop offset="0.66" stop-color="rgb(28, 100, 248)" stop-opacity="0.026"></stop>
-                <stop offset="0.85" stop-color="rgb(28, 100, 248)" stop-opacity="0.007"></stop>
-                <stop offset="1" stop-color="rgb(36, 116, 255)" stop-opacity="0"></stop>
-              </radialGradient>
-              <!-- Lu 2026-11-04: glow stays under the line (same clip), no tail running
-                   left toward Designaffairs, centre a little right toward the bend.
-                   Right clip of #exp-sheet-below is a vertical line at x=1365, so
-                   that side still fades to 0 before it. Mask: 0 left of x=150,
-                   smoothstep up to full at 1180 (a linear 900-1150 ramp read as a
-                   straight vertical edge), full to 1290, 0 again by 1365. -->
-              <linearGradient id="exp-sheet-right" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="1365" y2="0">
-                <stop offset="0.0000" stop-color="#fff" stop-opacity="0.000"></stop>
-                <stop offset="0.0848" stop-color="#fff" stop-opacity="0.028"></stop>
-                <stop offset="0.1695" stop-color="#fff" stop-opacity="0.104"></stop>
-                <stop offset="0.2543" stop-color="#fff" stop-opacity="0.216"></stop>
-                <stop offset="0.3391" stop-color="#fff" stop-opacity="0.352"></stop>
-                <stop offset="0.4239" stop-color="#fff" stop-opacity="0.500"></stop>
-                <stop offset="0.5086" stop-color="#fff" stop-opacity="0.648"></stop>
-                <stop offset="0.5934" stop-color="#fff" stop-opacity="0.784"></stop>
-                <stop offset="0.6782" stop-color="#fff" stop-opacity="0.896"></stop>
-                <stop offset="0.7630" stop-color="#fff" stop-opacity="0.972"></stop>
-                <stop offset="0.8477" stop-color="#fff"></stop>
-                <stop offset="0.9383" stop-color="#fff"></stop>
-                <stop offset="1.0000" stop-color="#fff" stop-opacity="0.000"></stop>
-              </linearGradient>
-              <mask id="exp-sheet-right-mask" maskUnits="userSpaceOnUse" mask-type="luminance" x="0" y="0" width="1468" height="1555">
-                <rect x="0" y="0" width="1468" height="1555" fill="url(#exp-sheet-right)"></rect>
-              </mask>
             </defs>
-            <g class="exp-arc__sheet">
-              <g clip-path="url(#exp-sheet-below)" mask="url(#exp-sheet-right-mask)">
-                <rect x="0" y="200" width="1468" height="1400" fill="url(#exp-sheet-radial)"></rect>
-              </g>
-            </g>
             <path class="exp-arc__path" id="exp-arc-path" clip-path="url(#exp-arc-clip)" d="M1366.32 295.46C1420.23 86.8392 644.588 38.2593 250.028 40.047C1448.11 56.8065 1425.07 264.488 1319.08 357.804C1186.6 474.45 724.986 547.971 412.486 735.914C147.019 895.571 80.492 1104.38 84.14 1195.77C85.292 1432.19 93.7016 1766.8 118.124 1213.87C148.652 522.716 1298.92 556.235 1366.32 295.46Z"></path>
           </svg>
         </div>
@@ -2467,6 +2488,14 @@
     // Sections whose box is still in the right place when reduced motion
     // flips. Experience is not one of them: its track height is CSS, and
     // that CSS has already swapped by the time the change event runs.
+    function blockAt(y) {
+      var nodes = document.querySelectorAll('#hero, #home-showcase, #home-playground, #how-i-work, #contact');
+      for (var i = 0; i < nodes.length; i++) {
+        var rect = nodes[i].getBoundingClientRect();
+        if (rect.top <= y && rect.bottom > y) return nodes[i];
+      }
+      return null;
+    }
     function blockAtViewportTop() {
       var nodes = document.querySelectorAll('#hero, #home-showcase, #home-playground, #how-i-work, #contact');
       var best = null;
@@ -2638,13 +2667,21 @@
         var card = progress >= 0.5 ? scenes[1] : scenes[0];
         cardPlan = { mode: 'unpin', card: card, top: card.getBoundingClientRect().top };
       } else if (!wasPinned && inShowcase && !reduce.matches && canPin) {
+        // Pin only when a scene is what the visitor is looking at. With just
+        // the showcase's last pixels above the fold (reduced motion switched
+        // off while reading Playground), keep the block under the middle of
+        // the viewport where it is instead of jumping back to scene 1.
         var mid = innerHeight / 2;
-        var seen = scenes[0];
+        var seen = null;
         for (var i = 0; i < scenes.length; i++) {
           var srect = scenes[i].getBoundingClientRect();
           if (srect.top <= mid && srect.bottom > mid) seen = scenes[i];
         }
-        cardPlan = { mode: 'pin', card: seen };
+        if (seen) cardPlan = { mode: 'pin', card: seen };
+        else {
+          var midBlock = blockAt(mid);
+          if (midBlock) cardPlan = { mode: 'keep', card: midBlock, top: midBlock.getBoundingClientRect().top };
+        }
       }
 
       var expPlan = null;
@@ -2666,7 +2703,7 @@
       layout();
 
       function restore() {
-        if (cardPlan && cardPlan.mode === 'unpin' && cardPlan.card.isConnected) {
+        if (cardPlan && (cardPlan.mode === 'unpin' || cardPlan.mode === 'keep') && cardPlan.card.isConnected) {
           jumpScroll(window.scrollY + cardPlan.card.getBoundingClientRect().top - cardPlan.top);
           return;
         }
@@ -2991,7 +3028,7 @@
 
     function expMeasureIntroOffset() {
       if (expIntro && expContents[0]) {
-        expStageDrop = window.matchMedia('(max-width: 640px)').matches ? 0 : 140;
+        expStageDrop = window.matchMedia('(max-width: 767px)').matches ? 0 : 140;
         expIntro.style.setProperty('--exp-stage-drop', expStageDrop + 'px');
         // Keep a consistent visual gap regardless of viewport height or copy
         // wrapping. offsetTop is measured in the untransformed coordinate box.
@@ -3120,7 +3157,7 @@
       const fieldEased = fieldRaw * fieldRaw * (3 - 2 * fieldRaw);
       const field = Math.round(fieldEased * EXP_F_PEAK * 50) / 50;
       if (field !== expLastField) {
-        expCoord.style.setProperty('--exp-f', field);            // .exp-curve__glow (inside #exp-coord)
+        expCoord.style.setProperty('--exp-f', field);            // (the curve glow was removed, Lu 2026-11-10)
         if (expAtmos) expAtmos.style.setProperty('--exp-f', field); // .exp-field (now in the carrier)
         expLastField = field;
       }
@@ -3274,7 +3311,7 @@
     var seam = document.querySelector('.hiw-exp-seam');
     var wash = seam && seam.querySelector('.hiw-exp-seam__wash');
     var path = seam && seam.querySelector('.hiw-exp-seam__path');
-    var art = document.querySelector('.ad-art');
+    var art = document.querySelector('.hiw-art');
     if (!seam || !wash || !path || !art) return;
 
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -3410,7 +3447,7 @@
       var c3 = rel(turnX + dirx * depart, turnY + diry * depart);
       var c4 = rel(join.x, landY - Math.max(40, spanY * 0.42));
       var land = rel(join.x, landY);
-      var narrow = window.matchMedia('(max-width: 640px)').matches;
+      var narrow = window.matchMedia('(max-width: 767px)').matches;
       var d;
       if (narrow) {
         // No timeline bar on the stacked list. Stop on the illustration
@@ -3447,7 +3484,7 @@
       var vh = window.innerHeight || 1;
       var seamR = seam.getBoundingClientRect();
       // The stacked list has no stem to hand off to. Keep its old fade.
-      if (window.matchMedia('(max-width: 640px)').matches) {
+      if (window.matchMedia('(max-width: 767px)').matches) {
         return clamp(-seamR.bottom / 280, 0, 1);
       }
       if (!(landY > 0)) return clamp((vh * 0.12 - seamR.bottom) / (vh * 0.28), 0, 1);
@@ -3897,8 +3934,8 @@
     // crops the picture. In the single column
     // the stage sits under the copy, so the lift also stops 24px below the
     // copy instead of sliding behind the button.
-    add(how, how && (how.querySelector('.ad-art-stage') || how.querySelector('.ad-art')), true);
-    var howCopy = how && how.querySelector('.ad-copy');
+    add(how, how && (how.querySelector('.hiw-art-stage') || how.querySelector('.hiw-art')), true);
+    var howCopy = how && how.querySelector('.hiw-copy');
     // Showcase handoff stays the fan (transform on the two case images).
     // The same 0.35 lag applies while the pinned stage is still rising
     // (Client Advisory entering) and after it leaves the top (E.ON leaving).
@@ -4054,7 +4091,7 @@
   // clears it.
   (function initContactLag() {
     var reduce = matchMedia('(prefers-reduced-motion: reduce)');
-    var narrow = matchMedia('(max-width: 768px)');
+    var narrow = matchMedia('(max-width: 767px)');
     var section = document.getElementById('contact');
     var block = section && section.querySelector('.exp-contact');
     if (!block) return;
@@ -4064,10 +4101,11 @@
       var maxScroll = document.documentElement.scrollHeight - innerHeight;
       var restTop = top - Math.max(0, maxScroll - scrollY);
       var lift = Math.min(innerHeight, Math.max(0, top - restTop)) * (narrow.matches ? 0.35 : 0.50);
-      // Wide screens keep at least 72px between the heading and the
-      // Designaffairs last line. Phone stays on the 0.35 lag with no floor.
-      if (!narrow.matches) {
-        var floor = 72;
+      // Keep a floor between the heading and the Designaffairs last line:
+      // 72px on wide screens, 24px on narrow ones. Without a floor the phone
+      // lag lifted the heading onto the last experience entry.
+      {
+        var floor = narrow.matches ? 24 : 72;
         var line = document.querySelector('.exp-content[data-index="3"] .exp-content__desc');
         var heading = block.querySelector('.exp-contact__heading');
         if (line && heading) {

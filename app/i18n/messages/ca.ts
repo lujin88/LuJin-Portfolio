@@ -123,7 +123,7 @@ export const ca = {
         'A prioritized overview on the existing dashboard. One click opens the full context; next steps appear as recommendations.',
       path3Title: 'The result',
       path3Body:
-        'One experience that unifies client context, portfolio, and research — without adding to the pile. 500+ client signals, one view.',
+        'One experience that unifies client context, portfolio, and research — without adding to the pile. Client signals in one view.',
       mockups: {
         'book-view': 'Advisor overview of clients and opportunities (concept, recreated)',
         'us-tech': 'Client view with research commentary and product ideas (concept, recreated)',
@@ -209,7 +209,7 @@ export const ca = {
       ],
       glance: 'Auf einen Blick',
       glance1Value: '5–10 Min.',
-      glance1Label: 'pro Kunde bei der Informationsbeschaffung gespart',
+      glance1Label: 'pro Kunde bei der Informations\u00ADbeschaffung gespart',
       glance2Value: '500+',
       glance2Label: 'Client Advisors in Trials und Zielgruppe',
       glance3Value: '30 Min.',
@@ -254,7 +254,7 @@ export const ca = {
     shift: {
       eyebrow: 'Der Perspektivwechsel',
       headline1: 'Von der Informationssuche',
-      headline2: 'zur Entscheidungsunterstützung.',
+      headline2: 'zur Entscheidungshilfe.',
       bodyLead: 'Die Recherche hat die Frage verändert.',
       bodyInstead: 'Statt zu fragen',
       bodyOld: '„Wie helfen wir Beratern, schneller zu suchen?“',
@@ -280,7 +280,7 @@ export const ca = {
     },
     principles: {
       eyebrow: 'Design Principles',
-      headline: 'Das Modell in Designentscheidungen übersetzen.',
+      headline: 'Das Modell in Design\u00ADentscheidungen übersetzen.',
       intro:
         'Eine Bedingung: Es durfte sich nicht wie ein weiteres Tool anfühlen. Signal → Kontext → Handeln wurde das Modell — ein Prinzip für jeden Moment.',
       p1Title: 'Zeigen, was zählt',
@@ -311,7 +311,7 @@ export const ca = {
         'Ein priorisierter Überblick auf dem bestehenden Dashboard. Ein Klick öffnet den vollen Kontext; nächste Schritte erscheinen als Empfehlungen.',
       path3Title: 'Das Ergebnis',
       path3Body:
-        'Ein Erlebnis, das Kundenkontext, Portfolio und Research verbindet — ohne den Stapel zu vergrößern. 500+ Kundensignale, eine Sicht.',
+        'Ein Erlebnis, das Kundenkontext, Portfolio und Research verbindet — ohne den Stapel zu vergrößern. Kundensignale in einer Sicht.',
       mockups: {
         'book-view': 'Beraterübersicht mit Kunden und Opportunities (Konzept, nachgebaut)',
         'us-tech': 'Kundensicht mit Research-Kommentar und Produktideen (Konzept, nachgebaut)',
@@ -358,7 +358,7 @@ export const ca = {
       avgFeedback: 'Durchschnittliches Feedback aus dem Test',
       reach: 'Reichweite',
       m1Value: '5–10 Min.',
-      m1Label: 'Gespart pro Kunde bei der Informationsbeschaffung.',
+      m1Label: 'Gespart pro Kunde bei der Informations\u00ADbeschaffung.',
       m2Value: 'Bis zu 30 Min.',
       m2Label: 'Gespart bei komplexeren Anlagevorschlägen.',
       m3Value: '500+',
