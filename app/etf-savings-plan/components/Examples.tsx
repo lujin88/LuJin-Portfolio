@@ -4,7 +4,7 @@ export const fund = 'iShares MSCI ACWI UCITS ETF USD (Acc)';
 export const money = (n: number, d = 0) => 'CHF ' + new Intl.NumberFormat('en-US', {
   minimumFractionDigits: d,
   maximumFractionDigits: d
-}).format(n).replace(/,/g, "'");
+}).format(n).replace(/,/g, "’");
 const cases = [{
   label: 'Lower',
   color: '#ebccff',
@@ -86,5 +86,5 @@ export function Examples({
               background: p.color
             }} />{p.label}</span><b>{money(p.values[month])}</b></div>)}</div></div>
  <p className="ff-downside">Lower example: a {Math.round(paths[0].drawdown * 100)}% fall from peak.</p>
- <details><summary>How it’s calculated</summary><p>These are hypothetical paths. The middle example assumes 3% annual growth after fund costs throughout. In the lower and higher examples, the price falls or rises 25% in year four and stays flat in the other years. Actual losses could be larger. The change is spread evenly across 12 months. Each contribution is added at month end.</p><p>Price changes are assumed net of fund costs. No personal taxes, trading fees or currency movements are modelled. The examples have no assigned probabilities. Only the five-year horizon comes from the fund document.</p><a href={kid} target="_blank" rel="noreferrer">Read the fund’s KID ↗</a></details></section>;
+ <details><summary>How it’s calculated</summary><p>These are hypothetical paths. The middle example assumes 3% annual growth after fund costs throughout. In the lower and higher examples, the price falls or rises 25% in year four and stays flat in the other years. Actual losses could be larger. The change is spread evenly across 12 months. Each contribution is added at month end.</p><p>Price changes are assumed net of fund costs. No personal taxes, trading fees or currency movements are modeled. The examples have no assigned probabilities. Only the five-year horizon comes from the fund document.</p><a href={kid} target="_blank" rel="noreferrer">Read the fund’s KID ↗</a></details></section>;
 }

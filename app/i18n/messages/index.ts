@@ -5,6 +5,8 @@ import { construction, lab, pet } from './lab'
 import { wow } from './wow'
 import { ca } from './ca'
 import { eon } from './eon'
+import { privacy } from './privacy'
+import { bmw } from './bmw'
 
 export const dictionaries = {
   en: {
@@ -16,6 +18,8 @@ export const dictionaries = {
     wow: wow.en,
     ca: ca.en,
     eon: eon.en,
+    privacy: privacy.en,
+    bmw: bmw.en,
   },
   de: {
     common: common.de,
@@ -26,6 +30,8 @@ export const dictionaries = {
     wow: wow.de,
     ca: ca.de,
     eon: eon.de,
+    privacy: privacy.de,
+    bmw: bmw.de,
   },
 } as const satisfies Record<LangCode, unknown>
 
@@ -45,4 +51,5 @@ export const documentTitleKeys: Record<string, string> = {
   '/client-advisor': 'ca.documentTitle',
   '/EON': 'eon.documentTitle',
   '/eon-solar': 'eon.documentTitle',
+  '/privacy': 'privacy.documentTitle',
 }

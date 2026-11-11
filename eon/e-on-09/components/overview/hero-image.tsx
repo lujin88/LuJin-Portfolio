@@ -105,8 +105,8 @@ export function HeroImage() {
           />
         </div>
 
-        {/* Handwritten caption */}
-        <div className="pointer-events-none absolute right-5 top-6 text-right sm:right-8 sm:top-8">
+        {/* Handwritten caption. Phones show no handwritten notes (Lu 2026-11-10). */}
+        <div className="pointer-events-none absolute right-5 top-6 text-right max-sm:hidden sm:right-8 sm:top-8">
           <p className="font-hand text-2xl leading-tight text-white/95 drop-shadow-sm sm:text-3xl">
             {t('eon.overview.hand1')}
             <br />

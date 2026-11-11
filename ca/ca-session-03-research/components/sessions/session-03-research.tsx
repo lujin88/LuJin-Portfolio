@@ -61,8 +61,7 @@ export function Session03Research() {
           </p>
 
           <p className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`}>
-            I set out to understand how advisors actually work — interviewing 17 Client Advisors primarily across Switzerland Wealth Management, with EMEA and APAC
-            <sup className="ml-px text-[0.65em] leading-none">*</sup> advisors included for comparison, to see how they moved across 10+ different tools, collaborated with others, and turned what they gathered into a decision for the client.
+            I set out to understand how advisors actually work — interviewing 17 Client Advisors across several regions, to see how they moved across 10+ different tools, collaborated with others, and turned what they gathered into a decision for the client.
           </p>
 
           <h3 className="mt-12 max-w-[22ch] text-balance font-sans text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] sm:text-[2.25rem] lg:mt-14 lg:text-[clamp(2.1rem,2.9vw,2.5rem)]">

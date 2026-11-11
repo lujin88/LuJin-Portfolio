@@ -1,15 +1,16 @@
 export const home = {
   en: {
-    documentTitle: 'Lu — Product & Service Designer',
+    documentTitle: 'Lu Jin — Product Designer',
     heroKicker: 'Product designer · Enterprise & regulated UX',
     heroTitle: 'Simplify complexity. Design with AI.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, 10+ min saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 4× lead conversion rate.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW app</a>: led design team &amp; design system.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, <span style="white-space:nowrap">5–10 min</span> saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW app</a>: led design team &amp; design system.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Close chat',
     askLuSend: 'Send',
     askLuGreeting: 'Hi! I’m Lu’s AI assistant. Ask about her work, experience, or process.',
     askLuPlaceholder: 'Ask about Lu’s work…',
+    askLuNotice: 'Please don’t share personal or confidential information.',
     partnersLabel: 'Clients I’ve designed for',
     ca: {
       eyebrow: 'Client Advisory · UBS',
@@ -18,30 +19,30 @@ export const home = {
       storyTitle: 'From searching to advising',
       storyBody: 'One AI-supported view that surfaces the right information at the right moment.',
       metricTitle: 'Designed for 500+ advisors',
-      metricBody: 'Concept tests: 5–10 min saved per client, up to 30 min on complex proposals.',
+      metricBody: 'Concept tests: 5–10 min saved on simple cases, up to 30 on complex ones.',
       cta: 'Explore case study',
     },
     eon: {
       eyebrow: 'Solar · E.ON',
-      titleHtml: 'Solar landing page redesign',
+      titleHtml: 'Solar landing page & calculator redesign',
       role: 'Lead Product Designer',
       storyTitle: 'From complexity to conversion',
       storyBody: 'A complex investment, made easier to understand and trust.',
-      metricTitle: '300% increase in lead conversion',
-      metricBody: 'Within two months, from a 5.1% baseline in Germany. Later adapted for the UK.',
+      metricTitle: '300% more solar leads',
+      metricBody: 'Later adapted for the UK.',
       cta: 'Explore case study',
     },
     playground: {
       cta: 'Explore case study',
       weatherMeta: 'Rive motion',
       petMeta: 'Voice · Hardware',
-      gratulaMeta: 'Launching soon',
+      gratulaMeta: 'Prototype',
     },
     how: {
       kicker: 'How I work',
       titleHtml: 'AI drafts.<em>I decide.</em>',
       bodyHtml:
-        'AI drafts and iterates with me at every step.<br class="ad-desktop-break"> I decide the problem, the direction, and what<br class="ad-desktop-break"> ships.',
+        'AI drafts and iterates with me at every step.<br class="hiw-desktop-break"> I decide the problem, the direction, and what<br class="hiw-desktop-break"> ships.',
       cta: 'Explore how I work',
       artLabel:
         'Decide: Human judgment in every step. A human designer leads a team of AI assistants, surrounded by sketches, checklists, and an idea bulb.',
@@ -79,17 +80,18 @@ export const home = {
     },
   },
   de: {
-    documentTitle: 'Lu — Produkt- & Service-Designerin',
+    documentTitle: 'Lu Jin — Product Designerin',
     heroKicker: 'Product Designerin · Enterprise- & regulierte UX',
     heroTitle: 'Komplexität vereinfachen. Mit KI gestalten.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow, 10+&nbsp;Min. pro Kunde gespart.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: Anfragequote vervierfacht.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow, <span style="white-space:nowrap">5–10&nbsp;Min.</span> pro Kunde gespart.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300&nbsp;% mehr Leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Chat schließen',
     askLuSend: 'Senden',
     askLuGreeting:
       'Hallo! Ich bin Lus KI-Assistent. Fragen Sie nach ihrer Arbeit, Erfahrung oder Arbeitsweise.',
     askLuPlaceholder: 'Fragen Sie nach Lus Arbeit…',
+    askLuNotice: 'Bitte keine persönlichen oder vertraulichen Informationen eingeben.',
     partnersLabel: 'Kunden, für die ich gestaltet habe',
     ca: {
       eyebrow: 'Client Advisory · UBS',
@@ -99,30 +101,30 @@ export const home = {
       storyBody: 'Eine KI-gestützte Sicht, die die richtige Information im richtigen Moment zeigt.',
       metricTitle: 'Gestaltet für über 500 Berater',
       metricBody:
-        'Konzepttest: 5–10 Min. pro Kunde gespart, bis zu 30 Min. bei komplexen Anlagevorschlägen.',
+        'Konzepttest: 5–10 Min. bei einfachen Fällen, bis zu 30 Min. bei komplexen.',
       cta: 'Case Study ansehen',
     },
     eon: {
       eyebrow: 'Solar · E.ON',
-      titleHtml: 'Redesign der Solar-Landingpage',
+      titleHtml: 'Redesign von Solar-Landingpage und Rechner',
       role: 'Lead Product Designerin',
       storyTitle: 'Von Komplexität zu Conversion',
       storyBody: 'Eine komplexe Investition, leichter zu verstehen und zu vertrauen.',
-      metricTitle: '300 % mehr Lead-Conversion',
-      metricBody: 'In zwei Monaten, ausgehend von 5,1 % in Deutschland. Später für Großbritannien adaptiert.',
+      metricTitle: '300 % mehr Solar-Leads',
+      metricBody: 'Später für Großbritannien adaptiert.',
       cta: 'Case Study ansehen',
     },
     playground: {
       cta: 'Case Study ansehen',
       weatherMeta: 'Rive Motion',
       petMeta: 'Stimme · Hardware',
-      gratulaMeta: 'Startet bald',
+      gratulaMeta: 'Prototyp',
     },
     how: {
       kicker: 'Wie ich arbeite',
       titleHtml: 'KI entwirft.<em>Ich entscheide.</em>',
       bodyHtml:
-        'KI entwirft und iteriert in jedem Schritt mit mir.<br class="ad-desktop-break"> Ich entscheide über Problem, Richtung und was<br class="ad-desktop-break"> live geht.',
+        'KI entwirft und iteriert in jedem Schritt mit mir.<br class="hiw-desktop-break"> Ich entscheide über Problem, Richtung und was<br class="hiw-desktop-break"> live geht.',
       cta: 'Arbeitsweise ansehen',
       artLabel:
         'Entscheiden: Menschliches Urteil in jedem Schritt. Eine Designerin führt KI-Assistenten, umgeben von Skizzen, Checklisten und einer Ideenbirne.',
@@ -142,19 +144,19 @@ export const home = {
       '1': {
         eyebrow: 'Okt. 2020 — Sep. 2022',
         title: 'AdNovum · Bern',
-        role: 'Senior Product Designer',
+        role: 'Senior Product Designerin',
         desc: 'Datentabellen, Filter und Sammelaktionen für eine schweizweite Plattform.',
       },
       '2': {
         eyebrow: 'Jun. 2016 — Jul. 2020',
         title: 'Futurice · München',
-        role: 'Senior Product Designer',
+        role: 'Senior Product Designerin',
         desc: 'Digitale Produkte von Research bis Launch. Leitung eines sechsköpfigen Designteams.',
       },
       '3': {
         eyebrow: 'Sep. 2014 — Jun. 2016',
         title: 'Designaffairs (Accenture) · München',
-        role: 'Usability Engineer',
+        role: 'Usability Engineerin',
         desc: 'UX-Konzepte und Prototypen für Connected Products sowie B2B-Designsysteme.',
       },
     },

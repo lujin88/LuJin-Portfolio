@@ -91,7 +91,7 @@ export function ComparisonPanel({ active = true }: { active?: boolean }) {
             className="object-cover"
           />
           <Image
-            src="/assets/images/eon/eon 07 pin.png"
+            src="/assets/images/eon/eon 07 pin.webp"
             alt=""
             width={512}
             height={512}
