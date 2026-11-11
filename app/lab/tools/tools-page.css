@@ -121,16 +121,25 @@
   scroll-margin-top: 96px;
 }
 
-.tools-card__link {
-  display: block;
-  color: inherit;
+.tools-card__github {
+  display: inline-block;
+  margin: 0 0 8px;
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #2455cc;
   text-decoration: none;
 }
 
-.tools-card__link:focus-visible {
+.tools-card__github:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.tools-card__github:focus-visible {
   outline: 2px solid #2455cc;
-  outline-offset: 4px;
-  border-radius: 4px;
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 .tools-card__media {
@@ -168,7 +177,7 @@
 }
 
 .tools-card h3 {
-  margin: 16px 0 8px;
+  margin: 16px 0 4px;
   font-size: 24px;
   line-height: 1.2;
   font-weight: 600;
@@ -181,12 +190,6 @@
   line-height: 1.5;
   max-width: 36ch;
   min-height: 24px;
-}
-
-.tools-card__link::after {
-  content: '';
-  position: absolute;
-  inset: 0;
 }
 
 .tools-closing {

@@ -33,6 +33,7 @@ const PROJECTS = [
     image: `${IMG}/office-v4.gif`,
     alt: 'Pixel Office demo scene',
     mediaClass: 'office',
+    href: 'https://github.com/lujin88/agent-monitor/tree/main/pixel-min',
   },
 ] as const
 
@@ -100,33 +101,23 @@ export function ToolsPage() {
         </section>
 
         <div className="tools-rail">
-          {PROJECTS.map((p) => {
-            const body = (
-              <>
-                <div className={`tools-card__media tools-card__media--${p.mediaClass}`}>
-                  <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
-                </div>
-                <h3>{p.title}</h3>
-                <p>{p.body}</p>
-              </>
-            )
-            return (
-              <article key={p.id} id={p.id} className="tools-card" tabIndex={-1}>
-                {'href' in p && p.href ? (
-                  <a
-                    className="tools-card__link"
-                    href={p.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {body}
-                  </a>
-                ) : (
-                  body
-                )}
-              </article>
-            )
-          })}
+          {PROJECTS.map((p) => (
+            <article key={p.id} id={p.id} className="tools-card" tabIndex={-1}>
+              <div className={`tools-card__media tools-card__media--${p.mediaClass}`}>
+                <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
+              </div>
+              <h3>{p.title}</h3>
+              <a
+                className="tools-card__github"
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub ↗
+              </a>
+              <p>{p.body}</p>
+            </article>
+          ))}
         </div>
       </main>
 
