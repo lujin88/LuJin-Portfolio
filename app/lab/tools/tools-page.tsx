@@ -44,6 +44,8 @@ type Lightbox = { src: string; alt: string }
 export function ToolsPage() {
   const mainRef = useRef<HTMLElement>(null)
   const lightboxRef = useRef<HTMLDialogElement>(null)
+  const zoomTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const scrollLockY = useRef(0)
   const [lightbox, setLightbox] = useState<Lightbox | null>(null)
 
   useEffect(() => {
@@ -53,6 +55,33 @@ export function ToolsPage() {
       if (!dialog.open) dialog.showModal()
     } else if (dialog.open) dialog.close()
   }, [lightbox])
+
+  useEffect(() => {
+    if (!lightbox) return
+    scrollLockY.current = window.scrollY
+    const { body } = document
+    body.style.position = 'fixed'
+    body.style.top = `-${scrollLockY.current}px`
+    body.style.left = '0'
+    body.style.right = '0'
+  return () => {
+      body.style.position = ''
+      body.style.top = ''
+      body.style.left = ''
+      body.style.right = ''
+      window.scrollTo(0, scrollLockY.current)
+    }
+  }, [lightbox])
+
+  const openLightbox = (src: string, alt: string, trigger: HTMLButtonElement) => {
+    zoomTriggerRef.current = trigger
+    setLightbox({ src, alt })
+  }
+
+  const handleLightboxClose = () => {
+    setLightbox(null)
+    requestAnimationFrame(() => zoomTriggerRef.current?.focus())
+  }
 
   useEffect(() => {
     const root = mainRef.current
@@ -100,7 +129,7 @@ export function ToolsPage() {
                   type="button"
                   className="tools-zoom-trigger"
                   aria-label={`View full size: ${s.alt}`}
-                  onClick={() => setLightbox({ src: s.image, alt: s.alt })}
+                  onClick={(e) => openLightbox(s.image, s.alt, e.currentTarget)}
                 >
                   <img src={s.image} alt={s.alt} loading="lazy" decoding="async" />
                 </button>
@@ -118,7 +147,7 @@ export function ToolsPage() {
       <dialog
         ref={lightboxRef}
         className="tools-lightbox"
-        onClose={() => setLightbox(null)}
+        onClose={handleLightboxClose}
         aria-label={lightbox?.alt}
       >
         <form method="dialog" className="tools-lightbox__bar">
