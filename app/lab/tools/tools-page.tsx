@@ -56,7 +56,7 @@ export function ToolsPage() {
         const rect = el.getBoundingClientRect()
         const center = rect.top + rect.height / 2
         const offset = ((center - vh / 2) / vh) * rate * vh
-        el.style.transform = `translate3d(0, ${Math.max(offset, -24).toFixed(2)}px, 0)`
+        el.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`
       })
     }
 

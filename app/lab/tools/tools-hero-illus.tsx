@@ -39,7 +39,7 @@ export function ToolsHeroIllus() {
   }, [])
 
   return (
-    <div className="tools-hero__illus" ref={parallaxRef} data-tools-parallax="0.1">
+    <div className="tools-hero__illus-slot" ref={parallaxRef} data-tools-parallax="0.22">
       <img
         className="tools-hero__illus-img"
         src={src}
