@@ -164,7 +164,10 @@
 .bmw-driver dt{font-size:14px;line-height:1.5;color:#c4d3e0}
 .bmw-driver dd{margin:8px 0 0;font-size:20px;line-height:1.25;letter-spacing:-.025em;color:#fff}
 .bmw-driver dl.hero-meta{max-width:min(920px,calc(100% - var(--content-inset)))}
-.bmw-driver dl.hero-meta dd{font-size:clamp(16px,1.35vw,20px)}
+.bmw-driver dl.hero-meta>div{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.45em;row-gap:.15em}
+.bmw-driver dl.hero-meta dt,.bmw-driver dl.hero-meta dd{margin:0;display:inline}
+.bmw-driver dl.hero-meta dt::after{content:"·";margin-inline:.45em 0;color:#ffffff66;font-weight:400}
+.bmw-driver dl.hero-meta dd{font-size:clamp(16px,1.35vw,20px);white-space:nowrap}
 @media(min-width:601px) and (max-width:1100px){
 .bmw-driver .backdrop{object-position:right center}
 .bmw-driver header{max-width:52%}
