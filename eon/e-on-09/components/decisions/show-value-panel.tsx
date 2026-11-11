@@ -51,7 +51,7 @@ export function ShowValuePanel({ household }: { household: HouseholdState }) {
           <div className="grid h-full min-w-0 grid-cols-1 items-stretch gap-4 sm:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
             <div className="relative min-h-0 min-w-0 overflow-hidden aspect-[1679/937]">
               <Image
-                src={mediaUrl('/assets/images/eon/eon 07 battery home.png')}
+                src="/assets/images/eon/eon 07 battery home.webp"
                 alt={t('eon.ui.homeAlt')}
                 fill
                 sizes="(max-width: 1024px) 50vw, 28vw"
@@ -64,7 +64,7 @@ export function ShowValuePanel({ household }: { household: HouseholdState }) {
                 <Leaf className="size-4 text-foreground" strokeWidth={1.75} aria-hidden="true" />
               </span>
               <p className="text-xs font-medium text-muted-foreground">{t('eon.ui.potentialSavings')}</p>
-              <p className="text-balance text-[clamp(1.35rem,6.5vw,1.65rem)] font-extrabold leading-tight tracking-tight text-[#1f7a4c]">
+              <p className="text-balance text-[clamp(1.35rem,6.5vw,1.65rem)] font-extrabold leading-tight tracking-tight text-[#38684d]">
                 {yearly} {t('eon.ui.year').trim()}
               </p>
               <p className="text-[11px] leading-relaxed text-muted-foreground">

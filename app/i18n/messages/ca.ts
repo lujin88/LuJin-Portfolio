@@ -56,7 +56,7 @@ export const ca = {
       title: 'Understanding the work.',
       subhead: 'One need. A whole service behind it.',
       body1Html:
-        'I interviewed 17 client advisors, mostly in Switzerland Wealth Management, plus EMEA and APAC<sup class="ml-px text-[0.65em] leading-none">*</sup> for comparison — following how they moved across 10+ tools and turned what they found into a decision for the client.',
+        'I interviewed 17 client advisors across several regions — following how they moved across 10+ tools and turned what they found into a decision for the client.',
       heading2: 'The information existed. The advisor had to connect it.',
       body2:
         'The friction wasn’t only access. It was stitching together 10+ disconnected tools — in the moment, under pressure.',
@@ -123,18 +123,18 @@ export const ca = {
         'A prioritized overview on the existing dashboard. One click opens the full context; next steps appear as recommendations.',
       path3Title: 'The result',
       path3Body:
-        'One experience that unifies client context, portfolio, and research — without adding to the pile. 500+ client signals, one view.',
+        'One experience that unifies client context, portfolio, and research — without adding to the pile. Client signals in one view.',
       mockups: {
-        'book-view': 'UBS advisor book view with clients, opportunities, and market highlights',
-        'us-tech': 'US Tech client view with CIO commentary and recommended products',
-        'client-page': 'Investment Hub client page',
-        'client-view': 'Investment Hub client view',
+        'book-view': 'Advisor overview of clients and opportunities (concept, recreated)',
+        'us-tech': 'Client view with research commentary and product ideas (concept, recreated)',
+        'client-page': 'Client page (concept, recreated)',
+        'client-view': 'Client detail view (concept, recreated)',
         'proposal-creation': 'Portfolio proposal creation with selectable options',
         'review-execute': 'Review and execute screen for the tailored investment proposal',
       },
     },
     ui: {
-      aria: 'UBS advisory workflow interface showing a portfolio review and proposal with three investment options',
+      aria: 'Advisory workflow concept: a portfolio review and a proposal with three illustrative options',
       navClients: 'Clients',
       navResearch: 'Research',
       navOpportunities: 'Opportunities',
@@ -162,7 +162,7 @@ export const ca = {
       eyebrow: 'The Outcome',
       title: 'Tested with the people it’s for.',
       subhead: 'Validated with advisors, for more focused client conversations.',
-      body: "I led concept testing with advisors — including the stakeholder who'd pushed for the dashboard — to see how the model held up against real workflows.",
+      body: "I led concept testing with advisors to see how the model held up against real workflows.",
       journeyAria: 'Concept, Mockup, Test',
       concept: 'Concept',
       mockup: 'Mockup',
@@ -175,9 +175,15 @@ export const ca = {
       m2Label: 'Saved on more complex proposals.',
       m3Value: '500+',
       m3Label: 'Advisors in trials and the target user base.',
+      // Decorative card photos: empty alt so screen readers skip them.
+      m1Alt: '',
+      m2Alt: '',
+      m3Alt: '',
       footnote:
-        'Feedback was consistent across EMEA and CH, the core scope. APAC leaned toward speed over the signal-and-context flow — noted for future markets.',
+        'Feedback informed the next iteration.',
     },
+    // Decorative background image: empty alt so screen readers skip it.
+    closingAlt: '',
     closing:
       "Complexity doesn't disappear. It gets a place to land — so advisors spend less time managing tools, and more time with the client on the phone.",
   },
@@ -203,7 +209,7 @@ export const ca = {
       ],
       glance: 'Auf einen Blick',
       glance1Value: '5–10 Min.',
-      glance1Label: 'pro Kunde bei der Informationsbeschaffung gespart',
+      glance1Label: 'pro Kunde bei der Informations\u00ADbeschaffung gespart',
       glance2Value: '500+',
       glance2Label: 'Client Advisors in Trials und Zielgruppe',
       glance3Value: '30 Min.',
@@ -238,7 +244,7 @@ export const ca = {
       title: 'Die Arbeit verstehen.',
       subhead: 'Ein Bedarf. Ein ganzer Service dahinter.',
       body1Html:
-        'Ich habe 17 Client Advisors interviewt, vor allem aus Switzerland Wealth Management, ergänzt um EMEA und APAC<sup class="ml-px text-[0.65em] leading-none">*</sup> zum Vergleich — und verfolgt, wie sie sich durch 10+ Tools bewegten und daraus eine Entscheidung für den Kunden machten.',
+        'Ich habe 17 Client Advisors aus mehreren Regionen interviewt — und verfolgt, wie sie sich durch 10+ Tools bewegten und daraus eine Entscheidung für den Kunden machten.',
       heading2: 'Die Information war da. Der Berater musste sie verbinden.',
       body2:
         'Die Reibung war nicht nur der Zugang. Es war das Zusammenfügen von 10+ getrennten Tools — im Moment, unter Druck.',
@@ -248,7 +254,7 @@ export const ca = {
     shift: {
       eyebrow: 'Der Perspektivwechsel',
       headline1: 'Von der Informationssuche',
-      headline2: 'zur Entscheidungsunterstützung.',
+      headline2: 'zur Entscheidungshilfe.',
       bodyLead: 'Die Recherche hat die Frage verändert.',
       bodyInstead: 'Statt zu fragen',
       bodyOld: '„Wie helfen wir Beratern, schneller zu suchen?“',
@@ -274,7 +280,7 @@ export const ca = {
     },
     principles: {
       eyebrow: 'Design Principles',
-      headline: 'Das Modell in Designentscheidungen übersetzen.',
+      headline: 'Das Modell in Design\u00ADentscheidungen übersetzen.',
       intro:
         'Eine Bedingung: Es durfte sich nicht wie ein weiteres Tool anfühlen. Signal → Kontext → Handeln wurde das Modell — ein Prinzip für jeden Moment.',
       p1Title: 'Zeigen, was zählt',
@@ -305,18 +311,18 @@ export const ca = {
         'Ein priorisierter Überblick auf dem bestehenden Dashboard. Ein Klick öffnet den vollen Kontext; nächste Schritte erscheinen als Empfehlungen.',
       path3Title: 'Das Ergebnis',
       path3Body:
-        'Ein Erlebnis, das Kundenkontext, Portfolio und Research verbindet — ohne den Stapel zu vergrößern. 500+ Kundensignale, eine Sicht.',
+        'Ein Erlebnis, das Kundenkontext, Portfolio und Research verbindet — ohne den Stapel zu vergrößern. Kundensignale in einer Sicht.',
       mockups: {
-        'book-view': 'UBS-Berateransicht mit Kunden, Opportunities und Markthighlights',
-        'us-tech': 'US-Tech-Kundensicht mit CIO-Kommentar und empfohlenen Produkten',
-        'client-page': 'Investment-Hub-Kundenseite',
-        'client-view': 'Investment-Hub-Kundenansicht',
+        'book-view': 'Beraterübersicht mit Kunden und Opportunities (Konzept, nachgebaut)',
+        'us-tech': 'Kundensicht mit Research-Kommentar und Produktideen (Konzept, nachgebaut)',
+        'client-page': 'Kundenseite (Konzept, nachgebaut)',
+        'client-view': 'Kundendetailansicht (Konzept, nachgebaut)',
         'proposal-creation': 'Erstellung eines Anlagevorschlags mit auswählbaren Optionen',
         'review-execute': 'Prüfen und Ausführen des maßgeschneiderten Anlagevorschlags',
       },
     },
     ui: {
-      aria: 'UBS-Advisory-Interface mit Portfolio-Review und Anlagevorschlag mit drei Anlageoptionen',
+      aria: 'Konzept eines Beratungs-Workflows: Portfolio-Review und ein Vorschlag mit drei illustrativen Optionen',
       navClients: 'Kunden',
       navResearch: 'Research',
       navOpportunities: 'Opportunities',
@@ -344,7 +350,7 @@ export const ca = {
       eyebrow: 'Das Ergebnis',
       title: 'Getestet mit denen, für die es gemacht ist.',
       subhead: 'Mit Beratern validiert — für fokussiertere Kundengespräche.',
-      body: 'Ich habe Konzepttests mit Beratern geleitet — auch mit dem Stakeholder, der sich für das Dashboard starkgemacht hatte —, um zu sehen, wie das Modell in echten Workflows trägt.',
+      body: 'Ich habe Konzepttests mit Beratern geleitet, um zu sehen, wie sich das Modell in realen Arbeitsabläufen bewährt.',
       journeyAria: 'Konzept, Mockup, Test',
       concept: 'Konzept',
       mockup: 'Mockup',
@@ -352,14 +358,20 @@ export const ca = {
       avgFeedback: 'Durchschnittliches Feedback aus dem Test',
       reach: 'Reichweite',
       m1Value: '5–10 Min.',
-      m1Label: 'Gespart pro Kunde bei der Informationsbeschaffung.',
+      m1Label: 'Gespart pro Kunde bei der Informations\u00ADbeschaffung.',
       m2Value: 'Bis zu 30 Min.',
       m2Label: 'Gespart bei komplexeren Anlagevorschlägen.',
       m3Value: '500+',
       m3Label: 'Berater in Trials und Zielgruppe.',
+      // Decorative card photos: empty alt so screen readers skip them.
+      m1Alt: '',
+      m2Alt: '',
+      m3Alt: '',
       footnote:
-        'Das Feedback war in EMEA und der Schweiz, dem Kernfokus, konsistent. APAC legte mehr Wert auf Tempo als auf den Signal-und-Kontext-Flow — notiert für künftige Märkte.',
+        'Das Feedback floss in die nächste Iteration ein.',
     },
+    // Decorative background image: empty alt so screen readers skip it.
+    closingAlt: '',
     closing:
       'Komplexität verschwindet nicht. Sie bekommt einen Ort, an dem sie landen kann — damit Berater weniger Zeit mit Tools verbringen und mehr Zeit mit dem Kunden am Telefon.',
   },

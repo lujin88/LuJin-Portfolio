@@ -1,0 +1,65 @@
+:where(.etf-case) .case-site {background:#f8f9fb;color:#0b3558;font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif;display:flow-root}
+:where(.etf-case) .case-site * {box-sizing:border-box}
+:where(.etf-case) .case-site :where(h1,h2,h3,p){margin:0}
+:where(.etf-case) .case-site a {color:inherit;text-underline-offset:4px}
+:where(.etf-case) .case-site a:focus-visible {outline:2px solid #006bff;outline-offset:4px}
+:where(.etf-case) .case-site main {width:min(calc(100% - 64px),1200px);margin-inline:auto}
+:where(.etf-case) .case-opening {text-align:center;padding-top:clamp(36px,4.5vw,68px)}
+:where(.etf-case) .eyebrow {color:#476788;font-size:clamp(15px,1.4vw,20px);line-height:1.45;font-weight:620}
+:where(.etf-case) .opening-text h1 {font-size:clamp(44px,6.5vw,84px);line-height:1.03;font-weight:750;letter-spacing:-.05em;margin:0 0 clamp(14px,1.5vw,22px)}
+:where(.etf-case) .case-intro {max-width:63ch;font-size:clamp(17px,1.7vw,23px);line-height:1.45;color:#476788;margin:0 auto;text-wrap:balance}
+:where(.etf-case) .case-lineup {width:100%;height:auto;display:block;border-radius:24px;margin:clamp(24px,2.4vw,34px) auto 0}
+:where(.etf-case) .story {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,7vw,100px);margin:clamp(40px,5vw,80px) auto 0;max-width:1100px}
+:where(.etf-case) .story article {min-height:max(610px,78svh);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;scroll-margin-top:15px;padding-block:34px}
+:where(.etf-case) .story-copy>article>h2 {margin:12px 0 18px;font-size:clamp(40px,4.4vw,66px);line-height:1.06;font-weight:730;letter-spacing:-.055em;text-wrap:balance}
+:where(.etf-case) .story-text {font-size:clamp(18px,1.6vw,23px);line-height:1.48;color:#375674}
+:where(.etf-case) .research {font-size:clamp(15px,1.3vw,18px);line-height:1.55;color:#476788;margin:0 0 18px}
+:where(.etf-case) .research a {font-size:.89em;white-space:nowrap}
+:where(.etf-case) .closing {margin:22px 0 0}
+:where(.etf-case) .shared-phone {position:sticky;align-self:start;top:64px;height:min(calc(100svh - 64px),860px);padding-block:24px 59px;display:grid;place-items:center}
+/* Whole handset in view (Lu #4489, visual #4526). The stage used to start at top:0, under the
+   fixed 64px site header, so the frame's top was cut on 1512x982. Now it starts below the header
+   and keeps 24px clear above the frame and below its shadow (the shadow reaches ~35px under the
+   frame, hence 59px). The frame is (w - 14px) * 844/390 + 14px tall, so cap its width to fit. */
+:where(.etf-case) .shared-phone .story-handset {width:min(375px,calc((min(100svh - 64px,860px) - 83px - 14px) * 390 / 844 + 14px),100%)}
+/* The stage used to start level with chapter 1, so it only pinned once the chapter top was ~120px
+   from the top of the viewport; while the title sat mid-screen the frame's bottom (Continue) was
+   below the fold (PM #6788). Start it higher so it pins when the chapter top is at 35% of the view. */
+:where(.etf-case) .shared-phone {margin-top:calc(64px - 35svh)}
+:where(.etf-case) .phone-stage {position:relative;display:grid;place-items:center;isolation:isolate;width:100%}
+:where(.etf-case) .phone-stage::before {display:none}
+:where(.etf-case) .device {position:relative;inset:auto;height:712px;width:390px;zoom:clamp(.64,calc(100svh / 800px),1)}
+:where(.etf-case) .glass {padding-bottom:25px}:where(.etf-case) .footer-box p {font-weight:400;font-size:12px;line-height:1.4;margin-top:4px}:where(.etf-case) .footer-box a {color:#3546bd}
+:where(.etf-case) .inline-phone {display:none}
+:where(.etf-case) .case-site main>footer {max-width:1100px;margin:auto;padding:24px 0 48px;text-align:right;font-size:14px;color:#476788}
+@media(max-height:800px){:where(.etf-case) .shared-phone .device{zoom:.83}}
+@media(max-height:660px){:where(.etf-case) .shared-phone .device{zoom:.68}}
+@media(max-width:850px),(max-height:530px){
+  :where(.etf-case) .story {display:block;max-width:600px}:where(.etf-case) .story article {min-height:0;display:block;padding:0;margin-bottom:50px}
+  :where(.etf-case) .shared-phone {display:none}:where(.etf-case) .inline-phone {display:block;max-width:460px;margin:24px auto 0}
+  :where(.etf-case) .inline-phone .device {zoom:1;width:min(100%,360px);height:auto}
+  :where(.etf-case) .inline-phone .glass {padding-bottom:32px}:where(.etf-case) .story-copy>article>h2 {font-size:clamp(34px,6vw,48px)}
+  :where(.etf-case) .story-text {font-size:18px}:where(.etf-case) .research {font-size:16px}:where(.etf-case) .closing {margin:24px 0 0}
+}
+@media(max-width:600px){
+  :where(.etf-case) .case-site main {width:calc(100% - 36px)}
+  :where(.etf-case) .opening-text h1 {font-size:clamp(37px,9.8vw,54px)}
+  :where(.etf-case) .case-intro {max-width:32ch}
+  :where(.etf-case) .case-lineup {height:clamp(210px,62vw,320px);object-fit:cover;object-position:center top;border-radius:16px}
+}
+@media(min-width:851px) and (min-height:531px) {
+  :where(.etf-case) .story article {min-height:clamp(610px,78svh,820px)}
+  :where(.etf-case) .story article:last-child {min-height:min(100svh,860px)}
+}
+
+:where(.etf-case) .case-site{overflow-x:clip}
+/* Phones: 48px from the opening phones to the first chapter; eyebrow 8px, heading to text 16px (visual RULES.md). */
+@media(max-width:600px){
+  .etf-case .story {margin-top:48px}
+  .etf-case .story-copy>article>h2 {margin-top:8px;margin-bottom:16px}
+}
+/* Phones: last chapter -> contact heading 64px. The stacked chapters' 50px bottom margin
+   stacked on the contact's own 64px top (114px); only the last chapter drops it. */
+@media(max-width:640px){
+  .etf-case .story article:last-child {margin-bottom:0}
+}

@@ -16,9 +16,9 @@ const poppins = Poppins({
   display: 'swap',
 })
 
-const DEFAULT_TITLE = 'Lu Jin — Product & Service Designer'
+const DEFAULT_TITLE = 'Lu Jin — Product Designer'
 const DEFAULT_DESCRIPTION =
-  'Design leadership across product and service — from early-stage strategy to production-ready systems.'
+  'Product and service designer for banking, energy and mobility. 10+ years turning complex B2B work into clear tools.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -47,6 +47,15 @@ export const viewport: Viewport = {
   themeColor: '#0a0a0a',
 }
 
+// /index WA card follows the visitor's local season (months 3-5 spring, 6-8
+// summer, 9-11 autumn, 12-2 winter). Set on <html> during the first parse so
+// CSS paints that season's still before first paint. Lives in the root layout
+// because it never re-renders on client navigation (a <script> in a page would
+// trip React's "script tag while rendering" warning). Keep the mapping in sync
+// with the fallback in public/assets/js/wa-season.js.
+const WA_SEASON_EARLY =
+  "(function(){var m=new Date().getMonth();document.documentElement.dataset.waSeason=m>=2&&m<=4?'spring':m>=5&&m<=7?'summer':m>=8&&m<=10?'autumn':'winter'})()"
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -60,6 +69,9 @@ export default function RootLayout({
       className={`${caveat.variable} ${poppins.variable} overflow-x-hidden`}
       style={{ backgroundColor: '#0a0a0a', colorScheme: 'dark' }}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: WA_SEASON_EARLY }} />
+      </head>
       <body className="m-0 min-w-[360px] antialiased">
         <I18nProvider>{children}</I18nProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}

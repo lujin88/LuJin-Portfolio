@@ -55,4 +55,135 @@
   .ww-finale .ww-case-link { margin-top: 19px; }
 }
 
+/* ── Design System alignment (consistency guide §2.2–2.4, checklist A–D) ── */
+.ww-page{--ww-well:min(calc(100% - 2 * var(--pad, 24px)), var(--wrap, 1440px));font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif;font-size:var(--font-size-body-lg,17px);line-height:1.7}
+.ww-page :is(h1,h2,.ww-label,.ww-case-link,.ww-intro,p){font-family:inherit}
+.ww-page a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+/* Display — Playground WoW token: Poppins 700 · clamp(2.4rem,6vw,4.75rem) · 1.05 · -0.03em */
+.ww-hero h1{font-family:inherit;font-weight:700;font-size:var(--font-size-display-editorial,clamp(2.4rem,6vw,4.75rem));line-height:1.05;letter-spacing:-.03em}
+.ww-portfolio .ww-hero{padding:128px var(--pad,24px) 24px}
+/* H2 editorial: Poppins 600 · clamp(2rem,4vw,3.4rem) · 1.1 */
+.ww-copy h2,.ww-finale h2{font-family:inherit;font-weight:600;font-size:clamp(2rem,4vw,3.4rem);line-height:1.1;letter-spacing:-.03em}
+.ww-copy h2{margin:16px 0 24px;max-width:12ch}
+/* Body L (WoW family) 17px / 1.7 · Standard measure 672px */
+.ww-page .ww-intro,.ww-page .ww-copy p,.ww-finale p{font-size:var(--font-size-body-lg,17px);line-height:1.7;letter-spacing:0;max-width:42rem}
+.ww-page .ww-intro{max-width:28rem;margin-top:24px}
+.ww-page .ww-copy p{max-width:28rem}.ww-page .ww-copy p+p{margin-top:16px}
+/* Caption / eyebrow: 13px semibold uppercase 0.28em (number badge kept) */
+.ww-copy .ww-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.28em;gap:16px}
+.ww-label b{letter-spacing:0}
+/* Wells + rhythm: 24px pad + 1440 main well; image-led 57/43 with 80px gutter; sections 128 / 96 */
+.ww-chapter{width:var(--ww-well);max-width:var(--wrap,1440px);grid-template-columns:57fr 43fr;gap:80px;margin-top:128px}
+.ww-c1{grid-template-columns:43fr 57fr}
+.ww-finale{width:var(--ww-well);max-width:var(--wrap,1440px);gap:80px;margin:128px auto 96px}
+.ww-finale-copy{max-width:28rem}
+.ww-finale p{margin-top:24px}
+.ww-finale .ww-case-link{margin-top:24px;gap:8px;font-size:var(--font-size-pill,.95rem)}
+@media(max-width:719px){
+  .ww-portfolio .ww-hero{padding:96px var(--pad,24px) 16px}
+  .ww-chapter{width:var(--ww-well);margin-top:96px;gap:24px}
+  .ww-copy h2{font-size:clamp(2rem,9vw,2.6rem);margin:16px 0}
+  .ww-finale{width:var(--ww-well);margin:96px auto 80px;gap:24px}
+  .ww-finale h2{font-size:clamp(2rem,9vw,2.6rem)}
+  .ww-copy .ww-label{font-size:12px;letter-spacing:.2em}
+}
+
+/* Shared closing (SiteClosing) — paper paint, same structure as Agent Monitor */
+.ww-closing {
+  --color-text-1: #272a25;
+  --color-text-3: #505449;
+  --color-text-4: #8a8d80;
+  --color-footer-divider: #cecebf;
+  --pill-border: #272a25;
+  --pill-text: #272a25;
+  --pill-bg: transparent;
+  --pill-hover-bg: #272a25;
+  --pill-hover-text: #f5f1e4;
+  --pill-hover-shadow: none;
+  color: #272a25;
+  background: #f5f1e4;
+  font-family: var(--font-poppins), Poppins, ui-sans-serif, system-ui, sans-serif;
+}
+.ww-closing .contact-section {
+  position: relative;
+  background: transparent;
+  padding: clamp(6rem, 14vh, 9rem) var(--content-inset) clamp(4.5rem, 10vh, 7rem);
+}
+.ww-closing .exp-contact {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem 3rem;
+}
+.ww-closing .contact-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-reveal) var(--ease), transform var(--duration-reveal) var(--ease);
+}
+.ww-closing .contact-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.ww-closing .exp-contact__heading {
+  font-size: var(--font-size-contact);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: #272a25;
+}
+.ww-closing .exp-contact__links {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: #505449;
+}
+.ww-closing .exp-contact__links a { color: inherit; text-decoration: none; }
+.ww-closing .exp-contact__links a:hover { color: #272a25; }
+.ww-closing .exp-contact__sep { color: #8a8d80; }
+.ww-closing .pill-btn { text-decoration: none; }
+.ww-closing .pill-btn:focus-visible,
+.ww-closing .exp-contact__links a:focus-visible {
+  outline: 2px solid #2455cc;
+  outline-offset: 3px;
+}
+.ww-closing .exp-footer {
+  position: relative;
+  padding: 4rem var(--content-inset) 2rem;
+  background: transparent;
+}
+.ww-closing .exp-footer::before {
+  content: none;
+}
+.ww-closing .site-footer__inner { width: 100%; max-width: none; margin: 0; }
+.ww-closing .site-footer__bottom { padding-top: 2rem; text-align: left; color: #505449; }
+.ww-closing .site-footer__note { margin: 0; font-size: 0.8125rem; line-height: 1.6; }
+@media (max-width: 640px) {
+  .ww-closing .exp-contact { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ww-closing .contact-reveal { opacity: 1 !important; transform: none !important; transition: none; }
+  .ww-closing .pill-btn, .ww-closing .pill-btn:hover { transition: none; transform: none; }
+}
+/* Portfolio CTA on paper: DS pill structure (46px · 0 28px · 15.2px · gap 8 · 999) with inverse paint */
+.ww-finale{--pill-border:#272a25;--pill-text:#272a25;--pill-bg:transparent;--pill-hover-bg:#272a25;--pill-hover-text:#f5f1e4;--pill-hover-shadow:none}
+.ww-page a.ww-case-btn{margin-top:32px;font-family:inherit;color:var(--pill-text)}
+.ww-page a.ww-case-btn:hover{color:var(--pill-hover-text);background:var(--pill-hover-bg)}
+.ww-page a.ww-case-btn:hover .ww-case-icon{transform:translate(3px,-3px)}
+.ww-page a.ww-case-btn:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.ww-page a.ww-case-btn,.ww-page a.ww-case-btn:hover,.ww-page a.ww-case-btn:hover .ww-case-icon{transform:none}}
 .ww-page .ww-finale .ww-finale-kicker { margin: 0 0 16px; color: #505449; }
+
+/* Phones: "Explore the BMW case" -> contact heading = the contact section's 64px
+   (app/components/site-closing-mobile.css); the finale's bottom margin doubled it
+   (visual MOBILE_SPACING_1109/RULES.md). */
+@media (max-width: 640px) {
+  .ww-portfolio .ww-finale { margin-bottom: 0; }
+}

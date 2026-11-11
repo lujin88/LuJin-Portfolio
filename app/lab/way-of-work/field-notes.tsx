@@ -1,6 +1,8 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import './field-notes.css'
+import { SiteClosing } from '../../components/site-closing'
+import { Icon } from '../../components/remix-icon'
 
 const hero = '/lab/way-of-work/field-notes/worktable.webp'
 const selecting = '/lab/way-of-work/field-notes/selection-still-v20.webp'
@@ -20,7 +22,7 @@ const scenes = [
   {
     name:'worktable', art:hero, sourceHeight:465, height:431, entrySide:1,
     alt:'A long-haired designer lifts a note between her fingers while a rabbit sorts papers and a bear works at a laptop.',
-    erase:'M0 320H77V359H0Z M469 76L521 62L526 106Q511 101 505 105Q498 112 508 119L472 131Z',
+    erase:'M0 320H77V364H0Z M469 76L521 62L526 106Q511 101 505 105Q498 112 508 119L472 131Z',
     eraseLine:'M-4 337C58 325 55 399 121 421C166 438 212 434 224 408C234 386 206 393 201 413C190 445 237 454 297 436C371 415 413 402 464 447',
     wash:'M474 80L518 68L521 107Q501 103 508 118L476 126Z',
     colour:'#dbe8fa',
@@ -245,7 +247,9 @@ function mountDrawing(page:HTMLElement) {
         const copy=box(scene.closest('section')!.querySelector('.ww-copy')!)
         const lane=onRight?copy.x+copy.w+18:copy.x-18
         const turnY=(previous.y+previous.h+copy.y)/2
-        d+=' C '+point(exitX,exitY)+' '+point(lane,turnY-10)+' '+point(lane,turnY+10)
+        // Leaving the hero, turn into the lane at once so the curve stays clear of the centred intro.
+        const lead=i===1?point(lane,y):point(exitX,exitY)
+        d+=' C '+lead+' '+point(lane,turnY-10)+' '+point(lane,turnY+10)
         d+=' L '+point(lane,copy.y+copy.h+8)
         d+=' C '+point(lane,entryY-18)+' '+approach+' '+point(entryX,entryY)
       }else if(i===3){
@@ -307,7 +311,8 @@ export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
   const ref=useRef<HTMLElement>(null)
   useEffect(()=>{if(ref.current) return mountDrawing(ref.current)},[])
   const base=portfolio?'':'http://localhost:3000'
-  return <main ref={ref} className={'ww-page'+(portfolio?' ww-portfolio':'')} id="ww-top">
+  return <>
+  <main ref={ref} className={'ww-page'+(portfolio?' ww-portfolio':'')} id="ww-top">
     <svg className="ww-trail" aria-hidden="true"><path className="ww-ink"/><circle r="2.6"/></svg>
     {!portfolio&&<nav className="ww-nav" aria-label="Portfolio"><a href={base+'/index'} target="_blank" rel="noreferrer">Lu Jin</a><div><a href={base+'/index'} target="_blank" rel="noreferrer">Work</a><a href="#ww-top" aria-current="page">Lab</a><a href={base+'/about'} target="_blank" rel="noreferrer">About</a></div></nav>}
     <header className="ww-hero">
@@ -325,9 +330,10 @@ export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
       <div className="ww-finale-copy">
         <p className="ww-finale-kicker">In 2020, the system held the components.</p>
         <h2 id="ww-finale-title">Now it should hold the rules.</h2>
-        <a className="ww-case-link" href={base+'/bmw-design-system'} target={portfolio?undefined:'_blank'} rel="noreferrer">Explore the BMW case <span aria-hidden="true">↗</span></a>
+        <a className="ww-case-btn pill-btn" href={base+'/bmw-design-system'} target={portfolio?undefined:'_blank'} rel="noreferrer"><span>Explore the BMW case</span><Icon name="arrow-right-up-line" className="ww-case-icon" /></a>
       </div>
     </section>
-    <footer className="ww-footer"><span>Lu Jin · Way of work</span><a href="#ww-top">Back to top ↑</a></footer>
-  </main>
+    </main>
+  {portfolio&&<SiteClosing className="ww-closing" />}
+  </>
 }

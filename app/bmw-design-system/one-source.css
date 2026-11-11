@@ -1,28 +1,12 @@
 @scope (.bmw-one-source) {
-.bmw-driver{box-sizing:border-box;position:relative;isolation:isolate;display:grid;align-content:space-between;gap:22px;min-height:100svh;padding:clamp(24px,3vw,60px) 5vw;background:#0b2034;color:#fff;font-family:Arial,Helvetica,sans-serif}
-.bmw-driver .backdrop{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:right center}
-.bmw-driver::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#051a2e 0%,transparent 30%),linear-gradient(90deg,#091827bb,transparent 65%)}
 .bmw-driver header p{margin:0 0 12px;font-size:clamp(16px,1.55vw,26px)}
 .bmw-driver h1{margin:0;font-size:clamp(40px,4.6vw,84px);letter-spacing:-.055em;line-height:1;font-weight:550;color:white}
-.bmw-driver .composition{display:flex;gap:5vw;justify-content:space-between;align-items:flex-end}
-.bmw-driver .product{display:grid;justify-items:center;gap:18px}
-.bmw-driver .screen{display:block;width:clamp(170px,min(20vw,29vh),315px);height:auto;border:5px solid #23262a;border-radius:clamp(25px,2.6vw,44px);box-shadow:0 0 0 1px #9c9e9f,0 8px 21px #07111c75}
 .bmw-driver nav{display:flex;align-items:center;justify-content:center;gap:12px}
 .bmw-driver nav a{display:grid;place-items:center;min-height:46px}
 .bmw-driver nav a:focus-visible{outline:3px solid white;outline-offset:3px;border-radius:6px}
 .bmw-driver nav img{display:block;width:auto;height:40px}
 .bmw-driver nav .play{height:60px;margin:-10px}
-.bmw-driver dl{margin:0 0 7px;display:flex;gap:clamp(20px,3vw,48px)}
-.bmw-driver dl div+div{border-left:1px solid #ffffff40;padding-left:clamp(20px,3vw,48px)}
-.bmw-driver dt{color:#d4deeb;font-size:clamp(13px,1.25vw,20px)}
-.bmw-driver dd{margin:5px 0 0;font-size:clamp(17px,1.65vw,28px);letter-spacing:-.025em}
-@media(max-width:720px){.bmw-driver{min-height:100svh;padding:26px 20px;gap:22px}.bmw-driver .composition{flex-direction:column;align-items:flex-start;gap:24px}.bmw-driver .backdrop{object-position:62% center}.bmw-driver .product{margin-top:12vh}.bmw-driver .screen{width:160px}.bmw-driver nav{gap:8px}.bmw-driver dl{width:100%;gap:16px}.bmw-driver dl>div{flex:1}.bmw-driver dl div+div{padding-left:16px}}
 
-@media(min-width:721px){
-.bmw-driver{padding:clamp(22px,4vh,52px) 5vw;gap:clamp(12px,2vh,22px)}
-.bmw-driver .screen{width:clamp(155px,min(20vw,31vh),315px);border-color:#292c2d;box-shadow:0 0 0 1px #abaeac,0 8px 21px #07111c75}
-.bmw-driver .product{gap:clamp(9px,1.6vh,18px)}
-}
 
 
 .showcase{box-sizing:border-box;min-height:100svh;font:clamp(15px,1.4vw,23px)/1.4 Arial,sans-serif;color:#172431;background:linear-gradient(145deg,transparent 68%,#324c60 68%,#10283d),#f6f2ec;padding:clamp(22px,4vw,64px);display:grid;align-content:center;gap:3vw}
@@ -75,7 +59,6 @@
 
 .bmw-driver header .hero-story{max-width:690px;font-size:clamp(17px,1.5vw,23px);line-height:1.5;margin:22px 0 10px;color:#edf2f6;text-wrap:pretty}
 .bmw-driver header .hero-bridge{max-width:650px;font-size:clamp(15px,1.15vw,18px);line-height:1.5;color:#c4d3e0;margin:0}
-.bmw-driver{min-height:100svh;gap:30px}
 .chapter-copy{max-width:640px;margin:0 0 18px;font-size:clamp(16px,1.25vw,20px);line-height:1.6;color:#455561;text-wrap:pretty}
 .matrix-note{margin:0;font-size:14px;color:#455561}
 .system-gap{padding:64px max(4vw,22px);background:#e4eaf0;color:#182d3e;font-family:Arial,sans-serif;display:grid;grid-template-columns:1fr 1fr;gap:18px 6vw;align-items:center}
@@ -98,8 +81,7 @@
 .closing-line{padding:44px max(4vw,22px);font:clamp(21px,2.1vw,32px)/1.4 Arial,sans-serif;color:#dae5ef;background:#102537;text-wrap:pretty}
 .vehicle-header:after{content:"";position:absolute;inset:auto 0 0;height:8%;background:linear-gradient(transparent,#1b1c1d)}
 @media(max-width:720px){
-.bmw-driver .product{margin-top:20px}
-.system-gap{grid-template-columns:1fr;padding:36px 22px}
+.system-gap{grid-template-columns:1fr;padding:36px 24px}
 .showcase.desk .desk-body{grid-template-columns:1fr}
 .drift-selector .choices{grid-template-columns:repeat(3,minmax(0,1fr))}
 .drift-selector .choices button{padding:12px 7px;text-align:left}
@@ -108,7 +90,6 @@
 }
 .showcase [hidden]{display:none!important}
 
-.bmw-driver{overflow:hidden}
 
 
 
@@ -132,7 +113,7 @@
 .desk .sample .tile:before{position:static;grid-row:1/3;align-self:center;transform:none}
 .desk .sample .tile b,.desk .sample .tile small{grid-column:2}
 .desk .sample.front .tile:after{display:none}
-.desk .sample.front[data-drift=patch] .tile{padding-inline:1.4em;border-inline-start:3px solid #e5b56d}
+.desk .sample.front[data-drift=patch] .tile{padding-inline:.9em;border-inline-start:3px solid #e5b56d}
 .desk .sample.front[data-drift=match] .callout{color:#283c37;background:#dce9df}
 .proposed-flow{list-style:none;margin:0;padding:0;gap:0;align-items:start}
 .proposed-flow li{min-width:0}
@@ -142,17 +123,108 @@
 @media(max-width:720px){.showcase.desk .desk-body{grid-template-columns:1fr}.inspect{font-size:clamp(13px,2.8vw,18px)}.proposed-flow{row-gap:22px}.inspect .sample h2{font-size:1.08em}.step-art{aspect-ratio:1.12}}
 @media(prefers-reduced-motion:reduce){.themes[data-phase] .tile:after{animation:none}}
 
-@media(max-width:900px){
- .bmw-driver{display:flex;flex-direction:column;gap:0;min-height:auto;padding:0;background:#0e2131}
- .bmw-driver::before{display:none}
- .bmw-driver header{order:0;padding:32px 22px 24px}
- .bmw-driver .backdrop{position:static;order:1;z-index:auto;display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
- .bmw-driver .composition{order:2;display:grid;grid-template-columns:1fr;gap:20px;padding:20px 22px 27px}
- .bmw-driver .product{display:block;margin:0}
- .bmw-driver .product .screen{display:none}
- .bmw-driver nav{justify-content:flex-start}
- .bmw-driver dl{margin:0}
-}
 
+/* DS gutter: 24px side margins on phones */
+@media(max-width:720px){.showcase{padding-inline:24px}}
+
+/* DS type (Lu 2026-11-05: Poppins, "以 Design System 为准"): H1 = display editorial, chapter H2 = DS section title. */
+.bmw-driver h1,.showcase .chapter-title,.showcase.desk .chapter-title,.desk .chapter-title,.system-gap h2{font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif;font-weight:var(--font-weight-semibold,600)}
+/* Case-study opening title = home page title size (Lu 2026-11-09, #1847; visual design-spec-v2): 36px, 30.4px at <=900px. */
+.bmw-driver h1{font-size:var(--font-size-heading-lg);line-height:var(--leading-heading);letter-spacing:var(--tracking-display)}
+@media(max-width:900px){.bmw-driver h1{font-size:var(--font-size-heading)}}
+.showcase .chapter-title,.showcase.desk .chapter-title,.desk .chapter-title,.system-gap h2{font-size:clamp(var(--font-size-heading),3vw,var(--font-size-heading-lg));line-height:var(--leading-heading);letter-spacing:-.025em}
+
+/* Page gutter (Lu 2026-11-06): body text starts on the footer's left edge (site --content-inset).
+   Inside @scope so it outranks the scoped 4vw/5vw paddings above. The hero (.bmw-driver) sets its own inset padding below. */
+.showcase,.system-gap,.closing-line{padding-inline:var(--content-inset)}
+/* At the 24px edge the kicker sat under the fixed 64px site header logo, so the hero starts below the header (as on MAN). */
+/* Hero C, phone option A (visual OUTBOX/BMW_C_PHONE_AB_20261108; Lu picked A, #1845).
+   Normal flow, so longer German copy pushes the phone down instead of running into it.
+   Hero text is DS Poppins like the H1 (Lu #3313, visual BMW_FONT_REVIEW_1109 PR113-HERO-CHECK). */
+.bmw-driver{box-sizing:border-box;position:relative;isolation:isolate;overflow:hidden;min-height:1000px;padding:calc(64px + 40px) var(--content-inset) 16px var(--hero-inset);background:#0e2131;color:#fff;font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif}
+/* Left column (title, phone, store badges) sits further in than the site's 24px inset, so the
+   framed phone has room from the screen edge (Lu #4462; visual #4526, option A: hero only). */
+.bmw-driver{--hero-inset:max(64px,var(--content-inset))}
+@media(max-width:1100px){.bmw-driver{--hero-inset:40px}}
+.bmw-driver .backdrop{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center}
+.bmw-driver::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(5,18,31,.87),rgba(5,18,31,.52) 37%,transparent 70%),linear-gradient(0deg,#071827 0%,rgba(7,24,39,.86) 11%,transparent 38%),linear-gradient(180deg,rgba(5,18,31,.3),transparent 40%)}
+.bmw-driver header{max-width:550px}
+.bmw-driver header>p:first-child{margin:0 0 16px;font-size:16px;line-height:1.5;color:#c4d3e0}
+.bmw-driver header .hero-story{max-width:none;margin:20px 0 12px;font-size:18px;line-height:1.5;color:#edf2f6}
+.bmw-driver header .hero-bridge{max-width:none;font-size:16px;line-height:1.5;color:#c4d3e0}
+.bmw-driver .screen{display:block;width:250px;margin-top:30px;overflow:hidden;border:5px solid #292c2d;border-radius:24px;box-shadow:0 0 0 1px #abaeac,0 8px 21px #07111c75}
+.bmw-driver .screen img{display:block;width:100%;height:auto}
+.bmw-driver nav{justify-content:flex-start;width:max-content;margin-top:20px}
+.bmw-driver dl{position:absolute;left:45%;right:var(--content-inset);bottom:40px;max-width:700px;margin:0;display:flex;gap:32px}
+.bmw-driver dl>div{flex:1;min-width:0}
+.bmw-driver dl>div+div{padding-left:24px;border-left:1px solid #ffffff40}
+.bmw-driver dt{font-size:14px;line-height:1.5;color:#c4d3e0}
+.bmw-driver dd{margin:8px 0 0;font-size:20px;line-height:1.25;letter-spacing:-.025em;color:#fff}
+@media(min-width:601px) and (max-width:1100px){
+.bmw-driver .backdrop{object-position:right center}
+.bmw-driver header{max-width:52%}
+.bmw-driver header .hero-story{font-size:16px}
+.bmw-driver .screen{width:200px}
+/* Keep at least 32px between the left column and the timeline at 601-800px (QA #1924, visual QA #3497).
+   The widest thing in that column is the 267px store-badge row, not the 210px phone. */
+.bmw-driver dl{left:max(40%,calc(var(--hero-inset) + 267px + 32px));gap:24px}
+.bmw-driver dd{font-size:18px}
+}
+/* Phones: copy, then the phone beside the 2020/2026 timeline, then the store badges. */
+@media(max-width:600px){
+.bmw-driver{min-height:0;padding:calc(64px + 24px) 24px 32px;display:grid;grid-template-columns:min(180px,46%) minmax(0,1fr);grid-template-areas:"head head" "phone dl" "nav nav";column-gap:24px;align-items:start}
+.bmw-driver::before{display:none}
+.bmw-driver header{grid-area:head;max-width:none}
+.bmw-driver header>p:first-child{margin-bottom:12px;font-size:14px}
+.bmw-driver header .hero-story{margin:16px 0 10px;font-size:16px;line-height:1.45}
+.bmw-driver header .hero-bridge{font-size:14px}
+/* One car only (Lu #5896): no scene photo on phones, just the app screen. */
+.bmw-driver .backdrop{display:none}
+.bmw-driver .screen{grid-area:phone;width:100%;margin-top:32px;border-width:4px;border-radius:20px}
+.bmw-driver dl{grid-area:dl;position:static;flex-direction:column;gap:16px;margin-top:32px}
+.bmw-driver dl>div+div{padding:16px 0 0;border-left:0;border-top:1px solid #ffffff40}
+.bmw-driver dd{font-size:16px}
+.bmw-driver nav{grid-area:nav;margin-top:32px}
+.bmw-driver nav img{height:32px}
+.bmw-driver nav .play{height:48px;margin:-8px}
+}
+/* Hero from 601px up (Lu #5896, #5975): copy on the left, phone on the right.
+   One car only: the photo's car stands on the road behind the phone, slightly blurred, centred on the car shown
+   on the phone screen. Phones (<=600px) show the app screen only, without the photo.
+   The car is at 74.7% / 59.5% of the 3:2 photo. --scene-w is the photo width. The phone is pushed in from the
+   right so its centre meets the car's centre, and the photo's top is set so the car's centre meets the screen car
+   (0.97 phone widths below the phone's top). */
+@media(min-width:601px){
+.bmw-driver{display:grid;grid-template-columns:var(--copy-w) minmax(0,1fr);grid-template-rows:auto auto 1fr;grid-template-areas:"head phone" "nav phone" "dl phone";column-gap:var(--gap);align-content:start;min-height:0;padding-bottom:max(40px,calc(var(--hero-min) - var(--phone-bottom)));--hero-min:900px;--phone-bottom:calc(104px + var(--phone-top) + 10px + var(--phone-w)*1304/600);--phone-w:290px;--copy-w:min(460px,calc(100vw - var(--hero-inset) - var(--gap) - var(--phone-w)/2 - .253*var(--scene-w)));--gap:72px;--scene-w:1767px;--phone-top:16px}
+.bmw-driver .backdrop,.bmw-driver::after{position:absolute;inset:calc(104px + var(--phone-top) + .969*var(--phone-w) - .3967*var(--scene-w)) -10px auto auto;width:var(--scene-w);height:auto;aspect-ratio:3/2}
+/* Left and bottom edges fade into the hero colour, so the photo has no visible edge at any width. */
+.bmw-driver .backdrop{z-index:-3;max-width:none;object-fit:cover;filter:blur(2px);-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%),linear-gradient(0deg,transparent,#000 12%);mask-image:linear-gradient(90deg,transparent,#000 30%),linear-gradient(0deg,transparent,#000 12%);-webkit-mask-composite:source-in;mask-composite:intersect}
+/* Ground shadow under the car (front wheel to rear wheel), in photo coordinates. */
+.bmw-driver::after{content:"";z-index:-2;background:radial-gradient(25% 4% at 74.5% 71.6%,rgba(2,7,12,.78),rgba(2,7,12,.4) 55%,transparent)}
+/* Veil under the copy column only, fading out after it; the sunset glow on the right stays clear.
+   Darken blend plus a long eased fade (Lu #7067/#7068): the veil only darkens what is lighter than it, so the
+   already dark hero colour stays as it is and the photo goes darker gradually, with no visible edge. */
+.bmw-driver::before{z-index:-1;mix-blend-mode:darken;--veil-end:calc(var(--hero-inset) + var(--copy-w));background:linear-gradient(90deg,rgba(5,18,31,.85),rgba(5,18,31,.8) calc(var(--veil-end) - 120px),rgba(5,18,31,.62) var(--veil-end),rgba(5,18,31,.38) calc(var(--veil-end) + 140px),rgba(5,18,31,.16) calc(var(--veil-end) + 280px),rgba(5,18,31,.04) calc(var(--veil-end) + 400px),transparent calc(var(--veil-end) + 480px)),linear-gradient(0deg,rgba(5,18,31,.5),rgba(5,18,31,.2) 14%,transparent 30%)}
+.bmw-driver header{grid-area:head;max-width:none}
+.bmw-driver nav{grid-area:nav;margin-top:28px}
+.bmw-driver .screen{grid-area:phone;align-self:start;justify-self:end;box-sizing:border-box;width:var(--phone-w);margin:var(--phone-top) calc(.253*var(--scene-w) - 10px - var(--phone-w)/2 - var(--content-inset)) 0 0;border-radius:28px;box-shadow:0 0 0 1px #abaeac,0 24px 60px #030b13b0}
+/* Timeline in the grid (not absolute), so longer German copy pushes it down instead of running into it. */
+/* Timeline's bottom edge level with the phone's bottom edge (Lu #6017, #6020), at every width.
+   No min-height on the grid: it would stretch the 1fr row past the phone. The hero's minimum height comes from
+   padding-bottom instead (--phone-bottom = header offset + phone top + 2x5px border + screen at 600:1304).
+   margin-top keeps a gap above the timeline; longer German copy pushes it, and the phone row, down. */
+.bmw-driver dl{grid-area:dl;position:relative;inset:auto;align-self:end;max-width:none;margin-top:48px;gap:24px}
+}
+@media(min-width:601px) and (max-width:1100px){
+/* The photo scales with the width; the copy column gives way first, so the phone always fits. */
+.bmw-driver{--hero-min:760px;--phone-w:clamp(200px,26vw,280px);--gap:32px;--scene-w:122vw;--copy-w:min(360px,calc(100vw - var(--hero-inset) - var(--gap) - var(--phone-w)/2 - .253*var(--scene-w)))}
+.bmw-driver .screen{border-radius:22px}
+.bmw-driver dl{margin-top:32px}
+}
+/* Narrow tablets: the copy column is too tight for two timeline columns. */
+@media(min-width:601px) and (max-width:800px){
+.bmw-driver dl{flex-direction:column;gap:16px}
+.bmw-driver dl>div+div{padding:16px 0 0;border-left:0;border-top:1px solid #ffffff40}
+}
 }
 .bmw-one-source{color-scheme:light;text-align:left}

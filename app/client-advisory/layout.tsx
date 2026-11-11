@@ -7,7 +7,7 @@ import '@header/header.css'
 import '@/app/globals.css'
 import 'remixicon/fonts/remixicon.css'
 
-const TITLE = 'Lu — Client Advisory'
+const TITLE = 'Lu Jin — Client Advisory'
 const DESCRIPTION =
   'Less searching. More advising. An AI-powered advisory case study by Lu, Lead Service Designer — surfacing what matters to each client, exactly when it matters.'
 

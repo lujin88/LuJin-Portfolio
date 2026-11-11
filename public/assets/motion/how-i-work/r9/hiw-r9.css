@@ -1,17 +1,24 @@
-.ai-decides-section .ad-art-stage{mask-image:none;-webkit-mask-image:none;overflow:visible}.ai-decides-section .ad-art{mask-image:none;-webkit-mask-image:none;opacity:1;mix-blend-mode:lighten}.ai-decides-section .hiw-plays{mix-blend-mode:lighten;visibility:hidden}.ai-decides-section .hiw-plays.is-playing{visibility:visible}.hiw-exp-seam__path{display:none!important}@media(prefers-reduced-motion:reduce){.ai-decides-section .hiw-plays{display:none!important}}
+.ai-decides-section .hiw-art-stage{mask-image:none;-webkit-mask-image:none;overflow:visible}.ai-decides-section .hiw-art{mask-image:none;-webkit-mask-image:none;opacity:1;mix-blend-mode:lighten}.ai-decides-section .hiw-plays{mix-blend-mode:lighten;visibility:hidden}.ai-decides-section .hiw-plays.is-playing{visibility:visible}.hiw-exp-seam__path{display:none!important}@media(prefers-reduced-motion:reduce){.ai-decides-section .hiw-plays{display:none!important}}
 
-.ai-decides-section .ad-art-stage.r7-running .ad-art{visibility:hidden}.ai-decides-section .hiw-plays{mix-blend-mode:normal}
+.ai-decides-section .hiw-art-stage.r7-running .hiw-art{visibility:hidden}.ai-decides-section .hiw-plays{mix-blend-mode:normal}
 
 /* R8 lets the DECIDE accent rise above the old crop. */
 .ai-decides-section .hiw-plays{overflow:visible}
 
 /* Fade only the distant source-image edges, outside character contours. */
-.ai-decides-section .hiw-plane canvas{mask-image:linear-gradient(to right,transparent 39.088%,black 40.391%,black 95.332%,transparent 96.634%),linear-gradient(to bottom,transparent 0%,black 7.026%,black 89.696%,transparent 92.506%);mask-composite:intersect;-webkit-mask-composite:source-in}
+.ai-decides-section .hiw-plane{mask-image:linear-gradient(to right,transparent 39.088%,black 40.391%,black 95.332%,transparent 96.634%),linear-gradient(to bottom,transparent 0%,black 7.026%,black 89.696%,transparent 92.506%);mask-composite:intersect;-webkit-mask-composite:source-in}
 
-.ai-decides-section .ad-art{mask-image:linear-gradient(to right,transparent,black 18px,black calc(100% - 18px),transparent),linear-gradient(to bottom,transparent,black 6px,black calc(100% - 18px),transparent);mask-composite:intersect;-webkit-mask-composite:source-in}
+.ai-decides-section .hiw-art{mask-image:linear-gradient(to right,transparent,black 18px,black calc(100% - 18px),transparent),linear-gradient(to bottom,transparent,black 6px,black calc(100% - 18px),transparent);mask-composite:intersect;-webkit-mask-composite:source-in}
 
 /* CSS gradient masks use alpha, including the reduced-motion SVG still. */
-.ai-decides-section .ad-art{mask-mode:alpha}
+.ai-decides-section .hiw-art{mask-mode:alpha}
 
 /* The loading still shares the normal loop's caption-free first frame. */
 @media(prefers-reduced-motion:reduce){.hiw-caption-loading-cover{display:none}}
+
+/* Composite the three Rive canvases before fading the outer edges. Separate
+   masks let the lower layer's original arrow leak through the edited layer. */
+.ai-decides-section .hiw-plane canvas{mask-image:none;-webkit-mask-image:none}
+
+/* Blend the case section into the illustration background without extra space or motion. */
+.ai-decides-section{background:linear-gradient(to bottom,var(--color-bg-page),var(--ad-bg) clamp(48px,12vw,160px))}

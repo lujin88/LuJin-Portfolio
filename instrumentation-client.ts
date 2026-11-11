@@ -1,4 +1,5 @@
 import posthog from 'posthog-js'
+import { recordingOptedOut } from './app/recording-opt-out'
 
 /**
  * PostHog product analytics (EU Cloud).
@@ -25,11 +26,22 @@ function persistenceMode(value: string | undefined): PersistenceMode {
 
 const key = process.env.NEXT_PUBLIC_POSTHOG_KEY
 
-if (key) {
+// Visitors who chose "Don't record my visits" on /privacy get no PostHog at all.
+if (key && !recordingOptedOut()) {
   posthog.init(key, {
     api_host: POSTHOG_HOST,
     defaults: '2026-08-30',
     persistence: persistenceMode(process.env.NEXT_PUBLIC_POSTHOG_PERSISTENCE),
     person_profiles: 'identified_only',
+    // Session replay stays on (Lu 2026-11-09, #2419) but never records what visitors
+    // type: every input value is masked, and the Ask Lu conversation (public/home.html
+    // #ask-lu-log) shows visitors' questions as page text, so it is blocked entirely.
+    session_recording: {
+      maskAllInputs: true,
+      blockSelector: '#ask-lu-log',
+    },
+    // A visitor's "don't record my visits" choice (posthog.opt_out_capturing) has to
+    // survive reloads even though the visitor id itself lives only in memory.
+    opt_out_capturing_persistence_type: 'localStorage',
   })
 }
