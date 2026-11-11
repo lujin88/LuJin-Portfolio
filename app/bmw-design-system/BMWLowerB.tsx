@@ -90,41 +90,6 @@ export function BMWLowerB() {
       </section>
       <p className="anatomy-caption">Component anatomy · illustrative recreation, not an original specification.</p>
 
-      <LayerScrollGroup as="section" className="pad role-band">
-        <div data-move="96">
-          <h2>
-            My role,
-            <br />
-            and the scope.
-          </h2>
-        </div>
-        <div>
-          <p>
-            I led a six-person team that designed the new My BMW app and its design system, for iOS and Android. The
-            rules had to cover every model back to 2000, starting with the US and European markets; other markets
-            adapted them later. The app launched after I left.
-          </p>
-          <div className="facts">
-            <div>
-              <b>6 people</b>
-              <span>Team I led</span>
-            </div>
-            <div>
-              <b>iOS + Android</b>
-              <span>App & design system</span>
-            </div>
-            <div>
-              <b>Since 2000</b>
-              <span>Models covered</span>
-            </div>
-          </div>
-          <p className="caption">
-            The system covered the whole app, in light and dark mode: vehicle status, remote controls, charging,
-            services and bookings, notifications, news and marketing, in-app purchases, vehicle setup and settings.
-          </p>
-        </div>
-      </LayerScrollGroup>
-
       <section className="pad demo-section" id="climate-study">
         <LayerScrollGroup className="heading">
           <div data-move="96">
