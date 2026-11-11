@@ -3,6 +3,8 @@
 .man-case :where(h1,h2,h3,p,dl,dd,figure,ol,ul){margin:0}
 .man-case :where(h1,h2,h3){text-wrap:balance}
 .man-case img{display:block;max-width:100%;height:auto}
+/* Grid items default to min-width:auto; a failed image (width="1440") then widened its column to 1440px and pushed the copy off screen. */
+.man-case :is(.mc-context,.mc-method,.mc-feature)>*{min-width:0}
 .man-case a{color:inherit}.man-case a:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
 .man-case .mc-width,.man-case .mc-cover-inner{width:min(1184px,calc(100% - clamp(48px,10vw,144px)));margin-inline:auto}
 .man-case h1,.man-case h2,.man-case .mc-feature h3,.man-case .mc-change h3{font-family:var(--serif);font-weight:400;line-height:1.04;letter-spacing:-.05em}
@@ -191,12 +193,6 @@
 .site-closing-case--light.mc-closing{background:#fffefa}
 
 .man-case .mc-cover .mc-man-logo{width:54px;height:auto}
-.man-case .mc-stuttgart-scene{position:absolute;right:0;top:50%;width:44%;transform:translateY(-50%);mask-image:linear-gradient(90deg,transparent,#000 5%),linear-gradient(180deg,transparent,#000 10%,#000 94%,transparent);mask-composite:intersect}
-.man-case .mc-stuttgart-scene img{display:block;width:100%;height:auto}
-@media (max-width:900px){
-  .man-case .mc-stuttgart-scene{position:relative;top:auto;transform:none;width:min(100%,540px);margin-inline:auto;mask-image:linear-gradient(180deg,transparent,#000 7%,#000 95%,transparent)}
-}
-
 /* Hero starts below the fixed 64px site header (logo sat under it at 390/1024). */
 .man-case .mc-cover-inner{padding-top:calc(64px + clamp(48px,6vw,94px))}
 @media(max-width:900px){.man-case .mc-cover-inner{padding-top:calc(64px + 34px)}}
@@ -217,3 +213,38 @@
 /* Page gutter (Lu 2026-11-06): body text starts on the footer's left edge.
    --content-inset is the site gutter from shell-tokens.css; its 100% resolves against .man-case/.mc-cover/.mc-evidence, which are full-bleed. */
 .man-case .mc-width,.man-case .mc-cover-inner{width:auto;margin-inline:var(--content-inset)}
+
+/* Full-screen arrival (Lu #4506; layout visual #4649/#4711; clips video #4685, 1440 clip PM #4703).
+   .mc-arrival-frame is the clip's own box, sized like object-fit:cover and pinned right/bottom,
+   so the note can sit at fixed % of the frame and stays on the truck at every width. */
+.man-case .mc-cover{height:100svh;min-height:700px;padding:0;container-type:size;background:#f9eadc}
+.man-case .mc-cover-inner{padding:calc(64px + 96px) 0 0;margin-inline:max(64px,var(--content-inset));max-width:440px}
+.man-case .mc-arrival{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.man-case .mc-arrival::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(250,243,229,.97),rgba(250,243,229,.68) 29%,transparent 56%);pointer-events:none}
+.man-case .mc-arrival-frame{--fw:max(100cqw,calc(100cqh * 16 / 9));position:absolute;width:var(--fw);aspect-ratio:16/9;left:calc(100cqw - var(--fw));top:calc(100cqh - var(--fw) * 9 / 16)}
+.man-case .mc-arrival-frame :is(img,video){position:absolute;inset:0;width:100%;height:100%;display:block}
+.man-case .mc-arrival video{opacity:0}
+.man-case .mc-arrival-last{visibility:hidden}
+.man-case .mc-arrival:is([data-phase=playing],[data-phase=ended]) video{opacity:1}
+.man-case .mc-arrival[data-phase=still] .mc-arrival-last{visibility:visible}
+/* The note on the parked truck. TruckArrival places it (left/top) and aims the leader (--len, --ang) at
+   the anchor point in the clip (visual #4741 desktop, #4824 phone); until then it is hidden. */
+.man-case .mc-arrival-note{--lx:28px;position:absolute;left:0;top:0;margin:0;padding:14px 22px;border-radius:14px;background:rgba(255,253,249,.92);box-shadow:0 8px 24px rgba(60,40,20,.12);color:#1f1a14;white-space:nowrap;opacity:0;transform-origin:var(--lx) 100%;pointer-events:none}
+.man-case .mc-arrival-note span{display:flex;align-items:center;gap:8px;font-size:16px;color:#3b342c}
+.man-case .mc-arrival-note span::before{content:"";width:9px;height:9px;border-radius:50%;background:#c98a14}
+.man-case .mc-arrival-note strong{display:block;margin-top:4px;font-size:22px;font-weight:600;letter-spacing:-.02em}
+.man-case .mc-arrival-note::after{content:"";position:absolute;left:var(--lx);top:100%;width:1px;height:var(--len,0px);background:#c98a14;transform-origin:top left;transform:rotate(var(--ang,0deg))}
+.man-case .mc-arrival:is([data-phase=ended],[data-phase=still]) .mc-arrival-note{opacity:1;animation:mc-note-pop .32s cubic-bezier(.2,.9,.3,1.2) .15s both}
+@keyframes mc-note-pop{from{opacity:0;transform:translateY(6px) scale(.92)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.man-case .mc-arrival-note{animation:none!important}.man-case .mc-arrival-last{visibility:visible}.man-case .mc-arrival video{display:none}}
+/* Phones: the clip is full width and sits on the bottom, the sky colour fills above it and the clip's
+   top 40px fades into it (visual #4711, #4735). */
+@media(max-width:600px){
+  .man-case .mc-cover{min-height:760px;background:#e0cfbf}
+  .man-case .mc-cover-inner{padding-top:calc(64px + 40px);margin-inline:24px;max-width:none}
+  .man-case .mc-arrival::after{display:none}
+  .man-case .mc-arrival-frame{width:100cqw;aspect-ratio:9/16;left:0;top:auto;bottom:0;-webkit-mask-image:linear-gradient(transparent,#000 40px);mask-image:linear-gradient(transparent,#000 40px)}
+  .man-case .mc-arrival-note{--lx:56px;padding:10px 14px}
+  .man-case .mc-arrival-note span{font-size:14px}
+  .man-case .mc-arrival-note strong{font-size:18px}
+}

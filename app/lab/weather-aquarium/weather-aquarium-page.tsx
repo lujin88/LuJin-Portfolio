@@ -196,6 +196,122 @@ function HolidayVideo({ file, className = 'holiday-video', once = false }: { fil
   )
 }
 
+// Hero iPad screen loop. The poster image already shows the loop's first frame on the
+// screen, so the video only has to sit exactly on that quad: it is a plain 802×581 box
+// (the screen size in hero2.html, the template that rendered the iPad) mapped onto the
+// screen's four corners with a matrix3d. Corners are % of the image box, fitted from the
+// render (ry=-22deg, rz=0.8deg), so they hold at every width. Hidden until the first
+// frame plays; never mounted under reduced motion (unmounting also stops it mid-visit).
+const HERO_SCREEN = { width: 802, height: 581 }
+const HERO_SCREEN_QUAD: readonly (readonly [number, number])[] = [
+  [17.5437, 12.0749],
+  [89.9223, 8.1974],
+  [87.9782, 94.5283],
+  [14.4925, 87.2932],
+]
+
+function screenMatrix(boxWidth: number, boxHeight: number) {
+  const [[x0, y0], [x1, y1], [x2, y2], [x3, y3]] = HERO_SCREEN_QUAD.map(
+    ([x, y]) => [(x / 100) * boxWidth, (y / 100) * boxHeight] as const,
+  )
+  // Unit square → quad (Heckbert), then scaled to the screen box in px.
+  const dx1 = x1 - x2
+  const dx2 = x3 - x2
+  const dx3 = x0 - x1 + x2 - x3
+  const dy1 = y1 - y2
+  const dy2 = y3 - y2
+  const dy3 = y0 - y1 + y2 - y3
+  const det = dx1 * dy2 - dx2 * dy1
+  const g = (dx3 * dy2 - dx2 * dy3) / det
+  const h = (dx1 * dy3 - dx3 * dy1) / det
+  const a = x1 - x0 + g * x1
+  const b = x3 - x0 + h * x3
+  const d = y1 - y0 + g * y1
+  const e = y3 - y0 + h * y3
+  const { width: w, height: hh } = HERO_SCREEN
+  const m = [a / w, d / w, 0, g / w, b / hh, e / hh, 0, h / hh, 0, 0, 1, 0, x0, y0, 0, 1]
+  return `matrix3d(${m.map((n) => +n.toFixed(8)).join(',')})`
+}
+
+function HeroScreenVideo() {
+  const layerRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const motionAllowed = useMotionAllowed()
+  const [playing, setPlaying] = useState(false)
+  const [failed, setFailed] = useState(false)
+
+  useEffect(() => {
+    setPlaying(false)
+  }, [motionAllowed])
+
+  useEffect(() => {
+    const layer = layerRef.current
+    const frame = layer?.parentElement
+    if (!layer || !frame) return
+    const place = () => {
+      // Before the image loads the frame has no height and the quad is degenerate.
+      if (!frame.offsetWidth || !frame.offsetHeight) return
+      layer.style.transform = screenMatrix(frame.offsetWidth, frame.offsetHeight)
+    }
+    place()
+    const observer = new ResizeObserver(place)
+    observer.observe(frame)
+    return () => observer.disconnect()
+  }, [motionAllowed, failed])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || !motionAllowed || failed) return
+
+    let inView = false
+    const syncPlayback = () => {
+      if (inView && !document.hidden) {
+        void video.play().catch(() => {
+          // Playback may be interrupted by a scroll or preference change.
+        })
+      } else {
+        video.pause()
+      }
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting && entry.intersectionRatio > 0
+      syncPlayback()
+    })
+    observer.observe(video.parentElement ?? video)
+    document.addEventListener('visibilitychange', syncPlayback)
+    return () => {
+      observer.disconnect()
+      document.removeEventListener('visibilitychange', syncPlayback)
+      video.pause()
+    }
+  }, [motionAllowed, failed])
+
+  if (!motionAllowed || failed) return null
+
+  return (
+    <div ref={layerRef} className={`hero-screen${playing ? ' is-playing' : ''}`} aria-hidden="true">
+      <video
+        ref={videoRef}
+        muted
+        loop
+        playsInline
+        autoPlay
+        preload="auto"
+        onPlaying={() => setPlaying(true)}
+        onError={() => setFailed(true)}
+      >
+        <source src="/assets/videos/lab/weather-aquarium/hero-screen-loop-r2.webm" type="video/webm" />
+        <source
+          src="/assets/videos/lab/weather-aquarium/hero-screen-loop-r2.mp4"
+          type="video/mp4"
+          onError={() => setFailed(true)}
+        />
+      </video>
+      <span className="hero-screen-glare" />
+    </div>
+  )
+}
+
 // Lu's choice for section 04: true = loop in view (A), false = play on hover (B).
 // Lu 11-05 23:02: B. Clips move only while hovered (or tapped on touch).
 const AUTO_LOOP_POSES = false
@@ -206,7 +322,8 @@ const finePointer = () => window.matchMedia('(hover: hover) and (pointer: fine)'
 // playback never changes colour; the webp only covers the time before the clip loads.
 // Loading starts once, a screen before the section. Mouse: loops while hovered, back to
 // frame 0 on leave. Touch: tap toggles (same finePointer() split as PoseButton).
-// Keyboard: plays while focused. Reduced motion: never plays. `active` is owned by the
+// Keyboard focus stays static; explicit activation toggles playback (PM #214).
+// Reduced motion never plays. `active` is owned by the
 // page so only one plays at a time.
 function VocabArt({
   item,
@@ -294,16 +411,12 @@ function VocabArt({
         if (event.pointerType === 'touch' || !finePointer()) return
         onActive(false)
       }}
-      onFocus={() => {
-        if (!finePointer()) return
-        onActive(true)
-      }}
       onBlur={() => {
         if (!finePointer()) return
         onActive(false)
       }}
-      onClick={() => {
-        if (finePointer()) return
+      onClick={(event) => {
+        if (event.detail !== 0 && finePointer()) return
         onActive(!active)
       }}
     >
@@ -512,7 +625,7 @@ function PoseButton({
 export function WeatherAquariumPage() {
   const rootRef = useRef<HTMLDivElement>(null)
   const heroMediaRef = useRef<HTMLDivElement>(null)
-  const heroDeviceRef = useRef<HTMLImageElement>(null)
+  const heroDeviceRef = useRef<HTMLDivElement>(null)
   const [language, setLanguage] = useState<Lang>('zh')
   const [pose, setPose] = useState(0)
   const [activeTap, setActiveTap] = useState<number | null>(null)
@@ -630,13 +743,15 @@ export function WeatherAquariumPage() {
                 ref={heroMediaRef}
                 aria-label="Weather Aquarium shown on an iPad"
               >
-                <img
-                  ref={heroDeviceRef}
-                  className="hero-device"
-                  src={`${IMG}/hero-device-left-v2.webp`}
-                  alt="An iPad turned to the left, showing the Weather Aquarium app: an autumn lakeside in Kilchberg with a girl, her cat and a boy on the jetty, fish under the water, and the weather panel below"
-                  fetchPriority="high"
-                />
+                <div ref={heroDeviceRef} className="hero-device">
+                  <img
+                    className="hero-device-image"
+                    src={`${IMG}/hero-device-left-r2.webp`}
+                    alt="An iPad turned to the left, showing the Weather Aquarium app: an autumn lakeside in Kilchberg with a girl, her cat and a boy on the jetty, fish under the water, and the weather panel below"
+                    fetchPriority="high"
+                  />
+                  <HeroScreenVideo />
+                </div>
               </div>
             </div>
           </div>

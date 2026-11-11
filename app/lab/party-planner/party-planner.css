@@ -306,6 +306,13 @@ html:has(.pp-landing) #site-content {
   line-height: var(--leading-relaxed);
   color: rgba(255, 255, 255, 0.94);
 }
+/* The phone below is pulled left into the copy column by the same amount; keep the subtitle
+   clear of it, or at ~1024px "always remember" runs under the phone. */
+@media (min-width: 901px) {
+  .pp-landing .hero-copy p {
+    max-width: calc(100% - (clamp(4rem, 8vw, 8rem) + 35px) - var(--space-sm, 0.75rem));
+  }
+}
 .pp-landing .hero-phone {
   position: relative;
   /* Pull the desktop mockup back into the composition instead of leaving it at the far edge. */
@@ -958,7 +965,9 @@ html:has(.pp-landing) #site-content {
   left: auto;
   top: auto;
   z-index: 8;
-  margin-top: -2.6rem;
+  /* Below the phone, not over it: the outline pill has white text and no fill, so on the
+     phone's white bottom edge it disappeared (desktop) or tangled with the frame (phones). */
+  margin-top: var(--space-md, 1.5rem);
 }
 .pp-landing .closing-footer {
   position: relative;
@@ -1051,9 +1060,6 @@ html:has(.pp-landing) #site-content {
   .pp-landing .day-phone {
     width: min(13rem, 72vw);
     height: calc(min(13rem, 72vw) * 2.173);
-  }
-  .pp-landing .closing .pill {
-    margin-top: -2.1rem;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1410,4 +1416,11 @@ html:has(.pp-landing) #site-content {
   .pp-landing .one-link-claim {
     min-height: 2.75rem;
   }
+}
+
+/* Phones: closing tagline -> contact heading 64px across the colour change: 24px left in
+   the blue closing, 40px above the heading (visual MOBILE_SPACING_1109/RULES.md). */
+@media (max-width: 640px) {
+  .pp-landing .closing { padding-bottom: 24px; }
+  .pp-landing .pp-site-closing.site-closing.site-closing .contact-section { padding-top: 40px; }
 }

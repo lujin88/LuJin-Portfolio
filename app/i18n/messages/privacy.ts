@@ -2,7 +2,7 @@
 // Each section is a heading and its paragraphs; links are rendered by the page.
 export const privacy = {
   en: {
-    documentTitle: 'Privacy',
+    documentTitle: 'Lu Jin — Privacy',
     title: 'Privacy',
     intro: 'This is my personal portfolio. I keep data collection to a minimum. Here is what happens when you visit.',
     responsibleTitle: 'Who is responsible',
@@ -31,7 +31,7 @@ export const privacy = {
     optIn: 'Turn recording back on',
   },
   de: {
-    documentTitle: 'Datenschutz',
+    documentTitle: 'Lu Jin — Datenschutz',
     title: 'Datenschutz',
     intro: 'Dies ist mein persönliches Portfolio. Ich erhebe so wenige Daten wie möglich. Das passiert bei Ihrem Besuch:',
     responsibleTitle: 'Verantwortlich',

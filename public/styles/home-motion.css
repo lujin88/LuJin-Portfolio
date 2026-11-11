@@ -45,6 +45,9 @@ html[data-wa-season="spring"] #wa-season-video { background-image: url(/assets/i
 html[data-wa-season="summer"] #wa-season-video { background-image: url(/assets/images/home-motion/wa-season-summer.webp); }
 html[data-wa-season="autumn"] #wa-season-video { background-image: url(/assets/images/home-motion/wa-season-autumn.webp); }
 html[data-wa-season="winter"] #wa-season-video { background-image: url(/assets/images/home-motion/wa-season-winter.webp); }
+/* AI Pet card: same still under the video, so WebKit shows it (not black)
+   between src being set and the first decoded frame. */
+#ai-pet-video { background: center / cover no-repeat url(/assets/images/home-motion/ai-pet-dolphin.webp); }
 /* Clip keeps each Playground picture, including its hover scale, inside the frame. */
 .frame-lag-clip { display: block; overflow: hidden; aspect-ratio: 1.44; }
 .frame-lag-clip :is(img, video) {
@@ -84,7 +87,7 @@ html[data-wa-season="winter"] #wa-season-video { background-image: url(/assets/i
   .home-case-title { max-width: 700px; }
   .home-case-detail { max-width: 700px; }
 }
-@media (max-width: 639px) {
+@media (max-width: 720px) {
   #home-playground { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
   .home-project-grid { grid-template-columns: 1fr; gap: var(--space-xl); }
   #home-playground h2 { margin-bottom: var(--space-lg); }
@@ -131,7 +134,7 @@ html[data-wa-season="winter"] #wa-season-video { background-image: url(/assets/i
   overflow: visible;
   z-index: 3;
 }
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   /* The stacked list has no timeline bar. Keep the stroke free to meet the
      illustration above the seam, and clip anything that would paint into
      the experience list below. */

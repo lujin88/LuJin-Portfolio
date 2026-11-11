@@ -96,12 +96,44 @@
   margin: -20px -5% -10px -8%;
   perspective: 1200px;
 }.wa-page .hero-device{
+  position: relative;
   width: min(100%, 840px);
   transform: translate3d(0, 0, 0) rotateZ(0.75deg);
   transform-origin: 52% 55%;
-  filter: drop-shadow(0 24px 22px rgb(39 49 37 / 0.16));
   transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
   will-change: transform;
+}.wa-page .hero-device-image{
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 24px 22px rgb(39 49 37 / 0.16));
+}.wa-page .hero-screen{
+  /* 802×581 = .screen in hero2.html; JS maps this box onto the screen quad. */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 802px;
+  height: 581px;
+  overflow: hidden;
+  border-radius: 20px;
+  transform-origin: 0 0;
+  opacity: 0;
+  pointer-events: none;
+}.wa-page .hero-screen.is-playing{
+  opacity: 1;
+}.wa-page .hero-screen video{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}.wa-page .hero-screen-glare{
+  /* The template's .glare spans the glass (850×629, screen inset 24px); repaint it over the video. */
+  position: absolute;
+  top: -24px;
+  left: -24px;
+  width: 850px;
+  height: 629px;
+  background: linear-gradient(115deg, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0) 38%);
 }.wa-page .section-heading{
   padding-block: 80px 24px;
 }.wa-page .section-heading.compact{
@@ -684,4 +716,21 @@ html:has(.wa-page) {
   html:has(.wa-page) { scroll-behavior: auto; }
   .wa-closing .contact-reveal { opacity: 1 !important; transform: none !important; transition: none; }
   .wa-closing .pill-btn, .wa-closing .pill-btn:hover { transition: none; transform: none; }
+}
+
+/* Phones: last character label -> contact heading 64px (visual MOBILE_SPACING_1109/RULES.md).
+   The pose track keeps its own 33px under the labels (scroll room); the section
+   drops its 96px and the contact top makes up the rest. */
+@media (max-width: 640px) {
+  .wa-page .motion-section { padding-bottom: 0; }
+  .wa-closing.site-closing.site-closing .contact-section { padding-top: 31px; }
+}
+/* Phones: 02 -> 03 and 03 -> 04 are 48px from the last caption / vocab item to the next
+   eyebrow (visual CANDIDATES-v3). They were 176 and 188px: each section's bottom padding
+   stacked on the next one's top. Galleries, vocab grid and pose canvas keep their size. */
+@media (max-width: 640px) {
+  .wa-page .editions-section,
+  .wa-page .learning-section { padding-bottom: 0; }
+  .wa-page .learning-section,
+  .wa-page .motion-section { padding-top: 48px; }
 }

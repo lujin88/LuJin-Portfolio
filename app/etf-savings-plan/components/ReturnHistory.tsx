@@ -29,7 +29,7 @@ const snapshots = [{
 const formatCHF = (n: number) => 'CHF ' + new Intl.NumberFormat('de-CH', {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2
-}).format(n);
+}).format(n).replace(/'/g, '’');
 const returnPct = (row: typeof snapshots[number]) => 100 * (row.value - row.paid) / row.paid;
 const sign = (n: number) => n < 0 ? '−' : n > 0 ? '+' : '';
 const rangeLabel = (n: number) => sign(n) + Math.abs(n) + '%';

@@ -1,44 +1,43 @@
 'use client'
 
 import Image from 'next/image'
-import type { ReactNode } from 'react'
 import { MousePointer2, MessageSquare, Users, BarChart3 } from 'lucide-react'
 import { SectionLabel } from '@eon/components/section-label'
 import { ContentContainer } from '@eon/components/content-container'
 import { EvidenceCard } from '@eon/components/testing/evidence-card'
-import { QuoteCard } from '@eon/components/testing/quote-card'
 import { AutoDetectedPill, RoofDetectionCard } from '@eon/components/testing/roof-detection-card'
 import { KineticLines } from '@eon/components/motion/kinetic-lines'
 import { OnceReveal } from '@eon/components/motion/once-reveal'
 import { useTranslation } from '@i18n/use-translation'
 
-function AnnotationArrow({ className }: { className?: string }) {
+// Visual's redraw (Lu #1473): one arc from under the handwriting toward the person at the laptop,
+// in AnnotationGroup coordinates (OUTBOX/EON_ARROW_R2_20261108/arrow-1440.svg).
+// Lu #3691: the arrow stops outside the photo. The photo's left edge is at x=184 here at 1024-1279px
+// and x=240 from 1280px (the group moves 56px), so the tip ends 14px before it at each width.
+function AnnotationArrow({ className, tipX }: { className?: string; tipX: number }) {
+  const tipY = 200
   return (
     <svg
       aria-hidden="true"
-      viewBox="0 0 72 68"
+      width="345"
+      height="250"
+      viewBox="0 0 345 250"
       fill="none"
       overflow="visible"
       className={className}
     >
       <path
-        d="M10 8c8 4 28 8 42 24 8 10 12 20 8 30"
+        d={`M110.3 68.3C114 150 ${tipX - 40} ${tipY - 8} ${tipX} ${tipY}`}
         stroke="currentColor"
-        strokeWidth="1.4"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+      <path
+        d={`M${tipX - 16} ${tipY - 10}Q${tipX - 6} ${tipY - 3} ${tipX} ${tipY}Q${tipX - 7} ${tipY + 5} ${tipX - 15} ${tipY + 8}`}
+        stroke="currentColor"
+        strokeWidth="1.7"
         strokeLinecap="round"
         strokeLinejoin="round"
-      />
-      <path
-        d="M60 62 48 54"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-      />
-      <path
-        d="M60 62 58 48"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
       />
     </svg>
   )
@@ -48,14 +47,10 @@ function AnnotationGroup({
   className,
   hand1,
   hand2,
-  quote,
-  attribution,
 }: {
   className?: string
   hand1: string
   hand2: string
-  quote: ReactNode
-  attribution: string
 }) {
   return (
     <div className={className}>
@@ -64,12 +59,9 @@ function AnnotationGroup({
         <br />
         {hand2}
       </p>
-      <AnnotationArrow className="absolute left-[4.35rem] top-[4.05rem] z-40 h-[4.25rem] w-[4.5rem] text-[#5a6180]/75" />
-      <QuoteCard
-        quote={quote}
-        attribution={attribution}
-        className="absolute left-[7.25rem] top-[5.85rem] z-30 w-[248px]"
-      />
+      {/* Below 1024 the photo sits elsewhere and the arc crossed the face (visualqa #1676): hidden there, PM #1678. */}
+      <AnnotationArrow tipX={170} className="absolute left-0 top-0 z-40 hidden text-[#5a6180] lg:block xl:hidden" />
+      <AnnotationArrow tipX={226} className="absolute left-0 top-0 z-40 hidden text-[#5a6180] xl:block" />
     </div>
   )
 }
@@ -83,18 +75,10 @@ export function TestingSection() {
     { icon: MousePointer2, label: sources[2], iconClassName: 'bg-peach text-navy-950' },
     { icon: MessageSquare, label: sources[3], iconClassName: 'bg-blue-soft text-navy-950' },
   ]
-  const quoteBody = (
-    <>
-      {t('eon.testing.quote1')}
-      <br />
-      {t('eon.testing.quote2')}
-    </>
-  )
-
   return (
     <section className="case-study-section relative overflow-x-clip bg-off-white pb-20">
       <ContentContainer className="relative z-[1]">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,620px)] lg:gap-0">
+        <div className="grid grid-cols-1 items-center gap-0 md:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,620px)] lg:gap-0">
           {/* Left column: editorial content */}
           <div className="max-w-[620px]">
             <SectionLabel
@@ -122,20 +106,12 @@ export function TestingSection() {
             </OnceReveal>
           </div>
 
-          {/* Right visual: photograph, quote, handwritten note, roof overlay */}
-          <OnceReveal className="relative mx-auto w-full max-w-[520px] pt-16 lg:mx-0 lg:ml-auto lg:max-w-none lg:pt-2">
+          {/* Right visual: photograph, handwritten note, roof overlay */}
+          <OnceReveal className="relative mx-auto w-full max-w-[520px] pt-6 md:pt-16 lg:mx-0 lg:ml-auto lg:max-w-none lg:pt-2">
             <AnnotationGroup
               className="pointer-events-none absolute top-0 z-30 hidden w-[420px] md:block md:-left-2 lg:-left-[9.5rem] lg:max-xl:-left-[6rem] lg:top-2"
               hand1={t('eon.testing.hand1')}
               hand2={t('eon.testing.hand2')}
-              quote={quoteBody}
-              attribution={t('eon.testing.attribution')}
-            />
-
-            <QuoteCard
-              quote={quoteBody}
-              attribution={t('eon.testing.attribution')}
-              className="absolute left-2 top-[6.5rem] z-30 w-[248px] md:hidden"
             />
 
             <div className="relative ml-auto w-full max-w-[500px] lg:mr-8">
@@ -158,7 +134,8 @@ export function TestingSection() {
                     height={1402}
                     className="h-auto w-full bg-transparent"
                   />
-                  <div className="absolute left-[58%] top-[12.5%] z-20 -translate-x-1/2">
+                  {/* German label is longer and must stay on one line: centre it so it stays inside the card. */}
+                  <div className="absolute left-[58%] top-[12.5%] z-20 -translate-x-1/2 [&:lang(de)]:left-1/2">
                     <AutoDetectedPill />
                   </div>
                   <div className="absolute bottom-[2.4%] left-[14.2%] right-[14.2%] z-20">

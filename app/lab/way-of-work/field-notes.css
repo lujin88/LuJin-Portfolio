@@ -182,3 +182,10 @@
 .ww-page a.ww-case-btn:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.ww-page a.ww-case-btn,.ww-page a.ww-case-btn:hover,.ww-page a.ww-case-btn:hover .ww-case-icon{transform:none}}
 .ww-page .ww-finale .ww-finale-kicker { margin: 0 0 16px; color: #505449; }
+
+/* Phones: "Explore the BMW case" -> contact heading = the contact section's 64px
+   (app/components/site-closing-mobile.css); the finale's bottom margin doubled it
+   (visual MOBILE_SPACING_1109/RULES.md). */
+@media (max-width: 640px) {
+  .ww-portfolio .ww-finale { margin-bottom: 0; }
+}

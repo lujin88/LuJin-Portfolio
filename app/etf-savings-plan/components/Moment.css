@@ -1,4 +1,4 @@
-:where(.etf-case) .case-site {background:#f8f9fb;color:#0b3558;font-family:"Avenir Next",Inter,Arial,sans-serif;display:flow-root}
+:where(.etf-case) .case-site {background:#f8f9fb;color:#0b3558;font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif;display:flow-root}
 :where(.etf-case) .case-site * {box-sizing:border-box}
 :where(.etf-case) .case-site :where(h1,h2,h3,p){margin:0}
 :where(.etf-case) .case-site a {color:inherit;text-underline-offset:4px}
@@ -16,10 +16,18 @@
 :where(.etf-case) .research {font-size:clamp(15px,1.3vw,18px);line-height:1.55;color:#476788;margin:0 0 18px}
 :where(.etf-case) .research a {font-size:.89em;white-space:nowrap}
 :where(.etf-case) .closing {margin:22px 0 0}
-:where(.etf-case) .shared-phone {position:sticky;align-self:start;top:0;height:min(100svh,860px);display:grid;place-items:center}
+:where(.etf-case) .shared-phone {position:sticky;align-self:start;top:64px;height:min(calc(100svh - 64px),860px);padding-block:24px 59px;display:grid;place-items:center}
+/* Whole handset in view (Lu #4489, visual #4526). The stage used to start at top:0, under the
+   fixed 64px site header, so the frame's top was cut on 1512x982. Now it starts below the header
+   and keeps 24px clear above the frame and below its shadow (the shadow reaches ~35px under the
+   frame, hence 59px). The frame is (w - 14px) * 844/390 + 14px tall, so cap its width to fit. */
+:where(.etf-case) .shared-phone .story-handset {width:min(375px,calc((min(100svh - 64px,860px) - 83px - 14px) * 390 / 844 + 14px),100%)}
+/* The stage used to start level with chapter 1, so it only pinned once the chapter top was ~120px
+   from the top of the viewport; while the title sat mid-screen the frame's bottom (Continue) was
+   below the fold (PM #6788). Start it higher so it pins when the chapter top is at 35% of the view. */
+:where(.etf-case) .shared-phone {margin-top:calc(64px - 35svh)}
 :where(.etf-case) .phone-stage {position:relative;display:grid;place-items:center;isolation:isolate;width:100%}
-:where(.etf-case) .phone-stage::before {content:"";position:absolute;width:98%;height:66%;z-index:-1;border-radius:60% 42% 58% 42%;background:linear-gradient(120deg,#d5eaff,#f7d6ed);transform:rotate(-13deg)}
-:where(.etf-case) .down.phone-stage::before {background:linear-gradient(120deg,#e0edff,#b7dbfa);transform:rotate(9deg)}
+:where(.etf-case) .phone-stage::before {display:none}
 :where(.etf-case) .device {position:relative;inset:auto;height:712px;width:390px;zoom:clamp(.64,calc(100svh / 800px),1)}
 :where(.etf-case) .glass {padding-bottom:25px}:where(.etf-case) .footer-box p {font-weight:400;font-size:12px;line-height:1.4;margin-top:4px}:where(.etf-case) .footer-box a {color:#3546bd}
 :where(.etf-case) .inline-phone {display:none}
@@ -44,3 +52,13 @@
 }
 
 :where(.etf-case) .case-site{overflow-x:clip}
+/* Phones: 48px from the opening phones to the first chapter; eyebrow 8px, heading to text 16px (visual RULES.md). */
+@media(max-width:600px){
+  .etf-case .story {margin-top:48px}
+  .etf-case .story-copy>article>h2 {margin-top:8px;margin-bottom:16px}
+}
+/* Phones: last chapter -> contact heading 64px. The stacked chapters' 50px bottom margin
+   stacked on the contact's own 64px top (114px); only the last chapter drops it. */
+@media(max-width:640px){
+  .etf-case .story article:last-child {margin-bottom:0}
+}

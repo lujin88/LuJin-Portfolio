@@ -10,7 +10,7 @@ export function OverviewSection() {
   const { t } = useTranslation()
   return (
     <section className="relative overflow-hidden bg-eon-navy text-white">
-      <ContentContainer className="relative grid items-center gap-12 py-14 lg:grid-cols-2 lg:gap-16 lg:py-16">
+      <ContentContainer className="relative grid items-center gap-6 py-8 md:gap-12 md:py-14 lg:grid-cols-2 lg:gap-16 lg:py-16">
         <div className="order-2 lg:order-1">
           <SectionLabel
             number="01"

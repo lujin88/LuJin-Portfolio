@@ -16,7 +16,7 @@ const poppinsItalic = Poppins({
   preload: false,
 })
 
-const TITLE = 'Lu Jin — Product & Service Designer'
+const TITLE = 'Lu Jin — Product Designer'
 const DESCRIPTION =
   'Product and service designer for banking, energy and mobility. 10+ years turning complex B2B work into clear tools.'
 

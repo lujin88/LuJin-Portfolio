@@ -128,7 +128,8 @@ export function ConceptScrollStory({
         className={
           enabled
             ? 'ca-s06-stage sticky top-0 flex h-svh w-full items-start pt-[clamp(6.5rem,12vh,8rem)] pb-[clamp(2rem,5vh,3.5rem)]'
-            : 'flex min-h-svh w-full items-center py-24 md:py-28'
+            : // Phones: no 100svh minimum or bottom padding, so 06 -> 07 is 48px (visual RULES.md).
+              'flex min-h-svh w-full items-center py-24 max-sm:min-h-0 max-sm:pb-0 md:py-28'
         }
       >
         <div

@@ -10,7 +10,7 @@ import { StoryConnector } from '@/components/sessions/story-connector'
 
 export function ClientAdvisorCaseStudy() {
   return (
-    <main>
+    <main className="ca-main">
       <div className="ca-s01-s03">
         <StoryConnector />
         <HeroSection />

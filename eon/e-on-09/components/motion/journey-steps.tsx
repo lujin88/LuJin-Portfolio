@@ -69,9 +69,11 @@ export function JourneySteps() {
       }
       return 1 - (1 - (low + high) / 2) ** 3
     }
+    // Same clock as the CSS sequence: both start when `started` flips (the travelling dots that
+    // used to carry this clock were removed, Lu 2026-11-10).
+    const t0 = performance.now()
     const follow = () => {
-      const lead = rail.querySelector('[data-journey-particle="lead"]')
-      const time = Number(lead?.getAnimations()[0]?.currentTime ?? 0)
+      const time = performance.now() - t0
       const elapsed = Math.max(0, time - 1350)
       const hop = Math.min(2, Math.floor(elapsed / 333))
       const eased = ease(Math.min(1, (elapsed - hop * 333) / 333))
@@ -112,9 +114,11 @@ export function JourneySteps() {
   }, [started, reduced])
 
   return (
+    // overflow-x:auto also clips vertically: pt-4 (with mt trimmed by the same 12px) keeps the
+    // scaled Calculate halo, which reaches ~10px above the row, from being cut flat.
     <div ref={ref} data-journey-sequence  data-ready={ready}
       data-started={started || reduced} data-reduced={reduced}
-      className={`${styles.sequence} relative z-[1] mt-6 overflow-x-auto pt-1 pb-16 md:mt-8`}>
+      className={`${styles.sequence} relative z-[1] mt-3 overflow-x-auto pt-4 pb-16 max-sm:pb-6 md:mt-5`}>
       <div className={`${styles.track} flex w-max items-start justify-start gap-1`}>
         {icons.map((Icon, i) => {
           const active = i === 2
@@ -141,10 +145,6 @@ export function JourneySteps() {
             </Fragment>
           )
         })}
-        <div aria-hidden="true" className={styles.particles}>
-          <span data-journey-particle="lead" className={styles.lead} />
-          <span data-journey-particle="survivor" className={styles.survivor} />
-        </div>
       </div>
     </div>
   )
