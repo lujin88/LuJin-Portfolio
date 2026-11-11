@@ -77,13 +77,13 @@ Mobbin 和 Refero 都只有静态页，看不到动效，也没找到「同一�
 | 1 | 三张入口卡（Agent Monitor、Scranton、Pixel Office）同一套结构、同一个大小：截图、项目名、一句话，不多 | 1440 和 390 各量一次三张卡的外框：宽高差 ≤ 2px；每张只有 1 张截图、1 个名字、1 句说明（≤ 2 行） | Wild、Pentagram |
 | 2 | 1440 三张卡在同一行、顶边对齐；390 上下排成一列，页面没有横向滚动条 | 1440：三张卡顶边坐标相同；390：三张卡左边相同、依次往下；两个宽度下 `document.documentElement.scrollWidth` 都等于 `clientWidth`（卡片行容器自己的横滑不算页面滚动） | Wild（三张一排）；Lu #7297（桌面横、手机竖） |
 | 3 | 1440 横排是一排卡：最右边的卡只露出一部分，告诉人还能往右，并带箭头（Lu #7316 选 A）；390 竖排不要求 | 看 1440 不滚动的截图：一排卡的右边缘被视口切到，能看到下一张的一部分（不是三张整齐全在视口内）；有可点的左右箭头，键盘能操作，点一下卡片行会移动；到头的一端箭头变灰。露出多少没有参考能量（Pentagram 是静态图，只能目测，不写数字） | Pentagram、Wild；Lu #7316 |
-| 4 | 卡里是真实截图，不是占位或重画的示意图 | Agent Monitor 的图来自 `/lab/agent-monitor` 的真实页面，Pixel Office 的图来自 bear v4 房间（PM #7298）；Scranton 用哪个画面**还没定，待 PM**；截图里的字在 1440 下肉眼能读出标题；不是灰块，不是马赛克 | Wild；Sketch 的卡（[Mobbin](https://mobbin.com/sites/sections/83492699-4967-4510-9f31-337fc2494aa4)，卡里是真实 App 画面）；PM #7298 |
+| 4 | 卡里是真实截图，不是占位或重画的示意图 | Agent Monitor 的图来自 `/lab/agent-monitor` 的真实页面，Pixel Office 的图来自 bear v4 房间（PM #7298）；Scranton 用 Scranton 的频道界面，但必须是专门搭的演示频道，不能截真实频道（真实频道里有 Lu 的消息和 UBS 相关内容），上线前要 legal 看过（PM #7330，Lu 可改）；Pixel Office 在 bear v4 上线前用现有画面，上线后换截图（PM #7330）；截图里的字在 1440 下肉眼能读出标题；不是灰块，不是马赛克 | Wild；Sketch 的卡（[Mobbin](https://mobbin.com/sites/sections/83492699-4967-4510-9f31-337fc2494aa4)，卡里是真实 App 画面）；PM #7298 |
 | 5 | 插画用 How I Work 现有那一套，不新增风格 | 把这一块里的插画和 `/lab/way-of-work` 现有插画并排：线条粗细、颜色、画法一致；这一块里没有第二种插画风格（例如 Refero 页的 3D 形状不能拿来当插画） | Lu #7297（「Illustration 还是继续沿用 How I Work」） |
 | 6 | 动效只做进场，只播一次；只动 transform 和 opacity。桌面和手机各用什么方向进场，**待 visual 的方案和 PM 确认，Lu 没定** | 录屏：每张卡进场后不再动；开了 reduced-motion 直接是最终画面；没有页面抖动（布局偏移为 0）。进场方向这条先不判，等 visual 的动效说明定了，再补成能查的一句 | Lu #7297（桌面横排、手机竖排的排布）、Lu #7316（参考选择）；进场方向没有来源 |
 | 7 | 卡片之间用 1px 细线或留白分隔，按钮是描边药丸，不加投影；底色是浅色，不跟 Refero 变暗 | 看截图：卡的边界是 1px 线或空白，没有 box-shadow；按钮是描边加大圆角（Refero 是 100px 圆角），不是实心填充；页面底色和 How I Work 现有的浅底一致，没有换成 Refero 的暗底 | Refero GSAP 页（只取细线和药丸按钮）；底色按 PM #7314 |
-| 8 | 整张卡能点，键盘也能：点进去是 Playground 的项目页，不在 How I Work 里展开项目内容 | Tab 能依次聚焦三张卡，有可见的焦点框，回车进入；点击卡片任意位置都进入。Agent Monitor 落在 `/lab/agent-monitor`；Scranton 和 Pixel Office 点进哪一页**还没定，待 PM**，没定之前这两张只查「整张可点、键盘可达、不是死链」。How I Work 页上没有这三个项目的完整内容（只有卡） | Lu #7309（选 A）；Pentagram、Wild 的卡片也是入口（静态图看不出点击区域，所以点击行为以 Lu #7309 为准） |
+| 8 | 整张卡能点，键盘也能：点进去是 Playground 的项目页，不在 How I Work 里展开项目内容；页面还没有的项目，卡片照样显示，但不能点，标「即将上线」 | Tab 能依次聚焦能点的卡，有可见的焦点框，回车进入；点击卡片任意位置都进入。Agent Monitor 和 Pixel Office 都落在 `/lab/agent-monitor`（PM #7330）；Scranton 的 `/lab/scranton` 页面上线前，这张卡不可点、不在 Tab 顺序里、带「即将上线」字样，不是死链；页面上线后改成可点。How I Work 页上没有这三个项目的完整内容（只有卡） | Lu #7309（选 A）；PM #7330；Pentagram、Wild 的卡片也是入口（静态图看不出点击区域，所以点击行为以 Lu #7309 为准） |
 
-**还没定**：Scranton 的截图用哪个画面；Scranton 和 Pixel Office 点进哪一页。两处都写了「待 PM」，没有猜。
+**还没定**：Scranton 演示频道的画面还没搭，legal 还没看；进场方向（第 6 条）待 visual 方案。没有猜。
 
 ## 怎么用（给视觉校正）
 - 按 harness-core `checks.md`「标杆对照」：只看渲染出来的结果，把截图和上面的参考并排，逐条判。结论只写通过或不通过；不通过时写最大的一条差距，并写明违反了哪一块的第几条（例如「② 第 2 条」）。
