@@ -35,7 +35,7 @@ const SECTIONS = [
     body: 'See the team share a space.',
     image: `${IMG}/office-v4.gif`,
     alt: 'Pixel Office demo scene',
-    mediaClass: 'office',
+    mediaClass: 'office wide-full',
   },
 ] as const
 
