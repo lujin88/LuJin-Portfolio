@@ -1,0 +1,101 @@
+[
+  {
+    "width": 1440,
+    "page": "a",
+    "overflow": false,
+    "images": true,
+    "anchors": []
+  },
+  {
+    "width": 1440,
+    "page": "landing",
+    "overflow": false,
+    "images": true,
+    "anchors": [
+      {
+        "id": "monitor",
+        "y": 574,
+        "scrollY": 550,
+        "top": 24
+      },
+      {
+        "id": "scranton",
+        "y": 1374,
+        "scrollY": 1350,
+        "top": 24
+      },
+      {
+        "id": "office",
+        "y": 2174,
+        "scrollY": 2150,
+        "top": 24
+      }
+    ]
+  },
+  {
+    "width": 700,
+    "page": "a",
+    "overflow": false,
+    "images": true,
+    "anchors": []
+  },
+  {
+    "width": 700,
+    "page": "landing",
+    "overflow": false,
+    "images": true,
+    "anchors": [
+      {
+        "id": "monitor",
+        "y": 622,
+        "scrollY": 598,
+        "top": 24
+      },
+      {
+        "id": "scranton",
+        "y": 1362,
+        "scrollY": 1338,
+        "top": 24
+      },
+      {
+        "id": "office",
+        "y": 2102,
+        "scrollY": 2078,
+        "top": 24
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "page": "a",
+    "overflow": false,
+    "images": true,
+    "anchors": []
+  },
+  {
+    "width": 390,
+    "page": "landing",
+    "overflow": false,
+    "images": true,
+    "anchors": [
+      {
+        "id": "monitor",
+        "y": 668,
+        "scrollY": 644,
+        "top": 24
+      },
+      {
+        "id": "scranton",
+        "y": 1408,
+        "scrollY": 1384,
+        "top": 24
+      },
+      {
+        "id": "office",
+        "y": 2148,
+        "scrollY": 2124,
+        "top": 24
+      }
+    ]
+  }
+]
