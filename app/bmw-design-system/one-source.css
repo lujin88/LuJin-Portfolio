@@ -238,4 +238,16 @@
 .bmw-driver dl>div+div{padding:16px 0 0;border-left:0;border-top:1px solid #ffffff40}
 }
 }
+/* PM #7812 — hero meta + section h2 aligned to UBS scale */
+.bmw-driver dl.hero-meta dt{font-size:15px;line-height:22.5px}
+.bmw-driver dl.hero-meta dd{font-size:17px;line-height:25.5px}
+.showcase .chapter-title,.showcase.desk .chapter-title,.desk .chapter-title,.system-gap h2{font-size:40px;line-height:44px;letter-spacing:-.025em}
+@media(min-width:721px){
+.showcase .chapter-title,.showcase.desk .chapter-title,.desk .chapter-title,.system-gap h2{font-size:51.84px;line-height:57.02px}
+.showcase.desk .chapter-title{font-size:51.84px;line-height:57.02px;margin:0}
+}
+@media(max-width:600px){
+.bmw-driver header .hero-story{line-height:1.5}
+.bmw-driver dl.hero-meta dd{font-size:17px;line-height:25.5px}
+}
 .bmw-one-source{color-scheme:light;text-align:left}
