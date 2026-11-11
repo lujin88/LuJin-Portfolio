@@ -89,5 +89,5 @@ html:has(.tools-page),body:has(.tools-page){margin:0;background:#f5f1e4;color-sc
 .tools-lightbox__bar{position:fixed;top:0;left:0;right:0;z-index:2;display:flex;justify-content:flex-end;padding:12px 16px;margin:0;background:linear-gradient(180deg,rgba(10,10,10,.85),transparent)}
 .tools-lightbox__close{margin:0;padding:8px 14px;border:1px solid #d0d2c0;border-radius:999px;background:#272a25;color:#f5f1e4;font-size:14px;font-weight:500;cursor:pointer}
 .tools-lightbox__close:focus-visible{outline:2px solid #2455cc;outline-offset:2px}
-.tools-lightbox__scroll{position:absolute;inset:0;overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y pinch-zoom;overscroll-behavior:contain;padding:56px 12px 24px;display:flex;align-items:flex-start;justify-content:center}
-.tools-lightbox__scroll img{display:block;width:auto;height:auto;max-width:none;max-height:none;margin-inline:auto}
+.tools-lightbox__scroll{position:absolute;inset:0;overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y pinch-zoom;overscroll-behavior:contain;padding:56px 12px 24px;display:flex;align-items:flex-start;justify-content:flex-start}
+.tools-lightbox__scroll img{display:block;flex-shrink:0;width:auto;height:auto;max-width:none;max-height:none;margin-inline:auto}
