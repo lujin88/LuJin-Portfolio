@@ -19,7 +19,6 @@ export function Session03Research() {
       className={`session-03 relative z-0 flex w-full overflow-visible text-[var(--s3-text)] ${styles.section}`}
     >
       <div className={styles.joinCeiling} aria-hidden="true" />
-      <div className={styles.joinFloor} aria-hidden="true" />
       <div className={styles.photoStack}>
         <div className={styles.photoFrame}>
           <Image
