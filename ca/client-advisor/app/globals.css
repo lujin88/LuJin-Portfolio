@@ -413,6 +413,14 @@
 
 #session-06 {
   background-color: var(--ca-bg, #0b1220);
+  /* Below 1024 06 has no overlap with 05. Start from 05's bottom colour
+     (rgb 13 27 55) so the join has no hard edge; the >=1024 rule below
+     replaces this with its own transparent top band. */
+  background-image: linear-gradient(
+    180deg,
+    rgb(13 27 55) 0,
+    var(--ca-bg, #0b1220) 6rem
+  );
 }
 
 .ca-font-poppins {
