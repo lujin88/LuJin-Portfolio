@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { SiteClosing } from '../../components/site-closing'
 import { ToolsHeroIllus } from './tools-hero-illus'
 import './tools-page.css'
@@ -16,8 +16,6 @@ const PROJECTS = [
     alt: 'Agent Monitor demo interface',
     mediaClass: 'monitor',
     demoLabel: 'Demo data',
-    zoomable: true,
-    bleed: true,
   },
   {
     id: 'scranton',
@@ -27,8 +25,6 @@ const PROJECTS = [
     alt: 'Scranton demo workspace interface',
     mediaClass: 'scranton',
     demoLabel: 'Demo workspace',
-    zoomable: true,
-    bleed: true,
   },
   {
     id: 'office',
@@ -37,77 +33,11 @@ const PROJECTS = [
     image: `${IMG}/office-v4.gif`,
     alt: 'Pixel Office demo scene',
     mediaClass: 'office',
-    bleed: false,
   },
 ] as const
 
-type Lightbox = { src: string; alt: string }
-
 export function ToolsPage() {
   const pageRef = useRef<HTMLDivElement>(null)
-  const lightboxRef = useRef<HTMLDialogElement>(null)
-  const zoomTriggerRef = useRef<HTMLButtonElement | null>(null)
-  const scrollLockY = useRef(0)
-  const [lightbox, setLightbox] = useState<Lightbox | null>(null)
-
-  useEffect(() => {
-    const dialog = lightboxRef.current
-    if (!dialog) return
-    if (lightbox) {
-      if (!dialog.open) dialog.showModal()
-    } else if (dialog.open) dialog.close()
-  }, [lightbox])
-
-  useEffect(() => {
-    if (!lightbox) return
-    scrollLockY.current = window.scrollY
-    const { body } = document
-    body.style.position = 'fixed'
-    body.style.top = `-${scrollLockY.current}px`
-    body.style.left = '0'
-    body.style.right = '0'
-    return () => {
-      body.style.position = ''
-      body.style.top = ''
-      body.style.left = ''
-      body.style.right = ''
-      window.scrollTo(0, scrollLockY.current)
-    }
-  }, [lightbox])
-
-  const openLightbox = (src: string, alt: string, trigger: HTMLButtonElement) => {
-    zoomTriggerRef.current = trigger
-    setLightbox({ src, alt })
-  }
-
-  const handleLightboxClose = () => {
-    setLightbox(null)
-    requestAnimationFrame(() => zoomTriggerRef.current?.focus())
-  }
-
-  useEffect(() => {
-    const root = pageRef.current
-    if (!root) return
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const details = root.querySelectorAll<HTMLElement>('.tools-detail')
-    if (reduced.matches) {
-      details.forEach((el) => el.classList.add('tools-detail--in'))
-    } else {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('tools-detail--in')
-              observer.unobserve(entry.target)
-            }
-          })
-        },
-        { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
-      )
-      details.forEach((el) => observer.observe(el))
-      return () => observer.disconnect()
-    }
-  }, [])
 
   useEffect(() => {
     const root = pageRef.current
@@ -178,78 +108,21 @@ export function ToolsPage() {
 
         <div className="tools-rail">
           {PROJECTS.map((p) => (
-            <article key={p.id} className="tools-card">
-              <a className="tools-card__link" href={`#${p.id}`} aria-label={`${p.title}: ${p.body}`}>
-                <div className={`tools-card__media tools-card__media--${p.mediaClass}`}>
-                  <img src={p.image} alt="" loading="lazy" decoding="async" />
-                  {'demoLabel' in p && p.demoLabel ? (
-                    <span className="tools-card__demo">{p.demoLabel}</span>
-                  ) : null}
-                </div>
-                <h3>{p.title}</h3>
-                <p>{p.body}</p>
-              </a>
-            </article>
-          ))}
-        </div>
-
-        <div className="tools-details">
-          {PROJECTS.map((p) => (
-            <section
-              key={p.id}
-              id={p.id}
-              className={`tools-detail${p.bleed ? ' tools-detail--bleed' : ''}`}
-              aria-labelledby={`${p.id}-title`}
-            >
-              <h2 id={`${p.id}-title`}>{p.title}</h2>
-              <p>{p.body}</p>
-              <div
-                className={`tools-detail__media tools-detail__media--${p.mediaClass}${
-                  p.bleed ? ' tools-detail__media--wide' : ''
-                }`}
-              >
-                <div className="tools-detail__parallax" data-tools-parallax="0.1">
-                  {'zoomable' in p && p.zoomable ? (
-                    <button
-                      type="button"
-                      className="tools-zoom-trigger"
-                      aria-label={`View full size: ${p.alt}`}
-                      onClick={(e) => openLightbox(p.image, p.alt, e.currentTarget)}
-                    >
-                      <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
-                    </button>
-                  ) : (
-                    <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
-                  )}
-                </div>
+            <article key={p.id} id={p.id} className="tools-card" tabIndex={-1}>
+              <div className={`tools-card__media tools-card__media--${p.mediaClass}`}>
+                <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
                 {'demoLabel' in p && p.demoLabel ? (
-                  <span className="tools-detail__demo">{p.demoLabel}</span>
+                  <span className="tools-card__demo">{p.demoLabel}</span>
                 ) : null}
               </div>
-            </section>
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+            </article>
           ))}
         </div>
       </main>
 
       <SiteClosing className="tools-closing" />
-
-      <dialog
-        ref={lightboxRef}
-        className="tools-lightbox"
-        onClose={handleLightboxClose}
-        aria-label={lightbox?.alt}
-      >
-        <form method="dialog" className="tools-lightbox__bar">
-          <button type="submit" className="tools-lightbox__close">
-            Close
-          </button>
-        </form>
-        {lightbox ? (
-          <div className="tools-lightbox__scroll">
-            <img src={lightbox.src} alt={lightbox.alt} />
-          </div>
-        ) : null}
-      </dialog>
     </div>
   )
 }

@@ -59,15 +59,21 @@ export function ToolsHeroIllus() {
           <mask id={MASK} maskUnits="userSpaceOnUse" x="0" y="0" width="800" height={HEIGHT}>
             <rect width="800" height={HEIGHT} fill="white" />
             <path d={ERASE} fill="black" />
+            <path
+              d=""
+              fill="none"
+              stroke="black"
+              strokeWidth={10}
+              strokeLinecap="round"
+            />
           </mask>
         </defs>
-        <path d="" fill="#dce8f3" className="tools-hero-illus__wash" />
         <image
           className="tools-hero-illus__ensemble"
           href={STILL}
           width={800}
           height={375}
-          preserveAspectRatio="xMidYMid meet"
+          preserveAspectRatio="none"
           mask={`url(#${MASK})`}
         />
       </svg>

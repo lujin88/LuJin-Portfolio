@@ -166,6 +166,7 @@
 .bmw-driver dl.hero-meta{max-width:min(920px,calc(100% - var(--content-inset)));flex-wrap:wrap;row-gap:12px}
 .bmw-driver dl.hero-meta>div{flex:none;flex-wrap:nowrap;min-width:max-content;max-width:100%;display:flex;align-items:baseline;column-gap:.45em}
 .bmw-driver dl.hero-meta dt,.bmw-driver dl.hero-meta dd{margin:0;display:inline}
+.bmw-driver dl.hero-meta dt{white-space:nowrap}
 .bmw-driver dl.hero-meta dt::after{content:"·";margin-inline:.45em 0;color:#ffffff66;font-weight:400}
 .bmw-driver dl.hero-meta dd{font-size:clamp(16px,1.35vw,20px);white-space:nowrap}
 @media(min-width:601px) and (max-width:1100px){
