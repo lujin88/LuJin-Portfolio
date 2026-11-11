@@ -330,6 +330,8 @@ export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
           <a
             className="ww-case-btn pill-btn"
             href={portfolio ? '/lab/tools' : `${base}/lab/tools`}
+            target={portfolio ? undefined : '_blank'}
+            rel={portfolio ? undefined : 'noreferrer'}
           >
             <span>Explore my agent tools</span>
             <Icon name="arrow-right-up-line" className="ww-case-icon" />

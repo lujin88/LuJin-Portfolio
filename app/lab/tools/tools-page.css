@@ -81,8 +81,8 @@ html:has(.tools-page),body:has(.tools-page){margin:0;background:#f5f1e4;color-sc
   .tools-section.tools-section--compact:has(.wide-full){padding-bottom:clamp(16px,2vh,24px)}
   .tools-section.tools-section--compact h2{font-size:clamp(30px,2.6vw,40px);line-height:1.05}
   .tools-section.tools-section--compact p{margin-top:8px}
-  .tools-section.tools-section--compact .tools-media.wide-full{margin-top:clamp(8px,1.5vh,14px);min-height:0;max-height:min(52vh,520px);padding:clamp(8px,1.5vw,14px) clamp(12px,2vw,24px)}
-  .tools-section.tools-section--compact .tools-media.wide-full .tools-zoom-trigger,.tools-section.tools-section--compact .tools-media.wide-full .tools-zoom-trigger img{max-height:min(48vh,480px);height:auto;width:100%;object-fit:contain}
+  .tools-section.tools-section--compact .tools-media.wide-full{margin-top:clamp(10px,1.5vh,16px);min-height:0;max-height:min(58vh,540px);padding:clamp(10px,1.5vw,16px) clamp(12px,2vw,24px)}
+  .tools-section.tools-section--compact .tools-media.wide-full .tools-zoom-trigger,.tools-section.tools-section--compact .tools-media.wide-full .tools-zoom-trigger img{max-height:min(56vh,520px);height:auto;width:100%;object-fit:contain}
 }
 .tools-lightbox{position:fixed;inset:0;margin:0;padding:0;border:0;max-width:none;max-height:none;width:100%;height:100%;background:rgba(10,10,10,.92);color:#f5f1e4}
 .tools-lightbox::backdrop{background:rgba(10,10,10,.55)}
