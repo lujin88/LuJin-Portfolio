@@ -98,7 +98,7 @@ const chapters = [
   }
 ]
 
-function Scene({index}:{index:number}){
+export function Scene({index}:{index:number}){
   const scene=scenes[index]
   const mask='ww-paper-'+scene.name
   return <svg className={'ww-drawing '+(index===0?'ww-hero-art':'ww-art')}

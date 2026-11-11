@@ -1,23 +1,28 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
+import { Scene } from '../way-of-work/field-notes'
+import '../way-of-work/field-notes.css'
 
-const STILL = '/lab/way-of-work/field-notes/score.webp'
-const MOTION = '/lab/way-of-work/field-notes/score-loop-v21.webp'
+const JUDGEMENT = 2
 
 export function ToolsHeroIllus() {
   const rootRef = useRef<HTMLDivElement>(null)
-  const [src, setSrc] = useState(STILL)
 
   useEffect(() => {
     const root = rootRef.current
     if (!root) return
+    const scene = root.querySelector<SVGSVGElement>('.ww-drawing')
+    const image = scene?.querySelector<SVGImageElement>('.ww-ensemble')
+    if (!scene || !image) return
+
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
     let visible = false
 
     const sync = () => {
-      const next = visible && !reduced.matches ? MOTION : STILL
-      setSrc((prev) => (prev === next ? prev : next))
+      const url =
+        visible && !reduced.matches ? image.dataset.motion! : image.dataset.still!
+      if (image.getAttribute('href') !== url) image.setAttribute('href', url)
     }
 
     const io = new IntersectionObserver(
@@ -27,7 +32,7 @@ export function ToolsHeroIllus() {
       },
       { threshold: 0.15 },
     )
-    io.observe(root)
+    io.observe(scene)
     const onReduced = () => sync()
     reduced.addEventListener('change', onReduced)
     sync()
@@ -40,14 +45,7 @@ export function ToolsHeroIllus() {
 
   return (
     <div className="tools-hero__illus-wrap" ref={rootRef} data-tools-parallax="0.1">
-      <img
-        className="tools-hero-illus"
-        src={src}
-        width={800}
-        height={375}
-        alt="A bear, rabbit and fox review the work. The designer points at the open rulebook."
-        decoding="async"
-      />
+      <Scene index={JUDGEMENT} />
     </div>
   )
 }
