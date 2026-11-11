@@ -6,6 +6,7 @@ const DESCRIPTION = 'Agent Monitor, Scranton, and Pixel Office — how Lu works 
 
 export const metadata: Metadata = {
   ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/lab/tools' }),
+  themeColor: '#f5f1e4',
 }
 
 export default function ToolsLayout({ children }: { children: React.ReactNode }) {
