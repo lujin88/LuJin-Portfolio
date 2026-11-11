@@ -333,6 +333,13 @@ export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
         <a className="ww-case-btn pill-btn" href={base+'/bmw-design-system'} target={portfolio?undefined:'_blank'} rel="noreferrer"><span>Explore the BMW case</span><Icon name="arrow-right-up-line" className="ww-case-icon" /></a>
       </div>
     </section>
+    <p className="ww-tools-entry">
+      Three agent tools in Playground —{' '}
+      <a className="ww-case-link" href={portfolio ? '/lab/tools' : base + '/lab/tools'}>
+        Agent Monitor, Scranton, Pixel Office
+      </a>
+      .
+    </p>
     </main>
   {portfolio&&<SiteClosing className="ww-closing" />}
   </>
