@@ -26,10 +26,12 @@ const SCRANTON_URL =
 const SCRANTON_CHANNEL = process.env.SCRANTON_RECORD_CHANNEL || 'demo-studio'
 /** Drop Scranton loader / welcome from card loops (isolated demo only). */
 const SCRANTON_TRIM_SEC = Number(process.env.SCRANTON_TRIM_SEC) || 3.2
-/** Record slightly wider so Live activity fits 3 agents; crop to card size. */
-const RECORD_VIEW = { width: 1280, height: 720 }
+/** Wide capture so side rails (Live activity, Usage) stay in frame; scale into card. */
+const RECORD_VIEW = { width: 1440, height: 810 }
 const OUTPUT_VIEW = { width: 1120, height: 720 }
-const CROP_VF = `crop=${OUTPUT_VIEW.width}:${OUTPUT_VIEW.height}:(iw-${OUTPUT_VIEW.width})/2:0`
+const FIT_VF = `scale=${OUTPUT_VIEW.width}:${OUTPUT_VIEW.height}:force_original_aspect_ratio=decrease,pad=${OUTPUT_VIEW.width}:${OUTPUT_VIEW.height}:(ow-iw)/2:(oh-ih)/2`
+/** Drop Monitor loader / first-paint glitches from card loops. */
+const MONITOR_TRIM_SEC = Number(process.env.MONITOR_TRIM_SEC) || 0.35
 
 fs.mkdirSync(OUT, { recursive: true })
 fs.mkdirSync(ASSETS, { recursive: true })
@@ -64,7 +66,7 @@ function exportCardVideo(rawWebm, webmPath, mp4Path, trimStartSec = 0) {
       rawWebm,
       '-an',
       '-vf',
-      CROP_VF,
+      FIT_VF,
       '-c:v',
       'libvpx-vp9',
       '-b:v',
@@ -84,7 +86,7 @@ function exportCardVideo(rawWebm, webmPath, mp4Path, trimStartSec = 0) {
       rawWebm,
       '-an',
       '-vf',
-      CROP_VF,
+      FIT_VF,
       '-c:v',
       'libx264',
       '-pix_fmt',
@@ -165,8 +167,6 @@ async function recordMonitorTheme(browser, theme) {
   await page.goto(`http://127.0.0.1:7781/?key=${encodeURIComponent(KEY)}`, {
     waitUntil: 'networkidle',
   })
-  await page.waitForTimeout(900)
-
   await page.locator('#running-pill').waitFor({ state: 'visible', timeout: 12_000 })
   await page.waitForFunction(() => {
     const pill = document.getElementById('running-pill')?.textContent || ''
@@ -212,7 +212,7 @@ async function recordMonitorTheme(browser, theme) {
   const raw = path.join(dir, webm)
   const webmOut = path.join(OUT, `${base}.webm`)
   const mp4Out = path.join(OUT, `${base}.mp4`)
-  exportCardVideo(raw, webmOut, mp4Out)
+  exportCardVideo(raw, webmOut, mp4Out, MONITOR_TRIM_SEC)
   fs.rmSync(dir, { recursive: true, force: true })
   return { base, webmOut, mp4Out }
 }
