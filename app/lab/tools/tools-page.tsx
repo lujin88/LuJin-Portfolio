@@ -14,6 +14,7 @@ const SECTIONS = [
     image: `${IMG}/monitor-real-demo-v3.png`,
     alt: 'Agent Monitor demo interface',
     mediaClass: 'monitor wide-full',
+    demoLabel: 'Demo data',
   },
   {
     id: 'scranton',
