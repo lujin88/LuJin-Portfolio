@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { useTranslation } from '@i18n'
 import { SiteClosing } from '../../components/site-closing'
 import { ToolsHeroIllus } from './tools-hero-illus'
 import { ToolsCardMedia } from './tools-card-media'
@@ -44,6 +45,7 @@ const PROJECTS = [
 ] as const
 
 export function ToolsPage() {
+  const { t } = useTranslation()
   const pageRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -118,14 +120,11 @@ export function ToolsPage() {
               />
               <h3>{p.title}</h3>
               <p>{p.body}</p>
-              <a
-                className="tools-card__github"
-                href={p.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub ↗
-              </a>
+              <p className="exp-contact__links tools-card__links">
+                <a href={p.href} target="_blank" rel="noopener noreferrer">
+                  {t('common.github')}
+                </a>
+              </p>
             </article>
           ))}
         </div>

@@ -121,22 +121,21 @@
   scroll-margin-top: 96px;
 }
 
-.tools-card__github {
-  display: inline-block;
+.tools-card__links {
   margin: 10px 0 0;
-  font-size: 0.9375rem;
-  line-height: 1.4;
-  font-weight: 400;
+}
+
+.tools-page .tools-card .exp-contact__links a {
   color: #272a25;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-.tools-card__github:hover {
+.tools-page .tools-card .exp-contact__links a:hover {
   color: #141827;
 }
 
-.tools-card__github:focus-visible {
+.tools-page .tools-card .exp-contact__links a:focus-visible {
   outline: 2px solid #2455cc;
   outline-offset: 3px;
   border-radius: 2px;
