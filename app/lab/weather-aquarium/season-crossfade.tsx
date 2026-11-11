@@ -6,6 +6,23 @@ import styles from './season-crossfade.module.css'
 
 const seasons = ['spring', 'summer', 'autumn', 'winter'] as const
 
+// Lindt scenes (same set as the hero iPad in #85; Lu 2026-11-10). Alt follows copy
+// WA_SEASONS_ALT_COPY_1108 minus the iPad clause and the weather panel; winter shows no people.
+const ALT = {
+  en: {
+    spring: 'A spring scene from the Weather Aquarium app: cherry blossom and tulips, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
+    summer: 'A summer scene from the Weather Aquarium app: green trees and flowers, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
+    autumn: 'An autumn scene from the Weather Aquarium app: golden leaves, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
+    winter: 'A winter scene from the Weather Aquarium app: snow on the roofs and trees, the Lindt shop in Kilchberg and the frozen lake by the jetty',
+  },
+  de: {
+    spring: 'Eine Frühlingsszene aus der App Weather Aquarium: Kirschblüten und Tulpen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
+    summer: 'Eine Sommerszene aus der App Weather Aquarium: grüne Bäume und Blumen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
+    autumn: 'Eine Herbstszene aus der App Weather Aquarium: goldenes Laub, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
+    winter: 'Eine Winterszene aus der App Weather Aquarium: Schnee auf Dächern und Bäumen, der Lindt-Laden in Kilchberg und der zugefrorene See am Steg',
+  },
+} as const
+
 export function SeasonCrossfade() {
   const { langCode } = useSiteLanguage()
   const labels = {
@@ -77,12 +94,12 @@ export function SeasonCrossfade() {
       {seasons.map((season, index) => (
         <img
           key={season}
-          src={index === 0 || (springLoaded && motionAllowed) ? `/assets/images/lab/weather-aquarium/season-${season}-approved.webp` : undefined}
+          src={index === 0 || (springLoaded && motionAllowed) ? `/assets/images/lab/weather-aquarium/season-${season}-lindt.webp` : undefined}
           fetchPriority={index === 0 ? 'high' : 'low'}
-          width={1836}
-          height={857}
+          width={1400}
+          height={830}
           onLoad={(event) => { void onFrameLoad(event.currentTarget, index) }}
-          alt={index === active ? `The Alpine lake in ${season}` : ''}
+          alt={index === active ? ALT[langCode][season] : ''}
           aria-hidden={index !== active}
           className={styles.frame}
           data-active={index === active}
