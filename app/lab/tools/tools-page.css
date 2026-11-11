@@ -89,18 +89,18 @@
   outline-offset: 3px;
 }
 
-.tools-hero__illus-slot {
+.tools-hero__illus-wrap {
   justify-self: end;
-  width: min(100%, clamp(280px, 37.5vw, 540px));
-  background: var(--paper);
+  width: min(47vw, 670px);
+  max-width: 100%;
 }
 
-.tools-hero__illus-img {
+.tools-hero__illus-wrap .ww-hero-art {
   display: block;
   width: 100%;
   height: auto;
+  margin: 0;
   mix-blend-mode: multiply;
-  opacity: 0.9;
 }
 
 .tools-rail {
@@ -360,8 +360,8 @@
     min-height: 0;
   }
 
-  .tools-hero__illus-slot {
-    width: min(100%, 380px);
+  .tools-hero__illus-wrap {
+    width: 88%;
     margin-top: 8px;
     justify-self: center;
   }
@@ -399,7 +399,7 @@
     transform: none;
   }
 
-  .tools-hero__illus-slot {
+  .tools-hero__illus-wrap {
     transform: none !important;
   }
 }
