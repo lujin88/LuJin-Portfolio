@@ -57,7 +57,7 @@ const NAV: readonly NavEntry[] = [
       {
         label: 'MAN Truck & Bus',
         href: '/man-truck-bus',
-        meta: 'Fleet uptime · Dispatch',
+        meta: 'Hackathon · Fleet dispatch',
         icon: {
           light: '/assets/images/nav/light/work/man-truck-bus-light.webp',
           dark: '/assets/images/nav/dark/work/man-truck-bus-dark.webp',
