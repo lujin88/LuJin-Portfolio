@@ -14,7 +14,8 @@ const PROJECTS = [
   {
     id: 'monitor',
     title: 'Agent Monitor',
-    body: 'See the work in progress.',
+    body:
+      'A dashboard for my AI agents. I can see what they’re working on and what needs my approval in one place.',
     poster: `${IMG}/monitor-real-demo-v3.png`,
     videoWebm: `${VID}/monitor-card-loop-v1.webm`,
     videoMp4: `${VID}/monitor-card-loop-v1.mp4`,
@@ -25,7 +26,8 @@ const PROJECTS = [
   {
     id: 'scranton',
     title: 'Scranton',
-    body: 'Keep the team in one conversation.',
+    body:
+      'A shared workspace for me and my AI agents. I use it to assign work, read reports, and handle approvals in one conversation.',
     poster: `${IMG}/scranton-real-demo-v3.png`,
     videoWebm: `${VID}/scranton-card-loop-v1.webm`,
     videoMp4: `${VID}/scranton-card-loop-v1.mp4`,
@@ -36,7 +38,7 @@ const PROJECTS = [
   {
     id: 'office',
     title: 'Pixel Office',
-    body: 'See the team share a space.',
+    body: 'A pixel office for my AI team. It shows who’s busy in a shared space.',
     poster: `${IMG}/office-v4.gif`,
     alt: 'Pixel Office demo scene',
     mediaClass: 'office',
