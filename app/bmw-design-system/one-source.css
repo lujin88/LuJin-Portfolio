@@ -173,10 +173,6 @@
 .bmw-driver dl{left:max(40%,calc(var(--hero-inset) + 267px + 32px));gap:24px}
 .bmw-driver dd{font-size:18px}
 }
-@media(1100px < width < 1200px){
-.bmw-driver header .hero-story{font-size:calc(16px + .02*(100vw - 1100px))}
-.bmw-driver dd{font-size:calc(18px + .02*(100vw - 1100px))}
-}
 /* Phones: copy, then the phone beside the 2020/2026 timeline, then the store badges. */
 @media(max-width:600px){
 .bmw-driver{min-height:0;padding:calc(64px + 24px) 24px 32px;display:grid;grid-template-columns:min(180px,46%) minmax(0,1fr);grid-template-areas:"head head" "phone dl" "nav nav";column-gap:24px;align-items:start}
@@ -227,12 +223,6 @@
 .bmw-driver{--hero-min:760px;--phone-w:clamp(200px,26vw,280px);--gap:32px;--scene-w:122vw;--copy-w:min(360px,calc(100vw - var(--hero-inset) - var(--gap) - var(--phone-w)/2 - .253*var(--scene-w)))}
 .bmw-driver .screen{border-radius:22px}
 .bmw-driver dl{margin-top:32px}
-}
-/* 1101-1199px: blend the grid from the <=1100 values (at 1100) to the >=1200 values (at 1200); see --hero-inset above. */
-@media(1100px < width < 1200px){
-.bmw-driver{--hero-min:calc(760px + 1.4*(100vw - 1100px));--phone-w:calc(280px + .1*(100vw - 1100px));--gap:calc(32px + .4*(100vw - 1100px));--scene-w:calc(1342px + 4.25*(100vw - 1100px));--copy-w:min(calc(360px + 1*(100vw - 1100px)),calc(100vw - var(--hero-inset) - var(--gap) - var(--phone-w)/2 - .253*var(--scene-w)))}
-.bmw-driver .screen{border-radius:calc(22px + .06*(100vw - 1100px))}
-.bmw-driver dl{margin-top:calc(32px + .16*(100vw - 1100px))}
 }
 /* Narrow tablets: the copy column is too tight for two timeline columns. */
 @media(min-width:601px) and (max-width:800px){
