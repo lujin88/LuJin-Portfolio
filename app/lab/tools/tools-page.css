@@ -92,9 +92,6 @@
 .tools-hero__illus {
   justify-self: end;
   width: min(100%, clamp(280px, 37.5vw, 540px));
-}
-
-.tools-hero__illus-blend {
   mix-blend-mode: multiply;
 }
 

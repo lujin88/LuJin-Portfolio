@@ -40,16 +40,14 @@ export function ToolsHeroIllus() {
 
   return (
     <div className="tools-hero__illus" ref={parallaxRef} data-tools-parallax="0.1">
-      <div className="tools-hero__illus-blend">
-        <img
-          className="tools-hero__illus-img"
-          src={src}
-          width={800}
-          height={375}
-          alt="A bear, rabbit and fox review the work. The designer points at the open rulebook."
-          decoding="async"
-        />
-      </div>
+      <img
+        className="tools-hero__illus-img"
+        src={src}
+        width={800}
+        height={375}
+        alt="A bear, rabbit and fox review the work. The designer points at the open rulebook."
+        decoding="async"
+      />
     </div>
   )
 }
