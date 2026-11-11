@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   ...socialMetadata({ title: TITLE, description: DESCRIPTION, path: '/lab/agent-monitor' }),
+  // Reachable by link from Tools; not indexed (PM #7444).
+  robots: { index: false, follow: false },
 }
 
 export const viewport: Viewport = {

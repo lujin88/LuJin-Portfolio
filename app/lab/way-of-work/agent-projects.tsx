@@ -5,6 +5,8 @@ import './agent-projects.css'
 
 const IMG = '/assets/images/lab/hiw-tools'
 
+const BLEED_IDS = new Set(['monitor', 'scranton'])
+
 const PROJECTS = [
   {
     id: 'monitor',
@@ -36,6 +38,25 @@ const PROJECTS = [
     mediaClass: 'office',
   },
 ] as const
+
+function ProjectMedia({
+  p,
+  framed,
+}: {
+  p: (typeof PROJECTS)[number]
+  framed: boolean
+}) {
+  return (
+    <div
+      className={`ww-projects-media ${p.mediaClass}${framed ? '' : ' ww-projects-media--bleed'}`}
+    >
+      <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
+      {'demoLabel' in p && p.demoLabel ? (
+        <span className="ww-projects-demo">{p.demoLabel}</span>
+      ) : null}
+    </div>
+  )
+}
 
 export function AgentProjects() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -86,8 +107,19 @@ export function AgentProjects() {
     window.setTimeout(syncEdges, 320)
   }
 
+  const bleedProjects = PROJECTS.filter((p) => BLEED_IDS.has(p.id))
+
   return (
     <section ref={sectionRef} className="ww-projects" aria-label="Agent project entrances">
+      <div className="ww-projects-bleeds" aria-label="Agent Monitor and Scranton">
+        {bleedProjects.map((p) => (
+          <a key={p.id} className="ww-projects-bleed ww-projects-card" href={p.href}>
+            <ProjectMedia p={p} framed={false} />
+            <h3>{p.title}</h3>
+            <p>{p.body}</p>
+          </a>
+        ))}
+      </div>
       <div className="ww-projects-controls" aria-hidden={false}>
         <button type="button" aria-label="Previous projects" disabled={atStart} onClick={() => move(-1)}>
           ←
@@ -104,14 +136,9 @@ export function AgentProjects() {
         aria-label="Explore the three projects"
       >
         {PROJECTS.map((p) => (
-          <li key={p.id}>
+          <li key={p.id} className={BLEED_IDS.has(p.id) ? 'ww-projects-rail-text' : undefined}>
             <a className="ww-projects-card" href={p.href}>
-              <div className={`ww-projects-media ${p.mediaClass}`}>
-                <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
-                {'demoLabel' in p && p.demoLabel ? (
-                  <span className="ww-projects-demo">{p.demoLabel}</span>
-                ) : null}
-              </div>
+              {!BLEED_IDS.has(p.id) ? <ProjectMedia p={p} framed /> : null}
               <h3>{p.title}</h3>
               <p>{p.body}</p>
             </a>
