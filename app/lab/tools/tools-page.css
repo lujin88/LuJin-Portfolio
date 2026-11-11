@@ -158,6 +158,34 @@
   display: block;
 }
 
+.tools-card__video--dark {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tools-card__video--light:not(.tools-card__video--solo) {
+    display: none;
+  }
+
+  .tools-card__video--dark {
+    display: block;
+  }
+}
+
+.tools-card__video--dark {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tools-card__video--light:not(.tools-card__video--solo) {
+    display: none;
+  }
+
+  .tools-card__video--dark {
+    display: block;
+  }
+}
+
 .tools-card__media--monitor img {
   object-position: 50% 18%;
 }
