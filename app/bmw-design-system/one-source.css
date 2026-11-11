@@ -163,12 +163,6 @@
 .bmw-driver dl>div+div{padding-left:24px;border-left:1px solid #ffffff40}
 .bmw-driver dt{font-size:14px;line-height:1.5;color:#c4d3e0}
 .bmw-driver dd{margin:8px 0 0;font-size:20px;line-height:1.25;letter-spacing:-.025em;color:#fff}
-.bmw-driver dl.hero-meta{max-width:min(920px,calc(100% - var(--content-inset)));flex-wrap:wrap;row-gap:12px}
-.bmw-driver dl.hero-meta>div{flex:none;flex-wrap:nowrap;min-width:max-content;max-width:100%;display:flex;align-items:baseline;column-gap:.45em}
-.bmw-driver dl.hero-meta dt,.bmw-driver dl.hero-meta dd{margin:0;display:inline}
-.bmw-driver dl.hero-meta dt{white-space:nowrap}
-.bmw-driver dl.hero-meta dt::after{content:"·";margin-inline:.45em 0;color:#ffffff66;font-weight:400}
-.bmw-driver dl.hero-meta dd{font-size:clamp(16px,1.35vw,20px);white-space:nowrap}
 @media(min-width:601px) and (max-width:1100px){
 .bmw-driver .backdrop{object-position:right center}
 .bmw-driver header{max-width:52%}
@@ -178,6 +172,10 @@
    The widest thing in that column is the 267px store-badge row, not the 210px phone. */
 .bmw-driver dl{left:max(40%,calc(var(--hero-inset) + 267px + 32px));gap:24px}
 .bmw-driver dd{font-size:18px}
+}
+@media(1100px < width < 1200px){
+.bmw-driver header .hero-story{font-size:calc(16px + .02*(100vw - 1100px))}
+.bmw-driver dd{font-size:calc(18px + .02*(100vw - 1100px))}
 }
 /* Phones: copy, then the phone beside the 2020/2026 timeline, then the store badges. */
 @media(max-width:600px){
@@ -192,8 +190,6 @@
 .bmw-driver .screen{grid-area:phone;width:100%;margin-top:32px;border-width:4px;border-radius:20px}
 .bmw-driver dl{grid-area:dl;position:static;flex-direction:column;gap:16px;margin-top:32px}
 .bmw-driver dl>div+div{padding:16px 0 0;border-left:0;border-top:1px solid #ffffff40}
-.bmw-driver dl.hero-meta>div{min-width:0;max-width:100%}
-.bmw-driver dl.hero-meta dd{font-size:clamp(14px,3.6vw,16px)}
 .bmw-driver dd{font-size:16px}
 .bmw-driver nav{grid-area:nav;margin-top:32px}
 .bmw-driver nav img{height:32px}
@@ -232,22 +228,27 @@
 .bmw-driver .screen{border-radius:22px}
 .bmw-driver dl{margin-top:32px}
 }
+/* 1101-1199px: blend the grid from the <=1100 values (at 1100) to the >=1200 values (at 1200); see --hero-inset above. */
+@media(1100px < width < 1200px){
+.bmw-driver{--hero-min:calc(760px + 1.4*(100vw - 1100px));--phone-w:calc(280px + .1*(100vw - 1100px));--gap:calc(32px + .4*(100vw - 1100px));--scene-w:calc(1342px + 4.25*(100vw - 1100px));--copy-w:min(calc(360px + 1*(100vw - 1100px)),calc(100vw - var(--hero-inset) - var(--gap) - var(--phone-w)/2 - .253*var(--scene-w)))}
+.bmw-driver .screen{border-radius:calc(22px + .06*(100vw - 1100px))}
+.bmw-driver dl{margin-top:calc(32px + .16*(100vw - 1100px))}
+}
 /* Narrow tablets: the copy column is too tight for two timeline columns. */
 @media(min-width:601px) and (max-width:800px){
 .bmw-driver dl{flex-direction:column;gap:16px}
 .bmw-driver dl>div+div{padding:16px 0 0;border-left:0;border-top:1px solid #ffffff40}
 }
-}
-/* PM #7812 — hero meta + section h2 aligned to UBS scale */
+/* PM #7812 — last in @scope so it beats duplicate showcase rules above */
 .bmw-driver dl.hero-meta dt{font-size:15px;line-height:22.5px}
-.bmw-driver dl.hero-meta dd{font-size:17px;line-height:25.5px}
-.showcase .chapter-title,.showcase.desk .chapter-title,.desk .chapter-title,.system-gap h2{font-size:40px;line-height:44px;letter-spacing:-.025em}
+.bmw-driver dl.hero-meta dd{font-size:17px;line-height:25.5px;white-space:nowrap}
+.bmw-one-source .showcase .chapter-title,.bmw-one-source .showcase.desk .chapter-title,.bmw-one-source .desk .chapter-title,.bmw-one-source .system-gap h2{font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif;font-weight:var(--font-weight-semibold,600);font-size:40px;line-height:44px;letter-spacing:-.025em}
 @media(min-width:721px){
-.showcase .chapter-title,.showcase.desk .chapter-title,.desk .chapter-title,.system-gap h2{font-size:51.84px;line-height:57.02px}
-.showcase.desk .chapter-title{font-size:51.84px;line-height:57.02px;margin:0}
+.bmw-one-source .showcase .chapter-title,.bmw-one-source .showcase.desk .chapter-title,.bmw-one-source .desk .chapter-title,.bmw-one-source .system-gap h2{font-size:51.84px;line-height:57.02px}
+.bmw-one-source .showcase.desk .chapter-title{margin:0}
 }
 @media(max-width:600px){
 .bmw-driver header .hero-story{line-height:1.5}
-.bmw-driver dl.hero-meta dd{font-size:17px;line-height:25.5px}
+}
 }
 .bmw-one-source{color-scheme:light;text-align:left}
