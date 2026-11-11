@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import './field-notes.css'
 import { SiteClosing } from '../../components/site-closing'
 import { Icon } from '../../components/remix-icon'
+import { mountEnsembleMotion } from './ensemble-motion'
 
 const hero = '/lab/way-of-work/field-notes/worktable.webp'
 const selecting = '/lab/way-of-work/field-notes/selection-still-v20.webp'
@@ -125,27 +126,7 @@ function mountDrawing(page:HTMLElement) {
   const accents=drawings.map(scene=>Array.from(scene.querySelectorAll<SVGPathElement>('[data-detail]')))
   const archive = page.querySelector<HTMLImageElement>('.ww-archive')!
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)')
-
-  const ensembles = drawings.map(scene => scene.querySelector<SVGImageElement>('.ww-ensemble')!)
-  const visibleScenes = new Set<Element>()
-  function syncScenes() {
-    ensembles.forEach((image, i) => {
-      const url = visibleScenes.has(drawings[i]) && !reduced.matches ? image.dataset.motion! : image.dataset.still!
-      if (image.getAttribute('href') !== url) image.setAttribute('href', url)
-    })
-    const archiveUrl = visibleScenes.has(archive) && !reduced.matches ? archive.dataset.motion! : archive.dataset.still!
-    if (archive.getAttribute('src') !== archiveUrl) archive.setAttribute('src', archiveUrl)
-  }
-  const visibility = new IntersectionObserver(entries => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) visibleScenes.add(entry.target)
-      else visibleScenes.delete(entry.target)
-    }
-    syncScenes()
-  })
-  drawings.forEach(scene => visibility.observe(scene))
-  visibility.observe(archive)
-  reduced.addEventListener('change', syncScenes)
+  const unmountEnsemble = mountEnsembleMotion(page, archive)
 
   let length=0, frame=0, inkHead=0, inkTime=0
   const stations:{scroll:number;dist:number}[]=[]
@@ -304,7 +285,7 @@ function mountDrawing(page:HTMLElement) {
   const observer=new ResizeObserver(build);observer.observe(page)
   window.addEventListener('resize',build);window.addEventListener('scroll',schedule,{passive:true,capture:true})
   reduced.addEventListener('change',schedule)
-  return ()=>{visibility.disconnect(); reduced.removeEventListener('change', syncScenes); observer.disconnect();cancelAnimationFrame(frame);window.removeEventListener('resize',build);window.removeEventListener('scroll',schedule,true);reduced.removeEventListener('change',schedule)}
+  return ()=>{unmountEnsemble(); observer.disconnect();cancelAnimationFrame(frame);window.removeEventListener('resize',build);window.removeEventListener('scroll',schedule,true);reduced.removeEventListener('change',schedule)}
 }
 
 export function WayOfWork({portfolio=false}:{portfolio?:boolean}){

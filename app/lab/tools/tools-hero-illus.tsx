@@ -1,6 +1,7 @@
 'use client'
 
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
+import { mountEnsembleMotion } from '../way-of-work/ensemble-motion'
 import { Scene } from '../way-of-work/field-notes'
 import '../way-of-work/field-notes.css'
 
@@ -15,6 +16,12 @@ export function ToolsHeroIllus() {
     if (svg instanceof SVGSVGElement) {
       svg.dataset.toolsParallax = '0.22'
     }
+  }, [])
+
+  useEffect(() => {
+    const root = wrapRef.current
+    if (!root) return
+    return mountEnsembleMotion(root, null)
   }, [])
 
   return (
