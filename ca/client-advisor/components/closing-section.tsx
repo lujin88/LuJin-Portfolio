@@ -26,7 +26,7 @@ export function ClosingSection() {
         <p
           data-move="96"
           id="closing-statement"
-          className="max-w-[22ch] text-balance font-sans text-[1.75rem] font-normal leading-[1.3] tracking-[-0.01em] text-[var(--ca-text)] sm:max-w-[32ch] sm:text-[2.125rem] lg:text-[2.5rem] lg:leading-[1.3]"
+          className="ca-h3 max-w-[22ch] font-sans sm:max-w-[32ch]"
         >
           {t('ca.closing')}
         </p>

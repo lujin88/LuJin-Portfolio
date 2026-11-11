@@ -73,7 +73,7 @@ export function Session03Research() {
           </h2>
 
           <p
-            className={`mt-4 max-w-[20ch] text-balance font-sans text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] sm:text-[2.25rem] lg:text-[clamp(2.1rem,2.9vw,2.5rem)]`}
+            className="ca-h3 mt-4 max-w-[20ch] font-sans"
           >
             {t('ca.research.subhead')}
           </p>
@@ -84,7 +84,7 @@ export function Session03Research() {
           />
 
           <h3
-            className={`mt-12 max-w-[22ch] text-balance font-sans text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] sm:text-[2.25rem] lg:mt-14 lg:text-[clamp(2.1rem,2.9vw,2.5rem)]`}
+            className="ca-h3 mt-12 max-w-[22ch] font-sans lg:mt-14"
           >
             {t('ca.research.heading2')}
           </h3>

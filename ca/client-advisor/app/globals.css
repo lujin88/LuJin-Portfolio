@@ -367,9 +367,23 @@
   text-wrap: balance;
 }
 
+/* One level below .ca-h2: sub-heads inside a section (03, 02 question, closing). */
+.ca-h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ca-text, #f3f6fa);
+  text-wrap: balance;
+}
+
 @media (min-width: 640px) {
   .ca-h2 {
     font-size: 2.75rem;
+  }
+
+  .ca-h3 {
+    font-size: 2.25rem;
   }
 }
 
@@ -382,6 +396,10 @@
 
   .ca-h2 {
     font-size: clamp(2.75rem, 3.6vw, 3.25rem);
+  }
+
+  .ca-h3 {
+    font-size: clamp(2.1rem, 2.9vw, 2.5rem);
   }
 }
 
