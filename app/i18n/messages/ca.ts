@@ -112,7 +112,7 @@ export const ca = {
       title: 'Designing for the moment of decision.',
       path1Title: 'Three paths',
       path1Body:
-        'Improve every existing tool individually, build a new unified dashboard, or add a connecting layer above the existing landscape.',
+        'Improve every existing tool individually, build a new unified dashboard, or design a surface layer above the existing landscape.',
       path2Title: 'The case for less',
       whyLess: 'Why less',
       whyLessBody:
@@ -125,10 +125,10 @@ export const ca = {
       path3Body:
         'One experience that unifies client context, portfolio, and research — without adding to the pile. Client signals in one view.',
       mockups: {
-        'book-view': 'Advisor overview of clients and opportunities (concept, recreated)',
-        'us-tech': 'Client view with research commentary and product ideas (concept, recreated)',
-        'client-page': 'Client page (concept, recreated)',
-        'client-view': 'Client detail view (concept, recreated)',
+        'book-view': 'Advisor overview of clients and opportunities (illustrative concept)',
+        'us-tech': 'Client view with research commentary and product ideas (illustrative concept)',
+        'client-page': 'Client page (illustrative concept)',
+        'client-view': 'Client detail view (illustrative concept)',
         'proposal-creation': 'Portfolio proposal creation with selectable options',
         'review-execute': 'Review and execute screen for the tailored investment proposal',
       },
@@ -300,7 +300,7 @@ export const ca = {
       title: 'Gestalten für den Moment der Entscheidung.',
       path1Title: 'Drei Wege',
       path1Body:
-        'Jedes bestehende Tool einzeln verbessern, ein neues einheitliches Dashboard bauen — oder eine verbindende Schicht über die bestehende Landschaft legen.',
+        'Jedes bestehende Tool einzeln verbessern, ein neues einheitliches Dashboard bauen — oder eine Schicht über die bestehende Landschaft legen.',
       path2Title: 'Das Argument für weniger',
       whyLess: 'Warum weniger',
       whyLessBody:

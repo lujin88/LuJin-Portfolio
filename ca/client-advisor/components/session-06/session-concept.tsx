@@ -5,8 +5,6 @@ import { ConceptMockupStack } from './concept-mockup-stack'
 import { ConceptScrollStory } from './concept-scroll-story'
 import { useTranslation } from '@i18n/use-translation'
 
-// LOCAL ONLY (PM #7553): true shows the grey placeholders for layout review on 3000.
-// Must be false (or legal-cleared art) before this goes to main.
 const SHOW_CONCEPT_STACK = true
 
 const bodyClass =
@@ -39,9 +37,6 @@ export function SessionConcept() {
     },
   ]
 
-  // Hidden until visual's recreated frames are cleared (PM #2300): the UBS screens
-  // were removed for confidentiality, and grey placeholders read as broken images.
-  // Set SHOW_CONCEPT_STACK back to true and swap the files in concept-mockups.ts.
   const visual = SHOW_CONCEPT_STACK ? (
     <ScrollReveal fadeOnly className="relative w-full">
       <ConceptMockupStack />

@@ -127,10 +127,7 @@ export function ConceptScrollStory({
       <div
         className={
           enabled
-            ? `ca-s06-stage sticky top-0 flex h-svh w-full items-start pb-[clamp(2rem,5vh,3.5rem)] ${
-                // Text-only 06: pull the heading up under 05's cards so the two read as one block.
-                visual ? 'pt-[clamp(6.5rem,12vh,8rem)]' : 'pt-[clamp(3.5rem,6vh,4.5rem)]'
-              }`
+            ? 'ca-s06-stage sticky top-0 flex h-svh w-full items-start pt-[clamp(6.5rem,12vh,8rem)] pb-[clamp(2rem,5vh,3.5rem)]'
             : // Phones: no 100svh minimum or bottom padding, so 06 -> 07 is 48px (visual RULES.md).
               'flex min-h-svh w-full items-center py-24 max-sm:min-h-0 max-sm:pb-0 md:py-28'
         }
