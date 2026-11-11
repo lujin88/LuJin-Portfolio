@@ -95,7 +95,7 @@
   max-width: 100%;
 }
 
-.tools-hero__illus-wrap .ww-hero-art {
+.tools-hero__illus-wrap .ww-drawing {
   display: block;
   width: 100%;
   height: auto;
@@ -112,10 +112,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
-  border-top: 1px solid var(--line);
-  padding-top: 24px;
   margin-bottom: 0;
-  border-bottom: none;
 }
 
 .tools-card {

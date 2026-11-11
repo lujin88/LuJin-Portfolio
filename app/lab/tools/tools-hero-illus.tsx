@@ -4,14 +4,14 @@ import { useLayoutEffect, useRef } from 'react'
 import { Scene } from '../way-of-work/field-notes'
 import '../way-of-work/field-notes.css'
 
-/** HIW field-notes hero scene (worktable), same SVG mask/blend as /lab/way-of-work — PM #7819 / Lu #7816 */
-const HIW_HERO = 0
+/** HIW Step 2 (team / judgement scene), same mask+multiply as way-of-work — PM #7848 / Lu #7841 */
+const TOOLS_HERO_SCENE = 2
 
 export function ToolsHeroIllus() {
   const wrapRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
-    const svg = wrapRef.current?.querySelector('svg.ww-hero-art')
+    const svg = wrapRef.current?.querySelector('svg.ww-drawing')
     if (svg instanceof SVGSVGElement) {
       svg.dataset.toolsParallax = '0.22'
     }
@@ -19,7 +19,7 @@ export function ToolsHeroIllus() {
 
   return (
     <div className="tools-hero__illus-wrap" ref={wrapRef}>
-      <Scene index={HIW_HERO} />
+      <Scene index={TOOLS_HERO_SCENE} heroArt />
     </div>
   )
 }
