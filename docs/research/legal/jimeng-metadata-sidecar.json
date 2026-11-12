@@ -1,23 +1,22 @@
 {
   "updated": "2026-11-12",
   "thread": "#8673",
-  "pm": "#9296",
+  "legal": "#9314",
   "published": "public/assets/videos/home/bmw-drivein-web.mp4",
-  "sha256_web": "b1f2f8b93bd100c05580b64f710a4a35486bff2b2cbd62af868b26b0524fa0f2",
+  "sha256_web": "48c23c553ba37f85b6690af83adc87df4608c91818332c3db9b7932692dd9201",
   "jimeng_raw": "~/.buzz/OUTBOX/BMW_DRIVEIN_1112/C2/video-v1/generated/40ead6b7-885e-451f-8144-a79ea9cfbd6e_video_1.mp4",
   "pixel_source": "BMW_DRIVEIN_1112/C2/video-v2-fix-r1/bmw-c2-front-r1-3x2.mp4",
-  "derivative_steps": [
-    "Jimeng Dreamina download (1112x834, 5.09s)",
-    "Motion composite/encode → R1 1110x740 4s 30fps (front-wheel repair only)",
-    "Binary copy R1 → repo path",
-    "exiftool -TagsFromFile raw: -UserComment -Comment -Keys:all; Title = derivative chain",
-    "Site: advisory-office.js muted loop; reduce-motion = poster"
+  "metadata_fix": "exiftool -config scripts/legal/exiftool-jimeng-keys.config -TagsFromFile <jimeng_raw> '-Keys:all>Keys:all'",
+  "verify_commands": [
+    "exiftool -a -G1 -s public/assets/videos/home/bmw-drivein-web.mp4 | rg '\\[Keys\\].*(LvMetaInfo|UserComment)'",
+    "ffprobe -show_format public/assets/videos/home/bmw-drivein-web.mp4 | rg quicktime"
   ],
-  "exiftool_published_verify": {
+  "expected_keys_group": {
     "UserComment": "{\"aigc_label_type\":0,\"source_info\":\"dreamina\"}",
-    "Comment": "vid:v02870g10004dbqs0027dld823qsekb0",
-    "Title": "Derivative: Jimeng 40ead6b7 → motion R1 → home bmw-drivein-web (loop, muted)",
-    "Keys_LvMetaInfo": "{\"data\":{\"os\":\"\",\"product\":\"dreamina\",\"exportType\":\"generation\",\"videoId\":\"0\"},\"trace_info\":{\"originItemId\":\"7707276788031900990\"}}"
+    "LvMetaInfo": "{\"data\":{\"os\":\"\",\"product\":\"dreamina\",\"exportType\":\"generation\",\"videoId\":\"0\"},\"trace_info\":{\"originItemId\":\"7707276788031900990\"}}",
+    "Comment": "vid:v02870g10004dbqs0027dld823qsekb0"
   },
-  "in_frame_corner_check": "2026-11-12 @3.5s: no readable Dreamina corner badge on raw vs R1; aigc_label_type 0 = metadata"
+  "rejected_shas": {
+    "bfae271": "UserComment only XMP-exif; Keys:LvMetaInfo missing"
+  }
 }

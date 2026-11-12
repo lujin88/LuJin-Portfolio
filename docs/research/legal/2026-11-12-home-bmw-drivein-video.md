@@ -33,9 +33,9 @@
 | Meaning of `aigc_label_type":0` | Metadata / platform AI identification present in file; **not** a separate in-frame watermark on spot-check of delivery frames from motion R1 (see below). |
 | Derivative 1 | Motion encode + compositing pipeline → `C2/video-v2-fix-r1/bmw-c2-front-r1-3x2.mp4` (4s, 1110×740, 30fps). **Only** front-wheel mask/repair changed vs prior v2; background, route, hold frame unchanged per `C2/video-v2-fix-r1/check.md`. |
 | Derivative 2 (web pixels) | **Binary copy** of R1 MP4 → `public/assets/videos/home/bmw-drivein-web.mp4` (no re-encode). |
-| Derivative 3 (web metadata) | `exiftool -TagsFromFile` Jimeng raw → `-UserComment`, `-Comment`, `-Keys:all` (carries `LvMetaInfo` + `Artwork`); `Title` states derivative chain. Verify: `exiftool -UserComment -Comment -Title` and `exiftool -a -G1 -s` for `Keys:LvMetaInfo`. |
+| Derivative 3 (web metadata) | R1 pixel copy, then `exiftool -config scripts/legal/exiftool-jimeng-keys.config -TagsFromFile` Jimeng raw → `-Keys:all>Keys:all` (restores **`Keys:UserComment`** + **`Keys:LvMetaInfo`**; stock exiftool cannot write those keys). `Title` = derivative chain. Verify: `exiftool -a -G1 -s` must show `[Keys] UserComment` and `[Keys] LvMetaInfo` (not XMP-only). |
 | Site playback | `advisory-office.js`: in-view muted **loop** (same as cards 1–2); `preload=none`; reduce-motion → poster still only. |
-| Prior gap (#9290 / PM #9296) | `534a31c` shipped R1 **without** Jimeng tags; interim `6d91102` used ffmpeg `comment` packing. Superseded by exiftool copy above. |
+| Prior gap (#9290 / PM #9296 / legal #9314) | `534a31c` no tags; `6d91102` ffmpeg packed `comment`; `bfae271` put `UserComment` in **XMP-exif** only — **rejected** (#9314). Fixed with Jimeng Keys config + `-Keys:all`. |
 
 ### In-frame AI label / crop
 
