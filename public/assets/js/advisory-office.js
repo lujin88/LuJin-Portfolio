@@ -3,7 +3,8 @@
  var all=[];document.querySelectorAll('.advisory-office').forEach(function(stage){all.push(initStage(stage));});
  window.__advisoryOfficeCleanup=function(e){all.forEach(function(c){c(e);});};
  function initStage(stage){
- var video=stage.querySelector('video'),reduce=matchMedia('(prefers-reduced-motion: reduce)'),visible=false,failed=false;
+ var video=stage.querySelector('video');if(!video)return function(){};
+ var reduce=matchMedia('(prefers-reduced-motion: reduce)'),visible=false,failed=false;
  var events=new AbortController();
  function shown(){return parseFloat(getComputedStyle(stage).opacity)>0;}
  var queued=false;function onScroll(){if(queued)return;queued=true;requestAnimationFrame(function(){requestAnimationFrame(function(){queued=false;update();});});}
