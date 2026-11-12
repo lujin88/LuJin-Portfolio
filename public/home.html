@@ -2132,7 +2132,7 @@
       </div>
     </article>
     <article id="bmw-my-app" class="home-case" aria-labelledby="case-bmw-title">
-      <div class="home-case-image advisory-office"><img src="/assets/images/bmw-system/i4-services-car.webp" alt="" /></div>
+      <div class="home-case-image advisory-office"><img src="/assets/images/bmw-system/bmw-drivein-park.webp" alt="" /><video data-src="/assets/videos/home/bmw-drivein-web.mp4" poster="/assets/images/bmw-system/bmw-drivein-park.webp" muted playsinline preload="none" data-play-once aria-hidden="true"></video></div>
       <div class="home-case-shade"></div>
       <div class="home-case-copy">
         <p class="home-eyebrow" data-i18n="home.bmw.eyebrow">App &amp; design system · BMW</p>
@@ -2398,8 +2398,8 @@
       const showcase = document.getElementById('home-showcase');
       const eonFull = showcase ? Number(showcase.dataset.eonFull) : NaN;
       const pinned = !!(showcase && showcase.classList.contains('home-showcase-pinned'));
-      // While the showcase is pinned, both case anchors share one sticky top.
-      // E.ON copy reaches opacity 1 at dataset.eonFull (turn hits 1 in render).
+      // While the showcase is pinned, case anchors share one sticky top.
+      // Copy reaches opacity 1 at dataset.eonFull / bmwFull (turn hits 1 in render).
       if (pinned && showcase) {
         const bmwFull = Number(showcase.dataset.bmwFull);
         let scrollMark = NaN;
@@ -2539,7 +2539,7 @@
       const opacity = [0, 0, 0];
       if (turn2 <= 0.001) {
         pairTurn(images[0], images[1], turn1);
-        images[2].style.opacity = '0';
+        if (images[2]) images[2].style.opacity = '0';
         const pair = copyPairFade(turn1);
         opacity[0] = pair[0];
         opacity[1] = pair[1];

@@ -1,10 +1,42 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import { useTranslation } from '@i18n/use-translation'
 import { mediaUrl } from '../../../../lib/media-url'
 
 export function HeroSection() {
+  const desktopVideoRef = useRef<HTMLVideoElement>(null)
+  const mobileVideoRef = useRef<HTMLVideoElement>(null)
   const { t, ta } = useTranslation()
+
+  useEffect(() => {
+    const videos = [desktopVideoRef.current, mobileVideoRef.current].filter(
+      (el): el is HTMLVideoElement => !!el,
+    )
+    if (!videos.length) return
+
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const sync = () => {
+      for (const video of videos) {
+        if (mq.matches) {
+          video.pause()
+          video.load()
+        } else if (document.visibilityState === 'visible') {
+          void video.play().catch(() => {})
+        } else {
+          video.pause()
+        }
+      }
+    }
+
+    sync()
+    mq.addEventListener('change', sync)
+    document.addEventListener('visibilitychange', sync)
+    return () => {
+      mq.removeEventListener('change', sync)
+      document.removeEventListener('visibilitychange', sync)
+    }
+  }, [])
   const scope = ta('ca.hero.scopeItems')
   const glance = [
     { value: t('ca.hero.glance1Value'), label: t('ca.hero.glance1Label'), kind: '5-10' as const },
@@ -20,8 +52,8 @@ export function HeroSection() {
       <div className="ca-s01-photo pointer-events-none absolute inset-0 hidden lg:block">
         <div className="ca-s01-photo-shift">
           <video
+            ref={desktopVideoRef}
             className="ca-s01-video h-full w-full object-cover"
-            autoPlay
             loop
             muted
             playsInline
@@ -90,8 +122,8 @@ export function HeroSection() {
 
         <div className="relative -mx-6 aspect-[4/3] overflow-hidden md:-mx-10 lg:hidden">
           <video
+            ref={mobileVideoRef}
             className="h-full w-full object-cover object-center"
-            autoPlay
             loop
             muted
             playsInline

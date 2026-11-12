@@ -847,6 +847,7 @@ function NavDropdown({
   const menuId = useId()
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([])
   const pendingFocus = useRef<number | null>(null)
+  const [instantFlyout, setInstantFlyout] = useState(false)
 
   useEffect(() => {
     if (!open || pendingFocus.current === null) return
@@ -858,6 +859,7 @@ function NavDropdown({
   const onButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
     event.preventDefault()
+    setInstantFlyout(true)
     const index = event.key === 'ArrowUp' ? group.children.length - 1 : 0
     if (!open) pendingFocus.current = index
     onPin()
@@ -885,7 +887,10 @@ function NavDropdown({
     <li
       className="relative list-none"
       onPointerEnter={(event) => {
-        if (event.pointerType === 'mouse') onHoverOpen()
+        if (event.pointerType === 'mouse') {
+          setInstantFlyout(false)
+          onHoverOpen()
+        }
       }}
       onPointerLeave={(event) => {
         if (event.pointerType === 'mouse') onHoverLeave()
@@ -899,7 +904,12 @@ function NavDropdown({
         aria-controls={open ? menuId : undefined}
         aria-current={active ? 'true' : undefined}
         onClick={(event) => {
-          if (event.detail === 0 && !open) pendingFocus.current = 0
+          if (event.detail === 0) {
+            setInstantFlyout(true)
+            if (!open) pendingFocus.current = 0
+          } else {
+            setInstantFlyout(false)
+          }
           onToggle()
         }}
         onKeyDown={onButtonKeyDown}
@@ -917,7 +927,10 @@ function NavDropdown({
         <ChevronDown
           aria-hidden="true"
           className={cn(
-            'size-3.5 transition-transform duration-300 ease-out',
+            'size-3.5',
+            instantFlyout
+              ? 'motion-reduce:transition-none transition-none'
+              : 'transition-transform duration-300 ease-out',
             MOTION_SAFE,
             open && 'rotate-180',
           )}
@@ -933,7 +946,9 @@ function NavDropdown({
             className={cn(
               MENU_PANEL,
               'header-menu--flyout header-menu-divided origin-top gap-0',
-              'animate-in fade-in-0 zoom-in-[0.98] slide-in-from-top-1 duration-150 ease-out',
+              instantFlyout
+                ? 'opacity-100'
+                : 'animate-in fade-in-0 zoom-in-[0.98] slide-in-from-top-1 duration-150 ease-out',
               MOTION_SAFE,
             )}
           >
