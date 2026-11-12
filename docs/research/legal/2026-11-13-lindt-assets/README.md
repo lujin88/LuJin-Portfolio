@@ -1,6 +1,6 @@
 # Weather Aquarium Lindt seasons — reviewed local edits
 
-PM accepted the four images in #lu-portfolio message 10194 (2026-11-12), following the edit request in 9826 and delivery in 10192. This revision installs those exact reviewed outputs. Legal and visual QA must review the new PR HEAD; PM acceptance is not legal clearance.
+PM accepted the four images in #lu-portfolio message 10194 (2026-11-12), following the edit request in 9826 and delivery in 10192. The initial asset revision installed those exact reviewed lossless outputs; the current q90 revision is documented below. Legal and visual QA must review the new PR HEAD; PM acceptance is not legal clearance.
 
 ## Asset provenance
 
@@ -19,3 +19,13 @@ Local generation and assembly: `/Users/lu/.buzz/OUTBOX/LINDT_LOCAL_EDITS_1112/`,
 ## Remaining review
 
 Legal: generated inserts and retained Lindt lettering; new image files require a signature on the new HEAD. Visual QA: water joins, winter character fit and live carousel rendering. Copy/dev: the existing alt text predates these edits (it still describes swans and omits the winter characters); align that text before release. This asset-only revision does not claim that alt text is updated.
+
+## Current q90 delivery — 2026-11-13
+
+PM #10340/#10355 requested compression only. Each lossless asset from `0f0888016d65fc4805db3fcf14299e26f82f2925` was exported with `cwebp -q 90 input.webp -o output.webp`, retaining 1400 × 830 dimensions and composition. No image generation or content edits were performed. Lossy encoding changes decoded pixels throughout the image; the zero-outside-mask claims above describe the historical lossless edit stage only.
+
+`q90-validation.json` is the current delivery hash and size manifest; `validation.json` retains the historical generation provenance. Total payload: 7,060,388 → 1,354,636 bytes (80.8% reduction). Spring: 341,816 bytes; summer: 344,700; autumn: 337,006; winter: 331,114.
+
+Visual self-check: full scenes and enlarged lake gradients/reflection lines and winter girl/cat details compared side by side, with no obvious new banding or broken lines observed. `q90-details.png`: left = lossless source, right = q90, rows spring/summer/autumn/winter. Full comparison and source backups: `/Users/lu/.buzz/OUTBOX/WA154_Q90_1113/`. This is an asset self-check, not live-browser visual QA.
+
+Validation: all four files decode at 1400 × 830; `pnpm install --frozen-lockfile` passed. The alt-text update is already included in base `0f08880`. Required review order on the new HEAD: legal re-sign → visual QA (including slow 4G) → QA. Existing hold remains.
