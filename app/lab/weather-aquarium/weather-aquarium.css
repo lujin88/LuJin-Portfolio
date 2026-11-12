@@ -308,7 +308,7 @@
 }.wa-page .vocab-item{
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
   min-width: 0;
   padding: 0 clamp(8px, 1.35vw, 20px) 6px;
 }.wa-page .sprite-window{
@@ -318,7 +318,8 @@
 }.wa-page .vocab-art{
   display: grid;
   flex: 0 0 auto;
-  height: clamp(168px, 32vw, 240px);
+  height: 224px;
+  max-height: 224px;
   place-items: center;
 }.wa-page .vocab-art img{
   width: 100%;
@@ -335,6 +336,7 @@
   color: inherit;
   font: inherit;
   cursor: default;
+  overflow: clip;
   container-type: size;
   -webkit-tap-highlight-color: transparent;
 }.wa-page .vocab-art--clip:focus-visible{
