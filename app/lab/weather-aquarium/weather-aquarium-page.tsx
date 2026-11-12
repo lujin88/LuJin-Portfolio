@@ -758,26 +758,26 @@ export function WeatherAquariumPage() {
 
           <section className="editions-section" id="editions" aria-labelledby="editions-title">
             <LayerScrollGroup className="shell">
-              <div className="section-heading compact" data-move="64">
-                <p className="eyebrow">02 / Limited editions</p>
-                <h2 id="editions-title">For special days, the same world gets a new little story.</h2>
-              </div>
+              <div className="editions-block" data-move="64">
+                <div className="section-heading compact">
+                  <p className="eyebrow">02 / Limited editions</p>
+                  <h2 id="editions-title">For special days, the same world gets a new little story.</h2>
+                </div>
 
-              <div className="edition-grid">
-                {EDITIONS.map((edition) => (
-                  <figure className="edition" key={edition.caption}>
-                    <div
-                      className={`edition-media ${edition.video ? 'holiday-cover' : 'holiday-slice'}`}
-                      style={{ ['--slice' as string]: edition.slice }}
-                    >
-                      <div data-move="64" className="edition-media-inner">
+                <div className="edition-grid">
+                  {EDITIONS.map((edition) => (
+                    <figure className="edition" key={edition.caption}>
+                      <div
+                        className={`edition-media ${edition.video ? 'holiday-cover' : 'holiday-slice'}`}
+                        style={{ ['--slice' as string]: edition.slice }}
+                      >
                         <img src={`${IMG}/${edition.image}`} alt={edition.alt} loading="lazy" />
                         {edition.video && <HolidayVideo file={edition.video} />}
                       </div>
-                    </div>
-                    <figcaption>{edition.caption}</figcaption>
-                  </figure>
-                ))}
+                      <figcaption>{edition.caption}</figcaption>
+                    </figure>
+                  ))}
+                </div>
               </div>
             </LayerScrollGroup>
           </section>
