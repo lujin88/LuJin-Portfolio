@@ -114,3 +114,8 @@ Requested wrapping follow-up (`wraps.json`, six route/width cases): How I Work's
 [test-lock] 开始 21:51:47 负载 3.77 4.76 3.88 排队 0 秒
 [test-lock] 结束 21:51:57 负载 4.34 4.85 3.92 退出码 0
 ```
+
+
+## E.ON phone spacing correction (PM #9837 / #9840)
+
+Restored the original 639.98px phone override and its explanation: ordinary E.ON section edges remain 32px, giving 64px between adjacent sections. Desktop DS spacing and the existing 0/24px composition exceptions are unchanged. The earlier 764ed58 measurements above predate this correction; they do not constitute validation of this revision. QA and visual QA must review the new SHA before this branch is pushed.
