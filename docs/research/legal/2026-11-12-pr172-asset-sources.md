@@ -35,14 +35,14 @@ Canonical design copies: `design/hiw-agent-projects-1111/assets/` (same pixels a
 
 **Production:** Screen recordings from the same isolated Monitor/Scranton instances above, on canonical `localhost:3000` `/lab/tools` card chrome (Nov 2026). **Light** pair = default tools-page theme; **dark** pair = dark-theme card variant for navigation parity. Encoded to paired MP4 (H.264) and WebM (VP9).
 
-**Monitor re-record (2026-11-12, PM #8619 / legal #8618):** Only the four `monitor-card-loop-*` files were replaced. Captured on `~/agent-monitor-worktrees/visual-demo-1111` at `127.0.0.1:7781` with `CLAUDE_USAGE=off`, `CODEX_USAGE=off`, `MONITOR_NOTIFICATIONS=off`, seeded from `design/hiw-agent-projects-1111/demo/monitor-state.json` + `monitor-usage.json` (24/36/18/42%, **Demo studio** fictional tasks). Playwright/Chromium (`scripts/record-hiw-monitor-loops.mjs`): load dashboard → approval → **Allow** (~8.68s). Scranton loops unchanged on this revision.
+**Monitor re-record (2026-11-12, PM #8619 / legal #8618 / QA #8626):** Only the four `monitor-card-loop-*` files were replaced. Captured on `~/agent-monitor-worktrees/visual-demo-1111` at `127.0.0.1:7781` with **all** usage collectors off (`CLAUDE_USAGE` / `CODEX_USAGE` / `CURSOR_USAGE` / `GROK_USAGE` / watchers / `MONITOR_NOTIFICATIONS`), demo `state.json` + `usage.json` seeded from `design/hiw-agent-projects-1111/demo/` (24/36/18/42%, **Demo studio** tasks). Playwright/Chromium at **1120×720** (`scripts/record-hiw-monitor-loops.mjs`): held hook via `POST /ask` with `x-key` → **Review & approve** → **Approve** (~8.68s); dark pair forces Monitor `data-theme=dark`. Scranton loops unchanged.
 
 | File | SHA-256 |
 |------|---------|
-| `monitor-card-loop-light.mp4` | `35ef20bbf41a8e1ecf4f65a148bfd492f156133cdc23c6bf0abb06973515a6e5` |
-| `monitor-card-loop-light.webm` | `8c2ad20c1151046421f0dc492019195ef38813a79310f7ba176dfcf683f1223e` |
-| `monitor-card-loop-dark.mp4` | `a3879165811fee5e4a8c933937e309b1a102fe0ea6eea30da7ce1898c93ac78c` |
-| `monitor-card-loop-dark.webm` | `0d60013ec3654d25cbf1ca6474aa1e71053940d07e84eec6423bf19eaac0f548` |
+| `monitor-card-loop-light.mp4` | `ba22d49afbaf53a0173a6083ed1014f29e6f5a039989f5b9f7f9e6b502d7b354` |
+| `monitor-card-loop-light.webm` | `934fef022306d17facb6974da25058933ae1305957c6023008c78b5491ebdc38` |
+| `monitor-card-loop-dark.mp4` | `1c4f7983540d51373e13e44f5fdb0c962e614bd522ff7f851f8c56c83d564849` |
+| `monitor-card-loop-dark.webm` | `af866cbe258c71408aeeaf2aef49a70f86e4886e0dcf24cd99e96bfb3710a10a` |
 | `scranton-card-loop-light.mp4` | `6a2c23af7aef0e608497269fcf366b9aa2f997f1e25eb7a1b8cb36bc4a8d796c` |
 | `scranton-card-loop-light.webm` | `9520029d22594fb0867936c8ce95d80eec449b328a9ccb8b0e69c303322d313c` |
 | `scranton-card-loop-dark.mp4` | `bd21cb26213601968197d0d5e825dbc0d120389fe60e679f6710bd47e0b76b70` |
