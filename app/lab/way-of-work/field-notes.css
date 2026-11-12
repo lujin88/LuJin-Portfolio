@@ -56,7 +56,7 @@
 }
 
 /* ── Design System alignment (consistency guide §2.2–2.4, checklist A–D) ── */
-.ww-page{--ww-well:min(calc(100% - 2 * var(--pad, 24px)), var(--wrap, 1440px));font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif;font-size:var(--font-size-body-lg,17px);line-height:1.7}
+.ww-page{--ww-well:min(calc(100% - 2 * var(--editorial-gutter)), var(--wrap, 1440px));font-family:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif;font-size:var(--font-size-body-lg,17px);line-height:1.7}
 .ww-page :is(h1,h2,.ww-label,.ww-case-link,.ww-intro,p){font-family:inherit}
 .ww-page a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 /* Display — Playground WoW token: Poppins 700 · clamp(2.4rem,6vw,4.75rem) · 1.05 · -0.03em */
@@ -72,18 +72,18 @@
 /* Caption / eyebrow: 13px semibold uppercase 0.28em (number badge kept) */
 .ww-copy .ww-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.28em;gap:16px}
 .ww-label b{letter-spacing:0}
-/* Wells + rhythm: 24px pad + 1440 main well; image-led 57/43 with 80px gutter; sections 128 / 96 */
-.ww-chapter{width:var(--ww-well);max-width:var(--wrap,1440px);grid-template-columns:57fr 43fr;gap:80px;margin-top:128px}
+/* Editorial wells + rhythm use the shared DS spacing; keep the 57/43 art/copy split. */
+.ww-chapter{width:var(--ww-well);max-width:var(--wrap,1440px);grid-template-columns:57fr 43fr;gap:80px;margin-top:var(--editorial-section-space)}
 .ww-c1{grid-template-columns:43fr 57fr}
-.ww-finale{width:var(--ww-well);max-width:var(--wrap,1440px);gap:80px;margin:128px auto 96px}
+.ww-finale{width:var(--ww-well);max-width:var(--wrap,1440px);gap:80px;margin:var(--editorial-section-space) auto var(--editorial-section-space)}
 .ww-finale-copy{max-width:28rem}
 .ww-finale p{margin-top:24px}
 .ww-finale .ww-case-link{margin-top:24px;gap:8px;font-size:var(--font-size-pill,.95rem)}
 @media(max-width:719px){
   .ww-portfolio .ww-hero{padding:96px var(--pad,24px) 16px}
-  .ww-chapter{width:var(--ww-well);margin-top:96px;gap:24px}
+  .ww-chapter{width:var(--ww-well);margin-top:var(--editorial-section-space);gap:24px}
   .ww-copy h2{font-size:clamp(2rem,9vw,2.6rem);margin:16px 0}
-  .ww-finale{width:var(--ww-well);margin:96px auto 80px;gap:24px}
+  .ww-finale{width:var(--ww-well);margin:var(--editorial-section-space) auto var(--editorial-section-space);gap:24px}
   .ww-finale h2{font-size:clamp(2rem,9vw,2.6rem)}
   .ww-copy .ww-label{font-size:12px;letter-spacing:.2em}
 }

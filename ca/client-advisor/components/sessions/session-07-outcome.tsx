@@ -30,7 +30,7 @@ export function Session07Outcome() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-1/2 bg-[radial-gradient(ellipse_at_top,rgba(61,139,255,0.10),transparent_60%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-1/2 bg-[radial-gradient(ellipse_at_top,rgba(61,139,255,0.10),transparent_60%)] [-webkit-mask-image:linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.5)_25%,#000_60%)] [mask-image:linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.5)_25%,#000_60%)]"
       />
       <div
         aria-hidden="true"
@@ -57,17 +57,14 @@ function Editorial() {
         </p>
 
         <div className="flex min-w-0 w-full max-w-[46ch] flex-col">
-          <h2 id="session-07-title" className="ca-h2 mt-[var(--ca-heading-gap)] text-balance">
+          <h2 data-type="h2" id="session-07-title" className="ca-h2 mt-[var(--ca-heading-gap)] text-balance">
             {t('ca.outcome.title')}
           </h2>
 
-          <p className="mt-[var(--ca-body-gap)] text-pretty text-[24px] font-semibold leading-[1.2] tracking-[-0.01em] sm:text-[28px]">
+          <p data-type="body" className="mt-[var(--ca-body-gap)] text-pretty text-[24px] font-semibold leading-[1.2] tracking-[-0.01em] sm:text-[28px]">
             {t('ca.outcome.subhead')}
           </p>
 
-          <p className="mt-6 text-pretty text-[15px] leading-[1.6] text-[var(--ca-muted)] xl:text-base">
-            {t('ca.outcome.body')}
-          </p>
         </div>
       </ScrollReveal>
 
@@ -217,7 +214,7 @@ function MetricCard({ index, value, label, eyebrow, image, imageAlt }: MetricCar
             <p className="whitespace-nowrap text-[clamp(24px,2.2vw,32px)] font-medium leading-[1.1] tracking-[-0.015em]">
               <CountUp text={value} play={state === 'play'} delay={delay + COUNT_DELAY_MS} />
             </p>
-            <p className="text-pretty text-[15px] leading-[1.55] text-[var(--ca-muted)] sm:text-[16px]">{label}</p>
+            <p data-type="body" className="text-pretty text-[15px] leading-[1.55] text-[var(--ca-muted)] sm:text-[16px]">{label}</p>
           </div>
         </div>
       </TiltCard>

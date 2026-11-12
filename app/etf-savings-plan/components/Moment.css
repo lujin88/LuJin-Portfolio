@@ -63,3 +63,10 @@
 @media(max-width:640px){
   .etf-case .story article:last-child {margin-bottom:0}
 }
+
+/* Approved editorial spacing; phone geometry and sticky offsets stay independent. */
+:where(.etf-case) .case-site main {width:min(calc(100% - 2 * var(--editorial-gutter)),1200px)}
+:where(.etf-case) .story article {padding-block:var(--editorial-section-space)}
+@media(max-width:850px),(max-height:530px){
+  :where(.etf-case) .story article {padding-block:0;margin-bottom:var(--editorial-section-space)}
+}
