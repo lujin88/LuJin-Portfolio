@@ -18,7 +18,7 @@ Full command logs remain at `/tmp/gratula-v8-validation/final-*.log`; author scr
 
 ## Google Maps replacement — 13 November 2026
 
-Real Google Maps source replaces the unverified embedded raster. The prototype uses a local PNG with `object-fit: contain` and square bottom corners to retain the complete logo and footer. `screen-step-5.png` was recaptured at 786 × 1672; all three current after-review screenshots were refreshed. The author inspected the phone image and mobile page; Google Maps / Map data ©2026 Google remain present and readable in the source phone image. Independent legal and visual review are still required.
+Real Google Maps source replaces the unverified embedded raster. The prototype uses a local PNG with `object-fit: contain` and square bottom corners to retain the complete logo and footer. `screen-step-5.png` was recaptured at 786 × 1672; all three current after-review screenshots were refreshed. PM #10336 subsequently rejected this first capture: the footer covered the lower part of the Google Maps logo. Its claim of complete attribution was incorrect and is superseded by the revision below. Independent legal and visual review are still required.
 
 The correct branch preview is **http://localhost:4635/lab/party-planner**. Port 4622 now belongs to a different worktree; it was left running.
 
@@ -34,3 +34,21 @@ The initial attempt is invalid: temporary-script module resolution failed, then 
 ```
 
 Reproduction script, checked metrics and original command logs: `/Users/lu/.buzz/OUTBOX/GRATULA_GOOGLE_MAP_1113/` (`capture-and-check.cjs`, `capture-fixed.log`, `check-fixed.log`, `install.log`, `checked-metrics.json`). The original `validation-summary.json` there is explicitly superseded by `INVALID-FIRST-RUN.md`.
+
+
+## Attribution clearance revision — 13 November 2026, PM #10336
+
+The map was recaptured at the original 345 × 180 CSS px / DPR 2. The native logo artwork, colors and size are unchanged; only its DOM position was moved upward 13 CSS px to clear the wrapped footer. Recorded bounds put the logo bottom at y=148 and the footer top at y=154. The author visually inspected the new source, generated phone and 390 px page section: the entire Google Maps logo and two-line attribution are visible. This is development verification, not legal or visual QA approval.
+
+Regenerated the actual party-day screen (five coming / three waiting), all three full-page review screenshots and all six live/static party-day section screenshots. OUTBOX/screen-step-5.png is now byte-identical to the product asset; the stale welcome capture is no longer used. The local capture entry point now uses the verified fixture and requires the visible party-day heading before saving.
+
+Haiku test-runner: frozen install passed; the refreshed capture/assertion run passed live and static prototype at 390 / 700 / 1440 px, with no page errors, horizontal overflow or broken images. It also asserted source dimensions, contain fit and square bottom corners. No new full build, TypeScript or WebKit run for this raster-only product change. The pre-existing next-env.d.ts modification is excluded.
+
+```text
+[test-lock] 开始 00:30:58 负载 4.29 6.65 8.18 排队 0 秒
+[test-lock] 结束 00:31:11 负载 4.07 6.49 8.10 退出码 0
+[test-lock] 开始 00:31:36 负载 3.28 6.11 7.92 排队 0 秒
+[test-lock] 结束 00:31:45 负载 3.38 6.04 7.87 退出码 0
+```
+
+Evidence: OUTBOX/GRATULA_GOOGLE_MAP_1113/{map-recapture-final.log,map-attribution-bounds.json,capture-revision.log,checked-metrics.json,install-revision.log,review.html}. Earlier wide-viewport captures were exploratory and are not the shipped source.

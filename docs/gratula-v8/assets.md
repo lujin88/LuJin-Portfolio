@@ -9,7 +9,7 @@ Source: visual’s `OUTBOX/GRATULA_V8_3_1112/assets/`, except the recaptured par
 | `reply-crop.png` | `29b3948a81585fb152e8525496dd8b23a544d1a0ffacb0a11c371ea786db15c9` |
 | `rsvp-module.png` | `73bcaedc8927a9e3a02a933675171df4d9b5c8154de5d80d872fb07ee9be1707` |
 | `screen-step-2.png` | `1729b508bf3985c83b1dcea903633d037e0c35e80185cf02fac96d20bb70f76a` |
-| `screen-step-5.png` | `2aade124a8fa6a80c66f782e2bf07873403684b214d2aada3fd19606c5a16f95` |
+| `screen-step-5.png` | `ed6fc6f22fe3ffc708ef2237d31ed4e320f68236fdf9ad42f99fd1f72cd678e0` |
 
 The before/after screenshots in `screenshots/` were captured from the existing live portfolio and this branch’s 4622 preview on 12 November 2026. They contain the portfolio’s public page and demo data. They are review evidence, not additional product artwork.
 
@@ -18,10 +18,10 @@ The before/after screenshots in `screenshots/` were captured from the existing l
 Authorized by Lu #10175 and PM #10182 in #lu-portfolio; replaces the embedded map of unverified origin in `party-planner-clickable-prototype.html` (`MAP_IMG`).
 
 - Source: Google Maps web page, <https://www.google.com/maps/@47.3587,8.5328,16z?hl=en>.
-- Captured: 13 November 2026, approximately 00:15 Europe/Zurich.
+- Captured: 13 November 2026, approximately 00:31 Europe/Zurich (recaptured after PM #10336 rejected the clipped 00:15 source).
 - Area: Seestrasse, Zürich, near Museum Rietberg and Belvoirpark; center 47.3587, 8.5328, zoom 16. This is an illustrative neighborhood map, not a verified location pin for the prototype’s demo address.
 - Attribution retained verbatim in the raster: **Google Maps**, **Map data ©2026 Google**. Switzerland, Terms, Privacy, Send Product Feedback and the 100 m scale also remain visible.
-- Capture: ordinary roadmap at 345 × 180 CSS px, DPR 2 (690 × 360 PNG). Google search/account/traffic/category/navigation overlays were hidden in the browser for the map-only screenshot. Map tiles, colors, Google logo and attribution/footer were not altered. No image generation, API key, paid service or new terms acceptance was used; the cookie choice was Reject all.
+- Capture: ordinary roadmap at 345 × 180 CSS px, DPR 2 (690 × 360 PNG). Google search/account/traffic/category/navigation overlays were hidden in the browser for the map-only screenshot. Map tiles, colors, logo artwork/size and attribution text were not altered. At this narrow viewport Google’s footer wraps to two lines and overlaps the default logo position; per PM #10336, the existing native logo element was translated upward 13 CSS px before capture. Its bottom is y=148 and the footer starts at y=154, leaving 6 CSS px clearance. The native footer background and scale remain visible. No logo was redrawn or composited. No image generation, API key, paid service or new terms acceptance was used; the cookie choice was Reject all.
 - File: `public/lab/party-planner/story/google-maps-seestrasse.png`, served locally; opening the prototype makes no Google Maps request. The existing click-through opens Google Maps only when activated.
 - Display: `object-fit: contain` preserves the complete screenshot; bottom corners are square to keep footer text intact.
 - Original source-page captures and the unchanged previous phone screenshot are retained locally in `/Users/lu/.buzz/OUTBOX/GRATULA_GOOGLE_MAP_1113/` for audit. They are not additional site artwork.
@@ -30,6 +30,8 @@ Authorized by Lu #10175 and PM #10182 in #lu-portfolio; replaces the embedded ma
 
 | Additional file | SHA-256 |
 | --- | --- |
-| `google-maps-seestrasse.png` | `a08d9cfdb969761516591b7ec6fa361d3eba4834e329546cdf771931bf6e050d` |
+| `google-maps-seestrasse.png` | `234a2aee0d286e2d7c6eb45004a4344d31960e8754cf46ef7c5229f99a5f2202` |
+
+The capture entry point is `/Users/lu/.buzz/capture-gratula-google-map.mjs`; source recapture, DOM attribution bounds, and the verified phone/page capture script are in the OUTBOX above (`recapture-source.cjs`, `map-attribution-bounds.json`, `capture-and-check.cjs`). The OUTBOX `screen-step-5.png` is now copied directly from the generated product asset, rather than the obsolete welcome-screen capture.
 
 The recapture fixture matches the existing screenshot’s five confirmed and three waiting guests (one seeded declined demo guest is marked confirmed only in the capture session). Application demo defaults are unchanged.
