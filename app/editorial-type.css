@@ -1,0 +1,60 @@
+/* Editorial scale approved in DS_REVIEW_1111/type-scale-spec.md.
+   Opt in on editorial elements only; never on embedded product UI.
+   Important declarations bridge legacy module, scoped and Tailwind styles
+   without relying on route-dependent stylesheet order. */
+:root {
+  --type-display: 40px; --type-display-line: 44px;
+  --type-h2: 40px; --type-h2-line: 44px;
+  --type-h3: 24px; --type-h3-line: 29px;
+  --type-lead: 18px; --type-lead-line: 27px;
+  --type-body: 16px; --type-body-line: 25.6px;
+  --type-small: 14px; --type-small-line: 21px;
+}
+@media (min-width: 720px) {
+  :root {
+    --type-display: clamp(40px, calc(40px + (100vw - 720px) * 0.06578947), 60px);
+    --type-display-line: clamp(44px, calc(44px + (100vw - 720px) * 0.06578947), 64px);
+    --type-h2: clamp(40px, calc(40px + (100vw - 720px) * 0.03894737), 51.84px);
+    --type-h2-line: clamp(44px, calc(44px + (100vw - 720px) * 0.04282895), 57.02px);
+    --type-h3: clamp(24px, calc(24px + (100vw - 720px) * 0.01315789), 28px);
+    --type-h3-line: clamp(29px, calc(29px + (100vw - 720px) * 0.01513158), 33.6px);
+    --type-lead: clamp(18px, calc(18px + (100vw - 720px) * 0.01315789), 22px);
+    --type-lead-line: clamp(27px, calc(27px + (100vw - 720px) * 0.01973684), 33px);
+    --type-body: clamp(16px, calc(16px + (100vw - 720px) * 0.00657895), 18px);
+    --type-body-line: clamp(25.6px, calc(25.6px + (100vw - 720px) * 0.01052632), 28.8px);
+  }
+}
+[data-type="display"] {
+  font-size: var(--type-display) !important;
+  line-height: var(--type-display-line) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+[data-type="h2"] {
+  font-size: var(--type-h2) !important;
+  line-height: var(--type-h2-line) !important;
+  font-weight: 600 !important;
+}
+[data-type="h3"] {
+  font-size: var(--type-h3) !important;
+  line-height: var(--type-h3-line) !important;
+  font-weight: 600 !important;
+}
+[data-type="lead"] {
+  font-size: var(--type-lead) !important;
+  line-height: var(--type-lead-line) !important;
+}
+[data-type="body"] {
+  font-size: var(--type-body) !important;
+  line-height: var(--type-body-line) !important;
+}
+[data-type="small"] {
+  font-size: var(--type-small) !important;
+  line-height: var(--type-small-line) !important;
+}
+
+.type-chapter {
+  font-size: var(--type-h2) !important;
+  line-height: var(--type-h2-line) !important;
+  font-weight: 600 !important;
+}

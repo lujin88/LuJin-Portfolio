@@ -248,3 +248,7 @@
   .man-case .mc-arrival-note span{font-size:14px}
   .man-case .mc-arrival-note strong{font-size:18px}
 }
+
+/* Editorial headings use the same face as the shared site chrome. */
+.man-case :is(h1, h2, h3) { font-family: var(--font-poppins), Poppins, ui-sans-serif, system-ui, sans-serif; }
+.man-case .mc-cover-facts { margin: 20px 0 0; max-width: 40ch; }

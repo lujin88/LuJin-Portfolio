@@ -25,21 +25,21 @@ export function ProblemSection() {
               emphasis="soft"
             />
 
-            <h2 className="mt-7 max-w-[40rem] text-[44px] font-extrabold leading-[1.02] tracking-[-0.035em] md:text-[60px]">
+            <h2 data-type="h2" className="mt-7 max-w-[40rem] text-[44px] font-extrabold leading-[1.02] tracking-[-0.035em] md:text-[60px]">
               {t('eon.problem.title1')}
               <br />
               {t('eon.problem.title2')}
             </h2>
 
-            <p className="mt-8 max-w-[38rem] text-pretty text-lg leading-relaxed text-ink-muted md:text-xl">
+            <p data-type="body" className="mt-8 max-w-[38rem] text-pretty text-lg leading-relaxed text-ink-muted md:text-xl">
               {t('eon.problem.body1')}
             </p>
 
-            <p className="mt-6 max-w-[38rem] text-pretty text-lg font-bold leading-relaxed text-ink md:text-xl">
+            <p data-type="body" className="mt-6 max-w-[38rem] text-pretty text-lg font-bold leading-relaxed text-ink md:text-xl">
               {t('eon.problem.body2')}
             </p>
 
-            <p className="mt-6 max-w-[38rem] text-pretty text-lg leading-relaxed text-ink-muted md:text-xl">
+            <p data-type="body" className="mt-6 max-w-[38rem] text-pretty text-lg leading-relaxed text-ink-muted md:text-xl">
               {t('eon.problem.body3')}
             </p>
           </OnceReveal>

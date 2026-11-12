@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import './field-notes.css'
 import { SiteClosing } from '../../components/site-closing'
 import { Icon } from '../../components/remix-icon'
+import { mountEnsembleMotion } from './ensemble-motion'
 
 const hero = '/lab/way-of-work/field-notes/worktable.webp'
 const selecting = '/lab/way-of-work/field-notes/selection-still-v20.webp'
@@ -98,10 +99,10 @@ const chapters = [
   }
 ]
 
-function Scene({index}:{index:number}){
+export function Scene({index, heroArt}:{index:number; heroArt?:boolean}){
   const scene=scenes[index]
   const mask='ww-paper-'+scene.name
-  return <svg className={'ww-drawing '+(index===0?'ww-hero-art':'ww-art')}
+  return <svg className={'ww-drawing '+(index===0||heroArt?'ww-hero-art':'ww-art')}
     width={800} height={scene.height} viewBox={`0 0 800 ${scene.height}`}
     data-contour={scene.stroke} data-side={scene.entrySide} role="img" aria-label={scene.alt}>
     <defs><mask id={mask} maskUnits="userSpaceOnUse" x="0" y="0" width="800" height={scene.height}>
@@ -125,27 +126,7 @@ function mountDrawing(page:HTMLElement) {
   const accents=drawings.map(scene=>Array.from(scene.querySelectorAll<SVGPathElement>('[data-detail]')))
   const archive = page.querySelector<HTMLImageElement>('.ww-archive')!
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)')
-
-  const ensembles = drawings.map(scene => scene.querySelector<SVGImageElement>('.ww-ensemble')!)
-  const visibleScenes = new Set<Element>()
-  function syncScenes() {
-    ensembles.forEach((image, i) => {
-      const url = visibleScenes.has(drawings[i]) && !reduced.matches ? image.dataset.motion! : image.dataset.still!
-      if (image.getAttribute('href') !== url) image.setAttribute('href', url)
-    })
-    const archiveUrl = visibleScenes.has(archive) && !reduced.matches ? archive.dataset.motion! : archive.dataset.still!
-    if (archive.getAttribute('src') !== archiveUrl) archive.setAttribute('src', archiveUrl)
-  }
-  const visibility = new IntersectionObserver(entries => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) visibleScenes.add(entry.target)
-      else visibleScenes.delete(entry.target)
-    }
-    syncScenes()
-  })
-  drawings.forEach(scene => visibility.observe(scene))
-  visibility.observe(archive)
-  reduced.addEventListener('change', syncScenes)
+  const unmountEnsemble = mountEnsembleMotion(page, archive)
 
   let length=0, frame=0, inkHead=0, inkTime=0
   const stations:{scroll:number;dist:number}[]=[]
@@ -304,7 +285,7 @@ function mountDrawing(page:HTMLElement) {
   const observer=new ResizeObserver(build);observer.observe(page)
   window.addEventListener('resize',build);window.addEventListener('scroll',schedule,{passive:true,capture:true})
   reduced.addEventListener('change',schedule)
-  return ()=>{visibility.disconnect(); reduced.removeEventListener('change', syncScenes); observer.disconnect();cancelAnimationFrame(frame);window.removeEventListener('resize',build);window.removeEventListener('scroll',schedule,true);reduced.removeEventListener('change',schedule)}
+  return ()=>{unmountEnsemble(); observer.disconnect();cancelAnimationFrame(frame);window.removeEventListener('resize',build);window.removeEventListener('scroll',schedule,true);reduced.removeEventListener('change',schedule)}
 }
 
 export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
@@ -316,12 +297,17 @@ export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
     <svg className="ww-trail" aria-hidden="true"><path className="ww-ink"/><circle r="2.6"/></svg>
     {!portfolio&&<nav className="ww-nav" aria-label="Portfolio"><a href={base+'/index'} target="_blank" rel="noreferrer">Lu Jin</a><div><a href={base+'/index'} target="_blank" rel="noreferrer">Work</a><a href="#ww-top" aria-current="page">Lab</a><a href={base+'/about'} target="_blank" rel="noreferrer">About</a></div></nav>}
     <header className="ww-hero">
-      <h1>Making is fast now.<br/>Judging is the <span className="ww-word">work.</span></h1>
+      <h1 data-type="display">Making is fast now.<br/>Judging is the <span className="ww-word">work.</span></h1>
       <Scene index={0}/>
-      <p className="ww-intro">I turn my judgement into rules my agents follow. Where the rules don&apos;t reach, I decide.</p>
+      <p data-type="lead" className="ww-intro">I turn my judgement into rules my agents follow. Where the rules don&apos;t reach, I decide.</p>
     </header>
     {chapters.map((c,i)=><section className={'ww-chapter ww-c'+i} id={'ww-'+c.id} key={c.id}>
-      <div className="ww-copy"><div className="ww-label"><b>0{i+1}</b>{c.label}</div><h2>{c.title}</h2><p>{c.context}</p><p>{c.decision}</p></div>
+      <div className="ww-copy">
+        <div className="ww-label"><b>0{i+1}</b>{c.label}</div>
+        <h2 data-type="h2">{c.title}</h2>
+        <p data-type="body">{c.context}</p>
+        <p data-type="body">{c.decision}</p>
+      </div>
       <figure><Scene index={i+1}/>
       </figure></section>)}
     <section className="ww-finale" aria-labelledby="ww-finale-title">
@@ -329,7 +315,7 @@ export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
         alt="The rabbit files a checked rule card in a blue index box." />
       <div className="ww-finale-copy">
         <p className="ww-finale-kicker">In 2020, the system held the components.</p>
-        <h2 id="ww-finale-title">Now it should hold the rules.</h2>
+        <h2 data-type="h2" id="ww-finale-title">Now it should hold the rules.</h2>
         <a className="ww-case-btn pill-btn" href={base+'/bmw-design-system'} target={portfolio?undefined:'_blank'} rel="noreferrer"><span>Explore the BMW case</span><Icon name="arrow-right-up-line" className="ww-case-icon" /></a>
       </div>
     </section>
