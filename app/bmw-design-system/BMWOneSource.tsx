@@ -64,13 +64,13 @@ export function BMWOneSource() {
     <p>
       {t('bmw.hero.eyebrow')}
     </p>
-    <h1>
+    <h1 data-type="display">
       {t('bmw.hero.title')}
     </h1>
-    <p className="hero-story">
+    <p data-type="lead" className="hero-story">
       {t('bmw.hero.story')}
     </p>
-    <p className="hero-bridge">
+    <p data-type="body" className="hero-bridge">
       {t('bmw.hero.bridge')}
     </p>
   </header>

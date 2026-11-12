@@ -65,7 +65,7 @@ export function Session03Research() {
             <span>{t('ca.research.eyebrow')}</span>
           </p>
 
-          <h2
+          <h2 data-type="h2"
             id="session-03-heading"
             className={`ca-h2 mt-[var(--ca-heading-gap)] max-w-[16ch] font-sans`}
           >
@@ -78,18 +78,18 @@ export function Session03Research() {
             {t('ca.research.subhead')}
           </p>
 
-          <p
+          <p data-type="body"
             className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`}
             dangerouslySetInnerHTML={{ __html: t('ca.research.body1Html') }}
           />
 
-          <h3
+          <h3 data-type="h3"
             className="ca-h3 mt-12 max-w-[22ch] font-sans lg:mt-14"
           >
             {t('ca.research.heading2')}
           </h3>
 
-          <p className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`}>
+          <p data-type="body" className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`}>
             {t('ca.research.body2')}
           </p>
         </div>
