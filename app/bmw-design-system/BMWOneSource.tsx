@@ -1,4 +1,5 @@
 'use client'
+import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
 import type React from 'react'
 import './one-source.css'
 import { useTranslation } from '@i18n/use-translation'
@@ -129,17 +130,18 @@ export function BMWOneSource() {
       2020 · Model × market
     </small>
   </header>
-  <div className="columns">
+  <LayerScrollGroup className="columns">
+    {/* Copy sits right above the table card: text 64 + (gap - 4); title moves with the copy. */}
     <div>
-      <h2 className="chapter-title">
+      <h2 className="chapter-title" data-move="78">
         Every model.
         <br />
         Every market.
       </h2>
-      <p className="chapter-copy">
+      <p className="chapter-copy" data-move="78">
         We tracked which controls each model and market allowed in Excel. I filtered it row by row: if the law didn’t allow a control, I left the button out.
       </p>
-      <div className="book">
+      <div className="book" data-move="64">
         <div className="line labels">
           <b>
             Model
@@ -197,7 +199,7 @@ export function BMWOneSource() {
         </button>
       </div>
     </div>
-    <div className="phone vehicle-phone" role="img" aria-label="Fully charged silver BMW i4 eDrive35. Lock, unlock and headlights in one strip above Status and State of charge.">
+    <div className="phone vehicle-phone" data-move="64" role="img" aria-label="Fully charged silver BMW i4 eDrive35. Lock, unlock and headlights in one strip above Status and State of charge.">
       <div className="screen-region vehicle-header" style={{"aspectRatio": "376/367"}}>
         <img aria-hidden="true" alt="" src="/lab/bmw-one-source/assets/i4-silver-backdrop.png" style={{"transform": "translateY(-0.000000%)"}} />
       </div>
@@ -228,7 +230,7 @@ export function BMWOneSource() {
         <img aria-hidden="true" alt="" src="/lab/bmw-one-source/assets/i4-complete.png" style={{"transform": "translateY(-66.871166%)"}} />
       </div>
     </div>
-  </div>
+  </LayerScrollGroup>
   <p className="chapter-copy preview-note">
     Cars respond slowly, and a car without signal can’t respond at all. We tested how long the app could wait. When a request failed, the car couldn’t say why, so the app could only tell the driver it hadn’t worked.
   </p>
@@ -272,40 +274,43 @@ export function BMWOneSource() {
     </div>
   </footer>
 </section>
-<aside className="system-gap">
-  <p className="overline">
+<LayerScrollGroup as="aside" className="system-gap">
+  <p className="overline" data-move="96">
     The hard part
   </p>
-  <h2>
+  <h2 data-move="96">
     One button.
     <br />
     Many edge cases.
   </h2>
-  <p>
+  <p data-move="96">
     Climate was always one button. Behind it, each model and market needed its own rule, and some edge cases were hard to cover.
   </p>
-</aside>
+</LayerScrollGroup>
 <section id="review-desk" className="showcase desk">
   <header>
     <span className="overline">
       BMW Design System　 /　 Review desk · 2026 proposed
     </span>
   </header>
-  <h2 className="chapter-title">
+  <LayerScrollGroup as="h2" className="chapter-title">
+    <span data-move="96" style={{ display: 'block' }}>
     AI compares.
     <br />
     The team decides.
-  </h2>
+    </span>
+  </LayerScrollGroup>
   <div>
-  <p className="chapter-copy review-intro">
+  <LayerScrollGroup as="p" className="chapter-copy review-intro"><span data-move="96" style={{ display: 'block' }}>
     This part is a hypothesis, not something we shipped. I would store the model and market rules as data, linked to the Figma component and its code. AI would compare every case against those rules and collect real examples that no rule covers yet.
-  </p>
+  </span></LayerScrollGroup>
   <p className="chapter-copy review-intro">
     The team would decide what each case should do. Each decision would become a rule the next review starts from.
   </p>
   </div>
-  <div className="desk-body">
-    <div className="drift-selector">
+  <LayerScrollGroup className="desk-body">
+    {/* 12px above the sample panel when stacked (390): 64 + 8. */}
+    <div className="drift-selector" data-move="72">
       <h3>
         Edge-case report
       </h3>
@@ -336,7 +341,7 @@ export function BMWOneSource() {
         </button>
       </div>
     </div>
-    <section className="inspect" aria-live="polite">
+    <section className="inspect" data-move="64" aria-live="polite">
       <div className="sample">
         <h2>
           In the system
@@ -371,9 +376,10 @@ export function BMWOneSource() {
         </button>
       </div>
     </section>
-  </div>
+  </LayerScrollGroup>
+  <LayerScrollGroup>
   <ol className="proposed-flow" aria-label="Proposed design system workflow">
-    <li>
+    <li data-move="64">
       <div className="step-art" aria-hidden="true" style={{"--slice": "0"} as React.CSSProperties}>
         <img src="/lab/bmw-one-source/assets/review-workflow.webp" alt="" />
       </div>
@@ -384,7 +390,7 @@ export function BMWOneSource() {
         Figma ↔ code via Code Connect
       </span>
     </li>
-    <li>
+    <li data-move="64">
       <div className="step-art" aria-hidden="true" style={{"--slice": "1"} as React.CSSProperties}>
         <img src="/lab/bmw-one-source/assets/review-workflow.webp" alt="" />
       </div>
@@ -395,7 +401,7 @@ export function BMWOneSource() {
         Model × market → button shown or hidden
       </span>
     </li>
-    <li>
+    <li data-move="64">
       <div className="step-art" aria-hidden="true" style={{"--slice": "2"} as React.CSSProperties}>
         <img src="/lab/bmw-one-source/assets/review-workflow.webp" alt="" />
       </div>
@@ -406,7 +412,7 @@ export function BMWOneSource() {
         Collect real cases no rule covers yet
       </span>
     </li>
-    <li>
+    <li data-move="64">
       <div className="step-art" aria-hidden="true" style={{"--slice": "3"} as React.CSSProperties}>
         <img src="/lab/bmw-one-source/assets/review-workflow.webp" alt="" />
       </div>
@@ -418,6 +424,7 @@ export function BMWOneSource() {
       </span>
     </li>
   </ol>
+  </LayerScrollGroup>
   <footer className="team-decides">
     <b>
       Where AI stops

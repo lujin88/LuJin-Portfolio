@@ -1,4 +1,5 @@
 'use client'
+import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { SeasonCrossfade } from './season-crossfade'
@@ -554,7 +555,7 @@ function PoseButton({
   return (
     <button
       ref={buttonRef}
-      className="pose reveal pose-nodot"
+      className="pose pose-nodot"
       type="button"
       aria-pressed={autoLoop ? undefined : hoverOnly ? playing : selected}
       style={{ ['--index' as string]: item.index }}
@@ -760,26 +761,30 @@ export function WeatherAquariumPage() {
 
         <main id="main">
           <section className="seasons-section" id="seasons" aria-labelledby="seasons-title">
-            <div className="shell section-heading reveal">
-              <p className="eyebrow">01 / The year in one place</p>
-              <h2 id="seasons-title">The same world changes with the season outside.</h2>
-            </div>
+            <LayerScrollGroup>
+              {/* Heading box touches the frame (0px gap): moves with it. */}
+              <div className="shell section-heading" data-move="64">
+                <p className="eyebrow">01 / The year in one place</p>
+                <h2 id="seasons-title">The same world changes with the season outside.</h2>
+              </div>
 
-            <div className="shell seasons-frame">
-              <SeasonCrossfade />
-            </div>
+              <div className="shell seasons-frame" data-move="64">
+                <SeasonCrossfade />
+              </div>
+            </LayerScrollGroup>
           </section>
 
           <section className="editions-section" id="editions" aria-labelledby="editions-title">
-            <div className="shell">
-              <div className="section-heading compact reveal">
+            <LayerScrollGroup className="shell">
+              {/* Heading box touches the grid (0px gap): moves with it. */}
+              <div className="section-heading compact" data-move="64">
                 <p className="eyebrow">02 / Limited editions</p>
                 <h2 id="editions-title">For special days, the same world gets a new little story.</h2>
               </div>
 
               <div className="edition-grid">
                 {EDITIONS.map((edition) => (
-                  <figure className="edition reveal" key={edition.caption}>
+                  <figure className="edition" data-move="64" key={edition.caption}>
                     <div
                       className={`edition-media ${edition.video ? 'holiday-cover' : 'holiday-slice'}`}
                       style={{ ['--slice' as string]: edition.slice }}
@@ -791,12 +796,13 @@ export function WeatherAquariumPage() {
                   </figure>
                 ))}
               </div>
-            </div>
+            </LayerScrollGroup>
           </section>
 
           <section className="learning-section" id="learning" aria-labelledby="learning-title">
-            <div className="shell">
-              <div className="learning-head reveal">
+            <LayerScrollGroup className="shell">
+              {/* 20px above the vocab grid: 64 + 16. */}
+              <div className="learning-head" data-move="80">
                 <div>
                   <p className="eyebrow">03 / Look, listen, learn</p>
                   <h2 id="learning-title">Every object in the aquarium can become a word.</h2>
@@ -821,7 +827,7 @@ export function WeatherAquariumPage() {
                 {VOCAB.map((item) => {
                   const label = DICTIONARY[language].words[item.word]
                   return (
-                    <article className="vocab-item reveal" key={item.word}>
+                    <article className="vocab-item" data-move="64" key={item.word}>
                       <VocabArt
                         item={item}
                         label={label}
@@ -843,18 +849,19 @@ export function WeatherAquariumPage() {
                   )
                 })}
               </div>
-            </div>
+            </LayerScrollGroup>
           </section>
 
           <section className="motion-section" id="motion" aria-labelledby="motion-title">
-            <div className="shell motion-grid">
-              <div className="motion-copy reveal">
+            <LayerScrollGroup className="shell motion-grid">
+              {/* 24px above the pose track when stacked: 64 + 20. */}
+              <div className="motion-copy" data-move="84">
                 <p className="eyebrow">04 / Character motion</p>
                 <h2 id="motion-title">Built in Rive</h2>
                 <p>The character uses reusable Rive states for idle, waving, getting dressed and exploring.</p>
               </div>
 
-              <div className="pose-track" aria-label="Character motion states">
+              <div className="pose-track" data-move="64" aria-label="Character motion states">
                 {POSES.map((item) => (
                   <PoseButton
                     key={item.label}
@@ -866,7 +873,7 @@ export function WeatherAquariumPage() {
                   />
                 ))}
               </div>
-            </div>
+            </LayerScrollGroup>
           </section>
         </main>
       </div>
