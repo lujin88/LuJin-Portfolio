@@ -33,14 +33,16 @@ Canonical design copies: `design/hiw-agent-projects-1111/assets/` (same pixels a
 
 **PM spec:** lu-portfolio #7912 (Lu #7911): 8–12s loops, scripted UI on **demo data only** — Monitor: load → approval popup → approve; Scranton: Report → Activity → typed input → chat reply → resize. No real channel names, credentials, or usage. Paused off-screen / `prefers-reduced-motion` handled in `app/lab/tools/tools-card-media.tsx`.
 
-**Production:** Screen recordings from the same isolated Monitor/Scranton instances above, on canonical `localhost:3000` `/lab/tools` card chrome (Nov 2026). **Light** pair = default tools-page theme; **dark** pair = dark-theme card variant for navigation parity. Encoded to paired MP4 (H.264) and WebM (VP9). Initial v1 loops in git commit `e02f320` on 3000 branch; light/dark finals replace v1 in working tree 2026-11-11 (not reusing live 7777/8300 data).
+**Production:** Screen recordings from the same isolated Monitor/Scranton instances above, on canonical `localhost:3000` `/lab/tools` card chrome (Nov 2026). **Light** pair = default tools-page theme; **dark** pair = dark-theme card variant for navigation parity. Encoded to paired MP4 (H.264) and WebM (VP9).
+
+**Monitor re-record (2026-11-12, PM #8619 / legal #8618):** Only the four `monitor-card-loop-*` files were replaced. Captured on `~/agent-monitor-worktrees/visual-demo-1111` at `127.0.0.1:7781` with `CLAUDE_USAGE=off`, `CODEX_USAGE=off`, `MONITOR_NOTIFICATIONS=off`, seeded from `design/hiw-agent-projects-1111/demo/monitor-state.json` + `monitor-usage.json` (24/36/18/42%, **Demo studio** fictional tasks). Playwright/Chromium (`scripts/record-hiw-monitor-loops.mjs`): load dashboard → approval → **Allow** (~8.68s). Scranton loops unchanged on this revision.
 
 | File | SHA-256 |
 |------|---------|
-| `monitor-card-loop-light.mp4` | `e78a154d9f88396b043a6bcb3889df7a3927e3233dcb137d53fc7213168e1956` |
-| `monitor-card-loop-light.webm` | `4e254326a05e135e4990085b6e1c0bf3ed9d0c80fd66574572bcfcae2b2fbd7b` |
-| `monitor-card-loop-dark.mp4` | `371f855c71202ac10a5b81f752035b7756be46d2a88b3a67d22a59f39af2bdbe` |
-| `monitor-card-loop-dark.webm` | `dbc9af6612af5f5eddb7b8766d68d0982210af0676cff99d9dc35fb738cad71f` |
+| `monitor-card-loop-light.mp4` | `35ef20bbf41a8e1ecf4f65a148bfd492f156133cdc23c6bf0abb06973515a6e5` |
+| `monitor-card-loop-light.webm` | `8c2ad20c1151046421f0dc492019195ef38813a79310f7ba176dfcf683f1223e` |
+| `monitor-card-loop-dark.mp4` | `a3879165811fee5e4a8c933937e309b1a102fe0ea6eea30da7ce1898c93ac78c` |
+| `monitor-card-loop-dark.webm` | `0d60013ec3654d25cbf1ca6474aa1e71053940d07e84eec6423bf19eaac0f548` |
 | `scranton-card-loop-light.mp4` | `6a2c23af7aef0e608497269fcf366b9aa2f997f1e25eb7a1b8cb36bc4a8d796c` |
 | `scranton-card-loop-light.webm` | `9520029d22594fb0867936c8ce95d80eec449b328a9ccb8b0e69c303322d313c` |
 | `scranton-card-loop-dark.mp4` | `bd21cb26213601968197d0d5e825dbc0d120389fe60e679f6710bd47e0b76b70` |
