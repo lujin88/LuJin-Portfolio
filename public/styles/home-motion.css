@@ -53,7 +53,18 @@
 #bmw-my-app .home-case-image,
 #bmw-my-app .advisory-office > img { object-position: 24% center; }
 #bmw-my-app .home-case-shade {
-  background: linear-gradient(90deg, transparent 42%, var(--color-bg-page) 72%);
+  /* Parked car sits left; copy right needs earlier wash (visualqa #9349). */
+  background: linear-gradient(90deg, transparent 26%, var(--color-bg-page) 56%);
+}
+@media (max-width: 1099px) {
+  #bmw-my-app .advisory-office > :is(img, video) {
+    object-position: 30% center;
+  }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 1100px) {
+  #bmw-my-app .advisory-office > :is(img, video) {
+    object-position: 22% center;
+  }
 }
 .bmw-title-390 { display: none; }
 @media (max-width: 420px) {
