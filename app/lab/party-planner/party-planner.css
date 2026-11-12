@@ -277,6 +277,9 @@ html:has(.pp-landing) #site-content {
   position: relative;
   z-index: 8;
   min-width: 0;
+  /* The phone is pulled left into this column (.hero-phone left); keep the copy clear of it.
+     The old display-size nowrap H1 used to push the column wide enough (visualqa #2391). */
+  padding-inline-end: calc(clamp(4rem, 8vw, 8rem) + 35px);
 }
 .pp-landing .hero-brand {
   margin: 0 0 0.9rem;
@@ -290,8 +293,9 @@ html:has(.pp-landing) #site-content {
 .pp-landing .hero h1 {
   margin: 0;
   font-family: var(--display);
-  font-size: var(--font-size-display);
-  line-height: var(--leading-display);
+  /* Home page H2 size (Lu 2026-11-09, #1865): 2.25rem, 1.9rem up to 900px. */
+  font-size: var(--font-size-heading-lg);
+  line-height: var(--leading-heading);
   letter-spacing: var(--tracking-display);
   font-weight: var(--font-weight-bold, 700);
   white-space: nowrap;
@@ -417,8 +421,10 @@ html:has(.pp-landing) #site-content {
   }
   .pp-landing .hero-copy {
     max-width: 28rem;
+    padding-inline-end: 0;
   }
   .pp-landing .hero h1 {
+    font-size: var(--font-size-heading);
     white-space: normal;
   }
   .pp-landing .hero-copy .pill {

@@ -350,12 +350,21 @@
   margin-top: 0.9rem;
 }
 
+/* Case opening title: same size as the home page H2 (Lu 2026-11-09, #1865).
+   1.9rem up to 900px, 2.25rem above; literal values because this layout
+   does not load shell-tokens.css. */
 .ca-h1 {
-  font-size: 2.75rem;
+  font-size: 1.9rem;
   font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
   color: var(--ca-text, #f3f6fa);
+}
+
+@media (min-width: 901px) {
+  .ca-h1 {
+    font-size: 2.25rem;
+  }
 }
 
 .ca-h2 {
@@ -374,12 +383,6 @@
 }
 
 @media (min-width: 1024px) {
-  .ca-h1 {
-    font-size: 4.5rem;
-    line-height: 1.05;
-    letter-spacing: -0.025em;
-  }
-
   .ca-h2 {
     font-size: clamp(2.75rem, 3.6vw, 3.25rem);
   }

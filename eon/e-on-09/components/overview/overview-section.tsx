@@ -19,7 +19,7 @@ export function OverviewSection() {
             emphasis="strong"
           />
 
-          <h1 className="mt-8 text-5xl font-extrabold leading-[0.98] tracking-tight text-balance sm:text-6xl">
+          <h1 className="mt-8 text-[1.9rem] font-extrabold leading-[1.1] tracking-[-0.025em] text-balance min-[901px]:text-[2.25rem]">
             {t('eon.overview.titleBefore')}{' '}
             <span className="text-eon-lilac">{t('eon.overview.titleAccent')}</span>
           </h1>
