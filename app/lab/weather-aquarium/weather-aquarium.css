@@ -318,14 +318,17 @@
 }.wa-page .vocab-art{
   display: grid;
   flex: 0 0 auto;
-  height: clamp(150px, 26vw, 220px);
+  height: clamp(168px, 32vw, 240px);
   place-items: center;
 }.wa-page .vocab-art img{
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  max-height: 100%;
   object-fit: contain;
+}.wa-page .vocab-art--clip > img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }.wa-page .vocab-art--clip{
   /* Same box as .vocab-art; a button only so the clip can be focused and tapped. */
   position: relative;
@@ -337,6 +340,7 @@
   color: inherit;
   font: inherit;
   cursor: default;
+  overflow: hidden;
   container-type: size;
   -webkit-tap-highlight-color: transparent;
 }.wa-page .vocab-art--clip:focus-visible{
@@ -347,16 +351,12 @@
      height is its content height, so it always fills the box width; a shorter one is
      centred vertically, a taller one starts at the box top and overflows downward.
      The clip is placed so subjects align. */
-  --rw: 100cqw;
-  --fit-w: min(calc(var(--rw) * var(--clip-w)), calc(100cqh * var(--ratio)));
   position: absolute;
-  left: calc(50% - var(--fit-w) / 2 + var(--rw) * var(--clip-x) * min(1, calc(var(--fit-w) / (var(--rw) * var(--clip-w)))));
-  top: calc(max(0px, (100cqh - var(--fit-w) / var(--ratio)) / 2) + var(--rw) * var(--clip-y) * min(1, calc(var(--fit-w) / (var(--rw) * var(--clip-w)))));
-  width: var(--fit-w);
-  max-width: 100%;
-  max-height: 100%;
-  height: auto;
-  aspect-ratio: 1112 / 834;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
   /* Two gradients (set inline per clip) intersect into a feathered rectangle. */
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
