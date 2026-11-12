@@ -3,6 +3,7 @@ import { Patrick_Hand } from 'next/font/google'
 import { HtmlChrome } from '../../html-chrome'
 import { socialMetadata } from '../../seo'
 import './party-planner.css'
+import './gratula-story.css'
 
 const patrickHand = Patrick_Hand({
   subsets: ['latin'],
