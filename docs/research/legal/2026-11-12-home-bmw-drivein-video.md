@@ -1,6 +1,6 @@
 # Home BMW case card — drive-in video (PR #178)
 
-2026-11-12 · thread **#8673** · legal **#9285** / **#9290** · PM **#9296**.
+2026-11-12 · thread **#8673** · legal **#9285** / **#9290** · PM **#9296** / **#9317** · QA **#9321**.
 
 ## Published asset
 
@@ -10,7 +10,7 @@
 | Poster (reduce / fallback) | `public/assets/images/bmw-system/i4-services-car.webp` (unchanged on this PR) |
 | Playback | `advisory-office.js` (same as UBS/E.ON); muted loop; reduced motion = still only |
 | Pixel source | `~/.buzz/OUTBOX/BMW_DRIVEIN_1112/C2/video-v2-fix-r1/bmw-c2-front-r1-3x2.mp4` (motion R1 front-wheel repair; visualqa **#9238**) |
-| SHA-256 (web) | `b1f2f8b93bd100c05580b64f710a4a35486bff2b2cbd62af868b26b0524fa0f2` (R1 pixels + `exiftool` tags; was `1807a5c4…` on `534a31c`) |
+| SHA-256 (web) | `d4a0c1f2a2fd74bf1eb9edad856e3006f5fcde6647486202397428b917645ee3` (`ffmpeg -map_metadata 1`; decoded video MD5 = R1) |
 
 ## Background still (legal #9285 item 1)
 
@@ -32,21 +32,20 @@
 | Container tags on **raw download** (ffprobe, 2026-11-12) | `UserComment`: `{"aigc_label_type":0,"source_info":"dreamina"}` · `LvMetaInfo`: Dreamina `exportType":"generation"`, `originItemId":"7707276788031900990"` · `comment`: `vid:v02870g10004dbqs0027dld823qsekb0` |
 | Meaning of `aigc_label_type":0` | Metadata / platform AI identification present in file; **not** a separate in-frame watermark on spot-check of delivery frames from motion R1 (see below). |
 | Derivative 1 | Motion encode + compositing pipeline → `C2/video-v2-fix-r1/bmw-c2-front-r1-3x2.mp4` (4s, 1110×740, 30fps). **Only** front-wheel mask/repair changed vs prior v2; background, route, hold frame unchanged per `C2/video-v2-fix-r1/check.md`. |
-| Derivative 2 (web pixels) | **Binary copy** of R1 MP4 → `public/assets/videos/home/bmw-drivein-web.mp4` (no re-encode). |
-| Derivative 3 (web metadata) | R1 pixel copy, then `exiftool -config scripts/legal/exiftool-jimeng-keys.config -TagsFromFile` Jimeng raw → `-Keys:all>Keys:all` (restores **`Keys:UserComment`** + **`Keys:LvMetaInfo`**; stock exiftool cannot write those keys). `Title` = derivative chain. Verify: `exiftool -a -G1 -s` must show `[Keys] UserComment` and `[Keys] LvMetaInfo` (not XMP-only). |
+| Derivative 2 (web deliverable) | `ffmpeg -i <R1> -i <jimeng_raw> -map 0 -c copy -map_metadata 1 -movflags use_metadata_tags+faststart` → `public/assets/videos/home/bmw-drivein-web.mp4` (PM **#9317** / QA **#9321**). Video stream copied only; container metadata from Jimeng raw. |
 | Site playback | `advisory-office.js`: in-view muted **loop** (same as cards 1–2); `preload=none`; reduce-motion → poster still only. |
-| Prior gap (#9290 / PM #9296 / legal #9314) | `534a31c` no tags; `6d91102` ffmpeg packed `comment`; `bfae271` put `UserComment` in **XMP-exif** only — **rejected** (#9314). Fixed with Jimeng Keys config + `-Keys:all`. |
+| Prior gap | `534a31c` no tags; `bfae271`/`48c23c55` exiftool paths — **rejected** (#9314, QA **#9321**). Canonical fix: `map_metadata 1` above. Optional `scripts/legal/exiftool-jimeng-keys.config` kept for non-ffmpeg replay only. |
 
 ### In-frame AI label / crop
 
 - Jimeng source is 1112×834; published loop is 1110×740 (R1 delivery crop/aspect for home card). Motion `delivery-proof.cjs` / `review/delivery-frames/` are the acceptance frames for the **published** loop.
 - Jimeng → R1 reframes 1112×834 → 1110×740 (aspect for home card). Corner spot-check @t≈3.5s: no readable Dreamina **画面角标** on raw vs R1 (dark scenery dominates corners; `aigc_label_type":0` = metadata label). Motion delivery strip also shows no corner badge.
-- Primary compliance record: **container metadata** from raw download, re-copied with `exiftool` on publish file (not removed by silent re-encode).
+- Primary compliance record: **container metadata** from raw download via `ffmpeg -map_metadata 1` (not removed by silent re-encode).
 
 ## Sidecar for 法务
 
-`docs/research/legal/jimeng-metadata-sidecar.json` — raw-download tags + derivative chain + `exiftool` verification on PR HEAD SHA.
+`docs/research/legal/jimeng-metadata-sidecar.json` — publish command + verification (MD5 + `exiftool -a -G1 -s` Keys tags).
 
 ## Sign-off
 
-Re-request **法务通过** on PR HEAD after exiftool tags. **QA 通过** on new HEAD (metadata+tag container; pixels = R1). Visualqa: same picture as R1 #9238 unless SHA-only regression check needed.
+Re-request **法务通过** / **QA 通过** on PR HEAD after `map_metadata` deliverable. Visualqa: same decoded frames as R1 #9238 (MD5 unchanged).
