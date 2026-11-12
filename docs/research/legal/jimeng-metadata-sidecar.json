@@ -1,19 +1,23 @@
 {
   "updated": "2026-11-12",
   "thread": "#8673",
+  "pm": "#9296",
   "published": "public/assets/videos/home/bmw-drivein-web.mp4",
-  "sha256_web": "3d8539543038f38dcbbf4acb42aa1eccd72b6ddf8306c00cf23044fd06a3a007",
+  "sha256_web": "b1f2f8b93bd100c05580b64f710a4a35486bff2b2cbd62af868b26b0524fa0f2",
   "jimeng_raw": "~/.buzz/OUTBOX/BMW_DRIVEIN_1112/C2/video-v1/generated/40ead6b7-885e-451f-8144-a79ea9cfbd6e_video_1.mp4",
-  "jimeng_raw_tags_ffprobe": {
-    "UserComment": "{\"aigc_label_type\":0,\"source_info\":\"dreamina\"}",
-    "LvMetaInfo": "{\"data\":{\"os\":\"\",\"product\":\"dreamina\",\"exportType\":\"generation\",\"videoId\":\"0\"},\"trace_info\":{\"originItemId\":\"7707276788031900990\"}}",
-    "comment": "vid:v02870g10004dbqs0027dld823qsekb0"
-  },
   "pixel_source": "BMW_DRIVEIN_1112/C2/video-v2-fix-r1/bmw-c2-front-r1-3x2.mp4",
-  "remux": "ffmpeg -map 0:v -map_metadata 1 -c copy + title/comment derivative record (metadata-only vs 534a31c)",
-  "published_tags_ffprobe": {
-    "title": "Derivative: BMW home card — Jimeng 40ead6b7 + motion R1 (not raw export)",
-    "comment": "jimeng_vid=v02870g10004dbqs0027dld823qsekb0 | UserComment={\"aigc_label_type\":0,\"source_info\":\"dreamina\"} | LvMetaInfo={\"data\":{\"os\":\"\",\"product\":\"dreamina\",\"exportType\":\"generation\",\"videoId\":\"0\"},\"trace_info\":{\"originItemId\":\"7707276788031900990\"}} | derivative=motion_R1_front_wheel_repair | pixels=bmw-c2-front-r1-3x2"
+  "derivative_steps": [
+    "Jimeng Dreamina download (1112x834, 5.09s)",
+    "Motion composite/encode → R1 1110x740 4s 30fps (front-wheel repair only)",
+    "Binary copy R1 → repo path",
+    "exiftool -TagsFromFile raw: -UserComment -Comment -Keys:all; Title = derivative chain",
+    "Site: advisory-office.js muted loop; reduce-motion = poster"
+  ],
+  "exiftool_published_verify": {
+    "UserComment": "{\"aigc_label_type\":0,\"source_info\":\"dreamina\"}",
+    "Comment": "vid:v02870g10004dbqs0027dld823qsekb0",
+    "Title": "Derivative: Jimeng 40ead6b7 → motion R1 → home bmw-drivein-web (loop, muted)",
+    "Keys_LvMetaInfo": "{\"data\":{\"os\":\"\",\"product\":\"dreamina\",\"exportType\":\"generation\",\"videoId\":\"0\"},\"trace_info\":{\"originItemId\":\"7707276788031900990\"}}"
   },
-  "note": "H.264 payload unchanged vs R1; prior web SHA 1807a5c488cb70fcb461b611b3babfe2f1028883f8f8b410e105e866f8a20159 had no Jimeng metadata."
+  "in_frame_corner_check": "2026-11-12 @3.5s: no readable Dreamina corner badge on raw vs R1; aigc_label_type 0 = metadata"
 }
