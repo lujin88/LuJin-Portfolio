@@ -184,9 +184,10 @@
 .bmw-driver dl{grid-area:dl;position:static;flex-direction:column;gap:16px;margin-top:32px}
 .bmw-driver dl>div+div{padding:16px 0 0;border-left:0;border-top:1px solid #ffffff40}
 .bmw-driver dd{font-size:16px}
-.bmw-driver nav{grid-area:nav;margin-top:32px}
-.bmw-driver nav img{height:32px}
-.bmw-driver nav .play{height:48px;margin:-8px}
+.bmw-driver nav{grid-area:nav;display:flex;flex-wrap:wrap;align-items:center;gap:12px;width:100%;max-width:100%;margin-top:8px}
+.bmw-driver nav a{flex:0 1 auto;min-width:0}
+.bmw-driver nav img{height:32px;max-width:100%}
+.bmw-driver nav .play{height:48px;max-height:48px;margin:0}
 }
 /* Hero from 601px up (Lu #5896, #5975): copy on the left, phone on the right.
    One car only: the photo's car stands on the road behind the phone, slightly blurred, centred on the car shown
