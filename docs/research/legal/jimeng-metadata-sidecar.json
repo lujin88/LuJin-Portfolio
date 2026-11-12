@@ -14,7 +14,11 @@
     "exiftool_keys_present": ["Keys:LvMetaInfo", "Keys:UserComment", "Keys:Comment"]
   },
   "rejected_shas": {
-    "bfae271": "Keys:LvMetaInfo missing; UserComment only XMP-exif",
-    "48c23c55…": "exiftool config path; superseded by ffmpeg map_metadata per PM/QA"
-  }
+    "bfae271": "Keys:LvMetaInfo missing; UserComment only XMP-exif (QA #9321)"
+  },
+  "superseded_shas": {
+    "d6dabf5": "exiftool+config Keys OK; replaced by 158b592 ffmpeg",
+    "48c23c55…": "same"
+  },
+  "qa_pass_video_sha": "158b592"
 }

@@ -22,7 +22,7 @@
 | Home card on #178 | **Does not** swap poster to alpine; card still uses `i4-services-car.webp`. Alpine is the **composition source** for drive-in generation in OUTBOX, not a new stock download for this PR. |
 | Route / still generation | `BMW_DRIVEIN_1112/README.md`: GPT built-in `image_gen` for route drafts (1536×1024); A/B edits from alpine base. `C2/README.md`: deterministic pixel move of existing car RGB from alpine; GPT used only for old-slot infill mask, not full background replacement. |
 | External ref / license file | No separate stock-license file in repo for alpine sunset. Prior visual brief `BMW_HOME_VISUAL_1111_8034/README.md` documents **reuse of existing** `i4-alpine-sunset.webp`, no newly licensed asset for the home BMW board. Public-edit rights for **this PR’s loop** are Jimeng + downstream motion edits (below), not a new rights grant on alpine itself. |
-| Hero / alpine provenance (legal #9324, PM #9330) | OUTBOX chain documented separately — start `~/.buzz/OUTBOX/BMW_HERO_C_I4_20261108/README.md` (built-in **image_gen** edit of prior C; BMW HK page + Scene7 `g26_bev_positioning_image` as **morphology reference only**, not press photo). Repo first publish `cd5e944`. **Authorization judgment not claimed here**; visual/legal own completeness vs `ix3-landscape` upstream. |
+| Hero / alpine provenance (legal #9324, PM #9330) | OUTBOX chain: `ix3-landscape.webp` → hero C pipeline → `i4-alpine-sunset` (see `BMW_HERO_C_I4_20261108/README.md`). Lu **#9332** on upstream ix3: web-found / AI-generated. **Authorization judgment not claimed here**. |
 
 ## Jimeng video + derivatives (legal #9285 item 2, #9290)
 
@@ -35,7 +35,7 @@
 | Derivative 1 | Motion encode + compositing pipeline → `C2/video-v2-fix-r1/bmw-c2-front-r1-3x2.mp4` (4s, 1110×740, 30fps). **Only** front-wheel mask/repair changed vs prior v2; background, route, hold frame unchanged per `C2/video-v2-fix-r1/check.md`. |
 | Derivative 2 (web deliverable) | `ffmpeg -i <R1> -i <jimeng_raw> -map 0 -c copy -map_metadata 1 -movflags use_metadata_tags+faststart` → `public/assets/videos/home/bmw-drivein-web.mp4` (PM **#9317** / QA **#9321**). Video stream copied only; container metadata from Jimeng raw. |
 | Site playback | `advisory-office.js`: in-view muted **loop** (same as cards 1–2); `preload=none`; reduce-motion → poster still only. |
-| Prior gap | `534a31c` no tags; `bfae271`/`48c23c55` exiftool paths — **rejected** (#9314, QA **#9321**). Canonical fix: `map_metadata 1` above. Optional `scripts/legal/exiftool-jimeng-keys.config` kept for non-ffmpeg replay only. |
+| Prior gap | `534a31c` no tags; `bfae271` exiftool XMP-only **rejected** (#9314, QA **#9321** on bfae271). `d6dabf5`/`48c23c55` had Keys via exiftool config but **superseded** by `158b592` ffmpeg (QA **#9334** on 158b592). Canonical: `map_metadata 1` above. |
 
 ### In-frame AI label / crop
 
