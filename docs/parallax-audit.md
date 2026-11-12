@@ -36,7 +36,7 @@ Reduced-motion: all `LayerScrollGroup` and `/index` scripts clear transforms whe
 
 - **Worktree**：`~/LuJin-Portfolio-worktrees/webdev`，分支 `design/parallax-unify-index`
 - **本地服务**：`http://localhost:4621`（`pnpm predev && pnpm exec next dev --port 4621`）
-- **冻结 SHA**：`a4a5627ccec4c8f22c93e9f9c288023df62bf435`（`design/parallax-unify-index`，仅本地 commit，未 push）
+- **冻结 SHA**：与分支 tip 一致 — 交付时 `git rev-parse HEAD` on `design/parallax-unify-index`（录屏锁 `0204a48`，见 OUTBOX README）
 - **证据根目录**：`~/.buzz/OUTBOX/PARALLAX_ROW19_1112/1440/`
   - `motion/normal.webm` — 正常滚动（/index → /e-on challenge → /lab/weather-aquarium 取景）
   - `motion/slow-verified.webm` + `motion/slow-verified.json` — CDP `Animation.setPlaybackRate(0.25)` 有效慢放
