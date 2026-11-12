@@ -1,6 +1,6 @@
 .section {
   --s05-bg: var(--ca-bg, #06101f);
-  --s05-bg-deep: #040b1a;
+  --s05-bg-deep: #06101f;
   --s05-text: var(--ca-text, #f3f6fa);
   --s05-text-muted: var(--ca-text-2, #a9b8cc);
   --s05-label: var(--ca-text-2, #a9b8cc);
@@ -17,11 +17,24 @@
   padding-bottom: clamp(4.5rem, 8vw, 7rem);
   padding-left: var(--content-inset, 24px);
   padding-right: var(--content-inset, 24px);
+  /* Starts on 04's last colour (#06101f) so 04 -> 05 has no step. */
+  background: linear-gradient(180deg, var(--s05-bg-deep) 0%, var(--s05-bg) 42%, var(--ca-bg, #0b1220) 100%);
+  color: var(--s05-text);
+}
+
+/* Fade the decorative glows at both edges. The base colour then meets 04 and
+   06 continuously across the full width, including the non-overlapping phone layout. */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background:
     radial-gradient(60% 45% at 50% 20%, rgba(28, 74, 150, 0.32), transparent 70%),
-    radial-gradient(70% 48% at 50% 100%, rgba(18, 56, 120, 0.26), transparent 72%),
-    linear-gradient(180deg, var(--s05-bg-deep) 0%, var(--s05-bg) 42%, var(--ca-bg, #0b1220) 100%);
-  color: var(--s05-text);
+    radial-gradient(70% 48% at 50% 100%, rgba(18, 56, 120, 0.26), transparent 72%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 12%, #000 26%, #000 calc(100% - 6rem), transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 12%, #000 26%, #000 calc(100% - 6rem), transparent 100%);
 }
 
 .inner {
