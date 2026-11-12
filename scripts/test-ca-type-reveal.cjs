@@ -69,6 +69,17 @@ async function checkType(page, width) {
     }))
     assert.ok(heading.height <= heading.line * 2 + 1, 'desktop 04 title fits two lines')
   }
+  if (width === 1025) {
+    const diagramWidth = await page.locator('#session-04 .s04-scene').evaluate(node => node.getBoundingClientRect().width)
+    assert.ok(Math.abs(diagramWidth - 534.6) < 1, `1025: preserve baseline diagram width, got ${diagramWidth}`)
+    const headingContained = await page.locator('#session-04 h2').evaluate(node => {
+      const bounds = node.getBoundingClientRect()
+      const text = document.createRange()
+      text.selectNodeContents(node)
+      return [...text.getClientRects()].every(rect => rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1)
+    })
+    assert.ok(headingContained, '1025: heading text stays in its column in both languages')
+  }
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${width}: horizontal overflow`)
 }
 async function checkStatic(browser, options) {
@@ -119,8 +130,9 @@ async function main() {
           assert.equal(block.property, 'opacity, transform')
         })
         const starts = initial.map((_, index) => samples.find(sample => sample.opacity[index] > 0.01)?.ms)
+        if (artifactDir) fs.writeFileSync(path.join(artifactDir, `timing-${language}.json`), JSON.stringify({ starts, samples }, null, 2))
         assert.ok(starts.every(time => time !== undefined), 'all paragraphs animate')
-        for (let index = 1; index < starts.length; index++) assert.ok(starts[index] > starts[index - 1], 'paragraphs begin in reading order')
+        for (let index = 1; index < starts.length; index++) assert.ok(starts[index] > starts[index - 1], `paragraphs begin in reading order: ${language} ${JSON.stringify(starts)}`)
         await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }))
         await page.waitForTimeout(100)
         await page.locator('#session-03-heading').evaluate(node => scrollTo({ top: scrollY + node.getBoundingClientRect().top - 120, behavior: 'instant' }))
@@ -129,7 +141,7 @@ async function main() {
         for (const block of await blockStyles(page)) assert.equal(block.transform, 'none', 'live reduced-motion toggle')
         await page.emulateMedia({ reducedMotion: 'no-preference' })
         const quotePositions = []
-        for (const width of [390, 700, 850, 1024, 1440]) {
+        for (const width of [390, 700, 850, 1024, 1025, 1440]) {
           await page.setViewportSize({ width, height: 900 })
           await checkType(page, width)
           quotePositions.push({ width, x: await page.locator('#session-03-research blockquote').evaluateAll(nodes => nodes.map(node => node.getBoundingClientRect().x)) })
@@ -144,7 +156,7 @@ async function main() {
       await checkStatic(browser, { width, javaScriptEnabled: false })
     }
     if (artifactDir) fs.writeFileSync(path.join(artifactDir, 'regression.json'), JSON.stringify(measurements, null, 2))
-    console.log('PASS: EN/DE type scale (390/700/850/1024/1440), paragraph order/timing/once, reduced motion, no JavaScript, resize and overflow')
+    console.log('PASS: EN/DE type scale (390/700/850/1024/1025/1440), 1025 diagram width, paragraph order/timing/once, reduced motion, no JavaScript, resize and overflow')
   } finally { await browser.close() }
 }
 main().catch(error => { console.error(error.stack); process.exitCode = 1 })

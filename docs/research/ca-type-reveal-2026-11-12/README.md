@@ -114,3 +114,46 @@ copy and the fixed 40px DS token; shortening it requires copy/PM direction.
 - Full six-viewport captures: `/tmp/dev-tools-validation/ca174-{en,de}-{390,700,1440}-{shift,closing}.png`.
 
 Original comparisons above document the first revision, not this final state.
+
+## Narrow-desktop revision (PM #9079)
+
+At 1025–1279px, section 04 restores the original 43/57 text/diagram split.
+The approved heading token and wording stay unchanged. Automatic hyphenation
+and overflow wrapping keep long German words within the narrower heading column.
+At 1280px and above, the wider text column remains. The 700px stacked layout
+and the 1440px layout are unchanged by this revision.
+
+At 1025px, the diagram is 534.59px wide (previous revision: 393.91px), matching
+the current port-3000 baseline. Rendered primary/secondary labels are
+14.16/11.51px (previous revision: 10.43/8.48px), also matching the baseline.
+This restores diagram readability by giving the left column less space; the
+English title therefore wraps to more lines at this width. Both languages are
+shown below so the tradeoff is reviewable.
+
+| Language | Before (33aee42) | Current revision |
+| --- | --- | --- |
+| English | [1025px before](narrow-before-en.png) | [1025px after](narrow-after-en.png) |
+| German | [1025px before](narrow-before-de.png) | [1025px after](narrow-after-de.png) |
+
+The regression adds 1025px in both languages and checks the diagram width and
+heading text containment, alongside the existing reveal, type-scale,
+reduced-motion and no-JavaScript checks. The separate comparison checks diagram
+and label dimensions against port 3000 at 1025px, and unchanged heading/diagram
+geometry against 33aee42 at 700/1440px. Full captures, geometry and test logs:
+`/tmp/ca174-1025-checks/`.
+
+Final validation (Haiku test-runner, 2026-11-12): production build including
+TypeScript passed. The six-width regression and EN/DE screenshot comparison
+passed through the shared browser lock. At 1025px, the final EN/DE headings use
+four/five lines; neither extends into the diagram column.
+
+- Regression: 14:42:54 load 5.77 / 8.07 / 9.34 → 14:43:07 load
+  5.75 / 7.99 / 9.30, exit 0.
+- Comparison: 14:43:12 load 5.45 / 7.89 / 9.25 → 14:43:32 load
+  6.31 / 7.91 / 9.23, exit 0.
+- An earlier final-run attempt failed the existing sampled paragraph-order
+  assertion at 14:41:13; the subsequent locked rerun passed without animation
+  implementation changes. The cause of that first failure is not confirmed.
+  Failure messages now include language and observed start times; setting
+  `TEST_ARTIFACT_DIR` also saves timing samples before that assertion. No timing
+  threshold was relaxed. QA should retain this transient failure in its review.

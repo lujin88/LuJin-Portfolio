@@ -199,6 +199,19 @@
   }
 }
 
+/* Preserve the baseline diagram scale on narrow desktop screens. The wider
+ * heading column is only useful once there is room for both columns. */
+@media (min-width: 1025px) and (max-width: 1279px) {
+  .layout {
+    grid-template-columns: minmax(0, 43%) minmax(0, 57%);
+  }
+
+  .headline {
+    hyphens: auto;
+    overflow-wrap: anywhere;
+  }
+}
+
 @media (max-width: 1024px) {
   .section {
     padding-bottom: clamp(3.5rem, 8vh, 5.5rem);
