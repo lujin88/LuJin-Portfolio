@@ -52,12 +52,7 @@
 }
 
 .headline {
-  font-size: 2.5rem;
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
   color: var(--s05-text);
-  text-wrap: balance;
   margin: var(--ca-heading-gap, 1.75rem) 0 0;
 }
 
@@ -213,9 +208,9 @@
 
 .cardTitle {
   display: block;
-  font-size: clamp(1.5rem, 2vw, 1.75rem);
+  font-size: var(--ca-type-h3);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: var(--ca-type-h3-line);
   letter-spacing: -0.01em;
   color: var(--s05-text);
   text-wrap: balance;
@@ -238,18 +233,6 @@
 }
 
 /* ---------- Responsive ---------- */
-
-@media (min-width: 640px) {
-  .headline {
-    font-size: 2.75rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .headline {
-    font-size: clamp(2.75rem, 3.6vw, 3.25rem);
-  }
-}
 
 @media (min-width: 1280px) {
   .intro {

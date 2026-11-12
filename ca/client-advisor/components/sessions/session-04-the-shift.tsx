@@ -31,7 +31,7 @@ export function Session04TheShift() {
             <div className={styles.copy} data-move="96">
               <h2
                 id="session-04-heading"
-                className={`${styles.headline}`}
+                className={`ca-h2 ${styles.headline}`}
               >
                 {t('ca.shift.headline1')} <br />
                 {t('ca.shift.headline2')}

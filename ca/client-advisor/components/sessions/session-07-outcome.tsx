@@ -61,7 +61,7 @@ function Editorial() {
             {t('ca.outcome.title')}
           </h2>
 
-          <p className="mt-[var(--ca-body-gap)] text-pretty text-[24px] font-semibold leading-[1.2] tracking-[-0.01em] sm:text-[28px]">
+          <p className="ca-h3 mt-[var(--ca-body-gap)] text-pretty">
             {t('ca.outcome.subhead')}
           </p>
 

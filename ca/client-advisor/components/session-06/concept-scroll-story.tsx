@@ -175,8 +175,8 @@ export function ConceptScrollStory({
                     <h3
                       className={
                         open
-                          ? 'font-sans text-[26px] font-semibold leading-[1.2] text-[var(--ca-text)] transition-colors duration-300 ease xl:text-[28px]'
-                          : 'font-sans text-[26px] font-semibold leading-[1.2] text-[var(--ca-text-2)] transition-colors duration-300 ease xl:text-[28px]'
+                          ? 'ca-h3 font-sans text-[var(--ca-text)] transition-colors duration-300 ease'
+                          : 'ca-h3 font-sans text-[var(--ca-text-2)] transition-colors duration-300 ease'
                       }
                     >
                       {item.title}

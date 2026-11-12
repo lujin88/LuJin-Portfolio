@@ -92,10 +92,6 @@
 
 .headline {
   margin: 0;
-  font-size: clamp(1.85rem, 2.9vw, 2.5rem);
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
   color: var(--s04-text);
 }
 
@@ -215,10 +211,6 @@
 }
 
 @media (max-width: 560px) {
-  .headline {
-    font-size: clamp(1.6rem, 7vw, 2rem);
-  }
-
   .headline br {
     display: none;
   }
