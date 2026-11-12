@@ -308,6 +308,7 @@
 }.wa-page .vocab-item{
   display: flex;
   flex-direction: column;
+  gap: 10px;
   min-width: 0;
   padding: 0 clamp(8px, 1.35vw, 20px) 6px;
 }.wa-page .sprite-window{
@@ -316,11 +317,14 @@
   overflow: hidden;
 }.wa-page .vocab-art{
   display: grid;
-  height: clamp(118px, 12vw, 165px);
+  flex: 0 0 auto;
+  height: clamp(150px, 26vw, 220px);
   place-items: center;
 }.wa-page .vocab-art img{
-  width: 100%;
-  height: 100%;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
   object-fit: contain;
 }.wa-page .vocab-art--clip{
   /* Same box as .vocab-art; a button only so the clip can be focused and tapped. */
@@ -333,9 +337,7 @@
   color: inherit;
   font: inherit;
   cursor: default;
-  overflow: hidden;
   container-type: size;
-  isolation: isolate;
   -webkit-tap-highlight-color: transparent;
 }.wa-page .vocab-art--clip:focus-visible{
   outline: 2px solid var(--signal);
@@ -346,11 +348,13 @@
      centred vertically, a taller one starts at the box top and overflows downward.
      The clip is placed so subjects align. */
   --rw: 100cqw;
+  --fit-w: min(calc(var(--rw) * var(--clip-w)), calc(100cqh * var(--ratio)));
   position: absolute;
-  left: calc(var(--rw) * var(--clip-x));
-  top: calc(max(0px, (100cqh - var(--rw) / var(--ratio)) / 2) + var(--rw) * var(--clip-y));
-  width: calc(var(--rw) * var(--clip-w));
-  max-width: none;
+  left: calc(50% - var(--fit-w) / 2 + var(--rw) * var(--clip-x) * min(1, calc(var(--fit-w) / (var(--rw) * var(--clip-w)))));
+  top: calc(max(0px, (100cqh - var(--fit-w) / var(--ratio)) / 2) + var(--rw) * var(--clip-y) * min(1, calc(var(--fit-w) / (var(--rw) * var(--clip-w)))));
+  width: var(--fit-w);
+  max-width: 100%;
+  max-height: 100%;
   height: auto;
   aspect-ratio: 1112 / 834;
   /* Two gradients (set inline per clip) intersect into a feathered rectangle. */
