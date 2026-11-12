@@ -55,6 +55,20 @@ async function checkType(page, width) {
       assert.equal(value.weight, weight, `${value.text} weight`)
     }
   }
+  const closing = await page.locator('#closing-statement').evaluate(node => {
+    const style = getComputedStyle(node)
+    return { size: style.fontSize, line: style.lineHeight, weight: style.fontWeight }
+  })
+  near(closing.size, scale(width, 18, 22), 'closing lead size')
+  near(closing.line, scale(width, 27, 33), 'closing lead line')
+  assert.equal(closing.weight, '400', 'closing remains paragraph weight')
+  if (width === 1440) {
+    const heading = await page.locator('#session-04-heading').evaluate(node => ({
+      height: node.getBoundingClientRect().height,
+      line: parseFloat(getComputedStyle(node).lineHeight),
+    }))
+    assert.ok(heading.height <= heading.line * 2 + 1, 'desktop 04 title fits two lines')
+  }
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${width}: horizontal overflow`)
 }
 async function checkStatic(browser, options) {

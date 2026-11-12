@@ -33,7 +33,7 @@ export function Session04TheShift() {
                 id="session-04-heading"
                 className={`ca-h2 ${styles.headline}`}
               >
-                {t('ca.shift.headline1')} <br />
+                {t('ca.shift.headline1')}{' '}
                 {t('ca.shift.headline2')}
               </h2>
               <p className={`${styles.body}`}>
