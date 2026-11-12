@@ -303,7 +303,7 @@
 }
 
 .case-study-section {
-  padding-block: 4rem;
+  padding-block: var(--editorial-section-space);
 }
 /* Phones read E.ON as one continuous page (Lu 2026-11-08): 32px per section edge, so
    two sections meet at 64px (a new chapter, visual MOBILE_SPACING_1109/RULES.md).
@@ -323,7 +323,7 @@
   width: 100%;
   max-width: none;
   margin-inline: 0;
-  padding-inline: var(--content-inset, 24px);
+  padding-inline: max(var(--editorial-gutter), var(--content-inset, 24px));
 }
 
 .site-chrome {
