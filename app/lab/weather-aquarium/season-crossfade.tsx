@@ -6,20 +6,20 @@ import styles from './season-crossfade.module.css'
 
 const seasons = ['spring', 'summer', 'autumn', 'winter'] as const
 
-// Lindt scenes (same set as the hero iPad in #85; Lu 2026-11-10). Alt follows copy
-// WA_SEASONS_ALT_COPY_1108 minus the iPad clause and the weather panel; winter shows no people.
+// Alt matches the reviewed Lindt scenes in #154 (PM #10309, 2026-11-13):
+// no swans; winter includes the girl and cat.
 const ALT = {
   en: {
-    spring: 'A spring scene from the Weather Aquarium app: cherry blossom and tulips, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
-    summer: 'A summer scene from the Weather Aquarium app: green trees and flowers, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
-    autumn: 'An autumn scene from the Weather Aquarium app: golden leaves, a girl and her cat by the Lindt shop in Kilchberg, two swans on the lake',
-    winter: 'A winter scene from the Weather Aquarium app: snow on the roofs and trees, the Lindt shop in Kilchberg and the frozen lake by the jetty',
+    spring: 'A spring scene from the Weather Aquarium app: cherry blossom and tulips, a girl and her cat by the Lindt shop in Kilchberg',
+    summer: 'A summer scene from the Weather Aquarium app: green trees and flowers, a girl and her cat by the Lindt shop in Kilchberg',
+    autumn: 'An autumn scene from the Weather Aquarium app: golden leaves, a girl and her cat by the Lindt shop in Kilchberg',
+    winter: 'A winter scene from the Weather Aquarium app: a girl in pink winter clothes and a cat in a jumper by the Lindt shop in Kilchberg, snow on the roofs and trees, and the frozen lake by the jetty',
   },
   de: {
-    spring: 'Eine Frühlingsszene aus der App Weather Aquarium: Kirschblüten und Tulpen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
-    summer: 'Eine Sommerszene aus der App Weather Aquarium: grüne Bäume und Blumen, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
-    autumn: 'Eine Herbstszene aus der App Weather Aquarium: goldenes Laub, ein Mädchen mit ihrer Katze vor dem Lindt-Laden in Kilchberg, zwei Schwäne auf dem See',
-    winter: 'Eine Winterszene aus der App Weather Aquarium: Schnee auf Dächern und Bäumen, der Lindt-Laden in Kilchberg und der zugefrorene See am Steg',
+    spring: 'Eine Frühlingsszene aus der App Weather Aquarium: Kirschblüten und Tulpen, ein Mädchen mit seiner Katze vor dem Lindt-Laden in Kilchberg',
+    summer: 'Eine Sommerszene aus der App Weather Aquarium: grüne Bäume und Blumen, ein Mädchen mit seiner Katze vor dem Lindt-Laden in Kilchberg',
+    autumn: 'Eine Herbstszene aus der App Weather Aquarium: goldenes Laub, ein Mädchen mit seiner Katze vor dem Lindt-Laden in Kilchberg',
+    winter: 'Eine Winterszene aus der App Weather Aquarium: ein Mädchen in rosa Winterkleidung und eine Katze im Pullover vor dem Lindt-Laden in Kilchberg, Schnee auf Dächern und Bäumen und der zugefrorene See am Steg',
   },
 } as const
 
