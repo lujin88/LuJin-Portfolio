@@ -1,9 +1,9 @@
 'use client'
 import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
 
-import Image from 'next/image'
 import styles from './session-03-research.module.css'
 import { useTranslation } from '@i18n/use-translation'
+import { Session03AdvisorMedia } from './session-03-advisor-media'
 
 const bodyText =
   'font-sans text-[15px] leading-[1.6] text-[var(--s3-body)] xl:text-base'
@@ -20,22 +20,14 @@ export function Session03Research() {
     >
       <div className={styles.joinCeiling} aria-hidden="true" />
       <div className={styles.photoStack}>
-        <div className={styles.photoFrame}>
-          <Image
-            src="/assets/images/client-advisory/session-03-advisor.webp"
-            alt={t('ca.research.photoAlt')}
-            fill
-            sizes="100vw"
-            className={`object-cover ${styles.photo}`}
-          />
-        </div>
+        <Session03AdvisorMedia />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,19,38,0.45)_0%,rgba(9,19,38,0.7)_32%,rgba(9,19,38,0.94)_48%,rgba(9,19,38,0.98)_100%)] lg:bg-[linear-gradient(90deg,rgba(9,19,38,0.18)_0%,rgba(9,19,38,0.28)_42%,rgba(9,19,38,0.72)_78%,var(--s3-bg,rgb(9,19,38))_100%)]" />
       </div>
 
       <LayerScrollGroup
         className={`${styles.grid} relative z-10 mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-y-14 px-[var(--content-inset,24px)] pb-10 pt-24 lg:grid-cols-[minmax(0,58fr)_minmax(0,42fr)] lg:pb-12 lg:pt-16`}
       >
-        <div data-move="96" className={`${styles.quotesCol} flex flex-col justify-center lg:self-start lg:py-8`}>
+        <div data-move="96" className={`${styles.quotesCol} hidden flex-col justify-center lg:flex lg:self-start lg:py-8`}>
           <ul
             aria-label={t('ca.research.quotesLabel')}
             className={`flex w-full flex-col gap-y-10 pl-0 font-sans text-[1.15rem] font-normal leading-[1.4] tracking-[-0.005em] text-[var(--s3-text)] sm:text-[1.35rem] lg:gap-y-16 lg:text-[clamp(1.25rem,1.55vw,1.55rem)]`}
