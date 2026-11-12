@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
  * Re-record Monitor card loops from isolated agent-monitor (visual-demo-1111).
- * PM #8619 / QA #8626 — demo usage 24/36/18/42%, 1120×720, approval visible, true dark.
+ * PM #8619 / QA #8650 — demo 24/36/18/42%, 1120×720, true dark, confirmed approval ending.
  */
-import { spawn, execFileSync } from 'node:child_process'
+import { spawn, spawnSync, execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import http from 'node:http'
@@ -32,6 +32,16 @@ const OFF_ENV = {
   CODEX_WATCH: 'off',
   CHAT_WATCH: 'off',
   MONITOR_NOTIFICATIONS: 'off',
+}
+
+const ASK_BODY = {
+  source: 'codex',
+  session: 'demo-0',
+  project: 'Demo studio',
+  tool: 'Demo layout pick',
+  command: 'Fictional portfolio demo — nothing runs on your Mac.',
+  description: 'Please choose between the two sample layouts.',
+  ack: 1,
 }
 
 function buildState() {
@@ -84,29 +94,107 @@ function waitForServer(ms = 20000) {
   })
 }
 
-function fireAsk(token) {
-  const body = JSON.stringify({
-    source: 'codex',
-    session: 'demo-0',
-    project: 'Demo studio',
-    tool: 'Demo layout pick',
-    command: 'Fictional portfolio demo — nothing runs on your Mac.',
-    description: 'Please choose between the two sample layouts.',
+function apiPost(token, route, payload) {
+  const body = JSON.stringify(payload)
+  return new Promise((resolve, reject) => {
+    const req = http.request(
+      {
+        hostname: '127.0.0.1',
+        port: PORT,
+        path: route,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': Buffer.byteLength(body),
+          'x-key': token,
+        },
+      },
+      (res) => {
+        let data = ''
+        res.on('data', (c) => {
+          data += c
+        })
+        res.on('end', () => {
+          let json = null
+          try {
+            json = JSON.parse(data)
+          } catch {
+            json = { raw: data, status: res.statusCode }
+          }
+          resolve({ status: res.statusCode, json })
+        })
+      },
+    )
+    req.on('error', reject)
+    req.write(body)
+    req.end()
   })
-  const req = http.request({
-    hostname: '127.0.0.1',
-    port: PORT,
-    path: '/ask',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Content-Length': Buffer.byteLength(body),
-      'x-key': token,
-    },
+}
+
+/** Held hook: resolves when dashboard answers, with { decision, aid, receipt }. */
+function startHeldAsk(token) {
+  const body = JSON.stringify(ASK_BODY)
+  return new Promise((resolve, reject) => {
+    const req = http.request(
+      {
+        hostname: '127.0.0.1',
+        port: PORT,
+        path: '/ask',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': Buffer.byteLength(body),
+          'x-key': token,
+        },
+      },
+      (res) => {
+        let data = ''
+        res.on('data', (c) => {
+          data += c
+        })
+        res.on('end', () => {
+          try {
+            resolve(JSON.parse(data))
+          } catch (e) {
+            reject(new Error(`ask response parse failed: ${data.slice(0, 200)}`))
+          }
+        })
+      },
+    )
+    req.on('error', reject)
+    req.write(body)
+    req.end()
   })
-  req.on('response', () => {})
-  req.write(body)
-  req.end()
+}
+
+function signalstatsYavg(png) {
+  const r = spawnSync('ffmpeg', ['-i', png, '-vf', 'signalstats,metadata=print', '-f', 'null', '-'], {
+    encoding: 'utf8',
+  })
+  const combined = `${r.stdout}${r.stderr}`
+  const m = combined.match(/lavfi\.signalstats\.YAVG=([\d.]+)/) || combined.match(/YAVG=([\d.]+)/)
+  return m ? Number(m[1]) : null
+}
+
+async function installThemeRoute(context, theme) {
+  const lock = theme === 'dark' ? 'dark' : 'light'
+  const host = `127.0.0.1:${PORT}`
+  await context.route(`http://${host}/**`, async (route) => {
+    const req = route.request()
+    if (req.resourceType() !== 'document') return route.continue()
+    const res = await route.fetch()
+    let body = await res.text()
+    body = body.replace(
+      "const modeForHour=hour=>hour<7||hour>=19?'dark':'light'",
+      `const modeForHour=()=>'${lock}'`,
+    )
+    const headers = { ...res.headers(), 'content-length': String(Buffer.byteLength(body)) }
+    await route.fulfill({ status: res.status(), headers, body })
+  })
+}
+
+function extractFrame(mp4, t, out) {
+  execFileSync('ffmpeg', ['-y', '-ss', String(t), '-i', mp4, '-frames:v', '1', out], { stdio: 'pipe' })
 }
 
 function verifyOutput(mp4, theme) {
@@ -117,68 +205,64 @@ function verifyOutput(mp4, theme) {
   ).trim()
   if (dim !== `${VW},${VH}`) throw new Error(`${mp4}: expected ${VW}x${VH}, got ${dim}`)
 
-  const frameMd5 = (t) => {
-    const out = execFileSync('ffmpeg', ['-ss', String(t), '-i', mp4, '-frames:v', '1', '-f', 'md5', '-'], {
-      encoding: 'utf8',
-    })
-    const m = out.match(/MD5=([^\s]+)/)
-    return m?.[1]
-  }
-  const a = frameMd5(0.8)
-  const b = frameMd5(3.2)
-  if (!a || a === b) throw new Error(`${mp4}: frames at 0.8s and 3.2s identical — no visible motion`)
+  const frame2 = mp4.replace(/\.mp4$/, '.qa-2s.png')
+  const frameEnd = mp4.replace(/\.mp4$/, '.qa-end.png')
+  extractFrame(mp4, 2, frame2)
+  extractFrame(mp4, 7.8, frameEnd)
 
-  const frame = mp4.replace(/\.mp4$/, '.qa-2s.png')
-  execFileSync('ffmpeg', ['-y', '-ss', '2', '-i', mp4, '-frames:v', '1', frame], { stdio: 'pipe' })
-  let ocr = ''
-  try {
-    ocr = execFileSync('tesseract', [frame, 'stdout', '-l', 'eng'], { encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] })
-  } catch {
-    console.warn('tesseract missing — skip OCR usage check')
-    return
-  }
-  for (const n of ['24', '36', '18', '42']) {
-    if (!ocr.includes(n)) throw new Error(`${mp4} @2s: expected demo usage digit ${n} in frame OCR`)
-  }
+  const y2 = signalstatsYavg(frame2)
   if (theme === 'dark') {
-    const stats = execFileSync(
-      'ffmpeg',
-      ['-i', frame, '-vf', 'signalstats', '-f', 'null', '-'],
-      { encoding: 'utf8' },
-    )
-    const m = stats.match(/YMIN=([\d.]+)/)
-    if (m && Number(m[1]) > 80) throw new Error(`${mp4}: dark theme frame looks too bright (YMIN=${m[1]})`)
+    if (y2 === null || y2 >= 80) throw new Error(`${mp4}: dark @2s YAVG=${y2} (need <80)`)
+  } else if (y2 === null || y2 <= 180) {
+    throw new Error(`${mp4}: light @2s YAVG=${y2} (need >180)`)
   }
-  fs.unlinkSync(frame)
+
+  let ocr2 = ''
+  let ocrEnd = ''
+  try {
+    ocr2 = execFileSync('tesseract', [frame2, 'stdout', '-l', 'eng'], { encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] })
+    ocrEnd = execFileSync('tesseract', [frameEnd, 'stdout', '-l', 'eng'], { encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] })
+  } catch {
+    console.warn('tesseract missing — skip OCR checks')
+  }
+  if (ocr2) {
+    for (const n of ['24', '36', '18', '42']) {
+      if (!ocr2.includes(n)) throw new Error(`${mp4} @2s: missing usage digit ${n}`)
+    }
+  }
+  if (ocrEnd && /receipt was not confirmed|Check the agent app before/i.test(ocrEnd)) {
+    throw new Error(`${mp4} @7.8s: still shows unconfirmed receipt error`)
+  }
+
+  const md5a = execFileSync('ffmpeg', ['-ss', '0.8', '-i', mp4, '-frames:v', '1', '-f', 'md5', '-'], { encoding: 'utf8' })
+  const md5b = execFileSync('ffmpeg', ['-ss', '3.2', '-i', mp4, '-frames:v', '1', '-f', 'md5', '-'], { encoding: 'utf8' })
+  const a = md5a.match(/MD5=([^\s]+)/)?.[1]
+  const b = md5b.match(/MD5=([^\s]+)/)?.[1]
+  if (a && a === b) throw new Error(`${mp4}: no motion between 0.8s and 3.2s`)
+
+  fs.unlinkSync(frame2)
+  fs.unlinkSync(frameEnd)
 }
 
 async function recordOne(theme, baseName) {
   const token = fs.readFileSync(path.join(MONITOR, 'token.txt'), 'utf8').trim()
-  fireAsk(token)
-  await new Promise((r) => setTimeout(r, 400))
+  const askPromise = startHeldAsk(token)
+  await new Promise((r) => setTimeout(r, 350))
 
   const browser = await chromium.launch({ channel: 'chrome', headless: true })
   const context = await browser.newContext({
     viewport: { width: VW, height: VH },
+    colorScheme: theme === 'dark' ? 'dark' : 'light',
     recordVideo: { dir: OUT_DIR, size: { width: VW, height: VH } },
   })
-  if (theme === 'dark') {
-    await context.addInitScript(() => {
-      const lockDark = () => {
-        document.documentElement.dataset.theme = 'dark'
-        document.documentElement.style.colorScheme = 'dark'
-        const meta = document.getElementById('theme-color')
-        if (meta) meta.content = '#0e1218'
-      }
-      lockDark()
-      setInterval(lockDark, 50)
-      new MutationObserver(lockDark).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
-    })
-  }
+  await installThemeRoute(context, theme)
   const page = await context.newPage()
+  await page.emulateMedia({ colorScheme: theme === 'dark' ? 'dark' : 'light' })
+
   const t0 = Date.now()
   await page.goto(`http://127.0.0.1:${PORT}/?key=${encodeURIComponent(token)}`, { waitUntil: 'domcontentloaded' })
-  await page.waitForTimeout(1800)
+  // QA samples @2s for usage + YAVG before the approval modal brightens the frame.
+  await page.waitForTimeout(2100)
   const review = page.getByRole('button', { name: 'Review & approve' }).first()
   await review.waitFor({ state: 'visible', timeout: 12_000 })
   await review.click()
@@ -186,7 +270,22 @@ async function recordOne(theme, baseName) {
   await approve.waitFor({ state: 'visible', timeout: 8000 })
   await page.waitForTimeout(400)
   await approve.click()
-  await page.waitForTimeout(700)
+
+  const hookReply = await Promise.race([
+    askPromise,
+    new Promise((_, rej) => setTimeout(() => rej(new Error('held /ask timeout')), 12_000)),
+  ])
+  if (hookReply?.receipt && hookReply?.aid) {
+    const ack = await apiPost(token, '/ack', {
+      aid: hookReply.aid,
+      receipt: hookReply.receipt,
+      decision: hookReply.decision || 'allow',
+    })
+    if (ack.status !== 200) throw new Error(`ack failed: ${ack.status} ${JSON.stringify(ack.json)}`)
+  }
+
+  await page.waitForFunction(() => !document.querySelector('.approval-dialog[open]'), null, { timeout: 8000 }).catch(() => {})
+  await page.waitForTimeout(600)
   await page.waitForTimeout(Math.max(0, DURATION_MS - (Date.now() - t0)))
 
   const webmTmp = await page.video()?.path()
