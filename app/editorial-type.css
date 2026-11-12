@@ -1,4 +1,4 @@
-/* Editorial scale approved in DS_REVIEW_1111/type-scale-spec.md.
+/* Editorial scale: docs/type-scale-spec.md (Lu #9217 / PM #9218).
    Opt in on editorial elements only; never on embedded product UI.
    Important declarations bridge legacy module, scoped and Tailwind styles
    without relying on route-dependent stylesheet order. */
@@ -14,8 +14,7 @@
   :root {
     --type-display: clamp(40px, calc(40px + (100vw - 720px) * 0.06578947), 60px);
     --type-display-line: clamp(44px, calc(44px + (100vw - 720px) * 0.06578947), 64px);
-    --type-h2: clamp(40px, calc(40px + (100vw - 720px) * 0.03894737), 51.84px);
-    --type-h2-line: clamp(44px, calc(44px + (100vw - 720px) * 0.04282895), 57.02px);
+    /* Chapter titles stay 40/44 at every viewport; only other roles scale. */
     --type-h3: clamp(24px, calc(24px + (100vw - 720px) * 0.01315789), 28px);
     --type-h3-line: clamp(29px, calc(29px + (100vw - 720px) * 0.01513158), 33.6px);
     --type-lead: clamp(18px, calc(18px + (100vw - 720px) * 0.01315789), 22px);
