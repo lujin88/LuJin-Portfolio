@@ -36,8 +36,8 @@
 :where(.etf-case) .demo-viewport .ff,:where(.etf-case) .demo-viewport .ff-phone {min-height:100%}
 @media(max-width:850px){
   :where(.etf-case) .opening-pin {display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,3svh,32px)}
-  :where(.etf-case) .opening-text{text-align:center}
-  :where(.etf-case) .case-opening .case-intro {margin:0 auto;max-width:38ch}
+  :where(.etf-case) .opening-text{text-align:left}
+  :where(.etf-case) .case-opening .case-intro {margin:0;max-width:38ch}
   :where(.etf-case) .opening-text h1 {font-size:clamp(38px,min(9vw,6.8svh),60px);margin-bottom:12px}
   :where(.etf-case) .demo-launch {margin-top:14px;padding:9px 16px}
   :where(.etf-case) .opening-pair {width:100%;gap:3.5vw}

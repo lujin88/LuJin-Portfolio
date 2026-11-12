@@ -1,3 +1,4 @@
+import './editorial-type.css'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Caveat, Poppins } from 'next/font/google'

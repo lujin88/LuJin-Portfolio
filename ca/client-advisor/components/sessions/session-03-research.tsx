@@ -19,7 +19,6 @@ export function Session03Research() {
       className={`session-03 relative z-0 flex w-full overflow-visible text-[var(--s3-text)] ${styles.section}`}
     >
       <div className={styles.joinCeiling} aria-hidden="true" />
-      <div className={styles.joinFloor} aria-hidden="true" />
       <div className={styles.photoStack}>
         <div className={styles.photoFrame}>
           <Image
@@ -66,7 +65,7 @@ export function Session03Research() {
             <span>{t('ca.research.eyebrow')}</span>
           </p>
 
-          <h2
+          <h2 data-type="h2"
             id="session-03-heading"
             className={`ca-h2 mt-[var(--ca-heading-gap)] max-w-[16ch] font-sans`}
           >
@@ -74,23 +73,23 @@ export function Session03Research() {
           </h2>
 
           <p
-            className={`mt-4 max-w-[20ch] text-balance font-sans text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] sm:text-[2.25rem] lg:text-[clamp(2.1rem,2.9vw,2.5rem)]`}
+            className="ca-h3 mt-4 max-w-[20ch] font-sans"
           >
             {t('ca.research.subhead')}
           </p>
 
-          <p
+          <p data-type="body"
             className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`}
             dangerouslySetInnerHTML={{ __html: t('ca.research.body1Html') }}
           />
 
-          <h3
-            className={`mt-12 max-w-[22ch] text-balance font-sans text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] sm:text-[2.25rem] lg:mt-14 lg:text-[clamp(2.1rem,2.9vw,2.5rem)]`}
+          <h3 data-type="h3"
+            className="ca-h3 mt-12 max-w-[22ch] font-sans lg:mt-14"
           >
             {t('ca.research.heading2')}
           </h3>
 
-          <p className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`}>
+          <p data-type="body" className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`}>
             {t('ca.research.body2')}
           </p>
         </div>
