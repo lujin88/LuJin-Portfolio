@@ -15,7 +15,7 @@ This file records what the repo and OUTBOX can prove about the **base still** (p
 | **Lu pick B (PNG before cwebp)** | `~/.buzz/OUTBOX/CA03_WESTERN_1112/advisor-B.png` | 1400×755 | `5ae0378c0cd3e6ea1b7a8d6dce5460f5edfd2c8a1b42777e57aa229a10f5d4b1` |
 | **Git master (historical)** | `ca/client-advisor/public/images/session-03-advisor.png` @ `3b663d1` | 1708×921 | `364d942bf7e1c41d71cd3c294fbc9337fe6bdaf00e688bf3c3af189a28ff6d6d` |
 
-Referenced in code: `ca/client-advisor/components/sessions/session-03-research.tsx`. Alt (EN): fictional staged advisor at a window — not a named UBS employee (contrast `docs/research/legal/2026-11-09-portfolio-confidentiality.md` rows on concept mockups / Paul Donovan).
+Referenced in code: `ca/client-advisor/components/sessions/session-03-research.tsx`. Alt (EN, `app/i18n/messages/ca.ts` `research.photoAlt`): scene description only — advisor from behind at a window; **does not** say fictional/illustrative/staged. Unrelated to named-employee photos in concept mockups (`docs/research/legal/2026-11-09-portfolio-confidentiality.md`).
 
 ## Base still — verifiable chain
 
@@ -25,7 +25,9 @@ Referenced in code: `ca/client-advisor/components/sessions/session-03-research.t
 4. **Embedded declaration (PNG only):** legal #9248 and visual #9250 extracted the historical PNG’s **caBX / C2PA** payload: readable fields include `OpenAI Media Service API`, `gpt-image` `2.0`, `c2pa.created` `2026-09-07T00:00:00Z`, and IPTC `trainedAlgorithmicMedia`. Evidence pack: `~/.buzz/OUTBOX/CA03_WESTERN_1112/provenance/` (`original-advisor-with-c2pa.png`, `c2pa-caBX.bin`, `c2pa-readable-fields.txt`, `chain.json`, `README.md`). **Signature not verified**; embedded metadata is not a licence or account-attribution record.
 5. **Production WebP** (main pre-PR and post-`7d4bb08`): no C2PA container after `cwebp` resize; chain rests on PNG → WebP hash continuity above.
 
-**Remaining gap (per visual/legal, 2026-11-12):** September **generation account ownership**, original prompt, and whether **third-party or real-person reference inputs** were used. Git committer ≠ image API account. PM / original creator supplies that to legal if needed (no private auth docs in public PR).
+**Creator statement (Lu via PM #9262, 2026-11-12):** original September still was **self-generated with GPT**; **no** real-person photo or stock image used as reference input. Original prompt / API account receipt not in repo (sensitive credentials stay local). Legal maps statement + C2PA + chain to 法务通过; webdev does not sign off.
+
+**Earlier gap (pre-#9262):** generation account ownership and reference inputs — addressed by creator statement above for legal review; **signature on C2PA still not verified** in this file.
 
 ## Western-face edit (Lu pick B) — documented
 
