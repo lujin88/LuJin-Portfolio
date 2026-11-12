@@ -385,6 +385,17 @@ footer > hr {
     opacity var(--dur, 360ms) var(--aud-ease) var(--d, 0ms),
     transform var(--dur, 360ms) var(--aud-ease) var(--d, 0ms);
 }
+/* The icon also carries .aud-ev-fade, so it shares that class's server-render hiding;
+   these come after the .aud-ev-fade rules so the scale and timing win. */
+.aud-ev[data-cards='out'] .aud-ev-icon {
+  opacity: 0;
+  transform: scale(0.85);
+}
+.aud-ev[data-cards='in'] .aud-ev-icon {
+  transition:
+    opacity 400ms var(--aud-ease) var(--d, 0ms),
+    transform 400ms var(--aud-ease) var(--d, 0ms);
+}
 /* Server render, before hydration: when JS will run the entrance, start hidden so a reload
    inside this section doesn't flash the final state first. No JS / reduced motion → final state. */
 @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
