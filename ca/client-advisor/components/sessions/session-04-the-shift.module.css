@@ -205,11 +205,6 @@
   .layout {
     grid-template-columns: minmax(0, 43%) minmax(0, 57%);
   }
-
-  .headline {
-    hyphens: auto;
-    overflow-wrap: anywhere;
-  }
 }
 
 @media (max-width: 1024px) {

@@ -1,7 +1,8 @@
 # Client Advisory: title scale and research text
 
 Request: Lu, #lu-portfolio message 7442; implementation scope: PM 7453 and 8803.
-Scale: `~/.buzz/OUTBOX/DS_REVIEW_1111/type-scale-spec.md` (PM 7822, Lu 7828).
+Scale: `~/.buzz/OUTBOX/DS_REVIEW_1111/type-scale-spec.md` (PM 7822, Lu 7828),
+with chapter titles revised to 40/44px at every width by Lu #9217 and PM #9218.
 Baseline: `0dbb97b`, `/client-advisory`, Chrome, 1440/700/390 × 900.
 
 The title tokens are scoped to `.ca-main`. The hero uses display, chapter titles
@@ -11,22 +12,22 @@ titles use h3. Mockup interface typography is unchanged.
 | Position | Before at 1440 (px) | Token | After at 1440 (px) | After at 390/700 (px) |
 | --- | ---: | --- | ---: | ---: |
 | Hero | 72 | `--ca-type-display` | 60 | 40 |
-| 02 chapter | 51.84 | `--ca-type-h2` | 51.84 | 40 |
+| 02 chapter | 51.84 | `--ca-type-h2` | 40 | 40 |
 | 02 question | 44 | `--ca-type-h3` | 28 | 24 |
-| 03 chapter | 51.84 | `--ca-type-h2` | 51.84 | 40 |
+| 03 chapter | 51.84 | `--ca-type-h2` | 40 | 40 |
 | 03 two secondary titles | 40 | `--ca-type-h3` | 28 | 24 |
-| 04 chapter | 40 | `--ca-type-h2` | 51.84 | 40 |
-| 05 chapter | 51.84 | `--ca-type-h2` | 51.84 | 40 |
+| 04 chapter | 40 | `--ca-type-h2` | 40 | 40 |
+| 05 chapter | 51.84 | `--ca-type-h2` | 40 | 40 |
 | 05 card titles | 28 | `--ca-type-h3` | 28 | 24 |
-| 06 chapter | 51.84 | `--ca-type-h2` | 51.84 | 40 |
+| 06 chapter | 51.84 | `--ca-type-h2` | 40 | 40 |
 | 06 accordion titles | 28 | `--ca-type-h3` | 28 | 24 |
-| 07 chapter | 51.84 | `--ca-type-h2` | 51.84 | 40 |
+| 07 chapter | 51.84 | `--ca-type-h2` | 40 | 40 |
 | 07 secondary title | 28 | `--ca-type-h3` | 28 | 24 |
 | Closing statement | 40 (weight 400) | `--ca-type-lead` | 22 (weight 400) | 18 |
 
 Display uses weight 700 and line height 64/44px (desktop/mobile). H2 uses weight
-600 and line height 57.02/44px; h3 uses weight 600 and line height 33.6/29px.
-The scale interpolates between 720 and 1024px. The 04 title uses the chapter scale; the closing paragraph uses the lead scale
+600 and line height 44px at every width; h3 uses weight 600 and line height 33.6/29px.
+Display, H3 and lead interpolate between 720 and 1024px; H2 stays at 40/44px. The 04 title uses the chapter scale; the closing paragraph uses the lead scale
 (22/33 desktop, 18/27 mobile, weight 400). Research subheadings become smaller.
 
 The two research quotations move right by 48px at ≥1280px (32px at 1024–1279px).
@@ -115,7 +116,7 @@ copy and the fixed 40px DS token; shortening it requires copy/PM direction.
 
 Original comparisons above document the first revision, not this final state.
 
-## Narrow-desktop revision (PM #9079)
+## Previous narrow-desktop revision (PM #9079, 1049d18)
 
 At 1025–1279px, section 04 restores the original 43/57 text/diagram split.
 The approved heading token and wording stay unchanged. Automatic hyphenation
@@ -130,7 +131,7 @@ This restores diagram readability by giving the left column less space; the
 English title therefore wraps to more lines at this width. Both languages are
 shown below so the tradeoff is reviewable.
 
-| Language | Before (33aee42) | Current revision |
+| Language | Before (33aee42) | Previous revision (1049d18) |
 | --- | --- | --- |
 | English | [1025px before](narrow-before-en.png) | [1025px after](narrow-after-en.png) |
 | German | [1025px before](narrow-before-de.png) | [1025px after](narrow-after-de.png) |
@@ -157,3 +158,48 @@ four/five lines; neither extends into the diagram column.
   Failure messages now include language and observed start times; setting
   `TEST_ARTIFACT_DIR` also saves timing samples before that assertion. No timing
   threshold was relaxed. QA should retain this transient failure in its review.
+
+
+## Current revision: 40px chapter titles (Lu #9217, PM #9218)
+
+The existing `--ca-type-h2` / `--ca-type-h2-line` tokens now remain 40/44px
+at all viewport widths, weight 600. Removed their desktop interpolation and
+section 04's automatic hyphenation / anywhere wrapping. Original English and
+German copy is retained. Display, H3, lead, column splits, diagram dimensions
+and reveal behavior are unchanged from 1049d18.
+
+At 1025px, Chrome and WebKit show three English title lines and four German
+lines without broken words or text outside the column. German still has `zur`
+on its own line; this is shown explicitly for visual review. The diagram remains
+534.59px wide. This is a developer validation, not visual approval.
+
+| Browser | English | German |
+| --- | --- | --- |
+| Chrome | [40px title](title40-chromium-en-1025.png) | [40px title](title40-chromium-de-1025.png) |
+| WebKit | [40px title](title40-webkit-en-1025.png) | [40px title](title40-webkit-de-1025.png) |
+
+Before: [1049d18 English](narrow-after-en.png), [1049d18 German](narrow-after-de.png).
+The four new PNGs are unedited Playwright section captures from this worktree's
+root preview on port 4620, 1025×900 viewport, reduced motion for stable capture.
+No new website image assets or third-party content were introduced.
+
+Haiku test-runner validation, 2026-11-12 (logs `/tmp/dev-ca174-40px/`):
+
+- Frozen installation, TypeScript and production build passed.
+- Full Chrome EN/DE six-width regression, including research reveal/reduced
+  motion/no-JS checks, passed: lock 15:19:35 load 6.71/6.03/6.17 →
+  15:19:47 load 6.17/5.95/6.14, exit 0.
+- Chrome titles in both languages at 390/700/850/1024/1025/1440 passed:
+  lock 15:19:49 load 6.17/5.95/6.14 → 15:20:07 load 6.01/5.93/6.13, exit 0.
+- WebKit titles at the same widths/languages passed:
+  lock 15:20:10 load 6.01/5.93/6.13 → 15:20:24 load 7.19/6.22/6.23, exit 0.
+- Added a DOM Range check for words wrapping across multiple lines at 1025px,
+  alongside existing title containment and diagram-width assertions.
+- The first browser run failed on an internal Next dev error, `Router action
+  dispatched before initialization`, while the server logged Turbopack cache
+  errors. After restarting the preview, the locked runs above passed without
+  relaxing assertions or changing app behavior. Failed run: 15:18:30 load
+  7.15/5.61/6.03 → 15:18:48 load 10.52/6.47/6.33, exit 1.
+
+Broader DS implementation and spacing remain separate tasks. The shared OUTBOX
+specification has been updated with Lu's superseding 40/44px chapter decision.

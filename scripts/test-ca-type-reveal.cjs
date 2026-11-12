@@ -4,7 +4,7 @@
 const assert = require('node:assert/strict')
 const fs = require('node:fs')
 const path = require('node:path')
-const { chromium } = require('playwright')
+const { chromium, webkit } = require('playwright')
 
 const baseURL = process.env.BASE_URL || 'http://localhost:4620'
 const artifactDir = process.env.TEST_ARTIFACT_DIR
@@ -41,7 +41,7 @@ async function blockStyles(page) {
 async function checkType(page, width) {
   for (const [selector, mobileSize, desktopSize, mobileLine, desktopLine, weight] of [
     ['.ca-main .ca-h1', 40, 60, 44, 64, '700'],
-    ['.ca-main .ca-h2', 40, 51.84, 44, 57.02, '600'],
+    ['.ca-main .ca-h2', 40, 40, 44, 44, '600'],
     ['.ca-main .ca-h3, .ca-main [class*="cardTitle"]', 24, 28, 29, 33.6, '600'],
   ]) {
     const values = await page.locator(selector).evaluateAll(nodes => nodes.map(node => {
@@ -79,6 +79,22 @@ async function checkType(page, width) {
       return [...text.getClientRects()].every(rect => rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1)
     })
     assert.ok(headingContained, '1025: heading text stays in its column in both languages')
+    const splitWords = await page.locator('#session-04 h2').evaluate(node => {
+      const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT)
+      const split = []
+      while (walker.nextNode()) {
+        const text = walker.currentNode
+        for (const match of text.textContent.matchAll(/\S+/g)) {
+          const range = document.createRange()
+          range.setStart(text, match.index)
+          range.setEnd(text, match.index + match[0].length)
+          const lines = new Set([...range.getClientRects()].map(rect => Math.round(rect.top)))
+          if (lines.size > 1) split.push(match[0])
+        }
+      }
+      return split
+    })
+    assert.deepEqual(splitWords, [], '1025: title words stay whole without isolated suffixes')
   }
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${width}: horizontal overflow`)
 }
@@ -99,8 +115,27 @@ async function checkStatic(browser, options) {
 
 async function main() {
   if (artifactDir) fs.mkdirSync(artifactDir, { recursive: true })
-  const browser = await chromium.launch({ executablePath: chrome, headless: true })
+  const engine = process.env.BROWSER || 'chromium'
+  const browser = engine === 'webkit'
+    ? await webkit.launch({ headless: true })
+    : await chromium.launch({ executablePath: chrome, headless: true })
   try {
+    if (process.env.TITLES_ONLY === '1') {
+      for (const language of ['en', 'de']) {
+        for (const width of [390, 700, 850, 1024, 1025, 1440]) {
+          const { page, context, errors } = await open(browser, { width, language, reducedMotion: 'reduce' })
+          try {
+            await checkType(page, width)
+            assert.deepEqual(errors, [])
+            if (artifactDir && width === 1025) {
+              await page.locator('#session-04').screenshot({ path: path.join(artifactDir, `${engine}-${language}-1025.png`) })
+            }
+          } finally { await context.close() }
+        }
+      }
+      console.log(`PASS: ${engine} EN/DE titles at six widths; 1025 diagram width, containment and whole words`)
+      return
+    }
     for (const language of ['en', 'de']) {
       const { page, context, errors } = await open(browser, { language })
       try {
