@@ -2,8 +2,6 @@ import { Battery, Bell, Signal, Wifi, MapPin, Lightbulb, ShoppingBag, UserRound,
 import { ClimateTiles, Glyph, RemoteActionRow, StatusTiles } from './RebuiltComponents'
 import './phone-studies.css'
 
-const assets='/assets/images/bmw-system/'
-const vehicles={home:assets+'i4-complete.png',actions:assets+'i4-complete.png',charge:assets+'i4-complete.png'}
 function Disclosure({excerpt=false}:{excerpt?:boolean}){
   return <div className="ps-disclosure">{!excerpt&&<div className="ps-sheetbar"><span>Close</span>Disclaimer</div>}
     <strong>Remote Engine Start</strong><p>If active in your car,<br/>the engine will run for 15 min.</p><div className="ps-fan-symbol"><Glyph name="fan"/></div>
@@ -38,7 +36,6 @@ function VehicleScreen({type}:{type:'home'|'actions'|'charge'}) {
     {charge&&<><span className="ps-updated">Updated from vehicle 18/09/2026 06:16</span><small>Finished at 06:15</small></>}
     <strong className="ps-headline">{charge?<>100<sup>%</sup></>:<>ALL<br/>GOOD</>}</strong>
     {charge&&<Wallbox/>}
-    <img className="ps-car" alt="" src={vehicles[type]}/>
     </div><div className="ps-content">
     {services?<><div className="ps-check"><Glyph name="lock"/><b>CHECK STATUS ›</b><span>Updated from vehicle 4/18/2025 13:22</span></div>
       <div className="ps-charge-reading"><div className="ps-charge-track"/><div><Battery/><span>State of charge</span><strong>72<small>% / </small>263<small> km</small></strong></div></div>
