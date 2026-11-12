@@ -1,6 +1,6 @@
 # PR #177 — `session-03-advisor.webp` provenance (webdev)
 
-2026-11-12 · replies legal #9246 · CA03 thread #8610 · HEAD `9b19c60` at time of writing.
+2026-11-12 · legal #9246/#9248 · visual #9250 · CA03 #8610 · image commit `9b19c60`; doc tracks latest branch HEAD.
 
 This file records what the repo and OUTBOX can prove about the **base still** (pre–western-face edit) and the **Lu pick B** replacement. It is not a legal opinion and does not replace a stock licence, model release, or portfolio-owner source declaration.
 
@@ -19,12 +19,13 @@ Referenced in code: `ca/client-advisor/components/sessions/session-03-research.t
 
 ## Base still — verifiable chain
 
-1. **First commit in repo:** `3b663d1` (*Initial commit of the live showcase…*) adds `ca/client-advisor/public/images/session-03-advisor.png` (1708×921, SHA above). No separate licence file in that commit.
-2. **WebP production path:** `7d4bb08` (*perf: serve resized WebP…*) introduces `public/assets/images/client-advisory/session-03-advisor.webp` at 1400×755 (resize/re-encode of the same picture). Still on lujin.me via main; sync PR notes kept main’s WebP when merging 3000 (`~/.buzz/OUTBOX/SYNC_3000_20261107_PR_BODY.md` table).
-3. **No embedded provenance metadata** on the production WebP or on archived PNG copy (`replay_site_2026-09-18/images/session-03-advisor.png`, byte-identical to `3b663d1` PNG): no EXIF author, copyright, or download URL in macOS metadata.
-4. **Repository search (2026-11-12):** no `docs/research/legal` entry, OUTBOX README, or commit message stating stock agency, licence type, AI tool, or model release for this still before today.
+1. **First commit in repo:** `3b663d1` (2026-09-16) adds the same PNG at `ca/client-advisor/public/images/session-03-advisor.png` and `ca/ca-session-03-research/public/images/session-03-advisor.png` (SHA above).
+2. **Public assets path:** `a5a2e01` (2026-09-24) adds `public/assets/images/client-advisory/session-03-advisor.png` (same SHA).
+3. **WebP production path:** `7d4bb08` (2026-10-07) serves `public/assets/images/client-advisory/session-03-advisor.webp` at 1400×755 (resize/re-encode). `SOURCE_ADVISOR.webp` in OUTBOX matches that WebP byte-for-byte (`chain.json` in visual delivery).
+4. **Embedded declaration (PNG only):** legal #9248 and visual #9250 extracted the historical PNG’s **caBX / C2PA** payload: readable fields include `OpenAI Media Service API`, `gpt-image` `2.0`, `c2pa.created` `2026-09-07T00:00:00Z`, and IPTC `trainedAlgorithmicMedia`. Evidence pack: `~/.buzz/OUTBOX/CA03_WESTERN_1112/provenance/` (`original-advisor-with-c2pa.png`, `c2pa-caBX.bin`, `c2pa-readable-fields.txt`, `chain.json`, `README.md`). **Signature not verified**; embedded metadata is not a licence or account-attribution record.
+5. **Production WebP** (main pre-PR and post-`7d4bb08`): no C2PA container after `cwebp` resize; chain rests on PNG → WebP hash continuity above.
 
-**Gap for legal:** original **creation** rights (stock + licence URL, commissioned shoot + release, or generative tool + applicable terms). Webdev cannot infer this from git; needs **portfolio owner or visual** declaration (sensitive receipts not in public PR).
+**Remaining gap (per visual/legal, 2026-11-12):** September **generation account ownership**, original prompt, and whether **third-party or real-person reference inputs** were used. Git committer ≠ image API account. PM / original creator supplies that to legal if needed (no private auth docs in public PR).
 
 ## Western-face edit (Lu pick B) — documented
 
@@ -37,11 +38,6 @@ Referenced in code: `ca/client-advisor/components/sessions/session-03-research.t
 
 PR #177 only re-encodes `advisor-B.png` → WebP (`cwebp -q 90`); no TS/CSS/copy change.
 
-## Suggested closure (for @legal / @pm)
+## Webdev scope for #177
 
-| Option | Action |
-|---|---|
-| A (推荐) | Lu (via PM, not public chat) supplies one line: stock ID + licence allowing portfolio/modification **or** AI tool + personal-account terms **or** model release path; legal maps to IPI/Google/etc. and signs PR. |
-| B | If no record exists, treat as legacy debt: replace base with newly documented still in a follow-up design PR before merge. |
-
-Webdev role for #177 stops at this chain-of-custody record + OUTBOX pointers; does not assert ownership.
+Chain-of-custody in this file + PR image swap (`9b19c60`). C2PA extraction and hash chain: visual OUTBOX `provenance/` (#9250). Western-face GPT edit: parent `CA03_WESTERN_1112/`. Does not assert permissions or sign 法务通过.
