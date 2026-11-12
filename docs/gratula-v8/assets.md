@@ -9,7 +9,7 @@ Source: visual’s `OUTBOX/GRATULA_V8_3_1112/assets/`, except the recaptured par
 | `reply-crop.png` | `29b3948a81585fb152e8525496dd8b23a544d1a0ffacb0a11c371ea786db15c9` |
 | `rsvp-module.png` | `73bcaedc8927a9e3a02a933675171df4d9b5c8154de5d80d872fb07ee9be1707` |
 | `screen-step-2.png` | `1729b508bf3985c83b1dcea903633d037e0c35e80185cf02fac96d20bb70f76a` |
-| `screen-step-5.png` | `094751a33b23669046803df90638ccf02c7a5cd3a4a4f5fb159eb093b081e1dd` |
+| `screen-step-5.png` | `3c3b614f66fdeb9d282c0977b8047c990709dde350c72a3c23213454a087c543` |
 
 The before/after screenshots in `screenshots/` were captured from the existing live portfolio and this branch’s 4622 preview on 12 November 2026. They contain the portfolio’s public page and demo data. They are review evidence, not additional product artwork.
 
@@ -36,3 +36,13 @@ Authorized by Lu #10175 and PM #10182 in #lu-portfolio; replaces the embedded ma
 The capture entry point is `/Users/lu/.buzz/capture-gratula-google-map.mjs`; source recapture, DOM attribution bounds, and the verified phone/page capture script are in the OUTBOX above (`recapture-native-wide.cjs`, `map-native-wide-bounds.json`, `capture-and-check.cjs`); `wide-native-page.png` preserves the page before overlays are hidden. The OUTBOX `screen-step-5.png` is now copied directly from the generated product asset, rather than the obsolete welcome-screen capture.
 
 The recapture fixture matches the existing screenshot’s five confirmed and three waiting guests (one seeded declined demo guest is marked confirmed only in the capture session). Application demo defaults are unchanged.
+
+## HTML attribution — PM #10401 / #10420
+
+The source map is byte-identical to 1cba5ea. Supplemental HTML “Map data ©2026 Google” appears below the clickable map and beneath the step 5 stage on both live and static case pages, at the existing 15 px body-caption size. The phone and three review images were regenerated.
+
+| Review image | SHA-256 |
+| --- | --- |
+| `after-390.png` | `700bdd4eea08adac7a6293c3fa88ae347f6fea28d21eb0461883de83f6db190a` |
+| `after-700.png` | `ff9079ce9bcbe945e51f983ea8855f84d2ba27dde04da84f9a6c7e90f4b23303` |
+| `after-1440.png` | `b6204242d48fa79a20f6d25611e7f48d49a4d75884ec6acc03a88edabe6c5915` |

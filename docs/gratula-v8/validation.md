@@ -70,3 +70,28 @@ Haiku capture/assertion checks passed at 390/700/1440 for live and static pages,
 ```
 
 Evidence in OUTBOX/GRATULA_GOOGLE_MAP_1113/: recapture-native-wide.cjs, wide-native-page.png (before hiding overlays), google-maps-native-wide.png, map-native-wide-bounds.json, native-wide-source.log, native-wide-validation.log, checked-metrics.json, review.html. Legal approval is pending.
+
+
+## Readable HTML attribution — PM #10401 / #10420
+
+Added exactly “Map data ©2026 Google” beside the clickable prototype map and beneath the step 5 stage on the live and static case pages. It uses existing body-caption styling, measured at 15 px on all three surfaces at 390 / 700 / 1440, equal to adjacent explanation text. The Google Maps source remains byte-identical to 1cba5ea (SHA-256 in assets.md). Refreshed the phone, three full-page review images and six live/static party-day images; updated hashes.
+
+Haiku test-runner passed the nine attribution checks (exact text, visibility, font size and overflow), real phone recapture and live/static three-width image/runtime checks, frozen pnpm install, and diff check. Author inspected the mobile finale screenshot: the external HTML attribution is legible independently of the reduced phone image. No build, TypeScript or WebKit rerun for this three-line HTML/JSX change. Independent legal/QA/visual review remains pending; hold stays. The pre-existing next-env.d.ts change is excluded.
+
+Evidence: OUTBOX/GRATULA_GOOGLE_MAP_1113/{review.html,verify-attribution.cjs,attribution-verification.json,checked-metrics.json,html-attribution-baseline.log,html-attribution-verify.log,install-frozen.log}.
+
+```text
+[test-lock] 开始 00:47:59 负载 5.12 4.33 5.25 排队 30 秒
+[test-lock] 结束 00:48:00 负载 5.12 4.33 5.25 退出码 0
+[test-lock] 开始 00:48:02 负载 4.87 4.30 5.23 排队 0 秒
+[test-lock] 结束 00:48:11 负载 5.13 4.37 5.24 退出码 0
+[test-lock] 开始 00:48:12 负载 5.13 4.37 5.24 排队 0 秒
+[test-lock] 结束 00:48:21 负载 8.23 5.05 5.47 退出码 0
+```
+
+The existing `scripts/check-gratula-v8.mjs` regression also passed both live/static routes at all three widths. The first queued attempt ended before execution and is not a pass; `html-attribution-regression.log` is the completed run.
+
+```text
+[test-lock] 开始 00:54:18 负载 4.52 5.12 5.48 排队 137 秒
+[test-lock] 结束 00:54:27 负载 6.10 5.43 5.58 退出码 0
+```

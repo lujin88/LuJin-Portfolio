@@ -994,6 +994,7 @@ day: () => { const tab = S.dayTab || 'location'; const v = venueObj();
     inner = `<h2 class="h2" style="margin-bottom:6px">Birthday location</h2>
       ${addr ? `<b style="font-size:15px">${esc(addr)}</b>` : `<button class="btn btn-text btn-sm" style="padding:0" onclick="A.go(isVenue() ? 'venues' : 'address')">${ic('plus', 16)} Add the ${isVenue() ? 'venue' : 'address'}</button>`}
       ${mapBlock}
+      <p class="sub map-attribution" style="margin:-8px 0 16px">Map data ©2026 Google</p>
       <div class="card" style="padding:18px"><div style="display:flex;gap:12px"><span style="width:40px;height:40px;border-radius:20px;background:var(--soft);color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0">${ic('car', 22)}</span><div style="flex:1"><div style="display:flex;justify-content:space-between"><div class="h3">Parking directions</div><button onclick="A.toast('Parking note copied — paste it into your message to guests.')" aria-label="Copy parking directions" style="color:var(--text2)">${ic('copy', 18)}</button></div>
         <p class="sub" style="margin-top:6px">${isVenue() ? `${v ? esc(v.name) : 'The venue'} has visitor parking on site. On busy weekends, the public car park nearby is the easiest backup.` : 'There is a public car park a short walk away. If it\'s full, you can also park on the nearby streets. Please follow the signs and be mindful of neighbours.'}</p></div></div></div>`;
   } else if (tab === 'music') {

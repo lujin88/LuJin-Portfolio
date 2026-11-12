@@ -183,6 +183,7 @@ export function GratulaStory() {
         </div>
         <img className="prop" src="/lab/party-planner/gift.webp" alt="" />
       </div>
+      <p className="map-attribution">Map data ©2026 Google</p>
       <a className="cta" href={prototypeUrl} target="_blank" rel="noopener noreferrer">Start planning</a>
       <p>Happier planning. Brighter childhoods.</p>
     </section>
