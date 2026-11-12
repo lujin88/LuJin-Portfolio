@@ -21,7 +21,7 @@ Original measurements on 3000 (`86f5f76`) at 12:51, 10 pages × 1440/390. Source
 | `--type-body` | 18 / 28.8 | 16 / 25.6 | running text |
 | `--type-small` | 14 / 21 | 14 / 21 | captions, meta |
 Between 720 and 1023 use `clamp()` from the mobile value to the desktop value for responsive tokens; H2 stays at 40/44 throughout.
-Page gutter: 64 px desktop, 24 px mobile. Section padding: 96 px desktop, 56 px mobile.
+Page gutter: 64 px desktop, 24 px mobile (`--editorial-gutter`). Section spacing: 96 px desktop, 56 px mobile (`--editorial-section-space`). Both interpolate between 720 and 1024px. Existing centered maximum-width wells may add space beyond the minimum gutter. Spacing belongs to the outer editorial wrapper, never embedded product UI.
 
 ## Do not touch
 - UI inside phone or screen mockups (ETF Inter text, Magic Path screens).
@@ -38,3 +38,16 @@ Page gutter: 64 px desktop, 24 px mobile. Section padding: 96 px desktop, 56 px 
 Probe computed styles at 390/700/1440 on the six scoped case pages, plus /index as a regression control. Every opted-in chapter title = 40px / 44px, weight 600; other opted-in roles keep their existing responsive tokens. Verify header controls, embedded UI isolation, page overflow and browser errors, with CA German at 1025px in Chrome/WebKit. tsc and production build must pass. /index and /bmw-design-system return 200; /lab/tools is intentionally 404 after #172 removed that held page.
 
 Spacing is measured in the same review, but gutter/section-padding changes are a separate commit after typography passes visual QA. Do not silently replace authored layout spacing or mockup padding while changing type.
+
+## Spacing application (PM #9613 / #9815)
+
+Typography passed local QA #9610 and visual QA #9612 at `f5c271fe`; spacing is the next independent commit on the same branch.
+
+- How I Work: chapter/finale wells use the gutter; chapter gaps use the spacing token as margins, preserving the illustration/copy composition.
+- ETF: the outer content well uses the gutter and retains its 1200px cap; desktop story articles use section padding, stacked stories use an equivalent inter-chapter margin. Handset dimensions and sticky offsets are unchanged.
+- MAN: content wells use the gutter; chapters, evidence and outcome use section padding. The joined Decisions/Method composition retains its zero internal bottom edge. The full-screen cover is unchanged.
+- CA: chapter rails and ordinary section edges use the tokens. The Mandate's desktop art canvas, Concept's sticky runway, the short desktop Principles bottom edge and the 05/06 negative-margin transition remain authored composition exceptions. The hero keeps its separate rail; closing aligns to the chapter rail.
+- E.ON: shared content containers and ordinary chapter edges use the tokens. The existing mobile Journey bottom and Problem/Constraint joins retain their 0/24px edges so the illustration overlap is not doubled.
+- BMW: this task changes only the three chapter titles. Hero, chapter layout and brand specimens remain excluded. `/index`, `/lab/tools` and Gratula are not part of the spacing implementation.
+
+Check 390/700/1440 and the CA German 1025px layout, with the original typography baseline as the comparison. Record title wrapping as well as overflow; a longer title remaining on three lines is not by itself a spacing failure.

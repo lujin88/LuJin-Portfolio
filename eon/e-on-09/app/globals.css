@@ -303,16 +303,9 @@
 }
 
 .case-study-section {
-  padding-block: 4rem;
+  padding-block: var(--editorial-section-space);
 }
-/* Phones read E.ON as one continuous page (Lu 2026-11-08): 32px per section edge, so
-   two sections meet at 64px (a new chapter, visual MOBILE_SPACING_1109/RULES.md).
-   Same 639.98px phone breakpoint as the rest of #127. */
-@media (max-width: 639.98px) {
-  .case-study-section {
-    padding-block: 2rem;
-  }
-}
+/* General chapter edges now follow the approved DS scale (PM #9613). */
 /* Phones: 05 -> 06 eyebrow. 05's illustration box keeps its own space; the section
    edges drop to 0 (05) and 24px (06) (visual MOBILE_SPACING_1109/RULES.md). */
 @media (max-width: 639.98px) {
@@ -323,7 +316,7 @@
   width: 100%;
   max-width: none;
   margin-inline: 0;
-  padding-inline: var(--content-inset, 24px);
+  padding-inline: max(var(--editorial-gutter), var(--content-inset, 24px));
 }
 
 .site-chrome {

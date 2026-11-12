@@ -3,6 +3,8 @@
    Important declarations bridge legacy module, scoped and Tailwind styles
    without relying on route-dependent stylesheet order. */
 :root {
+  --editorial-gutter: 24px;
+  --editorial-section-space: 56px;
   --type-display: 40px; --type-display-line: 44px;
   --type-h2: 40px; --type-h2-line: 44px;
   --type-h3: 24px; --type-h3-line: 29px;
@@ -12,6 +14,8 @@
 }
 @media (min-width: 720px) {
   :root {
+    --editorial-gutter: clamp(24px, calc(24px + (100vw - 720px) * 0.13157895), 64px);
+    --editorial-section-space: clamp(56px, calc(56px + (100vw - 720px) * 0.13157895), 96px);
     --type-display: clamp(40px, calc(40px + (100vw - 720px) * 0.06578947), 60px);
     --type-display-line: clamp(44px, calc(44px + (100vw - 720px) * 0.06578947), 64px);
     /* Chapter titles stay 40/44 at every viewport; only other roles scale. */

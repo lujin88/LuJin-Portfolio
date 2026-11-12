@@ -1,4 +1,4 @@
-# Design System review — typography first
+# Design System review — typography and spacing
 
 Assignment: PM #9577, under #9569. Decision: Lu #9217 / PM #9218.
 Base: `f84ae56`. Branch: `design/ds-type-review`.
@@ -27,9 +27,9 @@ All six case pages were checked at 390, 700 and 1440px, with `/index` as an unch
 
 31 chapter titles; 93 title/viewport assertions. The eight E.ON titles include the testing title's existing `.type-chapter` class. Embedded ETF/BMW product headings are deliberately not chapter titles.
 
-## Padding review — pending second implementation step
+## Padding findings at the typography baseline
 
-The approved specification requires gutter/section-padding changes in a separate commit **after typography passes visual QA**. This commit measures and records them; it does not change layout spacing.
+These measurements were recorded in the typography commit, before its local visual approval. The independent spacing implementation and its composition exceptions are described below.
 
 | Area | Current evidence | Next step after typography approval |
 |---|---|---|
@@ -75,4 +75,42 @@ Focused regression:
 
 ## Handoff
 
-QA and visual QA review the local typography result first. The shared CSS affects CA presentation, so legal is included in local review even though no CA source, copy or media changed. Padding remains the second commit on this same branch after typography visual approval. Only after all local review gates pass will the branch be pushed once and one design PR opened, per #9569. This report does not mark the entire Design System review complete.
+Typography passed local QA #9610 and visual QA #9612. The second spacing commit now goes to QA and visual QA locally. Because spacing edits CA CSS files, legal must also review the final PR HEAD. Only after local review gates pass will this branch be updated against main, pushed once and opened as one design PR, per #9569. The subsequent authorized 3000 sync is still pending; this report does not claim deployment or final review approval.
+
+
+## Spacing implementation (second commit, PM #9613 / #9815)
+
+The typography baseline `f5c271fe` passed QA #9610 and visual QA #9612. The second step adds shared 24→64px gutter and 56→96px section-spacing tokens, interpolated at 720–1024px, and maps existing editorial wrappers on How I Work, ETF, CA, E.ON and MAN to them. No new runtime component, copy, asset or dependency was introduced. The spacing mappings and intentional composition exceptions are documented in `docs/type-scale-spec.md`.
+
+The earlier padding findings are measurements, not authorization to redesign BMW's layout: BMW remains limited to three chapter titles under PM #9218. Maximum-width wells still center at wider viewports. Full-screen heroes, embedded product UI, phone sticky positioning, Concept scroll duration and authored joined-section overlaps remain outside ordinary section padding.
+
+Spacing evidence is separate from the typography evidence: `/Users/lu/.buzz/OUTBOX/DS_PADDING_1112/`. The first baseline capture failed because the old 4624 production server was no longer listening; this is a recorded preview-availability failure, not a passed baseline. The existing production build was restarted before recapturing baseline screenshots. An intermediate baseline screenshot run was terminated with exit 143 and was not accepted. The complete retry passed. Test runners executed the prepared scripts in blocking mode after that interruption.
+
+
+### Spacing verification
+
+Runtime source tested: `78c0993` (the final report-only amendment does not change runtime source). Frozen pnpm installation, production build and TypeScript check passed. Port 4624 serves that production build.
+
+- `before/after.json`, `after/after.json`: 21 route/width checks each; all 31 chapter headings stay 40/44px, weight 600. No page errors or horizontal page overflow.
+- `before-padding.json`, `after-padding.json`: 15 changed-page/width measurements, covering each mapped editorial wrapper.
+- `spacing-assertions.json`: 195 assertions passed, including the exact 24/64px minimum gutters, 56/96px ordinary edges and retained 0/24px joined-section exceptions.
+- `focused.json`: other type roles, header controls and embedded BMW UI are unchanged. The complete measured section geometry of `/index` and BMW is unchanged. CA German at 1025px remains four lines, manual hyphenation, no horizontal title overflow in Chrome and WebKit; both engines pass the index mobile-menu check. The existing lone `zur` line remains a visual-review note, not a claim of improved copy wrapping.
+- `review.html`: five changed pages × three widths, baseline/after side by side. The separate typography comparison remains in `DS_REVIEW_1112/review.html`.
+- No new permanent test harness or CI configuration was added for this CSS mapping; the existing browser audit was reused and the targeted spacing assertions live with the local evidence.
+
+Baseline:
+```text
+[test-lock] 开始 21:48:24 负载 9.60 5.97 3.97 排队 0 秒
+[test-lock] 结束 21:49:13 负载 7.48 5.95 4.07 退出码 0
+```
+Production spacing and regression:
+```text
+[test-lock] 开始 21:50:09 负载 4.40 5.36 3.97 排队 0 秒
+[test-lock] 结束 21:51:12 负载 3.33 4.87 3.88 退出码 0
+```
+
+Requested wrapping follow-up (`wraps.json`, six route/width cases): How I Work's “I hand over more than screens.” remains three lines at 390/700/1440; the longest E.ON chapter title remains five/three/two lines respectively. All fit their columns without horizontal title overflow. Copy, type size and authored line breaks were not changed to force shorter wrapping.
+```text
+[test-lock] 开始 21:51:47 负载 3.77 4.76 3.88 排队 0 秒
+[test-lock] 结束 21:51:57 负载 4.34 4.85 3.92 退出码 0
+```
