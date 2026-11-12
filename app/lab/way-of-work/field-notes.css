@@ -173,8 +173,8 @@
   .ww-closing .pill-btn, .ww-closing .pill-btn:hover { transition: none; transform: none; }
 }
 /* Portfolio CTA on paper: DS pill structure (46px · 0 28px · 15.2px · gap 8 · 999) with inverse paint */
-.ww-finale{--pill-border:#272a25;--pill-text:#272a25;--pill-bg:transparent;--pill-hover-bg:#272a25;--pill-hover-text:#f5f1e4;--pill-hover-shadow:none}
-.ww-page a.ww-case-btn{margin-top:32px;font-family:inherit;color:var(--pill-text)}
+.ww-page,.ww-finale{--pill-border:#272a25;--pill-text:#272a25;--pill-bg:transparent;--pill-hover-bg:#272a25;--pill-hover-text:#f5f1e4;--pill-hover-shadow:none}
+.ww-page a.ww-case-btn{margin-top:32px;font-family:inherit;color:var(--pill-text);border-color:var(--pill-border)}
 .ww-page a.ww-case-btn:hover{color:var(--pill-hover-text);background:var(--pill-hover-bg)}
 .ww-page a.ww-case-btn:hover .ww-case-icon{transform:translate(3px,-3px)}
 .ww-page a.ww-case-btn:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
