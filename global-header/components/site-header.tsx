@@ -115,15 +115,6 @@ const NAV: readonly NavEntry[] = [
           dark: '/assets/images/nav/dark/playground/gratula-dark.webp',
         },
       },
-      {
-        label: 'Agent Tools',
-        href: '/lab/tools',
-        meta: 'Agent Monitor · Scranton',
-        icon: {
-          light: '/assets/images/nav/light/playground/agent-tools-light.webp',
-          dark: '/assets/images/nav/dark/playground/agent-tools-dark.webp',
-        },
-      },
     ],
   },
 ]
@@ -164,9 +155,7 @@ function hrefMatches(href: string, currentHref: string, pathname: string) {
   if (href === '/EON' && candidates.includes('/eon-solar')) return true
   if (
     href === '/lab/way-of-work' &&
-    candidates.some(
-      (value) => value === href || value.startsWith(`${href}/`) || value === '/lab/tools',
-    )
+    candidates.some((value) => value === href || value.startsWith(`${href}/`))
   ) {
     return true
   }
@@ -197,7 +186,6 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
     pathname.startsWith('/ai-companion-pet') ||
     pathname.startsWith('/lab/agent-monitor')
   const paperHeader =
-    pathname.startsWith('/lab/tools') ||
     pathname.startsWith('/lab/way-of-work') ||
     pathname.startsWith('/man-truck-bus') ||
     pathname.startsWith('/etf-savings-plan') ||

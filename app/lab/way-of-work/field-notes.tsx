@@ -307,17 +307,6 @@ export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
         <h2 data-type="h2">{c.title}</h2>
         <p data-type="body">{c.context}</p>
         <p data-type="body">{c.decision}</p>
-        {c.id === 'team' ? (
-          <a
-            className="ww-case-btn pill-btn"
-            href={portfolio ? '/lab/tools' : `${base}/lab/tools`}
-            target={portfolio ? undefined : '_blank'}
-            rel={portfolio ? undefined : 'noreferrer'}
-          >
-            <span>Explore my agent tools</span>
-            <Icon name="arrow-right-up-line" className="ww-case-icon" />
-          </a>
-        ) : null}
       </div>
       <figure><Scene index={i+1}/>
       </figure></section>)}
