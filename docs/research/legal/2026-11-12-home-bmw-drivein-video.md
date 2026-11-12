@@ -7,7 +7,7 @@
 | Item | Value |
 |---|---|
 | Path | `public/assets/videos/home/bmw-drivein-web.mp4` |
-| Poster (reduce / fallback) | `public/assets/images/bmw-system/i4-services-car.webp` (unchanged on this PR) |
+| Poster (reduce / fallback) | `public/assets/images/bmw-system/bmw-drivein-park.webp` (last frame of deliverable loop; visualqa **#9349**) |
 | Playback | `advisory-office.js` (same as UBS/E.ON); muted loop; reduced motion = still only |
 | Pixel source | `~/.buzz/OUTBOX/BMW_DRIVEIN_1112/C2/video-v2-fix-r1/bmw-c2-front-r1-3x2.mp4` (motion R1 front-wheel repair; visualqa **#9238**) |
 | SHA-256 (web) | `d4a0c1f2a2fd74bf1eb9edad856e3006f5fcde6647486202397428b917645ee3` (`ffmpeg -map_metadata 1`; decoded video MD5 = R1) |
