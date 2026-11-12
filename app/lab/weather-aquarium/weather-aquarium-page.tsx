@@ -765,8 +765,9 @@ export function WeatherAquariumPage() {
 
               <div className="edition-grid">
                 {EDITIONS.map((edition) => (
-                  <figure className="edition" data-move="64" key={edition.caption}>
+                  <figure className="edition" key={edition.caption}>
                     <div
+                      data-move="64"
                       className={`edition-media ${edition.video ? 'holiday-cover' : 'holiday-slice'}`}
                       style={{ ['--slice' as string]: edition.slice }}
                     >
