@@ -3,7 +3,7 @@ import { ClimateTiles, Glyph, RemoteActionRow, StatusTiles } from './RebuiltComp
 import './phone-studies.css'
 
 const assets='/assets/images/bmw-system/'
-const vehicles={home:assets+'bmw-ix3.png',actions:assets+'i4-services-car.webp',charge:assets+'i4-art.webp'}
+const vehicles={home:assets+'i4-complete.png',actions:assets+'i4-complete.png',charge:assets+'i4-complete.png'}
 function Disclosure({excerpt=false}:{excerpt?:boolean}){
   return <div className="ps-disclosure">{!excerpt&&<div className="ps-sheetbar"><span>Close</span>Disclaimer</div>}
     <strong>Remote Engine Start</strong><p>If active in your car,<br/>the engine will run for 15 min.</p><div className="ps-fan-symbol"><Glyph name="fan"/></div>

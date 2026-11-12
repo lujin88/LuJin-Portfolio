@@ -3,7 +3,7 @@
 import React, { useId, useState } from 'react'
 import { BatteryCharging, BookOpen, CarFront, ChevronRight, Gauge, Headphones, LockKeyhole, MapPin, PlugZap, Radio, Route, ShieldCheck, Snowflake, UnlockKeyhole, Wrench, Zap } from 'lucide-react'
 
-export const carArt='/assets/images/bmw-system/bmw-ix3.png'
+export const carArt='/assets/images/bmw-system/i4-complete.png'
 export const journeys=['Vehicle','Planner','Charging','Explore','Services']
 const navIcons=[CarFront,Route,PlugZap,BookOpen,Wrench]
 export const notes=[

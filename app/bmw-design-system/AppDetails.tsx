@@ -3,7 +3,7 @@ import {Bell,Settings,ChevronRight,Battery,Wifi,Signal} from 'lucide-react'
 
 const explorePhoto='/assets/images/bmw-system/04.webp'
 const servicesPhoto='/assets/images/bmw-system/05.webp'
-const car='/assets/images/bmw-system/bmw-ix3.png'
+const car='/assets/images/bmw-system/i4-complete.png'
 
 export function ChromeStatus(){return <div aria-hidden="true" className="bm-status"><b>9:41</b><span><Signal/><Wifi/><Battery/></span></div>}
 export function CarSide(){return <svg viewBox="0 0 30 20" fill="none" stroke="currentColor" strokeWidth="1.25" aria-hidden="true"><path d="m2 12 2-3 7-1 5-4 6 .5 3 4 3 1v4h-3m-5 0H10m-5 0H2z"/><circle cx="7.5" cy="14" r="2.3"/><circle cx="22" cy="14" r="2.3"/></svg>}
