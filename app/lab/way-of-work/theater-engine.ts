@@ -1,5 +1,5 @@
 export const LERP_TAU = 10
-export const PARALLAX = 0.28
+export const PARALLAX = 0.35
 
 export function clamp01(value: number) {
   return value < 0 ? 0 : value > 1 ? 1 : value
