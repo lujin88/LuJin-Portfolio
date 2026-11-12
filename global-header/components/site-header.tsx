@@ -109,7 +109,7 @@ const NAV: readonly NavEntry[] = [
       {
         label: 'Gratula',
         href: '/lab/party-planner',
-        meta: 'Launching soon',
+        meta: 'Party planning · Prototype',
         icon: {
           light: '/assets/images/nav/light/playground/gratula-light.webp',
           dark: '/assets/images/nav/dark/playground/gratula-dark.webp',
