@@ -10,15 +10,15 @@ const seasons = ['spring', 'summer', 'autumn', 'winter'] as const
 // no swans; winter includes the girl and cat.
 const ALT = {
   en: {
-    spring: 'A spring scene from the Weather Aquarium app: cherry blossom and tulips, a girl and her cat by the Lindt shop in Kilchberg',
-    summer: 'A summer scene from the Weather Aquarium app: green trees and flowers, a girl and her cat by the Lindt shop in Kilchberg',
-    autumn: 'An autumn scene from the Weather Aquarium app: golden leaves, a girl and her cat by the Lindt shop in Kilchberg',
+    spring: 'A spring scene from the Weather Aquarium app: cherry blossom and tulips, a girl and her cat by the Lindt shop in Kilchberg, and the lake by the jetty',
+    summer: 'A summer scene from the Weather Aquarium app: green trees and flowers, a girl and her cat by the Lindt shop in Kilchberg, and the lake by the jetty',
+    autumn: 'An autumn scene from the Weather Aquarium app: golden leaves, a girl and her cat by the Lindt shop in Kilchberg, and the lake by the jetty',
     winter: 'A winter scene from the Weather Aquarium app: a girl in pink winter clothes and a cat in a jumper by the Lindt shop in Kilchberg, snow on the roofs and trees, and the frozen lake by the jetty',
   },
   de: {
-    spring: 'Eine Frühlingsszene aus der App Weather Aquarium: Kirschblüten und Tulpen, ein Mädchen mit seiner Katze vor dem Lindt-Laden in Kilchberg',
-    summer: 'Eine Sommerszene aus der App Weather Aquarium: grüne Bäume und Blumen, ein Mädchen mit seiner Katze vor dem Lindt-Laden in Kilchberg',
-    autumn: 'Eine Herbstszene aus der App Weather Aquarium: goldenes Laub, ein Mädchen mit seiner Katze vor dem Lindt-Laden in Kilchberg',
+    spring: 'Eine Frühlingsszene aus der App Weather Aquarium: Kirschblüten und Tulpen, ein Mädchen mit seiner Katze vor dem Lindt-Laden in Kilchberg, und der See am Steg',
+    summer: 'Eine Sommerszene aus der App Weather Aquarium: grüne Bäume und Blumen, ein Mädchen mit seiner Katze vor dem Lindt-Laden in Kilchberg, und der See am Steg',
+    autumn: 'Eine Herbstszene aus der App Weather Aquarium: goldenes Laub, ein Mädchen mit seiner Katze vor dem Lindt-Laden in Kilchberg, und der See am Steg',
     winter: 'Eine Winterszene aus der App Weather Aquarium: ein Mädchen in rosa Winterkleidung und eine Katze im Pullover vor dem Lindt-Laden in Kilchberg, Schnee auf Dächern und Bäumen und der zugefrorene See am Steg',
   },
 } as const
