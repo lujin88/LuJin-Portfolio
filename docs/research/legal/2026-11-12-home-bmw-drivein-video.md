@@ -22,6 +22,7 @@
 | Home card on #178 | **Does not** swap poster to alpine; card still uses `i4-services-car.webp`. Alpine is the **composition source** for drive-in generation in OUTBOX, not a new stock download for this PR. |
 | Route / still generation | `BMW_DRIVEIN_1112/README.md`: GPT built-in `image_gen` for route drafts (1536×1024); A/B edits from alpine base. `C2/README.md`: deterministic pixel move of existing car RGB from alpine; GPT used only for old-slot infill mask, not full background replacement. |
 | External ref / license file | No separate stock-license file in repo for alpine sunset. Prior visual brief `BMW_HOME_VISUAL_1111_8034/README.md` documents **reuse of existing** `i4-alpine-sunset.webp`, no newly licensed asset for the home BMW board. Public-edit rights for **this PR’s loop** are Jimeng + downstream motion edits (below), not a new rights grant on alpine itself. |
+| Hero / alpine provenance (legal #9324, PM #9330) | OUTBOX chain documented separately — start `~/.buzz/OUTBOX/BMW_HERO_C_I4_20261108/README.md` (built-in **image_gen** edit of prior C; BMW HK page + Scene7 `g26_bev_positioning_image` as **morphology reference only**, not press photo). Repo first publish `cd5e944`. **Authorization judgment not claimed here**; visual/legal own completeness vs `ix3-landscape` upstream. |
 
 ## Jimeng video + derivatives (legal #9285 item 2, #9290)
 
