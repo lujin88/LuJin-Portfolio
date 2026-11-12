@@ -767,12 +767,13 @@ export function WeatherAquariumPage() {
                 {EDITIONS.map((edition) => (
                   <figure className="edition" key={edition.caption}>
                     <div
-                      data-move="64"
                       className={`edition-media ${edition.video ? 'holiday-cover' : 'holiday-slice'}`}
                       style={{ ['--slice' as string]: edition.slice }}
                     >
-                      <img src={`${IMG}/${edition.image}`} alt={edition.alt} loading="lazy" />
-                      {edition.video && <HolidayVideo file={edition.video} />}
+                      <div data-move="64" className="edition-media-inner">
+                        <img src={`${IMG}/${edition.image}`} alt={edition.alt} loading="lazy" />
+                        {edition.video && <HolidayVideo file={edition.video} />}
+                      </div>
                     </div>
                     <figcaption>{edition.caption}</figcaption>
                   </figure>
