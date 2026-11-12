@@ -1740,6 +1740,14 @@
       flex-direction: column; align-items: flex-start; gap: 1.5rem;
     }
   }
+  /* Phone experience list: align copy with the section gutter, without a rail. */
+  @media (max-width: 767px) {
+    #experience .exp-content {
+      padding-left: 0;
+      border-left: 0;
+    }
+    #experience .exp-content[data-index="3"]::after { display: none; }
+  }
   /* Stacked list (phones + reduced motion): its end (36px item margin + 48px
      sticky padding + Contact's then clamp(6rem, 14vh, 9rem) top padding) left ~200px
      between the Designaffairs fade tail and "Have an opportunity". Lu
