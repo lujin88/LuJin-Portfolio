@@ -8,21 +8,21 @@ const moments = [{
   kind: 'setup',
   label: 'Before starting',
   heading: '“Could I lose money?” Yes, and here’s how much.',
-  body: 'Most apps show a risk warning or a past-returns chart. I show one bad case in francs: CHF 100 a month for five years is CHF 6’000 paid in. If prices fall 25% in year four, the plan is worth CHF 4’955.',
+  body: 'Most apps show a risk warning. I show one bad case in francs: CHF 100 a month for five years is CHF 6’000 paid in; a 25% fall in year four leaves CHF 4’955.',
   screen: 'd' as const
 }, {
   id: 'down-month',
   kind: 'down',
   label: 'In a down month',
   heading: 'Show the streak, then the loss.',
-  body: 'Six months into a CHF 200 plan, CHF 1’200 is paid in and the value is down CHF 96, or 8%. A portfolio screen would lead with the red number. I lead with six months in a row, and state the loss in francs below it.',
+  body: 'A portfolio screen leads with the red number. I lead with six CHF 200 payments in a row, CHF 1’200 paid in, and show the CHF 96 (8%) loss below.',
   screen: 'c' as const
 }, {
   id: 'wanting-to-stop',
   kind: 'manage',
   label: 'Wanting to stop',
   heading: 'Stop buying. Keep your units.',
-  body: 'A down month may prompt a change of plan. Pause comes first, with a date it resumes by itself. Stop ends future purchases only. The units already bought stay invested, and the app says what to cancel at your bank.',
+  body: 'Pause comes first, with an automatic restart date. Stop ends future purchases only; units already bought stay invested. The app says what to cancel at your bank.',
   screen: 'm' as const
 }];
 const chapterIds = moments.map(moment => moment.id);
