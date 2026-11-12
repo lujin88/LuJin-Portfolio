@@ -52,3 +52,21 @@ Haiku test-runner: frozen install passed; the refreshed capture/assertion run pa
 ```
 
 Evidence: OUTBOX/GRATULA_GOOGLE_MAP_1113/{map-recapture-final.log,map-attribution-bounds.json,capture-revision.log,checked-metrics.json,install-revision.log,review.html}. Earlier wide-viewport captures were exploratory and are not the shipped source.
+
+
+## Native wide-viewport revision — legal #10381 / PM #10384
+
+The 00c0e4b logo translation was rejected by legal and is superseded. Recaptured the same Google Maps URL at 690 × 360 CSS px, DPR 2 (1380 × 720 raster), with **no change to the native logo position, size or colors**. The capture asserts that its bounding rectangle is identical before and after hiding non-map UI. Native logo bounds: x=292.5, y=319, width=105, height=22; footer top=347, giving 6 CSS px native clearance. Author inspected the source and generated step 5: Belvoirpark is unobscured, logo and footer are complete.
+
+The existing MAP_IMG reference and both page variants consume the replacement raster; no HTML change was needed. Regenerated product/OUTBOX step 5, all three full-page review images, and six live/static section images. Updated source hashes. The wider source is scaled down within the existing phone map, so attribution text is smaller than in the rejected narrow capture; final displayed readability remains for legal/visual QA to assess.
+
+Haiku capture/assertion checks passed at 390/700/1440 for live and static pages, with expected 1380 × 720 source, contain fit, intact bottom corners, no runtime errors, overflow or broken images. Frozen-install pass from this session remains applicable: package.json and pnpm-lock.yaml are unchanged. No build/TypeScript/WebKit rerun.
+
+```text
+[test-lock] 开始 00:37:36 负载 4.28 4.45 6.46 排队 31 秒
+[test-lock] 结束 00:37:53 负载 5.30 4.66 6.50 退出码 0
+[test-lock] 开始 00:38:40 负载 4.32 4.50 6.33 排队 0 秒
+[test-lock] 结束 00:38:48 负载 4.29 4.49 6.32 退出码 0
+```
+
+Evidence in OUTBOX/GRATULA_GOOGLE_MAP_1113/: recapture-native-wide.cjs, wide-native-page.png (before hiding overlays), google-maps-native-wide.png, map-native-wide-bounds.json, native-wide-source.log, native-wide-validation.log, checked-metrics.json, review.html. Legal approval is pending.
