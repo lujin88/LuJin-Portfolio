@@ -14,7 +14,6 @@ export const headerCopy = {
       'Weather Aquarium': 'Weather Aquarium',
       'AI Pet': 'AI Pet',
       Gratula: 'Gratula',
-      'Agent Tools': 'Agent Tools',
     },
     meta: {
       'Wealth · Service design': 'Wealth · Service design',
@@ -27,7 +26,6 @@ export const headerCopy = {
       'Voice · Hardware': 'Voice · Hardware',
       'Vehicle controls · Light & dark': 'Vehicle controls · Light & dark',
       'Launching soon': 'Launching soon',
-      'Agent Monitor · Scranton': 'Agent Monitor · Scranton',
     },
     contactMe: 'Contact me',
     email: 'Email',
@@ -52,7 +50,6 @@ export const headerCopy = {
       'Weather Aquarium': 'Weather Aquarium',
       'AI Pet': 'AI Pet',
       Gratula: 'Gratula',
-      'Agent Tools': 'Agent Tools',
     },
     meta: {
       'Wealth · Service design': 'Wealth · Service Design',
@@ -65,7 +62,6 @@ export const headerCopy = {
       'Voice · Hardware': 'Stimme · Hardware',
       'Vehicle controls · Light & dark': 'Fahrzeugsteuerung · Hell & Dunkel',
       'Launching soon': 'Startet bald',
-      'Agent Monitor · Scranton': 'Agent Monitor · Scranton',
     },
     contactMe: 'Kontakt',
     email: 'E-Mail',
