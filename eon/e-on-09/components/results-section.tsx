@@ -35,7 +35,7 @@ export function ResultsSection() {
           {/* Right: outcome cards */}
           <OnceReveal className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {/* Primary result — lead conversion */}
-            <div className="flex min-w-0 flex-col gap-6 rounded-3xl bg-mint-light p-8 sm:p-10">
+            <div className="flex min-w-0 flex-col gap-6 rounded-3xl bg-mint p-8 sm:p-10">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-off-white">
                 <Image
                   src="/assets/images/eon/eon 09 - icon - chart.webp"
