@@ -511,18 +511,19 @@
   }.wa-page .vocab-grid{
     row-gap: 28px;
   }.wa-page .vocab-item{
-    gap: 20px;
+    gap: 22px;
   }.wa-page .vocab-art{
-    height: 204px;
-    max-height: 204px;
-    overflow: hidden;
+    /* visualqa #10898: no overflow clip — scale whole asset, keep label row clear. */
+    height: 224px;
+    max-height: 224px;
+    overflow: visible;
   }.wa-page .vocab-art--static img{
-    /* visualqa #190: keep hem/decoration inside the art box above labels. */
     width: auto;
-    max-width: 88%;
-    max-height: 88%;
+    height: auto;
+    max-width: 76%;
+    max-height: 168px;
     object-fit: contain;
-    object-position: center top;
+    object-position: center center;
   }
 }
 
