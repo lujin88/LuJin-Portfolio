@@ -336,28 +336,27 @@
   color: inherit;
   font: inherit;
   cursor: default;
-  overflow: clip;
-  container-type: size;
+  overflow: hidden;
   -webkit-tap-highlight-color: transparent;
 }.wa-page .vocab-art--clip:focus-visible{
   outline: 2px solid var(--signal);
   outline-offset: 3px;
+}.wa-page .vocab-art--clip{
+  display: grid;
+  align-content: stretch;
+}.wa-page .vocab-art--clip img,
+.wa-page .vocab-art--clip .vocab-video{
+  grid-area: 1 / 1;
+  place-self: stretch;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
 }.wa-page .vocab-video{
-  /* Where the webp is drawn (measured on 3000): it is a grid item whose automatic minimum
-     height is its content height, so it always fills the box width; a shorter one is
-     centred vertically, a taller one starts at the box top and overflows downward.
-     The clip is placed so subjects align. */
-  --rw: 100cqw;
-  position: absolute;
-  left: calc(var(--rw) * var(--clip-x));
-  top: calc(max(0px, (100cqh - var(--rw) / var(--ratio)) / 2) + var(--rw) * var(--clip-y));
-  width: calc(var(--rw) * var(--clip-w));
-  max-width: none;
-  height: auto;
-  aspect-ratio: 1112 / 834;
-  /* Two gradients (set inline per clip) intersect into a feathered rectangle. */
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
   opacity: 0;
   pointer-events: none;
 }.wa-page .vocab-art--clip.is-ready .vocab-video{

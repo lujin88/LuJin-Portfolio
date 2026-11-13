@@ -64,23 +64,6 @@ const VOCAB: { word: Word; alt: string; src: string; ratio: number; clip: VocabC
   { word: 'hat', alt: 'Red winter hat', src: `${IMG}/vocab-hat.webp`, ratio: 1374 / 1145, clip: { file: 'vocab-hat-v1.mp4', w: 1.7905, x: -0.3997, y: -0.2456, motion: [338, 167, 786, 651] } },
 ]
 
-const CLIP_W = 1112
-const CLIP_H = 834
-// Fade distance outside the motion union, as a share of the clip.
-const FADE = 0.12
-
-function clipMask({ motion: [x0, y0, x1, y1], fadeBottom }: VocabClip) {
-  const pct = (n: number) => `${(n * 100).toFixed(2)}%`
-  const l = x0 / CLIP_W
-  const r = x1 / CLIP_W
-  const t = y0 / CLIP_H
-  const b = fadeBottom ? 0.8 : y1 / CLIP_H
-  const bEnd = fadeBottom ? 1 : b + FADE
-  const across = `linear-gradient(to right, transparent ${pct(Math.max(0, l - FADE))}, #000 ${pct(l)}, #000 ${pct(r)}, transparent ${pct(Math.min(1, r + FADE))})`
-  const down = `linear-gradient(to bottom, transparent ${pct(Math.max(0, t - FADE))}, #000 ${pct(t)}, #000 ${pct(b)}, transparent ${pct(Math.min(1, bEnd))})`
-  return `${across}, ${down}`
-}
-
 function voiceForLocale(locale: string): SpeechSynthesisVoice | undefined {
   if (!('speechSynthesis' in window)) return undefined
   const want = locale.toLowerCase()
@@ -393,8 +376,6 @@ function VocabArt({
     }
   }, [active, onActive])
 
-  const mask = clipMask(clip)
-
   return (
     <button
       ref={rootRef}
@@ -402,7 +383,6 @@ function VocabArt({
       type="button"
       aria-label={label}
       aria-pressed={canPlay ? active : undefined}
-      style={{ ['--ratio' as string]: item.ratio, ['--clip-w' as string]: clip.w, ['--clip-x' as string]: clip.x, ['--clip-y' as string]: clip.y }}
       onPointerEnter={(event) => {
         if (event.pointerType === 'touch' || !finePointer()) return
         onActive(true)
@@ -432,7 +412,6 @@ function VocabArt({
           playsInline
           preload={load ? 'auto' : 'none'}
           aria-hidden="true"
-          style={{ maskImage: mask, WebkitMaskImage: mask }}
           onLoadedData={(event) => {
             const video = event.currentTarget
             if (video.currentTime === 0) setReady(true)
