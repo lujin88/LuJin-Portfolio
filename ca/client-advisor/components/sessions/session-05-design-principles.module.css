@@ -13,10 +13,10 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  padding-top: clamp(4.5rem, 8vw, 7rem);
-  padding-bottom: clamp(4.5rem, 8vw, 7rem);
-  padding-left: var(--content-inset, 24px);
-  padding-right: var(--content-inset, 24px);
+  padding-top: var(--editorial-section-space);
+  padding-bottom: var(--editorial-section-space);
+  padding-left: var(--editorial-gutter);
+  padding-right: var(--editorial-gutter);
   /* Starts on 04's last colour (#06101f) so 04 -> 05 has no step. */
   background: linear-gradient(180deg, var(--s05-bg-deep) 0%, var(--s05-bg) 42%, var(--ca-bg, #0b1220) 100%);
   color: var(--s05-text);
@@ -65,12 +65,7 @@
 }
 
 .headline {
-  font-size: 2.5rem;
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
   color: var(--s05-text);
-  text-wrap: balance;
   margin: var(--ca-heading-gap, 1.75rem) 0 0;
 }
 
@@ -226,9 +221,9 @@
 
 .cardTitle {
   display: block;
-  font-size: clamp(1.5rem, 2vw, 1.75rem);
+  font-size: var(--ca-type-h3);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: var(--ca-type-h3-line);
   letter-spacing: -0.01em;
   color: var(--s05-text);
   text-wrap: balance;
@@ -251,18 +246,6 @@
 }
 
 /* ---------- Responsive ---------- */
-
-@media (min-width: 640px) {
-  .headline {
-    font-size: 2.75rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .headline {
-    font-size: clamp(2.75rem, 3.6vw, 3.25rem);
-  }
-}
 
 @media (min-width: 1280px) {
   .intro {

@@ -1,0 +1,56 @@
+{
+  "claude:hiw-demo-a": {
+    "id": "claude:hiw-demo-a",
+    "source": "claude",
+    "status": "running",
+    "title": "BMW fact line copy",
+    "project": "LuJin-Portfolio",
+    "message": "Fictional preview task",
+    "startedAt": 0,
+    "updatedAt": 0,
+    "progress": {
+      "completedActions": 3,
+      "lastActivity": "Editing case study",
+      "observedAt": 0,
+      "startedAt": 0,
+      "source": "local-events"
+    },
+    "stateSource": "local-lifecycle"
+  },
+  "codex:hiw-demo-b": {
+    "id": "codex:hiw-demo-b",
+    "source": "codex",
+    "status": "running",
+    "title": "Playground nav icons",
+    "project": "LuJin-Portfolio",
+    "message": "Fictional preview task",
+    "startedAt": 0,
+    "updatedAt": 0,
+    "progress": {
+      "completedActions": 1,
+      "lastActivity": "Checking asset paths",
+      "observedAt": 0,
+      "startedAt": 0,
+      "source": "local-events"
+    },
+    "stateSource": "local-lifecycle"
+  },
+  "cursor:hiw-demo-c": {
+    "id": "cursor:hiw-demo-c",
+    "source": "cursor",
+    "status": "running",
+    "title": "Lab tools card loops",
+    "project": "LuJin-Portfolio",
+    "message": "Fictional preview task",
+    "startedAt": 0,
+    "updatedAt": 0,
+    "progress": {
+      "completedActions": 2,
+      "lastActivity": "Recording previews",
+      "observedAt": 0,
+      "startedAt": 0,
+      "source": "local-events"
+    },
+    "stateSource": "local-lifecycle"
+  }
+}
