@@ -2586,7 +2586,7 @@
         });
         const bmwPhoto = images[2] && images[2].querySelector('img');
         if (bmwPhoto) bmwPhoto.style.removeProperty('object-position');
-        pinned = !reduce.matches && innerWidth >= 1100 && innerHeight >= 760 && copies.every(copy => copy.scrollHeight + 96 <= innerHeight);
+        pinned = !reduce.matches && innerWidth >= 1100 && innerHeight >= 700 && copies.every(copy => copy.scrollHeight + 96 <= innerHeight);
         showcase.classList.toggle('home-showcase-pinned', pinned);
         showcase.dataset.pinReady = '';
       } finally {
@@ -2772,7 +2772,7 @@
       var travelBefore = showcase.offsetHeight - innerHeight;
       var progress = travelBefore > 0 ? clamp(-showcaseRect.top / travelBefore) : 0;
       var cardPlan = null;
-      var canPin = innerWidth >= 1100 && innerHeight >= 760;
+      var canPin = innerWidth >= 1100 && innerHeight >= 700;
       if (wasPinned && inShowcase) {
         var card = progress >= 0.5 ? scenes[1] : scenes[0];
         cardPlan = { mode: 'unpin', card: card, top: card.getBoundingClientRect().top };
