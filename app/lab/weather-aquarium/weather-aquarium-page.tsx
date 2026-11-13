@@ -243,9 +243,10 @@ function HeroScreenVideo() {
 
   useEffect(() => {
     setPlaying(false)
-  }, [motionAllowed])
+  }, [motionAllowed, tabletStatic])
 
   useEffect(() => {
+    if (tabletStatic) return
     const layer = layerRef.current
     const frame = layer?.parentElement
     if (!layer || !frame) return
@@ -258,9 +259,10 @@ function HeroScreenVideo() {
     const observer = new ResizeObserver(place)
     observer.observe(frame)
     return () => observer.disconnect()
-  }, [motionAllowed, failed])
+  }, [motionAllowed, failed, tabletStatic])
 
   useEffect(() => {
+    if (tabletStatic) return
     const video = videoRef.current
     if (!video || !motionAllowed || failed) return
 
@@ -285,7 +287,7 @@ function HeroScreenVideo() {
       document.removeEventListener('visibilitychange', syncPlayback)
       video.pause()
     }
-  }, [motionAllowed, failed])
+  }, [motionAllowed, failed, tabletStatic])
 
   if (!motionAllowed || failed || tabletStatic) return null
 
@@ -338,7 +340,7 @@ function VocabArt({
   onActive: (on: boolean) => void
 }) {
   const { clip } = item
-  const rootRef = useRef<HTMLButtonElement>(null)
+  const hostRef = useRef<HTMLButtonElement | HTMLDivElement | null>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const motionAllowed = useMotionAllowed()
   const tabletStatic = useWaTabletStatic()
@@ -348,7 +350,8 @@ function VocabArt({
   const canPlay = ready && motionAllowed && !failed
 
   useEffect(() => {
-    const root = rootRef.current
+    if (tabletStatic || load) return
+    const root = hostRef.current
     if (!root) return
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -360,7 +363,7 @@ function VocabArt({
     )
     observer.observe(root)
     return () => observer.disconnect()
-  }, [])
+  }, [tabletStatic, load])
 
   useEffect(() => {
     const video = videoRef.current
@@ -378,7 +381,8 @@ function VocabArt({
 
   // Stop when scrolled away or the tab is hidden, so a tapped clip does not keep running.
   useEffect(() => {
-    const root = rootRef.current
+    if (tabletStatic) return
+    const root = hostRef.current
     if (!root || !active) return
     const stop = () => onActive(false)
     const observer = new IntersectionObserver(([entry]) => {
@@ -393,11 +397,16 @@ function VocabArt({
       observer.disconnect()
       document.removeEventListener('visibilitychange', onHidden)
     }
-  }, [active, onActive])
+  }, [active, onActive, tabletStatic])
 
   if (tabletStatic) {
     return (
-      <div className="vocab-art vocab-art--static" role="img" aria-label={label}>
+      <div
+        ref={hostRef}
+        className="vocab-art vocab-art--static"
+        role="img"
+        aria-label={label}
+      >
         <img src={item.src} alt="" loading="lazy" />
       </div>
     )
@@ -405,7 +414,7 @@ function VocabArt({
 
   return (
     <button
-      ref={rootRef}
+      ref={hostRef}
       className={`vocab-art vocab-art--clip${ready && !failed ? ' is-ready' : ''}`}
       type="button"
       aria-label={label}
@@ -675,10 +684,11 @@ export function WeatherAquariumPage() {
       revealItems.forEach((item) => revealObserver.observe(item))
     }
 
-    const heroMedia = heroMediaRef.current
-    const heroDevice = heroDeviceRef.current
-    const tabletStatic = window.matchMedia(WA_TABLET_STATIC_MQ).matches
+    const tabletMq = window.matchMedia(WA_TABLET_STATIC_MQ)
+    const reducedMq = window.matchMedia('(prefers-reduced-motion: reduce)')
     const onMove = (event: globalThis.PointerEvent) => {
+      const heroMedia = heroMediaRef.current
+      const heroDevice = heroDeviceRef.current
       if (!heroMedia || !heroDevice) return
       const bounds = heroMedia.getBoundingClientRect()
       const x = (event.clientX - bounds.left) / bounds.width - 0.5
@@ -686,20 +696,41 @@ export function WeatherAquariumPage() {
       heroDevice.style.transform = `translate3d(${x * 7}px, ${y * 5}px, 0) rotateX(${-y * 1.2}deg) rotateY(${x * 1.4}deg) rotateZ(0.75deg)`
     }
     const onLeave = () => {
+      const heroDevice = heroDeviceRef.current
       if (!heroDevice) return
       heroDevice.style.transform = 'translate3d(0, 0, 0) rotateZ(0.75deg)'
     }
-    if (heroMedia && heroDevice && !reduced && !tabletStatic) {
-      heroMedia.addEventListener('pointermove', onMove)
-      heroMedia.addEventListener('pointerleave', onLeave)
-    } else if (heroDevice) {
-      heroDevice.style.transform = 'translate3d(0, 0, 0) rotateZ(0.75deg)'
+    let parallaxBound = false
+    const syncParallax = () => {
+      const heroMedia = heroMediaRef.current
+      const heroDevice = heroDeviceRef.current
+      if (parallaxBound) {
+        heroMedia?.removeEventListener('pointermove', onMove)
+        heroMedia?.removeEventListener('pointerleave', onLeave)
+        parallaxBound = false
+      }
+      if (heroDevice) {
+        heroDevice.style.transform = 'translate3d(0, 0, 0) rotateZ(0.75deg)'
+      }
+      if (heroMedia && heroDevice && !reducedMq.matches && !tabletMq.matches) {
+        heroMedia.addEventListener('pointermove', onMove)
+        heroMedia.addEventListener('pointerleave', onLeave)
+        parallaxBound = true
+      }
     }
+    syncParallax()
+    tabletMq.addEventListener('change', syncParallax)
+    reducedMq.addEventListener('change', syncParallax)
 
     return () => {
       revealObserver.disconnect()
-      heroMedia?.removeEventListener('pointermove', onMove)
-      heroMedia?.removeEventListener('pointerleave', onLeave)
+      tabletMq.removeEventListener('change', syncParallax)
+      reducedMq.removeEventListener('change', syncParallax)
+      const heroMedia = heroMediaRef.current
+      if (parallaxBound) {
+        heroMedia?.removeEventListener('pointermove', onMove)
+        heroMedia?.removeEventListener('pointerleave', onLeave)
+      }
       if ('speechSynthesis' in window) speechSynthesis.cancel()
     }
   }, [])
