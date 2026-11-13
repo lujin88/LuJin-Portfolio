@@ -108,6 +108,9 @@ const EDITIONS = [
   { slice: 2, caption: 'Christmas / Weihnachten', alt: 'A child by a glowing Christmas tree on a snowy dock', image: 'holiday-christmas-v3.webp', video: 'christmas-v3.mp4' },
 ] as const
 
+// Lu 11-13 #10741 / 1A: 700–1024 uses device + vocab stills only; phone and desktop keep clips.
+const WA_TABLET_STATIC_MQ = '(min-width: 700px) and (max-width: 1024px)'
+
 function useMotionAllowed() {
   const [motionAllowed, setMotionAllowed] = useState(false)
 
@@ -120,6 +123,20 @@ function useMotionAllowed() {
   }, [])
 
   return motionAllowed
+}
+
+function useWaTabletStatic() {
+  const [tabletStatic, setTabletStatic] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia(WA_TABLET_STATIC_MQ)
+    const update = () => setTabletStatic(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+
+  return tabletStatic
 }
 
 function HolidayVideo({ file, className = 'holiday-video', once = false }: { file: string; className?: string; once?: boolean }) {
@@ -220,6 +237,7 @@ function HeroScreenVideo() {
   const layerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const motionAllowed = useMotionAllowed()
+  const tabletStatic = useWaTabletStatic()
   const [playing, setPlaying] = useState(false)
   const [failed, setFailed] = useState(false)
 
@@ -269,7 +287,7 @@ function HeroScreenVideo() {
     }
   }, [motionAllowed, failed])
 
-  if (!motionAllowed || failed) return null
+  if (!motionAllowed || failed || tabletStatic) return null
 
   return (
     <div ref={layerRef} className={`hero-screen${playing ? ' is-playing' : ''}`} aria-hidden="true">
@@ -323,6 +341,7 @@ function VocabArt({
   const rootRef = useRef<HTMLButtonElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const motionAllowed = useMotionAllowed()
+  const tabletStatic = useWaTabletStatic()
   const [load, setLoad] = useState(false)
   const [ready, setReady] = useState(false)
   const [failed, setFailed] = useState(false)
@@ -375,6 +394,14 @@ function VocabArt({
       document.removeEventListener('visibilitychange', onHidden)
     }
   }, [active, onActive])
+
+  if (tabletStatic) {
+    return (
+      <div className="vocab-art vocab-art--static" role="img" aria-label={label}>
+        <img src={item.src} alt="" loading="lazy" />
+      </div>
+    )
+  }
 
   return (
     <button
@@ -650,6 +677,7 @@ export function WeatherAquariumPage() {
 
     const heroMedia = heroMediaRef.current
     const heroDevice = heroDeviceRef.current
+    const tabletStatic = window.matchMedia(WA_TABLET_STATIC_MQ).matches
     const onMove = (event: globalThis.PointerEvent) => {
       if (!heroMedia || !heroDevice) return
       const bounds = heroMedia.getBoundingClientRect()
@@ -661,9 +689,11 @@ export function WeatherAquariumPage() {
       if (!heroDevice) return
       heroDevice.style.transform = 'translate3d(0, 0, 0) rotateZ(0.75deg)'
     }
-    if (heroMedia && heroDevice && !reduced) {
+    if (heroMedia && heroDevice && !reduced && !tabletStatic) {
       heroMedia.addEventListener('pointermove', onMove)
       heroMedia.addEventListener('pointerleave', onLeave)
+    } else if (heroDevice) {
+      heroDevice.style.transform = 'translate3d(0, 0, 0) rotateZ(0.75deg)'
     }
 
     return () => {
