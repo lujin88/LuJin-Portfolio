@@ -80,11 +80,14 @@
   max-width: calc(100vw - 3rem);
 }
 
-/* Open mobile menu grows with its rows. A max-height scrollport was
-   clipping the last Work row inside the panel. */
+/* Keep expanded rows reachable below the fixed 4rem header on short screens.
+   Only the outer menu scrolls; expanded Work rows retain their full height. */
 #mobile-nav[aria-hidden='false'] {
-  max-height: none;
-  overflow: visible;
+  max-height: calc(100vh - 4rem);
+  max-height: calc(100dvh - 4rem);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scroll-padding-block: 8px;
 }
 
 #mobile-nav button[aria-expanded='true'] + div {
