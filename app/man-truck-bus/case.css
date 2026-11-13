@@ -257,6 +257,9 @@
   .man-case .mc-cover-inner{padding-top:calc(64px + 40px);margin-inline:24px;max-width:560px}
   .man-case .mc-arrival::after{display:none}
   .man-case .mc-arrival-frame{width:100cqw;left:0;top:auto;bottom:0;-webkit-mask-image:linear-gradient(transparent,#000 40px);mask-image:linear-gradient(transparent,#000 40px)}
+  /* WebKit can discard an offscreen video's final frame; retain the parked still. */
+  .man-case .mc-arrival[data-phase=ended] .mc-arrival-last{visibility:visible}
+  .man-case .mc-arrival[data-phase=ended] video{opacity:0}
 }
 
 /* Editorial headings use the same face as the shared site chrome. */
