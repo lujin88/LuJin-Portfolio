@@ -7,13 +7,14 @@ function applySelection(root:HTMLElement, button:HTMLButtonElement) {
 
   if (button.hasAttribute('data-climate') || button.hasAttribute('data-reply')) {
     const themes = root.querySelector<HTMLElement>('.themes')!;
-    const petrol = root.querySelector<HTMLElement>('[data-rule][aria-pressed=true] b')!.textContent !== 'iX3';
+    const model = root.querySelector<HTMLElement>('[data-rule][aria-pressed=true] b')!.textContent || '';
+    const climateOnly = model === 'Model A' || model === 'Model D';
     const phase = themes.dataset.phase || 'off';
     if (phase === 'connecting' && !button.dataset.reply) return;
     let next = button.dataset.reply;
     if (!next) {
       if (phase === 'running') next = 'off';
-      else if (phase === 'confirm' || !petrol) next = 'connecting';
+      else if (phase === 'confirm' || climateOnly) next = 'connecting';
       else next = 'confirm';
     }
     const states:Record<string,string[]> = {
@@ -58,8 +59,8 @@ function applySelection(root:HTMLElement, button:HTMLButtonElement) {
   root.querySelector<HTMLElement>('.sim-response')!.hidden=true;
   root.querySelectorAll('[data-rule]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
   root.querySelectorAll<HTMLElement>('.themes .tile').forEach(tile=>tile.hidden=rule==='Entry omitted');
-  const isNew=button.querySelector('b')!.textContent==='530i';
-  root.querySelector<HTMLElement>('[data-command]')!.textContent=rule==='Entry omitted'?'Entry omitted':isNew?'New configuration':rule==='Climate'?'Remote climate':'Remote engine start';
+    const isNew=button.querySelector('b')!.textContent==='Model D';
+    root.querySelector<HTMLElement>('[data-command]')!.textContent=rule==='Entry omitted'?'Entry omitted':isNew?'New configuration':rule==='Climate'?'Remote climate':rule==='Lights'?'Remote lights':'Remote control';
   root.querySelector<HTMLElement>('[data-rule-note]')!.textContent=rule==='Entry omitted'?'The control is hidden for this market.':isNew?'Select Climate to start the preview.':rule==='Climate'?'Select Climate to start the preview.':'Select Climate to start the preview.';
 }
 
@@ -175,84 +176,53 @@ export function BMWOneSource() {
         </div>
         <button className="line" type="button" data-rule="Climate" aria-pressed="false">
           <b>
-            iX3
+            Model A
           </b>
           <span>
-            Market A
+            Region 1
           </span>
           <span>
             Climate
           </span>
         </button>
-        <button className="line" type="button" data-rule="Engine start" aria-pressed="false">
+        <button className="line" type="button" data-rule="Lights" aria-pressed="false">
           <b>
-            320i
+            Model B
           </b>
           <span>
-            Market A
+            Region 1
           </span>
           <span>
-            Engine start
+            Lights
           </span>
         </button>
         <button className="line" type="button" data-rule="Entry omitted" aria-pressed="false">
           <b>
-            320d
+            Model C
           </b>
           <span>
-            Market C
+            Region 3
           </span>
           <span>
-            Hidden
+            Unavailable
           </span>
         </button>
         <button className="line" type="button" data-rule="Climate" aria-pressed="true">
           <b>
-            530i
+            Model D
           </b>
           <span>
-            Market B
+            Region 2
           </span>
           <span>
-            Check
+            Climate
           </span>
         </button>
       </div>
       <p className="matrix-note rules-caption">
-        Illustrative recreation · not the original spreadsheet · markets anonymised.
+        Illustrative recreation · all models, regions and rules are fictional.
       </p>
     </div>
-    <figure className="phone vehicle-phone" role="img" aria-label="My BMW app overview: vehicle status and remote controls.">
-      <div className="screen-region vehicle-header" style={{"aspectRatio": "376/367"}}>
-        <img aria-hidden="true" alt="" src="/lab/bmw-one-source/assets/i4-silver-backdrop.png" style={{"transform": "translateY(-0.000000%)"}} />
-      </div>
-      <div className="vehicle-actions">
-        <span>
-          <svg aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M7 10V7a5 5 0 0 1 10 0v3 M5 10h14v11H5z M12 14v3">
-            </path>
-          </svg>
-        </span>
-        <span>
-          <svg aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M9 10V7a5 5 0 0 1 10 0 M4 10h14v11H4z M11 14v3">
-            </path>
-          </svg>
-        </span>
-        <span>
-          <svg aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M11 5c6-1 11 2 11 7s-5 8-11 7z M2 6h6 M2 10h6 M2 14h6 M2 18h6">
-            </path>
-          </svg>
-        </span>
-      </div>
-      <div className="screen-region vehicle-status" style={{"aspectRatio": "376/120"}}>
-        <img aria-hidden="true" alt="" src="/lab/bmw-one-source/assets/i4-complete.png" style={{"transform": "translateY(-45.030675%)"}} />
-      </div>
-      <div className="screen-region vehicle-lower" style={{"aspectRatio": "376/270"}}>
-        <img aria-hidden="true" alt="" src="/lab/bmw-one-source/assets/i4-complete.png" style={{"transform": "translateY(-66.871166%)"}} />
-      </div>
-    </figure>
   </div>
   <p className="chapter-copy preview-note">
     The interface can only show what the vehicle reports. Sending, waiting, success and failure are different states.
@@ -292,9 +262,12 @@ export function BMWOneSource() {
         New configuration
       </b>
       <small data-rule-note>
-        Select Climate to start the preview.
+        Example state: command not sent.
       </small>
     </div>
+    <p className="rules-caption preview-states-caption">
+      Illustrative recreation · simulated states, no vehicle connection.
+    </p>
   </footer>
 </section>
 <aside className="system-gap">
