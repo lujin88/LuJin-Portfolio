@@ -1,5 +1,5 @@
 /* Session 04 · The Shift
- * Left editorial column is unchanged. Right side is the connected
+ * The headline has room for the DS type scale. Right side is the connected
  * Signal → Context → Act vector diagram from the lab.
  */
 
@@ -92,11 +92,13 @@
 
 .headline {
   margin: 0;
-  font-size: clamp(1.85rem, 2.9vw, 2.5rem);
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
   color: var(--s04-text);
+}
+
+.headline:lang(de) {
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  text-wrap: balance;
 }
 
 .body {
@@ -186,9 +188,13 @@
 
 @media (min-width: 1025px) {
   .layout {
-    grid-template-columns: minmax(0, 43%) minmax(0, 57%);
+    grid-template-columns: minmax(0, 58%) minmax(0, 42%);
     gap: 0;
     align-items: center;
+  }
+
+  .copy {
+    max-width: none;
   }
 
   .stageWrap {
@@ -196,6 +202,14 @@
     margin-right: 0;
     width: 96%;
     justify-self: end;
+  }
+}
+
+/* Preserve the baseline diagram scale on narrow desktop screens. The wider
+ * heading column is only useful once there is room for both columns. */
+@media (min-width: 1025px) and (max-width: 1279px) {
+  .layout {
+    grid-template-columns: minmax(0, 43%) minmax(0, 57%);
   }
 }
 
@@ -215,10 +229,6 @@
 }
 
 @media (max-width: 560px) {
-  .headline {
-    font-size: clamp(1.6rem, 7vw, 2rem);
-  }
-
   .headline br {
     display: none;
   }
