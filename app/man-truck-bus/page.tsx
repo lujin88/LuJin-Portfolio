@@ -14,7 +14,7 @@ export default function ManTruckBusPage() {
   </div>
   <TruckArrival />
   <div className="mc-cover-meta">
-    <LayerScrollGroup><dl className="mc-meta" data-move="96"><div><dt>My role</dt><dd>Sole product designer</dd></div><div><dt>Scope</dt><dd>Hackathon: MAN stakeholder interviews and dispatch flow design<br />After: 13 screens</dd></div></dl></LayerScrollGroup>
+    <LayerScrollGroup><dl className="mc-meta"><div><dt>My role</dt><dd>Sole product designer</dd></div><div><dt>Scope</dt><dd>Hackathon: MAN stakeholder interviews and dispatch flow design<br />After: 13 screens</dd></div></dl></LayerScrollGroup>
   </div>
   </div>
 <div className="mc-width">
