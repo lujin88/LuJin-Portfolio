@@ -240,7 +240,7 @@
 /* Phones: the clip is full width and sits on the bottom, the sky colour fills above it and the clip's
    top 40px fades into it (visual #4711, #4735). */
 @media(max-width:600px){
-  .man-case .mc-cover{min-height:760px;background:#e0cfbf}
+  .man-case .mc-cover{background:#e0cfbf}
   .man-case .mc-cover-inner{padding-top:calc(64px + 40px);margin-inline:24px;max-width:none}
   .man-case .mc-arrival::after{display:none}
   .man-case .mc-arrival-frame{width:100cqw;aspect-ratio:9/16;left:0;top:auto;bottom:0;-webkit-mask-image:linear-gradient(transparent,#000 40px);mask-image:linear-gradient(transparent,#000 40px)}
@@ -267,6 +267,31 @@
 /* Editorial headings use the same face as the shared site chrome. */
 .man-case :is(h1, h2, h3) { font-family: var(--font-poppins), Poppins, ui-sans-serif, system-ui, sans-serif; }
 .man-case .mc-cover-facts { margin: 20px 0 0; max-width: 40ch; }
+
+/* Lu #11162 / PM #11186: role/scope on first open — bottom band in the cover at every width. */
+.man-case .mc-cover{padding-bottom:clamp(128px,17svh,168px)}
+.man-case .mc-cover-meta{
+  position:absolute;inset:auto 0 0;z-index:2;margin-inline:0;
+  padding:16px var(--content-inset) 20px;
+  background:linear-gradient(180deg,rgba(255,254,250,.45),#fffefa 32%);
+  border-top:1px solid var(--rule);
+}
+.man-case .mc-cover-meta .mc-meta{
+  grid-template-columns:minmax(0,1fr) minmax(0,2fr);padding:0;gap:clamp(20px,6vw,80px);
+  max-width:min(1184px,calc(100% - 2 * var(--content-inset)));margin-inline:auto;
+}
+@media(max-width:600px){
+  .man-case .mc-cover{
+    height:100dvh;max-height:100dvh;min-height:0;overflow:hidden;
+    padding-bottom:clamp(108px,19svh,136px);
+  }
+  .man-case .mc-cover-meta{padding-inline:24px}
+  .man-case .mc-cover-meta .mc-meta{grid-template-columns:1fr;gap:14px}
+}
+@media(min-width:601px) and (max-width:1023px){
+  .man-case .mc-cover{padding-bottom:clamp(120px,15svh,160px)}
+  .man-case .mc-cover-meta{padding-inline:24px}
+}
 
 /* Short tablets keep the copy above the parked truck and leave room beside it
    for the status note, without pushing the scene below the viewport. */

@@ -13,9 +13,11 @@ export default function ManTruckBusPage() {
     <p className="mc-cover-facts" data-type="small">3 people · 24-hour hackathon · finalist</p>
   </div>
   <TruckArrival />
+  <div className="mc-cover-meta">
+    <LayerScrollGroup><dl className="mc-meta"><div><dt>My role</dt><dd>Sole product designer</dd></div><div><dt>Scope</dt><dd>Hackathon: MAN stakeholder interviews and dispatch flow design<br />After: 13 screens</dd></div></dl></LayerScrollGroup>
+  </div>
   </div>
 <div className="mc-width">
-  <LayerScrollGroup><dl className="mc-meta" data-move="96"><div><dt>My role</dt><dd>Sole product designer</dd></div><div><dt>Scope</dt><dd>Hackathon: MAN stakeholder interviews and dispatch flow design<br />After: 13 screens</dd></div></dl></LayerScrollGroup>
   <LayerScrollGroup as="section" className="mc-section">
     <div className="mc-copyhead" data-move="96"><h2 data-type="h2">A truck can be ready. <br /><em>Its shift can still be at risk.</em></h2></div>
     <div className="mc-three mc-glance" data-move="96"><div><h3 data-type="h3">Problem</h3><p data-type="body">No driver or no handover keeps a healthy truck in the yard.</p></div><div><h3 data-type="h3">Workspace</h3><p data-type="body">Every departure gets a blocker, an owner and a follow-up time.</p></div><div><h3 data-type="h3">Outcome</h3><p data-type="body">Hackathon finalist. Not yet tested with dispatchers.</p><p className="mc-fiction">All operational data is fictional.</p></div></div>
