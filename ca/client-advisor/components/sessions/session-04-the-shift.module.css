@@ -95,6 +95,12 @@
   color: var(--s04-text);
 }
 
+.headline:lang(de) {
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  text-wrap: balance;
+}
+
 .body {
   margin-top: 1.65rem;
   max-width: 36rem;

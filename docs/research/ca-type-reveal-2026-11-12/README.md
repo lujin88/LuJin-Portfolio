@@ -203,3 +203,40 @@ Haiku test-runner validation, 2026-11-12 (logs `/tmp/dev-ca174-40px/`):
 
 Broader DS implementation and spacing remain separate tasks. The shared OUTBOX
 specification has been updated with Lu's superseding 40/44px chapter decision.
+
+
+## German wrapping revision — PM #10629 (2026-11-13)
+
+Visualqa found that section 04's German compound words were clipped at 390px
+on a40073d, although the document itself did not overflow. At 1025px, “zur”
+occupied a line alone. The heading now takes `lang` from the existing
+`useTranslation` hook; only German applies dictionary hyphenation (including
+WebKit's prefixed property) and `text-wrap: balance`. The 40/44px type scale,
+English and German copy, grid, and diagram dimensions are unchanged.
+
+The title regression now checks every non-space character's range against its
+heading column at every tested width. The older whole-word assertion is retained
+for English and superseded for German by PM's explicit hyphenation decision.
+
+Test-runner passed frozen installation and the Chrome/WebKit EN/DE title suite
+at 390/700/850/1024/1025/1440. Separate DE checks at 390/1025 in normal and reduced
+motion passed character containment, 40/44px type, no standalone “zur” line,
+no horizontal overflow and no page errors. Browser hyphenation points differ
+between engines; no manual hyphens or wording changes were introduced.
+
+Evidence and source SHA-256 hashes:
+`/Users/lu/.buzz/OUTBOX/DEV_CA174_HYPHENS_1113/`.
+Preview: http://localhost:4620/client-advisory (select DE).
+Before evidence: `/Users/lu/.buzz/OUTBOX/VISUALQA_PR174_A40073D_1113/`.
+No full build or full research-animation suite was rerun for this scoped revision.
+No separate CA prototype, ARCHITECTURE.md or scripts/verify.sh exists in this checkout.
+Independent QA, legal and visual review are still required for the new HEAD.
+
+```text
+[test-lock] 开始 02:41:48 负载 4.64 4.51 4.48
+[test-lock] 结束 02:41:57 负载 4.62 4.51 4.48 退出码 0
+[test-lock] 开始 02:41:57 负载 4.62 4.51 4.48
+[test-lock] 结束 02:42:09 负载 5.11 4.62 4.52 退出码 0
+[test-lock] 开始 02:42:09 负载 5.11 4.62 4.52 排队 17 秒
+[test-lock] 结束 02:42:26 负载 4.88 4.59 4.51 退出码 0
+```

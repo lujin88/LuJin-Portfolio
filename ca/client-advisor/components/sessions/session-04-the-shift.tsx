@@ -6,7 +6,7 @@ import { useTranslation } from '@i18n/use-translation'
 import { ShiftDiagram } from './shift-diagram'
 
 export function Session04TheShift() {
-  const { t } = useTranslation()
+  const { t, lang } = useTranslation()
 
   return (
     <section
@@ -31,6 +31,7 @@ export function Session04TheShift() {
             <div className={styles.copy} data-move="96">
               <h2
                 id="session-04-heading"
+                lang={lang}
                 className={`ca-h2 ${styles.headline}`}
               >
                 {t('ca.shift.headline1')}{' '}

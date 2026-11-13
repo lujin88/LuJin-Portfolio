@@ -94,8 +94,29 @@ async function checkType(page, width) {
       }
       return split
     })
-    assert.deepEqual(splitWords, [], '1025: title words stay whole without isolated suffixes')
+    if (await page.locator('#session-04 h2').getAttribute('lang') !== 'de') {
+      assert.deepEqual(splitWords, [], '1025: English title words stay whole')
+    }
   }
+  const clippedCharacters = await page.locator('#session-04 h2').evaluate(node => {
+    const bounds = node.getBoundingClientRect()
+    const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT)
+    const clipped = []
+    while (walker.nextNode()) {
+      const text = walker.currentNode
+      for (let i = 0; i < text.length; i++) {
+        if (/\s/.test(text.textContent[i])) continue
+        const range = document.createRange()
+        range.setStart(text, i)
+        range.setEnd(text, i + 1)
+        if ([...range.getClientRects()].some(rect => rect.left < bounds.left - 1 || rect.right > bounds.right + 1)) {
+          clipped.push(text.textContent[i])
+        }
+      }
+    }
+    return clipped
+  })
+  assert.deepEqual(clippedCharacters, [], `${width}: every title character stays within its column`)
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${width}: horizontal overflow`)
 }
 async function checkStatic(browser, options) {
