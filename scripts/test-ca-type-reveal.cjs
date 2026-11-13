@@ -71,7 +71,8 @@ async function checkType(page, width) {
   }
   if (width === 1025) {
     const diagramWidth = await page.locator('#session-04 .s04-scene').evaluate(node => node.getBoundingClientRect().width)
-    assert.ok(Math.abs(diagramWidth - 534.6) < 1, `1025: preserve baseline diagram width, got ${diagramWidth}`)
+    const expectedDiagramWidth = (width - 2 * 64) * 0.57 * 0.96
+    assert.ok(Math.abs(diagramWidth - expectedDiagramWidth) < 1, `1025: preserve main's 64px gutters and 57% diagram column, got ${diagramWidth}`)
     const headingContained = await page.locator('#session-04 h2').evaluate(node => {
       const bounds = node.getBoundingClientRect()
       const text = document.createRange()
@@ -201,7 +202,9 @@ async function main() {
           await page.setViewportSize({ width, height: 900 })
           await checkType(page, width)
           quotePositions.push({ width, x: await page.locator('#session-03-research blockquote').evaluateAll(nodes => nodes.map(node => node.getBoundingClientRect().x)) })
-          if (width < 1024) quotePositions.at(-1).x.forEach(x => near(x, 24, 'mobile/tablet quote x'))
+          if (width < 1024) {
+          assert.ok(await page.locator('#session-03-research blockquote').evaluateAll(nodes => nodes.every(node => node.getClientRects().length === 0)), 'main keeps mobile/tablet research quotes hidden')
+        }
         }
         assert.deepEqual(errors, [])
         measurements.push({ language, starts, samples, quotePositions })

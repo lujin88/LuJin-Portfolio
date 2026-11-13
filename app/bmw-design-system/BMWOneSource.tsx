@@ -131,7 +131,7 @@ export function BMWOneSource() {
   </header>
   <div className="columns">
     <div>
-      <h2 className="chapter-title">
+      <h2 data-type="h2" className="chapter-title">
         Every model.
         <br />
         Every market.
@@ -276,7 +276,7 @@ export function BMWOneSource() {
   <p className="overline">
     The hard part
   </p>
-  <h2>
+  <h2 data-type="h2">
     One button.
     <br />
     Many edge cases.
@@ -291,7 +291,7 @@ export function BMWOneSource() {
       BMW Design System　 /　 Review desk · 2026 proposed
     </span>
   </header>
-  <h2 className="chapter-title">
+  <h2 data-type="h2" className="chapter-title">
     AI compares.
     <br />
     The team decides.

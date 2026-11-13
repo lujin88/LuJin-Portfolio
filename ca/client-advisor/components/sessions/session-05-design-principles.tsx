@@ -101,10 +101,10 @@ export function Session05DesignPrinciples() {
             <span className="ca-eyebrow-rule" aria-hidden="true" />
             <span>{t('ca.principles.eyebrow')}</span>
           </p>
-          <h2 id="s05-headline" className={`ca-h2 ${styles.headline}`} data-move="68">
+          <h2 data-type="h2" id="s05-headline" className={`ca-h2 ${styles.headline}`} data-move="68">
             {t('ca.principles.headline')}
           </h2>
-          <p className={styles.intro} data-move="68">{t('ca.principles.intro')}</p>
+          <p data-type="body" className={styles.intro} data-move="68">{t('ca.principles.intro')}</p>
         </header>
 
         <ul className={styles.grid} role="list">

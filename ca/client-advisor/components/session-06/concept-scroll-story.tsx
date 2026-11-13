@@ -172,7 +172,7 @@ export function ConceptScrollStory({
                       className="pointer-events-none absolute inset-y-[0.85rem] left-0 w-0.5 rounded-full bg-[var(--ca-text)] transition-opacity duration-300 ease"
                       style={{ opacity: open ? 1 : 0 }}
                     />
-                    <h3
+                    <h3 data-type="h3"
                       className={
                         open
                           ? 'ca-h3 font-sans text-[var(--ca-text)] transition-colors duration-300 ease'
@@ -195,7 +195,7 @@ export function ConceptScrollStory({
                     >
                       <div style={{ overflow: 'hidden', minHeight: 0 }}>
                         {typeof item.body === 'string' ? (
-                          <p className="mt-[0.85rem] max-w-[34rem] text-pretty text-[15px] font-normal leading-[1.65] text-[var(--ca-text-2)] xl:text-base">
+                          <p data-type="body" className="mt-[0.85rem] max-w-[34rem] text-pretty text-[15px] font-normal leading-[1.65] text-[var(--ca-text-2)] xl:text-base">
                             {item.body}
                           </p>
                         ) : (

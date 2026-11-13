@@ -20,10 +20,32 @@
 .photoFrame {
   position: absolute;
   inset: 0;
+  overflow: hidden;
 }
 
 .photo {
   object-position: 22% top;
+}
+
+.photoVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 22% top;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.photoVideoActive {
+  visibility: visible;
+}
+
+@media (min-width: 1024px) {
+  .photoVideo {
+    object-position: left 22%;
+  }
 }
 
 .joinCeiling {

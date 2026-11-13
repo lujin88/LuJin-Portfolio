@@ -240,3 +240,43 @@ Independent QA, legal and visual review are still required for the new HEAD.
 [test-lock] 开始 02:42:09 负载 5.11 4.62 4.52 排队 17 秒
 [test-lock] 结束 02:42:26 负载 4.88 4.59 4.51 退出码 0
 ```
+
+
+## Main integration — QA #10645 (2026-11-13)
+
+Merged main `56ec8a0` into this branch without rewriting history. Four JSX
+conflicts were resolved by combining main's `data-type` markers with the
+paragraph reveal attributes and chapter classes. CA03 retains main's
+`Session03AdvisorMedia` and newer mobile quote visibility. Main's newer outcome
+subhead body role is retained verbatim, rather than competing with an H3 class.
+Main's editorial gutters and spacing are retained; the German wrapping fix and
+40/44px chapter scale remain in place.
+
+The 1025px diagram assertion now accounts for main's 64px gutters:
+`(1025 - 128) × 0.57 × 0.96`, rather than the superseded 534.6px measurement
+from 24px gutters. The mobile quote assertion now checks main's hidden state.
+These are intentional main changes, not exemptions for clipping or reveal failures.
+
+Updated source passed Chrome/WebKit EN/DE six-width title checks, targeted DE
+390/1025 normal/reduce checks, and the full Chrome research reveal/type suite
+(order, timing, once, reduced motion, no JavaScript, resize, overflow). Evidence,
+source hashes and logs: `/Users/lu/.buzz/OUTBOX/DEV_CA174_MERGE_1113/`.
+
+```text
+[test-lock] 开始 02:56:12 负载 3.84 3.95 4.31 排队 0 秒
+[test-lock] 结束 02:57:07 负载 7.33 5.17 4.76 退出码 0
+```
+
+Earlier sign-offs on abb98b4 do not cover this merge. QA, legal and visualqa
+must review the new HEAD; no merge to main or port 3000 sync was performed.
+
+Final integrated source also passed `pnpm install --frozen-lockfile`,
+`pnpm build`, `pnpm exec tsc --noEmit` and diff checks. The earlier build before
+the outcome class resolution is superseded by this final run. A fresh CA03
+1440px capture confirms the retained advisor video element and all five revealed
+blocks at opacity 1; this is not a full video playback audit.
+
+```text
+[test-lock] 开始 02:57:39 负载 7.63 5.43 4.86
+[test-lock] 结束 02:57:48 负载 7.30 5.43 4.87 退出码 0
+```

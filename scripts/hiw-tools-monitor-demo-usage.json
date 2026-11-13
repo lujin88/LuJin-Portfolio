@@ -1,0 +1,21 @@
+{
+  "codex": {
+    "windows": [{ "label": "Weekly", "usedPercent": 13, "resetsAt": 1794941431 }],
+    "updatedAt": 0
+  },
+  "claude": {
+    "windows": [{ "label": "Weekly", "usedPercent": 84, "resetsAt": 1794657600 }],
+    "updatedAt": 0
+  },
+  "cursor": {
+    "windows": [
+      { "label": "Cursor models", "usedPercent": 77, "resetsAt": 1795956912 },
+      { "label": "Other models", "usedPercent": 41, "resetsAt": 1795956912 }
+    ],
+    "updatedAt": 0
+  },
+  "grok": {
+    "windows": [{ "label": "Weekly", "usedPercent": 43, "resetsAt": 1794860933 }],
+    "updatedAt": 0
+  }
+}

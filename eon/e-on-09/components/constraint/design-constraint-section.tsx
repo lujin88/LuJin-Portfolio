@@ -30,13 +30,13 @@ export function DesignConstraintSection() {
         <div className="grid grid-cols-1 items-start gap-6 md:gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
           {/* Left: headline + copy */}
           <OnceReveal className="max-w-[720px]">
-            <h2 className="text-balance text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-white sm:text-[42px] md:text-[48px] lg:text-[46px]">
+            <h2 data-type="h2" className="text-balance text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-white sm:text-[42px] md:text-[48px] lg:text-[46px]">
               <span className="font-bold">{t('eon.constraint.titleBold')}</span>
               <br />
               <span className="font-normal">{t('eon.constraint.titleRest')}</span>
             </h2>
 
-            <p className="mt-6 max-w-[520px] text-lg leading-relaxed text-blue-soft/80 md:text-xl">
+            <p data-type="body" className="mt-6 max-w-[520px] text-lg leading-relaxed text-blue-soft/80 md:text-xl">
               {t('eon.constraint.body')}{" "}
               <span className="font-semibold text-white">{t('eon.constraint.bodyStrong')}</span>
             </p>

@@ -1170,3 +1170,13 @@ footer > hr {
     width: 48%;
   }
 }
+
+/* DS review: chapter rails; the hero keeps its separate rail. */
+.ca-main { --ca-rail: var(--editorial-gutter); }
+.ca-main #session-03-research > .mx-auto.grid,
+.ca-main #session-07 > .mx-auto {
+  padding-inline: var(--editorial-gutter);
+  padding-block: var(--editorial-section-space);
+}
+
+.ca-main #session-06 .mx-auto.grid { padding-inline: var(--editorial-gutter); }

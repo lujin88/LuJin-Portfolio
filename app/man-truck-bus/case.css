@@ -248,3 +248,13 @@
   .man-case .mc-arrival-note span{font-size:14px}
   .man-case .mc-arrival-note strong{font-size:18px}
 }
+
+/* Editorial headings use the same face as the shared site chrome. */
+.man-case :is(h1, h2, h3) { font-family: var(--font-poppins), Poppins, ui-sans-serif, system-ui, sans-serif; }
+.man-case .mc-cover-facts { margin: 20px 0 0; max-width: 40ch; }
+
+/* Editorial wells only: the full-screen cover and product cards keep their geometry. */
+.man-case .mc-width {margin-inline:max(var(--editorial-gutter),var(--content-inset))}
+.man-case .mc-section,.man-case .mc-outcome,.man-case .mc-evidence {padding-block:var(--editorial-section-space)}
+/* Decisions and Method form one composition; retain their internal join. */
+.man-case .mc-decisions {padding-bottom:0}

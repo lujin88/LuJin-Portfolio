@@ -77,7 +77,7 @@ export function HeroSection() {
               <span>{t('ca.hero.eyebrow')}</span>
             </p>
 
-            <h1
+            <h1 data-type="display"
               id="hero-heading"
               className="ca-h1 mt-[var(--ca-heading-gap)]"
             >
@@ -86,7 +86,7 @@ export function HeroSection() {
               {t('ca.hero.title2')}
             </h1>
 
-            <p className="mt-8 max-w-[38rem] text-[1.125rem] font-normal leading-[1.5] text-[var(--ca-text-2)] lg:text-[1.25rem]">
+            <p data-type="lead" className="mt-8 max-w-[38rem] text-[1.125rem] font-normal leading-[1.5] text-[var(--ca-text-2)] lg:text-[1.25rem]">
               {t('ca.hero.body')}
             </p>
           </div>
@@ -166,7 +166,7 @@ export function HeroSection() {
                       item.value
                     )}
                   </p>
-                  <p className="mt-2 max-w-[93%] text-base font-normal leading-[1.5] text-[var(--ca-text-2)]">
+                  <p data-type="body" className="mt-2 max-w-[93%] text-base font-normal leading-[1.5] text-[var(--ca-text-2)]">
                     {item.label}
                   </p>
                 </li>
