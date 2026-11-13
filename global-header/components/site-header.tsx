@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useId, useRef, useState } from 'react'
-import { Check, ChevronDown, Globe, Mail, Menu, MessageCircle, X } from 'lucide-react'
+import { Check, ChevronDown, Globe, Menu, MessageCircle, X } from 'lucide-react'
 import { headerCopy } from '../lib/header-copy'
 import { LANGUAGES, useSiteLanguage } from '../lib/language'
 import { SHOW_UNFINISHED_CASES, UNFINISHED_CASE_HREFS } from '../lib/site-flags'
@@ -18,6 +18,7 @@ type NavLink = {
   label: string
   href: string
   meta?: string
+  category?: 'Real projects' | 'Concepts'
   icon: NavIcon
 }
 
@@ -38,6 +39,7 @@ const NAV: readonly NavEntry[] = [
     children: [
       {
         label: 'Client Advisory',
+        category: 'Real projects',
         href: '/client-advisory',
         meta: 'Wealth · Service design',
         icon: {
@@ -47,6 +49,7 @@ const NAV: readonly NavEntry[] = [
       },
       {
         label: 'E.ON',
+        category: 'Real projects',
         href: '/EON',
         meta: 'Energy · 300% more leads',
         icon: {
@@ -55,9 +58,20 @@ const NAV: readonly NavEntry[] = [
         },
       },
       {
+        label: 'My BMW app & design system',
+        category: 'Real projects',
+        href: '/bmw-design-system',
+        meta: 'App design · Design system',
+        icon: {
+          light: '/assets/images/nav/light/work/bmw-design-system-light.svg',
+          dark: '/assets/images/nav/dark/work/bmw-design-system-dark.svg',
+        },
+      },
+      {
         label: 'MAN Truck & Bus',
+        category: 'Concepts',
         href: '/man-truck-bus',
-        meta: 'Hackathon · Fleet dispatch',
+        meta: 'Hackathon concept · Fleet dispatch',
         icon: {
           light: '/assets/images/nav/light/work/man-truck-bus-light.webp',
           dark: '/assets/images/nav/dark/work/man-truck-bus-dark.webp',
@@ -65,20 +79,12 @@ const NAV: readonly NavEntry[] = [
       },
       {
         label: 'ETF Savings Plan',
+        category: 'Concepts',
         href: '/etf-savings-plan',
-        meta: 'Investing · Interactive prototype',
+        meta: 'Self-initiated concept · Investing',
         icon: {
           light: '/assets/images/nav/light/work/etf-savings-plan-light.webp',
           dark: '/assets/images/nav/dark/work/etf-savings-plan-dark.webp',
-        },
-      },
-      {
-        label: 'BMW Design System',
-        href: '/bmw-design-system',
-        meta: 'Vehicle controls · Light & dark',
-        icon: {
-          light: '/assets/images/nav/light/work/bmw-design-system-light.svg',
-          dark: '/assets/images/nav/dark/work/bmw-design-system-dark.svg',
         },
       },
     ],
@@ -204,7 +210,6 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
     pinnedPaper
   const headerTone = partyHeader ? 'party' : paperHeader ? 'paper' : undefined
   const [menuOpen, setMenuOpen] = useState(false)
-  const [mobileSection, setMobileSection] = useState<string | null>(null)
   const [langOpen, setLangOpen] = useState(false)
   const [glassActive, setGlassActive] = useState(pinnedPaper)
   const { language, setLanguage } = useSiteLanguage()
@@ -251,7 +256,6 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
     setPinnedMenu(null)
     setHoverMenu(null)
     setMenuOpen(false)
-    setMobileSection(null)
   }, [pathname])
 
   useEffect(() => {
@@ -280,48 +284,6 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
       document.removeEventListener('keydown', onKeyDown)
     }
   }, [langOpen, language.code])
-
-  useEffect(() => {
-    if (!menuOpen) return
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== 'Escape') return
-      setMenuOpen(false)
-      setMobileSection(null)
-      if (!langOpen && !openMenu) menuButtonRef.current?.focus()
-    }
-    document.addEventListener('keydown', onKeyDown)
-    return () => document.removeEventListener('keydown', onKeyDown)
-  }, [menuOpen, langOpen, openMenu])
-
-  // The open mobile menu covers the page. Make everything outside the
-  // header inert so Tab stays in the menu and cannot reach covered content.
-  useEffect(() => {
-    if (!menuOpen) return
-    const changed: HTMLElement[] = []
-    let node: HTMLElement | null = headerRef.current
-    while (node && node !== document.body) {
-      const parent: HTMLElement | null = node.parentElement
-      if (!parent) break
-      for (const sibling of Array.from(parent.children)) {
-        if (sibling === node || !(sibling instanceof HTMLElement) || sibling.inert) continue
-        sibling.inert = true
-        changed.push(sibling)
-      }
-      node = parent
-    }
-    return () => changed.forEach((element) => (element.inert = false))
-  }, [menuOpen])
-
-  useEffect(() => {
-    const desktopNav = window.matchMedia('(min-width: 64rem)')
-    const closeMobileAtDesktop = () => {
-      if (!desktopNav.matches) return
-      setMenuOpen(false)
-      setMobileSection(null)
-    }
-    desktopNav.addEventListener('change', closeMobileAtDesktop)
-    return () => desktopNav.removeEventListener('change', closeMobileAtDesktop)
-  }, [])
 
   useEffect(() => {
     if (!openMenu) return
@@ -411,18 +373,11 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
     })
   }
 
-  const openMobile = () => {
-    setMenuOpen((open) => {
-      const next = !open
-      if (next) {
-        const activeGroup = NAV.find(
-          (item): item is { kind: 'group' } & NavGroup =>
-            item.kind === 'group' && groupIsActive(item, currentHref, pathname),
-        )
-        setMobileSection(activeGroup?.label ?? null)
-      }
-      return next
-    })
+  const openWorkMenu = (opener: HTMLButtonElement) => {
+    opener.focus({ preventScroll: true })
+    dismissMenus()
+    setLangOpen(false)
+    setMenuOpen(true)
   }
 
   return (
@@ -496,6 +451,30 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                     >
                       {navLabel(copy, item.label)}
                     </Link>
+                  </li>
+                )
+              }
+
+              if (item.label === 'Work') {
+                return (
+                  <li key={item.label}>
+                    <button
+                      type="button"
+                      aria-haspopup="dialog"
+                      aria-expanded={menuOpen}
+                      aria-controls={menuOpen ? 'work-menu-dialog' : undefined}
+                      onClick={(event) => openWorkMenu(event.currentTarget)}
+                      onKeyDown={(event) => {
+                        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+                          event.preventDefault()
+                          openWorkMenu(event.currentTarget)
+                        }
+                      }}
+                      className={cn('inline-flex min-h-11 items-center gap-1.5 rounded-sm px-2 text-[0.95rem] leading-none text-header-foreground/72 hover:text-header-foreground xl:px-3', PLAIN_CONTROL, FOCUS_RING)}
+                    >
+                      {navLabel(copy, item.label)}
+                      <ChevronDown aria-hidden="true" className="size-3.5" />
+                    </button>
                   </li>
                 )
               }
@@ -635,8 +614,9 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
             type="button"
             aria-label={menuOpen ? copy.closeMenu : copy.openMenu}
             aria-expanded={menuOpen}
-            aria-controls="mobile-nav"
-            onClick={openMobile}
+            aria-controls={menuOpen ? 'work-menu-dialog' : undefined}
+            aria-haspopup="dialog"
+            onClick={(event) => openWorkMenu(event.currentTarget)}
             className={cn(
               'flex size-11 items-center justify-center rounded-sm text-header-foreground lg:hidden',
               PLAIN_CONTROL,
@@ -653,164 +633,16 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
         </div>
       </div>
 
-      <div
-        id="mobile-nav"
-        inert={!menuOpen ? true : undefined}
-        aria-hidden={!menuOpen}
-        className={cn(
-          'relative bg-header-scrim transition-[max-height,opacity] duration-300 motion-reduce:transition-none lg:hidden',
-          menuOpen ? 'overflow-visible opacity-100' : 'max-h-0 overflow-hidden opacity-0',
-        )}
-      >
-        <nav aria-label={copy.mobileNav} className="header-frame flex flex-col gap-6 pb-8 pt-2">
-          <ul className="m-0 flex list-none flex-col gap-4 p-0">
-            {NAV.map((item) => {
-              if (item.kind === 'link') {
-                const isActive = hrefMatches(item.href, currentHref, pathname)
-                return (
-                  <li key={item.href} className="list-none">
-                    <Link
-                      href={item.href}
-                      aria-current={isActive ? 'page' : undefined}
-                      onClick={() => setMenuOpen(false)}
-                      className={cn(
-                        'inline-flex min-h-11 items-center rounded-sm text-lg no-underline transition-colors',
-                        FOCUS_RING,
-                        MOTION_SAFE,
-                        isActive ? 'text-header-foreground' : 'text-header-foreground/72',
-                      )}
-                    >
-                      {navLabel(copy, item.label)}
-                    </Link>
-                  </li>
-                )
-              }
-
-              const group = visibleGroup(item)
-              const expanded = mobileSection === group.label
-              const isActive = groupIsActive(group, currentHref, pathname)
-              const panelId = `mobile-nav-${group.label.toLowerCase().replace(/\s+/g, '-')}`
-              return (
-                <li key={group.label}>
-                  <button
-                    type="button"
-                    aria-expanded={expanded}
-                    aria-controls={panelId}
-                    onClick={() =>
-                      setMobileSection((current) => (current === group.label ? null : group.label))
-                    }
-                    className={cn(
-                      'flex min-h-11 w-full items-center justify-between rounded-sm text-lg transition-colors',
-                      PLAIN_CONTROL,
-                      FOCUS_RING,
-                      MOTION_SAFE,
-                      isActive || expanded ? 'text-header-foreground' : 'text-header-foreground/72',
-                    )}
-                  >
-                    {navLabel(copy, group.label)}
-                    <ChevronDown
-                      aria-hidden="true"
-                      className={cn(
-                        'size-4 transition-transform duration-300 ease-out',
-                        MOTION_SAFE,
-                        expanded && 'rotate-180',
-                      )}
-                      strokeWidth={1.75}
-                    />
-                  </button>
-                  <div
-                    id={panelId}
-                    inert={!expanded ? true : undefined}
-                    className={cn(
-                      'grid transition-[grid-template-rows] duration-300 ease-out',
-                      MOTION_SAFE,
-                      expanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
-                    )}
-                  >
-                    <div className={expanded ? 'overflow-visible' : 'overflow-hidden'}>
-                      <ul className={cn(MENU_PANEL, 'header-menu-divided mt-3 w-full gap-0')} role="list">
-                        {group.children.map((child) => {
-                          const uniqueHref =
-                            group.children.filter((entry) => entry.href === child.href).length === 1
-                          const childActive =
-                            uniqueHref && hrefMatches(child.href, currentHref, pathname)
-                          return (
-                            <li
-                              key={child.label}
-                              className="w-full"
-                            >
-                              <Link
-                                href={child.href}
-                                aria-current={childActive ? 'page' : undefined}
-                                onClick={() => setMenuOpen(false)}
-                                className={cn(
-                                  'flex w-full items-center gap-2.5 rounded-none px-2 py-1.5 text-left no-underline transition-colors duration-150',
-                                  MOTION_SAFE,
-                                  'hover:bg-header-menu-item focus-visible:bg-header-menu-item',
-                                  childActive && 'bg-header-menu-item',
-                                )}
-                              >
-                                <MenuThumb icon={child.icon} tone={paperHeader ? 'light' : 'dark'} />
-                                <span className="whitespace-nowrap">
-                                  <span
-                                    className={cn(
-                                      'block text-[0.9375rem] leading-tight text-header-foreground',
-                                      childActive && 'font-semibold',
-                                    )}
-                                  >
-                                    {navLabel(copy, child.label)}
-                                  </span>
-                                  {child.meta ? (
-                                    <span className="header-menu-meta mt-0.5 block text-[0.75rem] leading-snug">
-                                      {menuMeta(copy, child.meta)}
-                                    </span>
-                                  ) : null}
-                                </span>
-                              </Link>
-                            </li>
-                          )
-                        })}
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-              )
-            })}
-          </ul>
-          <a
-            href="mailto:lu.jin.ixd@gmail.com"
-            onClick={() => setMenuOpen(false)}
-            className={cn(
-              'flex min-h-11 w-full items-center gap-3 rounded-sm text-lg text-header-foreground/72 no-underline transition-colors hover:text-header-foreground',
-              FOCUS_RING,
-              MOTION_SAFE,
-            )}
-          >
-            <Mail aria-hidden="true" className="size-5 shrink-0" strokeWidth={1.5} />
-            {copy.email}
-          </a>
-          <div className="flex items-center gap-2 border-t border-header-line pt-5 text-sm">
-            {LANGUAGES.map((lang, index) => (
-              <button
-                key={lang.code}
-                type="button"
-                onClick={() => setLanguage(lang)}
-                className={cn(
-                  'inline-flex min-h-11 items-center appearance-none bg-transparent px-1 shadow-none outline-none transition-colors focus:outline-none focus:ring-0',
-                  FOCUS_RING,
-                  MOTION_SAFE,
-                  lang.code === language.code
-                    ? 'text-header-foreground'
-                    : 'text-header-foreground/60',
-                  index > 0 && 'border-l border-header-line pl-2',
-                )}
-              >
-                {lang.label}
-              </button>
-            ))}
-          </div>
-        </nav>
-      </div>
+      {menuOpen && (
+        <WorkMenu
+          copy={copy}
+          currentHref={currentHref}
+          pathname={pathname}
+          language={language}
+          onLanguageChange={setLanguage}
+          onClose={() => setMenuOpen(false)}
+        />
+      )}
     </header>
   )
 }
@@ -996,7 +828,7 @@ function NavDropdown({
                     )}
                   >
                     <MenuThumb icon={child.icon} tone={iconTone} />
-                    <span className="whitespace-nowrap">
+                    <span className="min-w-0 whitespace-normal">
                       <span
                         className={cn(
                           'block text-[0.9375rem] leading-tight text-header-foreground',
@@ -1019,5 +851,169 @@ function NavDropdown({
         </div>
       )}
     </li>
+  )
+}
+
+const WORK_CATEGORIES = ['Real projects', 'Concepts'] as const
+
+/** The native modal keeps background content inert and contains keyboard focus. */
+function WorkMenu({
+  copy,
+  currentHref,
+  pathname,
+  language,
+  onLanguageChange,
+  onClose,
+}: {
+  copy: (typeof headerCopy)[keyof typeof headerCopy]
+  currentHref: string
+  pathname: string
+  language: (typeof LANGUAGES)[number]
+  onLanguageChange: (language: (typeof LANGUAGES)[number]) => void
+  onClose: () => void
+}) {
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const tabsRef = useRef<(HTMLButtonElement | null)[]>([])
+  const playgroundTriggerRef = useRef<HTMLButtonElement>(null)
+  const work = visibleGroup(NAV.find((entry) => entry.kind === 'group' && entry.label === 'Work') as NavGroup)
+  const playground = visibleGroup(NAV.find((entry) => entry.kind === 'group' && entry.label === 'Playground') as NavGroup)
+  const [category, setCategory] = useState<NonNullable<NavLink['category']>>(
+    () => work.children.find((child) => hrefMatches(child.href, currentHref, pathname))?.category ?? 'Real projects',
+  )
+  const [showPlayground, setShowPlayground] = useState(false)
+  const id = useId()
+  const titleId = `${id}-title`
+
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+    const opener = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    dialog.showModal()
+    dialog.querySelector<HTMLElement>('[role="tab"][aria-selected="true"]')?.focus({ preventScroll: true })
+    return () => {
+      dialog.close()
+      document.body.style.overflow = previousOverflow
+      if (opener?.isConnected) opener.focus({ preventScroll: true })
+    }
+  }, [])
+
+  const selectTab = (index: number) => {
+    setCategory(WORK_CATEGORIES[index])
+    tabsRef.current[index]?.focus({ preventScroll: true })
+  }
+
+  const projectLinks = (links: readonly NavLink[]) => links.map((child) => (
+    <li key={child.href}>
+      <Link
+        href={child.href}
+        aria-current={hrefMatches(child.href, currentHref, pathname) ? 'page' : undefined}
+        onNavigate={onClose}
+      >
+        {navLabel(copy, child.label)}
+      </Link>
+    </li>
+  ))
+
+  return (
+    <dialog
+      ref={dialogRef}
+      id="work-menu-dialog"
+      className="work-menu"
+      aria-labelledby={titleId}
+      onCancel={(event) => {
+        event.preventDefault()
+        onClose()
+      }}
+    >
+      <div className="work-menu__toolbar">
+        <Link href="/index" onNavigate={onClose}>
+          <img src="/assets/images/brand/lu-logo-64.webp" alt="Lu" width={48} height={48} />
+        </Link>
+        <button type="button" className="work-menu__close" aria-label={copy.closeMenu} onClick={onClose}>
+          <X aria-hidden="true" size={28} strokeWidth={1.5} />
+        </button>
+      </div>
+      <div className="work-menu__scroll">
+        <nav className="work-menu__content" aria-label={copy.mainNav}>
+          <h2 id={titleId} className="work-menu__title">{navLabel(copy, showPlayground ? 'Playground' : 'Work')}</h2>
+          <div className="work-menu__body" hidden={showPlayground}>
+            <div className="work-menu__tabs" role="tablist" aria-label={navLabel(copy, 'Work')}>
+              {WORK_CATEGORIES.map((label, index) => (
+                <button
+                  key={label}
+                  ref={(node) => { tabsRef.current[index] = node }}
+                  type="button"
+                  role="tab"
+                  id={`${id}-tab-${index}`}
+                  aria-controls={`${id}-panel-${index}`}
+                  aria-selected={category === label}
+                  tabIndex={category === label ? 0 : -1}
+                  onClick={() => setCategory(label)}
+                  onKeyDown={(event) => {
+                    let next: number | undefined
+                    if (event.key === 'ArrowRight') next = (index + 1) % WORK_CATEGORIES.length
+                    if (event.key === 'ArrowLeft') next = (index + WORK_CATEGORIES.length - 1) % WORK_CATEGORIES.length
+                    if (event.key === 'Home') next = 0
+                    if (event.key === 'End') next = WORK_CATEGORIES.length - 1
+                    if (next !== undefined) {
+                      event.preventDefault()
+                      selectTab(next)
+                    }
+                  }}
+                >{navLabel(copy, label)}</button>
+              ))}
+            </div>
+            {/* Both panels size the same grid row, including at enlarged text sizes.
+                The inactive panel is inert and hidden from assistive technology. */}
+            <div className="work-menu__panels">
+              {WORK_CATEGORIES.map((label, index) => (
+                <div
+                  key={label}
+                  id={`${id}-panel-${index}`}
+                  role="tabpanel"
+                  aria-labelledby={`${id}-tab-${index}`}
+                  aria-hidden={category !== label}
+                  inert={category !== label ? true : undefined}
+                  className="work-menu__panel"
+                >
+                  <ul className="work-menu__projects">{projectLinks(work.children.filter((child) => child.category === label))}</ul>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div id={`${id}-playground`} className="work-menu__playground" hidden={!showPlayground}>
+            <ul className="work-menu__projects">{projectLinks(playground.children)}</ul>
+          </div>
+          <div className="work-menu__bottom">
+            <div className="work-menu__links">
+              <Link href="/lab/way-of-work" onNavigate={onClose}>{navLabel(copy, 'How I work')}</Link>
+              <button
+                ref={playgroundTriggerRef}
+                type="button"
+                aria-controls={`${id}-playground`}
+                aria-expanded={showPlayground}
+                onClick={() => {
+                  setShowPlayground((current) => !current)
+                  // Keep the toggle focused when its label changes; all existing
+                  // Playground destinations remain reachable in the same modal.
+                  playgroundTriggerRef.current?.focus({ preventScroll: true })
+                }}
+              >{navLabel(copy, showPlayground ? 'Work' : 'Playground')}</button>
+              <a href="mailto:lu.jin.ixd@gmail.com" onClick={onClose}>{copy.contactMe}</a>
+            </div>
+            <div className="work-menu__languages" role="group" aria-label={copy.selectLanguage}>
+              {LANGUAGES.map((lang, index) => (
+                <span key={lang.code}>
+                  {index > 0 && <span className="work-menu__slash" aria-hidden="true">/</span>}
+                  <button type="button" lang={lang.code} aria-pressed={lang.code === language.code} onClick={() => onLanguageChange(lang)}>{lang.label}</button>
+                </span>
+              ))}
+            </div>
+          </div>
+        </nav>
+      </div>
+    </dialog>
   )
 }
