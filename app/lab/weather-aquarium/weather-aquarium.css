@@ -209,6 +209,10 @@
   color: var(--ink);
 }.wa-page .editions-section{
   padding-bottom: 80px;
+}.wa-page .editions-block{
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 32px);
 }.wa-page .edition-grid{
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -218,7 +222,7 @@
   margin: 0;
 }.wa-page .edition-media{
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   aspect-ratio: 4 / 3;
   background: #dbe8dc;
 }.wa-page .holiday-slice img{
