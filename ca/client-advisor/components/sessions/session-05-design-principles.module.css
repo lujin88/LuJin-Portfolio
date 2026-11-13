@@ -144,6 +144,7 @@
 }
 
 .faceBack {
+  visibility: hidden;
   transform: rotateY(180deg);
 }
 

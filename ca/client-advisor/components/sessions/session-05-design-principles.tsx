@@ -1,7 +1,7 @@
 'use client'
 import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
 
-import { useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import styles from './session-05-design-principles.module.css'
 import { useTranslation } from '@i18n/use-translation'
@@ -22,10 +22,35 @@ function PrincipleCard({
   revealPrinciple: string
 }) {
   const [isFlipped, setIsFlipped] = useState(false)
+  const cardRef = useRef<HTMLButtonElement>(null)
+
+  useLayoutEffect(() => {
+    const card = cardRef.current
+    if (!card) return
+    const front = card.children[0] as HTMLElement
+    const back = card.children[1] as HTMLElement
+    let frame = 0
+
+    // WebKit can paint both faces despite backface-visibility. Follow the
+    // actual rotation (including easing and interrupted flips), not a timer.
+    const syncFace = () => {
+      const transform = getComputedStyle(card).transform
+      const facingBack = transform !== 'none' && new DOMMatrixReadOnly(transform).m11 < 0
+      front.style.visibility = facingBack ? 'hidden' : 'visible'
+      back.style.visibility = facingBack ? 'visible' : 'hidden'
+      if (card.getAnimations().some((animation) => animation.playState === 'running')) {
+        frame = requestAnimationFrame(syncFace)
+      }
+    }
+
+    syncFace()
+    return () => cancelAnimationFrame(frame)
+  }, [isFlipped])
 
   return (
     <li className={styles.card} data-move="64">
       <button
+        ref={cardRef}
         type="button"
         className={`${styles.cardInner} ${isFlipped ? styles.flipped : ''}`}
         aria-pressed={isFlipped}
