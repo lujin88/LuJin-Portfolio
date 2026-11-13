@@ -34,13 +34,30 @@ Reduced-motion: all `LayerScrollGroup` and `/index` scripts clear transforms whe
 
 ## Visual QA 证据（row 19）
 
-- **Worktree**：`~/LuJin-Portfolio-worktrees/webdev`，分支 `design/parallax-unify-index`
-- **本地服务**：`http://localhost:4621`（`pnpm predev && pnpm exec next dev --port 4621`）
-- **冻结 SHA**：与分支 tip 一致 — 交付时 `git rev-parse HEAD` on `design/parallax-unify-index`（录屏锁 `0204a48`，见 OUTBOX README）
-- **证据根目录**：`~/.buzz/OUTBOX/PARALLAX_ROW19_1112/1440/`
-  - `motion/normal.webm` — 正常滚动（/index → /e-on challenge → /lab/weather-aquarium 取景）
-  - `motion/slow-verified.webm` + `motion/slow-verified.json` — CDP `Animation.setPlaybackRate(0.25)` 有效慢放
-  - `motion/reduce.webm` — `prefers-reduced-motion: reduce`，`[data-move]` transform 保持 none/identity
-  - `samples-transform.json` — 1440 下 scroll 采样（变更页 + index 对照）
+**当前 PR HEAD**：`50efba578b6196e74706d41a6163759fe956851e`（`design/parallax-unify-index`）
 
-参照 `docs/motion.md`（harness-core）：方案表 + 否决清单 + 三组录屏。
+| SHA / 包 | 适用范围 | 目录 | 备注 |
+|----------|----------|------|------|
+| `acc9793` → `0204a48` | WA02 首版 LSG + E.ON 三档提速前后对比 | `~/.buzz/OUTBOX/PARALLAX_ROW19_1112/`、`VISUALQA_ROW19_RECHECK_1112/` | **历史**：`0204a48` 录屏时 WA02 图注裁切未过；**勿**当作当前 HEAD 通过依据 |
+| `50efba5` | **WA02 整块进场**（Lu B：`data-move` 在 `.editions-block`） | `~/.buzz/OUTBOX/VISUALQA_ROW19_50EFBA5_1113/` | 390/700/1440 真 wheel normal+reduce；**本条为 WA 画面签收依据** |
+| `acc9793`…`50efba5` 间仅 WA02 | E.ON / index / 其他页 | `VISUALQA_ROW19_RECHECK_1112/REPORT.md` | 代码 diff 边界：仅 WA02 markup/CSS 变更时，E.ON/index 证据可继承评估 |
+| `50efba5` | **E.ON challenge 视口外→归零**（700 可测；1440 首屏即见） | `~/.buzz/OUTBOX/PARALLAX_ROW19_EON_1440_1113/` | 见下 |
+
+**Worktree / 预览**：`~/LuJin-Portfolio-worktrees/webdev-parallax-183`，`pnpm predev && pnpm exec next dev --port 4623` → `http://localhost:4623`
+
+### 慢放 / 录屏（勿误读 CDP）
+
+- **有效慢放**：`VISUALQA_ROW19_RECHECK_1112/1440/normal-4x-replay.mp4` — 对真 wheel 录屏做 ffmpeg `setpts` 4×，可看 JS/rAF 滚动位移。
+- **无效作慢放验收**：仅设 CDP `Animation.setPlaybackRate(0.25)` **不能**证明滚动/LSG 变慢（`PARALLAX_ROW19_1112/1440/motion/slow-verified.*` 仅验证该 API 被设置）。
+- **1440 综合录屏**（`0204a48` 时代）：`PARALLAX_ROW19_1112/1440/motion/normal.webm`、`reduce.webm` — 跨页取景；WA 段落以 `50efba5` 专项为准。
+
+### E.ON 1440「视口外入场 → 归零」
+
+- **700×900**：`eon-700-samples.json` + `eon-700-entrance-*.png` — 首屏 challenge 在视口下缘外，真 wheel 后 `data-move` 24/64/96 → `translate3d` 归零（最大约 96px）。
+- **1440×900**：challenge 区块 **首屏已露出**（`section` top ≈856px/900px 视口）；`layer-scroll-group` 在「首滚时区块已在屏内」走 **on-screen latch**，保持 CSS 基准、不写位移（`eon-1440-samples.json` + `eon-1440-entrance-00.png`）。1440 验收应核对 **该锁存是否符合设计**， Tier 改动与 700 实测一致，而非要求 1440 首屏也出现 96px 偏移。
+
+### Reduce
+
+- `prefers-reduced-motion: reduce`：`[data-move]` 无附加位移（`50efba5` WA 证据 + `RECHECK` reduce 采样）。
+
+参照 `docs/motion.md`（harness-core）：方案表 + 否决清单 + 真 wheel 采样/录屏。
