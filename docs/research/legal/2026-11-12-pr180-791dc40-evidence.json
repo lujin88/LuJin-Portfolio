@@ -1,0 +1,59 @@
+{
+  "head": "791dc4053c78f3a605d9c4eb6ca4a3acdb7974a0",
+  "files": {
+    "ca/client-advisor/components/sessions/session-03-research.tsx": {
+      "sha256": "09670b3522b05f3d20765874e903f7b68ae6a8b973b310fb188ac34e60eada76",
+      "matches_legal_review": true,
+      "matches_3000_clone": true
+    },
+    "ca/client-advisor/components/sessions/session-03-research.module.css": {
+      "sha256": "19f52acf5829cb3d0019eb5d7c13ddd05d0153386028e96f38f058eb92c303a8",
+      "matches_legal_review": true,
+      "matches_3000_clone": true
+    },
+    "ca/client-advisor/components/sessions/session-03-advisor-media.tsx": {
+      "sha256": "ea481075bad70fc6915986bc8d2cfd66c8f72f98db411823ca38c20d7d822164",
+      "matches_legal_review": true,
+      "matches_3000_clone": true
+    },
+    "public/assets/images/client-advisory/ca03-B-poster.webp": {
+      "sha256": "0cd7dcb0fabaf1ff94859cbab1d6bfee3205e268b80c02546d99805ffba99682",
+      "matches_legal_review": true,
+      "matches_3000_clone": true
+    },
+    "public/assets/videos/client-advisory/ca03-B-full-web.mp4": {
+      "sha256": "608bb4de22283595899f51e26d6f96865157fcc5b6c4e000c204dca573ff9452",
+      "matches_legal_review": true,
+      "matches_3000_clone": true
+    }
+  },
+  "platform_fields_match_prior": {
+    "Keys:UserComment": true,
+    "Keys:LvMetaInfo": true
+  },
+  "media": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1400,
+        "height": 756
+      }
+    ],
+    "format": {
+      "duration": "5.016667"
+    }
+  },
+  "4621": {
+    "status": 200,
+    "sha256": "608bb4de22283595899f51e26d6f96865157fcc5b6c4e000c204dca573ff9452",
+    "matches_review": true
+  },
+  "3000": {
+    "status": 200,
+    "sha256": "608bb4de22283595899f51e26d6f96865157fcc5b6c4e000c204dca573ff9452",
+    "matches_review": true
+  }
+}

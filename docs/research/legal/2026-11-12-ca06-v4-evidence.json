@@ -1,0 +1,65 @@
+[
+  {
+    "file": "01-advisor-workbench-v4.webp",
+    "sha256": "54a7296a5ec6946839ee9b1e5c040f2ed542d17ab75aa0aa5fbf9436170f0608",
+    "manifest_match": true,
+    "dimensions": [
+      1942,
+      2084
+    ],
+    "mode": "RGB",
+    "frames": 1,
+    "riff_chunks": [
+      "VP8L"
+    ],
+    "info_keys": [
+      "loop",
+      "background"
+    ],
+    "regenerated_pixels_identical": true,
+    "text_log_matches": true,
+    "text_entries": 228
+  },
+  {
+    "file": "02-energy-research-v4.webp",
+    "sha256": "4ae4d91c79bebf17e2d77a663023f8ef76c9f35395d7d1e1b9abed35905495ea",
+    "manifest_match": true,
+    "dimensions": [
+      1942,
+      2526
+    ],
+    "mode": "RGB",
+    "frames": 1,
+    "riff_chunks": [
+      "VP8L"
+    ],
+    "info_keys": [
+      "loop",
+      "background"
+    ],
+    "regenerated_pixels_identical": true,
+    "text_log_matches": true,
+    "text_entries": 214
+  },
+  {
+    "file": "03-client-workspace-v4.webp",
+    "sha256": "9162c838c7d5bb8329388d4834dfb13ea66d3dae94d217fd00e4b3d05667c1c6",
+    "manifest_match": true,
+    "dimensions": [
+      1942,
+      4408
+    ],
+    "mode": "RGB",
+    "frames": 1,
+    "riff_chunks": [
+      "VP8L"
+    ],
+    "info_keys": [
+      "loop",
+      "background"
+    ],
+    "regenerated_pixels_identical": true,
+    "text_log_matches": true,
+    "text_entries": 281
+  }
+]
