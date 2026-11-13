@@ -22,13 +22,13 @@ export function Session04TheShift() {
       <div className={styles.inner}>
         <div className={styles.layout}>
           <LayerScrollGroup className={styles.lead}>
-            <p className="ca-eyebrow" data-move="96">
+            <p className="ca-eyebrow">
               <span className="ca-eyebrow-index">04</span>
               <span className="ca-eyebrow-rule" aria-hidden="true" />
               <span>{t('ca.shift.eyebrow')}</span>
             </p>
 
-            <div className={styles.copy} data-move="96">
+            <div className={styles.copy}>
               <h2 data-type="h2"
                 id="session-04-heading"
                 lang={lang}
