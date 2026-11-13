@@ -508,6 +508,21 @@
   }.wa-page .hero-device{
     will-change: auto;
     transition: none;
+  }.wa-page .vocab-grid{
+    row-gap: 28px;
+  }.wa-page .vocab-item{
+    gap: 20px;
+  }.wa-page .vocab-art{
+    height: 204px;
+    max-height: 204px;
+    overflow: hidden;
+  }.wa-page .vocab-art--static img{
+    /* visualqa #190: keep hem/decoration inside the art box above labels. */
+    width: auto;
+    max-width: 88%;
+    max-height: 88%;
+    object-fit: contain;
+    object-position: center top;
   }
 }
 
