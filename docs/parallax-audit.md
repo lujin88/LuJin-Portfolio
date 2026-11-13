@@ -34,7 +34,7 @@ Reduced-motion: all `LayerScrollGroup` and `/index` scripts clear transforms whe
 
 ## Visual QA 证据（row 19）
 
-**当前 PR HEAD**：`50efba578b6196e74706d41a6163759fe956851e`（`design/parallax-unify-index`）
+**当前 PR HEAD**：`8579cb0547d11580c67bdd46b9e15f2179271795`（`design/parallax-unify-index`；相对 `50efba5` 仅 `docs/parallax-audit.md`）
 
 | SHA / 包 | 适用范围 | 目录 | 备注 |
 |----------|----------|------|------|
