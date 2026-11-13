@@ -3,7 +3,7 @@ export const bmw = {
   en: {
     hero: {
       backdropAlt: "A silver BMW i4 Gran Coupé parked at an alpine overlook at sunset",
-      eyebrow: "BMW Design System",
+      eyebrow: "BMW",
       title: "My BMW app & design system",
       story: "I led a six-person design team on the BMW app and shaped its design system, working across vehicle capabilities, market restrictions, and light and dark modes.",
       bridge: "A look back at what we decided in 2020, and how the same rules showed up in the app.",
@@ -14,13 +14,18 @@ export const bmw = {
       thenYear: "2020",
       then: "Model × market rules in Excel",
       nowYear: "2020",
-      now: "Design system · Accessibility · Monthly tests",
+      now: "Design system · Accessibility",
+    },
+    realCase: {
+      sharedWork:
+        "I led Futurice’s six-person design team on the BMW app and worked with the team to develop its design system. We reviewed the work weekly with BMW stakeholders and collaborated with other teams working on the app.",
+      digitalKey: "BMW announced Digital Key for iPhone at Apple WWDC 2020.",
     },
   },
   de: {
     hero: {
       backdropAlt: "Ein silberner BMW i4 Gran Coupé bei Sonnenuntergang an einem Aussichtspunkt in den Alpen",
-      eyebrow: "BMW Design System",
+      eyebrow: "BMW",
       title: "My BMW App & Designsystem",
       story: "Ich habe ein sechsköpfiges Designteam an der BMW-App geleitet und ihr Designsystem geprägt – über Fahrzeugfunktionen, Marktbeschränkungen sowie hellen und dunklen Modus hinweg.",
       bridge: "Ein Rückblick auf das, was wir 2020 entschieden haben, und wie dieselben Regeln in der App sichtbar wurden.",
@@ -31,7 +36,12 @@ export const bmw = {
       thenYear: "2020",
       then: "Modell-×-Markt-Regeln in Excel",
       nowYear: "2020",
-      now: "Designsystem · Barrierefreiheit · Monatliche Tests",
+      now: "Designsystem · Barrierefreiheit",
+    },
+    realCase: {
+      sharedWork:
+        "Ich leitete das sechsköpfige Designteam von Futurice für die BMW App und entwickelte mit dem Team das Designsystem weiter. Wir besprachen die Arbeit wöchentlich mit BMW und arbeiteten mit anderen Teams zusammen, die ebenfalls an der App arbeiteten.",
+      digitalKey: "BMW kündigte Digital Key für iPhone auf der Apple WWDC 2020 an.",
     },
   },
 } as const

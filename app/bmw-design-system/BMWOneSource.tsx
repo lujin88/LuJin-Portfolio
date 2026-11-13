@@ -127,18 +127,13 @@ export function BMWOneSource() {
     </h2>
     <div>
       <p className="chapter-copy">
-        The work brought together the design system, accessibility guidelines and monthly usability tests across teams. Other teams adopted the accessibility guidelines.
+        {t('bmw.realCase.sharedWork')}
       </p>
       <p className="chapter-copy">
-        BMW announced Digital Key for iPhone at Apple WWDC 2020.
+        {t('bmw.realCase.digitalKey')}
       </p>
     </div>
   </div>
-  <p className="scope-line">
-    1.5 years · A programme of around 400 people
-    <br />
-    Around 40 designers working across 3 continents
-  </p>
 </section>
 <section id="rule-matrix" className="showcase">
   <header>
