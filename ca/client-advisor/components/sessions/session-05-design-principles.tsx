@@ -1,7 +1,7 @@
 'use client'
 import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
 
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import styles from './session-05-design-principles.module.css'
 import { useTranslation } from '@i18n/use-translation'
@@ -23,6 +23,49 @@ function PrincipleCard({
 }) {
   const [isFlipped, setIsFlipped] = useState(false)
   const cardRef = useRef<HTMLButtonElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [hasHovered, setHasHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  useEffect(() => {
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)')
+    const pointer = matchMedia('(hover: hover) and (pointer: fine)')
+    const stop = () => setIsHovered(false)
+    const onVisibility = () => { if (document.hidden) stop() }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) stop()
+    })
+    if (cardRef.current) observer.observe(cardRef.current)
+    reduced.addEventListener('change', stop)
+    pointer.addEventListener('change', stop)
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => {
+      observer.disconnect()
+      reduced.removeEventListener('change', stop)
+      pointer.removeEventListener('change', stop)
+      document.removeEventListener('visibilitychange', onVisibility)
+    }
+  }, [])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    let cancelled = false
+    setIsPlaying(false)
+    if (isHovered && !isFlipped) {
+      video.currentTime = 0
+      // A rejected/late play request must never replace the static fallback.
+      video.play().then(() => {
+        if (!cancelled) setIsPlaying(true)
+      }).catch(() => {})
+    }
+    return () => {
+      cancelled = true
+      video.pause()
+      setIsPlaying(false)
+    }
+  }, [isHovered, isFlipped, hasHovered])
 
   useLayoutEffect(() => {
     const card = cardRef.current
@@ -57,7 +100,18 @@ function PrincipleCard({
         aria-label={`${principle.title}. ${
           isFlipped ? showFront : revealPrinciple
         }`}
-        onClick={() => setIsFlipped((prev) => !prev)}
+        onPointerEnter={(event) => {
+          if (event.pointerType === 'touch' || isFlipped ||
+              matchMedia('(prefers-reduced-motion: reduce)').matches ||
+              !matchMedia('(hover: hover) and (pointer: fine)').matches) return
+          setHasHovered(true)
+          setIsHovered(true)
+        }}
+        onPointerLeave={() => setIsHovered(false)}
+        onClick={() => {
+          setIsHovered(false)
+          setIsFlipped((prev) => !prev)
+        }}
       >
         <span className={`${styles.face} ${styles.faceFront}`}>
           <span className={styles.artwork} aria-hidden="true">
@@ -67,8 +121,23 @@ function PrincipleCard({
               fill
               sizes="(max-width: 1100px) 100vw, 33vw"
               className={styles.artworkImg}
+              style={{ visibility: isPlaying ? 'hidden' : undefined }}
               quality={90}
             />
+            {hasHovered && (
+              <video
+                ref={videoRef}
+                src={`/assets/videos/client-advisory/ca-05-${principle.number}-hover-v4.mp4`}
+                className={`${styles.artworkImg} ${styles.artworkVideo}`}
+                style={{ visibility: isPlaying ? 'visible' : 'hidden' }}
+                muted
+                playsInline
+                preload="none"
+                aria-hidden="true"
+                onEnded={() => setIsPlaying(false)}
+                onError={() => setIsPlaying(false)}
+              />
+            )}
           </span>
           <span className={styles.cardHeader}>
             <span className={styles.cardNum}>{principle.number}</span>
