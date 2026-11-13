@@ -340,7 +340,8 @@ function VocabArt({
   onActive: (on: boolean) => void
 }) {
   const { clip } = item
-  const hostRef = useRef<HTMLButtonElement | HTMLDivElement | null>(null)
+  const hostRef = useRef<HTMLButtonElement>(null)
+  const staticHostRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const motionAllowed = useMotionAllowed()
   const tabletStatic = useWaTabletStatic()
@@ -402,7 +403,7 @@ function VocabArt({
   if (tabletStatic) {
     return (
       <div
-        ref={hostRef}
+        ref={staticHostRef}
         className="vocab-art vocab-art--static"
         role="img"
         aria-label={label}
