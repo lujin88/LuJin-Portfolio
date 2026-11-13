@@ -64,23 +64,6 @@ const VOCAB: { word: Word; alt: string; src: string; ratio: number; clip: VocabC
   { word: 'hat', alt: 'Red winter hat', src: `${IMG}/vocab-hat.webp`, ratio: 1374 / 1145, clip: { file: 'vocab-hat-v1.mp4', w: 1.7905, x: -0.3997, y: -0.2456, motion: [338, 167, 786, 651] } },
 ]
 
-const CLIP_W = 1112
-const CLIP_H = 834
-// Fade distance outside the motion union, as a share of the clip.
-const FADE = 0.12
-
-function clipMask({ motion: [x0, y0, x1, y1], fadeBottom }: VocabClip) {
-  const pct = (n: number) => `${(n * 100).toFixed(2)}%`
-  const l = x0 / CLIP_W
-  const r = x1 / CLIP_W
-  const t = y0 / CLIP_H
-  const b = fadeBottom ? 0.8 : y1 / CLIP_H
-  const bEnd = fadeBottom ? 1 : b + FADE
-  const across = `linear-gradient(to right, transparent ${pct(Math.max(0, l - FADE))}, #000 ${pct(l)}, #000 ${pct(r)}, transparent ${pct(Math.min(1, r + FADE))})`
-  const down = `linear-gradient(to bottom, transparent ${pct(Math.max(0, t - FADE))}, #000 ${pct(t)}, #000 ${pct(b)}, transparent ${pct(Math.min(1, bEnd))})`
-  return `${across}, ${down}`
-}
-
 function voiceForLocale(locale: string): SpeechSynthesisVoice | undefined {
   if (!('speechSynthesis' in window)) return undefined
   const want = locale.toLowerCase()
@@ -125,6 +108,9 @@ const EDITIONS = [
   { slice: 2, caption: 'Christmas / Weihnachten', alt: 'A child by a glowing Christmas tree on a snowy dock', image: 'holiday-christmas-v3.webp', video: 'christmas-v3.mp4' },
 ] as const
 
+// Lu 11-13 #10741 / 1A: 700–1024 uses device + vocab stills only; phone and desktop keep clips.
+const WA_TABLET_STATIC_MQ = '(min-width: 700px) and (max-width: 1024px)'
+
 function useMotionAllowed() {
   const [motionAllowed, setMotionAllowed] = useState(false)
 
@@ -137,6 +123,20 @@ function useMotionAllowed() {
   }, [])
 
   return motionAllowed
+}
+
+function useWaTabletStatic() {
+  const [tabletStatic, setTabletStatic] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia(WA_TABLET_STATIC_MQ)
+    const update = () => setTabletStatic(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+
+  return tabletStatic
 }
 
 function HolidayVideo({ file, className = 'holiday-video', once = false }: { file: string; className?: string; once?: boolean }) {
@@ -237,14 +237,16 @@ function HeroScreenVideo() {
   const layerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const motionAllowed = useMotionAllowed()
+  const tabletStatic = useWaTabletStatic()
   const [playing, setPlaying] = useState(false)
   const [failed, setFailed] = useState(false)
 
   useEffect(() => {
     setPlaying(false)
-  }, [motionAllowed])
+  }, [motionAllowed, tabletStatic])
 
   useEffect(() => {
+    if (tabletStatic) return
     const layer = layerRef.current
     const frame = layer?.parentElement
     if (!layer || !frame) return
@@ -257,9 +259,10 @@ function HeroScreenVideo() {
     const observer = new ResizeObserver(place)
     observer.observe(frame)
     return () => observer.disconnect()
-  }, [motionAllowed, failed])
+  }, [motionAllowed, failed, tabletStatic])
 
   useEffect(() => {
+    if (tabletStatic) return
     const video = videoRef.current
     if (!video || !motionAllowed || failed) return
 
@@ -284,9 +287,9 @@ function HeroScreenVideo() {
       document.removeEventListener('visibilitychange', syncPlayback)
       video.pause()
     }
-  }, [motionAllowed, failed])
+  }, [motionAllowed, failed, tabletStatic])
 
-  if (!motionAllowed || failed) return null
+  if (!motionAllowed || failed || tabletStatic) return null
 
   return (
     <div ref={layerRef} className={`hero-screen${playing ? ' is-playing' : ''}`} aria-hidden="true">
@@ -337,16 +340,18 @@ function VocabArt({
   onActive: (on: boolean) => void
 }) {
   const { clip } = item
-  const rootRef = useRef<HTMLButtonElement>(null)
+  const hostRef = useRef<HTMLButtonElement | HTMLDivElement | null>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const motionAllowed = useMotionAllowed()
+  const tabletStatic = useWaTabletStatic()
   const [load, setLoad] = useState(false)
   const [ready, setReady] = useState(false)
   const [failed, setFailed] = useState(false)
   const canPlay = ready && motionAllowed && !failed
 
   useEffect(() => {
-    const root = rootRef.current
+    if (tabletStatic || load) return
+    const root = hostRef.current
     if (!root) return
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -358,7 +363,7 @@ function VocabArt({
     )
     observer.observe(root)
     return () => observer.disconnect()
-  }, [])
+  }, [tabletStatic, load])
 
   useEffect(() => {
     const video = videoRef.current
@@ -376,7 +381,8 @@ function VocabArt({
 
   // Stop when scrolled away or the tab is hidden, so a tapped clip does not keep running.
   useEffect(() => {
-    const root = rootRef.current
+    if (tabletStatic) return
+    const root = hostRef.current
     if (!root || !active) return
     const stop = () => onActive(false)
     const observer = new IntersectionObserver(([entry]) => {
@@ -391,18 +397,28 @@ function VocabArt({
       observer.disconnect()
       document.removeEventListener('visibilitychange', onHidden)
     }
-  }, [active, onActive])
+  }, [active, onActive, tabletStatic])
 
-  const mask = clipMask(clip)
+  if (tabletStatic) {
+    return (
+      <div
+        ref={hostRef}
+        className="vocab-art vocab-art--static"
+        role="img"
+        aria-label={label}
+      >
+        <img src={item.src} alt="" loading="lazy" />
+      </div>
+    )
+  }
 
   return (
     <button
-      ref={rootRef}
+      ref={hostRef}
       className={`vocab-art vocab-art--clip${ready && !failed ? ' is-ready' : ''}`}
       type="button"
       aria-label={label}
       aria-pressed={canPlay ? active : undefined}
-      style={{ ['--ratio' as string]: item.ratio, ['--clip-w' as string]: clip.w, ['--clip-x' as string]: clip.x, ['--clip-y' as string]: clip.y }}
       onPointerEnter={(event) => {
         if (event.pointerType === 'touch' || !finePointer()) return
         onActive(true)
@@ -432,7 +448,6 @@ function VocabArt({
           playsInline
           preload={load ? 'auto' : 'none'}
           aria-hidden="true"
-          style={{ maskImage: mask, WebkitMaskImage: mask }}
           onLoadedData={(event) => {
             const video = event.currentTarget
             if (video.currentTime === 0) setReady(true)
@@ -669,9 +684,11 @@ export function WeatherAquariumPage() {
       revealItems.forEach((item) => revealObserver.observe(item))
     }
 
-    const heroMedia = heroMediaRef.current
-    const heroDevice = heroDeviceRef.current
+    const tabletMq = window.matchMedia(WA_TABLET_STATIC_MQ)
+    const reducedMq = window.matchMedia('(prefers-reduced-motion: reduce)')
     const onMove = (event: globalThis.PointerEvent) => {
+      const heroMedia = heroMediaRef.current
+      const heroDevice = heroDeviceRef.current
       if (!heroMedia || !heroDevice) return
       const bounds = heroMedia.getBoundingClientRect()
       const x = (event.clientX - bounds.left) / bounds.width - 0.5
@@ -679,18 +696,41 @@ export function WeatherAquariumPage() {
       heroDevice.style.transform = `translate3d(${x * 7}px, ${y * 5}px, 0) rotateX(${-y * 1.2}deg) rotateY(${x * 1.4}deg) rotateZ(0.75deg)`
     }
     const onLeave = () => {
+      const heroDevice = heroDeviceRef.current
       if (!heroDevice) return
       heroDevice.style.transform = 'translate3d(0, 0, 0) rotateZ(0.75deg)'
     }
-    if (heroMedia && heroDevice && !reduced) {
-      heroMedia.addEventListener('pointermove', onMove)
-      heroMedia.addEventListener('pointerleave', onLeave)
+    let parallaxBound = false
+    const syncParallax = () => {
+      const heroMedia = heroMediaRef.current
+      const heroDevice = heroDeviceRef.current
+      if (parallaxBound) {
+        heroMedia?.removeEventListener('pointermove', onMove)
+        heroMedia?.removeEventListener('pointerleave', onLeave)
+        parallaxBound = false
+      }
+      if (heroDevice) {
+        heroDevice.style.transform = 'translate3d(0, 0, 0) rotateZ(0.75deg)'
+      }
+      if (heroMedia && heroDevice && !reducedMq.matches && !tabletMq.matches) {
+        heroMedia.addEventListener('pointermove', onMove)
+        heroMedia.addEventListener('pointerleave', onLeave)
+        parallaxBound = true
+      }
     }
+    syncParallax()
+    tabletMq.addEventListener('change', syncParallax)
+    reducedMq.addEventListener('change', syncParallax)
 
     return () => {
       revealObserver.disconnect()
-      heroMedia?.removeEventListener('pointermove', onMove)
-      heroMedia?.removeEventListener('pointerleave', onLeave)
+      tabletMq.removeEventListener('change', syncParallax)
+      reducedMq.removeEventListener('change', syncParallax)
+      const heroMedia = heroMediaRef.current
+      if (parallaxBound) {
+        heroMedia?.removeEventListener('pointermove', onMove)
+        heroMedia?.removeEventListener('pointerleave', onLeave)
+      }
       if ('speechSynthesis' in window) speechSynthesis.cancel()
     }
   }, [])
