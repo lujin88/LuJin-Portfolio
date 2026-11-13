@@ -34,14 +34,19 @@ Reduced-motion: all `LayerScrollGroup` and `/index` scripts clear transforms whe
 
 ## Visual QA 证据（row 19）
 
-**当前 PR HEAD**：`a8bb9053851d41b40d114b7e0637cb43ee6e23d0`（`design/parallax-unify-index`）。**行为签收 SHA**：`50efba578b6196e74706d41a6163759fe956851e`；`8579cb0` 起仅改 `docs/parallax-audit.md`。
+固定版本（不随 PR 文档提交滚动）：
 
-| SHA / 包 | 适用范围 | 目录 | 备注 |
-|----------|----------|------|------|
-| `acc9793` → `0204a48` | WA02 首版 LSG + E.ON 三档提速前后对比 | `~/.buzz/OUTBOX/PARALLAX_ROW19_1112/`、`VISUALQA_ROW19_RECHECK_1112/` | **历史**：`0204a48` 录屏时 WA02 图注裁切未过；**勿**当作当前 HEAD 通过依据 |
-| `50efba5` | **WA02 整块进场**（Lu B：`data-move` 在 `.editions-block`） | `~/.buzz/OUTBOX/VISUALQA_ROW19_50EFBA5_1113/` | 390/700/1440 真 wheel normal+reduce；**本条为 WA 画面签收依据** |
-| `acc9793`…`50efba5` 间仅 WA02 | E.ON / index / 其他页 | `VISUALQA_ROW19_RECHECK_1112/REPORT.md` | 代码 diff 边界：仅 WA02 markup/CSS 变更时，E.ON/index 证据可继承评估 |
-| `50efba5` | **E.ON challenge 视口外→归零**（700 可测；1440 首屏即见） | `~/.buzz/OUTBOX/PARALLAX_ROW19_EON_1440_1113/` | 见下 |
+| 角色 | SHA（短） | 完整 SHA | 说明 |
+|------|-----------|----------|------|
+| **行为签收** | `50efba5` | `50efba578b6196e74706d41a6163759fe956851e` | PR #183 画面与代码验收锚点；此后提交若无 `.tsx`/`.css`/`.html` 视差 diff，签收仍指向此 SHA |
+| **证据索引** | `index-1113` | （无独立 SHA） | 本文件 `8579cb0` 起仅改本文；维护提交不刷新画面签收 SHA |
+
+| 截图/录屏适用 SHA | 适用范围 | 目录 | 备注 |
+|-------------------|----------|------|------|
+| `acc9793` → `0204a48` | WA02 首版 LSG + E.ON 三档提速前后对比 | `~/.buzz/OUTBOX/PARALLAX_ROW19_1112/`、`VISUALQA_ROW19_RECHECK_1112/` | **历史**：`0204a48` 录屏时 WA02 图注裁切未过；**勿**当作现行通过依据 |
+| **`50efba5`** | **WA02 整块进场**（Lu B：`data-move` 在 `.editions-block`） | `~/.buzz/OUTBOX/VISUALQA_ROW19_50EFBA5_1113/` | 390/700/1440 真 wheel normal+reduce；**WA 画面签收包** |
+| `acc9793`…`50efba5`（仅 WA02 diff） | E.ON / index / 其他页 | `VISUALQA_ROW19_RECHECK_1112/REPORT.md` | 代码边界：仅 WA02 markup/CSS 时，E.ON/index 评估可继承 |
+| **`50efba5`** | **E.ON challenge 视口外→归零**（700 可测；1440 首屏即见） | `~/.buzz/OUTBOX/PARALLAX_ROW19_EON_1440_1113/` | 见下 |
 
 **Worktree / 预览**：`~/LuJin-Portfolio-worktrees/webdev-parallax-183`，`pnpm predev && pnpm exec next dev --port 4623` → `http://localhost:4623`
 
