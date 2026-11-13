@@ -43,13 +43,14 @@ export function GratulaStory() {
             <img className="gift-illustration" src="/lab/party-planner/gift.webp" alt="" />
           </article>
           <article className="guest-feature">
-            <span className="feature-name">Privacy · Host only</span>
-            <h3>Allergies stay with the host</h3>
-            <p>Only the host sees dietary notes and phone numbers.</p>
-            <img className="allergy-proof" src="/lab/party-planner/story/allergy-crop.png" width="690" height="172" alt="Real host-only dietary summary: Mia has a nut allergy; Elias is lactose intolerant." />
+            <span className="feature-name">Privacy · Design intent</span>
+            <h3>A plan for dietary privacy</h3>
+            <p>The design gives the host and invited co-editors access to dietary notes.</p>
+            <p>The design lets guests view their own reply.</p>
+            <img className="allergy-proof" src="/lab/party-planner/story/allergy-crop.png" width="690" height="172" alt="Example dietary notes in the prototype guest list." />
             <div className="private-copy">
-              <strong>Guests never see each other’s details.</strong>
-              <p>Guest data is removed after 30 days.</p>
+              <strong>In this design, families can&apos;t see each other&apos;s replies.</strong>
+              <p>The design calls for deleting guest replies 30 days after the party date.</p>
             </div>
           </article>
         </div>

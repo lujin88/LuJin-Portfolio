@@ -481,7 +481,7 @@ const MUSIC = [
 ];
 const FAQ = [
   {q:'What if decorations won\'t arrive in time?', a:'Items from overseas shops can take 2–5 weeks. We flag anything that might arrive after the party date and rank faster options first when you\'re browsing, so you can pick something that\'ll make it in time before you buy.'},
-  {q:'Who sees the allergy information guests share?', a:'Only you, the host. Allergy notes from the RSVP link appear in your guest list and are used to highlight bakeries that offer allergy-friendly cakes. Always confirm allergy options with the bakery directly.'},
+  {q:'Who sees the allergy information guests share?', a:'The design gives the host and invited co-editors access to dietary notes. Guests can view their own reply, but not other families’ replies. This prototype uses example data. Confirm dietary options with the bakery directly.'},
   {q:'How do I change an invitation I already sent?', a:'Edit the poster and share the same RSVP link again. The link stays the same, so replies you already received are kept.'},
   {q:'Do my guests need the app?', a:'No. Guests open the RSVP link in their browser and answer yes or no — no download or account needed.'},
   {q:'Can I book and pay in the app?', a:'Not yet. We show options and link to each bakery, venue or performer so you can book with them directly. Prices shown are the last known prices — please confirm on their website.'}
@@ -955,7 +955,7 @@ rsvp: () => { const r = S.rsvpPreview;
     <h2 class="h2" style="margin-top:22px">Can your child come?</h2>
     <div style="display:flex;gap:10px"><button class="choice ${r.answer === 'yes' ? 'sel' : ''}" style="justify-content:center;padding:16px;font-weight:700;font-size:16px" onclick="S.rsvpPreview.answer='yes';A.refresh()">${ic('check', 20, 2.6)} Yes</button><button class="choice ${r.answer === 'no' ? 'sel' : ''}" style="justify-content:center;padding:16px;font-weight:700;font-size:16px" onclick="S.rsvpPreview.answer='no';A.refresh()">${ic('x', 20, 2.6)} No</button></div>
     <div class="fgroup"><label class="label" for="rc">Child's name</label><div class="field"><input id="rc" value="${esc(r.child)}" placeholder="e.g. Noah Meier" oninput="S.rsvpPreview.child=this.value;A.rsvpValid()"></div><p class="hint">Full name helps the host tell families apart.</p></div>
-    ${r.answer !== 'no' ? `<div class="fgroup"><label class="label" for="ra">Allergies or dietary needs <span style="color:var(--text3)">(optional)</span></label><div class="field"><input id="ra" value="${esc(r.allergy)}" placeholder="e.g. nuts, lactose" oninput="S.rsvpPreview.allergy=this.value"></div><p class="hint">Only the host sees this.</p></div>` : ''}`,
+    ${r.answer !== 'no' ? `<div class="fgroup"><label class="label" for="ra">Allergies or dietary needs <span style="color:var(--text3)">(optional)</span></label><div class="field"><input id="ra" value="${esc(r.allergy)}" placeholder="e.g. nuts, lactose" oninput="S.rsvpPreview.allergy=this.value"></div><p class="hint">Design intent: shared with the host and invited co-editors.</p></div>` : ''}`,
   footer:`<button class="btn btn-primary" id="cta" ${r.answer && r.child.trim() ? '' : 'disabled'} onclick="S.rsvpPreview.sent=true;A.refresh()">Send reply</button>`
 }; },
 

@@ -28,7 +28,9 @@ try {
           background: getComputedStyle(proof).backgroundColor,
           cardBackground: getComputedStyle(story.querySelector('.guest-feature')).backgroundColor,
           broken: [...story.querySelectorAll('img')].filter(image => !image.naturalWidth).length,
-          forbidden: /Within 10 km|checked recently|update automatically|Everything stays current|Sweet Moments|Magic Marco/.test(story.textContent),
+          forbidden: /Host only|Only the host|Guest data is removed after 30 days|Guests never see|Within 10 km|checked recently|update automatically|Everything stays current|Sweet Moments|Magic Marco/.test(story.textContent),
+          privacy: story.querySelector('.guest-feature:last-child').textContent,
+          privacyAlt: story.querySelector('.allergy-proof').alt,
           slots: story.querySelectorAll('.supplier-list > div').length,
           suppliers: [...story.querySelectorAll('.supplier-list dt')].map(item => item.firstChild.textContent),
           prices: [...story.querySelectorAll('.supplier-list > div > dd:first-of-type')].map(item => item.firstChild.textContent),
@@ -45,6 +47,11 @@ try {
       assert.match(state.cardBackground, /0\.06\)/, `${width} ${route}: card paint`)
       assert.equal(state.broken, 0, `${width} ${route}: broken artwork`)
       assert.equal(state.forbidden, false, `${width} ${route}: unverified claims`)
+      assert.match(state.privacy, /Privacy · Design intent/)
+      assert.match(state.privacy, /host and invited co-editors/)
+      assert.match(state.privacy, /guests view their own reply/)
+      assert.match(state.privacy, /guest replies 30 days after the party date/)
+      assert.equal(state.privacyAlt, 'Example dietary notes in the prototype guest list.')
       assert.equal(state.slots, 3)
       assert.deepEqual(state.suppliers, ['Bäckerei Conditorei Stocker', 'Sihlcity Minicity', 'Bazinga Parties Zürich'])
       assert.deepEqual(state.prices, ['CHF 58 for 8 people · CHF 68 for 12 people', 'CHF 25 per child · 2 hours', 'CHF 700 per package'])

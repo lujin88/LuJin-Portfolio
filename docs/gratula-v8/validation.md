@@ -95,3 +95,12 @@ The existing `scripts/check-gratula-v8.mjs` regression also passed both live/sta
 [test-lock] 开始 00:54:18 负载 4.52 5.12 5.48 排队 137 秒
 [test-lock] 结束 00:54:27 负载 6.10 5.43 5.58 退出码 0
 ```
+
+
+## Privacy design-intent revision — PM #11330 (13 November)
+
+Applied the A wording from `GRATULA_PRIVACY_COPY_ROW29_1112/copy.en.json`, including the revised guest-separation sentence accepted by legal #10594. The live story and static landing now name design intent, invited co-editors, guests' own replies and planned removal of guest replies 30 days after the party date. The linked prototype FAQ and RSVP hint use the same approved wording. Alt text identifies prototype examples. No access or deletion implementation was changed.
+
+Source inspection found no remaining old host-only/phone/absolute deletion strings in the party-planner page and prototype sources. The allergy and reply crops were visually inspected: neither contains host-only or deletion promises; Mia/Nuts and Elias/Lactose match the prototype's demo fixtures. The allergy crop still describes demo cake suggestions; this update does not certify production recommendations. Pip, map assets and animations are unchanged.
+
+Frozen pnpm installation passed. Added privacy assertions to the existing three-width live/static regression, but did not execute it: Haiku quota exhaustion is recorded in channel #11290/#11298, and the per-PR Codex exceptions for #195/#199 do not cover #175. PM was asked to arrange a runner in #11335. Browser fit at 390/700/1440, new screenshots, prototype FAQ/hint interaction checks and independent legal/QA/visual review remain pending. Existing screenshots predate this wording change and are not evidence for it. No build, lint, TypeScript or browser pass is claimed. The pre-existing next-env.d.ts change is excluded.
