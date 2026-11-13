@@ -117,6 +117,28 @@ export function BMWOneSource() {
     </div>
   </dl>
 </section>
+<section className="bmw-delivery" aria-labelledby="bmw-delivery-title">
+  <div className="delivery-grid">
+    <h2 className="chapter-title" id="bmw-delivery-title">
+      Shared ways
+      <br />
+      of working.
+    </h2>
+    <div>
+      <p className="chapter-copy">
+        The work brought together the design system, accessibility guidelines and monthly usability tests across teams. Other teams adopted the accessibility guidelines.
+      </p>
+      <p className="chapter-copy">
+        BMW announced Digital Key for iPhone at Apple WWDC 2020.
+      </p>
+    </div>
+  </div>
+  <p className="scope-line">
+    1.5 years · A programme of around 400 people
+    <br />
+    Around 40 designers working across 3 continents
+  </p>
+</section>
 <section id="rule-matrix" className="showcase">
   <header>
     <span>
@@ -126,18 +148,18 @@ export function BMWOneSource() {
       Design System
     </span>
     <small>
-      2020 · Model × market
+      Inside the design system · illustrative recreation
     </small>
   </header>
   <div className="columns">
     <div>
       <h2 data-type="h2" className="chapter-title">
-        Every model.
+        From system
         <br />
-        Every market.
+        to app.
       </h2>
       <p className="chapter-copy">
-        We tracked which controls each model and market allowed in Excel. I filtered it row by row: if the law didn’t allow a control, I left the button out.
+        Where can a control appear? What happens after a tap? This recreated example makes both visible.
       </p>
       <div className="book">
         <div className="line labels">
@@ -196,8 +218,11 @@ export function BMWOneSource() {
           </span>
         </button>
       </div>
+      <p className="matrix-note rules-caption">
+        Illustrative recreation · not the original spreadsheet · markets anonymised.
+      </p>
     </div>
-    <div className="phone vehicle-phone" role="img" aria-label="Fully charged silver BMW i4 eDrive35. Lock, unlock and headlights in one strip above Status and State of charge.">
+    <figure className="phone vehicle-phone" role="img" aria-label="My BMW app overview: vehicle status and remote controls.">
       <div className="screen-region vehicle-header" style={{"aspectRatio": "376/367"}}>
         <img aria-hidden="true" alt="" src="/lab/bmw-one-source/assets/i4-silver-backdrop.png" style={{"transform": "translateY(-0.000000%)"}} />
       </div>
@@ -230,7 +255,7 @@ export function BMWOneSource() {
     </div>
   </div>
   <p className="chapter-copy preview-note">
-    Cars respond slowly, and a car without signal can’t respond at all. We tested how long the app could wait. When a request failed, the car couldn’t say why, so the app could only tell the driver it hadn’t worked.
+    The interface can only show what the vehicle reports. Sending, waiting, success and failure are different states.
   </p>
   <footer className="summary">
     <b>
@@ -274,15 +299,15 @@ export function BMWOneSource() {
 </section>
 <aside className="system-gap">
   <p className="overline">
-    The hard part
+    Inside the design system · illustrative recreation
   </p>
   <h2 data-type="h2">
-    One button.
+    One control.
     <br />
-    Many edge cases.
+    Many layers.
   </h2>
   <p>
-    Climate was always one button. Behind it, each model and market needed its own rule, and some edge cases were hard to cover.
+    A design system has to carry the appearance, the state and the rules that make the component available.
   </p>
 </aside>
 <section id="review-desk" className="showcase desk">
@@ -427,8 +452,8 @@ export function BMWOneSource() {
     </p>
   </footer>
 </section>
-<footer className="closing-line">
-  In 2020, the system held the components. Now it should hold the rules: every model, every market, every edge case, in one source.
+<footer className="closing-line closing-real">
+  The work was as much about how teams worked together as the components they shared.
 </footer>
   </main>
 }
