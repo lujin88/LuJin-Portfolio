@@ -18,6 +18,7 @@ type NavLink = {
   label: string
   href: string
   meta?: string
+  category?: 'Real projects' | 'Concepts'
   icon: NavIcon
 }
 
@@ -38,6 +39,7 @@ const NAV: readonly NavEntry[] = [
     children: [
       {
         label: 'Client Advisory',
+        category: 'Real projects',
         href: '/client-advisory',
         meta: 'Wealth · Service design',
         icon: {
@@ -47,6 +49,7 @@ const NAV: readonly NavEntry[] = [
       },
       {
         label: 'E.ON',
+        category: 'Real projects',
         href: '/EON',
         meta: 'Energy · 300% more leads',
         icon: {
@@ -55,9 +58,20 @@ const NAV: readonly NavEntry[] = [
         },
       },
       {
+        label: 'My BMW app & design system',
+        category: 'Real projects',
+        href: '/bmw-design-system',
+        meta: 'App design · Design system',
+        icon: {
+          light: '/assets/images/nav/light/work/bmw-design-system-light.svg',
+          dark: '/assets/images/nav/dark/work/bmw-design-system-dark.svg',
+        },
+      },
+      {
         label: 'MAN Truck & Bus',
+        category: 'Concepts',
         href: '/man-truck-bus',
-        meta: 'Hackathon · Fleet dispatch',
+        meta: 'Hackathon concept · Fleet dispatch',
         icon: {
           light: '/assets/images/nav/light/work/man-truck-bus-light.webp',
           dark: '/assets/images/nav/dark/work/man-truck-bus-dark.webp',
@@ -65,20 +79,12 @@ const NAV: readonly NavEntry[] = [
       },
       {
         label: 'ETF Savings Plan',
+        category: 'Concepts',
         href: '/etf-savings-plan',
-        meta: 'Investing · Interactive prototype',
+        meta: 'Self-initiated concept · Investing',
         icon: {
           light: '/assets/images/nav/light/work/etf-savings-plan-light.webp',
           dark: '/assets/images/nav/dark/work/etf-savings-plan-dark.webp',
-        },
-      },
-      {
-        label: 'BMW Design System',
-        href: '/bmw-design-system',
-        meta: 'Vehicle controls · Light & dark',
-        icon: {
-          light: '/assets/images/nav/light/work/bmw-design-system-light.svg',
-          dark: '/assets/images/nav/dark/work/bmw-design-system-dark.svg',
         },
       },
     ],
@@ -729,7 +735,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                   >
                     <div className={expanded ? 'overflow-visible' : 'overflow-hidden'}>
                       <ul className={cn(MENU_PANEL, 'header-menu-divided mt-3 w-full gap-0')} role="list">
-                        {group.children.map((child) => {
+                        {group.children.map((child, index) => {
                           const uniqueHref =
                             group.children.filter((entry) => entry.href === child.href).length === 1
                           const childActive =
@@ -739,7 +745,13 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                               key={child.label}
                               className="w-full"
                             >
+                              {child.category && child.category !== group.children[index - 1]?.category && (
+                                <div id={`${panelId}-${child.category.replaceAll(' ', '-')}`} className="px-3 pb-1 pt-3 text-xs font-semibold text-header-foreground/65">
+                                  {navLabel(copy, child.category)}
+                                </div>
+                              )}
                               <Link
+                                aria-describedby={child.category ? `${panelId}-${child.category.replaceAll(' ', '-')}` : undefined}
                                 href={child.href}
                                 aria-current={childActive ? 'page' : undefined}
                                 onClick={() => setMenuOpen(false)}
@@ -751,7 +763,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                                 )}
                               >
                                 <MenuThumb icon={child.icon} tone={paperHeader ? 'light' : 'dark'} />
-                                <span className="whitespace-nowrap">
+                                <span className="min-w-0 whitespace-normal">
                                   <span
                                     className={cn(
                                       'block text-[0.9375rem] leading-tight text-header-foreground',
@@ -975,7 +987,13 @@ function NavDropdown({
                   role="none"
                   className="w-full"
                 >
+                  {child.category && child.category !== group.children[index - 1]?.category && (
+                    <div id={`${menuId}-${child.category.replaceAll(' ', '-')}`} className="px-3 pb-1 pt-3 text-xs font-semibold text-header-foreground/65">
+                      {navLabel(copy, child.category)}
+                    </div>
+                  )}
                   <Link
+                    aria-describedby={child.category ? `${menuId}-${child.category.replaceAll(' ', '-')}` : undefined}
                     ref={(node) => {
                       itemRefs.current[index] = node
                     }}
@@ -996,7 +1014,7 @@ function NavDropdown({
                     )}
                   >
                     <MenuThumb icon={child.icon} tone={iconTone} />
-                    <span className="whitespace-nowrap">
+                    <span className="min-w-0 whitespace-normal">
                       <span
                         className={cn(
                           'block text-[0.9375rem] leading-tight text-header-foreground',
