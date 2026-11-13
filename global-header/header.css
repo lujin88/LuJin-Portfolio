@@ -80,6 +80,21 @@
   max-width: calc(100vw - 3rem);
 }
 
+/* Open mobile menu grows with its rows. A max-height scrollport was
+   clipping the last Work row inside the panel. */
+#mobile-nav[aria-hidden='false'] {
+  max-height: none;
+  overflow: visible;
+}
+
+#mobile-nav button[aria-expanded='true'] + div {
+  grid-template-rows: minmax(max-content, auto);
+}
+
+#mobile-nav button[aria-expanded='true'] + div > div {
+  overflow: visible;
+}
+
 [data-site-header] .header-menu > li {
   width: 100%;
   margin: 0;
@@ -269,76 +284,4 @@
 /* Form controls do not inherit the page font in the browser UA stylesheet. */
 [data-site-header] :is(button, select, input, textarea) {
   font-family: var(--font-poppins), 'Poppins', ui-sans-serif, system-ui, sans-serif;
-}
-
-/* Menu v2: Lu's category tabs and type scale. No delayed focus or entry motion. */
-[data-site-header] .work-menu {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100dvh;
-  max-width: none;
-  max-height: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: #0a0a0a;
-  color: #f9fbfc;
-  font: inherit;
-  overflow: hidden;
-  --header-foreground: #f9fbfc;
-}
-[data-site-header] .work-menu[open] { display: flex; flex-direction: column; }
-[data-site-header] .work-menu::backdrop { background: #0a0a0a; }
-[data-site-header] .work-menu :is(a, button) { color: inherit; font: inherit; }
-[data-site-header] .work-menu button { appearance: none; border: 0; border-radius: 0; padding: 0; background: none; cursor: pointer; box-shadow: none; }
-[data-site-header] .work-menu :is(a, button):focus-visible { outline: 2px solid #7ea2ff; outline-offset: 4px; }
-[data-site-header] .work-menu__toolbar {
-  flex: none;
-  height: calc(96px + env(safe-area-inset-top, 0px));
-  padding: env(safe-area-inset-top, 0px) max(48px, env(safe-area-inset-right, 0px)) 0 max(48px, env(safe-area-inset-left, 0px));
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-[data-site-header] .work-menu__toolbar img { display: block; width: 48px; height: 48px; object-fit: contain; }
-[data-site-header] .work-menu .work-menu__close { display: grid; place-items: center; width: 48px; height: 48px; flex: none; }
-[data-site-header] .work-menu__scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
-[data-site-header] .work-menu__content { max-width: 1040px; margin: 48px auto 0; padding-bottom: max(32px, env(safe-area-inset-bottom, 0px)); }
-[data-site-header] .work-menu__title { font-size: 28px; font-weight: 400; line-height: 1.5; margin: 0 0 24px; }
-[data-site-header] .work-menu__tabs { display: flex; flex-wrap: wrap; column-gap: 32px; margin-bottom: 40px; }
-[data-site-header] .work-menu__tabs button { font-size: 20px; line-height: 1.5; color: #b6bbc2; padding: 12px 0; border-bottom: 2px solid transparent; }
-[data-site-header] .work-menu__tabs button[aria-selected='true'] { color: #f9fbfc; border-color: #7ea2ff; }
-[data-site-header] .work-menu__panels { display: grid; min-height: 240px; }
-[data-site-header] .work-menu__panel { grid-area: 1 / 1; min-width: 0; }
-[data-site-header] .work-menu__panel[aria-hidden='true'] { visibility: hidden; }
-[data-site-header] .work-menu__projects { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; margin: 0; padding: 0; }
-[data-site-header] .work-menu__projects a { display: block; max-width: 430px; font-size: 22px; line-height: 1.5; overflow-wrap: anywhere; }
-[data-site-header] .work-menu__projects a[aria-current='page'] { color: #7ea2ff; }
-[data-site-header] .work-menu__bottom { margin-top: 48px; }
-[data-site-header] .work-menu__links { display: flex; flex-wrap: wrap; gap: 32px; }
-[data-site-header] .work-menu__links :is(a, button) { font-size: 22px; line-height: 1.5; text-align: left; }
-[data-site-header] .work-menu__languages { margin-top: 40px; font-size: 16px; line-height: 1.5; color: #b6bbc2; display: flex; align-items: center; }
-[data-site-header] .work-menu__languages button { min-height: 44px; }
-[data-site-header] .work-menu__languages button[aria-pressed='true'] { color: #f9fbfc; }
-[data-site-header] .work-menu__slash { margin: 0 12px; }
-[data-site-header] .work-menu__playground { min-height: 336px; }
-[data-site-header] .work-menu [hidden] { display: none; }
-@media (max-width: 1136px) {
-  [data-site-header] .work-menu__content { margin-left: max(48px, env(safe-area-inset-left, 0px)); margin-right: max(48px, env(safe-area-inset-right, 0px)); }
-}
-@media (max-width: 767px) {
-  [data-site-header] .work-menu__toolbar { height: calc(80px + env(safe-area-inset-top, 0px)); padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
-  [data-site-header] .work-menu__toolbar img { width: 40px; height: 40px; }
-  [data-site-header] .work-menu__content { margin: 24px max(24px, env(safe-area-inset-right, 0px)) 0 max(24px, env(safe-area-inset-left, 0px)); }
-  [data-site-header] .work-menu__tabs { column-gap: 24px; }
-  [data-site-header] .work-menu__tabs button { font-size: 16px; }
-  [data-site-header] .work-menu__panels { min-height: 224px; }
-  [data-site-header] .work-menu__projects { gap: 20px; }
-  [data-site-header] .work-menu__projects a { font-size: 20px; }
-  [data-site-header] .work-menu__bottom { margin-top: 40px; }
-  [data-site-header] .work-menu__links { flex-direction: column; align-items: flex-start; gap: 20px; }
-  [data-site-header] .work-menu__links :is(a, button) { font-size: 20px; }
-  [data-site-header] .work-menu__languages { margin-top: 32px; font-size: 14px; }
-  [data-site-header] .work-menu__playground { min-height: 316px; }
 }
