@@ -49,3 +49,5 @@
   border:1.5px solid #9aaac8; border-radius:50%; background:var(--support);
 }
 :where(.etf-case) .ff .ff-complete-mark { position:absolute; z-index:1; top:1px; left:0; width:20px; height:20px; color:var(--blue); }
+/* bar②3: phone scale ~0.877 — Total invested must display ≥ story-text 18px */
+:where(.etf-case) .ff[data-screen=c] .ff-metrics b {font-size:22px;font-weight:580}
