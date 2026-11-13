@@ -20,6 +20,8 @@ type ToolsCardMediaProps = {
   poster: string
   videoWebm?: string
   videoMp4?: string
+  videoWebmDark?: string
+  videoMp4Dark?: string
 }
 
 export function ToolsCardMedia({
@@ -28,24 +30,27 @@ export function ToolsCardMedia({
   poster,
   videoWebm,
   videoMp4,
+  videoWebmDark,
+  videoMp4Dark,
 }: ToolsCardMediaProps) {
   const motionAllowed = useMotionAllowed()
   const wrapRef = useRef<HTMLDivElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
   const hasVideo = Boolean(videoWebm || videoMp4)
 
   useEffect(() => {
-    const video = videoRef.current
     const root = wrapRef.current
-    if (!video || !root || !hasVideo || !motionAllowed) return
+    if (!root || !hasVideo || !motionAllowed) return
+    const videos = root.querySelectorAll<HTMLVideoElement>('.tools-card__video')
 
     let inView = false
     const sync = () => {
-      if (inView && !document.hidden) {
-        void video.play().catch(() => {})
-      } else {
-        video.pause()
-      }
+      videos.forEach((video) => {
+        if (inView && !document.hidden) {
+          void video.play().catch(() => {})
+        } else {
+          video.pause()
+        }
+      })
     }
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -59,7 +64,7 @@ export function ToolsCardMedia({
     return () => {
       observer.disconnect()
       document.removeEventListener('visibilitychange', sync)
-      video.pause()
+      videos.forEach((video) => video.pause())
     }
   }, [hasVideo, motionAllowed])
 
@@ -71,11 +76,12 @@ export function ToolsCardMedia({
     )
   }
 
+  const hasDark = Boolean(videoWebmDark || videoMp4Dark)
+
   return (
     <div className={`tools-card__media tools-card__media--${mediaClass}`} ref={wrapRef}>
       <video
-        ref={videoRef}
-        className="tools-card__video"
+        className={`tools-card__video tools-card__video--light${hasDark ? '' : ' tools-card__video--solo'}`}
         muted
         loop
         playsInline
@@ -86,6 +92,20 @@ export function ToolsCardMedia({
         {videoWebm ? <source src={videoWebm} type="video/webm" /> : null}
         {videoMp4 ? <source src={videoMp4} type="video/mp4" /> : null}
       </video>
+      {hasDark ? (
+        <video
+          className="tools-card__video tools-card__video--dark"
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={poster}
+          aria-hidden="true"
+        >
+          {videoWebmDark ? <source src={videoWebmDark} type="video/webm" /> : null}
+          {videoMp4Dark ? <source src={videoMp4Dark} type="video/mp4" /> : null}
+        </video>
+      ) : null}
     </div>
   )
 }

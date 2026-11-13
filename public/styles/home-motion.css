@@ -17,20 +17,60 @@
 .home-case-detail p { font-size: var(--font-size-body); line-height: var(--leading-relaxed); color: var(--color-text-2); }
 .home-case-detail:last-of-type { border-top: 1px solid var(--color-border-divider); padding-top: 20px; }
 .home-case-links { display: flex; align-items: center; gap: 24px; margin-top: 24px; }
-.home-showcase-pinned { height: 350vh; }
+.home-showcase-pinned { height: 525vh; }
 /* Island scripts run after load, so the pin lands after first paint and the
    browser's scroll restoration. Hold the pinned height until layout() has run
    once, so the page does not grow by 150vh above the viewport. Same viewport rule
    as the JS pin check. */
 @media (min-width: 1100px) and (min-height: 760px) and (prefers-reduced-motion: no-preference) {
-  #home-showcase:not([data-pin-ready]) { min-height: 350vh; }
+  #home-showcase:not([data-pin-ready]) { min-height: 525vh; }
 }
 .home-showcase-pinned .home-showcase-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
 .home-showcase-pinned .home-case { position: absolute; inset: 0; background: transparent; min-height: 0; overflow: visible; }
-.home-showcase-pinned .home-case-copy { position: absolute; top: 50%; transform: translateY(-50%); }
+/* Inset + flex center: translateY(-50%) clipped tall copy (BMW) inside overflow:hidden stage. */
+.home-showcase-pinned .home-case-copy {
+  position: absolute;
+  top: 48px;
+  bottom: 48px;
+  right: 0;
+  left: 54%;
+  width: auto;
+  margin-left: 0;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 max(var(--pad), 48px) 0 0;
+  overflow: visible;
+}
 .home-showcase-pinned #omni-model .home-case-image { opacity: 0; }
 .home-showcase-pinned #omni-model .home-case-copy,
 .home-showcase-pinned #omni-model .home-case-shade { opacity: 0; }
+.home-showcase-pinned #bmw-my-app .home-case-image { opacity: 0; }
+.home-showcase-pinned #bmw-my-app .home-case-copy,
+.home-showcase-pinned #bmw-my-app .home-case-shade { opacity: 0; }
+#bmw-my-app .home-case-image,
+#bmw-my-app .advisory-office > img { object-position: 24% center; }
+#bmw-my-app .home-case-shade {
+  /* Parked car sits left; copy right needs earlier wash (visualqa #9349). */
+  background: linear-gradient(90deg, transparent 26%, var(--color-bg-page) 56%);
+}
+@media (max-width: 1099px) {
+  #bmw-my-app .advisory-office > :is(img, video) {
+    object-position: 30% center;
+  }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 1100px) {
+  #bmw-my-app .advisory-office > :is(img, video) {
+    object-position: 22% center;
+  }
+}
+.bmw-title-390 { display: none; }
+@media (max-width: 420px) {
+  .bmw-title-1440 { display: none; }
+  .bmw-title-390 { display: block; }
+}
 #home-playground { padding: var(--space-3xl) var(--pad); background: var(--color-bg-page); }
 .home-playground-inner { max-width: var(--wrap); margin: auto; }
 #home-playground h2 { font-size: var(--font-size-display); line-height: var(--leading-display); font-weight: 600; margin-bottom: var(--space-xl); }
@@ -91,6 +131,11 @@ html[data-wa-season="winter"] #wa-season-video { background-image: url(/assets/i
   #home-playground { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
   .home-project-grid { grid-template-columns: 1fr; gap: var(--space-xl); }
   #home-playground h2 { margin-bottom: var(--space-lg); }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 1100px) {
+  .home-showcase-pinned #bmw-my-app .home-case-image,
+  .home-showcase-pinned #bmw-my-app .home-case-copy,
+  .home-showcase-pinned #bmw-my-app .home-case-shade { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
