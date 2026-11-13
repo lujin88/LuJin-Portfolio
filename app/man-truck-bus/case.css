@@ -253,6 +253,7 @@
    trailer. Keep the complete scene below the copy; desktop and phone retain
    their authored framing and media sources. */
 @media(min-width:601px) and (max-width:1023px){
+  .man-case .mc-cover{min-height:0}
   .man-case .mc-cover-inner{padding-top:calc(64px + 40px);margin-inline:24px;max-width:560px}
   .man-case .mc-arrival::after{display:none}
   .man-case .mc-arrival-frame{width:100cqw;left:0;top:auto;bottom:0;-webkit-mask-image:linear-gradient(transparent,#000 40px);mask-image:linear-gradient(transparent,#000 40px)}
@@ -261,6 +262,14 @@
 /* Editorial headings use the same face as the shared site chrome. */
 .man-case :is(h1, h2, h3) { font-family: var(--font-poppins), Poppins, ui-sans-serif, system-ui, sans-serif; }
 .man-case .mc-cover-facts { margin: 20px 0 0; max-width: 40ch; }
+
+/* Short tablets keep the copy above the parked truck and leave room beside it
+   for the status note, without pushing the scene below the viewport. */
+@media(min-width:601px) and (max-width:1023px) and (max-height:699px){
+  .man-case .mc-cover-inner{padding-top:80px;max-width:360px}
+  .man-case .mc-cover h1{margin:12px 0 8px}
+  .man-case .mc-cover-facts{margin-top:8px}
+}
 
 /* Editorial wells only: the full-screen cover and product cards keep their geometry. */
 .man-case .mc-width {margin-inline:max(var(--editorial-gutter),var(--content-inset))}
