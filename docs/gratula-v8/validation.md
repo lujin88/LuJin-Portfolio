@@ -103,4 +103,15 @@ Applied the A wording from `GRATULA_PRIVACY_COPY_ROW29_1112/copy.en.json`, inclu
 
 Source inspection found no remaining old host-only/phone/absolute deletion strings in the party-planner page and prototype sources. The allergy and reply crops were visually inspected: neither contains host-only or deletion promises; Mia/Nuts and Elias/Lactose match the prototype's demo fixtures. The allergy crop still describes demo cake suggestions; this update does not certify production recommendations. Pip, map assets and animations are unchanged.
 
-Frozen pnpm installation passed. Added privacy assertions to the existing three-width live/static regression, but did not execute it: Haiku quota exhaustion is recorded in channel #11290/#11298, and the per-PR Codex exceptions for #195/#199 do not cover #175. PM was asked to arrange a runner in #11335. Browser fit at 390/700/1440, new screenshots, prototype FAQ/hint interaction checks and independent legal/QA/visual review remain pending. Existing screenshots predate this wording change and are not evidence for it. No build, lint, TypeScript or browser pass is claimed. The pre-existing next-env.d.ts change is excluded.
+Lu #11414 and PM #11417 authorized Codex test-runner for this PR on 13 November, replacing the exhausted Haiku runner. The authorization blocker is resolved. Codex tested source commit `e80517c5058c8661b90a5c8632202be207fe59c0` through the shared test lock against this worktree's preview on port 4635; the follow-up commit changes only this validation note.
+
+Frozen pnpm installation, diff check and `scripts/check-gratula-v8.mjs` passed. Both live and static pages passed the updated privacy assertions at 390/700/1440. Additional checks passed privacy-card horizontal/vertical fit, page overflow, FAQ expand/collapse with approved wording, RSVP No hiding the dietary hint and Yes restoring it, and name input enabling Send reply. No page errors were observed. Fresh full-page, privacy-card, FAQ and RSVP screenshots were captured for all three widths; earlier screenshots are not evidence for this revision.
+
+Evidence: `/Users/lu/.buzz/OUTBOX/GRATULA_175_CODEX_1113/` contains `REPORT.md`, `browser.log`, `install.log`, `metrics.json`, `source-version.json`, `check.cjs` and screenshots. Source hashes identify the tested files. Headless installed Google Chrome used viewport height 900 and reduced motion.
+
+```text
+[test-lock] 开始 16:39:21 负载 8.59 5.55 4.03 排队 0 秒
+[test-lock] 结束 16:39:54 负载 7.60 5.66 4.13 退出码 0
+```
+
+Limits: FAQ/RSVP views were entered through the prototype's existing `A.go` state navigation before exercising real DOM clicks and input; the complete journey from the welcome screen was not tested. No new production build, TypeScript, lint, WebKit, normal-motion, text-zoom or production access/deletion checks were run. Legal approved the wording at e80517c; independent QA/visual review and current-HEAD acceptance remain pending. Keep `hold`. No product code, artwork, Pip or map changes were made by this validation follow-up. The pre-existing next-env.d.ts change is excluded.
