@@ -252,7 +252,7 @@ export function BMWOneSource() {
       <div className="screen-region vehicle-lower" style={{"aspectRatio": "376/270"}}>
         <img aria-hidden="true" alt="" src="/lab/bmw-one-source/assets/i4-complete.png" style={{"transform": "translateY(-66.871166%)"}} />
       </div>
-    </div>
+    </figure>
   </div>
   <p className="chapter-copy preview-note">
     The interface can only show what the vehicle reports. Sending, waiting, success and failure are different states.
