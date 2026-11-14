@@ -1,0 +1,158 @@
+/* Layout and decoration values from visual v8.1–v8.3, scoped away from the live hero. */
+.pp-landing .gratula-story { font-family:var(--pp-ui);line-height:1.5; }
+.pp-landing .gratula-story * { box-sizing:border-box; }
+.pp-landing .gratula-story h2,.pp-landing .gratula-story h3 { font-family:var(--pp-ui);font-weight:600;letter-spacing:-.035em; }
+.pp-landing .gratula-story h2 { line-height:1.12; }
+.pp-landing .gratula-story img { height:auto; }
+.pp-landing .gratula-story .cta { display:inline-block;border:1px solid currentColor;border-radius:999px;padding:14px 24px;font-size:15px;margin-top:32px; }
+.pp-landing .gratula-story .rsvp-section{background:#eaf2fe;color:#0b1a3b;padding:96px 6.5%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,690px);align-items:center;gap:64px;min-height:440px}
+.pp-landing .gratula-story .rsvp-section h2{font-family:Poppins,sans-serif;font-size:40px;line-height:1.12;letter-spacing:-.035em;font-weight:600;max-width:400px;margin:0}
+.pp-landing .gratula-story .rsvp-module{display:block;width:100%;height:auto;max-width:690px;border-radius:30px}
+@media(max-width:1100px){.pp-landing .gratula-story .rsvp-section{grid-template-columns:1fr;gap:32px;padding:64px 6.5%;min-height:0}.pp-landing .gratula-story .rsvp-section h2{max-width:540px}.pp-landing .gratula-story .rsvp-module{justify-self:center}}
+@media(max-width:700px){.pp-landing .gratula-story .rsvp-section{padding:48px 24px;gap:32px}.pp-landing .gratula-story .rsvp-section h2{font-size:30.4px;max-width:450px}.pp-landing .gratula-story .rsvp-module{border-radius:15px}}
+
+/* All palette, type and spacing values reuse v5 and the project theme. */
+.pp-landing .gratula-story a{color:inherit}.pp-landing .gratula-story a:focus-visible{outline:3px solid currentColor;outline-offset:5px}.pp-landing .gratula-story .cta{text-decoration:none}
+.pp-landing .gratula-story .proof-section{padding:96px 6.5%;background:#fbf8f3}.pp-landing .gratula-story .proof-section h2,.pp-landing .gratula-story .finale h2{font-size:40px;line-height:1.12;letter-spacing:-.035em;font-weight:600;margin:0}.pp-landing .gratula-story .intro{max-width:700px;margin:0 auto 48px;text-align:center}.pp-landing .gratula-story .proof-section p{font-size:17px;line-height:1.65;margin:24px 0 0}.pp-landing .gratula-story .intro p{color:#5a6a8f}.pp-landing .gratula-story .rsvp-section h2{max-width:430px}.pp-landing .gratula-story .guest-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.pp-landing .gratula-story .guest-feature{display:flex;flex-direction:column;min-width:0;padding:32px;border-radius:24px;background:#eaf2fe}.pp-landing .gratula-story .guest-feature:nth-child(2){background:#fff3d6}.pp-landing .gratula-story .guest-feature:nth-child(3){background:#e1f5ec}.pp-landing .gratula-story .guest-feature h3{font-size:28px;line-height:1.2;letter-spacing:-.025em;margin:24px 0 0}.pp-landing .gratula-story .guest-feature p{font-size:15px;margin-top:16px}.pp-landing .gratula-story .feature-name{font-size:13px;color:#5a6a8f}.pp-landing .gratula-story .guest-feature img{display:block;width:100%;height:auto;margin-top:32px;align-self:center}.pp-landing .gratula-story .guest-feature .gift-illustration{width:180px;max-height:180px;object-fit:contain;margin:auto auto 0;padding-top:24px}.pp-landing .gratula-story .guest-feature .private-copy{margin-top:auto;padding-top:24px}.pp-landing .gratula-story .private-copy strong{font-size:18.4px;line-height:1.3;display:block}.pp-landing .gratula-story .private-copy p{font-size:13px}.pp-landing .gratula-story .proof-split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}.pp-landing .gratula-story .plan-proof{background:#eaf2fe}.pp-landing .gratula-story .story-copy{max-width:480px}.pp-landing .gratula-story .story-copy h2{max-width:460px}.pp-landing .gratula-story .facts{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:32px 0}.pp-landing .gratula-story .facts div{border-bottom:1px solid #dfe7f3;padding-bottom:16px}.pp-landing .gratula-story .facts dt{font-size:13px;color:#5a6a8f}.pp-landing .gratula-story .facts dd{font-size:28px;font-weight:600;margin:4px 0 0}.pp-landing .gratula-story .product-stage{position:relative;display:flex;justify-content:center;align-items:center;padding:32px;min-width:0;border-radius:24px;background:#fbf8f3}.pp-landing .gratula-story .device{width:286px;max-width:100%;background:#fbf8f3;border:8px solid #0b1a3b;border-radius:40px;overflow:hidden;box-shadow:0 24px 48px #0b1a3b18;position:relative}.pp-landing .gratula-story .device img{display:block;width:100%;height:auto}.pp-landing .gratula-story .rsvp-proof .product-stage{background:#eaf2fe}.pp-landing .gratula-story .rsvp-proof .proof-split{grid-template-columns:1fr 1fr}.pp-landing .gratula-story .guest-detail{display:block;width:100%;height:auto;max-width:393px;border-radius:24px}.pp-landing .gratula-story .sync-copy{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}.pp-landing .gratula-story .sync-copy div{border-top:1px solid #dfe7f3;padding-top:16px}.pp-landing .gratula-story .sync-copy strong{font-size:18.4px;font-weight:600;display:block}.pp-landing .gratula-story .sync-copy span{font-size:15px;color:#5a6a8f}.pp-landing .gratula-story .local-proof{background:#fff3d6}.pp-landing .gratula-story .local-proof .intro{margin-bottom:48px}.pp-landing .gratula-story .local-proof .proof-split{align-items:start;grid-template-columns:1fr 1.2fr}.pp-landing .gratula-story .local-proof h3{font-size:28px;line-height:1.2;letter-spacing:-.025em;margin:0}.pp-landing .gratula-story .local-proof .note{display:block;width:240px;max-width:80%;margin:32px 0 0}.pp-landing .gratula-story .supplier-list{margin:0}.pp-landing .gratula-story .supplier-list div{display:grid;grid-template-columns:1fr auto;gap:24px;border-top:1px solid #d98e0040;padding:24px 0}.pp-landing .gratula-story .supplier-list div:last-child{border-bottom:1px solid #d98e0040}.pp-landing .gratula-story .supplier-list dt{font-weight:600;font-size:18.4px}.pp-landing .gratula-story .supplier-list dt small{display:block;font-size:15px;font-weight:400;margin-top:8px}.pp-landing .gratula-story .supplier-list dd{font-size:15px;margin:0;text-align:right;line-height:1.7}.pp-landing .gratula-story .finale{background:#eaf2fe;padding:96px 24px;text-align:center;overflow:hidden}.pp-landing .gratula-story .finale .closing-stage{position:relative;max-width:960px;margin:48px auto 0;display:flex;align-items:center;justify-content:center;gap:64px}.pp-landing .gratula-story .closing-stage .prop{width:200px;height:200px;object-fit:contain}.pp-landing .gratula-story .finale .device{flex-shrink:0;width:286px}.pp-landing .gratula-story .finale .cta{background:#1768e8;color:white;border-color:#1768e8;margin-top:32px}.pp-landing .gratula-story .finale p{font-size:15px;margin:24px 0 0}
+@media(min-width:701px) and (max-width:1100px){.pp-landing .gratula-story .guest-grid{gap:16px}.pp-landing .gratula-story .guest-feature{padding:24px}.pp-landing .gratula-story .guest-feature h3{font-size:24px}.pp-landing .gratula-story .proof-split{gap:32px}.pp-landing .gratula-story .supplier-list div{grid-template-columns:1fr}.pp-landing .gratula-story .supplier-list dd{text-align:left}.pp-landing .gratula-story .closing-stage .prop{width:160px}.pp-landing .gratula-story .finale .closing-stage{gap:32px}}
+@media(max-width:700px){.pp-landing .gratula-story .proof-section{padding:48px 24px}.pp-landing .gratula-story .proof-section h2,.pp-landing .gratula-story .finale h2{font-size:30.4px}.pp-landing .gratula-story .intro{margin-bottom:32px;text-align:left}.pp-landing .gratula-story .proof-section p{font-size:15px;margin-top:16px}.pp-landing .gratula-story .guest-grid{grid-template-columns:1fr;gap:24px}.pp-landing .gratula-story .guest-feature{padding:24px}.pp-landing .gratula-story .guest-feature h3{font-size:28px;margin-top:16px}.pp-landing .gratula-story .guest-feature img{max-width:345px}.pp-landing .gratula-story .guest-feature .gift-illustration{margin:24px auto 0;padding:0;width:160px;height:140px}.pp-landing .gratula-story .guest-feature .private-copy{margin-top:24px;padding-top:0}.pp-landing .gratula-story .guest-feature p{font-size:15px}.pp-landing .gratula-story .proof-split,.pp-landing .gratula-story .rsvp-proof .proof-split,.pp-landing .gratula-story .local-proof .proof-split{grid-template-columns:1fr;gap:32px}.pp-landing .gratula-story .rsvp-proof .product-stage{order:2}.pp-landing .gratula-story .rsvp-proof .story-copy{order:1}.pp-landing .gratula-story .product-stage{padding:24px 16px}.pp-landing .gratula-story .device{width:250px;border-width:6px;border-radius:34px}.pp-landing .gratula-story .facts{gap:24px;margin:24px 0}.pp-landing .gratula-story .facts dd{font-size:24px}.pp-landing .gratula-story .sync-copy{gap:24px;margin-top:24px}.pp-landing .gratula-story .supplier-list div{gap:16px}.pp-landing .gratula-story .supplier-list dt{font-size:17px}.pp-landing .gratula-story .supplier-list dt small,.pp-landing .gratula-story .supplier-list dd{font-size:13px}.pp-landing .gratula-story .local-proof .note{display:none}.pp-landing .gratula-story .finale{padding:48px 24px}.pp-landing .gratula-story .finale .closing-stage{margin-top:32px;gap:0}.pp-landing .gratula-story .finale .device{width:250px}.pp-landing .gratula-story .closing-stage .prop{position:absolute;width:100px;height:100px;bottom:0;z-index:2}.pp-landing .gratula-story .closing-stage .prop:first-child{left:-16px;transform:rotate(-12deg)}.pp-landing .gratula-story .closing-stage .prop:last-child{right:-16px;bottom:32px;transform:rotate(12deg)}.pp-landing .gratula-story .finale h2 br{display:none}}
+
+/* v7: scoped corrections to the approved v6 proof. */
+.pp-landing .gratula-story .guest-feature .allergy-proof{display:none}
+@media(min-width:701px){
+ .pp-landing .gratula-story .guest-feature .allergy-proof{display:block;margin-top:24px;border-radius:24px}
+ .pp-landing .gratula-story .guest-feature .private-copy{margin-top:24px;padding-top:0}
+ .pp-landing .gratula-story .guest-feature .gift-illustration{margin:24px auto 0;padding-top:0}
+}
+@media(max-width:700px){
+ .pp-landing .gratula-story .finale h2{font-size:24px;line-height:1.2}
+ .pp-landing .gratula-story .finale h2 br{display:block}
+ .pp-landing .gratula-story .finale .closing-stage{display:grid;grid-template-columns:1fr 1fr;gap:24px;justify-items:center;max-width:342px}
+ .pp-landing .gratula-story .finale .device{grid-column:1 / -1;grid-row:1}
+ .pp-landing .gratula-story .closing-stage .prop{position:static;grid-row:2;z-index:auto}
+ .pp-landing .gratula-story .closing-stage .prop:first-child{grid-column:1}
+ .pp-landing .gratula-story .closing-stage .prop:last-child{grid-column:2}
+}
+
+/* v8: one continuous party-blue world below the pixel-locked hero.
+   Existing Gratula blue / navy / ink / soft colors; no new DS tokens. */
+.pp-landing .gratula-story.night-world{color:#fff;background:linear-gradient(180deg,transparent 0,#0a1d5c 32%,#0b1a3b 100%),linear-gradient(90deg,#0a1d5c,#1768e8);overflow:hidden}
+.pp-landing .gratula-story.night-world section{position:relative;background:transparent;color:#fff}
+.pp-landing .gratula-story.night-world .intro p,.pp-landing .gratula-story.night-world .feature-name,.pp-landing .gratula-story.night-world .facts dt,.pp-landing .gratula-story.night-world .sync-copy span{color:#eaf2fe}
+.pp-landing .gratula-story.night-world .guest-feature{background:rgba(234,242,254,.06);border:1px solid rgba(234,242,254,.16);color:#fff}
+.pp-landing .gratula-story.night-world .product-stage{background:rgba(234,242,254,.06);border:1px solid rgba(234,242,254,.16)}
+.pp-landing .gratula-story.night-world .guest-feature img:not(.gift-illustration){background:#fff;border-radius:16px}
+.pp-landing .gratula-story.night-world .facts div,.pp-landing .gratula-story.night-world .sync-copy div,.pp-landing .gratula-story.night-world .supplier-list div{border-color:rgba(234,242,254,.24)}
+.pp-landing .gratula-story.night-world .device{box-shadow:0 24px 48px #0b1a3b;border-color:#0b1a3b}
+.pp-landing .gratula-story.night-world .finale .cta{background:#eaf2fe;color:#0a1d5c;border-color:#eaf2fe}
+.pp-landing .gratula-story.night-world .copyright{opacity:1;color:#eaf2fe}
+.pp-landing .gratula-story.night-world .rsvp-section{padding-bottom:128px}
+.pp-landing .gratula-story.night-world .proof-section{padding-top:128px;padding-bottom:128px}
+.pp-landing .gratula-story.night-world .finale{padding-top:128px;padding-bottom:128px}
+.pp-landing .gratula-story.night-world .ornament{position:absolute;display:block;width:96px;height:96px;object-fit:contain;pointer-events:none}
+.pp-landing .gratula-story.night-world .ornament.left{top:16px;left:24px;transform:rotate(-12deg)}
+.pp-landing .gratula-story.night-world .ornament.right{top:16px;right:24px;transform:rotate(12deg)}
+.pp-landing .gratula-story.night-world .rsvp-section .ornament{top:auto;bottom:0;left:24px;width:128px;height:128px}
+.pp-landing .gratula-story.night-world .local-proof .note{margin-left:48px}
+.pp-landing .gratula-story.night-world .finale .prop{width:200px;height:200px}
+@media(max-width:700px){
+ .pp-landing .gratula-story.night-world .rsvp-section{padding-bottom:128px}
+ .pp-landing .gratula-story.night-world .proof-section{padding-top:96px;padding-bottom:48px}
+ .pp-landing .gratula-story.night-world .finale{padding-top:96px;padding-bottom:48px}
+ .pp-landing .gratula-story.night-world .ornament{width:64px;height:64px}
+ .pp-landing .gratula-story.night-world .ornament.left{top:8px;left:24px}
+ .pp-landing .gratula-story.night-world .ornament.right{top:8px;right:24px}
+ .pp-landing .gratula-story.night-world .rsvp-section .ornament{top:auto;width:96px;height:96px;bottom:8px}
+ .pp-landing .gratula-story.night-world .local-proof .note{display:block;width:128px;height:128px;object-fit:contain;margin:24px 0 0 auto}
+ .pp-landing .gratula-story.night-world .finale .prop{width:100px;height:100px}
+}
+
+/* v8.1: only the three changes authorized in PM #8876. */
+.pp-landing .gratula-story.night-world .product-stage:has(.device){background:transparent;border-color:transparent}
+.pp-landing .gratula-story.night-world{background:linear-gradient(180deg,#0a1d5c,rgba(10,29,92,0) 256px),linear-gradient(180deg,transparent 0,#0a1d5c 32%,#0b1a3b 100%),linear-gradient(90deg,#0a1d5c,#1768e8)}
+.pp-landing .gratula-story.night-world .finale .confetti {
+  position:absolute;border-radius:50%;box-shadow:0 5px 10px rgba(11,26,59,.2),inset -3px -4px 0 rgba(0,0,0,.06);z-index:3
+}
+.pp-landing .gratula-story.night-world .finale .confetti.pk {
+  background:#ff94b3
+}
+.pp-landing .gratula-story.night-world .finale .confetti.bl {
+  background:#b3dcff
+}
+.pp-landing .gratula-story.night-world .finale .confetti.yl {
+  background:#ffd27a
+}
+.pp-landing .gratula-story.night-world .finale .confetti.mt {
+  background:#9fe0cf
+}
+
+.pp-landing .gratula-story.night-world .finale .cc1 { left: 6%; top: 16%; width: 34px; height: 34px; }
+.pp-landing .gratula-story.night-world .finale .cc2 { left: 16%; top: 34%; width: 22px; height: 22px; }
+.pp-landing .gratula-story.night-world .finale .cc3 { left: 10%; top: 78%; width: 28px; height: 28px; }
+.pp-landing .gratula-story.night-world .finale .cc4 { right: 24%; top: 18%; width: 30px; height: 30px; }
+.pp-landing .gratula-story.night-world .finale .cc5 { right: 7%; top: 12%; width: 26px; height: 26px; }
+.pp-landing .gratula-story.night-world .finale .cc6 { right: 10%; top: 80%; width: 30px; height: 30px; }
+.pp-landing .gratula-story.night-world .finale .cc7 { right: 27%; top: 72%; width: 22px; height: 22px; }
+.pp-landing .gratula-story.night-world .finale .cc8 { left: 10%; top: 30%; width: 18px; height: 18px; }
+.pp-landing .gratula-story.night-world .finale .cc9 { right: 18%; top: 56%; width: 20px; height: 20px; }
+.pp-landing .gratula-story.night-world .finale .cc10 { left: 28%; top: 84%; width: 24px; height: 24px; }
+.pp-landing .gratula-story.night-world .finale .cc11 { right: 38%; top: 88%; width: 18px; height: 18px; }
+.pp-landing .gratula-story.night-world .finale .cc12 { left: 4%; top: 48%; width: 16px; height: 16px; }
+.pp-landing .gratula-story.night-world .finale .cc11 {
+    display: none;
+  }
+.pp-landing .gratula-story.night-world .finale .cc10 {
+    display: none;
+  }
+.pp-landing .gratula-story.night-world .finale .confetti{pointer-events:none}
+@media(max-width:700px){
+ .pp-landing .gratula-story.night-world .finale .confetti{width:16px;height:16px;left:auto;right:auto}
+ .pp-landing .gratula-story.night-world .finale .cc1{left:12px;top:26%}
+ .pp-landing .gratula-story.night-world .finale .cc2{right:12px;top:30%}
+ .pp-landing .gratula-story.night-world .finale .cc3{left:24px;top:40%}
+ .pp-landing .gratula-story.night-world .finale .cc4{right:24px;top:44%}
+ .pp-landing .gratula-story.night-world .finale .cc5{left:12px;top:54%}
+ .pp-landing .gratula-story.night-world .finale .cc6{right:12px;top:58%}
+ .pp-landing .gratula-story.night-world .finale .cc7{left:24px;top:68%}
+ .pp-landing .gratula-story.night-world .finale .cc8{right:24px;top:72%}
+ .pp-landing .gratula-story.night-world .finale .cc9,.pp-landing .gratula-story.night-world .finale .cc10,.pp-landing .gratula-story.night-world .finale .cc11,.pp-landing .gratula-story.night-world .finale .cc12{display:none}
+}
+/* v8.2 — background-only continuation; PM #8904. */
+.pp-landing .gratula-story.night-world{position:relative;isolation:isolate}
+
+/* Continue the existing phone shadow beyond the hero's overflow clip. */
+/* v8.3 — existing party groups become background graphics; PM #8956. */
+.pp-landing .gratula-story.night-world .rsvp-section,.pp-landing .gratula-story.night-world #plan,.pp-landing .gratula-story.night-world #local,.pp-landing .gratula-story.night-world .finale{isolation:isolate}
+.pp-landing .gratula-story.night-world .ornament[src="/lab/party-planner/party.webp"],.pp-landing .gratula-story.night-world .finale .prop[src="/lab/party-planner/party.webp"]{visibility:hidden}
+.pp-landing .gratula-story.night-world .party-background{position:absolute;inset:0;overflow:hidden;z-index:-1;pointer-events:none}
+.pp-landing .gratula-story.night-world .party-background img{position:absolute;width:360px;height:360px;object-fit:contain;opacity:.2;filter:brightness(.8);transform:rotate(-12deg)}
+.pp-landing .gratula-story.night-world .rsvp-section .party-background img{width:400px;height:400px;left:-48px;bottom:-96px}
+.pp-landing .gratula-story.night-world #plan .party-background img{left:-48px;top:0}
+.pp-landing .gratula-story.night-world #local .party-background img{right:-48px;top:0;transform:rotate(12deg)}
+.pp-landing .gratula-story.night-world .finale .party-background img{width:400px;height:400px;left:0;bottom:80px}
+@media(max-width:700px){
+ .pp-landing .gratula-story.night-world .party-background img{width:256px;height:256px;opacity:.16}
+ .pp-landing .gratula-story.night-world .rsvp-section .party-background img{width:256px;height:256px;left:-48px;bottom:-32px}
+ .pp-landing .gratula-story.night-world #plan .party-background img{left:auto;right:-32px;top:0;transform:rotate(12deg)}
+ .pp-landing .gratula-story.night-world #local .party-background img{right:-32px;top:0}
+ .pp-landing .gratula-story.night-world .finale .party-background img{width:280px;height:280px;left:-32px;bottom:64px}
+}
+
+/* PM #8974: desktop supplier decoration only; mobile unchanged. */
+@media(min-width:1101px){.pp-landing .gratula-story.night-world #local .party-background img{width:240px;height:240px;top:0;right:16px}}
+
+/* The live hero has plain blue paint: fade the same paint into the supplied navy world. */
+.pp-landing .gratula-story.night-world { background:linear-gradient(180deg,#1768e8 0%,rgba(23,104,232,0) 384px),linear-gradient(180deg,transparent 0,#0a1d5c 32%,#0b1a3b 100%),linear-gradient(90deg,#0a1d5c,#1768e8); }
+.pp-landing .gratula-story .seam-field { display:none; }
+.pp-landing .gratula-story .supplier-empty { min-height:116px; }
+.pp-landing .gratula-story .supplier-conditions { grid-column:1/-1;text-align:left; }
+.pp-landing .gratula-story .supplier-list a { text-underline-offset:4px; }
+.pp-landing .gratula-story .details-label { color:#eaf2fe; }
+.pp-landing .pp-site-closing { background:#0b1a3b; }
+
+/* Verified supplier details use the existing list hierarchy. */
+.pp-landing .gratula-story .local-proof .supplier-eyebrow { margin:0 0 16px; }
+.pp-landing .gratula-story .supplier-list div { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+.pp-landing .gratula-story .supplier-list .supplier-conditions { text-align:left; }
+.pp-landing .gratula-story .local-proof .supplier-disclosure { font-size:13px;line-height:1.7; }
+@media(max-width:1100px){.pp-landing .gratula-story .supplier-list div{grid-template-columns:1fr}}

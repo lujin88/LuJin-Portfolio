@@ -1,0 +1,62 @@
+{
+  "local.eyebrow": {
+    "en": "Local suppliers"
+  },
+  "local.title": {
+    "en": "Suppliers to explore"
+  },
+  "local.subtitle": {
+    "en": "Cake, a children’s party package and a magic show in Zürich."
+  },
+  "local.cake.name": {
+    "en": "Bäckerei Conditorei Stocker"
+  },
+  "local.cake.description": {
+    "en": "Pirate-themed birthday cake"
+  },
+  "local.cake.price": {
+    "en": "CHF 58 for 8 people · CHF 68 for 12 people"
+  },
+  "local.cake.conditions": {
+    "en": "Order at least 2 working days in advance."
+  },
+  "local.cake.sourceLabel": {
+    "en": "View cake prices"
+  },
+  "local.venue.name": {
+    "en": "Sihlcity Minicity"
+  },
+  "local.venue.description": {
+    "en": "Disco-Spass: a children’s birthday party. Parents do not attend; cake costs extra."
+  },
+  "local.venue.price": {
+    "en": "CHF 25 per child · 2 hours"
+  },
+  "local.venue.conditions": {
+    "en": "2-hour party on Wednesdays, between 14:00 and 17:30; ages 4–8; 4–10 children including the birthday child. Not during Zürich city school holidays."
+  },
+  "local.venue.sourceLabel": {
+    "en": "View birthday package"
+  },
+  "local.performer.name": {
+    "en": "Bazinga Parties Zürich"
+  },
+  "local.performer.description": {
+    "en": "Children’s stage magic package for up to 25 children"
+  },
+  "local.performer.price": {
+    "en": "CHF 700 per package"
+  },
+  "local.performer.conditions": {
+    "en": "Travel within Zürich, setup and show materials included. Confirm performance length with the supplier."
+  },
+  "local.performer.sourceLabel": {
+    "en": "View magic show package"
+  },
+  "local.checkedDate": {
+    "en": "Prices viewed on supplier websites on 12 November 2026"
+  },
+  "local.disclosure": {
+    "en": "Independent examples, not a combined package or a booking offer. Not affiliated with or endorsed by these suppliers. Confirm prices, availability and terms with each supplier."
+  }
+}
