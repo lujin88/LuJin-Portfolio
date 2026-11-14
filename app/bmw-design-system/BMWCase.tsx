@@ -112,7 +112,7 @@ function ClimateKeyScreen() {
 
 export function BMWCase(){
  return <main className="one-control v7" id="top" lang="en">
-  <header className="oc-hero"><img src={assets+'ix3-landscape.webp'} alt="BMW overlooking the Alps at sunset" fetchPriority="high"/><div><span>BMW App Design System · 2020 · Futurice</span><h1>One button<br/>for the driver.</h1><p>Every model’s rules behind it.</p></div></header>
+  <header className="oc-hero"><div><span>BMW App Design System · 2020 · Futurice</span><h1>One button<br/>for the driver.</h1><p>Every model’s rules behind it.</p></div></header>
   <div className="oc-role"><strong>Lu Jin <span>/ Design Lead</span></strong><p>I led six designers and the BMW app design system.</p></div>
   <Archive/>
   <section id="built" className="v7-block"><div className="v7-split"><div><span className="oc-kicker">01 · 2020 · Climate control</span><h2>One control,<br/>three rules.</h2>

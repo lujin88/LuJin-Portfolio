@@ -24,7 +24,7 @@ function SignalStudy({step}:{step:number}) {
       <i className="oc-first-link"/>
       <span className="oc-endpoint"><svg viewBox="0 0 32 32"><rect x="3" y="5" width="26" height="9" rx="3"/><rect x="3" y="18" width="26" height="9" rx="3"/><path d="M8 10h2m-2 13h2"/></svg></span>
       <i className="oc-last-link"/>
-      <img src="/assets/images/bmw-system/bmw-ix3.png" alt=""/>
+      <span className="oc-endpoint oc-endpoint-car" aria-hidden="true"><svg viewBox="0 0 32 32"><path fill="currentColor" d="M4 18h24v4H4zm2-6 3-5h14l3 5H6zm5 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm10 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg></span>
     </div>
     <div className="oc-signal-labels"><span>App</span><span>Server</span><span>Vehicle</span></div>
     <figcaption aria-live="polite"><i aria-hidden="true"/>{messages[step]}</figcaption>
@@ -80,7 +80,6 @@ export function BMWAppDesignSystemOneControl() {
   const [step,setStep]=useState(2)
   return <main className="one-control" lang="en" id="top">
     <header className="oc-hero">
-      <img src="/assets/images/bmw-system/ix3-landscape.webp" alt="BMW overlooking the Alps at sunset" fetchPriority="high"/>
       <div><span>BMW App Design System · 2020 · Futurice</span>
       <h1>One button<br/>for the driver.</h1>
       <p>Every model’s rules behind it.</p></div>
