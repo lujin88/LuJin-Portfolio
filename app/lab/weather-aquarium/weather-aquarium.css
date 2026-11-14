@@ -480,7 +480,8 @@
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 600ms ease, transform 600ms ease;
-}.wa-page .reveal.is-visible{
+}.wa-page .reveal.is-visible,
+html:not([data-js]) .wa-page .reveal{
   opacity: 1;
   transform: translateY(0);
 }
@@ -632,7 +633,8 @@ html:has(.wa-page) {
   transform: translateY(20px);
   transition: opacity var(--duration-reveal) var(--ease), transform var(--duration-reveal) var(--ease);
 }
-.wa-closing .contact-reveal.is-visible {
+.wa-closing .contact-reveal.is-visible,
+html:not([data-js]) .wa-closing .contact-reveal {
   opacity: 1;
   transform: translateY(0);
 }

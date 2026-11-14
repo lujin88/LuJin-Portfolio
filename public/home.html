@@ -1337,6 +1337,9 @@
   .exp-content[data-status="hidden"]   { opacity: 0; pointer-events: none; }
   .exp-content[data-status="active"]   { opacity: 1; pointer-events: auto; }
   .exp-content[data-status="previous"] { opacity: 1; pointer-events: none; }
+  /* No JS (or it failed): the whole timeline, see JS_EARLY in app/layout.tsx. */
+  html:not([data-js]) .exp-content[data-status] { opacity: 1; }
+  html:not([data-js]) .exp-dot[data-index][data-status="hidden"] { opacity: 1; }
 
   /* node decoration: ONE vertical connector + "+" crosshair at the top */
   .exp-content__node {
@@ -1570,7 +1573,8 @@
     transform: translateY(20px);
     transition: opacity var(--duration-reveal) var(--ease), transform var(--duration-reveal) var(--ease);
   }
-  .contact-reveal.is-visible {
+  .contact-reveal.is-visible,
+  html:not([data-js]) .contact-reveal {
     opacity: 1;
     transform: translateY(0);
   }
