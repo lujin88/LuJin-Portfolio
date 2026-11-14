@@ -1,0 +1,89 @@
+[
+  {
+    "w": 390,
+    "file": "a",
+    "overflow": false,
+    "imagesLoaded": true,
+    "annotations": 0,
+    "anchors": []
+  },
+  {
+    "w": 390,
+    "file": "landing",
+    "overflow": false,
+    "imagesLoaded": true,
+    "annotations": 0,
+    "anchors": [
+      {
+        "id": "monitor",
+        "y": 306
+      },
+      {
+        "id": "scranton",
+        "y": 1046
+      },
+      {
+        "id": "office",
+        "y": 1786
+      }
+    ]
+  },
+  {
+    "w": 700,
+    "file": "a",
+    "overflow": false,
+    "imagesLoaded": true,
+    "annotations": 0,
+    "anchors": []
+  },
+  {
+    "w": 700,
+    "file": "landing",
+    "overflow": false,
+    "imagesLoaded": true,
+    "annotations": 0,
+    "anchors": [
+      {
+        "id": "monitor",
+        "y": 306
+      },
+      {
+        "id": "scranton",
+        "y": 1046
+      },
+      {
+        "id": "office",
+        "y": 1786
+      }
+    ]
+  },
+  {
+    "w": 1440,
+    "file": "a",
+    "overflow": false,
+    "imagesLoaded": true,
+    "annotations": 0,
+    "anchors": []
+  },
+  {
+    "w": 1440,
+    "file": "landing",
+    "overflow": false,
+    "imagesLoaded": true,
+    "annotations": 0,
+    "anchors": [
+      {
+        "id": "monitor",
+        "y": 484
+      },
+      {
+        "id": "scranton",
+        "y": 1284
+      },
+      {
+        "id": "office",
+        "y": 2084
+      }
+    ]
+  }
+]

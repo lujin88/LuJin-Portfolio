@@ -1,0 +1,6 @@
+@import url("../hiw-agent-projects-1111/style.css");
+/* Lu #7396: minimal revision, retaining approved layout tokens. */
+header,.controls,.cards,.rail,.landing .project-section{border-top:0;border-bottom:0}
+.hero{display:flex;justify-content:center}
+.hero img{width:auto;max-width:100%}
+@media(max-width:719px){.rail{border-top:0}.hero{align-items:center}}
