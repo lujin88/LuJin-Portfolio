@@ -1,0 +1,34 @@
+[
+  {
+    "file": "season-spring-lindt.webp",
+    "width": 1400,
+    "height": 830,
+    "originalBytes": 1743434,
+    "bytes": 341816,
+    "sha256": "ab6496d19e6d81276095edfc5a9aa850552afcf69cb0cc61db0aca42f0a229d4"
+  },
+  {
+    "file": "season-summer-lindt.webp",
+    "width": 1400,
+    "height": 830,
+    "originalBytes": 1794038,
+    "bytes": 344700,
+    "sha256": "b90995c8f501f415cc877b4018430cec98592f04bdad8a6c5b9af47e801c001e"
+  },
+  {
+    "file": "season-autumn-lindt.webp",
+    "width": 1400,
+    "height": 830,
+    "originalBytes": 1798680,
+    "bytes": 337006,
+    "sha256": "85ec9ee26bb5de39603ccf25e73be9a9f83f4d897b75f807df3bcc1a062ac569"
+  },
+  {
+    "file": "season-winter-lindt.webp",
+    "width": 1400,
+    "height": 830,
+    "originalBytes": 1724236,
+    "bytes": 331114,
+    "sha256": "31e28bc1caacf6b4fd9f359e90b9e86d70412d3b016253cb7631723b73bba06f"
+  }
+]

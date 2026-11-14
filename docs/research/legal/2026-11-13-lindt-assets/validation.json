@@ -1,0 +1,88 @@
+[
+  {
+    "season": "spring",
+    "sourceSha256": "7b72fe80ceec4cb966f874dacffd22174b5318898f5bc861f27ce0fef3faa1f7",
+    "outputSha256": "d104d281a6c61cb73de3f0d39a401bcb0ff4a806b25463ac7a115bf6c73ab787",
+    "boxes": [
+      [
+        1138,
+        540,
+        1260,
+        638
+      ],
+      [
+        1260,
+        520,
+        1376,
+        610
+      ]
+    ],
+    "changedPixels": 21548,
+    "outsideMaskDiff": 0,
+    "sourceCommit": "3c20cbbd571a81d1ef5d1796f8d7def5cee2109f",
+    "asset": "public/assets/images/lab/weather-aquarium/season-spring-lindt.webp"
+  },
+  {
+    "season": "summer",
+    "sourceSha256": "fcd89c66723217b0c4ef28ce4a47b17172a44207022a4fac0bde2addec6bf9d1",
+    "outputSha256": "22de411c4170452270ca664cb24320cfc7930231b1bdfc768a4b7e957ee142af",
+    "boxes": [
+      [
+        1138,
+        540,
+        1260,
+        638
+      ],
+      [
+        1260,
+        520,
+        1376,
+        610
+      ]
+    ],
+    "changedPixels": 21550,
+    "outsideMaskDiff": 0,
+    "sourceCommit": "3c20cbbd571a81d1ef5d1796f8d7def5cee2109f",
+    "asset": "public/assets/images/lab/weather-aquarium/season-summer-lindt.webp"
+  },
+  {
+    "season": "autumn",
+    "sourceSha256": "58858b889cd42873ab75963b91519b48739634b8ab4c4f048978e157bc59ee49",
+    "outputSha256": "32332ff9cc3f4b1ccfaf14bbda29097f66fee837b3f252423e020bf3a6826ee7",
+    "boxes": [
+      [
+        1138,
+        540,
+        1260,
+        638
+      ],
+      [
+        1260,
+        520,
+        1376,
+        610
+      ]
+    ],
+    "changedPixels": 21548,
+    "outsideMaskDiff": 0,
+    "sourceCommit": "3c20cbbd571a81d1ef5d1796f8d7def5cee2109f",
+    "asset": "public/assets/images/lab/weather-aquarium/season-autumn-lindt.webp"
+  },
+  {
+    "season": "winter",
+    "sourceSha256": "5742c3e3677f99a532dc275b216590881e5696c311aa1c931a270e3caeda7252",
+    "outputSha256": "5dd59c4777d3a3acf4962f965b37e107ae8f823b2d91bf6c755e33c3f6e822b6",
+    "boxes": [
+      [
+        215,
+        430,
+        328,
+        570
+      ]
+    ],
+    "changedPixels": 10168,
+    "outsideMaskDiff": 0,
+    "sourceCommit": "3c20cbbd571a81d1ef5d1796f8d7def5cee2109f",
+    "asset": "public/assets/images/lab/weather-aquarium/season-winter-lindt.webp"
+  }
+]
