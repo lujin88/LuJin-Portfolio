@@ -8,6 +8,7 @@ import { EvidenceCard } from '@eon/components/testing/evidence-card'
 import { AutoDetectedPill, RoofDetectionCard } from '@eon/components/testing/roof-detection-card'
 import { KineticLines } from '@eon/components/motion/kinetic-lines'
 import { OnceReveal } from '@eon/components/motion/once-reveal'
+import { WomanLaptopLoop } from '@eon/components/testing/woman-laptop-loop'
 import { useTranslation } from '@i18n/use-translation'
 
 // Visual's redraw (Lu #1473): one arc from under the handwriting toward the person at the laptop,
@@ -116,13 +117,7 @@ export function TestingSection() {
 
             <div className="relative ml-auto w-full max-w-[500px] lg:mr-8">
               <div className="overflow-hidden rounded-3xl shadow-[0_24px_60px_rgba(5,20,30,0.14)]">
-                <Image
-                  src="/assets/images/eon/eon-08-woman.webp"
-                  alt={t('eon.testing.womanAlt')}
-                  width={1372}
-                  height={1148}
-                  className="h-[380px] w-full object-cover object-[48%_22%] md:h-[400px]"
-                />
+                <WomanLaptopLoop alt={t('eon.testing.womanAlt')} />
               </div>
 
               <div className="absolute bottom-0 right-[-0.75rem] z-20 w-[236px] bg-transparent md:w-[248px] lg:right-[-5.5rem]">
