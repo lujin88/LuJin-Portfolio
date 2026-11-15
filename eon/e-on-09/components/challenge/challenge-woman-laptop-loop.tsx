@@ -2,10 +2,11 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import { cn } from '@eon/lib/utils'
 import { usePrefersReducedMotion } from '@eon/lib/motion/hooks'
+import { ChallengeWomanLaptopHandOverlay } from '@eon/components/challenge/challenge-woman-laptop-hand-overlay'
 
-const POSTER = '/assets/images/eon/eon-challenge-woman-laptop.webp'
+const BAKED = '/assets/images/eon/eon-challenge-woman-laptop.webp'
+const CLEAN = '/assets/images/eon/eon-challenge-woman-laptop-clean.webp'
 const MP4 = '/assets/videos/eon/challenge-woman-laptop-loop-5s.mp4'
 const WEBM = '/assets/videos/eon/challenge-woman-laptop-loop-5s.webm'
 
@@ -16,7 +17,6 @@ function isPlayFailure(err: unknown) {
 export function ChallengeWomanLaptopLoop({ alt }: { alt: string }) {
   const reduced = usePrefersReducedMotion()
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [playing, setPlaying] = useState(false)
   const [failed, setFailed] = useState(false)
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export function ChallengeWomanLaptopLoop({ alt }: { alt: string }) {
   if (reduced || failed) {
     return (
       <Image
-        src={POSTER}
+        src={BAKED}
         alt={alt}
         width={1400}
         height={788}
@@ -70,29 +70,20 @@ export function ChallengeWomanLaptopLoop({ alt }: { alt: string }) {
 
   return (
     <div className="relative" role="img" aria-label={alt}>
-      <Image
-        src={POSTER}
-        alt=""
-        aria-hidden
-        width={1400}
-        height={788}
-        priority
-        className={cn('h-auto w-full object-cover', playing && 'invisible')}
-      />
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover"
-        poster={POSTER}
+        className="h-auto w-full object-cover"
+        poster={CLEAN}
         muted
         loop
         playsInline
         preload="metadata"
         aria-hidden
-        onPlaying={() => setPlaying(true)}
       >
         <source src={WEBM} type="video/webm" />
         <source src={MP4} type="video/mp4" onError={() => setFailed(true)} />
       </video>
+      <ChallengeWomanLaptopHandOverlay className="absolute inset-0 z-10" />
     </div>
   )
 }
