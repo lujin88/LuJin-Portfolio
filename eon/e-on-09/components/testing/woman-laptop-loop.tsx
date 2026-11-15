@@ -62,7 +62,7 @@ export function WomanLaptopLoop({ alt }: { alt: string }) {
   }
 
   return (
-    <div className="relative h-[380px] w-full md:h-[400px]">
+    <div className="relative h-[380px] w-full md:h-[400px]" role="img" aria-label={alt}>
       <Image
         src={POSTER}
         alt=""
