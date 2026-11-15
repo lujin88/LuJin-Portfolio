@@ -64,7 +64,7 @@ export function JourneySection() {
         />
 
         <div className="inline-block max-w-full">
-          <h2 className="mt-4 max-w-full text-[46px] font-extrabold leading-[1.02] tracking-[-0.035em] md:text-[68px]">
+          <h2 data-type="h2" className="mt-4 max-w-full text-[46px] font-extrabold leading-[1.02] tracking-[-0.035em] md:text-[68px]">
             {t('eon.journey.title')}
           </h2>
 
@@ -77,7 +77,7 @@ export function JourneySection() {
               <AnnotationArrow className={`${styles.annotation} pointer-events-none mt-1 ml-16 h-[68px] w-[124px] text-white/40 md:absolute md:top-[4.4rem] md:left-[6.75rem] md:mt-0 md:h-[82px] md:w-[168px]`} />
             </div>
 
-            <p className="max-w-[560px] text-pretty text-lg leading-relaxed text-white/60 md:pt-1 md:text-xl">
+            <p data-type="body" className="max-w-[560px] text-pretty text-lg leading-relaxed text-white/60 md:pt-1 md:text-xl">
               {t('eon.journey.body')}
             </p>
           </div>
