@@ -5,11 +5,15 @@ import { useEffect, useRef, useState } from 'react'
 import { cn } from '@eon/lib/utils'
 import { usePrefersReducedMotion } from '@eon/lib/motion/hooks'
 
-const POSTER = '/assets/images/eon/eon-08-woman.webp'
-const MP4 = '/assets/videos/eon/woman-laptop-loop-5s.mp4'
-const WEBM = '/assets/videos/eon/woman-laptop-loop-5s.webm'
+const POSTER = '/assets/images/eon/eon-challenge-woman-laptop.webp'
+const MP4 = '/assets/videos/eon/challenge-woman-laptop-loop-5s.mp4'
+const WEBM = '/assets/videos/eon/challenge-woman-laptop-loop-5s.webm'
 
-export function WomanLaptopLoop({ alt }: { alt: string }) {
+function isPlayFailure(err: unknown) {
+  return err instanceof DOMException && (err.name === 'NotAllowedError' || err.name === 'NotSupportedError')
+}
+
+export function ChallengeWomanLaptopLoop({ alt }: { alt: string }) {
   const reduced = usePrefersReducedMotion()
   const videoRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
@@ -25,7 +29,9 @@ export function WomanLaptopLoop({ alt }: { alt: string }) {
         video.pause()
         return
       }
-      void video.play().catch(() => setFailed(true))
+      void video.play().catch((err) => {
+        if (isPlayFailure(err)) setFailed(true)
+      })
     }
 
     const observer = new IntersectionObserver(
@@ -54,29 +60,28 @@ export function WomanLaptopLoop({ alt }: { alt: string }) {
       <Image
         src={POSTER}
         alt={alt}
-        width={1372}
-        height={1148}
-        className="h-[380px] w-full object-cover object-[48%_22%] md:h-[400px]"
+        width={1400}
+        height={788}
+        priority
+        className="h-auto w-full object-cover"
       />
     )
   }
 
   return (
-    <div className="relative h-[380px] w-full md:h-[400px]" role="img" aria-label={alt}>
+    <div className="relative" role="img" aria-label={alt}>
       <Image
         src={POSTER}
         alt=""
         aria-hidden
-        width={1372}
-        height={1148}
-        className={cn(
-          'h-full w-full object-cover object-[48%_22%]',
-          playing && 'invisible',
-        )}
+        width={1400}
+        height={788}
+        priority
+        className={cn('h-auto w-full object-cover', playing && 'invisible')}
       />
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover object-[48%_22%]"
+        className="absolute inset-0 h-full w-full object-cover"
         poster={POSTER}
         muted
         loop
@@ -84,10 +89,9 @@ export function WomanLaptopLoop({ alt }: { alt: string }) {
         preload="metadata"
         aria-hidden
         onPlaying={() => setPlaying(true)}
-        onError={() => setFailed(true)}
       >
         <source src={WEBM} type="video/webm" />
-        <source src={MP4} type="video/mp4" />
+        <source src={MP4} type="video/mp4" onError={() => setFailed(true)} />
       </video>
     </div>
   )

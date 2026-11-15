@@ -1,6 +1,6 @@
 'use client'
 
-import Image from "next/image"
+import { ChallengeWomanLaptopLoop } from '@eon/components/challenge/challenge-woman-laptop-loop'
 import { ContentContainer } from "@eon/components/content-container"
 import { SectionLabel } from "@eon/components/section-label"
 import { LayerScrollGroup } from "@eon/components/motion/layer-scroll-group"
@@ -23,14 +23,7 @@ export function ChallengeSection() {
         {/* LEFT — editorial image */}
         <div data-move="64" data-from-opacity="0.92">
           <div className="relative overflow-hidden rounded-[28px]">
-            <Image
-              src="/assets/images/eon/eon-challenge-woman-laptop.webp"
-              alt={t('eon.challenge.photoAlt')}
-              width={1400}
-              height={788}
-              priority
-              className="h-auto w-full object-cover"
-            />
+            <ChallengeWomanLaptopLoop alt={t('eon.challenge.photoAlt')} />
           </div>
         </div>
 
