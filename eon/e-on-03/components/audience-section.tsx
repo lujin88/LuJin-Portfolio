@@ -26,20 +26,20 @@ export function AudienceSection() {
             emphasis="strong"
           />
 
-          <h2 className="mt-8 text-pretty text-[52px] font-extrabold leading-[1.04] tracking-[-0.03em] text-white sm:text-[64px] lg:text-[68px]">
+          <h2 data-type="h2" className="mt-8 text-pretty text-[52px] font-extrabold leading-[1.04] tracking-[-0.03em] text-white sm:text-[64px] lg:text-[68px]">
             {t('eon.audience.title')}
           </h2>
 
           <div className="mt-14">
-            <h2 className="text-2xl font-semibold text-white">{t('eon.audience.market')}</h2>
-            <p className="mt-4 max-w-md text-lg leading-[1.55] text-slide-muted">
+            <h2 data-type="h3" className="text-2xl font-semibold text-white">{t('eon.audience.market')}</h2>
+            <p data-type="body" className="mt-4 max-w-md text-lg leading-[1.55] text-slide-muted">
               {t('eon.audience.marketBody')}
             </p>
           </div>
 
           <div className="mt-12">
-            <h2 className="text-2xl font-semibold text-lavender-insight">{t('eon.audience.insight')}</h2>
-            <p className="mt-4 text-lg leading-[1.55] text-white">
+            <h2 data-type="h3" className="text-2xl font-semibold text-lavender-insight">{t('eon.audience.insight')}</h2>
+            <p data-type="body" className="mt-4 text-lg leading-[1.55] text-white">
               {t('eon.audience.insightBody')}
             </p>
           </div>

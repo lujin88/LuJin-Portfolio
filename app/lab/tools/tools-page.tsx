@@ -15,10 +15,12 @@ const PROJECTS = [
     id: 'monitor',
     title: 'Agent Monitor',
     body:
-      'A dashboard for my AI agents. I can see what they’re working on and what needs my approval in one place.',
+      'A dashboard for my AI agents. It shows what needs my approval and how much of each subscription is left before it resets.',
     poster: `${IMG}/monitor-real-demo-v3.png`,
-    videoWebm: `${VID}/monitor-card-loop-v1.webm`,
-    videoMp4: `${VID}/monitor-card-loop-v1.mp4`,
+    videoWebm: `${VID}/monitor-card-loop-light.webm`,
+    videoMp4: `${VID}/monitor-card-loop-light.mp4`,
+    videoWebmDark: `${VID}/monitor-card-loop-dark.webm`,
+    videoMp4Dark: `${VID}/monitor-card-loop-dark.mp4`,
     alt: 'Agent Monitor demo interface',
     mediaClass: 'monitor',
     href: 'https://github.com/lujin88/agent-monitor',
@@ -29,8 +31,10 @@ const PROJECTS = [
     body:
       'A shared workspace for me and my AI agents. I use it to assign work, read reports, and handle approvals in one conversation.',
     poster: `${IMG}/scranton-real-demo-v3.png`,
-    videoWebm: `${VID}/scranton-card-loop-v1.webm`,
-    videoMp4: `${VID}/scranton-card-loop-v1.mp4`,
+    videoWebm: `${VID}/scranton-card-loop-light.webm`,
+    videoMp4: `${VID}/scranton-card-loop-light.mp4`,
+    videoWebmDark: `${VID}/scranton-card-loop-dark.webm`,
+    videoMp4Dark: `${VID}/scranton-card-loop-dark.mp4`,
     alt: 'Scranton demo workspace interface',
     mediaClass: 'scranton',
     href: 'https://github.com/lujin88/Scranton',
@@ -119,6 +123,8 @@ export function ToolsPage() {
                 poster={p.poster}
                 videoWebm={'videoWebm' in p ? p.videoWebm : undefined}
                 videoMp4={'videoMp4' in p ? p.videoMp4 : undefined}
+                videoWebmDark={'videoWebmDark' in p ? p.videoWebmDark : undefined}
+                videoMp4Dark={'videoMp4Dark' in p ? p.videoMp4Dark : undefined}
               />
               <h3>{p.title}</h3>
               <p>{p.body}</p>
