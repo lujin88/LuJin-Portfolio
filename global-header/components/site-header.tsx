@@ -115,6 +115,15 @@ const NAV: readonly NavEntry[] = [
           dark: '/assets/images/nav/dark/playground/gratula-dark.webp',
         },
       },
+      {
+        label: 'Agent Tools',
+        href: '/lab/tools',
+        meta: 'Agent Monitor · Scranton',
+        icon: {
+          light: '/assets/images/nav/light/playground/agent-tools-light.webp',
+          dark: '/assets/images/nav/dark/playground/agent-tools-dark.webp',
+        },
+      },
     ],
   },
 ]
