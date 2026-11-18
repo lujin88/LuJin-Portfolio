@@ -29,14 +29,14 @@ export function Session04TheShift() {
             </p>
 
             <div className={styles.copy} data-move="96">
-              <h2
+              <h2 data-type="h2"
                 id="session-04-heading"
                 className={`${styles.headline}`}
               >
                 {t('ca.shift.headline1')} <br />
                 {t('ca.shift.headline2')}
               </h2>
-              <p className={`${styles.body}`}>
+              <p data-type="body" className={`${styles.body}`}>
                 {t('ca.shift.bodyLead')}
                 <br />
                 {t('ca.shift.bodyInstead')}
@@ -53,7 +53,7 @@ export function Session04TheShift() {
                   {t('ca.shift.bodyAsk3')}
                 </strong>
               </p>
-              <p className={`${styles.closing}`}>
+              <p data-type="body" className={`${styles.closing}`}>
                 {t('ca.shift.closing1')}
                 <br />
                 {t('ca.shift.closing2')}

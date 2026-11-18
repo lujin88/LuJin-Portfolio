@@ -19,22 +19,22 @@ export function OverviewSection() {
             emphasis="strong"
           />
 
-          <h1 className="mt-8 text-5xl font-extrabold leading-[0.98] tracking-tight text-balance sm:text-6xl">
+          <h1 data-type="display" className="mt-8 text-5xl font-extrabold leading-[0.98] tracking-tight text-balance sm:text-6xl">
             {t('eon.overview.titleBefore')}{' '}
             <span className="text-eon-lilac">{t('eon.overview.titleAccent')}</span>
           </h1>
 
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-white/70 text-pretty">
+          <p data-type="lead" className="mt-6 max-w-md text-lg leading-relaxed text-white/70 text-pretty">
             {t('eon.overview.body')}
           </p>
 
           <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
             {t('eon.overview.role')}
           </p>
-          <p className="mt-4 text-lg font-semibold text-white">
+          <p data-type="body" className="mt-4 text-lg font-semibold text-white">
             {t('eon.overview.roleLead')}
           </p>
-          <p className="mt-2 max-w-md text-base leading-relaxed text-white/60">
+          <p data-type="body" className="mt-2 max-w-md text-base leading-relaxed text-white/60">
             {t('eon.overview.roleBody')}
           </p>
 

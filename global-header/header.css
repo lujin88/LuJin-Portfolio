@@ -280,3 +280,8 @@
 [data-site-header][data-header-tone='paper'] .header-menu-meta {
   color: var(--color-text-4, #595d61);
 }
+
+/* Form controls do not inherit the page font in the browser UA stylesheet. */
+[data-site-header] :is(button, select, input, textarea) {
+  font-family: var(--font-poppins), 'Poppins', ui-sans-serif, system-ui, sans-serif;
+}
