@@ -54,10 +54,11 @@ export function ComparisonPanel({ active = true }: { active?: boolean }) {
     { label: t('eon.ui.sunlight'), icon: Sun },
   ]
 
+  // 1024-1279: the two cards sit side by side but are narrow, so each stacks its photo above the text.
   return (
     <div className="flex flex-col items-stretch gap-6 lg:flex-row lg:items-center">
-      <div className="flex flex-1 flex-col gap-6 rounded-2xl border border-navy-950/8 bg-card p-3 shadow-[0_20px_60px_rgba(5,20,30,0.08)] sm:flex-row sm:items-center">
-        <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-xl sm:h-48 sm:w-48">
+      <div className="flex flex-1 flex-col gap-6 rounded-2xl border border-navy-950/8 bg-card p-3 shadow-[0_20px_60px_rgba(5,20,30,0.08)] sm:flex-row sm:items-center lg:flex-col lg:items-stretch xl:flex-row xl:items-center">
+        <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-xl sm:h-48 sm:w-48 lg:h-56 lg:w-full xl:h-48 xl:w-48">
           <Image
             src="/assets/images/eon/eon 07 map before.webp"
             alt={t('eon.ui.beforeMapAlt')}
@@ -81,8 +82,8 @@ export function ComparisonPanel({ active = true }: { active?: boolean }) {
 
       <PanelArrow />
 
-      <div className="flex flex-1 flex-col gap-6 rounded-2xl border border-navy-950/8 bg-card p-3 shadow-[0_20px_60px_rgba(5,20,30,0.08)] sm:flex-row sm:items-center">
-        <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-xl sm:h-48 sm:w-48">
+      <div className="flex flex-1 flex-col gap-6 rounded-2xl border border-navy-950/8 bg-card p-3 shadow-[0_20px_60px_rgba(5,20,30,0.08)] sm:flex-row sm:items-center lg:flex-col lg:items-stretch xl:flex-row xl:items-center">
+        <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-xl sm:h-48 sm:w-48 lg:h-56 lg:w-full xl:h-48 xl:w-48">
           <Image
             src="/assets/images/eon/eon 07 map after.webp"
             alt={t('eon.ui.afterMapAlt')}

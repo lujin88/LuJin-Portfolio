@@ -87,6 +87,8 @@
 .drift-selector .choices button{padding:12px 7px;text-align:left}
 .proposed-flow{grid-template-columns:1fr 1fr;gap:20px}
 .chapter-copy{font-size:16px}
+/* Keep the entire response note readable over the section's diagonal. */
+.showcase > .preview-note{background:#f6f2ec;padding:16px;border-radius:12px}
 }
 .showcase [hidden]{display:none!important}
 

@@ -4,7 +4,7 @@ export const home = {
     heroKicker: 'Product designer · Enterprise & regulated UX',
     heroTitle: 'Simplify complexity. Design with AI.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, <span style="white-space:nowrap">5–10 min</span> saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW app</a>: led design team &amp; design system.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, <span style="white-space:nowrap">5–10 min</span> saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads.</span><span class="hero-line"><a class="hero-jump" href="#bmw-my-app" data-scroll-target="bmw-my-app">BMW</a> app: led design team &amp; design system.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Close chat',
     askLuSend: 'Send',
@@ -30,6 +30,18 @@ export const home = {
       storyBody: 'A complex investment, made easier to understand and trust.',
       metricTitle: '300% more solar leads',
       metricBody: 'Later adapted for the UK.',
+      cta: 'Explore case study',
+    },
+    bmw: {
+      eyebrow: 'App & design system · BMW',
+      title: 'Designing the My BMW app and its system',
+      titleMobileHtml: 'My BMW app<br>& design system',
+      role: 'Design Lead',
+      storyTitle: 'One system across the app',
+      storyBody:
+        'I led the team designing the My BMW app and its design system for iOS and Android.',
+      metricTitle: 'Design scope｜Europe',
+      metricBody: 'Every BMW model since 2010 in Europe. The US team designed its own side.',
       cta: 'Explore case study',
     },
     playground: {
@@ -84,7 +96,7 @@ export const home = {
     heroKicker: 'Product Designerin · Enterprise- & regulierte UX',
     heroTitle: 'Komplexität vereinfachen. Mit KI gestalten.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow, <span style="white-space:nowrap">5–10&nbsp;Min.</span> pro Kunde gespart.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300&nbsp;% mehr Leads.</span><span class="hero-line"><a class="hero-jump" data-bmw-link href="/bmw-design-system">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow, <span style="white-space:nowrap">5–10&nbsp;Min.</span> pro Kunde gespart.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300&nbsp;% mehr Leads.</span><span class="hero-line"><a class="hero-jump" href="#bmw-my-app" data-scroll-target="bmw-my-app">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Chat schließen',
     askLuSend: 'Senden',
@@ -112,6 +124,19 @@ export const home = {
       storyBody: 'Eine komplexe Investition, leichter zu verstehen und zu vertrauen.',
       metricTitle: '300 % mehr Solar-Leads',
       metricBody: 'Später für Großbritannien adaptiert.',
+      cta: 'Case Study ansehen',
+    },
+    bmw: {
+      eyebrow: 'App & Designsystem · BMW',
+      title: 'My BMW App und ihr Designsystem',
+      titleMobileHtml: 'My BMW App<br>& Designsystem',
+      role: 'Design Lead',
+      storyTitle: 'Ein System in der ganzen App',
+      storyBody:
+        'Ich habe das Team geleitet, das die My BMW App und ihr Designsystem für iOS und Android gestaltet hat.',
+      metricTitle: 'Design-Umfang｜Europa',
+      metricBody:
+        'Jedes BMW-Modell seit 2010 in Europa. Das US-Team hat seine Seite selbst gestaltet.',
       cta: 'Case Study ansehen',
     },
     playground: {

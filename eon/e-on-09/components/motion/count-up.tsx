@@ -46,7 +46,8 @@ export function CountUp({ className }: { className?: string }) {
       setValue(0)
       const origin = performance.now()
       const frame = (now: number) => {
-        const t = Math.min((now - origin) / DURATION_MS, 1)
+        // rAF timestamps can predate origin by a frame; clamp so the count never starts below 0.
+        const t = Math.min(Math.max((now - origin) / DURATION_MS, 0), 1)
         setRevealed(true)
         setValue(t >= 1 ? TARGET : Math.round(TARGET * easeOutCubic(t)))
         if (t < 1) raf = requestAnimationFrame(frame)

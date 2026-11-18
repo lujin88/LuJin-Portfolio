@@ -106,7 +106,7 @@ export function SessionMandate() {
         <MandateIcons />
         <div className={styles.atmosphere} data-move="24" aria-hidden="true" />
 
-        <div className={styles.copy} data-move="96">
+        <div className={styles.copy}>
           <p className="ca-eyebrow">
             <span className="ca-eyebrow-index">02</span>
             <span className="ca-eyebrow-rule" aria-hidden="true" />

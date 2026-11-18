@@ -1,0 +1,24 @@
+{
+  "updated": "2026-11-12",
+  "thread": "#8673",
+  "pm": "#9317",
+  "qa": "#9321",
+  "published": "public/assets/videos/home/bmw-drivein-web.mp4",
+  "sha256_web": "d4a0c1f2a2fd74bf1eb9edad856e3006f5fcde6647486202397428b917645ee3",
+  "pixel_source": "BMW_DRIVEIN_1112/C2/video-v2-fix-r1/bmw-c2-front-r1-3x2.mp4",
+  "jimeng_raw": "~/.buzz/OUTBOX/BMW_DRIVEIN_1112/C2/video-v1/generated/40ead6b7-885e-451f-8144-a79ea9cfbd6e_video_1.mp4",
+  "metadata_fix_command": "ffmpeg -i <r1.mp4> -i <jimeng_raw.mp4> -map 0 -c copy -map_metadata 1 -movflags use_metadata_tags+faststart public/assets/videos/home/bmw-drivein-web.mp4",
+  "verification_2026-11-12": {
+    "decoded_video_md5_r1": "a0f3a392119910058f5c97b6bb671069",
+    "decoded_video_md5_web": "a0f3a392119910058f5c97b6bb671069",
+    "exiftool_keys_present": ["Keys:LvMetaInfo", "Keys:UserComment", "Keys:Comment"]
+  },
+  "rejected_shas": {
+    "bfae271": "Keys:LvMetaInfo missing; UserComment only XMP-exif (QA #9321)"
+  },
+  "superseded_shas": {
+    "d6dabf5": "exiftool+config Keys OK; replaced by 158b592 ffmpeg",
+    "48c23c55…": "same"
+  },
+  "qa_pass_video_sha": "158b592"
+}
