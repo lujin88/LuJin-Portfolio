@@ -1,7 +1,6 @@
 import './original.css'
 
 const IMG = '/assets/images/bmw-system/original/'
-const HERO = '/assets/images/bmw-system/i4-alpine-sunset.webp'
 
 type Item = { icon: string; title: string; sub?: React.ReactNode; body?: React.ReactNode[]; img?: { src: string; w: number; h: number; alt: string; wide?: boolean; caption?: string } }
 
@@ -66,7 +65,6 @@ export function BMWOriginal() {
       <header className="bo-title">
         <h1>System Design <br />Management</h1>
       </header>
-      <img className="bo-hero" src={HERO} width="1600" height="900" alt="" fetchPriority="high" />
 
       <div className="bo-width">
         <h2 className="bo-collab">Cross-team Collaboration</h2>
