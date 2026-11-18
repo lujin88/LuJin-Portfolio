@@ -33,6 +33,7 @@ export const headerCopy = {
     },
     contactMe: 'Contact me',
     email: 'Email',
+    languageLabel: 'Language',
     skipToContent: 'Skip to content',
     languageAria: (label: string) => `Language: ${label}`,
     selectLanguage: 'Select language',
@@ -73,6 +74,7 @@ export const headerCopy = {
     },
     contactMe: 'Kontakt',
     email: 'E-Mail',
+    languageLabel: 'Sprache',
     skipToContent: 'Zum Inhalt',
     languageAria: (label: string) => `Sprache: ${label}`,
     selectLanguage: 'Sprache wählen',
@@ -88,6 +90,7 @@ export const headerCopy = {
     meta: Record<string, string>
     contactMe: string
     email: string
+    languageLabel: string
     skipToContent: string
     languageAria: (label: string) => string
     selectLanguage: string
