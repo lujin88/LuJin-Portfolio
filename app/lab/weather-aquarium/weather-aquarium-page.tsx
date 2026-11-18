@@ -54,15 +54,15 @@ const POSES = [
 // fades out beyond it, so the padding never shows a hard edge.
 // Clips rest on and loop from their own first frame. Fish, sun and coat are `_trim`
 // exports with the source-image frames cut from both ends, so the loop point does not flash.
-type VocabClip = { file: string; w: number; x: number; y: number; motion: [number, number, number, number]; fadeBottom?: boolean }
+type VocabClip = { file: string; w: number; x: number; y: number; motion: [number, number, number, number]; fadeBottom?: boolean; tone?: number }
 
 const VOCAB: { word: Word; alt: string; src: string; ratio: number; clip: VocabClip }[] = [
-  { word: 'perch', alt: 'European perch', src: `${IMG}/vocab-perch.webp`, ratio: 1536 / 1024, clip: { file: 'vocab-perch-trim.mp4', w: 1.4866, x: -0.2435, y: -0.2234, motion: [215, 219, 892, 610] } },
+  { word: 'perch', alt: 'European perch', src: `${IMG}/vocab-perch.webp`, ratio: 1536 / 1024, clip: { file: 'vocab-perch-trim.mp4', w: 1.4866, x: -0.2435, y: -0.2234, motion: [215, 219, 892, 610], tone: 1.13 } },
   { word: 'church', alt: 'Church', src: `${IMG}/vocab-church.webp`, ratio: 1334 / 1179, clip: { file: 'vocab-church-v3.mp4', w: 1.8774, x: -0.4455, y: -0.2689, motion: [348, 179, 837, 656] } },
-  { word: 'sun', alt: 'Sun', src: `${IMG}/vocab-sun.webp`, ratio: 1314 / 1197, clip: { file: 'vocab-sun-trim.mp4', w: 1.9819, x: -0.4958, y: -0.286, motion: [334, 151, 772, 632] } },
+  { word: 'sun', alt: 'Sun', src: `${IMG}/vocab-sun.webp`, ratio: 1314 / 1197, clip: { file: 'vocab-sun-trim.mp4', w: 1.9819, x: -0.4958, y: -0.286, motion: [334, 151, 772, 632], tone: 1.24 } },
   // Drops reach the clip's bottom edge, so the bottom 20% fades instead (Lu-approved first version).
   { word: 'rain', alt: 'Rain cloud', src: `${IMG}/vocab-rain.webp`, ratio: 1377 / 1142, clip: { file: 'vocab-rain-v1.mp4', w: 1.6965, x: -0.3624, y: -0.2242, motion: [345, 196, 816, 834], fadeBottom: true } },
-  { word: 'coat', alt: 'Yellow raincoat', src: `${IMG}/vocab-coat.webp`, ratio: 1312 / 1199, clip: { file: 'vocab-coat-trim.mp4', w: 1.9263, x: -0.4701, y: -0.2654, motion: [356, 162, 772, 658] } },
+  { word: 'coat', alt: 'Yellow raincoat', src: `${IMG}/vocab-coat.webp`, ratio: 1312 / 1199, clip: { file: 'vocab-coat-trim.mp4', w: 1.9263, x: -0.4701, y: -0.2654, motion: [356, 162, 772, 658], tone: 1.3 } },
   { word: 'hat', alt: 'Red winter hat', src: `${IMG}/vocab-hat.webp`, ratio: 1374 / 1145, clip: { file: 'vocab-hat-v1.mp4', w: 1.7905, x: -0.3997, y: -0.2456, motion: [338, 167, 786, 651] } },
 ]
 
@@ -81,6 +81,39 @@ function clipMask({ motion: [x0, y0, x1, y1], fadeBottom }: VocabClip) {
   const across = `linear-gradient(to right, transparent ${pct(Math.max(0, l - FADE))}, #000 ${pct(l)}, #000 ${pct(r)}, transparent ${pct(Math.min(1, r + FADE))})`
   const down = `linear-gradient(to bottom, transparent ${pct(Math.max(0, t - FADE))}, #000 ${pct(t)}, #000 ${pct(b)}, transparent ${pct(Math.min(1, bEnd))})`
   return `${across}, ${down}`
+}
+
+// Lifts a clip whose first frame renders darker than the webp. A plain brightness filter would
+// also lift the #edf3e7 padding (about 0.93) into a visible box, so this curve scales tones by
+// `k` up to 0.7 and eases back to the unchanged padding value, which keeps hue and padding.
+function toneTable(k: number) {
+  const pts: [number, number][] = [[0, 0], [0.7, 0.7 * k], [0.93, 0.93], [1, 1]]
+  const f = (x: number) => {
+    for (let i = 1; i < pts.length; i++) {
+      if (x <= pts[i][0]) {
+        const [x0, y0] = pts[i - 1]
+        const [x1, y1] = pts[i]
+        return y0 + ((y1 - y0) * (x - x0)) / (x1 - x0)
+      }
+    }
+    return 1
+  }
+  return Array.from({ length: 33 }, (_, i) => f(i / 32).toFixed(3)).join(' ')
+}
+
+function ToneFilter({ id, k }: { id: string; k: number }) {
+  const table = toneTable(k)
+  return (
+    <svg width="0" height="0" aria-hidden="true" focusable="false" style={{ position: 'absolute' }}>
+      <filter id={id} colorInterpolationFilters="sRGB">
+        <feComponentTransfer>
+          <feFuncR type="table" tableValues={table} />
+          <feFuncG type="table" tableValues={table} />
+          <feFuncB type="table" tableValues={table} />
+        </feComponentTransfer>
+      </filter>
+    </svg>
+  )
 }
 
 function voiceForLocale(locale: string): SpeechSynthesisVoice | undefined {
@@ -463,6 +496,7 @@ function VocabArt({
         style={{ ['--ratio' as string]: item.ratio, ['--clip-w' as string]: clip.w, ['--clip-x' as string]: clip.x, ['--clip-y' as string]: clip.y }}
       >
       <img src={item.src} alt="" loading="lazy" />
+      {clip.tone && <ToneFilter id={`wa-tone-${item.word}`} k={clip.tone} />}
       {!failed && (
         <video
           ref={videoRef}
@@ -474,7 +508,7 @@ function VocabArt({
           playsInline
           preload={load ? 'auto' : 'none'}
           aria-hidden="true"
-          style={{ maskImage: mask, WebkitMaskImage: mask }}
+          style={{ maskImage: mask, WebkitMaskImage: mask, filter: clip.tone ? `url(#wa-tone-${item.word})` : undefined }}
           onLoadedData={(event) => {
             const video = event.currentTarget
             if (video.currentTime === 0) setReady(true)
