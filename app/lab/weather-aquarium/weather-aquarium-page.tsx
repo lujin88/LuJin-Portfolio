@@ -1,7 +1,9 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
+import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
 import { SeasonCrossfade } from './season-crossfade'
+import { useAfterHero } from './use-after-hero'
 import { SiteClosing } from '../../components/site-closing'
 
 const IMG = '/assets/images/lab/weather-aquarium'
@@ -237,6 +239,7 @@ function HeroScreenVideo() {
   const layerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const motionAllowed = useMotionAllowed()
+  const afterHero = useAfterHero()
   const tabletStatic = useWaTabletStatic()
   const [playing, setPlaying] = useState(false)
   const [failed, setFailed] = useState(false)
@@ -259,7 +262,7 @@ function HeroScreenVideo() {
     const observer = new ResizeObserver(place)
     observer.observe(frame)
     return () => observer.disconnect()
-  }, [motionAllowed, failed, tabletStatic])
+  }, [motionAllowed, failed, afterHero, tabletStatic])
 
   useEffect(() => {
     if (tabletStatic) return
@@ -287,9 +290,9 @@ function HeroScreenVideo() {
       document.removeEventListener('visibilitychange', syncPlayback)
       video.pause()
     }
-  }, [motionAllowed, failed, tabletStatic])
+  }, [motionAllowed, failed, afterHero, tabletStatic])
 
-  if (!motionAllowed || failed || tabletStatic) return null
+  if (!motionAllowed || failed || !afterHero || tabletStatic) return null
 
   return (
     <div ref={layerRef} className={`hero-screen${playing ? ' is-playing' : ''}`} aria-hidden="true">
@@ -402,7 +405,7 @@ function VocabArt({
   if (tabletStatic) {
     return (
       <div
-        ref={hostRef}
+        ref={hostRef as RefObject<HTMLDivElement | null>}
         className="vocab-art vocab-art--static"
         role="img"
         aria-label={label}
@@ -414,7 +417,7 @@ function VocabArt({
 
   return (
     <button
-      ref={hostRef}
+      ref={hostRef as RefObject<HTMLButtonElement | null>}
       className={`vocab-art vocab-art--clip${ready && !failed ? ' is-ready' : ''}`}
       type="button"
       aria-label={label}
@@ -569,7 +572,7 @@ function PoseButton({
   return (
     <button
       ref={buttonRef}
-      className="pose reveal pose-nodot"
+      className="pose pose-nodot"
       type="button"
       aria-pressed={autoLoop ? undefined : hoverOnly ? playing : selected}
       style={{ ['--index' as string]: item.index }}
@@ -638,6 +641,7 @@ function PoseButton({
 }
 
 export function WeatherAquariumPage() {
+  const afterHero = useAfterHero()
   const rootRef = useRef<HTMLDivElement>(null)
   const heroMediaRef = useRef<HTMLDivElement>(null)
   const heroDeviceRef = useRef<HTMLDivElement>(null)
@@ -664,25 +668,6 @@ export function WeatherAquariumPage() {
   useEffect(() => {
     const root = rootRef.current
     if (!root) return
-
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const revealItems = [...root.querySelectorAll('.reveal')]
-    const revealObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return
-          entry.target.classList.add('is-visible')
-          observer.unobserve(entry.target)
-        })
-      },
-      { rootMargin: '0px 0px -8%', threshold: 0.08 },
-    )
-
-    if (reduced || !('IntersectionObserver' in window)) {
-      revealItems.forEach((item) => item.classList.add('is-visible'))
-    } else {
-      revealItems.forEach((item) => revealObserver.observe(item))
-    }
 
     const tabletMq = window.matchMedia(WA_TABLET_STATIC_MQ)
     const reducedMq = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -723,7 +708,6 @@ export function WeatherAquariumPage() {
     reducedMq.addEventListener('change', syncParallax)
 
     return () => {
-      revealObserver.disconnect()
       tabletMq.removeEventListener('change', syncParallax)
       reducedMq.removeEventListener('change', syncParallax)
       const heroMedia = heroMediaRef.current
@@ -765,8 +749,8 @@ export function WeatherAquariumPage() {
       <div className="wa-page" ref={rootRef}>
         <header className="hero" id="overview">
           <div className="shell">
-            <div className="hero-grid">
-              <div className="hero-copy reveal">
+            <LayerScrollGroup className="hero-grid">
+              <div className="hero-copy" data-move="96">
                 <h1>
                   Weather
                   <br />
@@ -780,7 +764,8 @@ export function WeatherAquariumPage() {
               </div>
 
               <div
-                className="hero-media reveal"
+                className="hero-media"
+                data-move="64"
                 ref={heroMediaRef}
                 aria-label="Weather Aquarium shown on an iPad"
               >
@@ -794,49 +779,53 @@ export function WeatherAquariumPage() {
                   <HeroScreenVideo />
                 </div>
               </div>
-            </div>
+            </LayerScrollGroup>
           </div>
         </header>
 
         <main id="main">
           <section className="seasons-section" id="seasons" aria-labelledby="seasons-title">
-            <div className="shell section-heading reveal">
-              <p className="eyebrow">01 / The year in one place</p>
-              <h2 id="seasons-title">The same world changes with the season outside.</h2>
-            </div>
+            <LayerScrollGroup>
+              <div className="shell section-heading" data-move="64">
+                <p className="eyebrow">01 / The year in one place</p>
+                <h2 id="seasons-title">The same world changes with the season outside.</h2>
+              </div>
 
-            <div className="shell seasons-frame">
-              <SeasonCrossfade />
-            </div>
+              <div className="shell seasons-frame" data-move="64">
+                <SeasonCrossfade />
+              </div>
+            </LayerScrollGroup>
           </section>
 
           <section className="editions-section" id="editions" aria-labelledby="editions-title">
-            <div className="shell">
-              <div className="section-heading compact reveal">
-                <p className="eyebrow">02 / Limited editions</p>
-                <h2 id="editions-title">For special days, the same world gets a new little story.</h2>
-              </div>
+            <LayerScrollGroup className="shell">
+              <div className="editions-block" data-move="64">
+                <div className="section-heading compact">
+                  <p className="eyebrow">02 / Limited editions</p>
+                  <h2 id="editions-title">For special days, the same world gets a new little story.</h2>
+                </div>
 
-              <div className="edition-grid">
-                {EDITIONS.map((edition) => (
-                  <figure className="edition reveal" key={edition.caption}>
-                    <div
-                      className={`edition-media ${edition.video ? 'holiday-cover' : 'holiday-slice'}`}
-                      style={{ ['--slice' as string]: edition.slice }}
-                    >
-                      <img src={`${IMG}/${edition.image}`} alt={edition.alt} loading="lazy" />
-                      {edition.video && <HolidayVideo file={edition.video} />}
-                    </div>
-                    <figcaption>{edition.caption}</figcaption>
-                  </figure>
-                ))}
+                <div className="edition-grid">
+                  {EDITIONS.map((edition) => (
+                    <figure className="edition" key={edition.caption}>
+                      <div
+                        className={`edition-media ${edition.video ? 'holiday-cover' : 'holiday-slice'}`}
+                        style={{ ['--slice' as string]: edition.slice }}
+                      >
+                        <img src={afterHero ? `${IMG}/${edition.image}` : undefined} alt={afterHero ? edition.alt : ''} loading="lazy" />
+                        {edition.video && <HolidayVideo file={edition.video} />}
+                      </div>
+                      <figcaption>{edition.caption}</figcaption>
+                    </figure>
+                  ))}
+                </div>
               </div>
-            </div>
+            </LayerScrollGroup>
           </section>
 
           <section className="learning-section" id="learning" aria-labelledby="learning-title">
-            <div className="shell">
-              <div className="learning-head reveal">
+            <LayerScrollGroup className="shell">
+              <div className="learning-head" data-move="80">
                 <div>
                   <p className="eyebrow">03 / Look, listen, learn</p>
                   <h2 id="learning-title">Every object in the aquarium can become a word.</h2>
@@ -861,7 +850,7 @@ export function WeatherAquariumPage() {
                 {VOCAB.map((item) => {
                   const label = DICTIONARY[language].words[item.word]
                   return (
-                    <article className="vocab-item reveal" key={item.word}>
+                    <article className="vocab-item" data-move="64" key={item.word}>
                       <VocabArt
                         item={item}
                         label={label}
@@ -883,18 +872,18 @@ export function WeatherAquariumPage() {
                   )
                 })}
               </div>
-            </div>
+            </LayerScrollGroup>
           </section>
 
           <section className="motion-section" id="motion" aria-labelledby="motion-title">
-            <div className="shell motion-grid">
-              <div className="motion-copy reveal">
+            <LayerScrollGroup className="shell motion-grid">
+              <div className="motion-copy" data-move="84">
                 <p className="eyebrow">04 / Character motion</p>
                 <h2 id="motion-title">Built in Rive</h2>
                 <p>The character uses reusable Rive states for idle, waving, getting dressed and exploring.</p>
               </div>
 
-              <div className="pose-track" aria-label="Character motion states">
+              <div className="pose-track" data-move="64" aria-label="Character motion states">
                 {POSES.map((item) => (
                   <PoseButton
                     key={item.label}
@@ -906,7 +895,7 @@ export function WeatherAquariumPage() {
                   />
                 ))}
               </div>
-            </div>
+            </LayerScrollGroup>
           </section>
         </main>
       </div>

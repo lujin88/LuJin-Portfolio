@@ -1,5 +1,7 @@
 'use client'
+import { useEffect, useRef } from 'react'
 import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
+import { watchClass } from '@/lib/observe-once'
 
 import styles from './session-03-research.module.css'
 import { useTranslation } from '@i18n/use-translation'
@@ -11,6 +13,22 @@ const bodyText =
 export function Session03Research() {
   const { t } = useTranslation()
   const advisorQuotes = [t('ca.research.quote1'), t('ca.research.quote2')]
+  const copyRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const column = copyRef.current
+    if (!column || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const blocks = Array.from(column.querySelectorAll<HTMLElement>('[data-copy-reveal]'))
+    const stopWatching = blocks.map((block) => watchClass(block, styles.copyVisible))
+    // Content stays visible until its scroll listeners are installed, including no-JS visits.
+    column.classList.add(styles.copyReady)
+    return () => {
+      stopWatching.forEach((stop) => stop())
+      column.classList.remove(styles.copyReady)
+      blocks.forEach((block) => block.classList.remove(styles.copyVisible))
+    }
+  }, [])
 
   return (
     <section
@@ -48,6 +66,7 @@ export function Session03Research() {
         </div>
 
         <div
+          ref={copyRef}
           data-move="96"
           className={`${styles.copyCol} flex flex-col justify-center border-t border-[var(--s3-rule)] pt-12 lg:border-t-0 lg:pt-8 lg:pb-0`}
         >
@@ -58,6 +77,7 @@ export function Session03Research() {
           </p>
 
           <h2 data-type="h2"
+            data-copy-reveal="0"
             id="session-03-heading"
             className={`ca-h2 mt-[var(--ca-heading-gap)] max-w-[16ch] font-sans`}
           >
@@ -65,23 +85,26 @@ export function Session03Research() {
           </h2>
 
           <p
+            data-copy-reveal="1"
             className="ca-h3 mt-4 max-w-[20ch] font-sans"
           >
             {t('ca.research.subhead')}
           </p>
 
           <p data-type="body"
+            data-copy-reveal="2"
             className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`}
             dangerouslySetInnerHTML={{ __html: t('ca.research.body1Html') }}
           />
 
           <h3 data-type="h3"
+            data-copy-reveal="3"
             className="ca-h3 mt-12 max-w-[22ch] font-sans lg:mt-14"
           >
             {t('ca.research.heading2')}
           </h3>
 
-          <p data-type="body" className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`}>
+          <p data-type="body" data-copy-reveal="4" className={`mt-6 max-w-[46ch] text-pretty ${bodyText}`}>
             {t('ca.research.body2')}
           </p>
         </div>

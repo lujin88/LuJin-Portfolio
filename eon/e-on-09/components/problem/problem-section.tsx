@@ -15,7 +15,7 @@ export function ProblemSection() {
         className="pointer-events-none absolute -left-40 -top-16 z-[1] h-[320px] w-[320px] rounded-full bg-blue-soft md:-left-36 md:-top-20 md:h-[360px] md:w-[360px]"
       />
 
-      <ContentContainer className="relative z-[1] pt-20 pb-12 max-sm:pt-6 max-sm:pb-0 md:pt-24 md:pb-14">
+      <ContentContainer className="case-study-section relative z-[1] max-sm:!pt-6 max-sm:!pb-0">
         <div className="grid gap-6 md:grid-cols-[46fr_54fr] md:items-start md:gap-8">
           <OnceReveal className="relative z-[2] md:pt-2">
             <SectionLabel
