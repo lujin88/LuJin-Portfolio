@@ -120,10 +120,18 @@
   width: 100%;
 }
 
-/* Language listbox keeps its fill and check mark for the chosen option. */
+/* Language listbox (direction B): check mark only, no selected-row fill. */
 [data-site-header] .header-menu button[aria-selected='true'] {
   border-radius: 0;
-  background: var(--header-menu-item);
+  background: transparent;
+}
+
+[data-site-header] .header-mobile-language-label {
+  margin-bottom: 0.25rem;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--header-foreground);
 }
 
 /* Row hover. Own token, so per-route --header-menu-item overrides do not
