@@ -774,7 +774,7 @@ export function WeatherAquariumPage() {
                         className={`edition-media ${edition.video ? 'holiday-cover' : 'holiday-slice'}`}
                         style={{ ['--slice' as string]: edition.slice }}
                       >
-                        <img src={afterHero ? `${IMG}/${edition.image}` : undefined} alt={edition.alt} loading="lazy" />
+                        <img src={afterHero ? `${IMG}/${edition.image}` : undefined} alt={afterHero ? edition.alt : ''} loading="lazy" />
                         {edition.video && <HolidayVideo file={edition.video} />}
                       </div>
                       <figcaption>{edition.caption}</figcaption>

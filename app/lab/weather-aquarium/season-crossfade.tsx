@@ -76,21 +76,24 @@ export function SeasonCrossfade() {
 
   return (
     <div ref={stage} className={styles.stage} role="group" aria-label="The lake through four seasons">
-      {seasons.map((season, index) => (
+      {seasons.map((season, index) => {
+        const hasSrc = (index === 0 && afterHero) || (index > 0 && springLoaded && motionAllowed)
+        return (
         <img
           key={season}
-          src={(index === 0 && afterHero) || (index > 0 && springLoaded && motionAllowed) ? `/assets/images/lab/weather-aquarium/season-${season}-approved.webp` : undefined}
+          src={hasSrc ? `/assets/images/lab/weather-aquarium/season-${season}-approved.webp` : undefined}
           fetchPriority={index === 0 ? 'high' : 'low'}
           width={1836}
           height={857}
           onLoad={(event) => { void onFrameLoad(event.currentTarget, index) }}
-          alt={index === active ? `The Alpine lake in ${season}` : ''}
+          alt={hasSrc && index === active ? `The Alpine lake in ${season}` : ''}
           aria-hidden={index !== active}
           className={styles.frame}
           data-active={index === active}
           draggable={false}
         />
-      ))}
+        )
+      })}
       <button className={styles.pause} onClick={() => setPaused((value) => !value)} aria-label={label} title={label} type="button">
         <i className={paused ? 'ri-play-line' : 'ri-pause-line'} aria-hidden="true" />
       </button>
