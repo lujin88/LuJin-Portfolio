@@ -48,6 +48,13 @@
   :where(.etf-case) .case-lineup {height:clamp(210px,62vw,320px);object-fit:cover;object-position:center top;border-radius:16px}
 }
 @media(min-width:851px) and (min-height:531px) {
+  :where(.etf-case) .story {max-width:1180px;gap:clamp(20px,5.5vw,80px)}
+  :where(.etf-case) p.story-text[data-type="body"] {
+    font-size:var(--type-body) !important;
+    line-height:1.48 !important;
+    max-width:54ch;
+    text-wrap:balance;
+  }
   :where(.etf-case) .story article {min-height:clamp(610px,78svh,820px)}
   :where(.etf-case) .story article:last-child {min-height:min(100svh,860px)}
 }
