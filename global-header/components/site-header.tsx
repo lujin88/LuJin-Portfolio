@@ -818,7 +818,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                       onClick={() => setLanguage(lang)}
                       aria-current={isSelected ? 'true' : undefined}
                       className={cn(
-                        'flex w-full min-h-11 items-center justify-between gap-4 rounded-none text-[0.9375rem] leading-tight transition-colors',
+                        'flex w-full min-h-11 items-center justify-between gap-4 rounded-none text-lg leading-tight transition-colors',
                         PLAIN_CONTROL,
                         FOCUS_RING,
                         MOTION_SAFE,
