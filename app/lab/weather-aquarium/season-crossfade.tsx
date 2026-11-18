@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSiteLanguage } from '@header/lib/language'
 import styles from './season-crossfade.module.css'
+import { useAfterHero } from './use-after-hero'
 
 const seasons = ['spring', 'summer', 'autumn', 'winter'] as const
 
@@ -19,6 +20,7 @@ export function SeasonCrossfade() {
   const [springLoaded, setSpringLoaded] = useState(false)
   const [motionAllowed, setMotionAllowed] = useState(false)
   const decoded = useRef(new Set<number>())
+  const afterHero = useAfterHero()
 
   async function onFrameLoad(image: HTMLImageElement, index: number) {
     try {
@@ -77,7 +79,7 @@ export function SeasonCrossfade() {
       {seasons.map((season, index) => (
         <img
           key={season}
-          src={index === 0 || (springLoaded && motionAllowed) ? `/assets/images/lab/weather-aquarium/season-${season}-approved.webp` : undefined}
+          src={(index === 0 && afterHero) || (index > 0 && springLoaded && motionAllowed) ? `/assets/images/lab/weather-aquarium/season-${season}-approved.webp` : undefined}
           fetchPriority={index === 0 ? 'high' : 'low'}
           width={1836}
           height={857}

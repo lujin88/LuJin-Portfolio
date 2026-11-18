@@ -3,6 +3,7 @@
 import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { SeasonCrossfade } from './season-crossfade'
+import { useAfterHero } from './use-after-hero'
 import { SiteClosing } from '../../components/site-closing'
 
 const IMG = '/assets/images/lab/weather-aquarium'
@@ -238,6 +239,7 @@ function HeroScreenVideo() {
   const layerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const motionAllowed = useMotionAllowed()
+  const afterHero = useAfterHero()
   const [playing, setPlaying] = useState(false)
   const [failed, setFailed] = useState(false)
 
@@ -258,7 +260,7 @@ function HeroScreenVideo() {
     const observer = new ResizeObserver(place)
     observer.observe(frame)
     return () => observer.disconnect()
-  }, [motionAllowed, failed])
+  }, [motionAllowed, failed, afterHero])
 
   useEffect(() => {
     const video = videoRef.current
@@ -285,9 +287,9 @@ function HeroScreenVideo() {
       document.removeEventListener('visibilitychange', syncPlayback)
       video.pause()
     }
-  }, [motionAllowed, failed])
+  }, [motionAllowed, failed, afterHero])
 
-  if (!motionAllowed || failed) return null
+  if (!motionAllowed || failed || !afterHero) return null
 
   return (
     <div ref={layerRef} className={`hero-screen${playing ? ' is-playing' : ''}`} aria-hidden="true">
@@ -624,6 +626,7 @@ function PoseButton({
 }
 
 export function WeatherAquariumPage() {
+  const afterHero = useAfterHero()
   const rootRef = useRef<HTMLDivElement>(null)
   const heroMediaRef = useRef<HTMLDivElement>(null)
   const heroDeviceRef = useRef<HTMLDivElement>(null)
@@ -771,7 +774,7 @@ export function WeatherAquariumPage() {
                         className={`edition-media ${edition.video ? 'holiday-cover' : 'holiday-slice'}`}
                         style={{ ['--slice' as string]: edition.slice }}
                       >
-                        <img src={`${IMG}/${edition.image}`} alt={edition.alt} loading="lazy" />
+                        <img src={afterHero ? `${IMG}/${edition.image}` : undefined} alt={edition.alt} loading="lazy" />
                         {edition.video && <HolidayVideo file={edition.video} />}
                       </div>
                       <figcaption>{edition.caption}</figcaption>
