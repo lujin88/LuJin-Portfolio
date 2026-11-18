@@ -2,8 +2,6 @@
 
 import React, { useState } from 'react'
 import { ArrowUpRight, BatteryCharging, Gauge, LockKeyhole, Moon, Snowflake, Sun } from 'lucide-react'
-import { carArt } from './specimens'
-
 export function VehiclePlate({lightRef, darkRef, onVehicle}:{
   lightRef:string; darkRef:string; onVehicle:()=>void
 }){
@@ -19,7 +17,7 @@ export function VehiclePlate({lightRef, darkRef, onVehicle}:{
       </header>
       <div className="vp-scene">
         <div className="vp-status"><i/>All good.</div>
-        <img src={carArt} alt="Blue-gray BMW iX3 in front three-quarter view"/>
+        <div className="vp-car vp-car--dark" aria-hidden="true" />
       </div>
       <div className="vp-readings">
         <div><small><BatteryCharging size={15}/>Battery</small><strong>58<span>%</span></strong></div>

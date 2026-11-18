@@ -1,9 +1,9 @@
 import React from 'react'
 import './system-editorial.css'
 
-export function SystemCover({ landscape }: { landscape: string }) {
+export function SystemCover({ landscape }: { landscape?: string }) {
   return <header className="ev-hero" id="cover">
-    <img className="ev-hero-scene" src={landscape} alt="Portfolio artwork of a BMW overlooking the Alps at sunset"/>
+    {landscape ? <img className="ev-hero-scene" src={landscape} alt="Portfolio artwork of a BMW overlooking the Alps at sunset"/> : null}
     <div className="ev-intro">
       <small>JIN LU　/　DESIGN LEAD</small>
       <h1>BMW Mobility<br/>Design System.</h1>

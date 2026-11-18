@@ -72,7 +72,6 @@ export function BMWOneSource() {
   }}>
 <section id="driver-view" className="bmw-driver">
   {/* Hero C, phone option A (visual OUTBOX/BMW_C_PHONE_AB_20261108): car scene, the real default app screen, copy from messages. */}
-  <img className="backdrop" src="/assets/images/bmw-system/i4-alpine-sunset.webp" alt={t('bmw.hero.backdropAlt')} />
   <header>
     <p>
       {t('bmw.hero.eyebrow')}
