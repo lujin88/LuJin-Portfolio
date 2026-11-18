@@ -350,19 +350,30 @@
 }.wa-page .vocab-art--clip{
   display: grid;
   align-content: stretch;
-}.wa-page .vocab-art--clip img,
-.wa-page .vocab-art--clip .vocab-video{
+}.wa-page .vocab-fit{
+  /* Same rectangle the contain-fitted webp occupies (224px tall box), so the clip can be
+     placed by the fitted offsets: its subject lands on the still's subject. */
   grid-area: 1 / 1;
-  place-self: stretch;
+  place-self: center;
+  position: relative;
+  display: block;
+  width: min(100%, calc(224px * var(--ratio)));
+  aspect-ratio: var(--ratio);
+  container-type: inline-size;
+}.wa-page .vocab-fit img{
+  display: block;
   width: 100%;
   height: 100%;
-  min-width: 0;
-  min-height: 0;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
 }.wa-page .vocab-video{
+  position: absolute;
+  left: calc(100% * var(--clip-x));
+  top: calc(100cqw * var(--clip-y));
+  width: calc(100% * var(--clip-w));
+  max-width: none;
+  height: auto;
+  aspect-ratio: 1112 / 834;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
   opacity: 0;
   pointer-events: none;
 }.wa-page .vocab-art--clip.is-ready .vocab-video{
