@@ -52,7 +52,7 @@
   :where(.etf-case) p.story-text[data-type="body"] {
     font-size:var(--type-body) !important;
     line-height:1.48 !important;
-    max-width:54ch;
+    max-width:58ch;
     text-wrap:balance;
   }
   :where(.etf-case) .story article {min-height:clamp(610px,78svh,820px)}
