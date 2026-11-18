@@ -37,7 +37,7 @@ export function Concept({variation}:{variation:Variation}) {
     <li><small>2020 · Excel</small><b>{r.cell}</b></li><li><small>2026 · Rule output</small><b>{r.command}</b></li><li><small>Team review</small><b>{pending?'Wording pending':'Approved'}</b></li></ol>
   const matrix=<div className="cv-matrix" role="group" aria-label="Model and market rules"><div className="cv-row cv-head"><span>Vehicle</span><span>Market</span><span>Excel cell</span></div>{rules.map((m,i)=><button className="cv-row" aria-pressed={i===idx} key={m.model} onClick={()=>select(i)}><b>{m.model}<small>{m.drive}</small></b><span>{m.market}</span><span>{m.cell}</span></button>)}</div>
   return <main className={'cv-page cv-'+variation} lang="en"><div className="cv-wrap">
-    <nav><a href="/bmw-design-system#now">← BMW Design System</a><span>2026 concept</span></nav>
+    <nav><a href="/bmw-design-system#top">← BMW Design System</a><span>2026 concept</span></nav>
     <header className="cv-title"><small>{directions[variation]}</small><h1>{heading}</h1><p>{variation==='driver'?'Switch vehicles to see which controls the same rule allows.':variation==='matrix'?'Select an Excel row to see the component it would generate.':'An agent prepares the states. The team decides what is ready.'}</p></header>
     {variation==='driver'?<>
       <section className="cv-scene" data-electric={r.drive==='Electric'}><div className="cv-driver-copy"><small>Vehicle preview</small>{modelPicker}<h2>{r.model}</h2><p>{r.drive} · Market {r.market}</p><strong>{r.command}</strong></div>{phone}</section>
