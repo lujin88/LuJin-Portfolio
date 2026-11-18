@@ -70,6 +70,15 @@ const NAV: readonly NavEntry[] = [
               dark: '/assets/images/nav/dark/work/eon-dark.webp',
             },
           },
+          {
+            label: 'BMW Design System',
+            href: '/bmw-design-system',
+            meta: 'Vehicle controls · Light & dark',
+            icon: {
+              light: '/assets/images/nav/light/work/bmw-design-system-light.svg',
+              dark: '/assets/images/nav/dark/work/bmw-design-system-dark.svg',
+            },
+          },
         ],
       },
       {
@@ -91,15 +100,6 @@ const NAV: readonly NavEntry[] = [
             icon: {
               light: '/assets/images/nav/light/work/etf-savings-plan-light.webp',
               dark: '/assets/images/nav/dark/work/etf-savings-plan-dark.webp',
-            },
-          },
-          {
-            label: 'BMW Design System',
-            href: '/bmw-design-system',
-            meta: 'Vehicle controls · Light & dark',
-            icon: {
-              light: '/assets/images/nav/light/work/bmw-design-system-light.svg',
-              dark: '/assets/images/nav/dark/work/bmw-design-system-dark.svg',
             },
           },
         ],
