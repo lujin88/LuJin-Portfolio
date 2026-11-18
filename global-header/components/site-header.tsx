@@ -178,8 +178,8 @@ function sectionHeadingClass(sectionIndex: number) {
   )
 }
 
-function groupMenuListClass(group: NavGroup) {
-  return group.sections?.length ? 'header-menu-grouped' : 'header-menu-divided'
+function groupMenuListClass(_group: NavGroup) {
+  return 'header-menu-grouped'
 }
 
 function visibleGroup(group: NavGroup): NavGroup {
