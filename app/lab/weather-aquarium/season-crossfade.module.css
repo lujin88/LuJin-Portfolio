@@ -32,3 +32,5 @@
   .frame:first-child { opacity: 1 !important; }
   .pause { display: none; }
 }
+
+.frame:not([src]) { visibility: hidden; }
