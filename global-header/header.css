@@ -186,6 +186,28 @@
   padding: 0.75rem 1.25rem 0.75rem 0.875rem;
 }
 
+[data-site-header] .header-menu-section {
+  padding: 0.625rem 1.25rem 0.25rem 0.875rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: color-mix(in oklab, var(--header-foreground) 52%, transparent);
+}
+
+[data-site-header] .header-menu-section--lead {
+  padding: 1rem 1.25rem 0.375rem 0.875rem;
+}
+
+[data-site-header] .header-menu-section--split {
+  padding: 0.75rem 1.25rem 0.75rem 0.875rem;
+  border-top: 1px solid color-mix(in oklab, var(--header-line) 45%, transparent);
+}
+
+[data-site-header] .header-menu-grouped > li > a {
+  gap: 0.875rem;
+  padding: 0.75rem 1.25rem 0.75rem 0.875rem;
+}
+
 /* Same horizontal inset as the page content (--content-inset). */
 .site-header__cta {
   box-sizing: border-box;
@@ -281,6 +303,11 @@
   color: color-mix(in srgb, var(--header-foreground) 55%, transparent);
 }
 [data-site-header][data-header-tone='paper'] .header-menu-meta {
+  color: var(--color-text-4, #595d61);
+}
+
+/* Paper Work/Playground group labels (Project/Concept). 52% mix ≈3.74:1 on white (visualqa #17757). */
+[data-site-header][data-header-tone='paper'] .header-menu-section {
   color: var(--color-text-4, #595d61);
 }
 

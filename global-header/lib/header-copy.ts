@@ -4,6 +4,8 @@ export const headerCopy = {
   en: {
     nav: {
       Work: 'Work',
+      Project: 'Project',
+      Concept: 'Concept',
       'How I work': 'How I work',
       Playground: 'Playground',
       'Client Advisory': 'Client Advisory',
@@ -42,6 +44,8 @@ export const headerCopy = {
   de: {
     nav: {
       Work: 'Arbeit',
+      Project: 'Project',
+      Concept: 'Concept',
       'How I work': 'Wie ich arbeite',
       Playground: 'Playground',
       'Client Advisory': 'Client Advisory',
