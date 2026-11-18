@@ -45,7 +45,7 @@ export function ChallengeSection() {
           />
 
           {/* headline */}
-          <h2 className="mt-8 text-balance text-4xl font-extrabold leading-[1.02] tracking-tight text-white md:text-5xl lg:text-[3.5rem]">
+          <h2 data-type="h2" className="mt-8 text-balance text-4xl font-extrabold leading-[1.02] tracking-tight text-white md:text-5xl lg:text-[3.5rem]">
             {t('eon.challenge.title1')}
             <br />
             {t('eon.challenge.title2')}
@@ -53,10 +53,10 @@ export function ChallengeSection() {
 
           {/* body copy */}
           <div className="mt-8 space-y-6 text-base leading-relaxed text-[#9aa7ba] md:text-[1.0625rem]">
-            <p>
+            <p data-type="body">
               {t('eon.challenge.body1')}
             </p>
-            <p>
+            <p data-type="body">
               {t('eon.challenge.body2Lead')}{" "}
               <span className="font-semibold text-white">
                 {t('eon.challenge.body2Strong')}

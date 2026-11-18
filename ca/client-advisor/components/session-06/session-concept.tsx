@@ -24,10 +24,10 @@ export function SessionConcept() {
       body: (
         <div className="mt-[0.85rem] flex flex-col">
           <h4 className={subheadClass}>{t('ca.concept.whyLess')}</h4>
-          <p className={bodyClass}>{t('ca.concept.whyLessBody')}</p>
+          <p data-type="body" className={bodyClass}>{t('ca.concept.whyLessBody')}</p>
           <h4 className={`${subheadClass} mt-4`}>{t('ca.concept.buying')}</h4>
-          <p className={bodyClass}>{t('ca.concept.buyingWon')}</p>
-          <p className={bodyClass}>{t('ca.concept.buyingPractice')}</p>
+          <p data-type="body" className={bodyClass}>{t('ca.concept.buyingWon')}</p>
+          <p data-type="body" className={bodyClass}>{t('ca.concept.buyingPractice')}</p>
         </div>
       ),
     },
@@ -51,7 +51,7 @@ export function SessionConcept() {
         <span>{t('ca.concept.eyebrow')}</span>
       </p>
 
-      <h2
+      <h2 data-type="h2"
         id="session-06-heading"
         className="ca-h2 mt-[var(--ca-heading-gap)] max-w-[18ch] font-sans"
       >

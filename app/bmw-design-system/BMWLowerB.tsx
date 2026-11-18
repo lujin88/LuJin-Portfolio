@@ -41,24 +41,24 @@ export function BMWLowerB() {
         </dl>
         <div data-move="96">
           <div className="rubric">Inside the design system</div>
-          <h2>
+          <h2 data-type="h2">
             One control.
             <br />
             More than <span className="keep-words">one layer.</span>
           </h2>
-          <p>A design system has to carry the appearance, the state and the rules that make the component available.</p>
+          <p data-type="body">A design system has to carry the appearance, the state and the rules that make the component available.</p>
         </div>
       </LayerScrollGroup>
 
       <section className="anatomy">
         <div className="notes">
           <div>
-            <h3>Appearance</h3>
-            <p>Light and dark belong to the same system.</p>
+            <h3 data-type="h3">Appearance</h3>
+            <p data-type="body">Light and dark belong to the same system.</p>
           </div>
           <div>
-            <h3>Availability</h3>
-            <p>Model and market determine what the driver can use.</p>
+            <h3 data-type="h3">Availability</h3>
+            <p data-type="body">Model and market determine what the driver can use.</p>
           </div>
         </div>
         <LayerScrollGroup className="layers">
@@ -79,12 +79,12 @@ export function BMWLowerB() {
         </LayerScrollGroup>
         <div className="notes">
           <div>
-            <h3>State</h3>
-            <p>Sending, waiting, success and failure are different.</p>
+            <h3 data-type="h3">State</h3>
+            <p data-type="body">Sending, waiting, success and failure are different.</p>
           </div>
           <div>
-            <h3>The limit</h3>
-            <p>No explanation from the car means no explanation from AI.</p>
+            <h3 data-type="h3">The limit</h3>
+            <p data-type="body">No explanation from the car means no explanation from AI.</p>
           </div>
         </div>
       </section>
@@ -93,12 +93,12 @@ export function BMWLowerB() {
       <section className="pad demo-section" id="climate-study">
         <LayerScrollGroup className="heading">
           <div data-move="96">
-            <h2>
+            <h2 data-type="h2">
               See the app.
               <br />
               Try the rule.
             </h2>
-            <p>Where can a control appear? What happens after a tap? The component preview lets you explore both.</p>
+            <p data-type="body">Where can a control appear? What happens after a tap? The component preview lets you explore both.</p>
           </div>
         </LayerScrollGroup>
         <div className="preview-grid">
@@ -192,27 +192,27 @@ export function BMWLowerB() {
         </div>
         <div data-move="96">
           <div className="rubric">Today · A proposal</div>
-          <h2>
+          <h2 data-type="h2">
             Make the missing
             <br />
             rule visible.
           </h2>
-          <p>This is a hypothesis, not something we shipped. AI would compare the rules and flag gaps for the team to review.</p>
+          <p data-type="body">This is a hypothesis, not something we shipped. AI would compare the rules and flag gaps for the team to review.</p>
           <div className="review-path">
             <span>Component</span>→<span>Rule</span>→<span>Team review</span>
           </div>
-          <p>The decision stays with the team. The new rule stays with the component.</p>
+          <p data-type="body">The decision stays with the team. The new rule stays with the component.</p>
         </div>
       </LayerScrollGroup>
 
       <LayerScrollGroup as="section" className="pad transfer">
         <div data-move="96">
-          <h2>
+          <h2 data-type="h2">
             Could this work
             <br />
             in your product?
           </h2>
-          <p>Map where one component follows different rules. Keep those rules alongside it. Build a review loop: AI flags gaps, people decide.</p>
+          <p data-type="body">Map where one component follows different rules. Keep those rules alongside it. Build a review loop: AI flags gaps, people decide.</p>
         </div>
         <div>
           <div className="mapping">
