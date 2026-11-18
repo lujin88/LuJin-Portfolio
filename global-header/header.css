@@ -134,6 +134,41 @@
   color: var(--header-foreground);
 }
 
+/* Mobile drawer language rows: flat on scrim, not a flyout card. */
+[data-site-header] .header-mobile-language-list {
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+[data-site-header] .header-mobile-language-list > li {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+[data-site-header] .header-mobile-language-list :is(a, button) {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+}
+
+[data-site-header] .header-mobile-language-list :is(a, button):hover,
+[data-site-header] .header-mobile-language-list :is(a, button):focus-visible {
+  border-radius: 0;
+  background: var(--header-menu-hover);
+}
+
+/* Desktop language dropdown: B稿 panel width / gap below trigger. */
+[data-site-header] .header-language-flyout {
+  min-width: 12.75rem;
+}
+
 /* Row hover. Own token, so per-route --header-menu-item overrides do not
    change it. Values match design-system-foundation.css. */
 [data-site-header] .header-menu :is(a, button):hover,

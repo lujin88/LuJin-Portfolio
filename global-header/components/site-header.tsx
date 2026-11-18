@@ -610,7 +610,8 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                 aria-label={copy.selectLanguage}
                 className={cn(
                   MENU_PANEL,
-                  'absolute right-0 top-full z-10 mt-4 w-max max-w-[calc(100vw-3rem)] origin-top-right',
+                  'header-language-flyout',
+                  'absolute right-0 top-full z-10 mt-2 w-max max-w-[calc(100vw-3rem)] origin-top-right',
                   'animate-in fade-in-0 zoom-in-[0.98] slide-in-from-top-1 duration-150 ease-out',
                   MOTION_SAFE,
                 )}
@@ -807,7 +808,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           </a>
           <div className="border-t border-header-line pt-5">
             <p className="header-mobile-language-label m-0">{copy.languageLabel}</p>
-            <ul className="header-menu m-0 flex list-none flex-col gap-0 p-0" role="list">
+            <ul className="header-mobile-language-list m-0 flex list-none flex-col gap-0 p-0" role="list">
               {LANGUAGES.map((lang) => {
                 const isSelected = lang.code === language.code
                 return (
@@ -817,7 +818,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                       onClick={() => setLanguage(lang)}
                       aria-current={isSelected ? 'true' : undefined}
                       className={cn(
-                        'flex w-full min-h-11 items-center justify-between gap-4 rounded-sm text-lg transition-colors',
+                        'flex w-full min-h-11 items-center justify-between gap-4 rounded-none text-[0.9375rem] leading-tight transition-colors',
                         PLAIN_CONTROL,
                         FOCUS_RING,
                         MOTION_SAFE,
