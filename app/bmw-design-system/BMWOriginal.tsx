@@ -52,17 +52,17 @@ export function BMWOriginal() {
         <section className="bo-block" aria-labelledby="bo-challenges">
           <h2 id="bo-challenges" className="bo-label">Challenges</h2>
           <p className="bo-lead">HMW deliver an implementable design file in a consistent brand design language?</p>
+          <ul className="bo-pillars">
+            {[['icn-sync.png', 'SYNC'], ['icn-system.png', 'SYSTEM'], ['icn-accessibility.png', 'ACCESSIBILITY'], ['icn-prototype.png', 'ITERATION']].map(([s, l]) => (
+              <li key={l}><img src={IMG + s} alt="" width="80" height="80" loading="lazy" /><span>{l}</span></li>
+            ))}
+          </ul>
         </section>
 
         <section className="bo-block" aria-labelledby="bo-background">
           <h2 id="bo-background" className="bo-label">Background</h2>
           <p>Due to the confidential reason, here only shows how I support clients to create an <strong>easy-to-track design system</strong> and collaborate with different stakeholders in an around 400 people team (including design, development, PO, Service owners, functional owners).</p>
           <p>This 1,5 years project&apos;s goal is to develop a new app interacting with the vehicle(s). We have around 40 designers, located in <strong>3 continents</strong> with <strong>10 hours time difference</strong>. As the team leader from my 10 people team, my role covers project management, Design System, UX, UI Design as well as arranging monthly Usability test.</p>
-          <ul className="bo-pillars">
-            {[['icn-sync.png', 'SYNC'], ['icn-system.png', 'SYSTEM'], ['icn-accessibility.png', 'ACCESSIBILITY'], ['icn-prototype.png', 'ITERATION']].map(([s, l]) => (
-              <li key={l}><img src={IMG + s} alt="" width="80" height="80" loading="lazy" /><span>{l}</span></li>
-            ))}
-          </ul>
         </section>
 
         <Section n={1} id="bo-sync" icon="icn-sync-whole-blue.png" title="Sync">
