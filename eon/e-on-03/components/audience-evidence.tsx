@@ -65,6 +65,11 @@ export function AudienceEvidence({ alt }: { alt: string }) {
   const [stat, setStat] = useState(STAT)
   const [ringDone, setRingDone] = useState(false)
   const [listInView, setListInView] = useState(false)
+  // Family clip (row 60): only mounted when motion is allowed; the still photo stays underneath.
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [videoOn, setVideoOn] = useState(false)
+  const videoEnded = useRef(false)
+  const videoInView = useRef(false)
 
   // Arm, then start watching only after the hidden frame has been painted, so a section that
   // is already in view at load still animates from its start state instead of skipping it.
@@ -84,6 +89,7 @@ export function AudienceEvidence({ alt }: { alt: string }) {
     let raf1 = 0
     let raf2 = 0
 
+    setVideoOn(true)
     setRing('out')
     setCards('out')
     setStat(0)
@@ -102,6 +108,8 @@ export function AudienceEvidence({ alt }: { alt: string }) {
       setRing('static')
       setCards('static')
       setStat(STAT)
+      videoRef.current?.pause()
+      setVideoOn(false)
     }
     mq.addEventListener('change', onChange)
 
@@ -139,6 +147,38 @@ export function AudienceEvidence({ alt }: { alt: string }) {
     if (cards === 'out' && ringDone && listInView) setCards('in')
   }, [cards, ringDone, listInView])
 
+  // Family clip plays once when the section is ~35% in view, holds its last frame (≈ first frame),
+  // and never restarts. Tab hidden / scrolled away pauses it; coming back resumes only if unfinished.
+  useEffect(() => {
+    const root = rootRef.current
+    const video = videoRef.current
+    if (!videoOn || !root || !video) return
+    const mq = window.matchMedia(REDUCE)
+    const sync = () => {
+      if (videoEnded.current || mq.matches) return
+      if (videoInView.current && !document.hidden) void video.play().catch(() => {})
+      else video.pause()
+    }
+    const onEnded = () => {
+      videoEnded.current = true
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        videoInView.current = e.isIntersecting
+        sync()
+      },
+      { threshold: 0.35 },
+    )
+    io.observe(root)
+    video.addEventListener('ended', onEnded)
+    document.addEventListener('visibilitychange', sync)
+    return () => {
+      io.disconnect()
+      video.removeEventListener('ended', onEnded)
+      document.removeEventListener('visibilitychange', sync)
+    }
+  }, [videoOn])
+
   const progress = stat / 100
   const statText =
     lang === 'de'
@@ -161,6 +201,20 @@ export function AudienceEvidence({ alt }: { alt: string }) {
           loading="lazy"
           className="aud-ev-photo absolute inset-0 h-full w-full object-cover"
         />
+        {videoOn && (
+          <video
+            ref={videoRef}
+            aria-hidden="true"
+            muted
+            playsInline
+            preload="metadata"
+            poster="/assets/images/eon/audience-photo-clean.webp"
+            className="aud-ev-photo absolute inset-0 h-full w-full object-cover object-center"
+          >
+            <source src="/assets/videos/eon/audience-family-5s.webm" type="video/webm" />
+            <source src="/assets/videos/eon/audience-family-5s.mp4" type="video/mp4" />
+          </video>
+        )}
         {/* Soft left shade so the desktop cards read on the bright foliage. */}
         <div
           aria-hidden="true"
