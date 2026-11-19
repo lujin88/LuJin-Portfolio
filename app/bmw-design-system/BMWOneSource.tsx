@@ -7,13 +7,14 @@ function applySelection(root:HTMLElement, button:HTMLButtonElement) {
 
   if (button.hasAttribute('data-climate') || button.hasAttribute('data-reply')) {
     const themes = root.querySelector<HTMLElement>('.themes')!;
-    const petrol = root.querySelector<HTMLElement>('[data-rule][aria-pressed=true] b')!.textContent !== 'iX3';
+    const model = root.querySelector<HTMLElement>('[data-rule][aria-pressed=true] b')!.textContent || '';
+    const climateOnly = model === 'Model A' || model === 'Model D';
     const phase = themes.dataset.phase || 'off';
     if (phase === 'connecting' && !button.dataset.reply) return;
     let next = button.dataset.reply;
     if (!next) {
       if (phase === 'running') next = 'off';
-      else if (phase === 'confirm' || !petrol) next = 'connecting';
+      else if (phase === 'confirm' || climateOnly) next = 'connecting';
       else next = 'confirm';
     }
     const states:Record<string,string[]> = {
@@ -58,8 +59,8 @@ function applySelection(root:HTMLElement, button:HTMLButtonElement) {
   root.querySelector<HTMLElement>('.sim-response')!.hidden=true;
   root.querySelectorAll('[data-rule]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
   root.querySelectorAll<HTMLElement>('.themes .tile').forEach(tile=>tile.hidden=rule==='Entry omitted');
-  const isNew=button.querySelector('b')!.textContent==='530i';
-  root.querySelector<HTMLElement>('[data-command]')!.textContent=rule==='Entry omitted'?'Entry omitted':isNew?'New configuration':rule==='Climate'?'Remote climate':'Remote engine start';
+    const isNew=button.querySelector('b')!.textContent==='Model D';
+    root.querySelector<HTMLElement>('[data-command]')!.textContent=rule==='Entry omitted'?'Entry omitted':isNew?'New configuration':rule==='Climate'?'Remote climate':rule==='Lights'?'Remote lights':'Remote control';
   root.querySelector<HTMLElement>('[data-rule-note]')!.textContent=rule==='Entry omitted'?'The control is hidden for this market.':isNew?'Select Climate to start the preview.':rule==='Climate'?'Select Climate to start the preview.':'Select Climate to start the preview.';
 }
 
@@ -117,6 +118,23 @@ export function BMWOneSource() {
     </div>
   </dl>
 </section>
+<section className="bmw-delivery" aria-labelledby="bmw-delivery-title">
+  <div className="delivery-grid">
+    <h2 className="chapter-title" id="bmw-delivery-title">
+      Shared ways
+      <br />
+      of working.
+    </h2>
+    <div>
+      <p className="chapter-copy">
+        {t('bmw.realCase.sharedWork')}
+      </p>
+      <p className="chapter-copy">
+        {t('bmw.realCase.digitalKey')}
+      </p>
+    </div>
+  </div>
+</section>
 <section id="rule-matrix" className="showcase">
   <header>
     <span>
@@ -126,18 +144,18 @@ export function BMWOneSource() {
       Design System
     </span>
     <small>
-      2020 · Model × market
+      Inside the design system · illustrative recreation
     </small>
   </header>
   <div className="columns">
     <div>
       <h2 data-type="h2" className="chapter-title">
-        Every model.
+        From system
         <br />
-        Every market.
+        to app.
       </h2>
       <p className="chapter-copy">
-        We tracked which controls each model and market allowed in Excel. I filtered it row by row: if the law didn’t allow a control, I left the button out.
+        Where can a control appear? What happens after a tap? This recreated example makes both visible.
       </p>
       <div className="book">
         <div className="line labels">
@@ -153,84 +171,56 @@ export function BMWOneSource() {
         </div>
         <button className="line" type="button" data-rule="Climate" aria-pressed="false">
           <b>
-            iX3
+            Model A
           </b>
           <span>
-            Market A
+            Region 1
           </span>
           <span>
             Climate
           </span>
         </button>
-        <button className="line" type="button" data-rule="Engine start" aria-pressed="false">
+        <button className="line" type="button" data-rule="Lights" aria-pressed="false">
           <b>
-            320i
+            Model B
           </b>
           <span>
-            Market A
+            Region 1
           </span>
           <span>
-            Engine start
+            Lights
           </span>
         </button>
         <button className="line" type="button" data-rule="Entry omitted" aria-pressed="false">
           <b>
-            320d
+            Model C
           </b>
           <span>
-            Market C
+            Region 3
           </span>
           <span>
-            Hidden
+            Unavailable
           </span>
         </button>
         <button className="line" type="button" data-rule="Climate" aria-pressed="true">
           <b>
-            530i
+            Model D
           </b>
           <span>
-            Market B
+            Region 2
           </span>
           <span>
-            Check
+            Climate
           </span>
         </button>
       </div>
-    </div>
-    <div className="phone vehicle-phone" role="img" aria-label="Fully charged silver BMW i4 eDrive35. Lock, unlock and headlights in one strip above Status and State of charge.">
-      <div className="screen-region vehicle-header" style={{"aspectRatio": "376/367"}}>
-        <img aria-hidden="true" alt="" src="/lab/bmw-one-source/assets/i4-silver-backdrop.png" style={{"transform": "translateY(-0.000000%)"}} />
-      </div>
-      <div className="vehicle-actions">
-        <span>
-          <svg aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M7 10V7a5 5 0 0 1 10 0v3 M5 10h14v11H5z M12 14v3">
-            </path>
-          </svg>
-        </span>
-        <span>
-          <svg aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M9 10V7a5 5 0 0 1 10 0 M4 10h14v11H4z M11 14v3">
-            </path>
-          </svg>
-        </span>
-        <span>
-          <svg aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M11 5c6-1 11 2 11 7s-5 8-11 7z M2 6h6 M2 10h6 M2 14h6 M2 18h6">
-            </path>
-          </svg>
-        </span>
-      </div>
-      <div className="screen-region vehicle-status" style={{"aspectRatio": "376/120"}}>
-        <img aria-hidden="true" alt="" src="/lab/bmw-one-source/assets/i4-complete.png" style={{"transform": "translateY(-45.030675%)"}} />
-      </div>
-      <div className="screen-region vehicle-lower" style={{"aspectRatio": "376/270"}}>
-        <img aria-hidden="true" alt="" src="/lab/bmw-one-source/assets/i4-complete.png" style={{"transform": "translateY(-66.871166%)"}} />
-      </div>
+      <p className="matrix-note rules-caption">
+        Illustrative recreation · all models, regions and rules are fictional.
+      </p>
     </div>
   </div>
   <p className="chapter-copy preview-note">
-    Cars respond slowly, and a car without signal can’t respond at all. We tested how long the app could wait. When a request failed, the car couldn’t say why, so the app could only tell the driver it hadn’t worked.
+    The interface can only show what the vehicle reports. Sending, waiting, success and failure are different states.
   </p>
   <footer className="summary">
     <b>
@@ -267,168 +257,29 @@ export function BMWOneSource() {
         New configuration
       </b>
       <small data-rule-note>
-        Select Climate to start the preview.
+        Example state: command not sent.
       </small>
     </div>
+    <p className="rules-caption preview-states-caption">
+      Illustrative recreation · simulated states, no vehicle connection.
+    </p>
   </footer>
 </section>
 <aside className="system-gap">
   <p className="overline">
-    The hard part
+    Inside the design system · illustrative recreation
   </p>
   <h2 data-type="h2">
-    One button.
+    One control.
     <br />
-    Many edge cases.
+    Many layers.
   </h2>
   <p>
-    Climate was always one button. Behind it, each model and market needed its own rule, and some edge cases were hard to cover.
+    A design system has to carry the appearance, the state and the rules that make the component available.
   </p>
 </aside>
-<section id="review-desk" className="showcase desk">
-  <header>
-    <span className="overline">
-      BMW Design System　 /　 Review desk · 2026 proposed
-    </span>
-  </header>
-  <h2 data-type="h2" className="chapter-title">
-    AI compares.
-    <br />
-    The team decides.
-  </h2>
-  <div>
-  <p className="chapter-copy review-intro">
-    This part is a hypothesis, not something we shipped. I would store the model and market rules as data, linked to the Figma component and its code. AI would compare every case against those rules and collect real examples that no rule covers yet.
-  </p>
-  <p className="chapter-copy review-intro">
-    The team would decide what each case should do. Each decision would become a rule the next review starts from.
-  </p>
-  </div>
-  <div className="desk-body">
-    <div className="drift-selector">
-      <h3>
-        Edge-case report
-      </h3>
-      <div className="choices">
-        <button type="button" data-app="A" aria-pressed="false">
-          <b>
-            iX3 · Market A
-          </b>
-          <small>
-            Covered by a rule ✓
-          </small>
-        </button>
-        <button type="button" data-app="B" aria-pressed="true">
-          <b>
-            530i · Market B
-          </b>
-          <small>
-            New model · no rule yet
-          </small>
-        </button>
-        <button type="button" data-app="C" aria-pressed="false">
-          <b>
-            320i · Market A
-          </b>
-          <small>
-            Request failed · no example yet
-          </small>
-        </button>
-      </div>
-    </div>
-    <section className="inspect" aria-live="polite">
-      <div className="sample">
-        <h2>
-          In the system
-        </h2>
-        <div className="tile">
-          <b data-output>
-            Climate
-          </b>
-          <small data-state>
-            Off
-          </small>
-        </div>
-        One shared Climate control
-      </div>
-      <div className="sample front" data-drift="patch">
-        <h2 data-app-title>
-          No rule yet
-        </h2>
-        <div className="tile dark">
-          <b data-output>
-            Climate
-          </b>
-          <small data-state>
-            Off
-          </small>
-        </div>
-        <div className="callout">
-          No rule for this market → Propose a rule
-        </div>
-        <button type="button" className="confirm">
-          Approve rule
-        </button>
-      </div>
-    </section>
-  </div>
-  <ol className="proposed-flow" aria-label="Proposed design system workflow">
-    <li>
-      <div className="step-art" aria-hidden="true" style={{"--slice": "0"} as React.CSSProperties}>
-        <img src="/lab/bmw-one-source/assets/review-workflow.webp" alt="" />
-      </div>
-      <b>
-        One component, linked
-      </b>
-      <span>
-        Figma ↔ code via Code Connect
-      </span>
-    </li>
-    <li>
-      <div className="step-art" aria-hidden="true" style={{"--slice": "1"} as React.CSSProperties}>
-        <img src="/lab/bmw-one-source/assets/review-workflow.webp" alt="" />
-      </div>
-      <b>
-        Rules as data
-      </b>
-      <span>
-        Model × market → button shown or hidden
-      </span>
-    </li>
-    <li>
-      <div className="step-art" aria-hidden="true" style={{"--slice": "2"} as React.CSSProperties}>
-        <img src="/lab/bmw-one-source/assets/review-workflow.webp" alt="" />
-      </div>
-      <b>
-        Edge-case scan
-      </b>
-      <span>
-        Collect real cases no rule covers yet
-      </span>
-    </li>
-    <li>
-      <div className="step-art" aria-hidden="true" style={{"--slice": "3"} as React.CSSProperties}>
-        <img src="/lab/bmw-one-source/assets/review-workflow.webp" alt="" />
-      </div>
-      <b>
-        Team decides
-      </b>
-      <span>
-        Each new rule goes through a pull request
-      </span>
-    </li>
-  </ol>
-  <footer className="team-decides">
-    <b>
-      Where AI stops
-    </b>
-    <p className="future-limit">
-      Better examples would make each review faster. AI still couldn’t make a car explain why a request failed, so the app would still only say it didn’t work.
-    </p>
-  </footer>
-</section>
-<footer className="closing-line">
-  In 2020, the system held the components. Now it should hold the rules: every model, every market, every edge case, in one source.
+<footer className="closing-line closing-real">
+  The work was as much about how teams worked together as the components they shared.
 </footer>
   </main>
 }
