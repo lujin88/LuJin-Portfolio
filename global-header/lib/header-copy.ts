@@ -20,7 +20,7 @@ export const headerCopy = {
     },
     meta: {
       'Wealth · Service design': 'Wealth · Service design',
-      'Energy · 300% more leads': 'Energy · 300% more leads',
+      'Energy · conversion +300%': 'Energy · conversion +300%',
       'Rive motion': 'Rive motion',
       'Hackathon · Fleet dispatch': 'Hackathon · Fleet dispatch',
       'Fleet uptime · Dispatch': 'Fleet uptime · Dispatch',
@@ -61,7 +61,7 @@ export const headerCopy = {
     },
     meta: {
       'Wealth · Service design': 'Wealth · Service Design',
-      'Energy · 300% more leads': 'Energie · 300 % mehr Leads',
+      'Energy · conversion +300%': 'Energie · Conversion +300 %',
       'Rive motion': 'Rive Motion',
       'Hackathon · Fleet dispatch': 'Hackathon · Flottendisposition',
       'Fleet uptime · Dispatch': 'Flottenverfügbarkeit · Disposition',

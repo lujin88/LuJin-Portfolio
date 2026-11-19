@@ -4,7 +4,7 @@ export const home = {
     heroKicker: 'Product designer · Consumer, enterprise & regulated UX',
     heroTitle: 'Simplify complexity. Design with AI tools.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads.</span><span class="hero-line"><a class="hero-jump" href="#bmw-my-app" data-scroll-target="bmw-my-app">BMW</a> app: led design team &amp; design system.</span><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: Solar lead conversion up 300%.</span><span class="hero-line"><a class="hero-jump" href="#bmw-my-app" data-scroll-target="bmw-my-app">BMW</a> app: led design team &amp; design system.</span><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Close chat',
     askLuSend: 'Send',
@@ -96,7 +96,7 @@ export const home = {
     heroKicker: 'Product Designerin · Consumer, Enterprise- & regulierte UX',
     heroTitle: 'Komplexität vereinfachen. Mit KI-Tools gestalten.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300&nbsp;% mehr Leads.</span><span class="hero-line"><a class="hero-jump" href="#bmw-my-app" data-scroll-target="bmw-my-app">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: Solar-Lead-Conversion +300&nbsp;%.</span><span class="hero-line"><a class="hero-jump" href="#bmw-my-app" data-scroll-target="bmw-my-app">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Chat schließen',
     askLuSend: 'Senden',
