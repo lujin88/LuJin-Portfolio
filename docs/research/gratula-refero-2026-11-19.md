@@ -31,3 +31,14 @@
 | 10 | 页脚 | 链接列 |
 节奏：居中单句 → 卡片组 → 交错两列 → 通栏图 → 单手机，每段只有一个主体，段与段换版式。Gratula 目前是我们按文字一段段拼的（pm #20529 自己也这么说）。
 对 Gratula 可抄：1、3、5 的节奏；照片换成我们的插画场景（Partiful /dinner-invitations：手机压在插画夜景上）。没有的：Origin 全靠照片和深色，Gratula 的 navy 与它的黑不同——Lu 喜欢的是 navy，所以抄结构不抄底色。
+
+## 大牌站参考（Lu #20557：找 Stripe / Linear / Apple 这类好看的）
+来源：Refero 网页库。Refero 只存首屏预览图，整页顺序下面写的是 Refero 对该页版式的描述（「Layout」字段），不是我量的。静图，视差/滚动 = 未验。
+| 站 | 链接 | 版式（Refero 描述） | 对 Gratula |
+|---|---|---|---|
+| Apple 首页 | https://refero.design/pages/dc9d53bc-fcad-4539-8594-841f6650c703 | 通栏堆叠；全宽黑色 hero，居中产品名 + 一行 + 两个链接，产品大图压出首屏；下面黑/白整屏交替，每屏「文字+图」两栏 | 每屏一个主体、黑白交替；首屏一个物件居中 |
+| Apple Events | https://refero.design/pages/c6b23f77-e66f-4e12-a018-c49a9a666978 | 深色星空 hero，居中大标题；下面交替的两栏产品卡，最后一格活动卡 | 深底 + 居中单物件，贴近 Gratula 的夜空感 |
+| Linear 首页 | https://refero.design/pages/5313c40e-d163-4d32-9175-1645042f92c5 | 大幅分栏 hero + 截图；居中 logo 格；两栏介绍 + 三张功能卡 | 就是 Lu 给 BMW 的那一套 |
+| Linear for startups | https://refero.design/pages/1c12521c-db9a-4103-bd95-3ceadbb29956 | 居中 hero 标题 + 一块大截图；两栏功能段交替；logo 条；数据/评价；两栏 FAQ；页脚 | 居中标题 + 大图 + 交替两栏，段落顺序清楚 |
+没找到：Stripe 的首页/产品页——Refero 搜 "Stripe homepage" 只返回 stripe.com/404，没有首页预览；要 Stripe 得直接抓 stripe.com 截图（要 pm 批准）。
+我看不到这几页的整页图，所以「结构」只能说到上表的程度；要 1:1 搭，需要整页截图（可以我抓 apple.com/iphone、linear.app 的 1440 整页）。
