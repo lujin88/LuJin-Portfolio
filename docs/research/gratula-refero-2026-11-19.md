@@ -59,3 +59,12 @@
 | Partiful（partiful.com，11407px） | 黑/白整屏交替；一堆斜叠的卡片横穿整屏；居中城市名列表；深色屏左字右手机；评价横滑；收尾一圈环绕的卡片图 + 大按钮；页脚超大字标 | 派对类同行；「卡片堆斜穿」「一圈物件围住按钮」可借；黑白切换太硬，不借 |
 推荐：Discord 整页骨架（连续渐变底 + 交替大圆角面板 + 通栏字带 + 角色站页脚），加 Duolingo 的「波浪边收尾」。Lu 的 navy 当渐变底的深端。
 没有的：这些站的动效。要证明视差/飘浮是否动，需要录屏，我这边只截了静图。
+
+## Lu #20618：「还有没有别的比较有名又好玩的？」——又抓了 8 个站（2026-11-19 23:4x，同样 1440 整页，静图）
+Refero 的搜索对「好玩」这类词不灵（搜 playful/illustrated 返回的是 Discord、Cartesia、IFTTT 等无关页），所以我按「有名 + 以好玩著称」直接抓官网，Refero 只用来核对。文件在 ~/.buzz/OUTBOX/research-gratula-structure-20557/。
+| 站 | 看到的 | 结论 |
+|---|---|---|
+| Headspace（8582px） | 通栏色块整段整段交替（黄/蓝/粉），卡通角色插画，FAQ，黄色收尾大按钮 | 唯一一个新的「好玩」页；用色块切段，和 Duolingo 同类，比 Discord 少一条连续背景 |
+| Notion / Slack / Mailchimp / Figma / Typeform | 都是 2026 年的 B2B 产品页：大标题 + 产品截图 + logo + 评价 + 数据，基本同一套 | 不比 Linear 更有创意，不推荐 |
+| Canva / Gumroad / Calm / Cash App | 无头浏览器被拦（只截到 900–1440px 的空页） | 没看成，不写结论 |
+所以：Duolingo、Discord、Partiful 仍是最好的三个；Headspace 可作第四个。别的大牌站没有比它们更有创意的。
