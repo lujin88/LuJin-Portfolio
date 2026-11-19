@@ -10,7 +10,7 @@ import {
   type MutableRefObject,
   type ReactElement,
 } from 'react'
-import { Check, ChevronDown, Globe, Mail, Menu, MessageCircle, X } from 'lucide-react'
+import { Check, ChevronDown, Mail, Menu, X } from 'lucide-react'
 import { headerCopy } from '../lib/header-copy'
 import { LANGUAGES, useSiteLanguage } from '../lib/language'
 import { SHOW_UNFINISHED_CASES, UNFINISHED_CASE_HREFS } from '../lib/site-flags'
@@ -150,11 +150,6 @@ const NAV: readonly NavEntry[] = [
     ],
   },
 ]
-
-const LANGUAGE_ICONS = {
-  en: Globe,
-  de: MessageCircle,
-} as const
 
 const FOCUS_RING =
   'focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current'
@@ -597,7 +592,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                 MOTION_SAFE,
               )}
             >
-              <span suppressHydrationWarning>{language.label}</span>
+              <span suppressHydrationWarning>{copy.languageLabel}</span>
               <ChevronDown
                 aria-hidden="true"
                 className={cn(
@@ -615,14 +610,14 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                 aria-label={copy.selectLanguage}
                 className={cn(
                   MENU_PANEL,
-                  'absolute right-0 top-full z-10 mt-4 w-max max-w-[calc(100vw-3rem)] origin-top-right',
+                  'header-language-flyout',
+                  'absolute right-0 top-full z-10 mt-2 w-max max-w-[calc(100vw-3rem)] origin-top-right',
                   'animate-in fade-in-0 zoom-in-[0.98] slide-in-from-top-1 duration-150 ease-out',
                   MOTION_SAFE,
                 )}
               >
                 {LANGUAGES.map((lang, index) => {
                   const isSelected = lang.code === language.code
-                  const LangIcon = LANGUAGE_ICONS[lang.code]
                   return (
                     <li key={lang.code}>
                       <button
@@ -641,20 +636,19 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                           MOTION_SAFE,
                           'hover:bg-header-menu-item focus-visible:bg-header-menu-item',
                           isSelected
-                            ? 'bg-header-menu-item font-semibold text-header-foreground'
+                            ? 'text-header-foreground'
                             : 'text-header-foreground/80 hover:text-header-foreground focus-visible:text-header-foreground',
                         )}
                       >
-                        <span className="inline-flex items-center gap-3">
-                          <LangIcon aria-hidden="true" className="size-4 shrink-0" strokeWidth={1.75} />
-                          {lang.label}
-                        </span>
-                        {isSelected && (
+                        <span>{lang.label}</span>
+                        {isSelected ? (
                           <Check
                             aria-hidden="true"
                             className="size-[18px] shrink-0 text-header-accent"
                             strokeWidth={2.5}
                           />
+                        ) : (
+                          <span aria-hidden="true" className="size-[18px] shrink-0" />
                         )}
                       </button>
                     </li>
@@ -812,25 +806,42 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
             <Mail aria-hidden="true" className="size-5 shrink-0" strokeWidth={1.5} />
             {copy.email}
           </a>
-          <div className="flex items-center gap-2 border-t border-header-line pt-5 text-sm">
-            {LANGUAGES.map((lang, index) => (
-              <button
-                key={lang.code}
-                type="button"
-                onClick={() => setLanguage(lang)}
-                className={cn(
-                  'inline-flex min-h-11 items-center appearance-none bg-transparent px-1 shadow-none outline-none transition-colors focus:outline-none focus:ring-0',
-                  FOCUS_RING,
-                  MOTION_SAFE,
-                  lang.code === language.code
-                    ? 'text-header-foreground'
-                    : 'text-header-foreground/60',
-                  index > 0 && 'border-l border-header-line pl-2',
-                )}
-              >
-                {lang.label}
-              </button>
-            ))}
+          <div className="border-t border-header-line pt-5">
+            <p className="header-mobile-language-label m-0">{copy.languageLabel}</p>
+            <ul className="header-mobile-language-list m-0 flex list-none flex-col gap-0 p-0" role="list">
+              {LANGUAGES.map((lang) => {
+                const isSelected = lang.code === language.code
+                return (
+                  <li key={lang.code} className="list-none">
+                    <button
+                      type="button"
+                      onClick={() => setLanguage(lang)}
+                      aria-current={isSelected ? 'true' : undefined}
+                      className={cn(
+                        'flex w-full min-h-11 items-center justify-between gap-4 rounded-none text-lg leading-tight transition-colors',
+                        PLAIN_CONTROL,
+                        FOCUS_RING,
+                        MOTION_SAFE,
+                        isSelected
+                          ? 'text-header-foreground'
+                          : 'text-header-foreground/72 hover:text-header-foreground',
+                      )}
+                    >
+                      <span>{lang.label}</span>
+                      {isSelected ? (
+                        <Check
+                          aria-hidden="true"
+                          className="size-5 shrink-0 text-header-accent"
+                          strokeWidth={2.5}
+                        />
+                      ) : (
+                        <span aria-hidden="true" className="size-5 shrink-0" />
+                      )}
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
           </div>
         </nav>
       </div>

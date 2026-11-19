@@ -120,10 +120,54 @@
   width: 100%;
 }
 
-/* Language listbox keeps its fill and check mark for the chosen option. */
+/* Language listbox (direction B): check mark only, no selected-row fill. */
 [data-site-header] .header-menu button[aria-selected='true'] {
   border-radius: 0;
-  background: var(--header-menu-item);
+  background: transparent;
+}
+
+[data-site-header] .header-mobile-language-label {
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: color-mix(in srgb, var(--header-foreground) 72%, transparent);
+}
+
+/* Mobile drawer language rows: flat on scrim, not a flyout card. */
+[data-site-header] .header-mobile-language-list {
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+[data-site-header] .header-mobile-language-list > li {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+[data-site-header] .header-mobile-language-list :is(a, button) {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+}
+
+[data-site-header] .header-mobile-language-list :is(a, button):hover,
+[data-site-header] .header-mobile-language-list :is(a, button):focus-visible {
+  border-radius: 0;
+  background: var(--header-menu-hover);
+}
+
+/* Desktop language dropdown: B稿 panel ~156px; gap below trigger 8px (mt-2). */
+[data-site-header] .header-language-flyout {
+  min-width: 9.75rem;
+  max-width: 9.75rem;
 }
 
 /* Row hover. Own token, so per-route --header-menu-item overrides do not
@@ -291,7 +335,8 @@
   --header-menu-selected: #0961ff;
 }
 
-[data-site-header][data-header-tone='paper'] :is(ul[role='list'], ul[role='listbox']) {
+[data-site-header][data-header-tone='paper']
+  :is(ul[role='list'], ul[role='listbox']):not(.header-mobile-language-list) {
   box-shadow: 0 18px 48px -12px rgb(17 17 17 / 16%);
 }
 

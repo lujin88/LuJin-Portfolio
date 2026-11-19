@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSiteLanguage } from '@header/lib/language'
 import styles from './season-crossfade.module.css'
+import { useAfterHero } from './use-after-hero'
 
 const seasons = ['spring', 'summer', 'autumn', 'winter'] as const
 
@@ -36,6 +37,7 @@ export function SeasonCrossfade() {
   const [springLoaded, setSpringLoaded] = useState(false)
   const [motionAllowed, setMotionAllowed] = useState(false)
   const decoded = useRef(new Set<number>())
+  const afterHero = useAfterHero()
 
   async function onFrameLoad(image: HTMLImageElement, index: number) {
     try {
@@ -91,21 +93,24 @@ export function SeasonCrossfade() {
 
   return (
     <div ref={stage} className={styles.stage} role="group" aria-label="The lake through four seasons">
-      {seasons.map((season, index) => (
+      {seasons.map((season, index) => {
+        const hasSrc = (index === 0 && afterHero) || (index > 0 && springLoaded && motionAllowed)
+        return (
         <img
           key={season}
-          src={index === 0 || (springLoaded && motionAllowed) ? `/assets/images/lab/weather-aquarium/season-${season}-lindt.webp` : undefined}
+          src={hasSrc ? `/assets/images/lab/weather-aquarium/season-${season}-lindt.webp` : undefined}
           fetchPriority={index === 0 ? 'high' : 'low'}
           width={1400}
           height={830}
           onLoad={(event) => { void onFrameLoad(event.currentTarget, index) }}
-          alt={index === active ? ALT[langCode][season] : ''}
+          alt={hasSrc && index === active ? ALT[langCode][season] : ''}
           aria-hidden={index !== active}
           className={styles.frame}
           data-active={index === active}
           draggable={false}
         />
-      ))}
+        )
+      })}
       <button className={styles.pause} onClick={() => setPaused((value) => !value)} aria-label={label} title={label} type="button">
         <i className={paused ? 'ri-play-line' : 'ri-pause-line'} aria-hidden="true" />
       </button>

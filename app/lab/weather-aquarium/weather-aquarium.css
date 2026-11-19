@@ -733,3 +733,5 @@ html:has(.wa-page) {
   .wa-page .learning-section,
   .wa-page .motion-section { padding-top: 48px; }
 }
+
+.edition-media img:not([src]) { visibility: hidden; }
