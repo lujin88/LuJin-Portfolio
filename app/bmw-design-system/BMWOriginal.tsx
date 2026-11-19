@@ -1,4 +1,5 @@
 import './original.css'
+import './key-screens.css'
 
 const IMG = '/assets/images/bmw-system/original/'
 
@@ -55,6 +56,32 @@ function Section({ n, icon, title, id, children }: { n: number; icon: string; ti
         <h2 id={id}><span>{n}</span>{title}</h2>
       </div>
       <div className="bo-items">{children}</div>
+    </section>
+  )
+}
+
+const SCREENS = [
+  { t: 'Vehicle status at a glance', d: 'Charge level, range and lock state on the home screen.', src: 'i4-services.png', w: 1320, h: 2868, alt: 'My BMW App home screen showing vehicle status' },
+  { t: 'Charging, finished', d: 'The charge screen shows 100 % and the state of charge.', src: 'i4-complete.png', w: 376, h: 815, alt: 'Charging finished screen' },
+  { t: 'Remote Engine Start', d: 'The disclaimer states the 15-minute limit before the user confirms.', src: 'engine-disclosure.png', w: 828, h: 1792, alt: 'Remote Engine Start disclaimer' },
+  { t: 'Services and store', d: 'Appointments, upgrades and managed services in one place.', src: '05.webp', w: 460, h: 996, alt: 'Services and store screen' },
+]
+
+function KeyScreens() {
+  return (
+    <section className="bo-ks" aria-labelledby="bo-keyscreens">
+      <h2 id="bo-keyscreens" className="bo-label">Key screens</h2>
+      <ul className="bo-ks-grid">
+        {SCREENS.map((s) => (
+          <li className="bo-ks-cell" key={s.src}>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+            <figure className="bo-ks-phone">
+              <img src={'/assets/images/bmw-system/' + s.src} alt={s.alt} width={s.w} height={s.h} loading="lazy" />
+            </figure>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }
@@ -131,6 +158,8 @@ export function BMWOriginal() {
             ] }}
           />
         </Section>
+
+        <KeyScreens />
       </div>
     </main>
   )

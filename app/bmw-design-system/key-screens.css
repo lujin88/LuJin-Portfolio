@@ -1,0 +1,16 @@
+.bmw-original .bo-ks{padding-top:clamp(56px,8vw,112px)}
+.bmw-original .bo-ks-grid{list-style:none;display:grid;grid-template-columns:1fr 1fr;margin-top:32px;border-block:1px solid color-mix(in srgb,#fff 12%,transparent)}
+.bmw-original .bo-ks-cell{position:relative;overflow:hidden;padding:clamp(32px,4vw,56px) 0 0 19%;display:flex;flex-direction:column;gap:8px;height:clamp(420px,52vw,640px)}
+.bmw-original .bo-ks-cell:nth-child(even){border-left:1px solid color-mix(in srgb,#fff 12%,transparent)}
+.bmw-original .bo-ks-cell:nth-child(n+3){border-top:1px solid color-mix(in srgb,#fff 12%,transparent)}
+.bmw-original .bo-ks-cell h3{font-size:clamp(20px,2.2vw,26px);line-height:1.2;max-width:14ch}
+.bmw-original .bo-ks-cell p{font-size:15px;line-height:1.4;color:var(--muted);max-width:30ch}
+.bmw-original .bo-ks-phone{position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:60%;margin:0;border:1px solid color-mix(in srgb,#fff 18%,transparent);border-bottom:0;border-radius:12% 12% 0 0/6% 6% 0 0;overflow:hidden;height:62%}
+.bmw-original .bo-ks-phone img{width:100%;height:auto;border-radius:0}
+.bmw-original .bo-ks-phone::after{content:"";position:absolute;inset:auto 0 0 0;height:25%;background:linear-gradient(to bottom,transparent,#101318)}
+@media(max-width:720px){
+  .bmw-original .bo-ks-grid{grid-template-columns:1fr;border-block:0}
+  .bmw-original .bo-ks-cell{padding:32px 0 0;height:560px;border-left:0!important;border-top:1px solid color-mix(in srgb,#fff 12%,transparent)}
+  .bmw-original .bo-ks-cell:first-child{border-top:0}
+  .bmw-original .bo-ks-phone{width:70%;height:68%}
+}
