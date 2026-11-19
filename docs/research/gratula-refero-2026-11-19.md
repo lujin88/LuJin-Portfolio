@@ -42,3 +42,10 @@
 | Linear for startups | https://refero.design/pages/1c12521c-db9a-4103-bd95-3ceadbb29956 | 居中 hero 标题 + 一块大截图；两栏功能段交替；logo 条；数据/评价；两栏 FAQ；页脚 | 居中标题 + 大图 + 交替两栏，段落顺序清楚 |
 没找到：Stripe 的首页/产品页——Refero 搜 "Stripe homepage" 只返回 stripe.com/404，没有首页预览；要 Stripe 得直接抓 stripe.com 截图（要 pm 批准）。
 我看不到这几页的整页图，所以「结构」只能说到上表的程度；要 1:1 搭，需要整页截图（可以我抓 apple.com/iphone、linear.app 的 1440 整页）。
+
+## 整页抓取（pm #20568）
+抓取：Playwright 无头 Chrome，1440×900，2026-11-19 23:0x，滚到底再截。文件：~/.buzz/OUTBOX/research-gratula-structure-20557/{linear,stripe,apple-iphone}-1440-full.png。静图，视差/滚动 = 未验。
+- **Linear 首页**（linear.app，9990px）——最适合当结构：① 居中大标题 + 一行 + 一块大产品截图 ② logo 一排 ③ 一句居中大字 ④ 三张等宽卡（图+标题+一句）⑤ 四个功能段，每段同一格式：左大标题、右一句说明+链接，下面整幅大图，段间留白大 ⑥ Changelog 三列 ⑦ 两张大色块评价卡（一紫一黄，唯一的亮色）⑧ 居中收尾「Built for the future」+ 两个按钮 ⑨ 页脚。全页只有一种底色（近黑），靠留白和单一格式分段。
+- **Stripe**（stripe.com，15219px）：我这边被服务成德语版（按地区）。顺序：标题+logo 排 → 产品功能卡网格 → 紫色渐变大色块（数据）→ 客户案例大图 → 评价 → 数据 → 新闻 → 页脚。信息密度高，卡很多，不适合 Gratula「少字、一个主体」；只借「渐变大色块做段间过渡」。
+- **Apple iPhone 页**（apple.com/iphone，16197px）：是商品目录页（机型横滑、换购、配件卡，下面是大段小字脚注），不是叙事页，不适合抄。要抄 Apple 的叙事版式得抓某一代机型页，要的话再说。
+结论：Gratula 抄 Linear 首页的骨架（大标题+大图 → 一句话 → 三卡 → 交替功能段 → 色块评价 → 收尾），色用 Gratula 的 navy。
