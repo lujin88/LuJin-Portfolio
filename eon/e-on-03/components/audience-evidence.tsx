@@ -30,6 +30,7 @@ const CARD_LEAD_MS = 50 // cards may start this much before the ring lands
 const RING_R = 42
 const RING_C = 2 * Math.PI * RING_R
 const REDUCE = '(prefers-reduced-motion: reduce)'
+const LOOP_HOLD_MS = 5000 // family clip: hold on the last frame this long, then play again
 
 const SEGMENTS = [
   { icon: 'ri-home-4-line', tone: 'bg-lavender' },
@@ -68,8 +69,6 @@ export function AudienceEvidence({ alt }: { alt: string }) {
   // Family clip (row 60): only mounted when motion is allowed; the still photo stays underneath.
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoOn, setVideoOn] = useState(false)
-  const videoEnded = useRef(false)
-  const videoInView = useRef(false)
 
   // Arm, then start watching only after the hidden frame has been painted, so a section that
   // is already in view at load still animates from its start state instead of skipping it.
@@ -147,24 +146,50 @@ export function AudienceEvidence({ alt }: { alt: string }) {
     if (cards === 'out' && ringDone && listInView) setCards('in')
   }, [cards, ringDone, listInView])
 
-  // Family clip plays once when the section is ~35% in view, holds its last frame (≈ first frame),
-  // and never restarts. Tab hidden / scrolled away pauses it; coming back resumes only if unfinished.
+  // Family clip (Lu #19786 A): plays, holds its last frame (≈ first frame) for 5s, plays again.
+  // Hidden tab or scrolled away pauses it (and the 5s wait); reduced motion never mounts it.
   useEffect(() => {
     const root = rootRef.current
     const video = videoRef.current
     if (!videoOn || !root || !video) return
     const mq = window.matchMedia(REDUCE)
+    let inView = false
+    let waitLeft = 0 // ms of the end-hold still to wait; 0 = not holding
+    let waitSince = 0
+    let timer = 0
+    const open = () => inView && !document.hidden && !mq.matches
+    const startWait = () => {
+      waitSince = performance.now()
+      timer = window.setTimeout(() => {
+        waitLeft = 0
+        video.currentTime = 0
+        sync()
+      }, waitLeft)
+    }
     const sync = () => {
-      if (videoEnded.current || mq.matches) return
-      if (videoInView.current && !document.hidden) void video.play().catch(() => {})
-      else video.pause()
+      if (!open()) {
+        video.pause()
+        if (waitLeft > 0 && timer) {
+          clearTimeout(timer)
+          timer = 0
+          waitLeft = Math.max(0, waitLeft - (performance.now() - waitSince))
+        }
+        return
+      }
+      if (waitLeft > 0) {
+        if (!timer) startWait()
+        return
+      }
+      void video.play().catch(() => {})
     }
     const onEnded = () => {
-      videoEnded.current = true
+      waitLeft = LOOP_HOLD_MS
+      timer = 0
+      sync()
     }
     const io = new IntersectionObserver(
       ([e]) => {
-        videoInView.current = e.isIntersecting
+        inView = e.isIntersecting
         sync()
       },
       { threshold: 0.35 },
@@ -173,6 +198,7 @@ export function AudienceEvidence({ alt }: { alt: string }) {
     video.addEventListener('ended', onEnded)
     document.addEventListener('visibilitychange', sync)
     return () => {
+      clearTimeout(timer)
       io.disconnect()
       video.removeEventListener('ended', onEnded)
       document.removeEventListener('visibilitychange', sync)
