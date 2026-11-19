@@ -1,10 +1,8 @@
 import type { StaticImageData } from 'next/image'
 
-// Neutral placeholders (2026-11-09): the UBS screens were removed for confidentiality.
-// Swap in visual's recreated concept frames when legal has cleared them.
-import bookView from '../../../image/concept-placeholder-book.png'
-import clientView from '../../../image/concept-placeholder-client.png'
-import usTech from '../../../image/concept-placeholder-research.png'
+import bookView from './concept/advisor-book.png'
+import clientView from './concept/client-workspace.png'
+import researchView from './concept/research-overview.png'
 
 export type ConceptMockup = {
   id: string
@@ -14,24 +12,23 @@ export type ConceptMockup = {
 
 /**
  * Frames for the Session 06 concept stack.
- * Source folder: `ca/image`.
+ * Source folder: `session-06/concept` (illustrative fiction, not UBS screenshots).
  * Index 0 sits at the back; the last item is the front card.
- * Reorder, swap, or extend this list to change the gallery.
  */
 export const conceptMockups: ConceptMockup[] = [
   {
     id: 'book-view',
     src: bookView,
-    alt: 'Advisor overview of clients and opportunities (concept, recreated)',
+    alt: 'Advisor overview of clients and opportunities (illustrative concept)',
   },
   {
     id: 'us-tech',
-    src: usTech,
-    alt: 'Client view with research commentary and product ideas (concept, recreated)',
+    src: researchView,
+    alt: 'Client view with research commentary and product ideas (illustrative concept)',
   },
   {
     id: 'client-view',
     src: clientView,
-    alt: 'Client detail view (concept, recreated)',
+    alt: 'Client detail view (illustrative concept)',
   },
 ]

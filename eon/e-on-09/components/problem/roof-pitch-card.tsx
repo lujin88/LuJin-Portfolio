@@ -6,35 +6,43 @@ import { useTranslation } from '@i18n/use-translation'
 
 /*
  * Interactive version of the former `eon-04-05-house.png` card.
- * Two ways in, one at a time (Lu 2026-11-08): click a house → it turns colored, its degree turns
- * red, the others fade, and the input is cleared. Type a number → no house is selected and all four
- * are disabled (grey, not clickable). Clear the input → the houses come back with the last pick.
+ * The houses and the input stay in sync (Lu 2026-11-10): click a house → it turns colored, its
+ * degree turns red, the others fade, and the input shows that degree. Type 15/30/45/60 → that house
+ * is selected. Type any other number → no house is selected and all four are disabled (grey, not
+ * clickable). Clear the input → the houses come back with the last pick. Opens on 30° with "30".
  * House art: one colored PNG per pitch (same canvas and baseline); unselected = 35% opacity.
  */
 
 const PITCHES = [15, 30, 45, 60] as const
 type Pitch = (typeof PITCHES)[number]
+const DEFAULT_PITCH: Pitch = 30
+
+const isPitch = (n: number): n is Pitch => (PITCHES as readonly number[]).includes(n)
 
 const houseSrc = (deg: Pitch) => `/assets/images/eon/roof-pitch/house-${deg}-on.webp`
 
 export function RoofPitchCard({ className, alt }: { className?: string; alt: string }) {
   const { t } = useTranslation()
-  const [picked, setPicked] = useState<Pitch>(30)
-  const [text, setText] = useState('')
-  const typed = text !== ''
+  const [picked, setPicked] = useState<Pitch>(DEFAULT_PITCH)
+  const [text, setText] = useState<string>(String(DEFAULT_PITCH))
+  // Only a typed value that is not one of the four houses disables them.
+  const typed = text !== '' && !isPitch(Number(text))
   const inputId = useId()
   const groupId = useId()
   const radioName = useId()
 
   const pick = (deg: Pitch) => {
     setPicked(deg)
-    setText('')
+    setText(String(deg))
   }
 
   const onType = (raw: string) => {
     const clean = raw.replace(/[^\d]/g, '').slice(0, 2)
     // A roof pitch tops out at 90°.
-    setText(clean === '' ? '' : String(Math.min(90, Number(clean))))
+    const next = clean === '' ? '' : String(Math.min(90, Number(clean)))
+    setText(next)
+    const deg = Number(next)
+    if (next !== '' && isPitch(deg)) setPicked(deg)
   }
 
   return (

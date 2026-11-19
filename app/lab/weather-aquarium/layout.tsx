@@ -5,7 +5,7 @@ import { HtmlChrome } from '../../html-chrome'
 import { socialMetadata } from '../../seo'
 import './weather-aquarium.css'
 
-const TITLE = 'Lu — Weather Aquarium'
+const TITLE = 'Lu Jin — Weather Aquarium'
 const DESCRIPTION = 'Weather Aquarium — a playful 2.5D weather world for children.'
 
 export const metadata: Metadata = {

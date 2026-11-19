@@ -1,7 +1,9 @@
 'use client'
 
+import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { SeasonCrossfade } from './season-crossfade'
+import { useAfterHero } from './use-after-hero'
 import { SiteClosing } from '../../components/site-closing'
 
 const IMG = '/assets/images/lab/weather-aquarium'
@@ -193,6 +195,123 @@ function HolidayVideo({ file, className = 'holiday-video', once = false }: { fil
       onPlaying={() => setPlaying(true)}
       onError={() => setFailed(true)}
     />
+  )
+}
+
+// Hero iPad screen loop. The poster image already shows the loop's first frame on the
+// screen, so the video only has to sit exactly on that quad: it is a plain 802×581 box
+// (the screen size in hero2.html, the template that rendered the iPad) mapped onto the
+// screen's four corners with a matrix3d. Corners are % of the image box, fitted from the
+// render (ry=-22deg, rz=0.8deg), so they hold at every width. Hidden until the first
+// frame plays; never mounted under reduced motion (unmounting also stops it mid-visit).
+const HERO_SCREEN = { width: 802, height: 581 }
+const HERO_SCREEN_QUAD: readonly (readonly [number, number])[] = [
+  [17.5437, 12.0749],
+  [89.9223, 8.1974],
+  [87.9782, 94.5283],
+  [14.4925, 87.2932],
+]
+
+function screenMatrix(boxWidth: number, boxHeight: number) {
+  const [[x0, y0], [x1, y1], [x2, y2], [x3, y3]] = HERO_SCREEN_QUAD.map(
+    ([x, y]) => [(x / 100) * boxWidth, (y / 100) * boxHeight] as const,
+  )
+  // Unit square → quad (Heckbert), then scaled to the screen box in px.
+  const dx1 = x1 - x2
+  const dx2 = x3 - x2
+  const dx3 = x0 - x1 + x2 - x3
+  const dy1 = y1 - y2
+  const dy2 = y3 - y2
+  const dy3 = y0 - y1 + y2 - y3
+  const det = dx1 * dy2 - dx2 * dy1
+  const g = (dx3 * dy2 - dx2 * dy3) / det
+  const h = (dx1 * dy3 - dx3 * dy1) / det
+  const a = x1 - x0 + g * x1
+  const b = x3 - x0 + h * x3
+  const d = y1 - y0 + g * y1
+  const e = y3 - y0 + h * y3
+  const { width: w, height: hh } = HERO_SCREEN
+  const m = [a / w, d / w, 0, g / w, b / hh, e / hh, 0, h / hh, 0, 0, 1, 0, x0, y0, 0, 1]
+  return `matrix3d(${m.map((n) => +n.toFixed(8)).join(',')})`
+}
+
+function HeroScreenVideo() {
+  const layerRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const motionAllowed = useMotionAllowed()
+  const afterHero = useAfterHero()
+  const [playing, setPlaying] = useState(false)
+  const [failed, setFailed] = useState(false)
+
+  useEffect(() => {
+    setPlaying(false)
+  }, [motionAllowed])
+
+  useEffect(() => {
+    const layer = layerRef.current
+    const frame = layer?.parentElement
+    if (!layer || !frame) return
+    const place = () => {
+      // Before the image loads the frame has no height and the quad is degenerate.
+      if (!frame.offsetWidth || !frame.offsetHeight) return
+      layer.style.transform = screenMatrix(frame.offsetWidth, frame.offsetHeight)
+    }
+    place()
+    const observer = new ResizeObserver(place)
+    observer.observe(frame)
+    return () => observer.disconnect()
+  }, [motionAllowed, failed, afterHero])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || !motionAllowed || failed) return
+
+    let inView = false
+    const syncPlayback = () => {
+      if (inView && !document.hidden) {
+        void video.play().catch(() => {
+          // Playback may be interrupted by a scroll or preference change.
+        })
+      } else {
+        video.pause()
+      }
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting && entry.intersectionRatio > 0
+      syncPlayback()
+    })
+    observer.observe(video.parentElement ?? video)
+    document.addEventListener('visibilitychange', syncPlayback)
+    return () => {
+      observer.disconnect()
+      document.removeEventListener('visibilitychange', syncPlayback)
+      video.pause()
+    }
+  }, [motionAllowed, failed, afterHero])
+
+  if (!motionAllowed || failed || !afterHero) return null
+
+  return (
+    <div ref={layerRef} className={`hero-screen${playing ? ' is-playing' : ''}`} aria-hidden="true">
+      <video
+        ref={videoRef}
+        muted
+        loop
+        playsInline
+        autoPlay
+        preload="auto"
+        onPlaying={() => setPlaying(true)}
+        onError={() => setFailed(true)}
+      >
+        <source src="/assets/videos/lab/weather-aquarium/hero-screen-loop-r2.webm" type="video/webm" />
+        <source
+          src="/assets/videos/lab/weather-aquarium/hero-screen-loop-r2.mp4"
+          type="video/mp4"
+          onError={() => setFailed(true)}
+        />
+      </video>
+      <span className="hero-screen-glare" />
+    </div>
   )
 }
 
@@ -438,7 +557,7 @@ function PoseButton({
   return (
     <button
       ref={buttonRef}
-      className="pose reveal pose-nodot"
+      className="pose pose-nodot"
       type="button"
       aria-pressed={autoLoop ? undefined : hoverOnly ? playing : selected}
       style={{ ['--index' as string]: item.index }}
@@ -507,9 +626,10 @@ function PoseButton({
 }
 
 export function WeatherAquariumPage() {
+  const afterHero = useAfterHero()
   const rootRef = useRef<HTMLDivElement>(null)
   const heroMediaRef = useRef<HTMLDivElement>(null)
-  const heroDeviceRef = useRef<HTMLImageElement>(null)
+  const heroDeviceRef = useRef<HTMLDivElement>(null)
   const [language, setLanguage] = useState<Lang>('zh')
   const [pose, setPose] = useState(0)
   const [activeTap, setActiveTap] = useState<number | null>(null)
@@ -535,23 +655,6 @@ export function WeatherAquariumPage() {
     if (!root) return
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const revealItems = [...root.querySelectorAll('.reveal')]
-    const revealObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return
-          entry.target.classList.add('is-visible')
-          observer.unobserve(entry.target)
-        })
-      },
-      { rootMargin: '0px 0px -8%', threshold: 0.08 },
-    )
-
-    if (reduced || !('IntersectionObserver' in window)) {
-      revealItems.forEach((item) => item.classList.add('is-visible'))
-    } else {
-      revealItems.forEach((item) => revealObserver.observe(item))
-    }
 
     const heroMedia = heroMediaRef.current
     const heroDevice = heroDeviceRef.current
@@ -572,7 +675,6 @@ export function WeatherAquariumPage() {
     }
 
     return () => {
-      revealObserver.disconnect()
       heroMedia?.removeEventListener('pointermove', onMove)
       heroMedia?.removeEventListener('pointerleave', onLeave)
       if ('speechSynthesis' in window) speechSynthesis.cancel()
@@ -609,8 +711,8 @@ export function WeatherAquariumPage() {
       <div className="wa-page" ref={rootRef}>
         <header className="hero" id="overview">
           <div className="shell">
-            <div className="hero-grid">
-              <div className="hero-copy reveal">
+            <LayerScrollGroup className="hero-grid">
+              <div className="hero-copy" data-move="96">
                 <h1>
                   Weather
                   <br />
@@ -624,61 +726,68 @@ export function WeatherAquariumPage() {
               </div>
 
               <div
-                className="hero-media reveal"
+                className="hero-media"
+                data-move="64"
                 ref={heroMediaRef}
                 aria-label="Weather Aquarium shown on an iPad"
               >
-                <img
-                  ref={heroDeviceRef}
-                  className="hero-device"
-                  src={`${IMG}/hero-device-left-v2.webp`}
-                  alt="An iPad turned to the left, showing the Weather Aquarium app: an autumn lakeside in Kilchberg with a girl, her cat and a boy on the jetty, fish under the water, and the weather panel below"
-                  fetchPriority="high"
-                />
+                <div ref={heroDeviceRef} className="hero-device">
+                  <img
+                    className="hero-device-image"
+                    src={`${IMG}/hero-device-left-r2.webp`}
+                    alt="An iPad turned to the left, showing the Weather Aquarium app: an autumn lakeside in Kilchberg with a girl, her cat and a boy on the jetty, fish under the water, and the weather panel below"
+                    fetchPriority="high"
+                  />
+                  <HeroScreenVideo />
+                </div>
               </div>
-            </div>
+            </LayerScrollGroup>
           </div>
         </header>
 
         <main id="main">
           <section className="seasons-section" id="seasons" aria-labelledby="seasons-title">
-            <div className="shell section-heading reveal">
-              <p className="eyebrow">01 / The year in one place</p>
-              <h2 id="seasons-title">The same world changes with the season outside.</h2>
-            </div>
+            <LayerScrollGroup>
+              <div className="shell section-heading" data-move="64">
+                <p className="eyebrow">01 / The year in one place</p>
+                <h2 id="seasons-title">The same world changes with the season outside.</h2>
+              </div>
 
-            <div className="shell seasons-frame">
-              <SeasonCrossfade />
-            </div>
+              <div className="shell seasons-frame" data-move="64">
+                <SeasonCrossfade />
+              </div>
+            </LayerScrollGroup>
           </section>
 
           <section className="editions-section" id="editions" aria-labelledby="editions-title">
-            <div className="shell">
-              <div className="section-heading compact reveal">
-                <p className="eyebrow">02 / Limited editions</p>
-                <h2 id="editions-title">For special days, the same world gets a new little story.</h2>
-              </div>
+            <LayerScrollGroup className="shell">
+              <div className="editions-block" data-move="64">
+                <div className="section-heading compact">
+                  <p className="eyebrow">02 / Limited editions</p>
+                  <h2 id="editions-title">For special days, the same world gets a new little story.</h2>
+                </div>
 
-              <div className="edition-grid">
-                {EDITIONS.map((edition) => (
-                  <figure className="edition reveal" key={edition.caption}>
-                    <div
-                      className={`edition-media ${edition.video ? 'holiday-cover' : 'holiday-slice'}`}
-                      style={{ ['--slice' as string]: edition.slice }}
-                    >
-                      <img src={`${IMG}/${edition.image}`} alt={edition.alt} loading="lazy" />
-                      {edition.video && <HolidayVideo file={edition.video} />}
-                    </div>
-                    <figcaption>{edition.caption}</figcaption>
-                  </figure>
-                ))}
+                <div className="edition-grid">
+                  {EDITIONS.map((edition) => (
+                    <figure className="edition" key={edition.caption}>
+                      <div
+                        className={`edition-media ${edition.video ? 'holiday-cover' : 'holiday-slice'}`}
+                        style={{ ['--slice' as string]: edition.slice }}
+                      >
+                        <img src={afterHero ? `${IMG}/${edition.image}` : undefined} alt={afterHero ? edition.alt : ''} loading="lazy" />
+                        {edition.video && <HolidayVideo file={edition.video} />}
+                      </div>
+                      <figcaption>{edition.caption}</figcaption>
+                    </figure>
+                  ))}
+                </div>
               </div>
-            </div>
+            </LayerScrollGroup>
           </section>
 
           <section className="learning-section" id="learning" aria-labelledby="learning-title">
-            <div className="shell">
-              <div className="learning-head reveal">
+            <LayerScrollGroup className="shell">
+              <div className="learning-head" data-move="80">
                 <div>
                   <p className="eyebrow">03 / Look, listen, learn</p>
                   <h2 id="learning-title">Every object in the aquarium can become a word.</h2>
@@ -703,7 +812,7 @@ export function WeatherAquariumPage() {
                 {VOCAB.map((item) => {
                   const label = DICTIONARY[language].words[item.word]
                   return (
-                    <article className="vocab-item reveal" key={item.word}>
+                    <article className="vocab-item" data-move="64" key={item.word}>
                       <VocabArt
                         item={item}
                         label={label}
@@ -725,18 +834,18 @@ export function WeatherAquariumPage() {
                   )
                 })}
               </div>
-            </div>
+            </LayerScrollGroup>
           </section>
 
           <section className="motion-section" id="motion" aria-labelledby="motion-title">
-            <div className="shell motion-grid">
-              <div className="motion-copy reveal">
+            <LayerScrollGroup className="shell motion-grid">
+              <div className="motion-copy" data-move="84">
                 <p className="eyebrow">04 / Character motion</p>
                 <h2 id="motion-title">Built in Rive</h2>
                 <p>The character uses reusable Rive states for idle, waving, getting dressed and exploring.</p>
               </div>
 
-              <div className="pose-track" aria-label="Character motion states">
+              <div className="pose-track" data-move="64" aria-label="Character motion states">
                 {POSES.map((item) => (
                   <PoseButton
                     key={item.label}
@@ -748,7 +857,7 @@ export function WeatherAquariumPage() {
                   />
                 ))}
               </div>
-            </div>
+            </LayerScrollGroup>
           </section>
         </main>
       </div>

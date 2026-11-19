@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { HtmlChrome } from '../html-chrome'
 import { socialMetadata } from '../seo'
 
-const TITLE = 'Lu — MAN Truck & Bus'
+const TITLE = 'Lu Jin — MAN Truck & Bus'
 const DESCRIPTION =
   'MAN Fleet Uptime: resolving driver cover, checking vehicle readiness and handing over the next departure.'
 

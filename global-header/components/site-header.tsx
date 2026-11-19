@@ -2,8 +2,15 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useId, useRef, useState } from 'react'
-import { Check, ChevronDown, Globe, Mail, Menu, MessageCircle, X } from 'lucide-react'
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type MutableRefObject,
+  type ReactElement,
+} from 'react'
+import { Check, ChevronDown, Mail, Menu, X } from 'lucide-react'
 import { headerCopy } from '../lib/header-copy'
 import { LANGUAGES, useSiteLanguage } from '../lib/language'
 import { SHOW_UNFINISHED_CASES, UNFINISHED_CASE_HREFS } from '../lib/site-flags'
@@ -21,11 +28,17 @@ type NavLink = {
   icon: NavIcon
 }
 
+type NavSection = {
+  heading: string
+  children: readonly NavLink[]
+}
+
 type NavGroup = {
   label: string
   /** Section root used for the active state when no child route matches. */
   sectionHref?: string
-  children: readonly NavLink[]
+  children?: readonly NavLink[]
+  sections?: readonly NavSection[]
 }
 
 // Top-level links render without a thumbnail, so their icon is optional.
@@ -35,51 +48,61 @@ const NAV: readonly NavEntry[] = [
   {
     kind: 'group',
     label: 'Work',
-    children: [
+    sections: [
       {
-        label: 'Client Advisory',
-        href: '/client-advisory',
-        meta: 'Wealth · Service design',
-        icon: {
-          light: '/assets/images/nav/light/work/client-advisory-light.webp',
-          dark: '/assets/images/nav/dark/work/client-advisory-dark.webp',
-        },
+        heading: 'Project',
+        children: [
+          {
+            label: 'Client Advisory',
+            href: '/client-advisory',
+            meta: 'Wealth · Service design',
+            icon: {
+              light: '/assets/images/nav/light/work/client-advisory-light.webp',
+              dark: '/assets/images/nav/dark/work/client-advisory-dark.webp',
+            },
+          },
+          {
+            label: 'E.ON',
+            href: '/EON',
+            meta: 'Energy · 300% more leads',
+            icon: {
+              light: '/assets/images/nav/light/work/eon-light.webp',
+              dark: '/assets/images/nav/dark/work/eon-dark.webp',
+            },
+          },
+          {
+            label: 'BMW Design System',
+            href: '/bmw-design-system',
+            meta: 'Vehicle controls · Light & dark',
+            icon: {
+              light: '/assets/images/nav/light/work/bmw-design-system-light.svg',
+              dark: '/assets/images/nav/dark/work/bmw-design-system-dark.svg',
+            },
+          },
+        ],
       },
       {
-        label: 'E.ON',
-        href: '/EON',
-        meta: 'Energy · 300% more leads',
-        icon: {
-          light: '/assets/images/nav/light/work/eon-light.webp',
-          dark: '/assets/images/nav/dark/work/eon-dark.webp',
-        },
-      },
-      {
-        label: 'MAN Truck & Bus',
-        href: '/man-truck-bus',
-        meta: 'Fleet uptime · Dispatch',
-        icon: {
-          light: '/assets/images/nav/light/work/man-truck-bus-light.webp',
-          dark: '/assets/images/nav/dark/work/man-truck-bus-dark.webp',
-        },
-      },
-      {
-        label: 'ETF Savings Plan',
-        href: '/etf-savings-plan',
-        meta: 'Investing · Interactive prototype',
-        icon: {
-          light: '/assets/images/nav/light/work/etf-savings-plan-light.webp',
-          dark: '/assets/images/nav/dark/work/etf-savings-plan-dark.webp',
-        },
-      },
-      {
-        label: 'BMW Design System',
-        href: '/bmw-design-system',
-        meta: 'Vehicle controls · Light & dark',
-        icon: {
-          light: '/assets/images/nav/light/work/bmw-design-system-light.svg',
-          dark: '/assets/images/nav/dark/work/bmw-design-system-dark.svg',
-        },
+        heading: 'Concept',
+        children: [
+          {
+            label: 'MAN Truck & Bus',
+            href: '/man-truck-bus',
+            meta: 'Hackathon · Fleet dispatch',
+            icon: {
+              light: '/assets/images/nav/light/work/man-truck-bus-light.webp',
+              dark: '/assets/images/nav/dark/work/man-truck-bus-dark.webp',
+            },
+          },
+          {
+            label: 'ETF Savings Plan',
+            href: '/etf-savings-plan',
+            meta: 'Investing · Interactive prototype',
+            icon: {
+              light: '/assets/images/nav/light/work/etf-savings-plan-light.webp',
+              dark: '/assets/images/nav/dark/work/etf-savings-plan-dark.webp',
+            },
+          },
+        ],
       },
     ],
   },
@@ -109,20 +132,24 @@ const NAV: readonly NavEntry[] = [
       {
         label: 'Gratula',
         href: '/lab/party-planner',
-        meta: 'Launching soon',
+        meta: 'Party planning · Prototype',
         icon: {
           light: '/assets/images/nav/light/playground/gratula-light.webp',
           dark: '/assets/images/nav/dark/playground/gratula-dark.webp',
         },
       },
+      {
+        label: 'Agent Tools',
+        href: '/lab/tools',
+        meta: 'Agent Monitor · Scranton',
+        icon: {
+          light: '/assets/images/nav/light/playground/agent-tools-light.webp',
+          dark: '/assets/images/nav/dark/playground/agent-tools-dark.webp',
+        },
+      },
     ],
   },
 ]
-
-const LANGUAGE_ICONS = {
-  en: Globe,
-  de: MessageCircle,
-} as const
 
 const FOCUS_RING =
   'focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current'
@@ -134,13 +161,37 @@ const MENU_PANEL = cn(
   'header-menu m-0 flex list-none flex-col items-stretch gap-0 rounded-[6px] border border-header-line/40 bg-header-menu shadow-[0_18px_48px_-12px_rgba(0,0,0,0.65)]',
 )
 
+function groupChildren(group: NavGroup): readonly NavLink[] {
+  if (group.sections?.length) return group.sections.flatMap((section) => section.children)
+  return group.children ?? []
+}
+
+function sectionHeadingClass(sectionIndex: number) {
+  return cn(
+    'header-menu-section m-0',
+    sectionIndex === 0 ? 'header-menu-section--lead' : 'header-menu-section--split',
+  )
+}
+
+function groupMenuListClass(_group: NavGroup) {
+  return 'header-menu-grouped'
+}
+
 function visibleGroup(group: NavGroup): NavGroup {
   if (SHOW_UNFINISHED_CASES) return group
+  const drop = (child: NavLink) =>
+    !(UNFINISHED_CASE_HREFS as readonly string[]).includes(child.href)
+  if (group.sections?.length) {
+    return {
+      ...group,
+      sections: group.sections
+        .map((section) => ({ ...section, children: section.children.filter(drop) }))
+        .filter((section) => section.children.length > 0),
+    }
+  }
   return {
     ...group,
-    children: group.children.filter(
-      (child) => !(UNFINISHED_CASE_HREFS as readonly string[]).includes(child.href),
-    ),
+    children: (group.children ?? []).filter(drop),
   }
 }
 
@@ -155,7 +206,9 @@ function hrefMatches(href: string, currentHref: string, pathname: string) {
   if (href === '/EON' && candidates.includes('/eon-solar')) return true
   if (
     href === '/lab/way-of-work' &&
-    candidates.some((value) => value === href || value.startsWith(`${href}/`))
+    candidates.some(
+      (value) => value === href || value.startsWith(`${href}/`) || value === '/lab/tools',
+    )
   ) {
     return true
   }
@@ -163,7 +216,8 @@ function hrefMatches(href: string, currentHref: string, pathname: string) {
 }
 
 function groupIsActive(group: NavGroup, currentHref: string, pathname: string) {
-  if (group.children.some((child) => hrefMatches(child.href, currentHref, pathname))) return true
+  if (groupChildren(group).some((child) => hrefMatches(child.href, currentHref, pathname)))
+    return true
   if (!group.sectionHref) return false
   if (currentHref === group.sectionHref || pathname === group.sectionHref) return true
   return pathname.startsWith(`${group.sectionHref}/`)
@@ -186,6 +240,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
     pathname.startsWith('/ai-companion-pet') ||
     pathname.startsWith('/lab/agent-monitor')
   const paperHeader =
+    pathname.startsWith('/lab/tools') ||
     pathname.startsWith('/lab/way-of-work') ||
     pathname.startsWith('/man-truck-bus') ||
     pathname.startsWith('/etf-savings-plan') ||
@@ -537,7 +592,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                 MOTION_SAFE,
               )}
             >
-              <span suppressHydrationWarning>{language.label}</span>
+              <span suppressHydrationWarning>{copy.languageLabel}</span>
               <ChevronDown
                 aria-hidden="true"
                 className={cn(
@@ -555,14 +610,14 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                 aria-label={copy.selectLanguage}
                 className={cn(
                   MENU_PANEL,
-                  'absolute right-0 top-full z-10 mt-4 w-max max-w-[calc(100vw-3rem)] origin-top-right',
+                  'header-language-flyout',
+                  'absolute right-0 top-full z-10 mt-2 w-max max-w-[calc(100vw-3rem)] origin-top-right',
                   'animate-in fade-in-0 zoom-in-[0.98] slide-in-from-top-1 duration-150 ease-out',
                   MOTION_SAFE,
                 )}
               >
                 {LANGUAGES.map((lang, index) => {
                   const isSelected = lang.code === language.code
-                  const LangIcon = LANGUAGE_ICONS[lang.code]
                   return (
                     <li key={lang.code}>
                       <button
@@ -581,20 +636,19 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                           MOTION_SAFE,
                           'hover:bg-header-menu-item focus-visible:bg-header-menu-item',
                           isSelected
-                            ? 'bg-header-menu-item font-semibold text-header-foreground'
+                            ? 'text-header-foreground'
                             : 'text-header-foreground/80 hover:text-header-foreground focus-visible:text-header-foreground',
                         )}
                       >
-                        <span className="inline-flex items-center gap-3">
-                          <LangIcon aria-hidden="true" className="size-4 shrink-0" strokeWidth={1.75} />
-                          {lang.label}
-                        </span>
-                        {isSelected && (
+                        <span>{lang.label}</span>
+                        {isSelected ? (
                           <Check
                             aria-hidden="true"
                             className="size-[18px] shrink-0 text-header-accent"
                             strokeWidth={2.5}
                           />
+                        ) : (
+                          <span aria-hidden="true" className="size-[18px] shrink-0" />
                         )}
                       </button>
                     </li>
@@ -716,48 +770,23 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                     )}
                   >
                     <div className={expanded ? 'overflow-visible' : 'overflow-hidden'}>
-                      <ul className={cn(MENU_PANEL, 'header-menu-divided mt-3 w-full gap-0')} role="list">
-                        {group.children.map((child) => {
-                          const uniqueHref =
-                            group.children.filter((entry) => entry.href === child.href).length === 1
-                          const childActive =
-                            uniqueHref && hrefMatches(child.href, currentHref, pathname)
-                          return (
-                            <li
-                              key={child.label}
-                              className="w-full"
-                            >
-                              <Link
-                                href={child.href}
-                                aria-current={childActive ? 'page' : undefined}
-                                onClick={() => setMenuOpen(false)}
-                                className={cn(
-                                  'flex w-full items-center gap-2.5 rounded-none px-2 py-1.5 text-left no-underline transition-colors duration-150',
-                                  MOTION_SAFE,
-                                  'hover:bg-header-menu-item focus-visible:bg-header-menu-item',
-                                  childActive && 'bg-header-menu-item',
-                                )}
-                              >
-                                <MenuThumb icon={child.icon} tone={paperHeader ? 'light' : 'dark'} />
-                                <span className="whitespace-nowrap">
-                                  <span
-                                    className={cn(
-                                      'block text-[0.9375rem] leading-tight text-header-foreground',
-                                      childActive && 'font-semibold',
-                                    )}
-                                  >
-                                    {navLabel(copy, child.label)}
-                                  </span>
-                                  {child.meta ? (
-                                    <span className="header-menu-meta mt-0.5 block text-[0.75rem] leading-snug">
-                                      {menuMeta(copy, child.meta)}
-                                    </span>
-                                  ) : null}
-                                </span>
-                              </Link>
-                            </li>
-                          )
-                        })}
+                      <ul
+                        className={cn(
+                          MENU_PANEL,
+                          groupMenuListClass(group),
+                          'mt-3 w-full gap-0',
+                        )}
+                        role="list"
+                      >
+                        <GroupMenuItems
+                          group={group}
+                          copy={copy}
+                          iconTone={paperHeader ? 'light' : 'dark'}
+                          currentHref={currentHref}
+                          pathname={pathname}
+                          variant="mobile"
+                          onNavigate={() => setMenuOpen(false)}
+                        />
                       </ul>
                     </div>
                   </div>
@@ -777,25 +806,42 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
             <Mail aria-hidden="true" className="size-5 shrink-0" strokeWidth={1.5} />
             {copy.email}
           </a>
-          <div className="flex items-center gap-2 border-t border-header-line pt-5 text-sm">
-            {LANGUAGES.map((lang, index) => (
-              <button
-                key={lang.code}
-                type="button"
-                onClick={() => setLanguage(lang)}
-                className={cn(
-                  'inline-flex min-h-11 items-center appearance-none bg-transparent px-1 shadow-none outline-none transition-colors focus:outline-none focus:ring-0',
-                  FOCUS_RING,
-                  MOTION_SAFE,
-                  lang.code === language.code
-                    ? 'text-header-foreground'
-                    : 'text-header-foreground/60',
-                  index > 0 && 'border-l border-header-line pl-2',
-                )}
-              >
-                {lang.label}
-              </button>
-            ))}
+          <div className="border-t border-header-line pt-5">
+            <p className="header-mobile-language-label m-0">{copy.languageLabel}</p>
+            <ul className="header-mobile-language-list m-0 flex list-none flex-col gap-0 p-0" role="list">
+              {LANGUAGES.map((lang) => {
+                const isSelected = lang.code === language.code
+                return (
+                  <li key={lang.code} className="list-none">
+                    <button
+                      type="button"
+                      onClick={() => setLanguage(lang)}
+                      aria-current={isSelected ? 'true' : undefined}
+                      className={cn(
+                        'flex w-full min-h-11 items-center justify-between gap-4 rounded-none text-lg leading-tight transition-colors',
+                        PLAIN_CONTROL,
+                        FOCUS_RING,
+                        MOTION_SAFE,
+                        isSelected
+                          ? 'text-header-foreground'
+                          : 'text-header-foreground/72 hover:text-header-foreground',
+                      )}
+                    >
+                      <span>{lang.label}</span>
+                      {isSelected ? (
+                        <Check
+                          aria-hidden="true"
+                          className="size-5 shrink-0 text-header-accent"
+                          strokeWidth={2.5}
+                        />
+                      ) : (
+                        <span aria-hidden="true" className="size-5 shrink-0" />
+                      )}
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
           </div>
         </nav>
       </div>
@@ -813,6 +859,120 @@ function MenuThumb({ icon, tone }: { icon: NavIcon; tone: 'light' | 'dark' }) {
       className="size-8 shrink-0 rounded-full object-cover"
     />
   )
+}
+
+function GroupMenuItems({
+  group,
+  copy,
+  iconTone,
+  currentHref,
+  pathname,
+  variant,
+  itemRefs,
+  onItemKeyDown,
+  onDismiss,
+  onNavigate,
+}: {
+  group: NavGroup
+  copy: (typeof headerCopy)[keyof typeof headerCopy]
+  iconTone: 'light' | 'dark'
+  currentHref: string
+  pathname: string
+  variant: 'flyout' | 'mobile'
+  itemRefs?: MutableRefObject<(HTMLAnchorElement | null)[]>
+  onItemKeyDown?: (event: React.KeyboardEvent<HTMLAnchorElement>, index: number) => void
+  onDismiss?: () => void
+  onNavigate?: () => void
+}) {
+  const links = groupChildren(group)
+  const elements: ReactElement[] = []
+  let index = 0
+
+  const renderLink = (child: NavLink, linkIndex: number) => {
+    const uniqueHref = links.filter((entry) => entry.href === child.href).length === 1
+    const childActive = uniqueHref && hrefMatches(child.href, currentHref, pathname)
+  const labelBlock = (
+      <span className="whitespace-nowrap">
+        <span
+          className={cn(
+            'block text-[0.9375rem] leading-tight text-header-foreground',
+            childActive && 'font-semibold',
+          )}
+        >
+          {navLabel(copy, child.label)}
+        </span>
+        {child.meta ? (
+          <span className="header-menu-meta mt-0.5 block text-[0.75rem] leading-snug">
+            {menuMeta(copy, child.meta)}
+          </span>
+        ) : null}
+      </span>
+    )
+
+    return (
+      <li
+        key={child.label}
+        role={variant === 'flyout' ? 'none' : undefined}
+        className="w-full"
+      >
+        <Link
+          ref={
+            variant === 'flyout' && itemRefs
+              ? (node) => {
+                  itemRefs.current[linkIndex] = node
+                }
+              : undefined
+          }
+          href={child.href}
+          role={variant === 'flyout' ? 'menuitem' : undefined}
+          aria-current={childActive ? 'page' : undefined}
+          onClick={() => {
+            if (variant === 'flyout') {
+              if (hrefMatches(child.href, currentHref, pathname)) onDismiss?.()
+              return
+            }
+            onNavigate?.()
+          }}
+          onKeyDown={
+            variant === 'flyout' && onItemKeyDown
+              ? (event) => onItemKeyDown(event, linkIndex)
+              : undefined
+          }
+          className={cn(
+            'flex w-full items-center gap-2.5 rounded-none px-2 py-1.5 text-left no-underline transition-colors duration-150',
+            MOTION_SAFE,
+            'hover:bg-header-menu-item focus-visible:bg-header-menu-item',
+            childActive && 'bg-header-menu-item',
+          )}
+        >
+          <MenuThumb icon={child.icon} tone={iconTone} />
+          {labelBlock}
+        </Link>
+      </li>
+    )
+  }
+
+  if (!group.sections?.length) {
+    return (group.children ?? []).map((child, linkIndex) => renderLink(child, linkIndex))
+  }
+
+  for (const [sectionIndex, section] of group.sections.entries()) {
+    elements.push(
+      <li
+        key={`heading-${section.heading}`}
+        role={variant === 'flyout' ? 'none' : undefined}
+        className="w-full"
+      >
+        <p className={sectionHeadingClass(sectionIndex)}>{navLabel(copy, section.heading)}</p>
+      </li>,
+    )
+    for (const child of section.children) {
+      elements.push(renderLink(child, index))
+      index += 1
+    }
+  }
+
+  return elements
 }
 
 function NavDropdown({
@@ -847,6 +1007,7 @@ function NavDropdown({
   const menuId = useId()
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([])
   const pendingFocus = useRef<number | null>(null)
+  const [instantFlyout, setInstantFlyout] = useState(false)
 
   useEffect(() => {
     if (!open || pendingFocus.current === null) return
@@ -858,14 +1019,16 @@ function NavDropdown({
   const onButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
     event.preventDefault()
-    const index = event.key === 'ArrowUp' ? group.children.length - 1 : 0
+    setInstantFlyout(true)
+    const linkCount = groupChildren(group).length
+    const index = event.key === 'ArrowUp' ? linkCount - 1 : 0
     if (!open) pendingFocus.current = index
     onPin()
     if (open) itemRefs.current[index]?.focus()
   }
 
   const onItemKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>, index: number) => {
-    const last = group.children.length - 1
+    const last = groupChildren(group).length - 1
     let next: number | null = null
     if (event.key === 'ArrowDown') next = index === last ? 0 : index + 1
     else if (event.key === 'ArrowUp') next = index === 0 ? last : index - 1
@@ -885,7 +1048,10 @@ function NavDropdown({
     <li
       className="relative list-none"
       onPointerEnter={(event) => {
-        if (event.pointerType === 'mouse') onHoverOpen()
+        if (event.pointerType === 'mouse') {
+          setInstantFlyout(false)
+          onHoverOpen()
+        }
       }}
       onPointerLeave={(event) => {
         if (event.pointerType === 'mouse') onHoverLeave()
@@ -899,7 +1065,12 @@ function NavDropdown({
         aria-controls={open ? menuId : undefined}
         aria-current={active ? 'true' : undefined}
         onClick={(event) => {
-          if (event.detail === 0 && !open) pendingFocus.current = 0
+          if (event.detail === 0) {
+            setInstantFlyout(true)
+            if (!open) pendingFocus.current = 0
+          } else {
+            setInstantFlyout(false)
+          }
           onToggle()
         }}
         onKeyDown={onButtonKeyDown}
@@ -917,7 +1088,10 @@ function NavDropdown({
         <ChevronDown
           aria-hidden="true"
           className={cn(
-            'size-3.5 transition-transform duration-300 ease-out',
+            'size-3.5',
+            instantFlyout
+              ? 'motion-reduce:transition-none transition-none'
+              : 'transition-transform duration-300 ease-out',
             MOTION_SAFE,
             open && 'rotate-180',
           )}
@@ -932,62 +1106,25 @@ function NavDropdown({
             aria-label={navLabel(copy, group.label)}
             className={cn(
               MENU_PANEL,
-              'header-menu--flyout header-menu-divided origin-top gap-0',
-              'animate-in fade-in-0 zoom-in-[0.98] slide-in-from-top-1 duration-150 ease-out',
+              'header-menu--flyout origin-top gap-0',
+              groupMenuListClass(group),
+              instantFlyout
+                ? 'opacity-100'
+                : 'animate-in fade-in-0 zoom-in-[0.98] slide-in-from-top-1 duration-150 ease-out',
               MOTION_SAFE,
             )}
           >
-            {group.children.map((child, index) => {
-              const uniqueHref =
-                group.children.filter((entry) => entry.href === child.href).length === 1
-              const childActive =
-                uniqueHref && hrefMatches(child.href, currentHref, pathname)
-              return (
-                <li
-                  key={child.label}
-                  role="none"
-                  className="w-full"
-                >
-                  <Link
-                    ref={(node) => {
-                      itemRefs.current[index] = node
-                    }}
-                    href={child.href}
-                    role="menuitem"
-                    aria-current={childActive ? 'page' : undefined}
-                    onClick={() => {
-                      // Do not unmount this Link before Next.js handles the click.
-                      // Closing the menu here removes the <a> and the navigation never starts.
-                      if (hrefMatches(child.href, currentHref, pathname)) onDismiss()
-                    }}
-                    onKeyDown={(event) => onItemKeyDown(event, index)}
-                    className={cn(
-                      'flex w-full items-center gap-2.5 rounded-none px-2 py-1.5 text-left no-underline transition-colors duration-150',
-                      MOTION_SAFE,
-                      'hover:bg-header-menu-item focus-visible:bg-header-menu-item',
-                      childActive && 'bg-header-menu-item',
-                    )}
-                  >
-                    <MenuThumb icon={child.icon} tone={iconTone} />
-                    <span className="whitespace-nowrap">
-                      <span
-                        className={cn(
-                          'block text-[0.9375rem] leading-tight text-header-foreground',
-                          childActive && 'font-semibold',
-                        )}
-                      >
-                        {navLabel(copy, child.label)}
-                      </span>
-                      {child.meta ? (
-                        <span className="header-menu-meta mt-0.5 block text-[0.75rem] leading-snug">
-                          {menuMeta(copy, child.meta)}
-                        </span>
-                      ) : null}
-                    </span>
-                  </Link>
-                </li>
-              )
-            })}
+            <GroupMenuItems
+              group={group}
+              copy={copy}
+              iconTone={iconTone}
+              currentHref={currentHref}
+              pathname={pathname}
+              variant="flyout"
+              itemRefs={itemRefs}
+              onItemKeyDown={onItemKeyDown}
+              onDismiss={onDismiss}
+            />
           </ul>
         </div>
       )}

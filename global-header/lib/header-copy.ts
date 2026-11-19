@@ -4,6 +4,8 @@ export const headerCopy = {
   en: {
     nav: {
       Work: 'Work',
+      Project: 'Project',
+      Concept: 'Concept',
       'How I work': 'How I work',
       Playground: 'Playground',
       'Client Advisory': 'Client Advisory',
@@ -14,20 +16,24 @@ export const headerCopy = {
       'Weather Aquarium': 'Weather Aquarium',
       'AI Pet': 'AI Pet',
       Gratula: 'Gratula',
+      'Agent Tools': 'Agent Tools',
     },
     meta: {
       'Wealth · Service design': 'Wealth · Service design',
       'Energy · 300% more leads': 'Energy · 300% more leads',
       'Rive motion': 'Rive motion',
+      'Hackathon · Fleet dispatch': 'Hackathon · Fleet dispatch',
       'Fleet uptime · Dispatch': 'Fleet uptime · Dispatch',
       'Under construction': 'Under construction',
       'Investing · Interactive prototype': 'Investing · Interactive prototype',
       'Voice · Hardware': 'Voice · Hardware',
       'Vehicle controls · Light & dark': 'Vehicle controls · Light & dark',
-      'Launching soon': 'Launching soon',
+      'Party planning · Prototype': 'Party planning · Prototype',
+      'Agent Monitor · Scranton': 'Agent Monitor · Scranton',
     },
     contactMe: 'Contact me',
     email: 'Email',
+    languageLabel: 'Language',
     skipToContent: 'Skip to content',
     languageAria: (label: string) => `Language: ${label}`,
     selectLanguage: 'Select language',
@@ -39,6 +45,8 @@ export const headerCopy = {
   de: {
     nav: {
       Work: 'Arbeit',
+      Project: 'Project',
+      Concept: 'Concept',
       'How I work': 'Wie ich arbeite',
       Playground: 'Playground',
       'Client Advisory': 'Client Advisory',
@@ -49,20 +57,24 @@ export const headerCopy = {
       'Weather Aquarium': 'Weather Aquarium',
       'AI Pet': 'AI Pet',
       Gratula: 'Gratula',
+      'Agent Tools': 'Agent Tools',
     },
     meta: {
       'Wealth · Service design': 'Wealth · Service Design',
       'Energy · 300% more leads': 'Energie · 300 % mehr Leads',
       'Rive motion': 'Rive Motion',
+      'Hackathon · Fleet dispatch': 'Hackathon · Flottendisposition',
       'Fleet uptime · Dispatch': 'Flottenverfügbarkeit · Disposition',
       'Under construction': 'Im Aufbau',
       'Investing · Interactive prototype': 'Anlegen · Interaktiver Prototyp',
       'Voice · Hardware': 'Stimme · Hardware',
       'Vehicle controls · Light & dark': 'Fahrzeugsteuerung · Hell & Dunkel',
-      'Launching soon': 'Startet bald',
+      'Party planning · Prototype': 'Partyplanung · Prototyp',
+      'Agent Monitor · Scranton': 'Agent Monitor · Scranton',
     },
     contactMe: 'Kontakt',
     email: 'E-Mail',
+    languageLabel: 'Sprache',
     skipToContent: 'Zum Inhalt',
     languageAria: (label: string) => `Sprache: ${label}`,
     selectLanguage: 'Sprache wählen',
@@ -78,6 +90,7 @@ export const headerCopy = {
     meta: Record<string, string>
     contactMe: string
     email: string
+    languageLabel: string
     skipToContent: string
     languageAria: (label: string) => string
     selectLanguage: string

@@ -134,7 +134,7 @@ export function ConceptScrollStory({
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_42%_at_50%_22%,rgba(28,74,150,0.3),transparent_68%),radial-gradient(ellipse_60%_55%_at_30%_52%,rgba(30,74,140,0.36),transparent_70%),radial-gradient(ellipse_45%_50%_at_72%_32%,rgba(20,50,110,0.22),transparent_70%)]"
+          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_42%_at_50%_22%,rgba(28,74,150,0.3),transparent_68%),radial-gradient(ellipse_60%_55%_at_30%_52%,rgba(30,74,140,0.36),transparent_70%),radial-gradient(ellipse_45%_50%_at_72%_32%,rgba(20,50,110,0.22),transparent_70%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0,#000_6rem)] [mask-image:linear-gradient(to_bottom,transparent_0,#000_6rem)]"
         />
 
         <div className={`mx-auto grid w-full gap-10 px-[var(--content-inset,24px)] ${visual ? 'max-w-[1600px] grid-cols-1 lg:grid-cols-[minmax(0,1.32fr)_minmax(0,0.9fr)] lg:gap-16 xl:gap-20' : 'max-w-[calc(720px+2*var(--content-inset,24px))] grid-cols-1'} ${enabled ? 'items-start' : 'items-center'}`}>
@@ -172,11 +172,11 @@ export function ConceptScrollStory({
                       className="pointer-events-none absolute inset-y-[0.85rem] left-0 w-0.5 rounded-full bg-[var(--ca-text)] transition-opacity duration-300 ease"
                       style={{ opacity: open ? 1 : 0 }}
                     />
-                    <h3
+                    <h3 data-type="h3"
                       className={
                         open
-                          ? 'font-sans text-[26px] font-semibold leading-[1.2] text-[var(--ca-text)] transition-colors duration-300 ease xl:text-[28px]'
-                          : 'font-sans text-[26px] font-semibold leading-[1.2] text-[var(--ca-text-2)] transition-colors duration-300 ease xl:text-[28px]'
+                          ? 'ca-h3 font-sans text-[var(--ca-text)] transition-colors duration-300 ease'
+                          : 'ca-h3 font-sans text-[var(--ca-text-2)] transition-colors duration-300 ease'
                       }
                     >
                       {item.title}
@@ -195,7 +195,7 @@ export function ConceptScrollStory({
                     >
                       <div style={{ overflow: 'hidden', minHeight: 0 }}>
                         {typeof item.body === 'string' ? (
-                          <p className="mt-[0.85rem] max-w-[34rem] text-pretty text-[15px] font-normal leading-[1.65] text-[var(--ca-text-2)] xl:text-base">
+                          <p data-type="body" className="mt-[0.85rem] max-w-[34rem] text-pretty text-[15px] font-normal leading-[1.65] text-[var(--ca-text-2)] xl:text-base">
                             {item.body}
                           </p>
                         ) : (

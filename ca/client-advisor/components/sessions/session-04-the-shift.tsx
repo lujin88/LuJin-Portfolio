@@ -6,7 +6,7 @@ import { useTranslation } from '@i18n/use-translation'
 import { ShiftDiagram } from './shift-diagram'
 
 export function Session04TheShift() {
-  const { t } = useTranslation()
+  const { t, lang } = useTranslation()
 
   return (
     <section
@@ -22,21 +22,22 @@ export function Session04TheShift() {
       <div className={styles.inner}>
         <div className={styles.layout}>
           <LayerScrollGroup className={styles.lead}>
-            <p className="ca-eyebrow" data-move="96">
+            <p className="ca-eyebrow">
               <span className="ca-eyebrow-index">04</span>
               <span className="ca-eyebrow-rule" aria-hidden="true" />
               <span>{t('ca.shift.eyebrow')}</span>
             </p>
 
-            <div className={styles.copy} data-move="96">
-              <h2
+            <div className={styles.copy}>
+              <h2 data-type="h2"
                 id="session-04-heading"
-                className={`${styles.headline}`}
+                lang={lang}
+                className={`ca-h2 ${styles.headline}`}
               >
-                {t('ca.shift.headline1')} <br />
+                {t('ca.shift.headline1')}{' '}
                 {t('ca.shift.headline2')}
               </h2>
-              <p className={`${styles.body}`}>
+              <p data-type="body" className={`${styles.body}`}>
                 {t('ca.shift.bodyLead')}
                 <br />
                 {t('ca.shift.bodyInstead')}
@@ -53,7 +54,7 @@ export function Session04TheShift() {
                   {t('ca.shift.bodyAsk3')}
                 </strong>
               </p>
-              <p className={`${styles.closing}`}>
+              <p data-type="body" className={`${styles.closing}`}>
                 {t('ca.shift.closing1')}
                 <br />
                 {t('ca.shift.closing2')}

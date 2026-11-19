@@ -106,21 +106,21 @@ export function SessionMandate() {
         <MandateIcons />
         <div className={styles.atmosphere} data-move="24" aria-hidden="true" />
 
-        <div className={styles.copy} data-move="96">
+        <div className={styles.copy}>
           <p className="ca-eyebrow">
             <span className="ca-eyebrow-index">02</span>
             <span className="ca-eyebrow-rule" aria-hidden="true" />
             <span>{t('ca.mandate.eyebrow')}</span>
           </p>
 
-          <h2
+          <h2 data-type="h2"
             id="mandate-heading"
             className="ca-h2 mt-[var(--ca-heading-gap)] max-w-[18ch] text-pretty"
           >
             {t('ca.mandate.title')}
           </h2>
 
-          <p className="mt-6 max-w-[46ch] text-pretty text-[15px] font-normal leading-[1.6] text-[var(--ca-text-2)] xl:text-base">
+          <p data-type="body" className="mt-6 max-w-[46ch] text-pretty text-[15px] font-normal leading-[1.6] text-[var(--ca-text-2)] xl:text-base">
             {t('ca.mandate.body1')}
           </p>
 
@@ -128,14 +128,14 @@ export function SessionMandate() {
             <p className="ca-eyebrow ca-eyebrow-accent">
               <span>{t('ca.mandate.questionEyebrow')}</span>
             </p>
-            <h3 className="mt-6 max-w-[36rem] text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] sm:text-4xl lg:text-[2.6rem] xl:text-[2.75rem]">
+            <h3 data-type="h3" className="ca-h3 mt-6 max-w-[36rem]">
               {t('ca.mandate.questionBefore')}{' '}
               <span className={styles.accent}>{t('ca.mandate.questionAi')}</span>{' '}
               {t('ca.mandate.questionMid')}{' '}
               <span className={styles.accent}>{t('ca.mandate.questionImpact')}</span>{' '}
               {t('ca.mandate.questionAfter')}
             </h3>
-            <p className="mt-8 max-w-[46ch] text-pretty text-[15px] font-normal leading-[1.6] text-[var(--ca-text-2)] xl:text-base">
+            <p data-type="body" className="mt-8 max-w-[46ch] text-pretty text-[15px] font-normal leading-[1.6] text-[var(--ca-text-2)] xl:text-base">
               {t('ca.mandate.body2')}
             </p>
           </div>

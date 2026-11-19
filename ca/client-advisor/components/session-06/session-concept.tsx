@@ -5,7 +5,7 @@ import { ConceptMockupStack } from './concept-mockup-stack'
 import { ConceptScrollStory } from './concept-scroll-story'
 import { useTranslation } from '@i18n/use-translation'
 
-const SHOW_CONCEPT_STACK = false
+const SHOW_CONCEPT_STACK = true
 
 const bodyClass =
   'mt-[0.35rem] max-w-[34rem] text-pretty text-[15px] font-normal leading-[1.55] text-[var(--ca-text-2)] xl:text-base'
@@ -24,10 +24,10 @@ export function SessionConcept() {
       body: (
         <div className="mt-[0.85rem] flex flex-col">
           <h4 className={subheadClass}>{t('ca.concept.whyLess')}</h4>
-          <p className={bodyClass}>{t('ca.concept.whyLessBody')}</p>
+          <p data-type="body" className={bodyClass}>{t('ca.concept.whyLessBody')}</p>
           <h4 className={`${subheadClass} mt-4`}>{t('ca.concept.buying')}</h4>
-          <p className={bodyClass}>{t('ca.concept.buyingWon')}</p>
-          <p className={bodyClass}>{t('ca.concept.buyingPractice')}</p>
+          <p data-type="body" className={bodyClass}>{t('ca.concept.buyingWon')}</p>
+          <p data-type="body" className={bodyClass}>{t('ca.concept.buyingPractice')}</p>
         </div>
       ),
     },
@@ -37,9 +37,6 @@ export function SessionConcept() {
     },
   ]
 
-  // Hidden until visual's recreated frames are cleared (PM #2300): the UBS screens
-  // were removed for confidentiality, and grey placeholders read as broken images.
-  // Set SHOW_CONCEPT_STACK back to true and swap the files in concept-mockups.ts.
   const visual = SHOW_CONCEPT_STACK ? (
     <ScrollReveal fadeOnly className="relative w-full">
       <ConceptMockupStack />
@@ -54,7 +51,7 @@ export function SessionConcept() {
         <span>{t('ca.concept.eyebrow')}</span>
       </p>
 
-      <h2
+      <h2 data-type="h2"
         id="session-06-heading"
         className="ca-h2 mt-[var(--ca-heading-gap)] max-w-[18ch] font-sans"
       >

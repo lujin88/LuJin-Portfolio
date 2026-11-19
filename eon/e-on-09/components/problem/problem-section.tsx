@@ -15,7 +15,7 @@ export function ProblemSection() {
         className="pointer-events-none absolute -left-40 -top-16 z-[1] h-[320px] w-[320px] rounded-full bg-blue-soft md:-left-36 md:-top-20 md:h-[360px] md:w-[360px]"
       />
 
-      <ContentContainer className="relative z-[1] pt-20 pb-12 max-sm:pt-6 max-sm:pb-0 md:pt-24 md:pb-14">
+      <ContentContainer className="case-study-section relative z-[1] max-sm:!pt-6 max-sm:!pb-0">
         <div className="grid gap-6 md:grid-cols-[46fr_54fr] md:items-start md:gap-8">
           <OnceReveal className="relative z-[2] md:pt-2">
             <SectionLabel
@@ -25,21 +25,21 @@ export function ProblemSection() {
               emphasis="soft"
             />
 
-            <h2 className="mt-7 max-w-[40rem] text-[44px] font-extrabold leading-[1.02] tracking-[-0.035em] md:text-[60px]">
+            <h2 data-type="h2" className="mt-7 max-w-[40rem] text-[44px] font-extrabold leading-[1.02] tracking-[-0.035em] md:text-[60px]">
               {t('eon.problem.title1')}
               <br />
               {t('eon.problem.title2')}
             </h2>
 
-            <p className="mt-8 max-w-[38rem] text-pretty text-lg leading-relaxed text-ink-muted md:text-xl">
+            <p data-type="body" className="mt-8 max-w-[38rem] text-pretty text-lg leading-relaxed text-ink-muted md:text-xl">
               {t('eon.problem.body1')}
             </p>
 
-            <p className="mt-6 max-w-[38rem] text-pretty text-lg font-bold leading-relaxed text-ink md:text-xl">
+            <p data-type="body" className="mt-6 max-w-[38rem] text-pretty text-lg font-bold leading-relaxed text-ink md:text-xl">
               {t('eon.problem.body2')}
             </p>
 
-            <p className="mt-6 max-w-[38rem] text-pretty text-lg leading-relaxed text-ink-muted md:text-xl">
+            <p data-type="body" className="mt-6 max-w-[38rem] text-pretty text-lg leading-relaxed text-ink-muted md:text-xl">
               {t('eon.problem.body3')}
             </p>
           </OnceReveal>

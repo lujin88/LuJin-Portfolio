@@ -303,7 +303,7 @@
 }
 
 .case-study-section {
-  padding-block: 4rem;
+  padding-block: var(--editorial-section-space);
 }
 /* Phones read E.ON as one continuous page (Lu 2026-11-08): 32px per section edge, so
    two sections meet at 64px (a new chapter, visual MOBILE_SPACING_1109/RULES.md).
@@ -323,7 +323,7 @@
   width: 100%;
   max-width: none;
   margin-inline: 0;
-  padding-inline: var(--content-inset, 24px);
+  padding-inline: max(var(--editorial-gutter), var(--content-inset, 24px));
 }
 
 .site-chrome {
@@ -384,6 +384,17 @@ footer > hr {
   transition:
     opacity var(--dur, 360ms) var(--aud-ease) var(--d, 0ms),
     transform var(--dur, 360ms) var(--aud-ease) var(--d, 0ms);
+}
+/* The icon also carries .aud-ev-fade, so it shares that class's server-render hiding;
+   these come after the .aud-ev-fade rules so the scale and timing win. */
+.aud-ev[data-cards='out'] .aud-ev-icon {
+  opacity: 0;
+  transform: scale(0.85);
+}
+.aud-ev[data-cards='in'] .aud-ev-icon {
+  transition:
+    opacity 400ms var(--aud-ease) var(--d, 0ms),
+    transform 400ms var(--aud-ease) var(--d, 0ms);
 }
 /* Server render, before hydration: when JS will run the entrance, start hidden so a reload
    inside this section doesn't flash the final state first. No JS / reduced motion → final state. */

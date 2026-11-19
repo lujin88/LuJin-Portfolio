@@ -1,0 +1,3 @@
+{"id": 0, "sender": "robin", "text": "Let\u2019s prepare the demo launch page. Sage, please check the layout. Ember, please review the button labels.", "type": "chat", "timestamp": 1794386472.419861, "time": "09:10:00", "channel": "demo-studio", "attachments": []}
+{"id": 1, "sender": "sage", "text": "The desktop layout is ready to review. I\u2019m checking the mobile version next.", "type": "chat", "timestamp": 1794386532.419877, "time": "09:12:00", "channel": "demo-studio", "attachments": []}
+{"id": 2, "sender": "ember", "text": "Button labels are consistent. The preview is ready for your review, Robin.", "type": "chat", "timestamp": 1794386592.419884, "time": "09:14:00", "channel": "demo-studio", "attachments": []}

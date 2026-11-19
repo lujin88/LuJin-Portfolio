@@ -69,9 +69,11 @@ export function JourneySteps() {
       }
       return 1 - (1 - (low + high) / 2) ** 3
     }
+    // Same clock as the CSS sequence: both start when `started` flips (the travelling dots that
+    // used to carry this clock were removed, Lu 2026-11-10).
+    const t0 = performance.now()
     const follow = () => {
-      const lead = rail.querySelector('[data-journey-particle="lead"]')
-      const time = Number(lead?.getAnimations()[0]?.currentTime ?? 0)
+      const time = performance.now() - t0
       const elapsed = Math.max(0, time - 1350)
       const hop = Math.min(2, Math.floor(elapsed / 333))
       const eased = ease(Math.min(1, (elapsed - hop * 333) / 333))
@@ -143,10 +145,6 @@ export function JourneySteps() {
             </Fragment>
           )
         })}
-        <div aria-hidden="true" className={styles.particles}>
-          <span data-journey-particle="lead" className={styles.lead} />
-          <span data-journey-particle="survivor" className={styles.survivor} />
-        </div>
       </div>
     </div>
   )

@@ -27,7 +27,7 @@ export function ResultsSection() {
               surface="light"
               emphasis="strong"
             />
-            <h2 className="text-balance text-6xl font-extrabold leading-[0.98] tracking-[-0.04em] text-ink sm:text-7xl">
+            <h2 data-type="h2" className="text-balance text-6xl font-extrabold leading-[0.98] tracking-[-0.04em] text-ink sm:text-7xl">
               {t('eon.results.title')}
             </h2>
           </OnceReveal>
@@ -35,7 +35,7 @@ export function ResultsSection() {
           {/* Right: outcome cards */}
           <OnceReveal className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {/* Primary result — lead conversion */}
-            <div className="flex min-w-0 flex-col gap-6 rounded-3xl bg-mint-light p-8 sm:p-10">
+            <div className="flex min-w-0 flex-col gap-6 rounded-3xl bg-mint p-8 sm:p-10">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-off-white">
                 <Image
                   src="/assets/images/eon/eon 09 - icon - chart.webp"
@@ -47,7 +47,7 @@ export function ResultsSection() {
               </span>
               <div className="flex flex-col gap-2">
                 <CountUp className="text-6xl font-extrabold tracking-[-0.03em] text-ink sm:text-7xl" />
-                <p className="text-base font-medium text-ink-muted sm:text-lg">
+                <p data-type="body" className="text-base font-medium text-ink-muted sm:text-lg">
                   {t('eon.results.uplift')}
                 </p>
               </div>
@@ -72,10 +72,10 @@ export function ResultsSection() {
                 />
               </span>
               <div className="relative z-10 flex flex-col gap-2">
-                <h3 className="text-3xl font-extrabold tracking-[-0.02em] text-ink sm:text-4xl">
+                <h3 data-type="h3" className="text-3xl font-extrabold tracking-[-0.02em] text-ink sm:text-4xl">
                   {t('eon.results.ukTitle')}
                 </h3>
-                <p className="max-w-[14rem] text-base font-medium leading-relaxed text-ink-muted sm:text-lg">
+                <p data-type="body" className="max-w-[14rem] text-base font-medium leading-relaxed text-ink-muted sm:text-lg">
                   {t('eon.results.ukBody')}
                 </p>
               </div>

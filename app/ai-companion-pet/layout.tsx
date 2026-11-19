@@ -5,7 +5,7 @@ import { socialMetadata } from '../seo'
 
 const PAPER = '#f7f6f2'
 
-const TITLE = 'Lu — AI Pet'
+const TITLE = 'Lu Jin — AI Pet'
 const DESCRIPTION =
   'Diandian, a little AI dolphin. Turn the knob. Pick a mood. Play.'
 

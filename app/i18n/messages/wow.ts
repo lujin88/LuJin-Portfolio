@@ -1,6 +1,6 @@
 export const wow = {
   en: {
-    documentTitle: 'Lu — Human × AI',
+    documentTitle: 'Lu Jin — Human × AI',
     heroTitle: 'Way of Work',
     heroLede:
       'A more human way to build. From curiosity to impact. A structured, iterative process for complex products.',
@@ -79,7 +79,7 @@ export const wow = {
       'A step-by-step guide to designing with AI, updated monthly with new methods, skills, and lessons from PMs, designers, and Lenny’s Podcast.',
   },
   de: {
-    documentTitle: 'Lu — Human × AI',
+    documentTitle: 'Lu Jin — Human × AI',
     heroTitle: 'Way of Work',
     heroLede:
       'Menschlicher bauen. Von der Neugier zur Wirkung. Ein strukturierter, iterativer Prozess für komplexe Produkte.',

@@ -80,11 +80,14 @@
   max-width: calc(100vw - 3rem);
 }
 
-/* Open mobile menu grows with its rows. A max-height scrollport was
-   clipping the last Work row inside the panel. */
+/* Keep expanded rows reachable below the fixed 4rem header on short screens.
+   Only the outer menu scrolls; expanded Work rows retain their full height. */
 #mobile-nav[aria-hidden='false'] {
-  max-height: none;
-  overflow: visible;
+  max-height: calc(100vh - 4rem);
+  max-height: calc(100dvh - 4rem);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scroll-padding-block: 8px;
 }
 
 #mobile-nav button[aria-expanded='true'] + div {
@@ -117,10 +120,54 @@
   width: 100%;
 }
 
-/* Language listbox keeps its fill and check mark for the chosen option. */
+/* Language listbox (direction B): check mark only, no selected-row fill. */
 [data-site-header] .header-menu button[aria-selected='true'] {
   border-radius: 0;
-  background: var(--header-menu-item);
+  background: transparent;
+}
+
+[data-site-header] .header-mobile-language-label {
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: color-mix(in srgb, var(--header-foreground) 72%, transparent);
+}
+
+/* Mobile drawer language rows: flat on scrim, not a flyout card. */
+[data-site-header] .header-mobile-language-list {
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+[data-site-header] .header-mobile-language-list > li {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+[data-site-header] .header-mobile-language-list :is(a, button) {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+}
+
+[data-site-header] .header-mobile-language-list :is(a, button):hover,
+[data-site-header] .header-mobile-language-list :is(a, button):focus-visible {
+  border-radius: 0;
+  background: var(--header-menu-hover);
+}
+
+/* Desktop language dropdown: B稿 panel ~156px; gap below trigger 8px (mt-2). */
+[data-site-header] .header-language-flyout {
+  min-width: 9.75rem;
+  max-width: 9.75rem;
 }
 
 /* Row hover. Own token, so per-route --header-menu-item overrides do not
@@ -179,6 +226,28 @@
 /* Lu 11-01: rows felt cramped. More room on all sides; the icon gap
    grows with it. Applies to the desktop flyout and the mobile list. */
 [data-site-header] .header-menu-divided > li > a {
+  gap: 0.875rem;
+  padding: 0.75rem 1.25rem 0.75rem 0.875rem;
+}
+
+[data-site-header] .header-menu-section {
+  padding: 0.625rem 1.25rem 0.25rem 0.875rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: color-mix(in oklab, var(--header-foreground) 52%, transparent);
+}
+
+[data-site-header] .header-menu-section--lead {
+  padding: 1rem 1.25rem 0.375rem 0.875rem;
+}
+
+[data-site-header] .header-menu-section--split {
+  padding: 0.75rem 1.25rem 0.75rem 0.875rem;
+  border-top: 1px solid color-mix(in oklab, var(--header-line) 45%, transparent);
+}
+
+[data-site-header] .header-menu-grouped > li > a {
   gap: 0.875rem;
   padding: 0.75rem 1.25rem 0.75rem 0.875rem;
 }
@@ -266,7 +335,8 @@
   --header-menu-selected: #0961ff;
 }
 
-[data-site-header][data-header-tone='paper'] :is(ul[role='list'], ul[role='listbox']) {
+[data-site-header][data-header-tone='paper']
+  :is(ul[role='list'], ul[role='listbox']):not(.header-mobile-language-list) {
   box-shadow: 0 18px 48px -12px rgb(17 17 17 / 16%);
 }
 
@@ -279,4 +349,14 @@
 }
 [data-site-header][data-header-tone='paper'] .header-menu-meta {
   color: var(--color-text-4, #595d61);
+}
+
+/* Paper Work/Playground group labels (Project/Concept). 52% mix ≈3.74:1 on white (visualqa #17757). */
+[data-site-header][data-header-tone='paper'] .header-menu-section {
+  color: var(--color-text-4, #595d61);
+}
+
+/* Form controls do not inherit the page font in the browser UA stylesheet. */
+[data-site-header] :is(button, select, input, textarea) {
+  font-family: var(--font-poppins), 'Poppins', ui-sans-serif, system-ui, sans-serif;
 }
