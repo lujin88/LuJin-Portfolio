@@ -9,7 +9,7 @@
 :where(.etf-case) .opening-text h1 {font-size:clamp(44px,6.5vw,84px);line-height:1.03;font-weight:750;letter-spacing:-.05em;margin:0 0 clamp(14px,1.5vw,22px)}
 :where(.etf-case) .case-intro {max-width:63ch;font-size:clamp(17px,1.7vw,23px);line-height:1.45;color:#476788;margin:0 auto;text-wrap:balance}
 :where(.etf-case) .case-lineup {width:100%;height:auto;display:block;border-radius:24px;margin:clamp(24px,2.4vw,34px) auto 0}
-:where(.etf-case) .story {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,7vw,100px);margin:clamp(40px,5vw,80px) auto 0;max-width:1100px}
+:where(.etf-case) .story {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,7vw,100px);margin:clamp(48px,6vw,96px) auto 0;max-width:1100px}
 :where(.etf-case) .story article {min-height:max(610px,78svh);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;scroll-margin-top:15px;padding-block:34px}
 :where(.etf-case) .story-copy>article>h2 {margin:12px 0 18px;font-size:clamp(40px,4.4vw,66px);line-height:1.06;font-weight:730;letter-spacing:-.055em;text-wrap:balance}
 :where(.etf-case) .story-text {font-size:clamp(18px,1.6vw,23px);line-height:1.48;color:#375674}
@@ -25,7 +25,8 @@
 /* The stage used to start level with chapter 1, so it only pinned once the chapter top was ~120px
    from the top of the viewport; while the title sat mid-screen the frame's bottom (Continue) was
    below the fold (PM #6788). Start it higher so it pins when the chapter top is at 35% of the view. */
-:where(.etf-case) .shared-phone {margin-top:calc(64px - 35svh)}
+/* Lu #11169: 35svh pull-up put the chapter phone tight under the opening pair; ease the offset. */
+:where(.etf-case) .shared-phone {margin-top:calc(64px - 30svh)}
 :where(.etf-case) .phone-stage {position:relative;display:grid;place-items:center;isolation:isolate;width:100%}
 :where(.etf-case) .phone-stage::before {display:none}
 :where(.etf-case) .device {position:relative;inset:auto;height:712px;width:390px;zoom:clamp(.64,calc(100svh / 800px),1)}
@@ -48,6 +49,7 @@
   :where(.etf-case) .case-lineup {height:clamp(210px,62vw,320px);object-fit:cover;object-position:center top;border-radius:16px}
 }
 @media(min-width:851px) and (min-height:531px) {
+  :where(.etf-case) .case-opening {padding-bottom:clamp(20px,4vh,56px)}
   :where(.etf-case) .story article {min-height:clamp(610px,78svh,820px)}
   :where(.etf-case) .story article:last-child {min-height:min(100svh,860px)}
 }
