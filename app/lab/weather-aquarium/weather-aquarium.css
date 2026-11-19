@@ -310,6 +310,9 @@
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
 }.wa-page .vocab-item{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   min-width: 0;
   padding: 0 clamp(8px, 1.35vw, 20px) 6px;
 }.wa-page .sprite-window{
@@ -318,7 +321,9 @@
   overflow: hidden;
 }.wa-page .vocab-art{
   display: grid;
-  height: clamp(118px, 12vw, 165px);
+  flex: 0 0 auto;
+  height: 224px;
+  max-height: 224px;
   place-items: center;
 }.wa-page .vocab-art img{
   width: 100%;
@@ -331,38 +336,51 @@
   margin: 0;
   padding: 0;
   border: 0;
-  background: none;
+  background: var(--page-bg);
   color: inherit;
   font: inherit;
   cursor: default;
-  container-type: size;
+  overflow: hidden;
   -webkit-tap-highlight-color: transparent;
 }.wa-page .vocab-art--clip:focus-visible{
   outline: 2px solid var(--signal);
   outline-offset: 3px;
+}.wa-page .vocab-art--static{
+  pointer-events: none;
+}.wa-page .vocab-art--clip{
+  display: grid;
+  align-content: stretch;
+}.wa-page .vocab-fit{
+  /* Same rectangle the contain-fitted webp occupies (224px tall box), so the clip can be
+     placed by the fitted offsets: its subject lands on the still's subject. */
+  grid-area: 1 / 1;
+  place-self: center;
+  position: relative;
+  display: block;
+  width: min(100%, calc(224px * var(--ratio)));
+  aspect-ratio: var(--ratio);
+  container-type: inline-size;
+}.wa-page .vocab-fit img{
+  display: block;
+  width: 100%;
+  height: 100%;
 }.wa-page .vocab-video{
-  /* Where the webp is drawn (measured on 3000): it is a grid item whose automatic minimum
-     height is its content height, so it always fills the box width; a shorter one is
-     centred vertically, a taller one starts at the box top and overflows downward.
-     The clip is placed so subjects align. */
-  --rw: 100cqw;
   position: absolute;
-  left: calc(var(--rw) * var(--clip-x));
-  top: calc(max(0px, (100cqh - var(--rw) / var(--ratio)) / 2) + var(--rw) * var(--clip-y));
-  width: calc(var(--rw) * var(--clip-w));
+  left: calc(100% * var(--clip-x));
+  top: calc(100cqw * var(--clip-y));
+  width: calc(100% * var(--clip-w));
   max-width: none;
   height: auto;
   aspect-ratio: 1112 / 834;
-  /* Two gradients (set inline per clip) intersect into a feathered rectangle. */
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
   opacity: 0;
   pointer-events: none;
+  /* Lu #18470 1B: the still stays put; the clip fades in over it so the swap does not jump. */
+  transition: opacity 300ms ease;
 }.wa-page .vocab-art--clip.is-ready .vocab-video{
   opacity: 1;
-}.wa-page .vocab-art--clip.is-ready img{
-  visibility: hidden;
-}.wa-page .vocab-row{
+}@media (prefers-reduced-motion: reduce){.wa-page .vocab-video{transition:none}}.wa-page .vocab-row{
   /* Above the clips: rain falls behind the speak button and label. */
   position: relative;
   z-index: 1;
@@ -487,11 +505,6 @@
 
 @media (max-width: 1050px) {.wa-page .hero{
     min-height: 590px;
-  }.wa-page .hero-grid{
-    grid-template-columns: minmax(260px, 0.4fr) minmax(460px, 0.6fr);
-    min-height: 510px;
-  }.wa-page .hero-media{
-    margin-right: -12%;
   }.wa-page .vocab-grid{
     grid-template-columns: repeat(3, 1fr);
     row-gap: 22px;
@@ -499,6 +512,59 @@
     grid-template-columns: 1fr;
   }.wa-page .motion-copy > p:last-child{
     max-width: 560px;
+  }
+}
+
+/* Lu 1A #10741: tablet stills — tame hero bleed and parallax room so 768首屏不溢出. */
+@media (min-width: 700px) and (max-width: 1024px) {.wa-page .hero-media{
+    margin-right: 0;
+    margin-left: 0;
+    perspective: none;
+  }.wa-page .hero-device{
+    will-change: auto;
+    transition: none;
+  }.wa-page .vocab-grid{
+    row-gap: 28px;
+  }.wa-page .vocab-item{
+    gap: 22px;
+  }.wa-page .vocab-art{
+    /* visualqa #10898: no overflow clip — scale whole asset, keep label row clear. */
+    height: 224px;
+    max-height: 224px;
+    overflow: visible;
+  }.wa-page .vocab-art--static img{
+    width: auto;
+    height: auto;
+    max-width: 76%;
+    max-height: 168px;
+    object-fit: contain;
+    object-position: center center;
+  }
+}
+
+/* B02: two-column hero min widths overflow ~720–920px; stack before the iPad clips the device. */
+@media (max-width: 920px) and (min-width: 761px) {.wa-page .hero{
+    min-height: auto;
+    padding-bottom: 56px;
+  }.wa-page .hero-grid{
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: clamp(20px, 4vw, 36px);
+  }.wa-page .hero-media{
+    margin-right: 0;
+    margin-left: 0;
+    max-width: min(100%, 520px);
+    justify-self: center;
+  }
+}
+
+@media (max-width: 1050px) and (min-width: 921px) {.wa-page .hero-grid{
+    grid-template-columns: minmax(240px, 0.42fr) minmax(0, 0.58fr);
+    min-height: 510px;
+    gap: clamp(16px, 3vw, 40px);
+  }.wa-page .hero-media{
+    margin-right: 0;
+    min-width: 0;
   }
 }
 
@@ -517,17 +583,19 @@
     margin: 24px -8% 0;
   }.wa-page .season-captions{
     display: none;
-  }.wa-page .edition-grid{
-    width: calc(100% + var(--pad));
-    grid-auto-columns: 82vw;
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    gap: 16px;
-    padding-right: var(--pad);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+  }  /* Lu #9901 / D01: vertical stack, scroll with the page — no horizontal track. */
+  .wa-page .edition-grid{
+    width: auto;
+    grid-template-columns: 1fr;
+    grid-auto-columns: unset;
+    grid-auto-flow: row;
+    gap: clamp(22px, 6vw, 32px);
+    padding-right: 0;
+    overflow-x: visible;
+    scroll-snap-type: none;
   }.wa-page .edition{
-    scroll-snap-align: start;
+    scroll-snap-align: unset;
+    max-width: 100%;
   }.wa-page .learning-head{
     align-items: flex-start;
     flex-direction: column;

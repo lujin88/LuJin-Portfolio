@@ -1,7 +1,7 @@
 'use client'
 
 import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
 import { SeasonCrossfade } from './season-crossfade'
 import { useAfterHero } from './use-after-hero'
 import { SiteClosing } from '../../components/site-closing'
@@ -54,15 +54,15 @@ const POSES = [
 // fades out beyond it, so the padding never shows a hard edge.
 // Clips rest on and loop from their own first frame. Fish, sun and coat are `_trim`
 // exports with the source-image frames cut from both ends, so the loop point does not flash.
-type VocabClip = { file: string; w: number; x: number; y: number; motion: [number, number, number, number]; fadeBottom?: boolean }
+type VocabClip = { file: string; w: number; x: number; y: number; motion: [number, number, number, number]; fadeBottom?: boolean; tone?: number }
 
 const VOCAB: { word: Word; alt: string; src: string; ratio: number; clip: VocabClip }[] = [
-  { word: 'perch', alt: 'European perch', src: `${IMG}/vocab-perch.webp`, ratio: 1536 / 1024, clip: { file: 'vocab-perch-trim.mp4', w: 1.4866, x: -0.2435, y: -0.2234, motion: [215, 219, 892, 610] } },
+  { word: 'perch', alt: 'European perch', src: `${IMG}/vocab-perch.webp`, ratio: 1536 / 1024, clip: { file: 'vocab-perch-trim.mp4', w: 1.4866, x: -0.2435, y: -0.2234, motion: [215, 219, 892, 610], tone: 1.13 } },
   { word: 'church', alt: 'Church', src: `${IMG}/vocab-church.webp`, ratio: 1334 / 1179, clip: { file: 'vocab-church-v3.mp4', w: 1.8774, x: -0.4455, y: -0.2689, motion: [348, 179, 837, 656] } },
-  { word: 'sun', alt: 'Sun', src: `${IMG}/vocab-sun.webp`, ratio: 1314 / 1197, clip: { file: 'vocab-sun-trim.mp4', w: 1.9819, x: -0.4958, y: -0.286, motion: [334, 151, 772, 632] } },
+  { word: 'sun', alt: 'Sun', src: `${IMG}/vocab-sun.webp`, ratio: 1314 / 1197, clip: { file: 'vocab-sun-trim.mp4', w: 1.9819, x: -0.4958, y: -0.286, motion: [334, 151, 772, 632], tone: 1.24 } },
   // Drops reach the clip's bottom edge, so the bottom 20% fades instead (Lu-approved first version).
   { word: 'rain', alt: 'Rain cloud', src: `${IMG}/vocab-rain.webp`, ratio: 1377 / 1142, clip: { file: 'vocab-rain-v1.mp4', w: 1.6965, x: -0.3624, y: -0.2242, motion: [345, 196, 816, 834], fadeBottom: true } },
-  { word: 'coat', alt: 'Yellow raincoat', src: `${IMG}/vocab-coat.webp`, ratio: 1312 / 1199, clip: { file: 'vocab-coat-trim.mp4', w: 1.9263, x: -0.4701, y: -0.2654, motion: [356, 162, 772, 658] } },
+  { word: 'coat', alt: 'Yellow raincoat', src: `${IMG}/vocab-coat.webp`, ratio: 1312 / 1199, clip: { file: 'vocab-coat-trim.mp4', w: 1.9263, x: -0.4701, y: -0.2654, motion: [356, 162, 772, 658], tone: 1.3 } },
   { word: 'hat', alt: 'Red winter hat', src: `${IMG}/vocab-hat.webp`, ratio: 1374 / 1145, clip: { file: 'vocab-hat-v1.mp4', w: 1.7905, x: -0.3997, y: -0.2456, motion: [338, 167, 786, 651] } },
 ]
 
@@ -81,6 +81,39 @@ function clipMask({ motion: [x0, y0, x1, y1], fadeBottom }: VocabClip) {
   const across = `linear-gradient(to right, transparent ${pct(Math.max(0, l - FADE))}, #000 ${pct(l)}, #000 ${pct(r)}, transparent ${pct(Math.min(1, r + FADE))})`
   const down = `linear-gradient(to bottom, transparent ${pct(Math.max(0, t - FADE))}, #000 ${pct(t)}, #000 ${pct(b)}, transparent ${pct(Math.min(1, bEnd))})`
   return `${across}, ${down}`
+}
+
+// Lifts a clip whose first frame renders darker than the webp. A plain brightness filter would
+// also lift the #edf3e7 padding (about 0.93) into a visible box, so this curve scales tones by
+// `k` up to 0.7 and eases back to the unchanged padding value, which keeps hue and padding.
+function toneTable(k: number) {
+  const pts: [number, number][] = [[0, 0], [0.7, 0.7 * k], [0.93, 0.93], [1, 1]]
+  const f = (x: number) => {
+    for (let i = 1; i < pts.length; i++) {
+      if (x <= pts[i][0]) {
+        const [x0, y0] = pts[i - 1]
+        const [x1, y1] = pts[i]
+        return y0 + ((y1 - y0) * (x - x0)) / (x1 - x0)
+      }
+    }
+    return 1
+  }
+  return Array.from({ length: 33 }, (_, i) => f(i / 32).toFixed(3)).join(' ')
+}
+
+function ToneFilter({ id, k }: { id: string; k: number }) {
+  const table = toneTable(k)
+  return (
+    <svg width="0" height="0" aria-hidden="true" focusable="false" style={{ position: 'absolute' }}>
+      <filter id={id} colorInterpolationFilters="sRGB">
+        <feComponentTransfer>
+          <feFuncR type="table" tableValues={table} />
+          <feFuncG type="table" tableValues={table} />
+          <feFuncB type="table" tableValues={table} />
+        </feComponentTransfer>
+      </filter>
+    </svg>
+  )
 }
 
 function voiceForLocale(locale: string): SpeechSynthesisVoice | undefined {
@@ -127,6 +160,9 @@ const EDITIONS = [
   { slice: 2, caption: 'Christmas / Weihnachten', alt: 'A child by a glowing Christmas tree on a snowy dock', image: 'holiday-christmas-v3.webp', video: 'christmas-v3.mp4' },
 ] as const
 
+// Lu 11-13 #10741 / 1A: 700–1024 uses device + vocab stills only; phone and desktop keep clips.
+const WA_TABLET_STATIC_MQ = '(min-width: 700px) and (max-width: 1024px)'
+
 function useMotionAllowed() {
   const [motionAllowed, setMotionAllowed] = useState(false)
 
@@ -139,6 +175,20 @@ function useMotionAllowed() {
   }, [])
 
   return motionAllowed
+}
+
+function useWaTabletStatic() {
+  const [tabletStatic, setTabletStatic] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia(WA_TABLET_STATIC_MQ)
+    const update = () => setTabletStatic(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+
+  return tabletStatic
 }
 
 function HolidayVideo({ file, className = 'holiday-video', once = false }: { file: string; className?: string; once?: boolean }) {
@@ -240,14 +290,16 @@ function HeroScreenVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const motionAllowed = useMotionAllowed()
   const afterHero = useAfterHero()
+  const tabletStatic = useWaTabletStatic()
   const [playing, setPlaying] = useState(false)
   const [failed, setFailed] = useState(false)
 
   useEffect(() => {
     setPlaying(false)
-  }, [motionAllowed])
+  }, [motionAllowed, tabletStatic])
 
   useEffect(() => {
+    if (tabletStatic) return
     const layer = layerRef.current
     const frame = layer?.parentElement
     if (!layer || !frame) return
@@ -260,9 +312,10 @@ function HeroScreenVideo() {
     const observer = new ResizeObserver(place)
     observer.observe(frame)
     return () => observer.disconnect()
-  }, [motionAllowed, failed, afterHero])
+  }, [motionAllowed, failed, afterHero, tabletStatic])
 
   useEffect(() => {
+    if (tabletStatic) return
     const video = videoRef.current
     if (!video || !motionAllowed || failed) return
 
@@ -287,9 +340,9 @@ function HeroScreenVideo() {
       document.removeEventListener('visibilitychange', syncPlayback)
       video.pause()
     }
-  }, [motionAllowed, failed, afterHero])
+  }, [motionAllowed, failed, afterHero, tabletStatic])
 
-  if (!motionAllowed || failed || !afterHero) return null
+  if (!motionAllowed || failed || !afterHero || tabletStatic) return null
 
   return (
     <div ref={layerRef} className={`hero-screen${playing ? ' is-playing' : ''}`} aria-hidden="true">
@@ -340,16 +393,18 @@ function VocabArt({
   onActive: (on: boolean) => void
 }) {
   const { clip } = item
-  const rootRef = useRef<HTMLButtonElement>(null)
+  const hostRef = useRef<HTMLButtonElement | HTMLDivElement | null>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const motionAllowed = useMotionAllowed()
+  const tabletStatic = useWaTabletStatic()
   const [load, setLoad] = useState(false)
   const [ready, setReady] = useState(false)
   const [failed, setFailed] = useState(false)
   const canPlay = ready && motionAllowed && !failed
 
   useEffect(() => {
-    const root = rootRef.current
+    if (tabletStatic || load) return
+    const root = hostRef.current
     if (!root) return
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -361,7 +416,7 @@ function VocabArt({
     )
     observer.observe(root)
     return () => observer.disconnect()
-  }, [])
+  }, [tabletStatic, load])
 
   useEffect(() => {
     const video = videoRef.current
@@ -379,7 +434,8 @@ function VocabArt({
 
   // Stop when scrolled away or the tab is hidden, so a tapped clip does not keep running.
   useEffect(() => {
-    const root = rootRef.current
+    if (tabletStatic) return
+    const root = hostRef.current
     if (!root || !active) return
     const stop = () => onActive(false)
     const observer = new IntersectionObserver(([entry]) => {
@@ -394,18 +450,30 @@ function VocabArt({
       observer.disconnect()
       document.removeEventListener('visibilitychange', onHidden)
     }
-  }, [active, onActive])
+  }, [active, onActive, tabletStatic])
 
   const mask = clipMask(clip)
 
+  if (tabletStatic) {
+    return (
+      <div
+        ref={hostRef as RefObject<HTMLDivElement | null>}
+        className="vocab-art vocab-art--static"
+        role="img"
+        aria-label={label}
+      >
+        <img src={item.src} alt="" loading="lazy" />
+      </div>
+    )
+  }
+
   return (
     <button
-      ref={rootRef}
+      ref={hostRef as RefObject<HTMLButtonElement | null>}
       className={`vocab-art vocab-art--clip${ready && !failed ? ' is-ready' : ''}`}
       type="button"
       aria-label={label}
       aria-pressed={canPlay ? active : undefined}
-      style={{ ['--ratio' as string]: item.ratio, ['--clip-w' as string]: clip.w, ['--clip-x' as string]: clip.x, ['--clip-y' as string]: clip.y }}
       onPointerEnter={(event) => {
         if (event.pointerType === 'touch' || !finePointer()) return
         onActive(true)
@@ -423,7 +491,12 @@ function VocabArt({
         onActive(!active)
       }}
     >
+      <span
+        className="vocab-fit"
+        style={{ ['--ratio' as string]: item.ratio, ['--clip-w' as string]: clip.w, ['--clip-x' as string]: clip.x, ['--clip-y' as string]: clip.y }}
+      >
       <img src={item.src} alt="" loading="lazy" />
+      {clip.tone && <ToneFilter id={`wa-tone-${item.word}`} k={clip.tone} />}
       {!failed && (
         <video
           ref={videoRef}
@@ -435,7 +508,7 @@ function VocabArt({
           playsInline
           preload={load ? 'auto' : 'none'}
           aria-hidden="true"
-          style={{ maskImage: mask, WebkitMaskImage: mask }}
+          style={{ maskImage: mask, WebkitMaskImage: mask, filter: clip.tone ? `url(#wa-tone-${item.word})` : undefined }}
           onLoadedData={(event) => {
             const video = event.currentTarget
             if (video.currentTime === 0) setReady(true)
@@ -447,6 +520,7 @@ function VocabArt({
           onError={() => setFailed(true)}
         />
       )}
+      </span>
     </button>
   )
 }
@@ -654,11 +728,11 @@ export function WeatherAquariumPage() {
     const root = rootRef.current
     if (!root) return
 
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-    const heroMedia = heroMediaRef.current
-    const heroDevice = heroDeviceRef.current
+    const tabletMq = window.matchMedia(WA_TABLET_STATIC_MQ)
+    const reducedMq = window.matchMedia('(prefers-reduced-motion: reduce)')
     const onMove = (event: globalThis.PointerEvent) => {
+      const heroMedia = heroMediaRef.current
+      const heroDevice = heroDeviceRef.current
       if (!heroMedia || !heroDevice) return
       const bounds = heroMedia.getBoundingClientRect()
       const x = (event.clientX - bounds.left) / bounds.width - 0.5
@@ -666,17 +740,40 @@ export function WeatherAquariumPage() {
       heroDevice.style.transform = `translate3d(${x * 7}px, ${y * 5}px, 0) rotateX(${-y * 1.2}deg) rotateY(${x * 1.4}deg) rotateZ(0.75deg)`
     }
     const onLeave = () => {
+      const heroDevice = heroDeviceRef.current
       if (!heroDevice) return
       heroDevice.style.transform = 'translate3d(0, 0, 0) rotateZ(0.75deg)'
     }
-    if (heroMedia && heroDevice && !reduced) {
-      heroMedia.addEventListener('pointermove', onMove)
-      heroMedia.addEventListener('pointerleave', onLeave)
+    let parallaxBound = false
+    const syncParallax = () => {
+      const heroMedia = heroMediaRef.current
+      const heroDevice = heroDeviceRef.current
+      if (parallaxBound) {
+        heroMedia?.removeEventListener('pointermove', onMove)
+        heroMedia?.removeEventListener('pointerleave', onLeave)
+        parallaxBound = false
+      }
+      if (heroDevice) {
+        heroDevice.style.transform = 'translate3d(0, 0, 0) rotateZ(0.75deg)'
+      }
+      if (heroMedia && heroDevice && !reducedMq.matches && !tabletMq.matches) {
+        heroMedia.addEventListener('pointermove', onMove)
+        heroMedia.addEventListener('pointerleave', onLeave)
+        parallaxBound = true
+      }
     }
+    syncParallax()
+    tabletMq.addEventListener('change', syncParallax)
+    reducedMq.addEventListener('change', syncParallax)
 
     return () => {
-      heroMedia?.removeEventListener('pointermove', onMove)
-      heroMedia?.removeEventListener('pointerleave', onLeave)
+      tabletMq.removeEventListener('change', syncParallax)
+      reducedMq.removeEventListener('change', syncParallax)
+      const heroMedia = heroMediaRef.current
+      if (parallaxBound) {
+        heroMedia?.removeEventListener('pointermove', onMove)
+        heroMedia?.removeEventListener('pointerleave', onLeave)
+      }
       if ('speechSynthesis' in window) speechSynthesis.cancel()
     }
   }, [])
