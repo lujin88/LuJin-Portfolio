@@ -434,6 +434,15 @@
   color: var(--color-text-4, #595d61);
 }
 
+/* Phone menu stays dark, including on paper pages. The current row must not
+   pick up the light page's menu fill or gray meta. */
+#mobile-nav .mobile-card a[aria-current='page'] {
+  background: transparent;
+}
+#mobile-nav .mobile-card .header-menu-meta {
+  color: #b6bbc2;
+}
+
 /* Form controls do not inherit the page font in the browser UA stylesheet. */
 [data-site-header] :is(button, select, input, textarea) {
   font-family: var(--font-poppins), 'Poppins', ui-sans-serif, system-ui, sans-serif;
