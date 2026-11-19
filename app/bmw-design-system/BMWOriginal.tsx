@@ -64,7 +64,6 @@ const SCREENS = [
   { t: 'Vehicle status at a glance', d: 'Charge level, range and lock state on the home screen.', src: 'i4-services-600.webp', w: 600, h: 1304, alt: 'My BMW App home screen showing vehicle status' },
   { t: 'Charging, finished', d: 'The charge screen shows 100 % and the state of charge.', src: 'i4-complete.png', w: 376, h: 815, alt: 'Charging finished screen' },
   { t: 'Remote Engine Start', d: 'The disclaimer states the 15-minute limit before the user confirms.', src: 'engine-disclosure.png', w: 828, h: 1792, alt: 'Remote Engine Start disclaimer' },
-  { t: 'Services and store', d: 'Appointments, upgrades and managed services in one place.', src: '05.webp', w: 460, h: 996, alt: 'Services and store screen' },
 ]
 
 function KeyScreens() {
