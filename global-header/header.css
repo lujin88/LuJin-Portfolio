@@ -149,9 +149,12 @@
   background: #111214;
   color: #f9fbfc;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   text-decoration: none;
 }
+#mobile-nav .mobile-row-icon { width: 16px; height: 16px; flex: none; color: #7ea2ff; }
+#mobile-nav .mobile-thumb { border-radius: 8px; border: 1px solid #3a3d42; background: #1a1c20; }
+#mobile-nav .mobile-card a > span:last-child > span:first-child { font-weight: 500; }
 #mobile-nav .mobile-lang {
   display: flex;
   align-items: center;

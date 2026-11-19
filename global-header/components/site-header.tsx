@@ -10,7 +10,7 @@ import {
   type MutableRefObject,
   type ReactElement,
 } from 'react'
-import { Check, ChevronDown, Compass, Gift, Mail, MapPin, Menu, Star, X } from 'lucide-react'
+import { Briefcase, Check, ChevronDown, Compass, Mail, Menu, RotateCcw, Star, X } from 'lucide-react'
 import { headerCopy } from '../lib/header-copy'
 import { LANGUAGES, useSiteLanguage } from '../lib/language'
 import { SHOW_UNFINISHED_CASES, UNFINISHED_CASE_HREFS } from '../lib/site-flags'
@@ -673,7 +673,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
             )}
           >
             {menuOpen ? (
-              <X className="size-6" strokeWidth={1.5} />
+              <X className="size-6" strokeWidth={2} />
             ) : (
               <Menu className="size-6" strokeWidth={1.5} />
             )}
@@ -691,7 +691,8 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
         )}
       >
         <nav aria-label={copy.mobileNav} className="mobile-sheet">
-          {NAV.map((item) => {
+          {/* Mobile order (A draft): groups first, then How I work, then Contact. Desktop order is untouched. */}
+          {[...NAV.filter((n) => n.kind === 'group'), ...NAV.filter((n) => n.kind === 'link')].map((item) => {
             if (item.kind === 'link') {
               const isActive = hrefMatches(item.href, currentHref, pathname)
               return (
@@ -702,7 +703,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                   onClick={() => setMenuOpen(false)}
                   className={cn('mobile-row', FOCUS_RING, MOTION_SAFE, isActive && 'mobile-row-current')}
                 >
-                  <MapPin aria-hidden="true" className="size-5 shrink-0" strokeWidth={1.5} />
+                  <Compass aria-hidden="true" className="mobile-row-icon" strokeWidth={1.75} />
                   {navLabel(copy, item.label)}
                 </Link>
               )
@@ -711,9 +712,9 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
             const cards = group.sections?.length
               ? group.sections.map((section) => ({ title: section.heading, links: section.children }))
               : [{ title: group.label, links: group.children ?? [] }]
-            const HeadIcon = group.label === 'Playground' ? Compass : null
+            const HeadIcon = group.label === 'Playground' ? RotateCcw : null
             return cards.map((card) => {
-              const Icon = card.title === 'Project' ? Gift : card.title === 'Concept' ? Star : HeadIcon ?? Compass
+              const Icon = card.title === 'Project' ? Briefcase : card.title === 'Concept' ? Star : HeadIcon ?? RotateCcw
               return (
                 <ul key={card.title} className="mobile-card">
                   <li className="mobile-card-head">
@@ -739,7 +740,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
             onClick={() => setMenuOpen(false)}
             className={cn('mobile-row', FOCUS_RING, MOTION_SAFE)}
           >
-            <Mail aria-hidden="true" className="size-5 shrink-0" strokeWidth={1.5} />
+            <Mail aria-hidden="true" className="mobile-row-icon" strokeWidth={1.75} />
             {copy.contactMe}
           </a>
           <p className="mobile-lang" role="group" aria-label={copy.languageLabel}>
@@ -766,14 +767,14 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   )
 }
 
-function MenuThumb({ icon, tone }: { icon: NavIcon; tone: 'light' | 'dark' }) {
+function MenuThumb({ icon, tone, square }: { icon: NavIcon; tone: 'light' | 'dark'; square?: boolean }) {
   return (
     <img
       src={icon[tone]}
       alt=""
       width={32}
       height={32}
-      className="size-8 shrink-0 rounded-full object-cover"
+      className={square ? 'mobile-thumb size-8 shrink-0 object-cover' : 'size-8 shrink-0 rounded-full object-cover'}
     />
   )
 }
@@ -862,7 +863,7 @@ function GroupMenuItems({
             childActive && 'bg-header-menu-item',
           )}
         >
-          <MenuThumb icon={child.icon} tone={iconTone} />
+          <MenuThumb icon={child.icon} tone={iconTone} square={variant === 'mobile'} />
           {labelBlock}
         </Link>
       </li>
