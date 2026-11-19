@@ -10,7 +10,7 @@ const DESCRIPTION =
   'Due to the confidential reason, here only shows how I support clients to create an easy-to-track design system and collaborate with different stakeholders in an around 400 people team (including design, development, PO, Service owners, functional owners).'
 
 // og/twitter title = the rendered <title> (root template 'Lu Jin — %s').
-// Set here, not in layout.tsx: the layout also covers /bmw-design-system/ideas/*, which must not share this canonical.
+// Set here, not in layout.tsx, so this canonical stays on /bmw-design-system.
 export const metadata: Metadata = {
   title: 'BMW Design System',
   description: DESCRIPTION,
