@@ -1,0 +1,188 @@
+/* /concept: lanyard cards. Tokens copied from design-system-foundation.css, scoped so nothing leaks site-wide. */
+.concept {
+  --c-page: #0a0a0a;
+  --c-surface: #111214;
+  --c-raised: #1a1c1f;
+  --c-text: #f9fbfc;
+  --c-text-2: #b6bbc2;
+  --c-border: #242629;
+  --c-border-hover: #76787a;
+  --c-accent: #7ea2ff;
+  box-sizing: border-box;
+  min-height: 100vh;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: calc(64px + 3rem) 1.5rem 3rem;
+  color: var(--c-text);
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+.concept h1,
+.concept p { margin: 0; }
+.concept__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+.concept__head h1 {
+  font-size: clamp(2.25rem, 5.2vw, 4rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+.concept__head p { max-width: 340px; color: var(--c-text-2); }
+.concept__eyebrow,
+.concept__label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--c-text-2);
+}
+.concept__eyebrow {
+  margin-bottom: 0.5rem;
+  color: var(--c-accent);
+  letter-spacing: 0.28em;
+}
+
+/* The cord the clips hang from */
+.concept__deck {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem 0;
+  list-style: none;
+}
+.concept__deck::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 34px;
+  border-top: 1px solid var(--c-border-hover);
+  border-radius: 50%;
+}
+.concept__slot { position: relative; min-width: 0; perspective: 1200px; }
+.concept__clip {
+  position: absolute;
+  z-index: 2;
+  left: calc(50% - 7px);
+  top: -14px;
+  width: 14px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--c-text-2);
+  border: 3px solid var(--c-raised);
+  box-shadow: 0 0 0 1px var(--c-border-hover);
+  pointer-events: none;
+}
+.concept__slot::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -29px;
+  height: 30px;
+  border-left: 1px solid var(--c-border-hover);
+}
+
+/* Card: swing is the outer rotate, flip is the inner rotateY */
+.concept__card {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transform: rotate(var(--tilt));
+  transform-origin: 50% 0;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+.concept__card:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 6px; border-radius: 1rem; }
+.concept__card[data-flipped='true'] { transform: rotate(var(--tilt)) rotateY(180deg); }
+.concept__face {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-sizing: border-box;
+  padding: 1rem;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 1rem;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.concept__front { position: relative; }
+.concept__back { position: absolute; inset: 0; transform: rotateY(180deg); gap: 1rem; }
+.concept__art {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 1px solid var(--c-border);
+  border-radius: 1rem;
+  background: var(--c-raised);
+}
+.concept__title { font-size: 1.25rem; font-weight: 600; line-height: 1.1; }
+.concept__text { color: var(--c-text-2); }
+.concept__chip {
+  align-self: flex-start;
+  padding: 0 0.5rem;
+  border: 1px solid var(--c-border-hover);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--c-text-2);
+}
+.concept__block { display: block; }
+.concept__hint {
+  margin-top: 3rem;
+  text-align: right;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--c-text-2);
+}
+.concept__hint-touch { display: none; }
+
+/* Pointer devices: gentle swing on hover (not while flipped) */
+@media (hover: hover) {
+  .concept__card[data-flipped='false']:hover {
+    transform: rotate(calc(var(--tilt) * -0.4));
+  }
+}
+@media (hover: none) {
+  .concept__hint-desktop { display: none; }
+  .concept__hint-touch { display: inline; }
+}
+@media (max-width: 760px) {
+  .concept { padding: calc(64px + 2rem) 1.5rem 3rem; }
+  .concept__head { display: grid; gap: 1rem; margin-bottom: 1.5rem; }
+  .concept__deck { grid-template-columns: 1fr; gap: 3rem; padding-inline: 1rem; }
+  .concept__deck::before { display: none; }
+  .concept__hint-desktop { display: none; }
+  .concept__hint-touch { display: inline; }
+  .concept__card { transform: rotate(clamp(-2deg, var(--tilt), 2deg)); }
+  .concept__card[data-flipped='true'] { transform: rotate(clamp(-2deg, var(--tilt), 2deg)) rotateY(180deg); }
+  .concept__hint { text-align: left; margin-top: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .concept__card { transition: none; }
+  .concept__card[data-flipped='true'] { transform: rotate(var(--tilt)); }
+  .concept__card[data-flipped='true'] .concept__front { visibility: hidden; }
+  .concept__card[data-flipped='true'] .concept__back { transform: none; }
+  .concept__card[data-flipped='false'] .concept__back { visibility: hidden; }
+}
