@@ -94,6 +94,8 @@
   overscroll-behavior-y: contain;
   scroll-padding-block: 8px;
   background: #0a0a0a;
+  --header-foreground: oklch(0.985 0 0);
+  --color-header-foreground: oklch(0.985 0 0);
 }
 
 #mobile-nav .mobile-sheet {
@@ -124,6 +126,7 @@
 }
 #mobile-nav .mobile-card-head span { margin-right: auto; }
 #mobile-nav .mobile-card-count { color: #b6bbc2; font-weight: 500; letter-spacing: 0; }
+#mobile-nav .mobile-card a span { color: #f9fbfc; }
 #mobile-nav .mobile-card a {
   display: flex;
   align-items: center;
@@ -134,6 +137,7 @@
   text-decoration: none;
 }
 #mobile-nav .mobile-card .header-menu-meta { color: #b6bbc2; }
+#mobile-nav .mobile-row-current { box-shadow: inset 3px 0 0 #7ea2ff; }
 #mobile-nav .mobile-row {
   display: flex;
   align-items: center;

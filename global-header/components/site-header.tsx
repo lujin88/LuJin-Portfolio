@@ -693,12 +693,14 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
         <nav aria-label={copy.mobileNav} className="mobile-sheet">
           {NAV.map((item) => {
             if (item.kind === 'link') {
+              const isActive = hrefMatches(item.href, currentHref, pathname)
               return (
                 <Link
                   key={item.href}
                   href={item.href}
+                  aria-current={isActive ? 'page' : undefined}
                   onClick={() => setMenuOpen(false)}
-                  className={cn('mobile-row', FOCUS_RING, MOTION_SAFE)}
+                  className={cn('mobile-row', FOCUS_RING, MOTION_SAFE, isActive && 'mobile-row-current')}
                 >
                   <MapPin aria-hidden="true" className="size-5 shrink-0" strokeWidth={1.5} />
                   {navLabel(copy, item.label)}
@@ -722,7 +724,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                   <GroupMenuItems
                     group={{ label: card.title, children: card.links }}
                     copy={copy}
-                    iconTone={paperHeader ? 'light' : 'dark'}
+                    iconTone="dark"
                     currentHref={currentHref}
                     pathname={pathname}
                     variant="mobile"
@@ -740,7 +742,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
             <Mail aria-hidden="true" className="size-5 shrink-0" strokeWidth={1.5} />
             {copy.contactMe}
           </a>
-          <p className="mobile-lang">
+          <p className="mobile-lang" role="group" aria-label={copy.languageLabel}>
             {LANGUAGES.map((lang, index) => {
               const isSelected = lang.code === language.code
               return (
