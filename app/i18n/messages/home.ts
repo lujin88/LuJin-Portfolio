@@ -1,10 +1,10 @@
 export const home = {
   en: {
     documentTitle: 'Lu Jin — Product Designer',
-    heroKicker: 'Product designer · Enterprise & regulated UX',
-    heroTitle: 'Simplify complexity. Design with AI.',
+    heroKicker: 'Product designer · Consumer, enterprise & regulated UX',
+    heroTitle: 'Simplify complexity. Design with AI tools.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow, <span style="white-space:nowrap">5–10 min</span> saved per client.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300% more leads.</span><span class="hero-line"><a class="hero-jump" href="#bmw-my-app" data-scroll-target="bmw-my-app">BMW</a> app: led design team &amp; design system.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: +300% lead conversion in the first 3 months.</span><span class="hero-line"><a class="hero-jump" href="#bmw-my-app" data-scroll-target="bmw-my-app">BMW</a> app: led design team &amp; design system.</span><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: AI-assisted workflow.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Close chat',
     askLuSend: 'Send',
@@ -28,7 +28,7 @@ export const home = {
       role: 'Lead Product Designer',
       storyTitle: 'From complexity to conversion',
       storyBody: 'A complex investment, made easier to understand and trust.',
-      metricTitle: '300% more solar leads',
+      metricTitle: '+300% lead conversion in the first 3 months',
       metricBody: 'Later adapted for the UK.',
       cta: 'Explore case study',
     },
@@ -93,10 +93,10 @@ export const home = {
   },
   de: {
     documentTitle: 'Lu Jin — Product Designerin',
-    heroKicker: 'Product Designerin · Enterprise- & regulierte UX',
-    heroTitle: 'Komplexität vereinfachen. Mit KI gestalten.',
+    heroKicker: 'Product Designerin · Consumer, Enterprise- & regulierte UX',
+    heroTitle: 'Komplexität vereinfachen. Mit KI-Tools gestalten.',
     heroBody:
-      '<span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow, <span style="white-space:nowrap">5–10&nbsp;Min.</span> pro Kunde gespart.</span><span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: 300&nbsp;% mehr Leads.</span><span class="hero-line"><a class="hero-jump" href="#bmw-my-app" data-scroll-target="bmw-my-app">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span>',
+      '<span class="hero-line"><a class="hero-jump" href="#omni-model" data-scroll-target="omni-model">E.ON Solar</a>: +300&nbsp;% Lead-Conversion in den ersten 3 Monaten.</span><span class="hero-line"><a class="hero-jump" href="#bmw-my-app" data-scroll-target="bmw-my-app">BMW-App</a>: Designteam &amp; Designsystem geleitet.</span><span class="hero-line"><a class="hero-jump" href="#model-series" data-scroll-target="model-series">UBS</a>: KI-gestützter Workflow.</span>',
     askLu: 'Ask Lu',
     askLuClose: 'Chat schließen',
     askLuSend: 'Senden',
@@ -122,7 +122,7 @@ export const home = {
       role: 'Lead Product Designerin',
       storyTitle: 'Von Komplexität zu Conversion',
       storyBody: 'Eine komplexe Investition, leichter zu verstehen und zu vertrauen.',
-      metricTitle: '300 % mehr Solar-Leads',
+      metricTitle: '+300 % Lead-Conversion in den ersten 3 Monaten',
       metricBody: 'Später für Großbritannien adaptiert.',
       cta: 'Case Study ansehen',
     },
