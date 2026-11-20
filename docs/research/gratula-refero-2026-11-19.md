@@ -88,3 +88,19 @@ Lu 只看页面结构，内容、色调不必像。以下 Refero 只存首屏，
 | Spotify/Revolut/Klarna/Etsy/Airbnb | 被拦或懒加载，没截全，不写结论。 |
 共同点：每个功能段只有一个主体，段落左右交替；标题居中的段落夹在交替段之间；结尾都是「大标题+一个按钮」再接页脚。
 对 Gratula：Wise 的「图｜字」交替+通栏 slogan 色块+收尾下载面板最贴；Monzo 的「大圆角面板」分段也贴。
+
+## Lu #20855「还是不好看，继续找」（2026-11-20）：同品类成熟站 Givingli 整页
+图：~/.buzz/OUTBOX/research-commercial-layout-20855/givingli-top-overview.png（1440 整页，从左到右三列读；全页 22413px，后段是懒加载空白，不算）。
+Givingli（送礼物卡/贺卡，成熟商业站）段落顺序，只写截图里看到的：
+1. 米色底首屏：搜索框 → 大标题「Send the perfect gift, instantly.」，四个物件（礼品卡、信封贺卡、玻璃杯、黑卡）分在标题四角斜放，物件完整不被裁 → 两个按钮 → 星级
+2. 通栏红色大块，标题「Gift your way.」，下面三个通栏条带，每条一个主体：红底（礼品卡）｜米色（右字左图 礼物）｜深棕（现金卡）——整条颜色交替，字和物件左右换边
+3. 红底「How It Works」：大号 01 + 卡片 + 步骤。02、03 没出现在静图里（像滚动触发/固定），未验
+4. 白底「There's a card & gift for that.」：3×2 场景图卡（Birthday、Love、Thank You…）+ 一行场景文字
+5. 深棕通栏「Send Givingli Cash」：左字右卡
+6. 米色「Stack your gifts.」：左大标题右钱包卡 + 三个小券
+7. 米色「评价」：大标题 + 一张浅蓝大圆角评价卡（手机截图｜引言）+ 一句手写体大引言 + 按钮
+8. 红底「The Gift Note」：三张文章卡在深棕圆角面板里横滑
+9. 蓝灰「Shop Popular」+ 一排贺卡图，页脚
+共同点：整条颜色交替（米/红/棕/蓝），每段一个大标题+一个主体，字与物件左右换边；大标题用得很大。对 Gratula：第 1 段「物件分在标题四角」和 Pip、礼盒、气球最像；段 2 的色带交替 = 把 navy 渐变改成「深浅蓝交替色带」。
+Nothing（nothing.tech，8859px）：浅灰底，分类入口 → 黑色通栏产品大图 → 通栏人物大图 → 左字右图交错产品卡 → 双图并排 → 通栏黑图 → 社区订阅 → 页脚。偏产品目录，不如 Givingli 贴。
+没抓到：Oura、Whoop、Aesop、Canva（被拦，高度 900–1021px）；Glossier、Notion、Airtable、Headspace 已抓未细看，不写结论。
