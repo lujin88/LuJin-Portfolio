@@ -44,6 +44,13 @@ export const home = {
       metricBody: 'Every BMW model since 2010 in Europe. The US team designed its own side.',
       cta: 'Explore case study',
     },
+    concept: {
+      title: 'Concept',
+      intro: 'Self-initiated work. Each concept starts from a problem and a hypothesis — not a shipped result.',
+      cta: 'Explore concept',
+      etf: { title: 'ETF Savings Plan', body: 'Set up a Swiss ETF Sparplan once, and keep it on track.' },
+      man: { title: 'MAN Truck & Bus', body: 'Autonomous fleet telemetry and driver shift coordination.' },
+    },
     playground: {
       cta: 'Explore case study',
       weatherMeta: 'Rive motion',
@@ -138,6 +145,13 @@ export const home = {
       metricBody:
         'Jedes BMW-Modell seit 2010 in Europa. Das US-Team hat seine Seite selbst gestaltet.',
       cta: 'Case Study ansehen',
+    },
+    concept: {
+      title: 'Concept',
+      intro: 'Eigeninitiative. Jedes Konzept beginnt mit einem Problem und einer Hypothese – nicht mit einem Ergebnis im Einsatz.',
+      cta: 'Konzept ansehen',
+      etf: { title: 'ETF-Sparplan', body: 'Einen Schweizer ETF-Sparplan einmal einrichten und auf Kurs halten.' },
+      man: { title: 'MAN Truck & Bus', body: 'Autonome Flottentelemetrie und Koordination der Fahrerschichten.' },
     },
     playground: {
       cta: 'Case Study ansehen',
