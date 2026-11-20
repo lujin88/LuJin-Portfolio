@@ -49,7 +49,7 @@
 .v13-key .v13-head h2{font-size:3cqw;font-weight:600;line-height:1.2;letter-spacing:-.01em}
 .v13-key .v13-head p{margin-top:1.45cqw;font-size:1.7cqw;color:#a9b3cd}
 .v13-key-art{display:none}
-.v13-key-caption{position:absolute;left:0;right:0;top:63.4cqw;text-align:center;font-size:.98cqw}
+.v13-key .v13-key-caption{position:absolute;left:0;right:0;top:63.4cqw;text-align:center;font-size:1.15cqw}
 
 /* 04 documentation */
 .v13-docs{aspect-ratio:3/2}
@@ -57,38 +57,42 @@
 .v13-docs .v13-head{position:absolute;left:0;right:0;top:6.7cqw;text-align:center}
 .v13-docs h2{font-size:3.19cqw;font-weight:600;line-height:1.2;letter-spacing:-.01em}
 .v13-docs .v13-head p{margin-top:.9cqw;font-size:1.78cqw;font-weight:400;color:#c9d0e2}
-.v13-panel{position:absolute;left:4.8cqw;right:4.8cqw;top:17.1cqw;height:37.1cqw;border-radius:1.5cqw;background:linear-gradient(160deg,#ffffff0d,#ffffff03 45%,#ffffff08);border:1px solid #ffffff38;box-shadow:inset 0 1px 0 #ffffff40,0 2cqw 4cqw #0a142640;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
-.v13-panel-top{position:absolute;left:3.1cqw;right:2.6cqw;top:0;height:7.3cqw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff59}
+.v13-panel{position:absolute;left:4.8cqw;right:4.8cqw;top:17.1cqw;height:37.1cqw;border-radius:1.5cqw}
+.v13-panel-top{position:absolute;left:3.1cqw;right:2.6cqw;top:0;height:7.3cqw;display:flex;align-items:center;justify-content:space-between}
 .v13-brand{display:flex;align-items:center;gap:.9cqw;font-size:2.6cqw;font-weight:500}
 .v13-brand img{width:3.4cqw;height:3.4cqw}
-.v13-pill{font-size:1.7cqw;font-weight:600;color:#5eb6ff;background:#2b4a78;border:1px solid #ffffff1f;border-radius:.7cqw;padding:.95cqw 1.2cqw}
+.v13-pill{display:flex;align-items:center;height:3.1cqw;font-size:1.7cqw;font-weight:600;line-height:1;color:#5eb6ff;padding:0 1.2cqw}
 .v13-panel-body{position:absolute;inset:7.3cqw 0 0 0}
 .v13-tree{list-style:none;position:absolute;left:4.1cqw;top:1.3cqw}
+.v13-tree li{position:absolute;left:.8cqw;top:calc(var(--y) - 1.825cqw)}
+.v13-tree li:nth-child(1){--y:1.74cqw}.v13-tree li:nth-child(2){--y:5.52cqw}.v13-tree li:nth-child(3){--y:9.19cqw}.v13-tree li:nth-child(4){--y:12.84cqw}.v13-tree li:nth-child(5){--y:16.61cqw}.v13-tree li:nth-child(6){--y:19.87cqw}.v13-tree li:nth-child(7){--y:23.19cqw}
+.v13-chev,.v13-dot{visibility:hidden}
 .v13-tree li{display:flex;align-items:center;gap:1.3cqw;height:3.65cqw;font-size:2.1cqw;color:#bcc6dc;white-space:nowrap}
-.v13-tree li[data-strong]{color:#fff;font-weight:500}
+.v13-tree li[data-strong]{color:#fff;font-weight:600}
 .v13-tree li[data-depth="1"]{padding-left:5.3cqw}
 .v13-tree li[data-depth="2"]{padding-left:10.25cqw;font-size:2cqw;gap:1.25cqw}
 .v13-chev{width:1.5cqw;height:1.5cqw;color:#e4e9f5;flex:none}
 .v13-dot{width:.6cqw;height:.6cqw;border-radius:50%;background:#cdd3e6;flex:none}
-.v13-groups{position:absolute;left:56.7cqw;top:3.7cqw;display:grid;gap:1.5cqw}
+.v13-groups{position:absolute;left:56.7cqw;top:3.9cqw;display:grid;gap:1.2cqw}
 .v13-groups dt{font-size:2.35cqw;font-weight:600;line-height:1.25}
 .v13-groups dd{font-size:1.8cqw;color:#c3cce0}
 .v13-caption{position:absolute;left:4cqw;top:61.4cqw;font-size:1.47cqw;color:#c3cce0}
 
 @media(max-width:899px){
   .bmw-v13{font-size:16px}
-  .v13-docs{aspect-ratio:auto;padding:56px 16px 40px;background:radial-gradient(ellipse at 100% 0,#c47a5a55,#0000 55%)}
+  .v13-docs{aspect-ratio:auto;padding:56px 16px 40px;background:linear-gradient(to bottom,#16295c00 180px,#16295c 320px),url(/assets/images/bmw-system/v13/section-04-atmosphere.jpg) 100% 0/auto 320px no-repeat,#16295c}
   .v13-docs-bg{display:none}
   .v13-docs .v13-head{position:static;padding:0 4px;text-align:left}
   .v13-docs h2{font-size:clamp(26px,7vw,40px)}
   .v13-docs .v13-head p{font-size:clamp(15px,4vw,19px);margin-top:10px}
-  .v13-panel{position:static;height:auto;margin-top:28px;padding:18px 18px 22px;border-radius:18px;background:linear-gradient(160deg,#ffffff1f,#ffffff0a 50%,#ffffff12);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-  .v13-panel-top{position:static;height:auto;padding-bottom:14px;flex-wrap:wrap;gap:10px}
+  .v13-panel{position:static;height:auto;margin-top:28px;padding:18px 18px 22px;border:1px solid #ffffff38;box-shadow:inset 0 1px 0 #ffffff40,0 2cqw 4cqw #0a142640;border-radius:18px;background:linear-gradient(160deg,#ffffff1f,#ffffff0a 50%,#ffffff12);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .v13-panel-top{position:static;height:auto;padding-bottom:14px;border-bottom:1px solid #ffffff59;flex-wrap:wrap;gap:10px}
   .v13-brand{font-size:22px;gap:8px}.v13-brand img{width:28px;height:28px}
-  .v13-pill{font-size:14px;padding:6px 10px;border-radius:6px}
+  .v13-pill{height:auto;font-size:14px;padding:6px 10px;border-radius:6px;background:#2b4a78;border:1px solid #ffffff1f}
   .v13-panel-body{position:static;display:grid;gap:22px;padding-top:12px}
   .v13-tree{position:static}
-  .v13-tree li{height:auto;min-height:38px;font-size:16px;gap:10px;white-space:normal}
+  .v13-chev,.v13-dot{visibility:visible}
+  .v13-tree li{position:static;height:auto;min-height:38px;font-size:16px;gap:10px;white-space:normal}
   .v13-tree li[data-depth="1"]{padding-left:22px}
   .v13-tree li[data-depth="2"]{padding-left:44px;font-size:15px}
   .v13-chev{width:14px;height:14px}.v13-dot{width:5px;height:5px}
@@ -140,5 +144,5 @@
   .v13-key .v13-head h2{font-size:clamp(28px,7.6vw,40px);line-height:1.1}
   .v13-key .v13-head p{font-size:clamp(15px,4vw,18px);margin-top:12px}
   .v13-key-art{display:block;margin:12px 0 0;aspect-ratio:1070/800;background:url(/assets/images/bmw-system/v13/section-05.webp) 49.4% 89.5%/143.6% auto no-repeat}
-  .v13-key-caption{position:static;text-align:left;padding:0 20px;margin-top:6px;font-size:13px}
+  .v13-key .v13-key-caption{position:static;text-align:left;padding:0 20px;margin-top:6px;font-size:13px}
 }
