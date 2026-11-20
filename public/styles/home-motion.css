@@ -111,7 +111,6 @@
   .concept-chip strong:not(.concept-chip-num) { font-size: var(--font-size-caption); white-space: nowrap; }
   .concept-etf-word { font-size: 64px; }
   .concept-chip { padding: 12px 14px; }
-  .concept-chip .concept-chip-num { font-size: var(--font-size-subhead-lg); }
 }
 #home-playground { padding: var(--space-3xl) var(--pad); background: var(--color-bg-page); }
 .home-playground-inner { max-width: var(--wrap); margin: auto; }
