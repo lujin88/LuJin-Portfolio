@@ -5,9 +5,9 @@ import { useTranslation } from '@i18n/use-translation'
 
 import styles from './session-03-research.module.css'
 
-// Still only (Lu #21093, PM #21097 option A): the talking-head video showed a
-// ghosted hand, so CA 03 shows the poster. The video file stays in public/ unused.
-const POSTER = '/assets/images/client-advisory/ca03-B-poster.webp'
+// PM #21540: use the new full-frame C still while the video repair is reviewed.
+// Static and reduced-motion views share this image; no video is loaded.
+const POSTER = '/assets/images/client-advisory/ca03-C-poster.webp'
 
 export function Session03AdvisorMedia() {
   const { t } = useTranslation()
