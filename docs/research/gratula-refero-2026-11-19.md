@@ -128,3 +128,17 @@ Oatly、LEGO、Tinder 被拦（高度 900px），Toca Boca 域名打不开，没
 | CleanShot（11446px） | 截图太小，未看清，不写结论 |
 | Arc | 页面是停运公告，不适用 |
 | Linear（9990px） | Lu #20615 已否，不再推 |
+
+## Lu #20872「要比较高端一点的，有没有 mobile phone screen？」（2026-11-20）：手机屏 App 官网
+图：~/.buzz/OUTBOX/research-commercial-layout-20872/phone-sites-A.png（Linear 手机版 linear.app/mobile｜Flighty｜Copilot｜Halide）、phone-sites-B.png（Opal｜Cleo｜Superhuman），1440 整页静图。
+| 站 | 看到的 |
+|---|---|
+| Copilot（copilot.money，12750px） | 浅蓝渐变首屏，一台手机居中 → logo 条 → 一段一张淡蓝/粉/紫渐变大圆角卡，字和小界面左右交替 ×5 → 居中标题+切换 → 大图表 |
+| Flighty（flightyapp.com，14131px） | 白首屏，手持手机 → 媒体 logo → 深色段：手机大图+渐变手机卡网格 → 白色「分享」「Passport」段 |
+| Linear 手机版（9767px） | 全黑，手机斜放，字在左下 → 居中标题+手机 ×3 → 两列手机小段 → 收尾 |
+| Opal（opal.so，16822px） | 全黑，居中标题+视频 → 大段文字 → 手机渲染图与字左右交替 ×3 → 一排宝石图标 |
+| Halide（9557px） | 黑底，摄影大图+手机，居中标题，图标网格 |
+| Cleo（cleo.com） | 是 Cleo EDI（B2B 物流），不是金融 App，作废 |
+| Superhuman（7847px） | B2B 邮件产品，偏企业，不推荐 |
+Fey（fey.com）被拦，没看成。
+对 Gratula：蓝色调最贴 Copilot（浅蓝紫渐变大圆角卡）；最高端感的是 Flighty、Linear 手机版。以上是我的判断，Lu 未选。
