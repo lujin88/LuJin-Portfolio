@@ -89,16 +89,7 @@
 .concept-card:hover .concept-link { text-decoration: underline; text-underline-offset: 3px; }
 .concept-card:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .concept-art { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.concept-etf-glow { position: absolute; left: 20%; bottom: 0; width: 320px; height: 320px; background: radial-gradient(circle, rgba(139, 92, 246, 0.38) 0%, transparent 70%); }
-.concept-etf-word { position: absolute; left: 0; right: 0; bottom: 15px; text-align: center; font-size: 100px; font-weight: 800; letter-spacing: 0.05em; color: rgba(167, 139, 250, 0.18); white-space: nowrap; }
-.concept-etf-hand { position: absolute; left: 50%; bottom: -90px; width: 340px; height: auto; transform: translateX(-50%); }
 .concept-man-cab { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: 78% 55%; }
-.concept-man-shade { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(18, 19, 26, 0.92) 0%, rgba(18, 19, 26, 0.4) 45%, rgba(18, 19, 26, 0.2) 100%); }
-.concept-man-chips { position: absolute; left: 24px; right: 24px; bottom: 24px; z-index: 3; display: flex; gap: 12px; }
-.concept-chip { flex: 1; min-width: 0; padding: 14px 18px; border-radius: 14px; background: rgba(30, 24, 16, 0.72); border: 1px solid rgba(245, 180, 80, 0.35); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
-.concept-chip strong { display: block; font-size: var(--font-size-body); font-weight: 700; color: #fff4e0; }
-.concept-chip .concept-chip-num { font-size: var(--font-size-h3-card); line-height: 1.15; }
-.concept-chip span { display: block; margin-top: 2px; font-size: var(--font-size-caption); font-weight: 600; text-transform: uppercase; color: #f59e0b; }
 @media (max-width: 1099px) {
   .home-concept-head { min-height: 0; margin-bottom: var(--space-lg); }
   .home-concept-grid { grid-template-columns: 1fr; }
@@ -106,12 +97,35 @@
 @media (max-width: 720px) {
   #home-concept { padding-top: var(--space-xl); padding-bottom: 0; }
   .concept-card { height: 440px; padding: 24px; }
-  .concept-etf-hand { width: 230px; bottom: -30px; }
   .concept-man-cab { object-position: 92% 55%; }
-  .concept-chip strong:not(.concept-chip-num) { font-size: var(--font-size-caption); white-space: nowrap; }
-  .concept-etf-word { font-size: 64px; }
-  .concept-chip { padding: 12px 14px; }
 }
+/* Concept cards, v5 (visual #21507, Lu #21705 / #21856) */
+#home-concept .concept-card{height:auto;padding:0;display:flex;flex-direction:column;}
+#home-concept .concept-copy{padding:32px 24px 20px;min-height:142px;}
+#home-concept .concept-etf{background:#21162f;}
+#home-concept .concept-etf .concept-art,#home-concept .concept-original-man-media{position:relative;inset:auto;flex:none;width:100%;aspect-ratio:1.8;overflow:hidden;background:none;mask-image:none;}
+#home-concept .concept-etf .concept-art img,#home-concept .concept-man-cab,#home-concept .concept-original-man-media video{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center;transform:none;mask-image:none;filter:none;}
+#home-concept .concept-man{background:#f9f1e5;border-color:#dfdad3;}
+#home-concept .concept-man h3{color:#272422;}
+#home-concept .concept-man .concept-copy p{color:#645f59;}
+#home-concept .concept-man .concept-link{color:#ac2b59;}
+#home-concept .concept-original-man-media video{opacity:0;}
+#home-concept .concept-original-man-media.playing video{opacity:1;}
+@media(max-width:720px){#home-concept .concept-copy{padding:24px 24px 20px;min-height:160px;}}
+
+/* Lu #21705: original video covers the existing MAN card. */
+#home-concept .concept-man{isolation:isolate;}
+#home-concept .concept-man::after{content:"";display:block;width:100%;aspect-ratio:1.8;flex:none;}
+#home-concept .concept-man .concept-copy{position:relative;z-index:1;}
+#home-concept .concept-original-man-media{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;z-index:0;}
+#home-concept .concept-man-cab,#home-concept .concept-original-man-media video{object-position:94% bottom;}
+
+#home-concept .concept-man .concept-copy p{color:#272422;}
+#home-concept .concept-man .concept-link,#home-concept .concept-man .concept-link span{color:#ac2b59;}
+
+@media(max-width:540px){#home-concept .concept-man .concept-copy{background:linear-gradient(180deg,rgba(249,241,229,.97) 0%,rgba(249,241,229,.94) 85%,rgba(249,241,229,0) 100%);}}
+
+@media(max-width:540px){#home-concept .concept-man .concept-link,#home-concept .concept-man .concept-link span{color:#272422;}}
 #home-playground { padding: var(--space-3xl) var(--pad); background: var(--color-bg-page); }
 .home-playground-inner { max-width: var(--wrap); margin: auto; }
 #home-playground h2 { font-size: var(--font-size-display); line-height: var(--leading-display); font-weight: 600; margin-bottom: var(--space-xl); }
