@@ -12,6 +12,81 @@ function Chevron({ open }: { open: boolean }) {
   )
 }
 
+function HeroSection() {
+  const { t } = useTranslation()
+  return (
+    <section className="v13-hero" aria-label={t('bmw.v13.hero.alt')}>
+      <div className="v13-bg" role="img" aria-label={t('bmw.v13.hero.alt')} />
+      <header className="v13-hero-head">
+        <p className="v13-eyebrow">{t('bmw.v13.hero.eyebrow')}</p>
+        <h1>{t('bmw.v13.hero.title')}</h1>
+        <p className="v13-hero-sub">{t('bmw.v13.hero.sub')}</p>
+      </header>
+      <nav className="v13-stores" aria-label={t('bmw.hero.downloadLabel')}>
+        <a className="v13-store" data-store="apple" href="https://apps.apple.com/ch/app/my-bmw/id1519034860" target="_blank" rel="noopener" aria-label={t('bmw.v13.hero.appStoreLabel')}>
+          <span>{t('bmw.v13.hero.open')}</span><b>{t('bmw.v13.hero.appStore')}</b>
+        </a>
+        <a className="v13-store" data-store="play" href="https://play.google.com/store/apps/details?id=de.bmw.connected.mobile20.row" target="_blank" rel="noopener" aria-label={t('bmw.v13.hero.playStoreLabel')}>
+          <span>{t('bmw.v13.hero.open')}</span><b>{t('bmw.v13.hero.playStore')}</b>
+        </a>
+      </nav>
+    </section>
+  )
+}
+
+function SpecSection() {
+  const { t, ta } = useTranslation()
+  const steps = ta('bmw.v13.spec.steps')
+  return (
+    <section className="v13-spec" aria-labelledby="v13-spec-title">
+      <div className="v13-bg" role="img" aria-label={t('bmw.v13.spec.alt')} />
+      <div className="v13-spec-text">
+        <h2 id="v13-spec-title">{t('bmw.v13.spec.title')}</h2>
+        <ol>
+          {steps.map((label, i) => (
+            <li key={i}><b>{String(i + 1).padStart(2, '0')}</b><span>{label}</span></li>
+          ))}
+        </ol>
+        <p className="v13-spec-note">{t('bmw.v13.spec.note')}</p>
+        <p className="v13-spec-caption">{t('bmw.v13.spec.caption')}</p>
+      </div>
+    </section>
+  )
+}
+
+function FlowSection() {
+  const { t } = useTranslation()
+  return (
+    <section className="v13-flow" aria-labelledby="v13-flow-title">
+      <div className="v13-bg" aria-hidden="true" />
+      <header className="v13-flow-head">
+        <h2 id="v13-flow-title">{t('bmw.v13.flow.title')}</h2>
+        <p>{t('bmw.v13.flow.sub')}</p>
+      </header>
+      <p className="v13-flow-label">{t('bmw.v13.flow.label')}</p>
+      <p className="v13-flow-hint">{t('bmw.v13.flow.scroll')}</p>
+      <div className="v13-flow-scroll" tabIndex={0} role="img" aria-label={t('bmw.v13.flow.alt')}>
+        <div className="v13-flow-art" />
+      </div>
+    </section>
+  )
+}
+
+function KeySection() {
+  const { t } = useTranslation()
+  return (
+    <section className="v13-key" aria-labelledby="v13-key-title">
+      <div className="v13-bg" aria-hidden="true" />
+      <header className="v13-head">
+        <h2 id="v13-key-title">{t('bmw.v13.key.title')}</h2>
+        <p>{t('bmw.v13.key.sub')}</p>
+      </header>
+      <div className="v13-key-art" role="img" aria-label={t('bmw.v13.key.alt')} />
+      <p className="v13-caption v13-key-caption">{t('bmw.v13.key.caption')}</p>
+    </section>
+  )
+}
+
 function DocsSection() {
   const { t, ta } = useTranslation()
   const tree = ta('bmw.v13.docs.tree')
@@ -56,7 +131,11 @@ function DocsSection() {
 export function BMWSystemV13() {
   return (
     <main className="bmw-v13" id="top">
+      <HeroSection />
+      <SpecSection />
+      <FlowSection />
       <DocsSection />
+      <KeySection />
     </main>
   )
 }

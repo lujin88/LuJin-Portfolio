@@ -2,8 +2,54 @@
 .bmw-v13{background:radial-gradient(ellipse at 100% 16%,#52506600,#192f4e 55%),linear-gradient(180deg,#1e3555,#192f4e 35%,#233b5a 70%,#192f4e);color:#fff;font-family:Poppins,Arial,sans-serif;overflow:hidden}
 .bmw-v13 section{position:relative;container-type:inline-size}
 .bmw-v13 section+section{margin-top:-3.333vw}
-.bmw-v13 h2,.bmw-v13 p{text-wrap:balance}
-.bmw-v13 h2,.bmw-v13 p,.bmw-v13 dl,.bmw-v13 dd,.bmw-v13 ul{margin:0;padding:0}
+:where(.bmw-v13) :is(h2,p,dl,dd,ul,ol){margin:0;padding:0}
+.bmw-v13 :is(h2,p){text-wrap:balance}
+
+/* shared background layer (top and bottom feather, like the v13 preview) */
+.v13-bg{position:absolute;inset:0;background-repeat:no-repeat;background-size:100% 100%;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 5%,#000 97%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 5%,#000 97%,transparent)}
+
+/* 01 hero (art 1536x1024) */
+.v13-hero{aspect-ratio:3/2}
+.v13-hero .v13-bg{background-image:url(/assets/images/bmw-system/v13/hero.webp);-webkit-mask-image:linear-gradient(to bottom,#000 97%,transparent);mask-image:linear-gradient(to bottom,#000 97%,transparent)}
+.v13-hero-head{position:absolute;left:5.6cqw;top:51.5cqw}
+.v13-eyebrow{font-size:1.45cqw;line-height:1.4;letter-spacing:.08em;font-weight:600;color:#5b8def}
+.v13-hero h1{margin:.45cqw 0 0;font-size:3.72cqw;line-height:1.1;font-weight:600;letter-spacing:-.01em}
+.v13-hero-sub{margin-top:.25cqw;font-size:1.85cqw;line-height:1.4;color:#c3cce0}
+.v13-store{position:absolute;top:53.8cqw;width:8.5cqw;height:7.6cqw;border-radius:1.2cqw;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 1.1cqw 1.15cqw;color:#fff;text-decoration:none;font-size:1.15cqw;line-height:1.25}
+.v13-store[data-store=apple]{left:78.2cqw}.v13-store[data-store=play]{left:87.4cqw}
+.v13-store span{color:#d5dbea}.v13-store b{font-weight:500}
+.v13-store:hover{background:#ffffff14}.v13-store:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+/* 02 shared specification (art 1740x904) */
+.v13-spec{aspect-ratio:1740/904}
+.v13-spec .v13-bg{background-image:url(/assets/images/bmw-system/v13/section-02.webp)}
+.v13-spec-text{position:absolute;inset:0}
+.v13-spec h2{position:absolute;left:62.6cqw;top:10.4cqw;font-size:3.6cqw;line-height:.96;font-weight:700;letter-spacing:-.01em;width:30cqw}
+.v13-spec ol{list-style:none;position:absolute;left:62.9cqw;top:19.5cqw;width:32cqw}
+.v13-spec li{display:flex;align-items:center;height:4.76cqw;font-size:1.6cqw}
+.v13-spec li b{width:4.9cqw;font-size:1.85cqw;font-weight:700;flex:none}
+.v13-spec li span{font-weight:400}
+.v13-spec-note{position:absolute;left:62.2cqw;top:38.4cqw;width:30cqw;font-size:1.65cqw;line-height:1.18;color:#e6eaf4}
+.v13-spec-caption{position:absolute;left:62.2cqw;top:43.2cqw;font-size:1.27cqw;font-style:italic;color:#c3cce0}
+
+/* 03 diagram (art 1536x1024) */
+.v13-flow{aspect-ratio:3/2}
+.v13-flow .v13-bg{background-image:url(/assets/images/bmw-system/v13/flow-b-panel.webp)}
+.v13-flow-head{position:absolute;left:0;right:0;top:4.2cqw;text-align:center}
+.v13-flow h2{text-wrap:wrap;margin:0 auto;width:72cqw;font-size:4.6cqw;line-height:1.07;font-weight:600;letter-spacing:-.015em}
+.v13-flow-head p{margin:2.6cqw auto 0;width:56cqw;font-size:1.6cqw;line-height:1.43;color:#d5dbea}
+.v13-flow-label{position:absolute;left:86.3cqw;top:20.5cqw;font:400 1.2cqw/1 "SF Mono",ui-monospace,Menlo,monospace;letter-spacing:.1em;color:#c7cfe2}
+.v13-flow-hint{display:none}
+.v13-flow-scroll,.v13-flow-art{position:absolute;inset:0;pointer-events:none}
+
+/* 05 digital key (art 1536x1024) */
+.v13-key{aspect-ratio:3/2}
+.v13-key .v13-bg{background-image:url(/assets/images/bmw-system/v13/section-05.webp)}
+.v13-key .v13-head{position:absolute;left:0;right:0;top:5.2cqw;text-align:center}
+.v13-key .v13-head h2{font-size:3cqw;font-weight:600;line-height:1.2;letter-spacing:-.01em}
+.v13-key .v13-head p{margin-top:1.45cqw;font-size:1.7cqw;color:#a9b3cd}
+.v13-key-art{display:none}
+.v13-key-caption{position:absolute;left:0;right:0;top:63.4cqw;text-align:center;font-size:1.25cqw}
 
 /* 04 documentation */
 .v13-docs{aspect-ratio:3/2}
@@ -33,7 +79,7 @@
   .bmw-v13{font-size:16px}
   .v13-docs{aspect-ratio:auto;padding:56px 16px 40px;background:radial-gradient(ellipse at 100% 0,#c47a5a55,#0000 55%)}
   .v13-docs-bg{display:none}
-  .v13-docs .v13-head{position:static;padding:0 4px}
+  .v13-docs .v13-head{position:static;padding:0 4px;text-align:left}
   .v13-docs h2{font-size:clamp(26px,7vw,40px)}
   .v13-docs .v13-head p{font-size:clamp(15px,4vw,19px);margin-top:10px}
   .v13-panel{position:static;height:auto;margin-top:28px;padding:18px 18px 22px;border-radius:18px}
@@ -49,4 +95,48 @@
   .v13-groups{position:static;gap:14px;border-top:1px solid #ffffff2e;padding-top:18px}
   .v13-groups dt{font-size:19px}.v13-groups dd{font-size:15px}
   .v13-caption{position:static;margin-top:18px;font-size:13px}
+}
+
+@media(max-width:899px){
+  .v13-hero,.v13-spec,.v13-flow,.v13-key{aspect-ratio:auto}
+  .v13-bg{position:static;display:block}
+  .v13-hero{padding-bottom:36px}
+  .v13-hero .v13-bg{aspect-ratio:1536/790;background-size:100% auto;background-position:top}
+  .v13-hero-head{position:static;padding:0 20px;margin-top:10px}
+  .v13-eyebrow{font-size:13px}
+  .v13-hero h1{font-size:clamp(32px,9vw,48px);margin-top:6px;line-height:1.08}
+  .v13-hero-sub{font-size:clamp(16px,4.4vw,20px);margin-top:10px}
+  .v13-stores{position:static;display:flex;gap:12px;padding:22px 20px 0}
+  .v13-store{position:static;width:auto;height:auto;min-height:56px;flex:0 1 160px;padding:10px 16px;border:1px solid #ffffff3d;border-radius:12px;font-size:13px;background:#ffffff0a;justify-content:center}
+  .v13-store span{font-size:12px}.v13-store b{font-size:16px}
+
+  .v13-spec{padding:8px 0 40px}
+  .v13-spec .v13-bg{aspect-ratio:970/540;background-size:179.4% auto;background-position:15.6% 27.4%;margin:0 16px;-webkit-mask-image:none;mask-image:none}
+  .v13-spec-text{position:static;padding:8px 20px 0}
+  .v13-spec h2{position:static;width:auto;font-size:clamp(30px,8.4vw,44px);line-height:1.05}
+  .v13-spec ol{position:static;width:auto;margin-top:18px}
+  .v13-spec li{height:auto;min-height:56px;font-size:17px;border-top:1px solid #ffffff3d}
+  .v13-spec li:last-child{border-bottom:1px solid #ffffff3d}
+  .v13-spec li b{width:48px;font-size:18px}
+  .v13-spec-note{position:static;width:auto;margin-top:24px;font-size:17px;line-height:1.4}
+  .v13-spec-caption{position:static;margin-top:10px;font-size:13px}
+
+  .v13-flow{padding:32px 0 40px}
+  .v13-flow .v13-bg{display:none}
+  .v13-flow-head{position:static;padding:0 20px;text-align:left}
+  .v13-flow h2{text-wrap:balance;width:auto;margin:0;font-size:clamp(30px,8.4vw,44px);line-height:1.08}
+  .v13-flow-head p{width:auto;margin:14px 0 0;font-size:clamp(15px,4vw,18px)}
+  .v13-flow-label{position:static;margin:26px 20px 0;font-size:12px}
+  .v13-flow-hint{display:block;margin:6px 20px 0;font-size:13px;color:#c3cce0}
+  .v13-flow-scroll{position:relative;inset:auto;pointer-events:auto;margin-top:12px;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding:0 20px}
+  .v13-flow-scroll:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+  .v13-flow-art{position:relative;inset:auto;width:760px;aspect-ratio:1100/460;background:url(/assets/images/bmw-system/v13/flow-b-panel.webp) 45.9% 60.2%/139.6% auto no-repeat}
+
+  .v13-key{padding:48px 0 32px}
+  .v13-key .v13-bg{display:none}
+  .v13-key .v13-head{position:static;text-align:left;padding:0 20px}
+  .v13-key .v13-head h2{font-size:clamp(28px,7.6vw,40px);line-height:1.1}
+  .v13-key .v13-head p{font-size:clamp(15px,4vw,18px);margin-top:12px}
+  .v13-key-art{display:block;margin:12px 0 0;aspect-ratio:1070/800;background:url(/assets/images/bmw-system/v13/section-05.webp) 49.4% 89.5%/143.6% auto no-repeat}
+  .v13-key-caption{position:static;text-align:left;padding:0 20px;margin-top:6px;font-size:13px}
 }
