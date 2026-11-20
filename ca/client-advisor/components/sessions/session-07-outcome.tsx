@@ -91,10 +91,6 @@ function Outcomes() {
           <MetricCard key={metric.image} index={index} {...metric} />
         ))}
       </div>
-
-      <ScrollReveal className="max-w-[720px] px-1 pt-1" delay={700}>
-        <p className="text-pretty text-[14px] leading-relaxed text-[var(--ca-dim)]">{t('ca.outcome.footnote')}</p>
-      </ScrollReveal>
     </div>
   )
 }
