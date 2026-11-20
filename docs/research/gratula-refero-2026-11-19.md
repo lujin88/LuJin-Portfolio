@@ -150,3 +150,17 @@ Lu 要直接打开网页看动效，所以静图不够；以下是全部链接�
 - 商业站：Wise https://wise.com ｜ Monzo https://monzo.com ｜ Squarespace https://squarespace.com ｜ Givingli https://givingli.com ｜ Bumble https://bumble.com ｜ Pinterest https://pinterest.com
 - 早期：Discord https://discord.com ｜ Duolingo https://duolingo.com ｜ Partiful https://partiful.com ｜ Ko-fi https://ko-fi.com ｜ Tapbots https://tapbots.com ｜ Rainbow https://rainbow.me（Lu 说选错）
 - 第 8 轮（Refero 风格库，图：~/.buzz/OUTBOX/research-commercial-layout-20932/）：Step https://step.com（深色大圆角面板拼块+手机，9382px）｜ Current https://current.com（白底，卡通拼贴与字左右交替，8127px）｜ Fantastical https://flexibits.com（白底，彩色悬浮图标，2974px）｜ Stocketa https://stocketa.com（柔和渐变+一台手机，2676px）。Aaply/Tapbots/Rainbow 已抓未细看。Replay（replay.software）只截到 1125px，没看成。
+
+## Lu #20950：选定 Bear（https://bear.app）——结构拆解（2026-11-20）
+Lu 原话（经 Scranton 转）：「我喜欢 Bear 那个网站，你让 UI 参照 Bear 去做吧」。图：~/.buzz/OUTBOX/research-commercial-layout-20950/bear-full-page.png（1440 整页，三列从左到右读，10333px）。
+从上到下，只写截图里看到的：
+1. 白底首屏：居中标题「Markdown notes you'll love」+ 平台切换（Mac/iPhone/iPad）+ App Store 按钮 → 一张大 App 截图
+2. 一排奖项（三个月桂叶徽章），旁边一个小角色插画
+3. 居中大标题「Write naturally」+ 一句话 → 一块大白卡（静图里是空白，应是交互演示，未验）
+4. 四段功能，每段「彩色小标题+三条要点｜图」左右交替；图后面垫一大块彩色不规则色块（蓝、紫、黄、绿），色块整块出血到页面边缘，卡片压在色块边上；图（卡片/界面）本身完整，没被裁
+5. 「And so much more」：居中标题 → 左侧要点列表 + 右侧两列小圆角灰卡（iCloud、Sketch、图片）
+6. 价格：左 Free、右 Pro 大圆角卡
+7. 底部社区评价（红色竖线引言两列）→ 订阅 → 页脚，页脚背景是淡灰线稿插画（熊、篝火）
+共同手法：整页白底；每段只有一个主体；用大色块+线稿角色做「好玩」；标题字号统一、居中或左对齐的小标题配色与色块同色。
+对 Gratula 的借用点（我的判断，Hiro 的蓝色和 Pip 不动）：段落「字｜图」左右交替；图后垫色块（用 Hiro 的蓝系）；Pip、礼盒、气球放在色块边上、完整不裁；页脚用淡线稿。
+注意：Bear 是白底浅色，Gratula 是 navy/蓝底，色块和白底的对比关系要重新定，不能直接照搬；交互（输入演示、滚动动效）我没验。
