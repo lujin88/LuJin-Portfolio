@@ -16,6 +16,18 @@ export const bmw = {
       nowYear: "2026 · Proposed",
       now: "AI flags edge cases. Team decides.",
     },
+    v13: {
+      docs: {
+        title: "Every widget has a number.",
+        sub: "In JIRA and Confluence, so remote teams could point to the same one.",
+        jira: "JIRA Ticket",
+        tree: ["0 - Overarching Flow", "1 - Tab page", "1.0 Page layout", "1.1 Topic A", "1.1 Topic A - Current", "1.1 Topic A - Vision", "1.1 Topic A - Background"],
+        current: "Current", currentNote: "Ready for development",
+        vision: "Vision", visionNote: "Future functions",
+        background: "Background", backgroundNote: "Design process",
+        caption: "Illustrative reconstruction of project documentation",
+      },
+    },
   },
   de: {
     hero: {
@@ -32,6 +44,18 @@ export const bmw = {
       then: "Jedes Modell in Excel prüfen",
       nowYear: "2026 · Vorschlag",
       now: "KI markiert Sonderfälle. Das Team entscheidet.",
+    },
+    v13: {
+      docs: {
+        title: "Jedes Widget hat eine Nummer.",
+        sub: "In JIRA und Confluence, damit verteilte Teams auf dasselbe verweisen konnten.",
+        jira: "JIRA-Ticket",
+        tree: ["0 - Overarching Flow", "1 - Tab page", "1.0 Page layout", "1.1 Topic A", "1.1 Topic A - Current", "1.1 Topic A - Vision", "1.1 Topic A - Background"],
+        current: "Aktuell", currentNote: "Bereit für die Entwicklung",
+        vision: "Vision", visionNote: "Künftige Funktionen",
+        background: "Hintergrund", backgroundNote: "Designprozess",
+        caption: "Illustrative Rekonstruktion der Projektdokumentation",
+      },
     },
   },
 } as const
