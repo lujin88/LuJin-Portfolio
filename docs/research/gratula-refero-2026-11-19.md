@@ -104,3 +104,14 @@ Givingli（送礼物卡/贺卡，成熟商业站）段落顺序，只写截图�
 共同点：整条颜色交替（米/红/棕/蓝），每段一个大标题+一个主体，字与物件左右换边；大标题用得很大。对 Gratula：第 1 段「物件分在标题四角」和 Pip、礼盒、气球最像；段 2 的色带交替 = 把 navy 渐变改成「深浅蓝交替色带」。
 Nothing（nothing.tech，8859px）：浅灰底，分类入口 → 黑色通栏产品大图 → 通栏人物大图 → 左字右图交错产品卡 → 双图并排 → 通栏黑图 → 社区订阅 → 页脚。偏产品目录，不如 Givingli 贴。
 没抓到：Oura、Whoop、Aesop、Canva（被拦，高度 900–1021px）；Glossier、Notion、Airtable、Headspace 已抓未细看，不写结论。
+
+## Lu #20860「B：不好看，继续找」（2026-11-20）：第 5 轮，消费品牌
+图：~/.buzz/OUTBOX/research-commercial-layout-20860/contact-sheet.png（Kahoot｜Bumble｜Pinterest｜Ritual，1440 整页，各截到约 5000px）。
+| 站 | 看到的 |
+|---|---|
+| Bumble（4497px） | 整页以黄色为主；顶部超大字标 → 「图｜字」大圆角卡 → 两张并排黄卡 → 引言+人像 → 黄色「Get the app」块 → 页脚 |
+| Pinterest（5505px） | 首屏拼贴 → 通栏标题 → 拼贴网格 → 三段「手机图｜字」左右交替（每段一个功能）→ 满屏拼贴背景上叠注册框 → 黑页脚 |
+| Kahoot（4163px） | 截图被 cookie 弹窗挡住；B2B 色块卡片、logo 条、方案对比，偏企业，不推荐 |
+| Ritual（7382px） | 商品目录 + 成分/科学人像，偏电商，不推荐 |
+Oatly、LEGO、Tinder 被拦（高度 900px），Toca Boca 域名打不开，没看成，不写结论。
+结论：5 轮都没对上 Lu 的眼光；pm #20859 提议改用 Duolingo 结构（Lu #20615 自己说过喜欢）。选项交给 Lu 用图选，见 #20861。
