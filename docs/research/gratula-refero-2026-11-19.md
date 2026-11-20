@@ -142,3 +142,11 @@ Oatly、LEGO、Tinder 被拦（高度 900px），Toca Boca 域名打不开，没
 | Superhuman（7847px） | B2B 邮件产品，偏企业，不推荐 |
 Fey（fey.com）被拦，没看成。
 对 Gratula：蓝色调最贴 Copilot（浅蓝紫渐变大圆角卡）；最高端感的是 Flighty、Linear 手机版。以上是我的判断，Lu 未选。
+
+## Lu #20932/#20934（2026-11-20）：「都不好，继续找」+「把链接给我，我要看 interaction」
+Lu 要直接打开网页看动效，所以静图不够；以下是全部链接（我只有静图，动效未验）。
+- Mac App：Bear https://bear.app ｜ Craft https://craft.do ｜ Raycast https://raycast.com ｜ Sketch https://sketch.com ｜ Things https://culturedcode.com/things ｜ Arc https://arc.net
+- 手机屏：Copilot https://copilot.money ｜ Flighty https://flightyapp.com ｜ Linear 手机版 https://linear.app/mobile ｜ Opal https://opal.so ｜ Halide https://halide.cam
+- 商业站：Wise https://wise.com ｜ Monzo https://monzo.com ｜ Squarespace https://squarespace.com ｜ Givingli https://givingli.com ｜ Bumble https://bumble.com ｜ Pinterest https://pinterest.com
+- 早期：Discord https://discord.com ｜ Duolingo https://duolingo.com ｜ Partiful https://partiful.com ｜ Ko-fi https://ko-fi.com ｜ Tapbots https://tapbots.com ｜ Rainbow https://rainbow.me（Lu 说选错）
+- 第 8 轮（Refero 风格库，图：~/.buzz/OUTBOX/research-commercial-layout-20932/）：Step https://step.com（深色大圆角面板拼块+手机，9382px）｜ Current https://current.com（白底，卡通拼贴与字左右交替，8127px）｜ Fantastical https://flexibits.com（白底，彩色悬浮图标，2974px）｜ Stocketa https://stocketa.com（柔和渐变+一台手机，2676px）。Aaply/Tapbots/Rainbow 已抓未细看。Replay（replay.software）只截到 1125px，没看成。
