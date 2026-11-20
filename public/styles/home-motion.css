@@ -71,6 +71,47 @@
   .bmw-title-1440 { display: none; }
   .bmw-title-390 { display: block; }
 }
+/* Concept: two wide cards (row 74, Lu #21433 A). 1440: block 636 incl. padding. */
+#home-concept { padding: 48px var(--pad) 40px; background: var(--color-bg-page); }
+.home-concept-inner { max-width: 1240px; margin: auto; }
+.home-concept-head { min-height: 118px; }
+#home-concept h2 { font-size: var(--font-size-heading-lg); line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 8px; }
+.home-concept-head p { max-width: 480px; font-size: var(--font-size-body); line-height: 1.6; color: var(--color-text-2); margin: 0; }
+.home-concept-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); }
+.concept-card { position: relative; display: block; height: 430px; padding: 32px; overflow: hidden; isolation: isolate; border-radius: var(--radius-xl); color: var(--color-text-1); text-decoration: none; }
+.concept-etf { background: #131626; border: 1px solid #232742; }
+.concept-man { background: #12131a; border: 1px solid #262420; }
+.concept-copy { position: relative; z-index: 3; text-align: center; }
+.concept-copy h3 { font-size: var(--font-size-h3-card); line-height: 1.15; font-weight: 700; margin: 0; }
+.concept-copy p { font-size: var(--font-size-body); line-height: 1.5; color: var(--color-text-2); margin: 8px 0 12px; }
+.concept-link { font-size: var(--font-size-caption); font-weight: 600; color: #60a5fa; }
+.concept-man .concept-link { color: #fbbf24; }
+.concept-card:hover .concept-link { text-decoration: underline; text-underline-offset: 3px; }
+.concept-card:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+.concept-art { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.concept-etf-glow { position: absolute; left: 20%; bottom: 0; width: 320px; height: 320px; background: radial-gradient(circle, rgba(139, 92, 246, 0.38) 0%, transparent 70%); }
+.concept-etf-word { position: absolute; left: 0; right: 0; bottom: 15px; text-align: center; font-size: 100px; font-weight: 800; letter-spacing: 0.05em; color: rgba(167, 139, 250, 0.18); white-space: nowrap; }
+.concept-etf-hand { position: absolute; left: 50%; bottom: -90px; width: 340px; height: auto; transform: translateX(-50%); }
+.concept-man-cab { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 55%; }
+.concept-man-shade { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(18, 19, 26, 0.92) 0%, rgba(18, 19, 26, 0.4) 45%, rgba(18, 19, 26, 0.2) 100%); }
+.concept-man-chips { position: absolute; left: 24px; right: 24px; bottom: 24px; z-index: 3; display: flex; gap: 12px; }
+.concept-chip { flex: 1; min-width: 0; padding: 14px 18px; border-radius: 14px; background: rgba(30, 24, 16, 0.72); border: 1px solid rgba(245, 180, 80, 0.35); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+.concept-chip strong { display: block; font-size: var(--font-size-body); font-weight: 700; color: #fff4e0; }
+.concept-chip .concept-chip-num { font-size: var(--font-size-h3-card); line-height: 1.15; }
+.concept-chip span { display: block; margin-top: 2px; font-size: var(--font-size-caption); font-weight: 600; text-transform: uppercase; color: #f59e0b; }
+@media (max-width: 1099px) {
+  .home-concept-head { min-height: 0; margin-bottom: var(--space-lg); }
+  .home-concept-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  #home-concept { padding-top: var(--space-xl); padding-bottom: 0; }
+  .concept-card { height: 440px; padding: 24px; }
+  .concept-etf-hand { width: 230px; bottom: -30px; }
+  .concept-chip strong:not(.concept-chip-num) { font-size: var(--font-size-caption); white-space: nowrap; }
+  .concept-etf-word { font-size: 64px; }
+  .concept-chip { padding: 12px 14px; }
+  .concept-chip .concept-chip-num { font-size: var(--font-size-subhead-lg); }
+}
 #home-playground { padding: var(--space-3xl) var(--pad); background: var(--color-bg-page); }
 .home-playground-inner { max-width: var(--wrap); margin: auto; }
 #home-playground h2 { font-size: var(--font-size-display); line-height: var(--leading-display); font-weight: 600; margin-bottom: var(--space-xl); }
