@@ -83,12 +83,93 @@
 /* Keep expanded rows reachable below the fixed 4rem header on short screens.
    Only the outer menu scrolls; expanded Work rows retain their full height. */
 #mobile-nav[aria-hidden='false'] {
-  max-height: calc(100vh - 4rem);
-  max-height: calc(100dvh - 4rem);
+  position: fixed;
+  z-index: 40;
+  top: 4rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-height: none;
   overflow-y: auto;
   overscroll-behavior-y: contain;
   scroll-padding-block: 8px;
+  background: #0a0a0a;
+  --header-foreground: oklch(0.985 0 0);
+  --color-header-foreground: oklch(0.985 0 0);
 }
+
+#mobile-nav .mobile-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px 18px 32px;
+}
+#mobile-nav .mobile-card {
+  margin: 0;
+  padding: 8px 12px 10px;
+  list-style: none;
+  border: 1px solid #242629;
+  border-radius: 12px;
+  background: #111214;
+}
+#mobile-nav .mobile-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  margin: 0;
+  color: #7ea2ff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+#mobile-nav .mobile-card-head span { margin-right: auto; }
+#mobile-nav .mobile-card-count { color: #b6bbc2; font-weight: 500; letter-spacing: 0; }
+#mobile-nav .mobile-card a span { color: #f9fbfc; }
+#mobile-nav .mobile-card a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 6px 0;
+  color: inherit;
+  text-decoration: none;
+}
+#mobile-nav .mobile-card .header-menu-meta { color: #b6bbc2; }
+#mobile-nav .mobile-row-current { box-shadow: inset 3px 0 0 #7ea2ff; }
+#mobile-nav .mobile-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 0 16px;
+  border: 1px solid #242629;
+  border-radius: 12px;
+  background: #111214;
+  color: #f9fbfc;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+}
+#mobile-nav .mobile-row-icon { width: 16px; height: 16px; flex: none; color: #7ea2ff; }
+#mobile-nav .mobile-thumb { border-radius: 8px; border: 1px solid #3a3d42; background: #1a1c20; }
+#mobile-nav .mobile-card a > span:last-child > span:first-child { font-weight: 500; }
+#mobile-nav .mobile-lang {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 0;
+  padding: 0 4px;
+  font-size: 16px;
+}
+#mobile-nav .mobile-lang button {
+  padding: 0;
+  color: #b6bbc2;
+  font: inherit;
+}
+#mobile-nav .mobile-lang button[aria-current='true'] { color: #f9fbfc; font-weight: 600; }
+#mobile-nav .mobile-lang-slash { color: #b6bbc2; }
 
 #mobile-nav button[aria-expanded='true'] + div {
   grid-template-rows: minmax(max-content, auto);
@@ -354,6 +435,15 @@
 /* Paper Work/Playground group labels (Project/Concept). 52% mix ≈3.74:1 on white (visualqa #17757). */
 [data-site-header][data-header-tone='paper'] .header-menu-section {
   color: var(--color-text-4, #595d61);
+}
+
+/* Phone menu stays dark, including on paper pages. The current row must not
+   pick up the light page's menu fill or gray meta. */
+#mobile-nav .mobile-card a[aria-current='page'] {
+  background: transparent;
+}
+#mobile-nav .mobile-card .header-menu-meta {
+  color: #b6bbc2;
 }
 
 /* Form controls do not inherit the page font in the browser UA stylesheet. */

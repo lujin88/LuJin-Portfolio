@@ -10,7 +10,7 @@ import {
   type MutableRefObject,
   type ReactElement,
 } from 'react'
-import { Check, ChevronDown, Mail, Menu, X } from 'lucide-react'
+import { Briefcase, Check, ChevronDown, Compass, Mail, Menu, RotateCcw, Star, X } from 'lucide-react'
 import { headerCopy } from '../lib/header-copy'
 import { LANGUAGES, useSiteLanguage } from '../lib/language'
 import { SHOW_UNFINISHED_CASES, UNFINISHED_CASE_HREFS } from '../lib/site-flags'
@@ -247,7 +247,6 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
     pinnedPaper
   const headerTone = partyHeader ? 'party' : paperHeader ? 'paper' : undefined
   const [menuOpen, setMenuOpen] = useState(false)
-  const [mobileSection, setMobileSection] = useState<string | null>(null)
   const [langOpen, setLangOpen] = useState(false)
   const [glassActive, setGlassActive] = useState(pinnedPaper)
   const { language, setLanguage } = useSiteLanguage()
@@ -294,7 +293,6 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
     setPinnedMenu(null)
     setHoverMenu(null)
     setMenuOpen(false)
-    setMobileSection(null)
   }, [pathname])
 
   useEffect(() => {
@@ -329,7 +327,6 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return
       setMenuOpen(false)
-      setMobileSection(null)
       if (!langOpen && !openMenu) menuButtonRef.current?.focus()
     }
     document.addEventListener('keydown', onKeyDown)
@@ -360,7 +357,6 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
     const closeMobileAtDesktop = () => {
       if (!desktopNav.matches) return
       setMenuOpen(false)
-      setMobileSection(null)
     }
     desktopNav.addEventListener('change', closeMobileAtDesktop)
     return () => desktopNav.removeEventListener('change', closeMobileAtDesktop)
@@ -455,17 +451,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
   }
 
   const openMobile = () => {
-    setMenuOpen((open) => {
-      const next = !open
-      if (next) {
-        const activeGroup = NAV.find(
-          (item): item is { kind: 'group' } & NavGroup =>
-            item.kind === 'group' && groupIsActive(item, currentHref, pathname),
-        )
-        setMobileSection(activeGroup?.label ?? null)
-      }
-      return next
-    })
+    setMenuOpen((open) => !open)
   }
 
   return (
@@ -687,7 +673,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
             )}
           >
             {menuOpen ? (
-              <X className="size-6" strokeWidth={1.5} />
+              <X className="size-6" strokeWidth={2} />
             ) : (
               <Menu className="size-6" strokeWidth={1.5} />
             )}
@@ -704,159 +690,91 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           menuOpen ? 'overflow-visible opacity-100' : 'max-h-0 overflow-hidden opacity-0',
         )}
       >
-        <nav aria-label={copy.mobileNav} className="header-frame flex flex-col gap-6 pb-8 pt-2">
-          <ul className="m-0 flex list-none flex-col gap-4 p-0">
-            {NAV.map((item) => {
-              if (item.kind === 'link') {
-                const isActive = hrefMatches(item.href, currentHref, pathname)
-                return (
-                  <li key={item.href} className="list-none">
-                    <Link
-                      href={item.href}
-                      aria-current={isActive ? 'page' : undefined}
-                      onClick={() => setMenuOpen(false)}
-                      className={cn(
-                        'inline-flex min-h-11 items-center rounded-sm text-lg no-underline transition-colors',
-                        FOCUS_RING,
-                        MOTION_SAFE,
-                        isActive ? 'text-header-foreground' : 'text-header-foreground/72',
-                      )}
-                    >
-                      {navLabel(copy, item.label)}
-                    </Link>
-                  </li>
-                )
-              }
-
-              const group = visibleGroup(item)
-              const expanded = mobileSection === group.label
-              const isActive = groupIsActive(group, currentHref, pathname)
-              const panelId = `mobile-nav-${group.label.toLowerCase().replace(/\s+/g, '-')}`
+        <nav aria-label={copy.mobileNav} className="mobile-sheet">
+          {/* Mobile order (A draft): groups first, then How I work, then Contact. Desktop order is untouched. */}
+          {[...NAV.filter((n) => n.kind === 'group'), ...NAV.filter((n) => n.kind === 'link')].map((item) => {
+            if (item.kind === 'link') {
+              const isActive = hrefMatches(item.href, currentHref, pathname)
               return (
-                <li key={group.label}>
-                  <button
-                    type="button"
-                    aria-expanded={expanded}
-                    aria-controls={panelId}
-                    onClick={() =>
-                      setMobileSection((current) => (current === group.label ? null : group.label))
-                    }
-                    className={cn(
-                      'flex min-h-11 w-full items-center justify-between rounded-sm text-lg transition-colors',
-                      PLAIN_CONTROL,
-                      FOCUS_RING,
-                      MOTION_SAFE,
-                      isActive || expanded ? 'text-header-foreground' : 'text-header-foreground/72',
-                    )}
-                  >
-                    {navLabel(copy, group.label)}
-                    <ChevronDown
-                      aria-hidden="true"
-                      className={cn(
-                        'size-4 transition-transform duration-300 ease-out',
-                        MOTION_SAFE,
-                        expanded && 'rotate-180',
-                      )}
-                      strokeWidth={1.75}
-                    />
-                  </button>
-                  <div
-                    id={panelId}
-                    inert={!expanded ? true : undefined}
-                    className={cn(
-                      'grid transition-[grid-template-rows] duration-300 ease-out',
-                      MOTION_SAFE,
-                      expanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
-                    )}
-                  >
-                    <div className={expanded ? 'overflow-visible' : 'overflow-hidden'}>
-                      <ul
-                        className={cn(
-                          MENU_PANEL,
-                          groupMenuListClass(group),
-                          'mt-3 w-full gap-0',
-                        )}
-                        role="list"
-                      >
-                        <GroupMenuItems
-                          group={group}
-                          copy={copy}
-                          iconTone={paperHeader ? 'light' : 'dark'}
-                          currentHref={currentHref}
-                          pathname={pathname}
-                          variant="mobile"
-                          onNavigate={() => setMenuOpen(false)}
-                        />
-                      </ul>
-                    </div>
-                  </div>
-                </li>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={isActive ? 'page' : undefined}
+                  onClick={() => setMenuOpen(false)}
+                  className={cn('mobile-row', FOCUS_RING, MOTION_SAFE, isActive && 'mobile-row-current')}
+                >
+                  <Compass aria-hidden="true" className="mobile-row-icon" strokeWidth={1.75} />
+                  {navLabel(copy, item.label)}
+                </Link>
               )
-            })}
-          </ul>
+            }
+            const group = visibleGroup(item)
+            const cards = group.sections?.length
+              ? group.sections.map((section) => ({ title: section.heading, links: section.children }))
+              : [{ title: group.label, links: group.children ?? [] }]
+            const HeadIcon = group.label === 'Playground' ? RotateCcw : null
+            return cards.map((card) => {
+              const Icon = card.title === 'Project' ? Briefcase : card.title === 'Concept' ? Star : HeadIcon ?? RotateCcw
+              return (
+                <ul key={card.title} className="mobile-card">
+                  <li className="mobile-card-head">
+                    <Icon aria-hidden="true" className="size-4" strokeWidth={1.75} />
+                    <span>{navLabel(copy, card.title)}</span>
+                    <b className="mobile-card-count">{card.links.length}</b>
+                  </li>
+                  <GroupMenuItems
+                    group={{ label: card.title, children: card.links }}
+                    copy={copy}
+                    iconTone="dark"
+                    currentHref={currentHref}
+                    pathname={pathname}
+                    variant="mobile"
+                    onNavigate={() => setMenuOpen(false)}
+                  />
+                </ul>
+              )
+            })
+          })}
           <a
             href="mailto:lu.jin.ixd@gmail.com"
             onClick={() => setMenuOpen(false)}
-            className={cn(
-              'flex min-h-11 w-full items-center gap-3 rounded-sm text-lg text-header-foreground/72 no-underline transition-colors hover:text-header-foreground',
-              FOCUS_RING,
-              MOTION_SAFE,
-            )}
+            className={cn('mobile-row', FOCUS_RING, MOTION_SAFE)}
           >
-            <Mail aria-hidden="true" className="size-5 shrink-0" strokeWidth={1.5} />
-            {copy.email}
+            <Mail aria-hidden="true" className="mobile-row-icon" strokeWidth={1.75} />
+            {copy.contactMe}
           </a>
-          <div className="border-t border-header-line pt-5">
-            <p className="header-mobile-language-label m-0">{copy.languageLabel}</p>
-            <ul className="header-mobile-language-list m-0 flex list-none flex-col gap-0 p-0" role="list">
-              {LANGUAGES.map((lang) => {
-                const isSelected = lang.code === language.code
-                return (
-                  <li key={lang.code} className="list-none">
-                    <button
-                      type="button"
-                      onClick={() => setLanguage(lang)}
-                      aria-current={isSelected ? 'true' : undefined}
-                      className={cn(
-                        'flex w-full min-h-11 items-center justify-between gap-4 rounded-none text-lg leading-tight transition-colors',
-                        PLAIN_CONTROL,
-                        FOCUS_RING,
-                        MOTION_SAFE,
-                        isSelected
-                          ? 'text-header-foreground'
-                          : 'text-header-foreground/72 hover:text-header-foreground',
-                      )}
-                    >
-                      <span>{lang.label}</span>
-                      {isSelected ? (
-                        <Check
-                          aria-hidden="true"
-                          className="size-5 shrink-0 text-header-accent"
-                          strokeWidth={2.5}
-                        />
-                      ) : (
-                        <span aria-hidden="true" className="size-5 shrink-0" />
-                      )}
-                    </button>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
+          <p className="mobile-lang" role="group" aria-label={copy.languageLabel}>
+            {LANGUAGES.map((lang, index) => {
+              const isSelected = lang.code === language.code
+              return (
+                <span key={lang.code} className="contents">
+                  {index > 0 ? <span className="mobile-lang-slash" aria-hidden="true">/</span> : null}
+                  <button
+                    type="button"
+                    onClick={() => setLanguage(lang)}
+                    aria-current={isSelected ? 'true' : undefined}
+                    className={cn(PLAIN_CONTROL, FOCUS_RING)}
+                  >
+                    {lang.label}
+                  </button>
+                </span>
+              )
+            })}
+          </p>
         </nav>
       </div>
     </header>
   )
 }
 
-function MenuThumb({ icon, tone }: { icon: NavIcon; tone: 'light' | 'dark' }) {
+function MenuThumb({ icon, tone, square }: { icon: NavIcon; tone: 'light' | 'dark'; square?: boolean }) {
   return (
     <img
       src={icon[tone]}
       alt=""
       width={32}
       height={32}
-      className="size-8 shrink-0 rounded-full object-cover"
+      className={square ? 'mobile-thumb size-8 shrink-0 object-cover' : 'size-8 shrink-0 rounded-full object-cover'}
     />
   )
 }
@@ -945,7 +863,7 @@ function GroupMenuItems({
             childActive && 'bg-header-menu-item',
           )}
         >
-          <MenuThumb icon={child.icon} tone={iconTone} />
+          <MenuThumb icon={child.icon} tone={iconTone} square={variant === 'mobile'} />
           {labelBlock}
         </Link>
       </li>
