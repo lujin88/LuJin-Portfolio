@@ -115,3 +115,16 @@ Nothing（nothing.tech，8859px）：浅灰底，分类入口 → 黑色通栏�
 | Ritual（7382px） | 商品目录 + 成分/科学人像，偏电商，不推荐 |
 Oatly、LEGO、Tinder 被拦（高度 900px），Toca Boca 域名打不开，没看成，不写结论。
 结论：5 轮都没对上 Lu 的眼光；pm #20859 提议改用 Duolingo 结构（Lu #20615 自己说过喜欢）。选项交给 Lu 用图选，见 #20861。
+
+## Lu #20867「有没有像 Linear 这种 Mac 上的 App？」（2026-11-20）：Mac App 官网整页
+我的理解：像 Linear 的 Mac App 的官网（若指 App 界面本身，待 Lu 确认）。图：~/.buzz/OUTBOX/research-commercial-layout-20867/mac-sites-A.png（Raycast｜Craft｜CleanShot｜Arc）、mac-sites-B.png（Bear｜Sketch｜Things｜Linear），1440 整页静图，各截到约 7500px。
+| 站 | 看到的 |
+|---|---|
+| Bear（10333px） | 居中标题+App Store 按钮+大截图 → 每段「字｜截图」左右交替，截图后垫彩色不规则色块（蓝、紫、绿、黄）→ 价格 |
+| Craft（11032px） | 天空插画首屏+居中标题 → 图标行 → 人像横滑 → 淡彩（蓝/绿/黄）大圆角卡左右交替 → 评价 → 三张彩色卡 |
+| Raycast（16041px） | 黑底红光首屏 → 大截图 → 扩展卡片横滑 → AI 段 → 评价 → 页脚 |
+| Sketch（8354px） | 渐变首屏+大截图 → 每段「大标题+一组彩色功能卡」 ×4 → 收尾 |
+| Things（8467px） | App 图标居中首屏 → 斜放截图 → 设备一排 → 奖项/评价 |
+| CleanShot（11446px） | 截图太小，未看清，不写结论 |
+| Arc | 页面是停运公告，不适用 |
+| Linear（9990px） | Lu #20615 已否，不再推 |
