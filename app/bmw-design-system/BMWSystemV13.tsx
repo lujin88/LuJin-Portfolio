@@ -18,7 +18,6 @@ function HeroSection() {
   return (
     <section className="v13-hero" aria-label={t('bmw.v13.hero.alt')}>
       <div className="v13-bg" role="img" aria-label={t('bmw.v13.hero.alt')} />
-      <p className="v13-caption v13-hero-caption">{t('bmw.v13.hero.caption')}</p>
       <header className="v13-hero-head">
         <p className="v13-eyebrow">{t('bmw.v13.hero.eyebrow')}</p>
         <h1>{t('bmw.v13.hero.title')}</h1>
