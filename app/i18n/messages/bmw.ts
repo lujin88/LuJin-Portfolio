@@ -19,6 +19,7 @@ export const bmw = {
     v13: {
       hero: {
         alt: "A silver BMW i4 Gran Coupé at an alpine overlook at sunset, next to the My BMW app on a phone.",
+        caption: "Recreated example with fictional data; no vehicle connected. Not an official BMW image.",
         eyebrow: "BMW DESIGN SYSTEM",
         title: "Many teams. One system.",
         sub: "A shared design language for the My BMW App.",
@@ -43,10 +44,10 @@ export const bmw = {
         scroll: "Scroll sideways to see the whole diagram",
       },
       key: {
-        alt: "The Digital Key welcome screen in the My BMW app on an iPhone.",
+        alt: "An illustration of a phone showing a generic digital key screen.",
         title: "The digital key, introduced at WWDC 2020.",
         sub: "Your phone as the car key, one of the app’s core features.",
-        caption: "Illustrative reconstruction · BMW press image, December 2020",
+        caption: "Illustrative example with a fictional interface. Not an official BMW image.",
       },
       docs: {
         title: "Every widget has a number.",
@@ -79,6 +80,7 @@ export const bmw = {
     v13: {
       hero: {
         alt: "Ein silberner BMW i4 Gran Coupé an einem Aussichtspunkt in den Alpen bei Sonnenuntergang, daneben die My BMW App auf einem Telefon.",
+        caption: "Nachgebautes Beispiel mit fiktiven Daten; kein Fahrzeug verbunden. Kein offizielles BMW-Bild.",
         eyebrow: "BMW DESIGN SYSTEM",
         title: "Viele Teams. Ein System.",
         sub: "Eine gemeinsame Designsprache für die My BMW App.",
@@ -103,10 +105,10 @@ export const bmw = {
         scroll: "Seitlich scrollen, um das ganze Diagramm zu sehen",
       },
       key: {
-        alt: "Der Willkommensbildschirm des Digital Key in der My BMW App auf einem iPhone.",
+        alt: "Eine Illustration eines Telefons mit einem generischen Digital-Key-Bildschirm.",
         title: "Der digitale Schlüssel, vorgestellt auf der WWDC 2020.",
         sub: "Das Telefon als Autoschlüssel, eine der Kernfunktionen der App.",
-        caption: "Illustrative Rekonstruktion · BMW Pressebild, Dezember 2020",
+        caption: "Illustratives Beispiel mit fiktiver Oberfläche. Kein offizielles BMW-Bild.",
       },
       docs: {
         title: "Jedes Widget hat eine Nummer.",

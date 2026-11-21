@@ -11,6 +11,7 @@
 /* 01 hero (art 1536x1024) */
 .v13-hero{aspect-ratio:3/2}
 .v13-hero .v13-bg{background-image:url(/assets/images/bmw-system/v13/hero.webp);-webkit-mask-image:linear-gradient(to bottom,#000 97%,transparent);mask-image:linear-gradient(to bottom,#000 97%,transparent)}
+.v13-hero .v13-hero-caption{top:63.4cqw;left:5.6cqw;right:5.6cqw;font-size:1.15cqw}
 .v13-hero-head{position:absolute;left:5.6cqw;top:51.5cqw}
 .v13-eyebrow{font-size:1.278cqw;line-height:1.4;letter-spacing:.08em;font-weight:600;color:#5b8def}
 .v13-hero h1{margin:.45cqw 0 0;font-size:4.444cqw;line-height:1.1;font-weight:600;letter-spacing:-.01em}
@@ -107,6 +108,7 @@
   .v13-bg{position:static;display:block}
   .v13-hero{padding-bottom:36px}
   .v13-hero .v13-bg{aspect-ratio:1536/790;background-size:100% auto;background-position:top}
+  .v13-hero .v13-hero-caption{position:static;padding:0 20px;margin-top:8px;font-size:13px}
   .v13-hero-head{position:static;padding:0 20px;margin-top:10px}
   .v13-eyebrow{font-size:13px}
   .v13-hero h1{font-size:clamp(32px,9vw,48px);margin-top:6px;line-height:1.08}
