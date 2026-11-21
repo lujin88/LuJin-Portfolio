@@ -111,10 +111,6 @@ function Outcomes() {
           image="/images/sessions/07/card-03.png"
         />
       </div>
-
-      <p className="max-w-[720px] text-pretty px-1 pt-1 text-[14px] leading-relaxed text-[var(--ca-dim)]">
-        Feedback informed the next iteration.
-      </p>
     </div>
   )
 }
