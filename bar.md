@@ -15,7 +15,7 @@
   - ⑦ Concept 横滑大卡（行 74，Lu #19533 的 Apple 参考图）：卡尺寸、露出下一张、卡内布局、主视觉、页码点。
   - ⑨ Gratula 页（`/lab/party-planner`）整页章节结构：Copilot 的「渐变大圆角卡、字｜图交替」（Lu #20962，取代 Bear）。背景层仍按 ⑤。
   - ⑩ 首页 Concept 双卡的卡内配图和卡内动效（PM #21575；版式取行 74 的 `layout-a-exact.png`，配图取 Lu #21507 海报参考和 #21541 紫色稿）。
-  - ⑪ CA 第 06 节（`ca/ca-session-06-the-concept`）里的客户工作台重画稿：栏宽/网格、字号层级、色板、组件密度，目标是靠近 UBS 原界面的 look and feel（Lu #22484 选稿、#22512）。
+  - ⑪ CA 第 06 节（`ca/ca-session-06-the-concept`）里的单客户 Investment Desk 重画稿：两栏和区块顺序、表格行、色板、图片位置，目标是靠近 UBS 原界面的 look and feel（Lu #22484 选稿、#22512）。
   - 各块各自有参考和机制，判的时候只用对应那一块。
 - **不管**：Concept 卡片的挂绳、排版、卡片标题和文案（只管卡上那张图）；MAN 首屏以下的内容（调度板、证据区、流程播放器）、ETF 页头和结尾、全站导航和页脚、首页（④ 管的那排卡的图除外）、其他案例页。这些要判的话，先补进这一页。
 - 宽度：除非某条另写，每条都在 1440×900 和 390×844 两个尺寸检查。
@@ -294,34 +294,32 @@ Pip、礼盒、气球放在卡内图的旁边或压住卡边，轮廓按 ⑤ 第
 
 没有的：动到什么程度（A 光影、B 单个动作、C 小演示）是 Lu 还没选的创作方向，不判；MAN 动效怎么做，motion 说要先核现片尾帧和手机裁切，不判。
 
-## ⑪ CA 第 06 节：客户工作台重画稿
+## ⑪ CA 第 06 节：单客户 Investment Desk 重画稿
 
-起草：UX 调研员，2026-11-21（PM #22569 派；起因 visual #22566：本地 bar.md 不覆盖 CA06，`tokens.json` 只适用 `/index`）。以 Lu #22484 选定的原工作台重画稿为底，Lu #22512 要求「尽量靠近 UBS look and feel」。
+起草：UX 调研员，2026-11-21（PM #22569 派；visual #22573 指出第一版对错了原稿，已重写）。底稿是 Lu #22484 选的找回稿 a2db99c3 / refined（单客户 Client Workspace：Priority insights → Opportunities → Idea builder → Engagement timeline，右侧 Agenda / Context brief）；Lu #22512 要求「尽量靠近 UBS look and feel」。对应的原图是 `ca/image/Investment Hub - Client View 1.png`（1942×4408）。第一版用的 CAWB Book View（四栏）是另一屏，已删。
 
-**保密**：参考只用仓库里已有的原图，路径写在下面，**不复制、不提交、不贴进 PR 评论**（`ca/image/` 在保密清单里，harness-core `scripts/backup-exclude.txt`）。下面的数都是我对着 `CAWB.png`（1942×2084）目测估的，写了「估算」，量不出的不写数字。
+**保密**：只引用原图路径，不复制、不提交、不贴进 PR 评论（`ca/image/` 在保密清单里，harness-core `scripts/backup-exclude.txt`）。注意：这张原图在 `~/LuJin-Portfolio` 主目录的 `ca/image/` 里没有（只有 concept-placeholder 三张），visual 的 worktree 可能也没有；我是在 `LuJin-Portfolio-worktrees/dev-wavocab/ca/image/` 里读到的。要核对的人去那里看，或让 PM 把原图放进 visual 的 worktree（不进 git）。下面的数都是我对着这张图目测估的，写了「估算」；量不出的不写。
 
 ### 参考
 | 来源 | 哪一屏 | 为什么选它 |
 |---|---|---|
-| `ca/image/CAWB.png` | UBS CAWB 2020+ 的 Book View：顶栏、一排导航、四栏卡片（Clients｜Opportunities｜Market & CIO View Highlights｜Communication/To-dos/Book development），Clients 卡里有人名、标签、待办药丸，右栏是小卡堆叠 | Lu #22512 要靠近的原界面，且是 CA06 画的那个工作台本身 |
-| `ca/image/Investment Hub - Client View 1.png`（辅助，只看单客户页的卡内排法，不管整页版式） | 同一套组件在客户页里的用法 | 看同一组件在另一屏有没有变形 |
+| `ca/image/Investment Hub - Client View 1.png` | UBS CAWB「Client View → Investment Hub」：顶部客户信息条＋标签页；左边主栏四个区块（Top insights、Opportunities、Idea Builder、Engagement timeline），右边窄栏 Agenda 和 Contextual Brief | 这就是找回稿画的那一屏，Lu #22512 要靠近的原界面 |
 
-只用这两张本地原图，不另找公开参考：UBS 内部界面没有公开等价物，公开的金融看板（visual 的 research-refs）只能给组件灵感，不能当「靠近 UBS」的依据。
+只用这一张。UBS 内部界面没有公开等价物；公开的金融看板（visual 的 research-refs.md）只能给组件灵感，不能当「靠近 UBS」的依据。
 
 ### 机制
-| # | 机制 | 怎么检查（1440×900；390×844 只判第 4 条） | 出自 |
+| # | 机制 | 怎么检查（1440×900） | 出自 |
 |---|---|---|---|
-| 1 | 栏和网格：桌面是四栏等宽的白卡，卡间缝很窄，页面底色比卡暗一档 | 量四张卡的外框宽：彼此相差 ≤ 4%；卡间缝 ≈ 卡宽的 6%（原图估算：卡宽 ≈ 438px，缝 ≈ 25px，按 1942px 宽原图）；卡是白底、页底是浅灰，卡边有 1px 细线，没有大投影。三栏或五栏、栏宽不等，都不通过 | `CAWB.png` |
-| 2 | 字号层级只有四档，且卡标题是细体大字，卡内正文是常规体小字 | 量 computed font-size：卡标题（Clients、Opportunities 这一级）> 条目标题（人名、机会名，加粗）> 正文 > 标签/脚注。卡标题明显比条目标题大（原图估算约 1.5 倍）且字重轻于条目标题；同一级的字号全页一致；出现第五档或同级不同字号，不通过。字体：原图看起来是无衬线人文体，我没法确认具体字体名（未验），visual 现用 Source Sans，判的时候只看字形粗细和层级，不判字体名 | `CAWB.png` |
-| 3 | 色板：红色只给「要处理」的信号，其余全是中性色加一种浅蓝 | 取色统计卡内非灰非白的颜色：红（urgent 文字、红点、UBS 标）＝只出现在待办/红按钮/未读点；浅蓝＝标签底和日历的客户事件；没有第三种饱和色（原图里日历里有一块赭红底，是「选中事件」，也算红系）。绿色只允许出现在涨幅数字上。标签是浅蓝底深蓝字的小方角药丸，不是彩色多色标签 | `CAWB.png` |
-| 4 | 组件密度：一张客户卡＝头像字母圈＋姓名＋AUM 一行、一排标签、一段两到三行正文、两行带图标的小药丸；卡内元素间距紧凑、没有大图 | 数一张 Clients 卡里的层：头像/姓名行 1、标签行 1、正文 ≤ 3 行、药丸 ≤ 2 行；卡内最大的非文字元素只能是 icon 和字母头像圈，不放照片大图（`CAWB.png` 里 Clients 卡没有照片，只有 Market 的新闻缩略图）。390 下四栏改成单栏竖排，卡宽＝视口减两边留白，不出现横向滚动。人像照片是 #22512 之前的方向，与原界面不符，除非 Lu 另说，不放 | `CAWB.png`；Lu #22512 |
+| 1 | 两栏：主栏加右边窄栏，主栏里的区块顺序固定 | 量主栏和右栏外框宽：主栏约是右栏的 3 倍（估算：主栏 ≈ 787、右栏 ≈ 257，按原图缩小后的坐标）；右栏上 Agenda（含一个深色整宽按钮）在 Contextual Brief 之上；主栏从上到下顺序是 Priority/Top insights → Opportunities → Idea builder → Engagement timeline，每个区块一个带小箭头的节标题，标题下面一张白卡。顺序错、右栏跑到主栏下面，不通过 | 原图 |
+| 2 | 表格行：每行＝粗体标题＋1–3 条圆点要点，右边是类别小药丸和一个开关；表头是小号灰字，表头下一条深色细线 | 数 Top insights 的列：Insight / Category / Add to agenda 三列；每行要点 ≤ 3 条；开关打开＝红底白勾，关闭＝白底灰框；行与行之间一条浅灰线，没有斑马纹、没有大投影。Opportunities 比它多 Scheduled、Proposal 等列，但「标题＋要点在左、开关在最右」不变 | 原图 |
+| 3 | 色板：页面浅灰、卡白、标签灰蓝小方角；红色只给「已选中/紧急」，其余是中性色 | 取色统计：红＝开关已打开、High urgency 标签（粉底红字）、Hot topic、时间线的红色小标题和 UBS 标；Medium urgency 是米黄底；类别药丸是灰蓝底深色字，圆角很小（估算 ≤ 3px）。除此之外没有第三种饱和色：没有蓝色按钮、没有绿色（原图里连涨跌数字都没有）。一般按钮是深灰黑底白字 | 原图 |
+| 4 | 图片：照片只出现在 Engagement timeline 的文章卡里；其他区块只有字、小图标和标签 | 数照片：Top insights、Opportunities、Idea builder、右栏里照片＝0；时间线每张文章卡＝左边一张缩略图（约占卡宽 1/3，估算）＋右边红色小标题＋大标题＋一行小字，人像和新闻图都按这个排。Idea builder 每行 4 张等宽灰底卡：标题＋开关、标签、2–3 行说明、底部一个白色「N products」按钮；卡内无照片。时间线人像是原图本来就有的（Paul Donovan 那张），不删 | 原图 |
 
-### 没有的 / 要 Lu 或 legal 定的
-- **没写绝对 px 的字号**：`CAWB.png` 是 1942px 宽的截图，缩放比例未知，所以第 2 条只写比例，不写 px。要 px，需要 UBS 的设计规范，我没有。
-- **没有 hover/点开态**：原图里只有一个展开的「opportunities」浮层，其他状态没有，不判。
-- **UBS 字体与 logo 的使用**：属 legal #22500 的范围（UBS 书面同意），我不判。
-- 找不到「照片＋多色标签＋卡底按钮」同时出现的公开金融看板（见 research-refs.md 的「没查到」），所以不引公开参考。
-- 第 1 条的 6% 缝宽是对 `CAWB.png` 一张图目测，没有逐像素量；visualqa 可以用同一张原图重量后改这条数字。
+### 没有的 / 要别人定的
+- **字号**：原图是缩过的截图，缩放比例未知，不写 px。能判的只有层级：节标题（Top insights 这一级）是细体、比表格行标题（粗体）大；行标题 > 要点 > 表头/标签。需要 px 要 UBS 的设计规范，我没有。字体名未验，只看字形粗细和层级。
+- **手机宽度（390）**：原图只有桌面版，没有手机版，我不写手机上怎么排。390 下只判不横向滚动、不坏图；怎么折叠要 Lu 或 visual 定，写进稿里的方案不算偏离。
+- **hover/展开态**：原图没有，不判。
+- **UBS 字体、logo 的使用**属 legal #22500 范围，我不判。
 
 ## 怎么用（给视觉校正）
 - 按 harness-core `checks.md`「标杆对照」：只看渲染出来的结果，把截图和上面的参考并排，逐条判。结论只写通过或不通过；不通过时写最大的一条差距，并写明违反了哪一块的第几条（例如「② 第 2 条」）。
