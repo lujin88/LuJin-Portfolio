@@ -143,6 +143,8 @@ function useBackgroundParallax() {
       const vh = window.innerHeight
       for (const el of layers) {
         const host = el.parentElement as HTMLElement
+        // spec and flow have list lines / label leaders baked into the art that must stay on their HTML text (Lu #22743)
+        if (host.classList.contains('v13-spec') || host.classList.contains('v13-flow')) { el.style.transform = ''; continue }
         if (getComputedStyle(el).position !== 'absolute') { el.style.transform = ''; continue }
         const r = host.getBoundingClientRect()
         if (r.bottom < -vh || r.top > 2 * vh) continue
