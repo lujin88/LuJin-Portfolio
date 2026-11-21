@@ -196,7 +196,9 @@ export function ClosingStars() {
     io.observe(canvas)
     const ro = new ResizeObserver(() => {
       resize()
-      if (!raf) draw(0)
+      // Resizing clears the canvas. Redraw a still frame only when motion is
+      // allowed; under reduced motion the canvas must stay empty.
+      if (!raf && !reduce.matches) draw(0)
     })
     ro.observe(canvas)
     reduce.addEventListener('change', update)
