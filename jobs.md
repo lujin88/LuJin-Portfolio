@@ -4,8 +4,8 @@
 
 **我查到的事实（来源：仓库代码，不是访客调研）**
 - 首页是 `/index`（根 `/` 按 AGENTS.md 留空）。
-- 顶部导航：Case studies 下 5 个案例（`/client-advisory`、`/EON`、`/man-truck-bus`、`/etf-savings-plan`、`/bmw-design-system`），`How I work`（`/lab/way-of-work`），实验区 3 项（`/lab/weather-aquarium`、`/ai-companion-pet`、`/lab/party-planner`）。出处：`global-header/components/site-header.tsx:41-111`。
-- 联系方式：页头和页脚都有 `mailto:` 链接（`site-header.tsx:608`、`global-footer/components/site-footer.tsx:8`），另有 `/contact` 页。
+- 顶部导航：Case studies 下 5 个案例（`/client-advisory`、`/EON`、`/man-truck-bus`、`/etf-savings-plan`、`/bmw-design-system`），`How I work`（`/lab/way-of-work`），Playground（实验区）4 项（`/lab/weather-aquarium`、`/ai-companion-pet`、`/lab/party-planner`、`/lab/tools` 即 Agent Tools）。出处：`global-header/components/site-header.tsx:41-145`。
+- 联系方式：页头和页脚都有 `mailto:` 链接（`site-header.tsx:662`、`:798`、`global-footer/components/site-footer.tsx:8`），另有 `/contact` 页。
 - 站点有多语言（`app/i18n`）。
 
 **说明**：没有访客调研、没有分析数据，「谁」是假设；点击次数是拟的门槛。Lu #22606 同意按这 7 件走查。
@@ -17,8 +17,8 @@
 | 3 | 同上 | 在案例页之间来回看，不迷路 | 任一案例页 | 每个案例页都能用导航回到 `/index` 和跳到另一个案例；当前所在项在导航里有高亮；5 个案例链接全部能打开，不 404 |
 | 4 | 想了解她怎么工作的人 | 读懂 Lu 的工作方式 | `/index` → How I work | ≤ 2 次点击到 `/lab/way-of-work`；页面能滚到底；动效（如有）关掉「减少动态」后也能读到同样内容 |
 | 5 | 任何人 | 联系 Lu | 任意一页 | 每页 1 次点击内找到邮箱（页头或页脚）；`mailto:` 链接地址正确；`/contact` 页能打开 |
-| 6 | 非英语读者 | 用自己的语言看站 | `/index` | 切换语言后，当前页文案换成所选语言，没有残留的原语言整段、没有 `[待补]` 之类占位；刷新后语言保持（待确认是否该保持） |
-| 7 | 好奇的访客 | 看实验作品 | 导航实验区 | 3 个实验入口都能打开；每个都有一句话说明它是什么；无报错页 |
+| 6 | 非英语读者 | 用自己的语言看站 | `/index` | 切换语言后，当前页文案换成所选语言，没有残留的原语言整段、没有 `[待补]` 之类占位 |
+| 7 | 好奇的访客 | 看实验作品 | 导航实验区 | 导航实验区现有 4 个入口，每个都能打开；每个都有一句话说明它是什么；无报错页 |
 
 **每件事 QA 怎么走**：按「从哪开始」打开，只用页面上看得见的入口，数点击，截 1440 和 390 两个宽度，勾「做到什么算成」里的每一项；做不到就写第几件事的第几项没成。
 
