@@ -61,11 +61,22 @@
   object-fit: cover;
   object-position: 22% top;
   visibility: hidden;
+  opacity: 0;
   pointer-events: none;
+  transition: opacity 600ms ease, visibility 0s linear 600ms;
 }
 
+/* Fade in over the poster (same first frame) so the first decoded frames
+   never pop (Lu #22115). */
 .photoVideoActive {
   visibility: visible;
+  opacity: 1;
+  transition: opacity 600ms ease, visibility 0s;
+}
+
+/* Between loops: fade the held last frame back to the poster (= first frame). */
+.photoVideoFading {
+  opacity: 0;
 }
 
 @media (min-width: 1024px) {
