@@ -10,12 +10,11 @@ const IMG_W = 2400
 const IMG_H = 683
 const LOOP_MS = 10000
 
-// The demo laid the 2400×683 image out as object-cover / top on 1440×720.
-// Star positions are stored in that frame and converted to image pixels once,
-// so they stay glued to the picture at any section size.
-const DEMO_SCALE = 720 / IMG_H
-const DEMO_OFFSET_X = (1440 - IMG_W * DEMO_SCALE) / 2
-
+// Star field (Lu #22542: scattered, not in one row; dimmer). Positions are
+// generated once from a fixed seed (deterministic, same on every load) inside
+// a band of the sky above the quote, spread by a minimum distance so they
+// look scattered. Coordinates are image pixels, so they stay glued to the
+// picture at any section size.
 type Star = {
   x: number
   y: number
@@ -31,45 +30,63 @@ type Star = {
 }
 
 const W = '#ffffff'
-const star = (
-  x: number, y: number, r: number, peakR: number, halo: string, blur: number,
-  base: number, peak: number, phase: number, freq: number, spike?: number,
-): Star => ({
-  x: (x - DEMO_OFFSET_X) / DEMO_SCALE,
-  y: y / DEMO_SCALE,
-  r: r / DEMO_SCALE,
-  peakR: peakR / DEMO_SCALE,
-  halo, blur, base, peak, phase, freq,
-  spike: spike === undefined ? undefined : spike / DEMO_SCALE,
-})
 
-const STARS: Star[] = [
-  // Tier 1: five anchor stars with a 4-point glint at peak
-  star(220, 175, 2.2, 3.0, '#bae6fd', 6, 0.15, 1.0, 0.5, 2, 6),
-  star(420, 155, 2.0, 2.8, '#e0f2fe', 5, 0.12, 0.95, 2.3, 2, 5),
-  star(720, 132, 2.4, 3.2, '#bae6fd', 7, 0.18, 1.0, 4.1, 3, 7),
-  star(1020, 155, 2.0, 2.8, '#e0f2fe', 5, 0.12, 0.95, 1.4, 2, 5),
-  star(1240, 180, 2.2, 3.0, '#bae6fd', 6, 0.15, 1.0, 3.6, 3, 6),
-  // Tier 2: ten mid stars
-  star(150, 205, 1.4, 1.9, '#7dd3fc', 3, 0.1, 0.75, 1.2, 2),
-  star(280, 168, 1.5, 2.0, '#bae6fd', 3, 0.1, 0.78, 4.8, 3),
-  star(340, 152, 1.3, 1.7, '#7dd3fc', 2.5, 0.08, 0.7, 3.1, 2),
-  star(500, 142, 1.6, 2.2, '#bae6fd', 3.5, 0.12, 0.8, 0.8, 2),
-  star(630, 136, 1.4, 1.9, '#7dd3fc', 3, 0.08, 0.72, 5.4, 3),
-  star(800, 136, 1.5, 2.0, '#bae6fd', 3, 0.1, 0.75, 2.9, 2),
-  star(920, 145, 1.3, 1.7, '#7dd3fc', 2.5, 0.08, 0.7, 4.4, 3),
-  star(1110, 165, 1.6, 2.2, '#bae6fd', 3.5, 0.12, 0.8, 0.2, 2),
-  star(1170, 172, 1.4, 1.9, '#7dd3fc', 3, 0.08, 0.72, 3.9, 3),
-  star(1290, 195, 1.5, 2.0, '#bae6fd', 3, 0.1, 0.75, 1.9, 2),
-  // Tier 3: seven faint deep-space stars
-  star(670, 125, 1.0, 1.3, '#7dd3fc', 2, 0.05, 0.5, 2.2, 1),
-  star(770, 126, 1.1, 1.4, '#bae6fd', 2, 0.06, 0.52, 5.1, 2),
-  star(180, 185, 1.0, 1.3, '#7dd3fc', 2, 0.05, 0.48, 3.4, 2),
-  star(570, 148, 1.0, 1.3, '#bae6fd', 2, 0.05, 0.48, 1.7, 3),
-  star(860, 140, 1.0, 1.3, '#7dd3fc', 2, 0.05, 0.48, 4.9, 2),
-  star(1060, 170, 1.1, 1.4, '#bae6fd', 2, 0.06, 0.5, 2.8, 1),
-  star(1210, 160, 1.0, 1.3, '#7dd3fc', 2, 0.05, 0.48, 0.6, 3),
+function mulberry32(seed: number) {
+  let a = seed
+  return () => {
+    a |= 0
+    a = (a + 0x6d2b79f5) | 0
+    let t = Math.imul(a ^ (a >>> 15), 1 | a)
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+}
+
+// [tier, count, r, peakR, base, peak, blur, spike]
+const TIERS: [string, number, number, number, number, number, number, number][] = [
+  ['#bae6fd', 5, 1.8, 2.4, 0.08, 0.55, 4, 4],
+  ['#7dd3fc', 10, 1.2, 1.6, 0.06, 0.42, 2.5, 0],
+  ['#7dd3fc', 7, 0.9, 1.15, 0.03, 0.28, 1.5, 0],
 ]
+
+function buildStars(): Star[] {
+  const rnd = mulberry32(22542)
+  // image pixels: x across the picture, y in the sky/sea band above the quote
+  const X0 = 90
+  const X1 = IMG_W - 90
+  const Y0 = 50
+  const Y1 = 270
+  const MIN_D = 130
+  const pts: { x: number; y: number }[] = []
+  let guard = 0
+  while (pts.length < 22 && guard++ < 5000) {
+    const x = X0 + rnd() * (X1 - X0)
+    const y = Y0 + rnd() * (Y1 - Y0)
+    if (pts.every((p) => Math.hypot(p.x - x, p.y - y) >= MIN_D)) pts.push({ x, y })
+  }
+  const out: Star[] = []
+  let i = 0
+  for (const [halo, count, r, peakR, base, peak, blur, spike] of TIERS) {
+    for (let k = 0; k < count && i < pts.length; k++, i++) {
+      out.push({
+        x: pts[i].x,
+        y: pts[i].y,
+        r,
+        peakR,
+        halo,
+        blur,
+        base,
+        peak,
+        phase: rnd() * Math.PI * 2,
+        freq: 1 + Math.floor(rnd() * 3),
+        spike: spike || undefined,
+      })
+    }
+  }
+  return out
+}
+
+const STARS: Star[] = buildStars()
 
 export function ClosingStars() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -130,7 +147,7 @@ export function ClosingStars() {
           ctx.beginPath()
           ctx.strokeStyle = W
           ctx.lineWidth = 0.8
-          ctx.globalAlpha = k * 0.9 * alpha
+          ctx.globalAlpha = k * 0.6 * alpha
           ctx.moveTo(px - len, py)
           ctx.lineTo(px + len, py)
           ctx.moveTo(px, py - len)
