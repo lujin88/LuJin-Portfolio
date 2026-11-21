@@ -137,9 +137,16 @@ function useBackgroundParallax() {
     const layers = Array.from(document.querySelectorAll<HTMLElement>('.bmw-v13 .v13-bg, .bmw-v13 .v13-docs-bg'))
     // the store boxes are drawn in the hero art, so their HTML labels must drift with it
     const stores = Array.from(document.querySelectorAll<HTMLElement>('.bmw-v13 .v13-hero .v13-store'))
+    // closing block ("Have an opportunity in mind?"): its glow layer lags the page via --bm-py (Lu #22757)
+    const closing = document.querySelector<HTMLElement>('.bm-closing')
     let raf = 0
     const update = () => {
       raf = 0
+      if (closing) {
+        const r = closing.getBoundingClientRect()
+        const q = Math.max(0, Math.min(1, (window.innerHeight - r.top) / (window.innerHeight + r.height)))
+        closing.style.setProperty('--bm-py', mq.matches ? '0px' : `${((q - 0.5) * 120).toFixed(1)}px`)
+      }
       if (mq.matches) { for (const el of layers) el.style.transform = ''; for (const el of stores) el.style.transform = ''; return }
       const vh = window.innerHeight
       for (const el of layers) {
