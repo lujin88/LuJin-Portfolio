@@ -16,7 +16,6 @@
 .v13-hero h1{margin:.45cqw 0 0;font-size:3.333cqw;line-height:1.1;font-weight:600;letter-spacing:-.01em}
 .v13-hero-sub{margin-top:.25cqw;font-size:1.944cqw;line-height:1.4;color:#c3cce0}
 .v13-store{position:absolute;top:53.8cqw;width:8.5cqw;height:7.6cqw;border-radius:1.2cqw;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 1.1cqw 1.15cqw;color:#fff;text-decoration:none;font-size:1cqw;line-height:1.25}
-@media(min-width:900px){.v13-store::after{content:"\2197";position:absolute;top:1.3cqw;right:1.6cqw;font-size:1.2cqw;line-height:1;color:#d5dbea;opacity:.8}}
 .v13-store[data-store=apple]{left:78.2cqw}.v13-store[data-store=play]{left:87.4cqw}
 .v13-store-ico{position:absolute;top:1.15cqw;left:1.15cqw;width:1.5cqw;height:1.5cqw;color:#fff}.v13-store span{color:#d5dbea}.v13-store b{font-weight:500}
 .v13-store:hover{background:#ffffff14}.v13-store:focus-visible{outline:2px solid #fff;outline-offset:2px}
