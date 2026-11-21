@@ -93,8 +93,21 @@
 .concept-etf-word { position: absolute; left: 0; right: 0; bottom: 15px; text-align: center; font-size: 100px; font-weight: 800; letter-spacing: 0.05em; color: rgba(167, 139, 250, 0.18); white-space: nowrap; }
 .concept-etf-hand { position: absolute; left: 50%; bottom: -90px; width: 340px; height: auto; transform: translateX(-50%); }
 .concept-man-cab { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: 78% 55%; }
-.concept-etf .concept-art { top: 132px; }
-.concept-art img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+/* Keep the complete poster below the CTA; no card or copy geometry changes. */
+.concept-etf .concept-art {
+  top: 164px;
+  width: min(100%, 396px);
+  margin-inline: auto;
+}
+.concept-art img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; }
+.concept-etf .concept-art img {
+  top: auto;
+  height: auto;
+  max-height: 100%;
+  /* Soften the image boundary without moving or cropping its contents. */
+  mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent), linear-gradient(to right, transparent, #000 1%, #000 99%, transparent);
+  mask-composite: intersect;
+}
 .concept-original-man-media { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .concept-original-man-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 78% 55%; opacity: 0; }
 .concept-original-man-media.playing video { opacity: 1; }
@@ -111,6 +124,7 @@
 @media (max-width: 720px) {
   #home-concept { padding-top: var(--space-xl); padding-bottom: 0; }
   .concept-card { height: 440px; padding: 24px; }
+  .concept-etf .concept-art { width: min(100%, 411px); }
   .concept-etf-hand { width: 230px; bottom: -30px; }
   .concept-man-cab, .concept-original-man-media video { object-position: 92% 55%; }
   .concept-chip strong:not(.concept-chip-num) { font-size: var(--font-size-caption); white-space: nowrap; }
