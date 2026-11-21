@@ -22,7 +22,7 @@
    browser's scroll restoration. Hold the pinned height until layout() has run
    once, so the page does not grow by 150vh above the viewport. Same viewport rule
    as the JS pin check. */
-@media (min-width: 1100px) and (min-height: 760px) and (prefers-reduced-motion: no-preference) {
+@media (min-width: 1100px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
   #home-showcase:not([data-pin-ready]) { min-height: 525vh; }
 }
 .home-showcase-pinned .home-showcase-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
