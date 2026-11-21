@@ -59,7 +59,7 @@ export function ConceptGallery() {
         <img src={`${BASE}/page-${current + 1}-1440.png`} alt={`${name}, ${t('ca.concept.gallery.fictional')}`} width={1440} height={1059} />
         <span>{t('ca.concept.gallery.fullscreen')}</span>
       </button>
-      <p className={styles.caption}>{`${name} · ${current + 1} / ${names.length}`}</p>
+      <p className={styles.caption}>{`${name} · ${current + 1} of ${names.length}`}</p>
 
       <dialog
         ref={dialogRef}
