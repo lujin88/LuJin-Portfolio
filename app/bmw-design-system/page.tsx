@@ -4,7 +4,8 @@ import { socialMetadata } from '../seo'
 import { SiteClosing } from '../components/site-closing'
 import '../components/site-closing-case.css'
 import './closing.css'
-import { BMWOneSource } from './BMWOneSource'
+// BMWOneSource (old rule matrix / Climate interactions) is kept in the folder, not deleted: swap this import to restore it.
+import { BMWSystemV13 } from './BMWSystemV13'
 
 const DESCRIPTION =
   'Lu Jin on leading a six-person design team on the BMW app, designing remote controls in light and dark, and revisiting vehicle capability reviews with AI.'
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 export default function MobilityStudy() {
   return <HtmlChrome activeHref="/bmw-design-system" theme="dark" backgroundColor="#101318">
     <link rel="stylesheet" href="/styles/shell-components.css" />
-    <BMWOneSource />
+    <BMWSystemV13 />
     <SiteClosing className="site-closing-case bm-closing" />
   </HtmlChrome>
 }
