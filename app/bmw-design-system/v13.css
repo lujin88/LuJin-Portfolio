@@ -185,14 +185,11 @@
  .v13-hero h1{font-size:36px;line-height:1.1;margin:8px 0 0}
  .v13-hero-sub{font-size:17px;line-height:1.75;margin-top:16px;max-width:672px}
  .v13-stores{display:flex;align-items:center;gap:16px}
- /* store frames are drawn in the hero art: sample them at the 1440 art size so box, frame and badge keep a fixed size */
- .v13-store{position:relative;left:auto!important;top:auto;width:122px;height:109px;border-radius:17px;background:url(/assets/images/bmw-system/v13/hero.webp) no-repeat;background-size:1440px 960px}
- .v13-store[data-store=apple]{background-position:-1126px -775px}
- .v13-store[data-store=play]{background-position:-1259px -775px}
- .v13-store:hover{background:url(/assets/images/bmw-system/v13/hero.webp) no-repeat;background-size:1440px 960px}
- .v13-store[data-store=apple]:hover{background-position:-1126px -775px}
- .v13-store[data-store=play]:hover{background-position:-1259px -775px}
- .v13-store .v13-badge{width:101px}.v13-store .v13-badge-play{width:129px;margin:-8px -7px}
+ /* store badges (scout #22897): Apple min height 40px, Google >= Apple, clear space 1/4 badge height. The frames from the hero art are cropped away
+    by the 1536:790 stage, so each badge sits in its own CSS frame. Apple 120x40; Google body 154x40 (its 646x250 file has 6.35% transparent margin, cancelled by the negative margin) */
+ .v13-store{position:relative;left:auto!important;top:auto;width:auto;height:auto;padding:16px 20px;border-radius:17px;background:#0a142659;border:1px solid #ffffff1f}
+ .v13-store:hover{background:#ffffff14}
+ .v13-store .v13-badge{width:120px}.v13-store .v13-badge-play{width:154px;margin:-9.8px -9.8px}
  .v13-spec{padding-block:48px}
  .v13-spec h2{font-size:min(36px,3.7cqw);line-height:1.1;font-weight:600;width:34cqw;left:62.2cqw}
  .v13-spec li{font-size:15px}
