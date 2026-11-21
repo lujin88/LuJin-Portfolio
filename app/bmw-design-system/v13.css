@@ -78,7 +78,7 @@
 .v13-groups dd{font-size:1.8cqw;color:#c3cce0}
 .v13-caption{position:absolute;left:4cqw;top:61.4cqw;font-size:1.278cqw;color:#c3cce0}
 
-@media(max-width:1023px){
+@media(max-width:899px){
   .bmw-v13{font-size:16px}
   .v13-docs{aspect-ratio:auto;padding:56px 16px 40px;background:linear-gradient(to bottom,#16295c00 180px,#16295c 320px),url(/assets/images/bmw-system/v13/section-04-atmosphere.jpg) 100% 0/auto 320px no-repeat,#16295c}
   .v13-docs-bg{display:none}
@@ -102,7 +102,7 @@
   .v13-caption{position:static;margin-top:18px;font-size:13px}
 }
 
-@media(max-width:1023px){
+@media(max-width:899px){
   .v13-hero,.v13-spec,.v13-flow,.v13-key{aspect-ratio:auto}
   .v13-bg{position:static;display:block}
   .v13-hero{padding-bottom:36px}
@@ -154,7 +154,7 @@
 .v13-store .v13-badge{display:block;width:7cqw;height:auto}
 .v13-store .v13-badge-play{width:8.97cqw;margin:-.57cqw -.5cqw}
 .v13-store:hover{background:none}
-@media(max-width:1023px){
+@media(max-width:899px){
   .v13-stores{align-items:center}
   .v13-store{display:flex;flex:0 0 auto;min-height:0;padding:0;border:0;background:none;border-radius:0}
   .v13-store .v13-badge{width:auto;height:44px}
@@ -162,9 +162,9 @@
 }
 
 /* Desktop density (Lu #22821/#22835, visual #22856): foreground art is one fixed 1040px stage, the page background stays full bleed.
-   Below 1024px the stage is transparent and the stacked layout above applies. */
+   Below 900px the stage is transparent and the stacked layout above applies. */
 .v13-review-stage{display:contents}
-@media(min-width:1024px){
+@media(min-width:900px){
  .bmw-v13 section+section{margin-top:0}
  .bmw-v13 section{aspect-ratio:auto;isolation:isolate}
  .bmw-v13 section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--v13-atmo) center/cover no-repeat;filter:blur(96px);opacity:.55;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 24%,#000 76%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 24%,#000 76%,transparent)}
@@ -194,15 +194,15 @@
  .v13-store[data-store=play]:hover{background-position:-1259px -775px}
  .v13-store .v13-badge{width:101px}.v13-store .v13-badge-play{width:129px;margin:-8px -7px}
  .v13-spec{padding-block:48px}
- .v13-spec h2{font-size:36px;line-height:1.1;font-weight:600;width:34cqw;left:62.2cqw}
+ .v13-spec h2{font-size:min(36px,3.7cqw);line-height:1.1;font-weight:600;width:34cqw;left:62.2cqw}
  .v13-spec li{font-size:15px}
  .v13-spec li b{font-size:18.4px}
  .v13-spec-note{font-size:15px;line-height:1.75;top:37cqw;width:32cqw}
  .v13-spec-caption{font-size:13px;top:45cqw;line-height:1.6}
  .v13-flow,.v13-docs,.v13-key{padding-block:48px}
- .v13-flow h2,.v13-docs h2,.v13-key .v13-head h2{font-size:36px;line-height:1.1;letter-spacing:-.02em;max-width:768px;width:auto}
+ .v13-flow h2,.v13-docs h2,.v13-key .v13-head h2{font-size:min(36px,3.7cqw);line-height:1.1;letter-spacing:-.02em;max-width:768px;width:auto}
  .v13-docs h2,.v13-key .v13-head h2{margin-inline:auto}
- .v13-flow-head p,.v13-docs .v13-head p,.v13-key .v13-head p{font-size:17px;line-height:1.75;width:auto;max-width:672px;margin:24px auto 0}
+ .v13-flow-head p,.v13-docs .v13-head p,.v13-key .v13-head p{font-size:17px;line-height:1.75;width:auto;max-width:672px;margin:min(24px,2cqw) auto 0}
  .v13-flow-label,.v13-caption,.v13-key .v13-key-caption{font-size:13px;line-height:1.6}
  .v13-flow-label{left:85cqw}
  .v13-brand{font-size:28px}
