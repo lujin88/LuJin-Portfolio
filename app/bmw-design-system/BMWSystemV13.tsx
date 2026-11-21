@@ -149,7 +149,7 @@ function useBackgroundParallax() {
         const hero = host.classList.contains('v13-hero')
         // -1..1 while the section crosses the viewport; the hero only drifts up so its top edge never shows a gap
         const p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2)))
-        const ty = hero ? Math.min(1, Math.max(0, -r.top / r.height)) * -r.height * 0.06 : p * r.height * 0.03
+        const ty = hero ? Math.min(1, Math.max(0, -r.top / r.height)) * -r.height * 0.06 : p * r.height * 0.015
         el.style.transform = `translate3d(0,${ty.toFixed(1)}px,0)`
       }
     }
