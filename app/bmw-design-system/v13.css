@@ -147,3 +147,16 @@
   .v13-key-art{display:block;margin:12px 0 0;aspect-ratio:1070/800;background:url(/assets/images/bmw-system/v13/section-05.webp) 49.4% 89.5%/143.6% auto no-repeat}
   .v13-key .v13-key-caption{position:static;text-align:left;padding:0 20px;margin-top:6px;font-size:13px}
 }
+
+/* Official store badges (Lu #22801): Apple "Download on the App Store" (black, en-US) and Google "Get it on Google Play" (en_US generic PNG),
+   unmodified, not recoloured or cropped; the Google file's own transparent margin is its clear space. Both badges show the same height. */
+.v13-store{align-items:center;justify-content:center;padding:0;background:none;border:0}
+.v13-store .v13-badge{display:block;width:7cqw;height:auto}
+.v13-store .v13-badge-play{width:8.97cqw;margin:-.57cqw -.5cqw}
+.v13-store:hover{background:none}
+@media(max-width:899px){
+  .v13-stores{align-items:center}
+  .v13-store{display:flex;flex:0 0 auto;min-height:0;padding:0;border:0;background:none;border-radius:0}
+  .v13-store .v13-badge{width:auto;height:44px}
+  .v13-store .v13-badge-play{width:auto;height:65.5px;margin:-10.75px -9px}
+}
