@@ -1,4 +1,5 @@
 'use client'
+import { useEffect } from 'react'
 import './v13.css'
 import { useTranslation } from '@i18n/use-translation'
 
@@ -129,7 +130,39 @@ function DocsSection() {
   )
 }
 
+// Parallax (Lu #22731): the text-free background art drifts slower than the page. Transform only (GPU, no layout),
+// one rAF per scroll frame, off for reduced motion and on the stacked mobile layout where the art is in flow.
+function useBackgroundParallax() {
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (mq.matches) return
+    const layers = Array.from(document.querySelectorAll<HTMLElement>('.bmw-v13 .v13-bg, .bmw-v13 .v13-docs-bg'))
+    let raf = 0
+    const update = () => {
+      raf = 0
+      const vh = window.innerHeight
+      for (const el of layers) {
+        const host = el.parentElement as HTMLElement
+        if (getComputedStyle(el).position !== 'absolute') { el.style.transform = ''; continue }
+        const r = host.getBoundingClientRect()
+        if (r.bottom < -vh || r.top > 2 * vh) continue
+        const hero = host.classList.contains('v13-hero')
+        // -1..1 while the section crosses the viewport; the hero only drifts up so its top edge never shows a gap
+        const p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2)))
+        const ty = hero ? Math.min(1, Math.max(0, -r.top / r.height)) * -r.height * 0.06 : p * r.height * 0.03
+        el.style.transform = `translate3d(0,${ty.toFixed(1)}px,0)`
+      }
+    }
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update) }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); if (raf) cancelAnimationFrame(raf) }
+  }, [])
+}
+
 export function BMWSystemV13() {
+  useBackgroundParallax()
   return (
     <main className="bmw-v13" id="top">
       <HeroSection />
