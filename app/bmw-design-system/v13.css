@@ -11,11 +11,12 @@
 /* 01 hero (art 1536x1024) */
 .v13-hero{aspect-ratio:3/2}
 .v13-hero .v13-bg{background-image:url(/assets/images/bmw-system/v13/hero.webp);-webkit-mask-image:linear-gradient(to bottom,#000 97%,transparent);mask-image:linear-gradient(to bottom,#000 97%,transparent)}
-.v13-hero-head{position:absolute;left:5.6cqw;top:51.5cqw}
+.v13-hero-head{position:absolute;left:5.6cqw;top:52.8cqw}
 .v13-eyebrow{font-size:1.278cqw;line-height:1.4;letter-spacing:.08em;font-weight:600;color:#5b8def}
 .v13-hero h1{margin:.45cqw 0 0;font-size:3.333cqw;line-height:1.1;font-weight:600;letter-spacing:-.01em}
 .v13-hero-sub{margin-top:.25cqw;font-size:1.944cqw;line-height:1.4;color:#c3cce0}
-.v13-store{position:absolute;top:53.8cqw;width:8.5cqw;height:7.6cqw;border-radius:1.2cqw;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 1.1cqw 1.15cqw;color:#fff;text-decoration:none;font-size:1.15cqw;line-height:1.25}
+.v13-store{position:absolute;top:53.8cqw;width:8.5cqw;height:7.6cqw;border-radius:1.2cqw;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 1.1cqw 1.15cqw;color:#fff;text-decoration:none;font-size:1cqw;line-height:1.25}
+@media(min-width:900px){.v13-store::after{content:"\2197";position:absolute;top:1.3cqw;right:1.6cqw;font-size:1.2cqw;line-height:1;color:#d5dbea;opacity:.8}}
 .v13-store[data-store=apple]{left:78.2cqw}.v13-store[data-store=play]{left:87.4cqw}
 .v13-store span{color:#d5dbea}.v13-store b{font-weight:500}
 .v13-store:hover{background:#ffffff14}.v13-store:focus-visible{outline:2px solid #fff;outline-offset:2px}
