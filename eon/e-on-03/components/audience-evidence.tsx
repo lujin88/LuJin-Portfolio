@@ -30,6 +30,7 @@ const CARD_LEAD_MS = 50 // cards may start this much before the ring lands
 const RING_R = 42
 const RING_C = 2 * Math.PI * RING_R
 const REDUCE = '(prefers-reduced-motion: reduce)'
+const LOOP_HOLD_MS = 5000 // family clip: hold on the last frame this long, then play again
 
 const SEGMENTS = [
   { icon: 'ri-home-4-line', tone: 'bg-lavender' },
@@ -65,6 +66,9 @@ export function AudienceEvidence({ alt }: { alt: string }) {
   const [stat, setStat] = useState(STAT)
   const [ringDone, setRingDone] = useState(false)
   const [listInView, setListInView] = useState(false)
+  // Family clip (row 60): only mounted when motion is allowed; the still photo stays underneath.
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [videoOn, setVideoOn] = useState(false)
 
   // Arm, then start watching only after the hidden frame has been painted, so a section that
   // is already in view at load still animates from its start state instead of skipping it.
@@ -84,6 +88,7 @@ export function AudienceEvidence({ alt }: { alt: string }) {
     let raf1 = 0
     let raf2 = 0
 
+    setVideoOn(true)
     setRing('out')
     setCards('out')
     setStat(0)
@@ -102,6 +107,8 @@ export function AudienceEvidence({ alt }: { alt: string }) {
       setRing('static')
       setCards('static')
       setStat(STAT)
+      videoRef.current?.pause()
+      setVideoOn(false)
     }
     mq.addEventListener('change', onChange)
 
@@ -139,6 +146,65 @@ export function AudienceEvidence({ alt }: { alt: string }) {
     if (cards === 'out' && ringDone && listInView) setCards('in')
   }, [cards, ringDone, listInView])
 
+  // Family clip (Lu #19786 A): plays, holds its last frame (≈ first frame) for 5s, plays again.
+  // Hidden tab or scrolled away pauses it (and the 5s wait); reduced motion never mounts it.
+  useEffect(() => {
+    const root = rootRef.current
+    const video = videoRef.current
+    if (!videoOn || !root || !video) return
+    const mq = window.matchMedia(REDUCE)
+    let inView = false
+    let waitLeft = 0 // ms of the end-hold still to wait; 0 = not holding
+    let waitSince = 0
+    let timer = 0
+    const open = () => inView && !document.hidden && !mq.matches
+    const startWait = () => {
+      waitSince = performance.now()
+      timer = window.setTimeout(() => {
+        waitLeft = 0
+        video.currentTime = 0
+        sync()
+      }, waitLeft)
+    }
+    const sync = () => {
+      if (!open()) {
+        video.pause()
+        if (waitLeft > 0 && timer) {
+          clearTimeout(timer)
+          timer = 0
+          waitLeft = Math.max(0, waitLeft - (performance.now() - waitSince))
+        }
+        return
+      }
+      if (waitLeft > 0) {
+        if (!timer) startWait()
+        return
+      }
+      void video.play().catch(() => {})
+    }
+    const onEnded = () => {
+      waitLeft = LOOP_HOLD_MS
+      timer = 0
+      sync()
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        inView = e.isIntersecting
+        sync()
+      },
+      { threshold: 0.35 },
+    )
+    io.observe(root)
+    video.addEventListener('ended', onEnded)
+    document.addEventListener('visibilitychange', sync)
+    return () => {
+      clearTimeout(timer)
+      io.disconnect()
+      video.removeEventListener('ended', onEnded)
+      document.removeEventListener('visibilitychange', sync)
+    }
+  }, [videoOn])
+
   const progress = stat / 100
   const statText =
     lang === 'de'
@@ -161,6 +227,20 @@ export function AudienceEvidence({ alt }: { alt: string }) {
           loading="lazy"
           className="aud-ev-photo absolute inset-0 h-full w-full object-cover"
         />
+        {videoOn && (
+          <video
+            ref={videoRef}
+            aria-hidden="true"
+            muted
+            playsInline
+            preload="metadata"
+            poster="/assets/images/eon/audience-photo-clean.webp"
+            className="aud-ev-photo absolute inset-0 h-full w-full object-cover object-center"
+          >
+            <source src="/assets/videos/eon/audience-family-5s.webm" type="video/webm" />
+            <source src="/assets/videos/eon/audience-family-5s.mp4" type="video/mp4" />
+          </video>
+        )}
         {/* Soft left shade so the desktop cards read on the bright foliage. */}
         <div
           aria-hidden="true"

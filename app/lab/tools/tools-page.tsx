@@ -23,6 +23,7 @@ const PROJECTS = [
     videoMp4Dark: `${VID}/monitor-card-loop-dark.mp4`,
     alt: 'Agent Monitor demo interface',
     mediaClass: 'monitor',
+    startTime: 0.5,
     href: 'https://github.com/lujin88/agent-monitor',
   },
   {
@@ -121,6 +122,7 @@ export function ToolsPage() {
                 mediaClass={p.mediaClass}
                 alt={p.alt}
                 poster={p.poster}
+                startTime={'startTime' in p ? p.startTime : 0}
                 videoWebm={'videoWebm' in p ? p.videoWebm : undefined}
                 videoMp4={'videoMp4' in p ? p.videoMp4 : undefined}
                 videoWebmDark={'videoWebmDark' in p ? p.videoWebmDark : undefined}

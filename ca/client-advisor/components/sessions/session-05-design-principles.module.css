@@ -13,17 +13,17 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  padding-top: clamp(4.5rem, 8vw, 7rem);
-  padding-bottom: clamp(4.5rem, 8vw, 7rem);
-  padding-left: var(--content-inset, 24px);
-  padding-right: var(--content-inset, 24px);
+  padding-top: var(--editorial-section-space);
+  padding-bottom: var(--editorial-section-space);
+  padding-left: var(--editorial-gutter);
+  padding-right: var(--editorial-gutter);
   /* Starts on 04's last colour (#06101f) so 04 -> 05 has no step. */
   background: linear-gradient(180deg, var(--s05-bg-deep) 0%, var(--s05-bg) 42%, var(--ca-bg, #0b1220) 100%);
   color: var(--s05-text);
 }
 
-/* The glows sit on their own layer so the top edge can fade in; on the section
-   itself the top glow was cut off by the section edge (hard line under 04). */
+/* Fade the decorative glows at both edges. The base colour then meets 04 and
+   06 continuously across the full width, including the non-overlapping phone layout. */
 .section::before {
   content: '';
   position: absolute;
@@ -33,8 +33,8 @@
   background:
     radial-gradient(60% 45% at 50% 20%, rgba(28, 74, 150, 0.32), transparent 70%),
     radial-gradient(70% 48% at 50% 100%, rgba(18, 56, 120, 0.26), transparent 72%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 12%, #000 26%);
-          mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 12%, #000 26%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 12%, #000 26%, #000 calc(100% - 6rem), transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 12%, #000 26%, #000 calc(100% - 6rem), transparent 100%);
 }
 
 .inner {
@@ -65,12 +65,7 @@
 }
 
 .headline {
-  font-size: 2.5rem;
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
   color: var(--s05-text);
-  text-wrap: balance;
   margin: var(--ca-heading-gap, 1.75rem) 0 0;
 }
 
@@ -162,29 +157,8 @@
 }
 
 .faceBack {
+  visibility: hidden;
   transform: rotateY(180deg);
-}
-
-/* WebKit ignores backface-visibility on these overflow:hidden faces (the
-   back's text showed through the front as mirrored copy). Also switch each
-   face's visibility at the point where the card is edge on (the ease-out curve
-   is 50% rotated at ~0.085s of 0.65s), so only the face that is turned toward the reader is ever painted. */
-.faceBack {
-  visibility: hidden;
-  transition: visibility 0s linear 0.085s;
-}
-
-.flipped .faceBack {
-  visibility: visible;
-}
-
-.faceFront {
-  visibility: visible;
-  transition: visibility 0s linear 0.085s;
-}
-
-.flipped .faceFront {
-  visibility: hidden;
 }
 
 .artwork {
@@ -248,9 +222,9 @@
 
 .cardTitle {
   display: block;
-  font-size: clamp(1.5rem, 2vw, 1.75rem);
+  font-size: var(--ca-type-h3);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: var(--ca-type-h3-line);
   letter-spacing: -0.01em;
   color: var(--s05-text);
   text-wrap: balance;
@@ -274,18 +248,6 @@
 
 /* ---------- Responsive ---------- */
 
-@media (min-width: 640px) {
-  .headline {
-    font-size: 2.75rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .headline {
-    font-size: clamp(2.75rem, 3.6vw, 3.25rem);
-  }
-}
-
 @media (min-width: 1280px) {
   .intro {
     font-size: 1rem;
@@ -300,8 +262,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cardInner,
-  .faceFront,
-  .faceBack,
   .artworkImg {
     transition: none;
   }

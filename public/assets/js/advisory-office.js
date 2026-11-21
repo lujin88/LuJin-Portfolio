@@ -4,6 +4,7 @@
  window.__advisoryOfficeCleanup=function(e){all.forEach(function(c){c(e);});};
  function initStage(stage){
  var video=stage.querySelector('video'),reduce=matchMedia('(prefers-reduced-motion: reduce)'),visible=false,failed=false;
+ if(!video)return function(){};
  var playOnce=video&&video.hasAttribute('data-play-once'),finished=false;
  if(playOnce)video.loop=false;
  var events=new AbortController();

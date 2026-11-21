@@ -1,7 +1,9 @@
 'use client'
 
+import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { SeasonCrossfade } from './season-crossfade'
+import { useAfterHero } from './use-after-hero'
 import { SiteClosing } from '../../components/site-closing'
 
 const IMG = '/assets/images/lab/weather-aquarium'
@@ -237,6 +239,7 @@ function HeroScreenVideo() {
   const layerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const motionAllowed = useMotionAllowed()
+  const afterHero = useAfterHero()
   const [playing, setPlaying] = useState(false)
   const [failed, setFailed] = useState(false)
 
@@ -257,7 +260,7 @@ function HeroScreenVideo() {
     const observer = new ResizeObserver(place)
     observer.observe(frame)
     return () => observer.disconnect()
-  }, [motionAllowed, failed])
+  }, [motionAllowed, failed, afterHero])
 
   useEffect(() => {
     const video = videoRef.current
@@ -284,9 +287,9 @@ function HeroScreenVideo() {
       document.removeEventListener('visibilitychange', syncPlayback)
       video.pause()
     }
-  }, [motionAllowed, failed])
+  }, [motionAllowed, failed, afterHero])
 
-  if (!motionAllowed || failed) return null
+  if (!motionAllowed || failed || !afterHero) return null
 
   return (
     <div ref={layerRef} className={`hero-screen${playing ? ' is-playing' : ''}`} aria-hidden="true">
@@ -330,11 +333,17 @@ function VocabArt({
   label,
   active,
   onActive,
+  cycleId,
+  onCycleEnd,
 }: {
   item: (typeof VOCAB)[number]
   label: string
   active: boolean
   onActive: (on: boolean) => void
+  // Non-zero while the speaker button owns one play-through of this clip (starts on the
+  // real speech start event). The cycle finishes on its own; only another word stops it.
+  cycleId: number
+  onCycleEnd: (id: number) => void
 }) {
   const { clip } = item
   const rootRef = useRef<HTMLButtonElement>(null)
@@ -344,6 +353,8 @@ function VocabArt({
   const [ready, setReady] = useState(false)
   const [failed, setFailed] = useState(false)
   const canPlay = ready && motionAllowed && !failed
+  const cycling = cycleId !== 0
+  const playing = active || cycling
 
   useEffect(() => {
     const root = rootRef.current
@@ -363,7 +374,7 @@ function VocabArt({
   useEffect(() => {
     const video = videoRef.current
     if (!video || !ready) return
-    if (active && canPlay) {
+    if (playing && canPlay) {
       video.currentTime = 0
       void video.play().catch(() => {
         // Playback can be refused after a quick leave.
@@ -372,13 +383,26 @@ function VocabArt({
     }
     video.pause()
     if (video.currentTime !== 0) video.currentTime = 0
-  }, [active, canPlay, ready])
+  }, [playing, canPlay, ready])
+
+  // Same word spoken again: restart the cycle from the first frame.
+  useEffect(() => {
+    const video = videoRef.current
+    if (!cycleId || !video || !ready || !canPlay) return
+    video.currentTime = 0
+    void video.play().catch(() => {
+      // Playback can be refused; the next speech start tries again.
+    })
+  }, [cycleId, ready, canPlay])
 
   // Stop when scrolled away or the tab is hidden, so a tapped clip does not keep running.
   useEffect(() => {
     const root = rootRef.current
-    if (!root || !active) return
-    const stop = () => onActive(false)
+    if (!root || !playing) return
+    const stop = () => {
+      onActive(false)
+      if (cycleId) onCycleEnd(cycleId)
+    }
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) stop()
     })
@@ -391,7 +415,7 @@ function VocabArt({
       observer.disconnect()
       document.removeEventListener('visibilitychange', onHidden)
     }
-  }, [active, onActive])
+  }, [playing, cycleId, onActive, onCycleEnd])
 
   const mask = clipMask(clip)
 
@@ -428,7 +452,8 @@ function VocabArt({
           // #t=0.001 makes iOS Safari paint the first frame without playing.
           src={load ? `/assets/videos/lab/weather-aquarium/${clip.file}#t=0.001` : undefined}
           muted
-          loop
+          // Hover loops; a speaker cycle plays once and settles on the first frame.
+          loop={active}
           playsInline
           preload={load ? 'auto' : 'none'}
           aria-hidden="true"
@@ -440,6 +465,9 @@ function VocabArt({
           }}
           onSeeked={(event) => {
             if (event.currentTarget.readyState >= 2) setReady(true)
+          }}
+          onEnded={() => {
+            if (cycleId) onCycleEnd(cycleId)
           }}
           onError={() => setFailed(true)}
         />
@@ -554,7 +582,7 @@ function PoseButton({
   return (
     <button
       ref={buttonRef}
-      className="pose reveal pose-nodot"
+      className="pose pose-nodot"
       type="button"
       aria-pressed={autoLoop ? undefined : hoverOnly ? playing : selected}
       style={{ ['--index' as string]: item.index }}
@@ -623,6 +651,7 @@ function PoseButton({
 }
 
 export function WeatherAquariumPage() {
+  const afterHero = useAfterHero()
   const rootRef = useRef<HTMLDivElement>(null)
   const heroMediaRef = useRef<HTMLDivElement>(null)
   const heroDeviceRef = useRef<HTMLDivElement>(null)
@@ -630,11 +659,30 @@ export function WeatherAquariumPage() {
   const [pose, setPose] = useState(0)
   const [activeTap, setActiveTap] = useState<number | null>(null)
   const [activeVocab, setActiveVocab] = useState<Word | null>(null)
+  // One speaker-driven clip cycle at a time. `id` is the speech request number.
+  const [cycle, setCycle] = useState<{ word: Word; id: number } | null>(null)
+  const [speakingWord, setSpeakingWord] = useState<Word | null>(null)
+  const speechSerial = useRef(0)
+  const stopSpeech = useCallback(() => {
+    speechSerial.current += 1
+    if ('speechSynthesis' in window) speechSynthesis.cancel()
+    setCycle(null)
+    setSpeakingWord(null)
+  }, [])
+  const onCycleEnd = useCallback((id: number) => setCycle((current) => (current?.id === id ? null : current)), [])
   // Stable so PoseButton's outside-tap listener isn't rebound on every render.
   const onPoseTap = useCallback(
     (index: number, on: boolean) => setActiveTap((current) => (on ? index : current === index ? null : current)),
     [],
   )
+
+  useEffect(() => {
+    const onHidden = () => {
+      if (document.hidden) stopSpeech()
+    }
+    document.addEventListener('visibilitychange', onHidden)
+    return () => document.removeEventListener('visibilitychange', onHidden)
+  }, [stopSpeech])
 
   useEffect(() => {
     if (!('speechSynthesis' in window)) return
@@ -651,23 +699,6 @@ export function WeatherAquariumPage() {
     if (!root) return
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const revealItems = [...root.querySelectorAll('.reveal')]
-    const revealObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return
-          entry.target.classList.add('is-visible')
-          observer.unobserve(entry.target)
-        })
-      },
-      { rootMargin: '0px 0px -8%', threshold: 0.08 },
-    )
-
-    if (reduced || !('IntersectionObserver' in window)) {
-      revealItems.forEach((item) => item.classList.add('is-visible'))
-    } else {
-      revealItems.forEach((item) => revealObserver.observe(item))
-    }
 
     const heroMedia = heroMediaRef.current
     const heroDevice = heroDeviceRef.current
@@ -688,7 +719,6 @@ export function WeatherAquariumPage() {
     }
 
     return () => {
-      revealObserver.disconnect()
       heroMedia?.removeEventListener('pointermove', onMove)
       heroMedia?.removeEventListener('pointerleave', onLeave)
       if ('speechSynthesis' in window) speechSynthesis.cancel()
@@ -697,6 +727,8 @@ export function WeatherAquariumPage() {
 
   const speak = (word: Word) => {
     if (!('speechSynthesis' in window)) return
+    stopSpeech()
+    const token = speechSerial.current
     const entry = DICTIONARY[language]
     const say = () => {
       const utterance = new SpeechSynthesisUtterance(entry.words[word])
@@ -704,6 +736,21 @@ export function WeatherAquariumPage() {
       utterance.rate = language === 'zh' ? 0.82 : 0.9
       const voice = voiceForLocale(entry.locale)
       if (voice) utterance.voice = voice
+      // The real speech start (not the click) starts the clip; stale callbacks are ignored.
+      utterance.onstart = () => {
+        if (token !== speechSerial.current) return
+        setSpeakingWord(word)
+        setCycle({ word, id: token })
+      }
+      utterance.onend = () => {
+        if (token !== speechSerial.current) return
+        setSpeakingWord(null)
+      }
+      utterance.onerror = () => {
+        if (token !== speechSerial.current) return
+        setSpeakingWord(null)
+        setCycle(null)
+      }
       speechSynthesis.cancel()
       speechSynthesis.speak(utterance)
     }
@@ -712,6 +759,10 @@ export function WeatherAquariumPage() {
       return
     }
     const onVoices = () => {
+      if (token !== speechSerial.current) {
+        speechSynthesis.removeEventListener('voiceschanged', onVoices)
+        return
+      }
       if (!speechSynthesis.getVoices().length) return
       speechSynthesis.removeEventListener('voiceschanged', onVoices)
       say()
@@ -725,8 +776,8 @@ export function WeatherAquariumPage() {
       <div className="wa-page" ref={rootRef}>
         <header className="hero" id="overview">
           <div className="shell">
-            <div className="hero-grid">
-              <div className="hero-copy reveal">
+            <LayerScrollGroup className="hero-grid">
+              <div className="hero-copy" data-move="96">
                 <h1>
                   Weather
                   <br />
@@ -740,7 +791,8 @@ export function WeatherAquariumPage() {
               </div>
 
               <div
-                className="hero-media reveal"
+                className="hero-media"
+                data-move="64"
                 ref={heroMediaRef}
                 aria-label="Weather Aquarium shown on an iPad"
               >
@@ -754,49 +806,53 @@ export function WeatherAquariumPage() {
                   <HeroScreenVideo />
                 </div>
               </div>
-            </div>
+            </LayerScrollGroup>
           </div>
         </header>
 
         <main id="main">
           <section className="seasons-section" id="seasons" aria-labelledby="seasons-title">
-            <div className="shell section-heading reveal">
-              <p className="eyebrow">01 / The year in one place</p>
-              <h2 id="seasons-title">The same world changes with the season outside.</h2>
-            </div>
+            <LayerScrollGroup>
+              <div className="shell section-heading" data-move="64">
+                <p className="eyebrow">01 / The year in one place</p>
+                <h2 id="seasons-title">The same world changes with the season outside.</h2>
+              </div>
 
-            <div className="shell seasons-frame">
-              <SeasonCrossfade />
-            </div>
+              <div className="shell seasons-frame" data-move="64">
+                <SeasonCrossfade />
+              </div>
+            </LayerScrollGroup>
           </section>
 
           <section className="editions-section" id="editions" aria-labelledby="editions-title">
-            <div className="shell">
-              <div className="section-heading compact reveal">
-                <p className="eyebrow">02 / Limited editions</p>
-                <h2 id="editions-title">For special days, the same world gets a new little story.</h2>
-              </div>
+            <LayerScrollGroup className="shell">
+              <div className="editions-block" data-move="64">
+                <div className="section-heading compact">
+                  <p className="eyebrow">02 / Limited editions</p>
+                  <h2 id="editions-title">For special days, the same world gets a new little story.</h2>
+                </div>
 
-              <div className="edition-grid">
-                {EDITIONS.map((edition) => (
-                  <figure className="edition reveal" key={edition.caption}>
-                    <div
-                      className={`edition-media ${edition.video ? 'holiday-cover' : 'holiday-slice'}`}
-                      style={{ ['--slice' as string]: edition.slice }}
-                    >
-                      <img src={`${IMG}/${edition.image}`} alt={edition.alt} loading="lazy" />
-                      {edition.video && <HolidayVideo file={edition.video} />}
-                    </div>
-                    <figcaption>{edition.caption}</figcaption>
-                  </figure>
-                ))}
+                <div className="edition-grid">
+                  {EDITIONS.map((edition) => (
+                    <figure className="edition" key={edition.caption}>
+                      <div
+                        className={`edition-media ${edition.video ? 'holiday-cover' : 'holiday-slice'}`}
+                        style={{ ['--slice' as string]: edition.slice }}
+                      >
+                        <img src={afterHero ? `${IMG}/${edition.image}` : undefined} alt={afterHero ? edition.alt : ''} loading="lazy" />
+                        {edition.video && <HolidayVideo file={edition.video} />}
+                      </div>
+                      <figcaption>{edition.caption}</figcaption>
+                    </figure>
+                  ))}
+                </div>
               </div>
-            </div>
+            </LayerScrollGroup>
           </section>
 
           <section className="learning-section" id="learning" aria-labelledby="learning-title">
-            <div className="shell">
-              <div className="learning-head reveal">
+            <LayerScrollGroup className="shell">
+              <div className="learning-head" data-move="80">
                 <div>
                   <p className="eyebrow">03 / Look, listen, learn</p>
                   <h2 id="learning-title">Every object in the aquarium can become a word.</h2>
@@ -809,7 +865,10 @@ export function WeatherAquariumPage() {
                       key={item.id}
                       type="button"
                       aria-pressed={language === item.id}
-                      onClick={() => setLanguage(item.id)}
+                      onClick={() => {
+                        stopSpeech()
+                        setLanguage(item.id)
+                      }}
                     >
                       {item.label}
                     </button>
@@ -821,18 +880,21 @@ export function WeatherAquariumPage() {
                 {VOCAB.map((item) => {
                   const label = DICTIONARY[language].words[item.word]
                   return (
-                    <article className="vocab-item reveal" key={item.word}>
+                    <article className="vocab-item" data-move="64" key={item.word}>
                       <VocabArt
                         item={item}
                         label={label}
                         active={activeVocab === item.word}
                         onActive={(on) => setActiveVocab((current) => (on ? item.word : current === item.word ? null : current))}
+                        cycleId={cycle?.word === item.word ? cycle.id : 0}
+                        onCycleEnd={onCycleEnd}
                       />
                       <div className="vocab-row">
                         <button
                           className="speak-button"
                           type="button"
                           aria-label={`Listen to ${label}`}
+                          data-speaking={speakingWord === item.word}
                           onClick={() => speak(item.word)}
                         >
                           <i className="ri-volume-up-line" aria-hidden="true" />
@@ -843,18 +905,18 @@ export function WeatherAquariumPage() {
                   )
                 })}
               </div>
-            </div>
+            </LayerScrollGroup>
           </section>
 
           <section className="motion-section" id="motion" aria-labelledby="motion-title">
-            <div className="shell motion-grid">
-              <div className="motion-copy reveal">
+            <LayerScrollGroup className="shell motion-grid">
+              <div className="motion-copy" data-move="84">
                 <p className="eyebrow">04 / Character motion</p>
                 <h2 id="motion-title">Built in Rive</h2>
                 <p>The character uses reusable Rive states for idle, waving, getting dressed and exploring.</p>
               </div>
 
-              <div className="pose-track" aria-label="Character motion states">
+              <div className="pose-track" data-move="64" aria-label="Character motion states">
                 {POSES.map((item) => (
                   <PoseButton
                     key={item.label}
@@ -866,7 +928,7 @@ export function WeatherAquariumPage() {
                   />
                 ))}
               </div>
-            </div>
+            </LayerScrollGroup>
           </section>
         </main>
       </div>

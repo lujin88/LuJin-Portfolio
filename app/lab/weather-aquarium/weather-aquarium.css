@@ -209,6 +209,10 @@
   color: var(--ink);
 }.wa-page .editions-section{
   padding-bottom: 80px;
+}.wa-page .editions-block{
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 32px);
 }.wa-page .edition-grid{
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -218,7 +222,7 @@
   margin: 0;
 }.wa-page .edition-media{
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   aspect-ratio: 4 / 3;
   background: #dbe8dc;
 }.wa-page .holiday-slice img{
@@ -382,6 +386,9 @@
 }.wa-page .speak-button:hover{
   background: white;
   transform: translateY(-2px);
+}.wa-page .speak-button[data-speaking="true"]{
+  border-color: var(--ink);
+  background: white;
 }.wa-page .speak-button i{
   font-size: 18px;
   line-height: 1;
@@ -729,3 +736,5 @@ html:has(.wa-page) {
   .wa-page .learning-section,
   .wa-page .motion-section { padding-top: 48px; }
 }
+
+.edition-media img:not([src]) { visibility: hidden; }
