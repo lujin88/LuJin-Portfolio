@@ -24,10 +24,10 @@ function HeroSection() {
       </header>
       <nav className="v13-stores" aria-label={t('bmw.hero.downloadLabel')}>
         <a className="v13-store" data-store="apple" href="https://apps.apple.com/ch/app/my-bmw/id1519034860" target="_blank" rel="noopener" aria-label={t('bmw.v13.hero.appStoreLabel')}>
-          <svg className="v13-store-ico" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.2.9-1.3 1.3-2.5 1.3-2.6-.1 0-2.5-1-2.5-3.900zM14.2 5.800c.6-.8 1.1-1.8.9-2.8-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.7-1 2.7 1 .1 2-.5 2.8-1.300z"/></svg><span>{t('bmw.v13.hero.open')}</span><b>{t('bmw.v13.hero.appStore')}</b>
+          <span>{t('bmw.v13.hero.open')}</span><b>{t('bmw.v13.hero.appStore')}</b>
         </a>
         <a className="v13-store" data-store="play" href="https://play.google.com/store/apps/details?id=de.bmw.connected.mobile20.row" target="_blank" rel="noopener" aria-label={t('bmw.v13.hero.playStoreLabel')}>
-          <svg className="v13-store-ico" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6 3.500v17L18.5 12 6 3.500z"/></svg><span>{t('bmw.v13.hero.open')}</span><b>{t('bmw.v13.hero.playStore')}</b>
+          <span>{t('bmw.v13.hero.open')}</span><b>{t('bmw.v13.hero.playStore')}</b>
         </a>
       </nav>
     </section>
