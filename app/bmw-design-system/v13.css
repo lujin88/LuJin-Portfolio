@@ -195,6 +195,6 @@
 
 /* Store links (legal #22902): plain text names, no logos or badge artwork. The frames drawn in the hero art are cropped away on desktop and not shown when stacked. */
 .v13-stores{align-items:center}
-.v13-store{position:relative;left:auto!important;top:auto;display:flex;align-items:center;justify-content:center;flex:0 0 auto;width:auto;height:auto;height:48px;min-height:0;padding:0 20px;border:1px solid #ffffff3d;border-radius:12px;background:#ffffff0a;color:#fff;font-size:15px;font-weight:500;line-height:1.2;text-decoration:none}
+.v13-store{position:relative;left:auto!important;top:auto;display:flex;align-items:center;justify-content:center;flex:0 0 auto;width:auto;height:auto;height:48px;min-height:0;padding:0 20px;border:1px solid #ffffff3d;border-radius:12px;background:#ffffff0a;color:#fff;font-size:15px;font-weight:600;line-height:1.2;text-decoration:none}
 .v13-store:hover{background:#ffffff1a}
 .v13-store:focus-visible{outline:2px solid #fff;outline-offset:2px}
