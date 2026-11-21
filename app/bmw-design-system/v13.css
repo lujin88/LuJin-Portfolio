@@ -148,19 +148,6 @@
   .v13-key .v13-key-caption{position:static;text-align:left;padding:0 20px;margin-top:6px;font-size:13px}
 }
 
-/* Official store badges (Lu #22801): Apple "Download on the App Store" (black, en-US) and Google "Get it on Google Play" (en_US generic PNG),
-   unmodified, not recoloured or cropped; the Google file's own transparent margin is its clear space. Both badges show the same height. */
-.v13-store{align-items:center;justify-content:center;padding:0;background:none;border:0}
-.v13-store .v13-badge{display:block;width:7cqw;height:auto}
-.v13-store .v13-badge-play{width:8.97cqw;margin:-.57cqw -.5cqw}
-.v13-store:hover{background:none}
-@media(max-width:899px){
-  .v13-stores{align-items:center}
-  .v13-store{display:flex;flex:0 0 auto;min-height:0;padding:0;border:0;background:none;border-radius:0}
-  .v13-store .v13-badge{width:auto;height:44px}
-  .v13-store .v13-badge-play{width:auto;height:65.5px;margin:-10.75px -9px}
-}
-
 /* Desktop density (Lu #22821/#22835, visual #22856): foreground art is one fixed 1040px stage, the page background stays full bleed.
    Below 900px the stage is transparent and the stacked layout above applies. */
 .v13-review-stage{display:contents}
@@ -185,11 +172,6 @@
  .v13-hero h1{font-size:36px;line-height:1.1;margin:8px 0 0}
  .v13-hero-sub{font-size:17px;line-height:1.75;margin-top:16px;max-width:672px}
  .v13-stores{display:flex;align-items:center;gap:16px}
- /* store badges (scout #22897): Apple min height 40px, Google >= Apple, clear space 1/4 badge height. The frames from the hero art are cropped away
-    by the 1536:790 stage, so each badge sits in its own CSS frame. Apple 120x40; Google body 154x40 (its 646x250 file has 6.35% transparent margin, cancelled by the negative margin) */
- .v13-store{position:relative;left:auto!important;top:auto;width:auto;height:auto;padding:16px 20px;border-radius:17px;background:#0a142659;border:1px solid #ffffff1f}
- .v13-store:hover{background:#ffffff14}
- .v13-store .v13-badge{width:120px}.v13-store .v13-badge-play{width:154px;margin:-9.8px -9.8px}
  .v13-spec{padding-block:48px}
  .v13-spec h2{font-size:min(36px,3.7cqw);line-height:1.1;font-weight:600;width:34cqw;left:62.2cqw}
  .v13-spec li{font-size:15px}
@@ -210,3 +192,9 @@
  .v13-groups{gap:24px}
  .v13-docs .v13-caption{left:4.8cqw;top:59cqw}
 }
+
+/* Store links (legal #22902): plain text names, no logos or badge artwork. The frames drawn in the hero art are cropped away on desktop and not shown when stacked. */
+.v13-stores{align-items:center}
+.v13-store{position:relative;left:auto!important;top:auto;display:flex;align-items:center;justify-content:center;flex:0 0 auto;width:auto;height:auto;height:48px;min-height:0;padding:0 20px;border:1px solid #ffffff3d;border-radius:12px;background:#ffffff0a;color:#fff;font-size:15px;font-weight:500;line-height:1.2;text-decoration:none}
+.v13-store:hover{background:#ffffff1a}
+.v13-store:focus-visible{outline:2px solid #fff;outline-offset:2px}

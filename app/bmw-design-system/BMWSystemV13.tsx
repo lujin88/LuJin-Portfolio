@@ -26,10 +26,10 @@ function HeroSection() {
         </header>
         <nav className="v13-stores" aria-label={t('bmw.hero.downloadLabel')}>
           <a className="v13-store" data-store="apple" href="https://apps.apple.com/ch/app/my-bmw/id1519034860" target="_blank" rel="noopener" aria-label={t('bmw.v13.hero.appStoreLabel')}>
-            <img className="v13-badge" src="/assets/images/bmw-system/v13/badge-app-store.svg" alt="" width="120" height="40" />
+            App Store
           </a>
           <a className="v13-store" data-store="play" href="https://play.google.com/store/apps/details?id=de.bmw.connected.mobile20.row" target="_blank" rel="noopener" aria-label={t('bmw.v13.hero.playStoreLabel')}>
-            <img className="v13-badge v13-badge-play" src="/assets/images/bmw-system/v13/badge-google-play.png" alt="" width="646" height="250" />
+            Google Play
           </a>
         </nav>
       </div>
