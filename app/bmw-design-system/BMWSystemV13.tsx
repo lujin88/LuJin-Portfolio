@@ -134,11 +134,13 @@ function DocsSection() {
 function useBackgroundParallax() {
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    if (mq.matches) return
     const layers = Array.from(document.querySelectorAll<HTMLElement>('.bmw-v13 .v13-bg, .bmw-v13 .v13-docs-bg'))
+    // the store boxes are drawn in the hero art, so their HTML labels must drift with it
+    const stores = Array.from(document.querySelectorAll<HTMLElement>('.bmw-v13 .v13-hero .v13-store'))
     let raf = 0
     const update = () => {
       raf = 0
+      if (mq.matches) { for (const el of layers) el.style.transform = ''; for (const el of stores) el.style.transform = ''; return }
       const vh = window.innerHeight
       for (const el of layers) {
         const host = el.parentElement as HTMLElement
@@ -152,13 +154,15 @@ function useBackgroundParallax() {
         const p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2)))
         const ty = hero ? Math.min(1, Math.max(0, -r.top / r.height)) * -r.height * 0.06 : p * r.height * 0.015
         el.style.transform = `translate3d(0,${ty.toFixed(1)}px,0)`
+        if (hero) for (const st of stores) st.style.transform = getComputedStyle(st).position === 'absolute' ? el.style.transform : ''
       }
     }
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update) }
     update()
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
-    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); if (raf) cancelAnimationFrame(raf) }
+    mq.addEventListener('change', onScroll)
+    return () => { mq.removeEventListener('change', onScroll); window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); if (raf) cancelAnimationFrame(raf) }
   }, [])
 }
 
