@@ -1,0 +1,45 @@
+.bmw-original{--ink:#eef1f5;--muted:#a9b2bd;--rule:#2a323c;--blue:#2f8cff;background:#101318;color:var(--ink);font:17px/1.6 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow:clip}
+.bmw-original *,.bmw-original *::before,.bmw-original *::after{box-sizing:border-box}
+.bmw-original :where(h1,h2,h3,p,dl,dd,ul,figure){margin:0;padding:0}
+.bmw-original img{display:block;max-width:100%;height:auto}
+.bmw-original .bo-width{width:min(1040px,calc(100% - clamp(32px,10vw,144px)));margin-inline:auto;padding-bottom:clamp(64px,9vw,128px)}
+.bmw-original .bo-title{padding:clamp(104px,10vw,144px) clamp(16px,5vw,72px) clamp(32px,4vw,56px);text-align:center}
+.bmw-original .bo-collab{font-family:Georgia,serif!important;font-weight:400;font-size:clamp(24px,2.6vw,34px)!important;text-align:center;padding-top:clamp(32px,4vw,56px)}
+.bmw-original h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(44px,7vw,96px);line-height:1.02;letter-spacing:-.04em;text-wrap:balance}
+.bmw-original .bo-meta{text-align:center;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:32px 0;border-bottom:1px solid var(--rule)}
+.bmw-original dt,.bmw-original .bo-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:600}
+.bmw-original .bo-block{padding-top:clamp(40px,6vw,80px)}
+.bmw-original .bo-block p+p{margin-top:1em}
+.bmw-original .bo-block p{max-width:68ch}
+.bmw-original .bo-lead{font-family:Georgia,serif;font-size:clamp(26px,3.4vw,40px)!important;line-height:1.2;letter-spacing:-.02em;max-width:24ch!important}
+.bmw-original strong{font-weight:600;color:#fff}
+.bmw-original .bo-fig{margin-top:28px;border-radius:12px;background:#fff}
+.bmw-original .bo-fig.wide{width:100%}
+.bmw-original .bo-pillars{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.bmw-original .bo-pillars li{display:grid;justify-items:center;gap:10px;padding:24px 8px;border:1px solid var(--rule);border-radius:12px;font-size:13px;letter-spacing:.1em;font-weight:600}
+.bmw-original .bo-pillars img{width:64px;height:64px;background:none;border-radius:0;margin:0}
+.bmw-original .bo-section{padding-top:clamp(56px,8vw,112px)}
+.bmw-original .bo-section-head{display:flex;align-items:center;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.bmw-original .bo-section-head img{border-radius:10px}
+.bmw-original h2:not(.bo-label){font-family:Georgia,serif;font-weight:400;font-size:clamp(32px,4.4vw,56px);letter-spacing:-.03em;line-height:1.05}
+.bmw-original h2 span{color:var(--blue);margin-right:.4em;font-size:.6em;font-family:-apple-system,Arial,sans-serif;vertical-align:.15em}
+.bmw-original .bo-items{display:grid;gap:clamp(40px,5vw,64px);padding-top:36px}
+.bmw-original .bo-item{max-width:760px}
+.bmw-original .bo-item-head{display:flex;align-items:center;gap:12px}
+.bmw-original .bo-item-head img{width:36px;height:36px;border-radius:8px}
+.bmw-original h3{font-size:clamp(20px,2.2vw,26px);font-weight:600;letter-spacing:-.01em}
+.bmw-original .bo-sub{margin-top:10px;color:#fff;font-weight:500}
+.bmw-original .bo-item p:not(.bo-sub){margin-top:1em;color:#cdd3da}
+.bmw-original .bo-item:has(.wide){max-width:none}
+.bmw-original .bo-item:has(.wide)>p{max-width:760px}
+@media(max-width:720px){.bmw-original{font-size:16px}.bmw-original .bo-meta{grid-template-columns:1fr;gap:16px}.bmw-original .bo-pillars{grid-template-columns:repeat(2,1fr)}.bmw-original .bo-fig:not(.wide){max-width:min(100%,360px)}}
+.bmw-original .bo-figure{margin:0}
+.bmw-original figcaption{margin-top:10px;font-size:14px;color:var(--muted);text-align:center}
+.bmw-original .bo-trio{display:grid;grid-template-columns:1fr minmax(0,376px) 1fr;gap:20px clamp(24px,4vw,56px);align-items:center}
+.bmw-original .bo-trio-a{justify-self:end;text-align:left}
+.bmw-original .bo-trio-b{justify-self:start}
+.bmw-original .bo-trio .bo-fig{margin-top:0}
+.bmw-original .bo-trio-body{grid-column:1/-1;max-width:760px}
+.bmw-original .bo-trio-body p+p{margin-top:1em}
+.bmw-original .bo-trio-body p{color:#cdd3da}
+@media(max-width:720px){.bmw-original .bo-trio{grid-template-columns:1fr}.bmw-original .bo-trio-a,.bmw-original .bo-trio-b{justify-self:start}}
