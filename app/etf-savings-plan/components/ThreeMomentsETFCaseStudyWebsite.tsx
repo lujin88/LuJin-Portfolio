@@ -71,11 +71,11 @@ export const ThreeMomentsETFCaseStudyWebsite = () => {
   <div className="story" ref={story}>
     <div className="story-copy">{moments.map((moment, index) => <article key={moment.id} id={moment.id} aria-labelledby={moment.id + '-heading'}>
         <p className="eyebrow">{moment.label}</p>
-        <h2 id={moment.id + '-heading'}>{moment.heading}</h2>
-        {index === 0 && <p className="research">Among 2,005 Swiss investors, 44% used a fund savings plan and 9% used one with ETFs. <a href="https://www.hslu.ch/-/media/campus/common/files/dokumente/w/ifz/studien/etf-anlegerstudie-schweiz-2025.pdf?sc_lang=de-ch" target="_blank" rel="noreferrer">HSLU study, 2025 ↗</a></p>}
-        <p className="story-text">{moment.body}</p>
+        <h2 data-type="h2" id={moment.id + '-heading'}>{moment.heading}</h2>
+        {index === 0 && <p data-type="body" className="research">Among 2,005 Swiss investors, 44% used a fund savings plan and 9% used one with ETFs. <a href="https://www.hslu.ch/-/media/campus/common/files/dokumente/w/ifz/studien/etf-anlegerstudie-schweiz-2025.pdf?sc_lang=de-ch" target="_blank" rel="noreferrer">HSLU study, 2025 ↗</a></p>}
+        <p data-type="body" className="story-text">{moment.body}</p>
         <div className="inline-phone"><Phone index={index} /></div>
-        {index === 2 && <p className="research closing">I’d measure how many plans still run after six months, and test whether people know what happens to their units when they stop.</p>}
+        {index === 2 && <p data-type="body" className="research closing">I’d measure how many plans still run after six months, and test whether people know what happens to their units when they stop.</p>}
       </article>)}</div>
     <div className="shared-phone">{moments.map((moment,index)=><div className="story-live-slot" hidden={active!==index} key={moment.id}><Phone index={index}/></div>)}</div>
   </div>

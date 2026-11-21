@@ -297,16 +297,16 @@ export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
     <svg className="ww-trail" aria-hidden="true"><path className="ww-ink"/><circle r="2.6"/></svg>
     {!portfolio&&<nav className="ww-nav" aria-label="Portfolio"><a href={base+'/index'} target="_blank" rel="noreferrer">Lu Jin</a><div><a href={base+'/index'} target="_blank" rel="noreferrer">Work</a><a href="#ww-top" aria-current="page">Lab</a><a href={base+'/about'} target="_blank" rel="noreferrer">About</a></div></nav>}
     <header className="ww-hero">
-      <h1>Making is fast now.<br/>Judging is the <span className="ww-word">work.</span></h1>
+      <h1 data-type="display">Making is fast now.<br/>Judging is the <span className="ww-word">work.</span></h1>
       <Scene index={0}/>
-      <p className="ww-intro">I turn my judgement into rules my agents follow. Where the rules don&apos;t reach, I decide.</p>
+      <p data-type="lead" className="ww-intro">I turn my judgement into rules my agents follow. Where the rules don&apos;t reach, I decide.</p>
     </header>
     {chapters.map((c,i)=><section className={'ww-chapter ww-c'+i} id={'ww-'+c.id} key={c.id}>
       <div className="ww-copy">
         <div className="ww-label"><b>0{i+1}</b>{c.label}</div>
-        <h2>{c.title}</h2>
-        <p>{c.context}</p>
-        <p>{c.decision}</p>
+        <h2 data-type="h2">{c.title}</h2>
+        <p data-type="body">{c.context}</p>
+        <p data-type="body">{c.decision}</p>
         {c.id === 'team' ? (
           <a
             className="ww-case-btn pill-btn"
@@ -326,7 +326,7 @@ export function WayOfWork({portfolio=false}:{portfolio?:boolean}){
         alt="The rabbit files a checked rule card in a blue index box." />
       <div className="ww-finale-copy">
         <p className="ww-finale-kicker">In 2020, the system held the components.</p>
-        <h2 id="ww-finale-title">Now it should hold the rules.</h2>
+        <h2 data-type="h2" id="ww-finale-title">Now it should hold the rules.</h2>
         <a className="ww-case-btn pill-btn" href={base+'/bmw-design-system'} target={portfolio?undefined:'_blank'} rel="noreferrer"><span>Explore the BMW case</span><Icon name="arrow-right-up-line" className="ww-case-icon" /></a>
       </div>
     </section>

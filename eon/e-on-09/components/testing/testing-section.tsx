@@ -89,12 +89,12 @@ export function TestingSection() {
             />
 
             <KineticLines
-              className="mt-6 text-pretty text-[52px] font-extrabold leading-[0.98] tracking-[-0.03em] text-navy-950 md:text-[64px] lg:max-xl:max-w-min"
+              className="type-chapter mt-6 text-pretty text-[52px] font-extrabold leading-[0.98] tracking-[-0.03em] text-navy-950 md:text-[64px] lg:max-xl:max-w-min"
               lines={[t('eon.testing.line1'), t('eon.testing.line2')]}
             />
 
             <OnceReveal>
-            <p className="mt-6 max-w-[460px] text-lg leading-relaxed text-navy-text">
+            <p data-type="body" className="mt-6 max-w-[460px] text-lg leading-relaxed text-navy-text">
               {t('eon.testing.body')}
             </p>
 
