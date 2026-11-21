@@ -124,6 +124,20 @@ export const ca = {
       path3Title: 'The result',
       path3Body:
         'One experience that unifies client context, portfolio, and research — without adding to the pile. Client signals in one view.',
+      // CA06 gallery (visual v2, #22951). The fictional study pages are English-only, so de repeats the English UI text until the writer supplies German.
+      gallery: {
+        prep: 'Client preparation',
+        evidence: 'Discussion evidence',
+        research: 'Research & examples',
+        choose: 'Choose a content page',
+        open: 'Open fullscreen:',
+        fullscreen: 'Open fullscreen',
+        fictional: 'fictional advisory workspace',
+        dialog: 'Conversation brief fullscreen',
+        close: 'Close',
+        closeLabel: 'Close fullscreen',
+        study: 'fictional design study',
+      },
       mockups: {
         'book-view': 'Advisor overview of clients and opportunities (illustrative concept)',
         'us-tech': 'Client view with research commentary and product ideas (illustrative concept)',
@@ -312,6 +326,20 @@ export const ca = {
       path3Title: 'Das Ergebnis',
       path3Body:
         'Ein Erlebnis, das Kundenkontext, Portfolio und Research verbindet — ohne den Stapel zu vergrößern. Kundensignale in einer Sicht.',
+      // CA06 gallery (visual v2, #22951). The fictional study pages are English-only, so de repeats the English UI text until the writer supplies German.
+      gallery: {
+        prep: 'Client preparation',
+        evidence: 'Discussion evidence',
+        research: 'Research & examples',
+        choose: 'Choose a content page',
+        open: 'Open fullscreen:',
+        fullscreen: 'Open fullscreen',
+        fictional: 'fictional advisory workspace',
+        dialog: 'Conversation brief fullscreen',
+        close: 'Close',
+        closeLabel: 'Close fullscreen',
+        study: 'fictional design study',
+      },
       mockups: {
         'book-view': 'Beraterübersicht mit Kunden und Opportunities (Konzept, nachgebaut)',
         'us-tech': 'Kundensicht mit Research-Kommentar und Produktideen (Konzept, nachgebaut)',

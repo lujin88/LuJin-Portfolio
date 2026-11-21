@@ -1,7 +1,7 @@
 'use client'
 
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
-import { ConceptMockupStack } from './concept-mockup-stack'
+import { ConceptGallery } from './concept-gallery'
 import { ConceptScrollStory } from './concept-scroll-story'
 import { useTranslation } from '@i18n/use-translation'
 
@@ -39,7 +39,7 @@ export function SessionConcept() {
 
   const visual = SHOW_CONCEPT_STACK ? (
     <ScrollReveal fadeOnly className="relative w-full">
-      <ConceptMockupStack />
+      <ConceptGallery />
     </ScrollReveal>
   ) : null
 
