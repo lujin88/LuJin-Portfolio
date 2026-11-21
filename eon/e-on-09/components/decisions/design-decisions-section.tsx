@@ -89,11 +89,11 @@ export function DesignDecisionsSection() {
             emphasis="strong"
           />
 
-          <h2 className="text-5xl font-extrabold leading-[1.02] tracking-tight text-foreground md:text-6xl lg:text-7xl">
+          <h2 data-type="h2" className="text-5xl font-extrabold leading-[1.02] tracking-tight text-foreground md:text-6xl lg:text-7xl">
             {t('eon.decisions.title')}
           </h2>
 
-          <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p data-type="body" className="text-lg leading-relaxed text-muted-foreground md:text-xl">
             {t('eon.decisions.intro')}{' '}
             <span className="font-bold text-foreground">
               {t('eon.decisions.introStrong')}
@@ -138,11 +138,11 @@ export function DesignDecisionsSection() {
                   isActive ? 'z-10 opacity-100' : 'pointer-events-none invisible z-0 opacity-0',
                 )}
               >
-                <h3 className={tabHeadingClassName}>{principle.heading}</h3>
-                <p className="w-full text-lg leading-relaxed text-muted-foreground">
+                <h3 data-type="h3" className={tabHeadingClassName}>{principle.heading}</h3>
+                <p data-type="body" className="w-full text-lg leading-relaxed text-muted-foreground">
                   {principle.body}
                 </p>
-                <p className="w-full text-lg font-bold text-foreground">
+                <p data-type="body" className="w-full text-lg font-bold text-foreground">
                   {principle.emphasis}
                 </p>
                 <div className="pt-2">
