@@ -3,6 +3,8 @@
 import { LayerScrollGroup } from '@eon/components/motion/layer-scroll-group'
 import { useTranslation } from '@i18n/use-translation'
 
+import { ClosingStars } from './closing-stars'
+
 export function ClosingSection() {
   const { t } = useTranslation()
   return (
@@ -17,6 +19,7 @@ export function ClosingSection() {
           alt={t('ca.closingAlt')}
           className="absolute inset-0 h-full w-full object-cover object-top"
         />
+        <ClosingStars />
         <div className="ca-closing-floor" />
       </div>
 
