@@ -99,7 +99,8 @@ export default function AgentMonitorLayout({
   transform: translateY(20px);
   transition: opacity var(--duration-reveal) var(--ease), transform var(--duration-reveal) var(--ease);
 }
-.am-site-closing .contact-reveal.is-visible {
+.am-site-closing .contact-reveal.is-visible,
+html:not([data-js]) .am-site-closing .contact-reveal {
   opacity: 1;
   transform: translateY(0);
 }

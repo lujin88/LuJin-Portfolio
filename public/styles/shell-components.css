@@ -109,7 +109,8 @@ body::before {
     transform var(--duration-reveal) var(--ease);
 }
 
-.contact-reveal.is-visible {
+.contact-reveal.is-visible,
+html:not([data-js]) .contact-reveal {
   opacity: 1;
   transform: translateY(0);
 }

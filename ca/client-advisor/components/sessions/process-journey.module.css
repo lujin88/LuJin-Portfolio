@@ -93,20 +93,22 @@
   transform: translate(-50%, -50%);
 }
 
+/* Hidden start state only while JS runs (JS_EARLY in app/layout.tsx); without it the
+   steps show in their end state. */
 @media (prefers-reduced-motion: no-preference) {
-  .node,
-  .label {
+  :global(html[data-js]) .node,
+  :global(html[data-js]) .label {
     opacity: 0;
     transform: translateY(8px);
   }
 
-  .connector {
+  :global(html[data-js]) .connector {
     opacity: 0;
     transform: scaleX(0.35);
     transform-origin: left center;
   }
 
-  .glow {
+  :global(html[data-js]) .glow {
     opacity: 0;
   }
 

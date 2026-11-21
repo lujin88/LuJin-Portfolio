@@ -72,7 +72,8 @@ export default function CompanionPetLayout({
   transform: translateY(20px);
   transition: opacity var(--duration-reveal) var(--ease), transform var(--duration-reveal) var(--ease);
 }
-.dd-closing .contact-reveal.is-visible {
+.dd-closing .contact-reveal.is-visible,
+html:not([data-js]) .dd-closing .contact-reveal {
   opacity: 1;
   transform: translateY(0);
 }
