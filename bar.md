@@ -312,7 +312,7 @@ Pip、礼盒、气球放在卡内图的旁边或压住卡边，轮廓按 ⑤ 第
 |---|---|---|---|
 | 1 | 两栏：主栏加右边窄栏，主栏里的区块顺序固定 | 量主栏和右栏外框宽：主栏约是右栏的 3 倍（估算：主栏 ≈ 787、右栏 ≈ 257，按原图缩小后的坐标）；右栏上 Agenda（含一个深色整宽按钮）在 Contextual Brief 之上；主栏从上到下顺序是 Priority/Top insights → Opportunities → Idea builder → Engagement timeline，每个区块一个带小箭头的节标题，标题下面一张白卡。顺序错、右栏跑到主栏下面，不通过 | 原图 |
 | 2 | 表格行：每行＝粗体标题＋1–3 条圆点要点，右边是类别小药丸和一个开关；表头是小号灰字，表头下一条深色细线 | 数 Top insights 的列：Insight / Category / Add to agenda 三列；每行要点 ≤ 3 条；开关打开＝红底白勾，关闭＝白底灰框；行与行之间一条浅灰线，没有斑马纹、没有大投影。Opportunities 比它多 Scheduled、Proposal 等列，但「标题＋要点在左、开关在最右」不变 | 原图 |
-| 3 | 色板：页面浅灰、卡白、标签灰蓝小方角；红色只给「已选中/紧急」，其余是中性色 | 取色统计：红＝开关已打开、High urgency 标签（粉底红字）、Hot topic、时间线的红色小标题和 UBS 标；Medium urgency 是米黄底；类别药丸是灰蓝底深色字，圆角很小（估算 ≤ 3px）。除此之外没有第三种饱和色：没有蓝色按钮、没有绿色（原图里连涨跌数字都没有）。一般按钮是深灰黑底白字 | 原图 |
+| 3 | 色板：页面浅灰、卡白；类别标签是小方角药丸，大多灰蓝，只有 Idea builder 的 Top products 一行有品类色（芥黄＝Structured products、青绿＝Investment funds、绿＝Private markets）；红色只给「已选中/紧急」 | 取色统计：红＝开关已打开、High urgency（粉底红字）、Hot topic、时间线红色小标题和 UBS 标；Medium urgency 米黄底；Opportunities/insights 的类别药丸是灰蓝底深字，圆角很小（估算 ≤ 3px）；品类色药丸**只**出现在 Top products 那一行的 4 张卡里，且每种品类一种色，其余区块不出现。除上面这些，没有别的饱和色：没有蓝色按钮，一般按钮是深灰黑底白字。（第一版写「无绿色」是错的，visual #22578 指出，已改） | 原图 |
 | 4 | 图片：照片只出现在 Engagement timeline 的文章卡里；其他区块只有字、小图标和标签 | 数照片：Top insights、Opportunities、Idea builder、右栏里照片＝0；时间线每张文章卡＝左边一张缩略图（约占卡宽 1/3，估算）＋右边红色小标题＋大标题＋一行小字，人像和新闻图都按这个排。Idea builder 每行 4 张等宽灰底卡：标题＋开关、标签、2–3 行说明、底部一个白色「N products」按钮；卡内无照片。时间线人像是原图本来就有的（Paul Donovan 那张），不删 | 原图 |
 
 ### 没有的 / 要别人定的
