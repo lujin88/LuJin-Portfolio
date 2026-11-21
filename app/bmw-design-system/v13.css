@@ -78,7 +78,7 @@
 .v13-groups dd{font-size:1.8cqw;color:#c3cce0}
 .v13-caption{position:absolute;left:4cqw;top:61.4cqw;font-size:1.278cqw;color:#c3cce0}
 
-@media(max-width:899px){
+@media(max-width:1023px){
   .bmw-v13{font-size:16px}
   .v13-docs{aspect-ratio:auto;padding:56px 16px 40px;background:linear-gradient(to bottom,#16295c00 180px,#16295c 320px),url(/assets/images/bmw-system/v13/section-04-atmosphere.jpg) 100% 0/auto 320px no-repeat,#16295c}
   .v13-docs-bg{display:none}
@@ -102,7 +102,7 @@
   .v13-caption{position:static;margin-top:18px;font-size:13px}
 }
 
-@media(max-width:899px){
+@media(max-width:1023px){
   .v13-hero,.v13-spec,.v13-flow,.v13-key{aspect-ratio:auto}
   .v13-bg{position:static;display:block}
   .v13-hero{padding-bottom:36px}
@@ -154,9 +154,62 @@
 .v13-store .v13-badge{display:block;width:7cqw;height:auto}
 .v13-store .v13-badge-play{width:8.97cqw;margin:-.57cqw -.5cqw}
 .v13-store:hover{background:none}
-@media(max-width:899px){
+@media(max-width:1023px){
   .v13-stores{align-items:center}
   .v13-store{display:flex;flex:0 0 auto;min-height:0;padding:0;border:0;background:none;border-radius:0}
   .v13-store .v13-badge{width:auto;height:44px}
   .v13-store .v13-badge-play{width:auto;height:65.5px;margin:-10.75px -9px}
+}
+
+/* Desktop density (Lu #22821/#22835, visual #22856): foreground art is one fixed 1040px stage, the page background stays full bleed.
+   Below 1024px the stage is transparent and the stacked layout above applies. */
+.v13-review-stage{display:contents}
+@media(min-width:1024px){
+ .bmw-v13 section+section{margin-top:0}
+ .bmw-v13 section{aspect-ratio:auto;isolation:isolate}
+ .bmw-v13 section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--v13-atmo) center/cover no-repeat;filter:blur(96px);opacity:.55;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 24%,#000 76%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 24%,#000 76%,transparent)}
+ .v13-hero{--v13-atmo:url(/assets/images/bmw-system/v13/hero.webp)}
+ .v13-spec{--v13-atmo:url(/assets/images/bmw-system/v13/section-02.webp)}
+ .v13-flow{--v13-atmo:url(/assets/images/bmw-system/v13/flow-b-panel.webp)}
+ .v13-docs{--v13-atmo:url(/assets/images/bmw-system/v13/section-04.webp)}
+ .v13-key{--v13-atmo:url(/assets/images/bmw-system/v13/section-05.webp)}
+ .v13-review-stage{display:block;position:relative;container-type:inline-size;width:min(calc(100% - 48px),var(--editorial,1040px));margin-inline:auto}
+ .v13-spec .v13-review-stage{aspect-ratio:1740/904}
+ .v13-flow .v13-review-stage,.v13-docs .v13-review-stage,.v13-key .v13-review-stage{aspect-ratio:3/2}
+ .bmw-v13 .v13-bg,.bmw-v13 .v13-docs-bg{-webkit-mask-image:linear-gradient(to right,transparent,#000 48px,#000 calc(100% - 48px),transparent),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 48px,#000 calc(100% - 48px),transparent),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent);mask-composite:intersect}
+ .v13-hero{padding-block:96px 48px}
+ .v13-hero .v13-review-stage{aspect-ratio:auto;display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px}
+ .v13-hero .v13-bg{position:relative;inset:auto;grid-column:1/-1;width:100%;aspect-ratio:1536/790;background-size:100% auto;background-position:top;-webkit-mask-image:linear-gradient(to right,transparent,#000 96px,#000 calc(100% - 96px),transparent),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(to right,transparent,#000 96px,#000 calc(100% - 96px),transparent),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent)}
+ .v13-hero-head{position:static;padding:0;margin:0}
+ .v13-eyebrow{font-size:13px}
+ .v13-hero h1{font-size:36px;line-height:1.1;margin:8px 0 0}
+ .v13-hero-sub{font-size:17px;line-height:1.75;margin-top:16px;max-width:672px}
+ .v13-stores{display:flex;align-items:center;gap:16px}
+ /* store frames are drawn in the hero art: sample them at the 1440 art size so box, frame and badge keep a fixed size */
+ .v13-store{position:relative;left:auto!important;top:auto;width:122px;height:109px;border-radius:17px;background:url(/assets/images/bmw-system/v13/hero.webp) no-repeat;background-size:1440px 960px}
+ .v13-store[data-store=apple]{background-position:-1126px -775px}
+ .v13-store[data-store=play]{background-position:-1259px -775px}
+ .v13-store:hover{background:url(/assets/images/bmw-system/v13/hero.webp) no-repeat;background-size:1440px 960px}
+ .v13-store[data-store=apple]:hover{background-position:-1126px -775px}
+ .v13-store[data-store=play]:hover{background-position:-1259px -775px}
+ .v13-store .v13-badge{width:101px}.v13-store .v13-badge-play{width:129px;margin:-8px -7px}
+ .v13-spec{padding-block:48px}
+ .v13-spec h2{font-size:36px;line-height:1.1;font-weight:600;width:34cqw;left:62.2cqw}
+ .v13-spec li{font-size:15px}
+ .v13-spec li b{font-size:18.4px}
+ .v13-spec-note{font-size:15px;line-height:1.75;top:37cqw;width:32cqw}
+ .v13-spec-caption{font-size:13px;top:45cqw;line-height:1.6}
+ .v13-flow,.v13-docs,.v13-key{padding-block:48px}
+ .v13-flow h2,.v13-docs h2,.v13-key .v13-head h2{font-size:36px;line-height:1.1;letter-spacing:-.02em;max-width:768px;width:auto}
+ .v13-docs h2,.v13-key .v13-head h2{margin-inline:auto}
+ .v13-flow-head p,.v13-docs .v13-head p,.v13-key .v13-head p{font-size:17px;line-height:1.75;width:auto;max-width:672px;margin:24px auto 0}
+ .v13-flow-label,.v13-caption,.v13-key .v13-key-caption{font-size:13px;line-height:1.6}
+ .v13-flow-label{left:85cqw}
+ .v13-brand{font-size:28px}
+ .v13-pill{font-size:15px}
+ .v13-tree li,.v13-tree li[data-depth="2"]{font-size:17px}
+ .v13-groups dt{font-size:18.4px}
+ .v13-groups dd{font-size:15px;line-height:1.75}
+ .v13-groups{gap:24px}
+ .v13-docs .v13-caption{left:4.8cqw;top:59cqw}
 }
