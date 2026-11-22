@@ -230,8 +230,17 @@ function MetricCard({ index, value, label, eyebrow, image, imageAlt }: MetricCar
   useEffect(() => {
     if (hoverable === false && reveal === 'play') setRun(1)
   }, [hoverable, reveal])
+  // Reduced motion can be switched on while the page is open: stop at once and show the still.
+  const [reduced, setReduced] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduced(mq.matches)
+    const onChange = () => setReduced(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
   // Scroll reveal (rise-in) follows `reveal`; the animation inside follows `anim`.
-  const anim: 'idle' | 'play' | 'static' = reveal === 'static' ? 'static' : run > 0 ? 'play' : 'idle'
+  const anim: 'idle' | 'play' | 'static' = reveal === 'static' || reduced ? 'static' : run > 0 ? 'play' : 'idle'
   const rate = hoverable ? HOVER_RATE : 1
   const delay = hoverable ? 0 : wide ? index * STAGGER_MS : 0
   const revealDelay = wide ? index * STAGGER_MS : 0
@@ -240,7 +249,14 @@ function MetricCard({ index, value, label, eyebrow, image, imageAlt }: MetricCar
       ref={ref}
       data-outcome-state={anim}
       className={`ca-outcome-card ${reveal === 'idle' ? '' : 'is-visible'}`}
-      onMouseEnter={hoverable && anim !== 'static' ? () => setRun((r) => r + 1) : undefined}
+      onMouseEnter={
+        hoverable
+          ? () => {
+              // Read the preference now, not the value from load.
+              if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) setRun((r) => r + 1)
+            }
+          : undefined
+      }
       style={
         {
           '--ca-outcome-delay': `${revealDelay}ms`,
