@@ -7,11 +7,12 @@ import floating from './concept-floating.module.css'
 import { useTranslation } from '@i18n/use-translation'
 import { PIN_HEIGHT_QUERY, PIN_MIN_HEIGHT } from './concept-scroll-story'
 
-// Lu #23066: open with one big card and two small ones; scrolling hands the big slot to the next card.
+// B (Lu 2026-11-04): only book-view, US Tech, client view — scattered → overview in front → result.
 function pose(step: number, index: number) {
-  if (index === step) return [-30, 0, 0.88, 0, 1]
-  const slot = index < step ? index : index - 1
-  return [190, (slot - 0.5) * 150, 0.28, 0, 0.7]
+  if (step === 0) return [(index - 1) * 215, (index - 1) * 18, 0.5, (index - 1) * -5, 1]
+  if (step === 1) return index === 0 ? [-45, -35, 0.86, -3, 1] : [175, (index - 1.5) * 150, 0.3, (index - 1.5) * 4, 0.8]
+  // Step 3 (Lu 2026-11-04): client view in front; book-view on top at the side, US Tech below.
+  return index === 2 ? [-20, 0, 0.9, 0, 1] : [190, (index - 0.5) * 150, 0.28, 0, 0.6]
 }
 
 export function ConceptMockupStack() {
@@ -90,8 +91,8 @@ export function ConceptMockupStack() {
       const local = Math.max(0, Math.min(1, (p * 3 - step) / 0.35))
       const blend = local * local * (3 - 2 * local)
       const factor = scene.clientWidth / 695
-      // Hand the top layer to the incoming card halfway through each transition.
-      const front = step > 0 && blend >= 0.5 ? step : Math.max(0, step - 1)
+      // Hand the top layer to client view halfway through the 2→3 transition, once it outgrows book-view.
+      const front = step === 2 && blend >= 0.5 ? 2 : 0
       cards.forEach((card, index) => {
         const from = pose(Math.max(0, step - 1), index)
         const to = pose(step, index)
