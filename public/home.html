@@ -1528,25 +1528,11 @@
     color: var(--exp-desc);
   }
 
-  /* Futurice reads to the right of its fixed stem (Lu, #13347).
-     The bend occupies the first 11% of the coordinate box to its right;
-     keep copy beyond it so no curve, glow or marker needs masking.
-     Phone stacking and curve/dot coordinates remain unchanged. */
-  @media (min-width: 768px) {
-    .exp-content[data-index="2"] {
-      left: 72.5%;
-      right: auto;
-      width: calc(27.5% + (100vw - 100%) / 2 - 24px);
-      bottom: calc(25.5% - 8px);
-      text-align: left;
-      padding-left: calc(11% + 24px);
-      padding-right: 0;
-    }
-    .exp-content[data-index="2"] .exp-content__node {
-      left: 0;
-      right: auto;
-      bottom: calc(8px - var(--exp-arc-drop, 0px));
-    }
+  /* Futurice keeps its copy LEFT of its stem on desktop (Lu #23105).
+     Its gap to the stem matches UBS / AdNovum (1.75rem); the base
+     right-side rule used 1rem. Phone/tablet stacking is untouched. */
+  @media (min-width: 1024px) {
+    .exp-content[data-index="2"] { padding-right: 1.75rem; }
   }
 
   /* previous items stay fully readable (reference does NOT ghost them) —
