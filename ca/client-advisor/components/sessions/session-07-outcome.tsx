@@ -185,11 +185,12 @@ function CurveArt({ state, delay, image, imageAlt }: { state: 'idle' | 'play' | 
     )
   }
   return (
+    <div className="ca-outcome-art absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]">
     <video
       ref={ref}
       role="img"
       aria-label={imageAlt}
-      className="absolute inset-0 size-full object-cover object-bottom"
+      className="size-full object-cover object-bottom"
       src="/assets/videos/client-advisory/ca07-card-01-curve.mp4"
       muted
       playsInline
@@ -197,6 +198,7 @@ function CurveArt({ state, delay, image, imageAlt }: { state: 'idle' | 'play' | 
       disablePictureInPicture
       onError={() => setFailed(true)}
     />
+    </div>
   )
 }
 
