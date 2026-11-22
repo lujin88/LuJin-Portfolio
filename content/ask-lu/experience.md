@@ -22,3 +22,7 @@ Mandarin (native), English (C1), German (B2)
 
 ## Domains
 Fintech and wealth management, public sector and digital identity, mobility and automotive, energy, IoT.
+
+## Clients
+Clients Lu has designed for (as shown on the homepage): E.ON, BMW, Mercedes-Benz, Siemens, Porsche, Airbus, Deutsche Telekom, Bosch, UBS, ISC-EJPD, MAN and Hyundai.
+Project details are only documented for the cases in `cases/`. For other clients, there are no details here; suggest asking Lu directly.

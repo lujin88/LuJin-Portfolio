@@ -114,11 +114,11 @@ export function JourneySteps() {
   }, [started, reduced])
 
   return (
-    // overflow-x:auto also clips vertically: pt-4 (with mt trimmed by the same 12px) keeps the
-    // scaled Calculate halo, which reaches ~10px above the row, from being cut flat.
+    // overflow-x:auto also clips vertically: extra top padding so halo-breathe (scale 1.12) is not
+    // clipped (qa #7532; PM #7490 ①).
     <div ref={ref} data-journey-sequence  data-ready={ready}
       data-started={started || reduced} data-reduced={reduced}
-      className={`${styles.sequence} relative z-[1] mt-3 overflow-x-auto pt-4 pb-16 max-sm:pb-6 md:mt-5`}>
+      className={`${styles.sequence} relative z-[1] mt-3 overflow-x-auto pt-5 pb-16 max-sm:pb-6 md:mt-5`}>
       <div className={`${styles.track} flex w-max items-start justify-start gap-1`}>
         {icons.map((Icon, i) => {
           const active = i === 2
