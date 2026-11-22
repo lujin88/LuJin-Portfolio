@@ -17,17 +17,17 @@
 .v13-hero-sub{margin-top:.25cqw;font-size:1.944cqw;line-height:1.4;color:#c3cce0}
 .v13-store{position:absolute;top:53.8cqw;width:8.5cqw;height:7.6cqw;border-radius:1.2cqw;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 1.1cqw 1.15cqw;color:#fff;text-decoration:none;font-size:1cqw;line-height:1.25}
 .v13-store[data-store=apple]{left:78.2cqw}.v13-store[data-store=play]{left:87.4cqw}
-.v13-store-ico{position:absolute;top:1.15cqw;left:1.15cqw;width:1.5cqw;height:1.5cqw;color:#fff}.v13-store span{color:#d5dbea}.v13-store b{font-weight:500}
+.v13-store-ico{position:absolute;top:1.15cqw;left:1.15cqw;width:1.5cqw;height:1.5cqw;color:#fff}.v13-store span{color:#d5dbea}.v13-store b{font-weight:600}
 .v13-store:hover{background:#ffffff14}.v13-store:focus-visible{outline:2px solid #fff;outline-offset:2px}
 
 /* 02 shared specification (art 1740x904) */
 .v13-spec{aspect-ratio:1740/904}
 .v13-spec .v13-bg{background-image:url(/assets/images/bmw-system/v13/section-02.webp)}
 .v13-spec-text{position:absolute;inset:0}
-.v13-spec h2{position:absolute;left:62.6cqw;top:10.4cqw;font-size:2.778cqw;line-height:.96;font-weight:700;letter-spacing:-.01em;width:30cqw}
+.v13-spec h2{position:absolute;left:62.6cqw;top:10.4cqw;font-size:2.778cqw;line-height:.96;font-weight:600;letter-spacing:-.01em;width:30cqw}
 .v13-spec ol{list-style:none;position:absolute;left:62.9cqw;top:19.5cqw;width:32cqw}
 .v13-spec li{display:flex;align-items:center;height:4.76cqw;font-size:1.278cqw}
-.v13-spec li b{width:4.9cqw;font-size:1.944cqw;font-weight:700;flex:none}
+.v13-spec li b{width:4.9cqw;font-size:1.944cqw;font-weight:600;flex:none}
 .v13-spec li span{font-weight:400}
 .v13-spec-note{position:absolute;left:62.2cqw;top:38.4cqw;width:30cqw;font-size:1.278cqw;line-height:1.18;color:#e6eaf4}
 .v13-spec-caption{position:absolute;left:62.2cqw;top:43.2cqw;font-size:1.27cqw;font-style:italic;color:#c3cce0}
@@ -59,7 +59,7 @@
 .v13-docs .v13-head p{margin-top:.9cqw;font-size:1.944cqw;font-weight:400;color:#c9d0e2}
 .v13-panel{position:absolute;left:4.8cqw;right:4.8cqw;top:17.1cqw;height:37.1cqw;border-radius:1.5cqw}
 .v13-panel-top{position:absolute;left:3.1cqw;right:2.6cqw;top:0;height:7.3cqw;display:flex;align-items:center;justify-content:space-between}
-.v13-brand{display:flex;align-items:center;gap:.9cqw;font-size:2.6cqw;font-weight:500}
+.v13-brand{display:flex;align-items:center;gap:.9cqw;font-size:2.6cqw;font-weight:600}
 .v13-brand img{width:3.4cqw;height:3.4cqw}
 .v13-pill{display:flex;align-items:center;height:3.1cqw;font-size:1.7cqw;font-weight:600;line-height:1;color:#5eb6ff;padding:0 1.2cqw}
 .v13-panel-body{position:absolute;inset:7.3cqw 0 0 0}
@@ -198,9 +198,9 @@
 
 /* Store tiles like Linear Mobile (Lu #23043, pm #23048): small logo top-left, two lines bottom-left ("Open" / store name), thin frame, no arrow. Needs legal: reverses #22902 (logos). */
 .v13-stores{align-items:center;gap:8px}
-.v13-store{position:relative;left:auto!important;top:auto;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;flex:0 0 auto;width:116px;height:88px;min-height:0;padding:14px;border:1px solid #ffffff1f;border-radius:12px;background:#ffffff0f;color:#fff;font-size:13px;font-weight:500;line-height:1.25;text-decoration:none;box-sizing:border-box}
+.v13-store{position:relative;left:auto!important;top:auto;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;flex:0 0 auto;width:116px;height:88px;min-height:0;padding:14px;border:1px solid #ffffff1f;border-radius:12px;background:#ffffff0f;color:#fff;font-size:13px;font-weight:600;line-height:1.25;text-decoration:none;box-sizing:border-box}
 .v13-store-ico{position:static;display:block;width:16px;height:16px;color:#fff;flex:none}
-.v13-store span{display:block;color:#ffffff99;font-size:13px;font-weight:400}.v13-store b{display:block;font-size:13px;font-weight:500;color:#fff}
+.v13-store span{display:block;color:#ffffff99;font-size:13px;font-weight:400}.v13-store b{display:block;font-size:13px;font-weight:600;color:#fff}
 .v13-store:hover{background:#ffffff1a}
 .v13-store:focus-visible{outline:2px solid #fff;outline-offset:2px}
 @media(max-width:899px){.v13-store{width:112px;height:96px}}
