@@ -100,6 +100,8 @@ function Outcomes() {
 const STAGGER_MS = 160
 const COUNT_DELAY_MS = 250
 const COUNT_MS = 1400
+// Hover devices: the animation plays only while the pointer is on the card, 1.6x faster, no stagger.
+const HOVER_RATE = 1.6
 
 function useReveal<T extends Element>() {
   const ref = useRef<T>(null)
@@ -118,7 +120,7 @@ function useReveal<T extends Element>() {
   return [ref, state] as const
 }
 
-function CountUp({ text, play, delay }: { text: string; play: boolean; delay: number }) {
+function CountUp({ text, play, delay, run, rate }: { text: string; play: boolean; delay: number; run: number; rate: number }) {
   const ref = useRef<HTMLSpanElement>(null)
   useEffect(() => {
     const node = ref.current
@@ -142,7 +144,7 @@ function CountUp({ text, play, delay }: { text: string; play: boolean; delay: nu
         node.textContent = text
         return
       }
-      const k = Math.min(1, Math.max(0, (now - start) / COUNT_MS))
+      const k = Math.min(1, Math.max(0, (now - start) / (COUNT_MS / rate)))
       render(1 - Math.pow(1 - k, 3))
       if (k < 1) frame = requestAnimationFrame(tick)
     }
@@ -151,7 +153,7 @@ function CountUp({ text, play, delay }: { text: string; play: boolean; delay: nu
       cancelAnimationFrame(frame)
       node.textContent = text
     }
-  }, [text, play, delay])
+  }, [text, play, delay, run, rate])
   return (
     <>
       <span className="sr-only">{text}</span>
@@ -162,9 +164,10 @@ function CountUp({ text, play, delay }: { text: string; play: boolean; delay: nu
   )
 }
 
-// Card 1: the curve video plays once when the card is reached and holds its last frame
-// (no loop). Before it plays the card is dark; reduced motion shows the full still.
-function CurveArt({ state, delay, image, imageAlt }: { state: 'idle' | 'play' | 'static'; delay: number; image: string; imageAlt: string }) {
+// Card 1: the curve video plays once and holds its last frame (no loop). `run` counts plays:
+// on hover devices each hover restarts it; on touch it plays once when the card is reached.
+// Before the first play it rests on the finished still; reduced motion shows the full still.
+function CurveArt({ state, run, delay, rate, image, imageAlt }: { state: 'idle' | 'play' | 'static'; run: number; delay: number; rate: number; image: string; imageAlt: string }) {
   const ref = useRef<HTMLVideoElement>(null)
   // Autoplay refused (low-power mode) or the file failed to load: show the still, never an empty card.
   const [failed, setFailed] = useState(false)
@@ -173,10 +176,11 @@ function CurveArt({ state, delay, image, imageAlt }: { state: 'idle' | 'play' | 
     if (state !== 'play' || !node) return
     const timer = window.setTimeout(() => {
       node.currentTime = 0
+      node.playbackRate = rate
       node.play().catch(() => setFailed(true))
     }, delay)
     return () => window.clearTimeout(timer)
-  }, [state, delay])
+  }, [state, run, delay, rate])
   if (state === 'static' || failed) {
     return (
       <div className="ca-outcome-art absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]">
@@ -191,13 +195,15 @@ function CurveArt({ state, delay, image, imageAlt }: { state: 'idle' | 'play' | 
       role="img"
       aria-label={imageAlt}
       className="size-full object-cover object-bottom"
-      src="/assets/videos/client-advisory/ca07-card-01-curve.mp4"
+      src="/assets/videos/client-advisory/ca07-card-01-curve.mp4#t=0.001"
       muted
       playsInline
       preload="auto"
       disablePictureInPicture
       onError={() => setFailed(true)}
     />
+    {/* Before the first play the card shows the finished still, never a dark or empty card. */}
+    {run === 0 ? <Image src={image} alt="" aria-hidden="true" fill sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw" className="object-cover object-bottom" /> : null}
     </div>
   )
 }
@@ -212,20 +218,40 @@ type MetricCardProps = {
 }
 
 function MetricCard({ index, value, label, eyebrow, image, imageAlt }: MetricCardProps) {
-  const [ref, state] = useReveal<HTMLDivElement>()
+  const [ref, reveal] = useReveal<HTMLDivElement>()
   const [wide, setWide] = useState(false)
-  useEffect(() => setWide(window.matchMedia('(min-width: 768px)').matches), [])
-  const delay = wide ? index * STAGGER_MS : 0
+  // null until measured. Hover devices play on hover; touch devices play once when reached.
+  const [hoverable, setHoverable] = useState<boolean | null>(null)
+  const [run, setRun] = useState(0)
+  useEffect(() => {
+    setWide(window.matchMedia('(min-width: 768px)').matches)
+    setHoverable(window.matchMedia('(hover: hover)').matches)
+  }, [])
+  useEffect(() => {
+    if (hoverable === false && reveal === 'play') setRun(1)
+  }, [hoverable, reveal])
+  // Scroll reveal (rise-in) follows `reveal`; the animation inside follows `anim`.
+  const anim: 'idle' | 'play' | 'static' = reveal === 'static' ? 'static' : run > 0 ? 'play' : 'idle'
+  const rate = hoverable ? HOVER_RATE : 1
+  const delay = hoverable ? 0 : wide ? index * STAGGER_MS : 0
+  const revealDelay = wide ? index * STAGGER_MS : 0
   return (
     <div
       ref={ref}
-      data-outcome-state={state}
-      className={`ca-outcome-card ${state === 'idle' ? '' : 'is-visible'}`}
-      style={{ '--ca-outcome-delay': `${delay}ms` } as CSSProperties}
+      data-outcome-state={anim}
+      className={`ca-outcome-card ${reveal === 'idle' ? '' : 'is-visible'}`}
+      onMouseEnter={hoverable && anim !== 'static' ? () => setRun((r) => r + 1) : undefined}
+      style={
+        {
+          '--ca-outcome-delay': `${revealDelay}ms`,
+          '--ca-trace-delay': `${delay + (hoverable ? 0 : 250)}ms`,
+          '--ca-trace-dur': `${Math.round((wide ? 1100 : 700) / rate)}ms`,
+        } as CSSProperties
+      }
     >
       <TiltCard className="relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl border border-[var(--ca-line)] bg-[var(--ca-card)] shadow-[0_0_0_1px_rgba(61,139,255,0.04),0_30px_60px_-40px_rgba(61,139,255,0.35)]">
         {index === 0 ? (
-          <CurveArt state={state} delay={delay} image={image} imageAlt={imageAlt} />
+          <CurveArt state={anim} run={run} delay={delay} rate={rate} image={image} imageAlt={imageAlt} />
         ) : (
           <div className="ca-outcome-art absolute inset-0">
             <Image
@@ -235,7 +261,7 @@ function MetricCard({ index, value, label, eyebrow, image, imageAlt }: MetricCar
               sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw"
               className="object-contain object-bottom"
             />
-            <OutcomeLine index={index} />
+            <OutcomeLine key={run} index={index} />
           </div>
         )}
 
@@ -252,7 +278,7 @@ function MetricCard({ index, value, label, eyebrow, image, imageAlt }: MetricCar
 
           <div className="flex flex-col gap-3">
             <p className="whitespace-nowrap text-[clamp(24px,2.2vw,32px)] font-medium leading-[1.1] tracking-[-0.015em]">
-              <CountUp text={value} play={state === 'play'} delay={delay + COUNT_DELAY_MS} />
+              <CountUp text={value} play={anim === 'play'} delay={delay + (hoverable ? 0 : COUNT_DELAY_MS)} run={run} rate={rate} />
             </p>
             <p data-type="body" className="text-pretty text-[15px] leading-[1.55] text-[var(--ca-muted)] sm:text-[16px]">{label}</p>
           </div>
