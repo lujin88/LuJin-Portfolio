@@ -166,16 +166,18 @@ function CountUp({ text, play, delay }: { text: string; play: boolean; delay: nu
 // (no loop). Before it plays the card is dark; reduced motion shows the full still.
 function CurveArt({ state, delay, image, imageAlt }: { state: 'idle' | 'play' | 'static'; delay: number; image: string; imageAlt: string }) {
   const ref = useRef<HTMLVideoElement>(null)
+  // Autoplay refused (low-power mode) or the file failed to load: show the still, never an empty card.
+  const [failed, setFailed] = useState(false)
   useEffect(() => {
     const node = ref.current
     if (state !== 'play' || !node) return
     const timer = window.setTimeout(() => {
       node.currentTime = 0
-      void node.play().catch(() => {})
+      node.play().catch(() => setFailed(true))
     }, delay)
     return () => window.clearTimeout(timer)
   }, [state, delay])
-  if (state === 'static') {
+  if (state === 'static' || failed) {
     return (
       <div className="ca-outcome-art absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]">
         <Image src={image} alt={imageAlt} fill sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw" className="object-cover object-bottom" />
@@ -193,6 +195,7 @@ function CurveArt({ state, delay, image, imageAlt }: { state: 'idle' | 'play' | 
       playsInline
       preload="auto"
       disablePictureInPicture
+      onError={() => setFailed(true)}
     />
   )
 }
