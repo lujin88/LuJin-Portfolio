@@ -92,7 +92,6 @@ function KeySection() {
           <p>{t('bmw.v13.key.sub')}</p>
         </header>
         <div className="v13-key-art" role="img" aria-label={t('bmw.v13.key.alt')} />
-        <p className="v13-caption v13-key-caption">{t('bmw.v13.key.caption')}</p>
       </div>
     </section>
   )

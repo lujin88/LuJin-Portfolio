@@ -45,10 +45,9 @@ export const bmw = {
         scroll: "Scroll sideways to see the whole diagram",
       },
       key: {
-        alt: "An illustration of a phone showing a generic digital key screen.",
+        alt: "The Digital Key welcome screen in the My BMW app on an iPhone.",
         title: "The digital key, introduced at WWDC 2020.",
         sub: "Your phone as the car key, one of the app’s core features.",
-        caption: "Illustrative example with a fictional interface. Not an official BMW image.",
       },
       docs: {
         title: "Every widget has a number.",
@@ -107,10 +106,9 @@ export const bmw = {
         scroll: "Seitlich scrollen, um das ganze Diagramm zu sehen",
       },
       key: {
-        alt: "Eine Illustration eines Telefons mit einem generischen Digital-Key-Bildschirm.",
+        alt: "Der Willkommensbildschirm des Digital Key in der My BMW App auf einem iPhone.",
         title: "Der digitale Schlüssel, vorgestellt auf der WWDC 2020.",
         sub: "Das Telefon als Autoschlüssel, eine der Kernfunktionen der App.",
-        caption: "Illustratives Beispiel mit fiktiver Oberfläche. Kein offizielles BMW-Bild.",
       },
       docs: {
         title: "Jedes Widget hat eine Nummer.",
