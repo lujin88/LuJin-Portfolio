@@ -152,7 +152,7 @@
 @media(min-width:900px){
  .bmw-v13 section+section{margin-top:0}
  .bmw-v13 section{aspect-ratio:auto;isolation:isolate}
- .bmw-v13 section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--v13-atmo) center/cover no-repeat;filter:blur(96px);opacity:.55;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 24%,#000 76%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 24%,#000 76%,transparent)}
+ .bmw-v13 section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--v13-atmo) center/cover no-repeat;filter:blur(64px) saturate(1.1);opacity:.9;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 24%,#000 76%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 24%,#000 76%,transparent)}
  .v13-hero{--v13-atmo:url(/assets/images/bmw-system/v13/hero.webp)}
  .v13-spec{--v13-atmo:url(/assets/images/bmw-system/v13/section-02.webp)}
  .v13-flow{--v13-atmo:url(/assets/images/bmw-system/v13/flow-b-panel.webp)}
@@ -161,10 +161,10 @@
  .v13-review-stage{display:block;position:relative;container-type:inline-size;width:min(calc(100% - 48px),var(--editorial,1040px));margin-inline:auto}
  .v13-spec .v13-review-stage{aspect-ratio:1740/904}
  .v13-flow .v13-review-stage,.v13-docs .v13-review-stage,.v13-key .v13-review-stage{aspect-ratio:3/2}
- .bmw-v13 .v13-bg,.bmw-v13 .v13-docs-bg{-webkit-mask-image:linear-gradient(to right,transparent,#000 48px,#000 calc(100% - 48px),transparent),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 48px,#000 calc(100% - 48px),transparent),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent);mask-composite:intersect}
+ .bmw-v13 .v13-bg,.bmw-v13 .v13-docs-bg{-webkit-mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent);mask-composite:intersect}
  .v13-hero{padding-block:96px 48px}
  .v13-hero .v13-review-stage{aspect-ratio:auto;display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px}
- .v13-hero .v13-bg{position:relative;inset:auto;grid-column:1/-1;width:100%;aspect-ratio:1536/790;background-size:100% auto;background-position:top;-webkit-mask-image:linear-gradient(to right,transparent,#000 96px,#000 calc(100% - 96px),transparent),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(to right,transparent,#000 96px,#000 calc(100% - 96px),transparent),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent)}
+ .v13-hero .v13-bg{position:relative;inset:auto;grid-column:1/-1;width:100%;aspect-ratio:1536/790;background-size:100% auto;background-position:top;-webkit-mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent)}
  .v13-hero-head{position:static;padding:0;margin:0}
  .v13-eyebrow{font-size:13px}
  .v13-hero h1{font-size:36px;line-height:1.1;margin:8px 0 0}
