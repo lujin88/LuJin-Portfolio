@@ -1,7 +1,14 @@
 /* CA06 three-page gallery — visual v2 (#22951), fixed preview area so tabs/preview never jump when switching pages. */
 .gallery{min-width:0}
 .tabs,.dialogTabs{display:flex;flex-wrap:wrap;gap:8px}
-.tabs{margin-bottom:16px}
+.stage{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.thumbs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.thumb{display:block;padding:0;border:1px solid #a9b8cc38;border-radius:10px;overflow:hidden;background:#0d1526;cursor:pointer;font:inherit;color:#f3f6fa;text-align:left}
+.thumb img{display:block;width:100%;height:auto;aspect-ratio:1440/1059;object-fit:cover;object-position:top;opacity:.85}
+.thumb span{display:block;padding:6px 10px;font-size:12px;line-height:1.4}
+.thumb:hover img{opacity:1}
+.thumb:focus-visible{outline:2px solid #7ea2ff;outline-offset:3px}
+@media(min-width:1024px){.stage{grid-template-columns:minmax(0,1fr) 22%;align-items:start}.thumbs{grid-template-columns:1fr}}
 .tabs button,.toolbar button{font:inherit;font-size:13px;line-height:1.5;padding:8px 16px;border:1px solid #a9b8cc38;border-radius:12px;color:#f3f6fa;background:transparent;cursor:pointer}
 .tabs button[aria-pressed=true],.dialogTabs button[aria-pressed=true]{background:#f3f6fa;color:#0b1220}
 .open{position:relative;display:block;width:100%;padding:0;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;background:#f6f6f6;cursor:zoom-in;font:inherit;text-align:center}

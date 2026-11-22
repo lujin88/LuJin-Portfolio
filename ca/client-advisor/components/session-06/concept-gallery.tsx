@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { PIN_HEIGHT_QUERY } from './concept-scroll-story'
 import styles from './concept-gallery.module.css'
 import { useTranslation } from '@i18n/use-translation'
 
@@ -38,6 +39,31 @@ export function ConceptGallery() {
     }
   }, [close])
 
+  // Original behaviour (Lu #23066): one big + two small; scrolling the pinned section swaps the big one.
+  // Same pin predicate as ConceptScrollStory; when not pinned, the small ones are click-to-swap.
+  const galleryRef = useRef<HTMLElement>(null)
+  useEffect(() => {
+    const section = galleryRef.current?.closest('section')
+    if (!section) return
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)')
+    const wide = matchMedia('(min-width: 1024px)')
+    const tall = matchMedia(PIN_HEIGHT_QUERY)
+    let frame = 0
+    const update = () => {
+      frame = 0
+      if (reduced.matches || !wide.matches || !tall.matches) return
+      const rect = section.getBoundingClientRect()
+      const p = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height - innerHeight)))
+      setCurrent(Math.min(PAGES.length - 1, Math.floor(p * PAGES.length)))
+    }
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update) }
+    addEventListener('scroll', schedule, { passive: true })
+    addEventListener('resize', schedule)
+    schedule()
+    return () => { removeEventListener('scroll', schedule); removeEventListener('resize', schedule); cancelAnimationFrame(frame) }
+  }, [])
+  const others = PAGES.map((_, i) => i).filter((i) => i !== current)
+
   const tabs = (extra?: string) =>
     names.map((label, i) => (
       <button key={PAGES[i]} type="button" aria-pressed={current === i} onClick={() => setCurrent(i)} data-tab={extra}>
@@ -46,8 +72,8 @@ export function ConceptGallery() {
     ))
 
   return (
-    <figure className={styles.gallery} style={{ margin: 0 }}>
-      <div className={styles.tabs} role="group" aria-label={t('ca.concept.gallery.choose')}>{tabs()}</div>
+    <figure ref={galleryRef} className={styles.gallery} style={{ margin: 0 }}>
+      <div className={styles.stage}>
       <button
         ref={openerRef}
         type="button"
@@ -59,6 +85,16 @@ export function ConceptGallery() {
         <img src={`${BASE}/page-${current + 1}-1440.png`} alt={`${name}, ${t('ca.concept.gallery.fictional')}`} width={1440} height={1059} />
         <span>{t('ca.concept.gallery.fullscreen')}</span>
       </button>
+      <div className={styles.thumbs} role="group" aria-label={t('ca.concept.gallery.choose')}>
+        {others.map((i) => (
+          <button key={PAGES[i]} type="button" className={styles.thumb} onClick={() => setCurrent(i)} aria-label={names[i]}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`${BASE}/page-${i + 1}-1440.png`} alt="" width={1440} height={1059} />
+            <span>{i + 1}. {names[i]}</span>
+          </button>
+        ))}
+      </div>
+      </div>
       <p className={styles.caption}>{`${name} · ${current + 1} of ${names.length}`}</p>
 
       <dialog
