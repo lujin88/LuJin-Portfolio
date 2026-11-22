@@ -184,13 +184,16 @@
  .v13-flow-head p,.v13-docs .v13-head p,.v13-key .v13-head p{font-size:17px;line-height:1.75;width:auto;max-width:672px;margin:min(24px,2cqw) auto 0}
  .v13-flow-label,.v13-caption,.v13-key .v13-key-caption{font-size:13px;line-height:1.6}
  .v13-flow-label{left:85cqw}
- .v13-brand{font-size:28px}
+ .v13-brand{font-size:18.4px}
  .v13-pill{font-size:15px}
  .v13-tree li,.v13-tree li[data-depth="2"]{font-size:17px}
  .v13-groups dt{font-size:18.4px}
  .v13-groups dd{font-size:15px;line-height:1.75}
  .v13-groups{gap:24px}
  .v13-docs .v13-caption{left:4.8cqw;top:59cqw}
+ /* Row 85 (Lu #23316 5B, visualqa #22918): same section-title top on all four sections, numbers 600, one size from the scale */
+ .v13-spec h2{top:5.2cqw}.v13-flow-head,.v13-docs .v13-head,.v13-key .v13-head{top:5.2cqw}
+ .v13-spec li b{font-weight:600}
 }
 
 /* Store tiles like Linear Mobile (Lu #23043, pm #23048): small logo top-left, two lines bottom-left ("Open" / store name), thin frame, no arrow. Needs legal: reverses #22902 (logos). */
