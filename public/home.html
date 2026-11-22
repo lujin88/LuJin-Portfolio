@@ -1662,6 +1662,14 @@
     .exp-dot[data-index="1"] { left: 58%; }
     .exp-content[data-index="1"] { left: 58%; }
   }
+  /* 900-1024: UBS (left 26.7%) and AdNovum (left 58%) boxes overlapped sideways by up to 53px
+     (row 70, Lu #23381). Cap UBS at the gap before AdNovum; other widths unchanged. */
+  @media (min-width: 900px) and (max-width: 1024px) {
+    .exp-content[data-index="0"] { width: calc(31.3% - 8px); }
+  }
+  @media (min-width: 1025px) {
+    .exp-content[data-index="0"] { width: min(340px, 40vw, calc(34.5% - 2.5rem)); }
+  }
 
   /* Phone + tablet: the 360vh case pins are taller than the viewport
      (especially iPad landscape), so the accordion and Explore link sit
