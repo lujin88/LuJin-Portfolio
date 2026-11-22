@@ -31,7 +31,7 @@ function HeroSection() {
           </a>
           <a className="v13-store" data-store="play" href="https://play.google.com/store/apps/details?id=de.bmw.connected.mobile20.row" target="_blank" rel="noopener" aria-label={t('bmw.v13.hero.playStoreLabel')}>
             <svg className="v13-store-ico" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6 3.500v17L18.5 12 6 3.500z"/></svg>
-            <span>{t('bmw.v13.hero.open')}</span><b>{t('bmw.v13.hero.playStore')}</b>
+            <span>{t('bmw.v13.hero.openPlay')}</span><b>{t('bmw.v13.hero.playStore')}</b>
           </a>
         </nav>
       </div>
