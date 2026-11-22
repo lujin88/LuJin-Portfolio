@@ -1528,13 +1528,6 @@
     color: var(--exp-desc);
   }
 
-  /* Futurice keeps its copy LEFT of its stem on desktop (Lu #23105).
-     Its gap to the stem matches UBS / AdNovum (1.75rem); the base
-     right-side rule used 1rem. Phone/tablet stacking is untouched. */
-  @media (min-width: 1024px) {
-    .exp-content[data-index="2"] { padding-right: 1.75rem; }
-  }
-
   /* previous items stay fully readable (reference does NOT ghost them) —
      the active signal is the connector + "+" + dot, not a brightness cliff. */
 
