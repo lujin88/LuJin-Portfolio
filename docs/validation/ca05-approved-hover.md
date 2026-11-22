@@ -18,4 +18,4 @@ No ARCHITECTURE.md exists on the base branch; component/module responsibilities 
 
 Build, TypeScript and browser results are recorded in `/Users/lu/.buzz/OUTBOX/DEV_CA05_HOVER_1113/`. Page-level visualqa and legal/QA review remain required; standalone prototype approval does not replace page acceptance.
 
-Current integration status: DRAFT. Frozen install/build/tsc passed. Chrome390 normal/reduce passed; synthetic-touch result does not establish real taps. Chrome700 completion wait timed out; cause unclassified. Browser run stopped at666MiB free under PM's1GiB limit. WebKit, remaining widths, actual tap checks and recordings are pending. Test script has added failure-state diagnostics for the next run. Do not treat this as ready for acceptance.
+Integration status (2026-11-22, row 36): rebased onto main. tsc clean. Chrome 1440: each card's first hover plays its own clip (01/02/03), pointer exit stops it, 0 page errors. Reduced motion: no video mounted, static art stays. Page acceptance (visualqa, qa, legal for the new videos) still required.
