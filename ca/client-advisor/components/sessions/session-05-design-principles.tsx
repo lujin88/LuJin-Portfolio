@@ -27,6 +27,11 @@ function PrincipleCard({
   const [hasHovered, setHasHovered] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
+  // Touch has no hover: play once when the card is scrolled into view (same as CA07).
+  const touchStarted = useRef(false)
+  const touchDone = useRef(false)
+  const flippedRef = useRef(false)
+  flippedRef.current = isFlipped
 
   useEffect(() => {
     const reduced = matchMedia('(prefers-reduced-motion: reduce)')
@@ -34,8 +39,16 @@ function PrincipleCard({
     const stop = () => setIsHovered(false)
     const onVisibility = () => { if (document.hidden) stop() }
     const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) stop()
-    })
+      if (!entry.isIntersecting) {
+        stop()
+        return
+      }
+      if (entry.intersectionRatio < 0.6 || touchDone.current || flippedRef.current) return
+      if (reduced.matches || !matchMedia('(hover: none)').matches) return
+      touchStarted.current = true
+      setHasHovered(true)
+      setIsHovered(true)
+    }, { threshold: [0, 0.6] })
     if (cardRef.current) observer.observe(cardRef.current)
     reduced.addEventListener('change', stop)
     pointer.addEventListener('change', stop)
@@ -134,7 +147,10 @@ function PrincipleCard({
                 playsInline
                 preload="none"
                 aria-hidden="true"
-                onEnded={() => setIsPlaying(false)}
+                onEnded={() => {
+                  setIsPlaying(false)
+                  if (touchStarted.current) touchDone.current = true
+                }}
                 onError={() => setIsPlaying(false)}
               />
             )}
