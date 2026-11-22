@@ -193,8 +193,11 @@
  .v13-docs .v13-caption{left:4.8cqw;top:59cqw}
 }
 
-/* Store links (legal #22902): plain text names, no logos or badge artwork. The frames drawn in the hero art are cropped away on desktop and not shown when stacked. */
-.v13-stores{align-items:center}
-.v13-store{position:relative;left:auto!important;top:auto;display:flex;align-items:center;justify-content:center;flex:0 0 auto;width:auto;height:auto;height:48px;min-height:0;padding:0 20px;border:1px solid #ffffff3d;border-radius:12px;background:#ffffff0a;color:#fff;font-size:15px;font-weight:600;line-height:1.2;text-decoration:none}
+/* Store tiles like Linear Mobile (Lu #23043, pm #23048): small logo top-left, two lines bottom-left ("Open" / store name), thin frame, no arrow. Needs legal: reverses #22902 (logos). */
+.v13-stores{align-items:center;gap:8px}
+.v13-store{position:relative;left:auto!important;top:auto;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;flex:0 0 auto;width:116px;height:88px;min-height:0;padding:14px;border:1px solid #ffffff1f;border-radius:12px;background:#ffffff0f;color:#fff;font-size:13px;font-weight:500;line-height:1.25;text-decoration:none;box-sizing:border-box}
+.v13-store-ico{position:static;display:block;width:16px;height:16px;color:#fff;flex:none}
+.v13-store span{display:block;color:#ffffff99;font-size:13px;font-weight:400}.v13-store b{display:block;font-size:13px;font-weight:500;color:#fff}
 .v13-store:hover{background:#ffffff1a}
 .v13-store:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media(max-width:899px){.v13-store{width:112px;height:96px}}
