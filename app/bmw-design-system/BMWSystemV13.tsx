@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from 'react'
+import { useEffect, useRef, type RefObject } from 'react'
 import './v13.css'
 import { useTranslation } from '@i18n/use-translation'
 
@@ -185,10 +185,29 @@ function useBackgroundParallax() {
   }, [])
 }
 
+// Content rises in section by section (Lu #23628). The hidden start state only exists once this has run, so no JS or reduced motion shows everything.
+function useRiseIn(ref: RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const root = ref.current
+    if (!root || window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return
+    const secs = Array.from(root.querySelectorAll<HTMLElement>('section:not(.v13-hero)'))
+    const io = new IntersectionObserver(es => { for (const e of es) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target) } }, { threshold: 0.12 })
+    for (const s of secs) {
+      // already on screen at load (tall viewport): show without waiting
+      if (s.getBoundingClientRect().top < window.innerHeight * 0.85) s.classList.add('is-in')
+      else io.observe(s)
+    }
+    root.classList.add('v13-rise')
+    return () => { io.disconnect(); root.classList.remove('v13-rise') }
+  }, [ref])
+}
+
 export function BMWSystemV13() {
+  const ref = useRef<HTMLElement>(null)
   useBackgroundParallax()
+  useRiseIn(ref)
   return (
-    <main className="bmw-v13" id="top">
+    <main className="bmw-v13" id="top" ref={ref}>
       <HeroSection />
       <SpecSection />
       <FlowSection />

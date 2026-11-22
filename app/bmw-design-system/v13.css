@@ -202,3 +202,19 @@
 .v13-store:hover{background:#ffffff1a}
 .v13-store:focus-visible{outline:2px solid #fff;outline-offset:2px}
 @media(max-width:899px){.v13-store{width:112px;height:96px}}
+
+/* Lu #23628: below the hero every section gets its own bright-yellow glow that slowly breathes, and its content rises in step by step.
+   Both are decoration only: reduced motion keeps the glow still and shows the content at once. */
+.bmw-v13 section:not(.v13-hero)::after{content:"";position:absolute;z-index:-1;pointer-events:none;width:var(--gw,70%);height:var(--gh,80%);left:var(--gx,15%);top:var(--gy,10%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,206,64,.62),rgba(255,176,40,.22) 55%,rgba(255,176,40,0));opacity:.4;mix-blend-mode:screen;filter:blur(24px);animation:v13-breathe 7s ease-in-out infinite;animation-delay:var(--gd,0s)}
+.v13-spec{--gw:46%;--gh:70%;--gx:-6%;--gy:22%;--gd:-1s}
+.v13-flow{--gw:52%;--gh:60%;--gx:52%;--gy:-6%;--gd:-3s}
+.v13-docs{--gw:44%;--gh:64%;--gx:-4%;--gy:30%;--gd:-5s}
+.v13-key{--gw:60%;--gh:56%;--gx:20%;--gy:46%;--gd:-2s}
+@keyframes v13-breathe{0%,100%{opacity:.3;transform:scale(.94)}50%{opacity:.9;transform:scale(1.1)}}
+@media(prefers-reduced-motion:reduce){.bmw-v13 section:not(.v13-hero)::after{animation:none;opacity:.5}}
+.v13-rise section:not(.v13-hero) .v13-review-stage>:not(.v13-bg):not(.v13-docs-bg){opacity:0;transform:translate3d(0,44px,0);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.v13-rise section.is-in .v13-review-stage>:not(.v13-bg):not(.v13-docs-bg){opacity:1;transform:none}
+.v13-rise section.is-in .v13-review-stage>:nth-child(3){transition-delay:.1s}
+.v13-rise section.is-in .v13-review-stage>:nth-child(4){transition-delay:.25s}
+.v13-rise section.is-in .v13-review-stage>:nth-child(5){transition-delay:.4s}
+.v13-rise section.is-in .v13-review-stage>:nth-child(n+6){transition-delay:.55s}
