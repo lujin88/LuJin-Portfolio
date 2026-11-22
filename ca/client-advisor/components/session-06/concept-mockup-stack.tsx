@@ -81,7 +81,7 @@ export function ConceptMockupStack() {
       frame = 0
       rememberVisibility()
       if (!pinned()) {
-        cards.forEach((card) => { card.style.transform = ''; card.style.opacity = ''; card.style.removeProperty('--z') })
+        cards.forEach((card) => { card.style.transform = ''; card.style.opacity = ''; card.style.filter = ''; card.style.removeProperty('--z') })
         return
       }
       const rect = section.getBoundingClientRect()
@@ -97,7 +97,9 @@ export function ConceptMockupStack() {
         const to = pose(step, index)
         const value = to.map((n, i) => from[i] + (n - from[i]) * blend)
         card.style.transform = `translate(-50%, -50%) translate3d(${value[0] * factor}px, ${value[1] * factor}px, 0) scale(${value[2]}) rotate(${value[3]}deg)`
-        card.style.opacity = String(value[4])
+        // Stay opaque so the front page never shows the one behind it; dim the small cards with brightness instead.
+        card.style.opacity = '1'
+        card.style.filter = value[4] < 1 ? `brightness(${value[4]})` : ''
         card.style.setProperty('--z', index === front ? '10' : 'auto')
       })
     }
