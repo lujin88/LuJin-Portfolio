@@ -208,6 +208,46 @@ function CurveArt({ state, run, delay, rate, image, imageAlt }: { state: 'idle' 
   )
 }
 
+// Card 2: stacked glass plates entry (Lu #23649: bottom-to-top, settles at layer 3 and stops)
+function StackArt({ state, run, delay, rate, image, imageAlt }: { state: 'idle' | 'play' | 'static'; run: number; delay: number; rate: number; image: string; imageAlt: string }) {
+  const ref = useRef<HTMLVideoElement>(null)
+  const [failed, setFailed] = useState(false)
+  useEffect(() => {
+    const node = ref.current
+    if (state !== 'play' || !node) return
+    const timer = window.setTimeout(() => {
+      node.currentTime = 0
+      node.playbackRate = rate
+      node.play().catch(() => setFailed(true))
+    }, delay)
+    return () => window.clearTimeout(timer)
+  }, [state, run, delay, rate])
+  if (state === 'static' || failed) {
+    return (
+      <div className="ca-outcome-art absolute inset-0">
+        <Image src={image} alt={imageAlt} fill sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw" className="object-contain object-bottom" />
+      </div>
+    )
+  }
+  return (
+    <div className="ca-outcome-art absolute inset-0">
+      <video
+        ref={ref}
+        role="img"
+        aria-label={imageAlt}
+        className="size-full object-contain object-bottom"
+        src="/assets/videos/client-advisory/ca07-card-02-layers.mp4#t=0.001"
+        muted
+        playsInline
+        preload="auto"
+        disablePictureInPicture
+        onError={() => setFailed(true)}
+      />
+      {run === 0 ? <Image src={image} alt="" aria-hidden="true" fill sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw" className="object-contain object-bottom" /> : null}
+    </div>
+  )
+}
+
 type MetricCardProps = {
   index: number
   value: string
@@ -268,6 +308,8 @@ function MetricCard({ index, value, label, eyebrow, image, imageAlt }: MetricCar
       <TiltCard className="relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl border border-[var(--ca-line)] bg-[var(--ca-card)] shadow-[0_0_0_1px_rgba(61,139,255,0.04),0_30px_60px_-40px_rgba(61,139,255,0.35)]">
         {index === 0 ? (
           <CurveArt state={anim} run={run} delay={delay} rate={rate} image={image} imageAlt={imageAlt} />
+        ) : index === 1 ? (
+          <StackArt state={anim} run={run} delay={delay} rate={rate} image={image} imageAlt={imageAlt} />
         ) : (
           <div className="ca-outcome-art absolute inset-0">
             <Image
