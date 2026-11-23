@@ -1,0 +1,3 @@
+if(new URLSearchParams(location.search).has('embedded'))document.body.classList.add('embedded');
+document.querySelectorAll('.action').forEach(button=>button.addEventListener('click',()=>{const add=button.textContent.includes('Add');document.querySelector('.toast').textContent=add?'Added to the demo discussion list.':'Demo preview selected: '+button.closest('article,section').querySelector('h2,h3').textContent;if(add){button.textContent='Added to plan';button.setAttribute('aria-pressed','true')}setTimeout(()=>document.querySelector('.toast').textContent='',2500)}));
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&window.parent!==window){event.preventDefault();event.stopPropagation();window.parent.postMessage({type:'ca06-close'},location.origin)}});

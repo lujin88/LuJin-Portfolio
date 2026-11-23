@@ -1,0 +1,24 @@
+/* CA06 three-page gallery — visual v2 (#22951), fixed preview area so tabs/preview never jump when switching pages. */
+.gallery{min-width:0}
+.tabs,.dialogTabs{display:flex;flex-wrap:wrap;gap:8px}
+.stage{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.thumbs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.thumb{display:block;padding:0;border:1px solid #a9b8cc38;border-radius:10px;overflow:hidden;background:#0d1526;cursor:pointer;font:inherit;color:#f3f6fa;text-align:left}
+.thumb img{display:block;width:100%;height:auto;aspect-ratio:1440/1059;object-fit:cover;object-position:top;opacity:.85}
+.thumb span{display:block;padding:6px 10px;font-size:12px;line-height:1.4}
+.thumb:hover img{opacity:1}
+.thumb:focus-visible{outline:2px solid #7ea2ff;outline-offset:3px}
+@media(min-width:1024px){.stage{grid-template-columns:minmax(0,1fr) 22%;align-items:start}.thumbs{grid-template-columns:1fr}}
+.tabs button,.toolbar button{font:inherit;font-size:13px;line-height:1.5;padding:8px 16px;border:1px solid #a9b8cc38;border-radius:12px;color:#f3f6fa;background:transparent;cursor:pointer}
+.tabs button[aria-pressed=true],.dialogTabs button[aria-pressed=true]{background:#f3f6fa;color:#0b1220}
+.open{position:relative;display:block;width:100%;padding:0;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;background:#f6f6f6;cursor:zoom-in;font:inherit;text-align:center}
+.open img{display:block;width:100%;height:auto;aspect-ratio:1440/1059;object-fit:contain;object-position:top}
+.open span{display:block;background:#0d1526;color:#f3f6fa;padding:12px 16px;font-size:13px;line-height:1.5}
+.caption{font-size:12px;line-height:1.5;color:#b6bbc2;margin:12px 0 0}
+.dialog{position:fixed;inset:0;width:100vw;max-width:none;height:100dvh;max-height:none;margin:0;padding:0;border:0;background:#f6f6f6;color:#292929}
+.dialog[open]{display:flex;flex-direction:column}
+.dialog::backdrop{background:#0b1220}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px;background:#0b1220;flex:none}
+.dialog iframe{border:0;display:block;width:100%;flex:1;min-height:0;background:#f6f6f6}
+.open:focus-visible,.tabs button:focus-visible,.toolbar button:focus-visible{outline:2px solid #7ea2ff;outline-offset:3px}
+@media(max-width:700px){.tabs button,.toolbar button{padding:8px}.toolbar{padding:12px;gap:8px;align-items:start}.dialogTabs{gap:8px}.dialogTabs button{font-size:12px}}

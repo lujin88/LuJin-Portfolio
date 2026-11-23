@@ -1,34 +1,15 @@
-import type { StaticImageData } from 'next/image'
-
-import bookView from './concept/advisor-book.png'
-import clientView from './concept/client-workspace.png'
-import researchView from './concept/research-overview.png'
-
 export type ConceptMockup = {
-  id: string
-  src: StaticImageData
-  alt: string
+  id: 'prep' | 'evidence' | 'research'
+  src: string
 }
 
 /**
- * Frames for the Session 06 concept stack.
- * Source folder: `session-06/concept` (illustrative fiction, not UBS screenshots).
- * Index 0 sits at the back; the last item is the front card.
+ * Frames for the Session 06 concept stack: three fictional advisory-workspace pages (visual v2,
+ * Lu #22751 B). Index 0 sits at the back; the last item is the front card. Fullscreen loads the
+ * matching self-contained HTML study from /public.
  */
 export const conceptMockups: ConceptMockup[] = [
-  {
-    id: 'book-view',
-    src: bookView,
-    alt: 'Advisor overview of clients and opportunities (illustrative concept)',
-  },
-  {
-    id: 'us-tech',
-    src: researchView,
-    alt: 'Client view with research commentary and product ideas (illustrative concept)',
-  },
-  {
-    id: 'client-view',
-    src: clientView,
-    alt: 'Client detail view (illustrative concept)',
-  },
+  { id: 'prep', src: '/ca/ca06-concept/page-1-1440.png' },
+  { id: 'evidence', src: '/ca/ca06-concept/page-2-1440.png' },
+  { id: 'research', src: '/ca/ca06-concept/page-3-1440.png' },
 ]

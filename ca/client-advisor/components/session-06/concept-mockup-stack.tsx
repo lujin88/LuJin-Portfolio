@@ -1,9 +1,8 @@
 'use client'
 
-import { useCallback, useEffect, useId, useRef, useState, type RefObject, type CSSProperties } from 'react'
-import { createPortal } from 'react-dom'
-import { conceptMockups, type ConceptMockup } from './concept-mockups'
-import styles from './concept-mockup-stack.module.css'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { conceptMockups } from './concept-mockups'
+import gallery from './concept-gallery.module.css'
 import floating from './concept-floating.module.css'
 import { useTranslation } from '@i18n/use-translation'
 import { PIN_HEIGHT_QUERY, PIN_MIN_HEIGHT } from './concept-scroll-story'
@@ -19,12 +18,12 @@ function pose(step: number, index: number) {
 export function ConceptMockupStack() {
   const { t } = useTranslation()
   const sceneRef = useRef<HTMLDivElement>(null)
-  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const [current, setCurrent] = useState(0)
+  const [isOpen, setIsOpen] = useState(false)
+  const dialogRef = useRef<HTMLDialogElement>(null)
   const openerRef = useRef<HTMLButtonElement | null>(null)
-  const closeRef = useRef<HTMLButtonElement | null>(null)
-  const titleId = useId()
-  const count = conceptMockups.length
-  const active = activeIndex === null ? null : conceptMockups[activeIndex]
+  const closeRef = useRef<HTMLButtonElement>(null)
+  const names = conceptMockups.map((item) => t(`ca.concept.gallery.${item.id}`))
 
   useEffect(() => {
     const scene = sceneRef.current
@@ -83,7 +82,7 @@ export function ConceptMockupStack() {
       frame = 0
       rememberVisibility()
       if (!pinned()) {
-        cards.forEach((card) => { card.style.transform = ''; card.style.opacity = ''; card.style.removeProperty('--z') })
+        cards.forEach((card) => { card.style.transform = ''; card.style.opacity = ''; card.style.filter = ''; card.style.removeProperty('--z') })
         return
       }
       const rect = section.getBoundingClientRect()
@@ -99,7 +98,9 @@ export function ConceptMockupStack() {
         const to = pose(step, index)
         const value = to.map((n, i) => from[i] + (n - from[i]) * blend)
         card.style.transform = `translate(-50%, -50%) translate3d(${value[0] * factor}px, ${value[1] * factor}px, 0) scale(${value[2]}) rotate(${value[3]}deg)`
-        card.style.opacity = String(value[4])
+        // Stay opaque so the front page never shows the one behind it; dim the small cards with brightness instead.
+        card.style.opacity = '1'
+        card.style.filter = value[4] < 1 ? `brightness(${value[4]})` : ''
         card.style.setProperty('--z', index === front ? '10' : 'auto')
       })
     }
@@ -231,176 +232,49 @@ export function ConceptMockupStack() {
     }
   }, [])
 
-  const close = useCallback(() => {
-    setActiveIndex(null)
-    openerRef.current?.focus()
-  }, [])
-  const step = useCallback((direction: -1 | 1) => {
-    setActiveIndex((current) => current === null ? null : (current + direction + count) % count)
-  }, [count])
+  const close = useCallback(() => dialogRef.current?.close(), [])
+  useEffect(() => {
+    const onMessage = (event: MessageEvent) => {
+      if (event.origin === location.origin && event.data?.type === 'ca06-close') close()
+    }
+    window.addEventListener('message', onMessage)
+    return () => {
+      window.removeEventListener('message', onMessage)
+      document.body.style.overflow = ''
+    }
+  }, [close])
+  const open = (index: number, opener: HTMLButtonElement) => {
+    openerRef.current = opener
+    setCurrent(index)
+    dialogRef.current?.showModal()
+    document.body.style.overflow = 'hidden'
+    setIsOpen(true)
+    closeRef.current?.focus()
+  }
 
   return (
     <div ref={sceneRef} className={floating.scene} data-concept-variant="B">
       {conceptMockups.map((item, index) => (
         <button key={item.id} type="button" data-concept-card={index} className={floating.card}
-          aria-label={t(`ca.concept.mockups.${item.id}`)}
-          onClick={(event) => { openerRef.current = event.currentTarget; setActiveIndex(index) }}>
-          <img src={item.src.src} alt="" draggable={false} loading="lazy" decoding="async" />
+          aria-label={`${t('ca.concept.gallery.open')} ${names[index]}`}
+          onClick={(event) => open(index, event.currentTarget)}>
+          <img src={item.src} alt="" draggable={false} loading="lazy" decoding="async" />
         </button>
       ))}
-      {active && activeIndex !== null ? createPortal(
-        <Lightbox item={active} index={activeIndex} count={count} titleId={titleId} closeRef={closeRef}
-          closeLabel={t('common.closePreview')} prevLabel={t('common.previousScreen')} nextLabel={t('common.nextScreen')}
-          alt={t(`ca.concept.mockups.${active.id}`)} onClose={close} onStep={step} />,
-        document.body,
-      ) : null}
-    </div>
-  )
-}
-
-function Lightbox({
-  item,
-  index,
-  count,
-  titleId,
-  closeRef,
-  closeLabel,
-  prevLabel,
-  nextLabel,
-  alt,
-  onClose,
-  onStep,
-}: {
-  item: ConceptMockup
-  index: number
-  count: number
-  titleId: string
-  closeRef: RefObject<HTMLButtonElement | null>
-  closeLabel: string
-  prevLabel: string
-  nextLabel: string
-  alt: string
-  onClose: () => void
-  onStep: (direction: -1 | 1) => void
-}) {
-  const overlayRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const root = overlayRef.current
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        event.preventDefault()
-        onClose()
-        return
-      }
-      if (event.key === 'ArrowLeft') {
-        event.preventDefault()
-        onStep(-1)
-        return
-      }
-      if (event.key === 'ArrowRight') {
-        event.preventDefault()
-        onStep(1)
-        return
-      }
-      if (event.key !== 'Tab' || !root) return
-      const focusable = Array.from(
-        root.querySelectorAll<HTMLElement>('button, [href], input, select, textarea, video'),
-      ).filter((el) => !el.hasAttribute('disabled'))
-      if (focusable.length === 0) return
-      const first = focusable[0]
-      const last = focusable[focusable.length - 1]
-      const active = document.activeElement
-      if (event.shiftKey && (active === first || !root.contains(active))) {
-        event.preventDefault()
-        last.focus()
-      } else if (!event.shiftKey && (active === last || !root.contains(active))) {
-        event.preventDefault()
-        first.focus()
-      }
-    }
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    window.addEventListener('keydown', onKey)
-    closeRef.current?.focus()
-    return () => {
-      document.body.style.overflow = previousOverflow
-      window.removeEventListener('keydown', onKey)
-    }
-  }, [closeRef, onClose, onStep])
-
-  const showNav = count > 1
-  const aspectRatio = item.src.width / item.src.height
-
-  return (
-    <div
-      ref={overlayRef}
-      className={styles.overlay}
-      style={{ '--ar': aspectRatio } as CSSProperties}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby={titleId}
-      onClick={onClose}
-    >
-      <div
-        className={styles.dialog}
-        onClick={(event) => event.stopPropagation()}
-      >
-        <p id={titleId} className={styles.srOnly}>
-          {alt}
-        </p>
-        <p className={styles.srOnly} aria-live="polite">
-          {index + 1} / {count}
-        </p>
-        <img
-          className={styles.preview}
-          src={item.src.src}
-          alt={alt}
-          width={item.src.width}
-          height={item.src.height}
-        />
-      </div>
-      <button
-        ref={closeRef}
-        type="button"
-        className={styles.close}
-        aria-label={closeLabel}
-        title={closeLabel}
-        onClick={(event) => {
-          event.stopPropagation()
-          onClose()
-        }}
-      >
-        <i className="ri-close-line" aria-hidden="true" />
-      </button>
-      {showNav ? (
-        <>
-          <button
-            type="button"
-            className={`${styles.navBtn} ${styles.navPrev}`}
-            aria-label={prevLabel}
-            title={prevLabel}
-            onClick={(event) => {
-              event.stopPropagation()
-              onStep(-1)
-            }}
-          >
-            <i className="ri-arrow-left-s-line" aria-hidden="true" />
+      <dialog ref={dialogRef} className={gallery.dialog} aria-label={t('ca.concept.gallery.dialog')}
+        onClose={() => { document.body.style.overflow = ''; setIsOpen(false); openerRef.current?.focus() }}>
+        <div className={gallery.toolbar}>
+          <div className={gallery.dialogTabs} role="group" aria-label={t('ca.concept.gallery.choose')}>
+            {names.map((label, i) => (
+              <button key={label} type="button" aria-pressed={current === i} onClick={() => setCurrent(i)}>{i + 1}. {label}</button>
+            ))}
+          </div>
+          <button ref={closeRef} type="button" onClick={close} aria-label={t('ca.concept.gallery.closeLabel')}>
+            {t('ca.concept.gallery.close')}
           </button>
-          <button
-            type="button"
-            className={`${styles.navBtn} ${styles.navNext}`}
-            aria-label={nextLabel}
-            title={nextLabel}
-            onClick={(event) => {
-              event.stopPropagation()
-              onStep(1)
-            }}
-          >
-            <i className="ri-arrow-right-s-line" aria-hidden="true" />
-          </button>
-        </>
-      ) : null}
+        </div>
+        {isOpen && <iframe title={`${names[current]}, ${t('ca.concept.gallery.study')}`} src={`/ca/ca06-concept/page-${current + 1}.html?embedded`} />}
+      </dialog>
     </div>
   )
 }
