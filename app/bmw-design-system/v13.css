@@ -152,12 +152,6 @@
 @media(min-width:900px){
  .bmw-v13 section+section{margin-top:0}
  .bmw-v13 section{aspect-ratio:auto;isolation:isolate}
- .bmw-v13 section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--v13-atmo) center/cover no-repeat;filter:blur(64px) saturate(1.1);opacity:.9;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 24%,#000 76%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 24%,#000 76%,transparent)}
- .v13-hero{--v13-atmo:url(/assets/images/bmw-system/v13/hero.webp)}
- .v13-spec{--v13-atmo:url(/assets/images/bmw-system/v13/section-02.webp)}
- .v13-flow{--v13-atmo:url(/assets/images/bmw-system/v13/flow-b-panel.webp)}
- .v13-docs{--v13-atmo:url(/assets/images/bmw-system/v13/section-04.webp)}
- .v13-key{--v13-atmo:url(/assets/images/bmw-system/v13/section-05.webp)}
  .v13-review-stage{display:block;position:relative;container-type:inline-size;width:min(calc(100% - 48px),var(--editorial,1040px));margin-inline:auto}
  .v13-spec .v13-review-stage{aspect-ratio:1740/904}
  .v13-flow .v13-review-stage,.v13-docs .v13-review-stage,.v13-key .v13-review-stage{aspect-ratio:3/2}
@@ -220,3 +214,22 @@
 .v13-rise section.is-in .v13-review-stage>:nth-child(n+6){transition-delay:.55s}
 /* reduce switched on while the page is open: cancel the rise at once, content stays where it is. */
 @media(prefers-reduced-motion:reduce){.v13-rise section:not(.v13-hero) .v13-review-stage>:not(.v13-bg):not(.v13-docs-bg),.v13-rise section.is-in .v13-review-stage>:not(.v13-bg):not(.v13-docs-bg){opacity:1;transform:none;transition:none}}
+
+/* Lu #23833 (visual v2, selected #23910): the old blurred, stretched copy of each section's art is gone. Each section below the hero gets one sharp wide atmosphere layer; the hero gets a wide mountain layer and an alpha mask for the original hero art. No blur filter anywhere. */
+.bmw-v13 section{isolation:isolate;overflow:hidden}
+.bmw-v13 section:not(.v13-hero){background:#192f4e}
+.bmw-v13 section:not(.v13-hero)::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:#192f4e url(/assets/images/bmw-system/v13/atmosphere-wide.png) center/cover no-repeat;-webkit-mask-image:linear-gradient(transparent,#000 8%,#000 90%,transparent);mask-image:linear-gradient(transparent,#000 8%,#000 90%,transparent)}
+@media(min-width:900px){
+ .bmw-v13 .v13-docs-bg{-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent),linear-gradient(transparent 18%,#000 25%,#000 82%,transparent 96%);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent),linear-gradient(transparent 18%,#000 25%,#000 82%,transparent 96%);-webkit-mask-composite:source-in;mask-composite:intersect}
+ .v13-hero::before{content:"";position:absolute;top:96px;left:0;right:0;height:calc(min(1040px,100vw - 48px)*.5143229);z-index:-1;pointer-events:none;background:url(/assets/images/bmw-system/v13/hero-landscape-wide.png) center 64%/cover no-repeat;-webkit-mask-image:linear-gradient(transparent,#000 7%,#000 76%,transparent);mask-image:linear-gradient(transparent,#000 7%,#000 76%,transparent)}
+ /* alpha only: the hero's own RGB stays the untouched hero.webp */
+ .bmw-v13 .v13-hero .v13-bg{-webkit-mask-image:url(/assets/images/bmw-system/v13/hero-mask.png);mask-image:url(/assets/images/bmw-system/v13/hero-mask.png);-webkit-mask-size:100% auto;mask-size:100% auto;-webkit-mask-position:center top;mask-position:center top;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-composite:source-over;mask-composite:add}
+}
+@media(max-width:899px){
+ .bmw-v13 section+section{margin-top:0}
+ .bmw-v13 section:not(.v13-hero)::before{background-size:auto 100%;background-position:65% center;-webkit-mask-image:linear-gradient(transparent,#000 64px,#000 calc(100% - 64px),transparent);mask-image:linear-gradient(transparent,#000 64px,#000 calc(100% - 64px),transparent)}
+ .v13-docs{background:#192f4e!important}
+ /* section fades finish before the next section begins; the diagram edges and the Digital Key sky fade instead of cutting */
+ .bmw-v13 .v13-flow-art{-webkit-mask-image:linear-gradient(transparent,#000 16px,#000 calc(100% - 16px),transparent),linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent);mask-image:linear-gradient(transparent,#000 16px,#000 calc(100% - 16px),transparent),linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent);-webkit-mask-composite:source-in;mask-composite:intersect}
+ .bmw-v13 .v13-key-art{aspect-ratio:auto;height:calc(74.766355vw + 64px);background-position-y:calc(89.5% + 6.72px);-webkit-mask-image:linear-gradient(transparent,#000 64px,#000 calc(100% - 16px),transparent);mask-image:linear-gradient(transparent,#000 64px,#000 calc(100% - 16px),transparent)}
+}
