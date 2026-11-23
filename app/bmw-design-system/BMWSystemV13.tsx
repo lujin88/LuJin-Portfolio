@@ -162,8 +162,8 @@ function useBackgroundParallax() {
       const vh = window.innerHeight
       for (const el of layers) {
         const host = el.closest('section') as HTMLElement
-        // spec and flow have list lines / label leaders baked into the art that must stay on their HTML text (Lu #22743)
-        if (host.classList.contains('v13-spec') || host.classList.contains('v13-flow')) { el.style.transform = ''; continue }
+        // spec and flow have list lines / label leaders baked into the art that must stay on their HTML text (Lu #22743); docs (panel frame, logo, tree arrows) and key (phone under the subtitle) too (visualqa #23997)
+        if (host.classList.contains('v13-spec') || host.classList.contains('v13-flow') || host.classList.contains('v13-docs') || host.classList.contains('v13-key')) { el.style.transform = ''; continue }
         // in flow (stacked layout) there is nothing to drift; the desktop hero bg is relative inside its grid and does drift
         if (getComputedStyle(el).position === 'static') { el.style.transform = ''; continue }
         const r = host.getBoundingClientRect()
