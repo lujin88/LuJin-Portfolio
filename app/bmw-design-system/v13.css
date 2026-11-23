@@ -16,8 +16,8 @@ body:has(.bmw-v13){background:#192f4e}
 .story-intro{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-top:24px}
 .story-intro p{margin-top:12px}
 .story-stores{display:flex;gap:12px;flex-shrink:0}
-.story-store{display:grid;grid-template-columns:20px auto;column-gap:8px;align-content:center;align-items:center;min-width:116px;min-height:56px;padding:10px 14px;border:1px solid #ffffff30;border-radius:12px;color:white;text-decoration:none;font-size:13px;line-height:1.4}
-.story-store-icon{grid-row:span 2;width:18px;height:18px}.story-store span{color:#c3cce0}.story-store b{font-weight:600}.story-store:hover{background:#ffffff10}
+.story-store{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;box-sizing:border-box;width:116px;height:88px;padding:14px;border:1px solid #ffffff1f;border-radius:12px;background:#ffffff0f;color:white;text-decoration:none;font-size:13px;line-height:1.25}
+.story-store-icon{display:block;width:16px;height:16px;flex:none}.story-store span{display:block;color:#ffffff99;font-weight:400}.story-store b{display:block;font-weight:600}.story-store:hover{background:#ffffff1a}.story-store:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .story-content{padding:32px 0 64px}
 .story-content section{position:relative;background:none;margin:0;isolation:auto;aspect-ratio:auto}
 .story-spec{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;padding:16px 0 56px}
@@ -71,7 +71,7 @@ body:has(.bmw-v13){background:#192f4e}
 .story-key{display:flex;flex-direction:column;gap:8px;align-items:stretch;padding:32px 0 8px!important}.story-key-art{width:115%;margin-left:-7.5%;height:auto}
 .bmw-v13~.site-closing-case.bm-closing .contact-section{padding-top:40px;padding-bottom:40px}
 }
-@media(prefers-reduced-motion:reduce){.bmw-v13 *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(prefers-reduced-motion:reduce){.bmw-v13 *,.bmw-v13 *::before,.bmw-v13 *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 /* Keep the photographed landscape in the opening, then dissolve into the same page field. */
 .v13-backdrop{-webkit-mask-image:linear-gradient(#000 calc(100% - 300px),transparent);-webkit-mask-image:linear-gradient(#000 calc(100% - 300px),transparent);mask-image:linear-gradient(#000 calc(100% - 300px),transparent)}
 .story-hero{position:relative;isolation:isolate}
@@ -97,7 +97,7 @@ body:has(.bmw-v13){background:#192f4e}
 .story-groups{grid-template-columns:repeat(3,1fr);gap:10px}.story-groups>div{display:block}.story-groups dt{font-size:15px}.story-groups dd{font-size:13px;margin-top:6px;line-height:1.6}
 }
 @media(max-width:899px){.story-spec-art{overflow:visible}}
-.story-intro p,.story-store span{color:#fff}
+.story-intro p{color:#fff}.story-store span{color:#ffffffcc}
 
 /* #24268: widen only the desktop key heading measure; keep incumbent type. */
 @media(min-width:900px){.story-key{grid-template-columns:minmax(500px,1.25fr) minmax(0,1fr)}.story-key h2{max-width:560px}}
@@ -106,3 +106,10 @@ body:has(.bmw-v13){background:#192f4e}
 .v13-rise .story-content>section{opacity:0;transform:translate3d(0,44px,0);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
 .v13-rise .story-content>section.is-in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.v13-rise .story-content>section{opacity:1;transform:none;transition:none}}
+
+/* Lu #23628 (pm #24300/#24301): each section below the hero gets a slowly breathing glow in the backdrop's own warm orange (no new yellow, Lu #24064). Decoration only; reduced motion keeps it still. */
+.story-spec,.story-flow,.story-docs,.story-key{isolation:isolate}
+.story-spec::after,.story-flow::after,.story-docs::after,.story-key::after{content:"";position:absolute;z-index:-1;pointer-events:none;left:var(--gx,20%);top:var(--gy,10%);width:var(--gw,60%);height:var(--gh,80%);border-radius:50%;background:radial-gradient(closest-side,rgba(242,140,60,.5),rgba(242,140,60,.18) 55%,rgba(242,140,60,0));opacity:.35;filter:blur(24px);animation:story-breathe 7s ease-in-out infinite;animation-delay:var(--gd,0s)}
+.story-spec::after{--gx:40%;--gy:0%}.story-flow::after{--gx:5%;--gy:15%;--gd:-2s}.story-docs::after{--gx:45%;--gy:10%;--gd:-4s}.story-key::after{--gx:0%;--gy:5%;--gd:-6s}
+@keyframes story-breathe{0%,100%{opacity:.25;transform:scale(.94)}50%{opacity:.7;transform:scale(1.08)}}
+@media(max-width:899px){.story-spec::after,.story-flow::after,.story-docs::after,.story-key::after{--gx:-10%;--gw:120%;--gh:70%}}
