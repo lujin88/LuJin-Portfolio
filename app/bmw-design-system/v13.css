@@ -12,7 +12,7 @@ body:has(.bmw-v13){background:#192f4e}
 .bmw-v13 :focus-visible{outline:2px solid #fff;outline-offset:4px}
 .bmw-v13 ::selection{background:#7ea2ff;color:#192f4e}
 .story-hero{padding:80px 0 48px}
-.story-hero-art{width:100%;aspect-ratio:1536/790;background:url('/assets/images/bmw-system/v13/hero.webp') center top/100% auto no-repeat;-webkit-mask-image:url('/assets/images/bmw-system/v13/hero-mask.png');mask-image:url('/assets/images/bmw-system/v13/hero-mask.png');-webkit-mask-size:100% auto;mask-size:100% auto;-webkit-mask-position:center top;mask-position:center top;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.story-hero-art{width:100%;aspect-ratio:1536/790;background:url('/assets/images/bmw-system/v13/hero.webp') center top/100% auto no-repeat;-webkit-mask-image:url('/assets/images/bmw-system/v13/hero-mask.webp');mask-image:url('/assets/images/bmw-system/v13/hero-mask.webp');-webkit-mask-size:100% auto;mask-size:100% auto;-webkit-mask-position:center top;mask-position:center top;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 .story-intro{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-top:24px}
 .story-intro p{margin-top:12px}
 .story-stores{display:flex;gap:12px;flex-shrink:0}
@@ -35,7 +35,7 @@ body:has(.bmw-v13){background:#192f4e}
 .story-flow-art{width:100%;aspect-ratio:1100/460;position:relative;overflow:hidden}
 .story-flow-source{position:absolute;width:139.636%;aspect-ratio:1536/1024;left:-19.091%;top:-76.087%;-webkit-mask-image:url('/assets/images/bmw-system/v13/logic-panel-mask.svg');mask-image:url('/assets/images/bmw-system/v13/logic-panel-mask.svg');-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 .story-flow-source img{width:100%;height:auto}
-.story-flow-source .story-flow-retouch{position:absolute;inset:0;-webkit-mask-image:url('/assets/images/bmw-system/v13/logic-retouch-mask.svg');mask-image:url('/assets/images/bmw-system/v13/logic-retouch-mask.svg');-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.story-flow-source .story-flow-retouch{position:absolute;left:74.870%;top:27.832%;width:13.021%;height:16.113%;-webkit-mask-image:url('/assets/images/bmw-system/v13/logic-retouch-mask.svg');mask-image:url('/assets/images/bmw-system/v13/logic-retouch-mask.svg');-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 .story-docs{padding:48px 0 64px!important;display:grid;grid-template-columns:1fr 1.65fr;column-gap:48px;align-items:start}
 .story-docs header{padding-top:20px}.story-docs header p{margin-top:24px}
 .story-docs small{grid-column:2;margin-top:16px}
@@ -76,10 +76,10 @@ body:has(.bmw-v13){background:#192f4e}
 .v13-backdrop{-webkit-mask-image:linear-gradient(#000 calc(100% - 300px),transparent);-webkit-mask-image:linear-gradient(#000 calc(100% - 300px),transparent);mask-image:linear-gradient(#000 calc(100% - 300px),transparent)}
 .story-hero{position:relative;isolation:isolate}
 .story-hero::before{content:'';position:absolute;left:0;right:0;top:80px;height:min(535px,calc((100vw - 48px)*.5143229));background:url('/assets/images/bmw-system/v13/hero-landscape-wide.png') center 64%/cover no-repeat;-webkit-mask-image:linear-gradient(transparent,#000 12%,#000 68%,transparent);mask-image:linear-gradient(transparent,#000 12%,#000 68%,transparent);z-index:-1;pointer-events:none}
-@media(max-width:899px){.story-hero::before{height:calc(100vw*.5143229);background-size:auto 100%;-webkit-mask-image:linear-gradient(transparent,#000 15%,#000 70%,transparent);mask-image:linear-gradient(transparent,#000 15%,#000 70%,transparent)}.story-hero-art{-webkit-mask-image:url('/assets/images/bmw-system/v13/hero-mask.png');mask-image:url('/assets/images/bmw-system/v13/hero-mask.png')}.story-spec-art img{width:195%;left:-20%;top:0}.story-groups>div{grid-template-columns:128px 1fr;gap:12px}}
+@media(max-width:899px){.story-hero::before{height:calc(100vw*.5143229);background-size:auto 100%;-webkit-mask-image:linear-gradient(transparent,#000 15%,#000 70%,transparent);mask-image:linear-gradient(transparent,#000 15%,#000 70%,transparent)}.story-hero-art{-webkit-mask-image:url('/assets/images/bmw-system/v13/hero-mask.webp');mask-image:url('/assets/images/bmw-system/v13/hero-mask.webp')}.story-spec-art img{width:195%;left:-20%;top:0}.story-groups>div{grid-template-columns:128px 1fr;gap:12px}}
 
 /* Use the generated alpha matte at render time; phone screen RGB stays original. */
-.story-key-art{-webkit-mask-image:url(/assets/images/bmw-system/v13/phone-cutout.png);mask-image:url(/assets/images/bmw-system/v13/phone-cutout.png);-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.story-key-art{-webkit-mask-image:url(/assets/images/bmw-system/v13/phone-cutout.webp);mask-image:url(/assets/images/bmw-system/v13/phone-cutout.webp);-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 /* Mobile reads as a compact case study, using the existing 28/15/13px token steps. */
 @media(max-width:899px){
 .bmw-v13 h1{font-size:36px}

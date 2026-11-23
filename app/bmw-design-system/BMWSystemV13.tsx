@@ -70,7 +70,7 @@ function Story() {
             <div className="story-flow-art">
               <div className="story-flow-source" aria-hidden="true">
                 <img src={`${ART}/flow-b-panel.webp`} width={1536} height={1024} alt="" loading="lazy" decoding="async" />
-                <img className="story-flow-retouch" src={`${ART}/logic-line-retouch.png`} width={1536} height={1024} alt="" loading="lazy" decoding="async" />
+                <img className="story-flow-retouch" src={`${ART}/logic-line-retouch.png`} width={200} height={165} alt="" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
