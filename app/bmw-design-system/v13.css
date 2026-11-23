@@ -218,3 +218,5 @@
 .v13-rise section.is-in .v13-review-stage>:nth-child(4){transition-delay:.25s}
 .v13-rise section.is-in .v13-review-stage>:nth-child(5){transition-delay:.4s}
 .v13-rise section.is-in .v13-review-stage>:nth-child(n+6){transition-delay:.55s}
+/* reduce switched on while the page is open: cancel the rise at once, content stays where it is. */
+@media(prefers-reduced-motion:reduce){.v13-rise section:not(.v13-hero) .v13-review-stage>:not(.v13-bg):not(.v13-docs-bg),.v13-rise section.is-in .v13-review-stage>:not(.v13-bg):not(.v13-docs-bg){opacity:1;transform:none;transition:none}}
