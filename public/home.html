@@ -2159,6 +2159,49 @@
     </article>
   </div>
 </section>
+<section id="home-concept" aria-labelledby="home-concept-title">
+  <div class="home-concept-inner">
+    <header class="home-concept-head">
+      <h2 id="home-concept-title" data-i18n="home.concept.title">Concept</h2>
+    </header>
+    <div class="home-concept-grid">
+      <a class="concept-card concept-etf" href="/etf-savings-plan">
+        <div class="concept-copy">
+          <h3 data-i18n="home.concept.etf.title">ETF Savings Plan</h3>
+          <p data-i18n="home.concept.etf.body">Set up a Swiss ETF Sparplan once, and keep it on track.</p>
+          <span class="concept-link"><span data-i18n="home.concept.cta">Explore concept</span> ›</span>
+        </div>
+        <div class="concept-art" aria-hidden="true"><img src="/assets/images/home-motion/concept-etf-poster.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async" /></div>
+      </a>
+      <a class="concept-card concept-man" href="/man-truck-bus">
+        <div class="concept-copy">
+          <h3 data-i18n="home.concept.man.title">MAN Truck &amp; Bus</h3>
+          <p data-i18n="home.concept.man.body">Autonomous fleet telemetry and driver shift coordination.</p>
+          <span class="concept-link"><span data-i18n="home.concept.cta">Explore concept</span> ›</span>
+        </div>
+        <div class="concept-original-man-media"><img class="concept-man-cab" src="/assets/man-fleet-uptime/truck-arrive-1920-last.webp" alt="" width="1400" height="788" loading="lazy" decoding="async" /><video muted playsinline preload="none" aria-hidden="true"></video></div>
+      </a>
+    </div>
+  </div>
+</section>
+<script>
+/* Concept MAN card: the arrival clip plays once when the card is in view, then rests on the last frame.
+   Reduced motion leaves the video unset, so the still stays. */
+(function () {
+  var v = document.querySelector("#home-concept .concept-original-man-media video");
+  if (!v || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  v.muted = true;
+  var box = v.parentElement;
+  v.addEventListener("playing", function () { box.classList.add("playing"); });
+  v.addEventListener("ended", function () { box.classList.remove("playing"); });
+  new IntersectionObserver(function (es, io) {
+    if (!es.some(function (e) { return e.isIntersecting; })) return;
+    io.disconnect();
+    v.src = "/assets/man-fleet-uptime/truck-arrive-1920.mp4";
+    var p = v.play(); if (p && p.catch) p.catch(function () {});
+  }, { threshold: 0.3 }).observe(v);
+})();
+</script>
 <section id="home-playground" aria-labelledby="home-playground-title">
   <div class="home-playground-inner">
     <h2 id="home-playground-title">Playground</h2>
