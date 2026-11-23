@@ -22,7 +22,8 @@
  // (measured in WebKit, Chrome and Firefox).
  function watchSources(){var last=video.querySelector('source:last-of-type');if(!last)return;last.addEventListener('error',function(){if(!video.currentSrc||video.networkState!==HTMLMediaElement.NETWORK_NO_SOURCE)return;failed=true;still();},{signal:events.signal});}
  function still(){video.pause();stage.classList.remove('is-playing');}
- function update(){loopUpdate();return update0();}
+ // After a back/forward-cache restore initStage runs again on a video that already ended, so 'ended' never fires again: pick it up here.
+ function update(){if(playOnce&&!finished&&video.ended)finished=true;loopUpdate();return update0();}
  function update0(){if(!stage.isConnected){cleanup();return;}if(failed||reduce.matches){still();return;}if(playOnce&&finished){if(!visible||document.hidden||!shown()){video.pause();return;}stage.classList.add('is-playing');return;}if(!visible||document.hidden||!shown()){video.pause();return;}if(video.dataset.src&&!video.getAttribute('src'))video.src=video.dataset.src;var srcs=video.querySelectorAll('source[data-src]:not([src])');if(srcs.length){srcs.forEach(function(s){s.src=s.dataset.src;});video.load();watchSources();}if(playOnce&&(finished||video.ended))return;video.muted=true;var p=video.play();if(p)p.catch(still);}
  var observer=new IntersectionObserver(function(e){visible=e[e.length-1].isIntersecting;update();});
  function restore(e){if(e.persisted)initAdvisoryOffice();}
