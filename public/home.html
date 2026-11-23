@@ -1348,7 +1348,7 @@
   .exp-content[data-side="left"]  .exp-content__node { left: 0; }
   .exp-content[data-side="right"] .exp-content__node { right: 0; }
 
-  /* THE active vertical connector. 1.6875px wide. The fade is a fixed
+  /* THE active vertical connector. 2px wide (whole px: a fractional width at fractional x paints 1px on some stems and 2px on others, Lu #23826). The fade is a fixed
      36px below the dot, not a percentage of the node: extendBarTo()
      stretches the node upward, and a 232% bar used to drag the tail
      with it. 36px is the old 43%→52% fade on the resting UBS node
@@ -1359,8 +1359,8 @@
     left: 0;
     top: 0;
     bottom: calc(-1 * var(--exp-bar-tail));
-    width: 1.6875px;
-    margin-left: -0.84px;
+    width: 2px;
+    margin-left: -1px;
     background: linear-gradient(to bottom,
       #4f78f0 0,
       var(--color-theme-2) calc(100% - var(--exp-bar-tail) - 20px),
