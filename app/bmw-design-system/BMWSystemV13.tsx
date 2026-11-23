@@ -158,7 +158,7 @@ function useBackgroundParallax() {
         const q = Math.max(0, Math.min(1, (window.innerHeight - r.top) / (window.innerHeight + r.height)))
         closing.style.setProperty('--bm-py', mq.matches ? '0px' : `${((q - 0.5) * 120).toFixed(1)}px`)
       }
-      if (mq.matches) { for (const el of layers) el.style.transform = ''; for (const el of stores) el.style.transform = ''; return }
+      if (mq.matches) { document.querySelector<HTMLElement>('.bmw-v13 .v13-hero')?.style.removeProperty('--v13-hero-ty'); for (const el of layers) el.style.transform = ''; for (const el of stores) el.style.transform = ''; return }
       const vh = window.innerHeight
       for (const el of layers) {
         const host = el.closest('section') as HTMLElement
@@ -173,6 +173,7 @@ function useBackgroundParallax() {
         const p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2)))
         const ty = hero ? Math.min(1, Math.max(0, -r.top / r.height)) * r.height * 0.06 : -p * r.height * 0.05
         el.style.transform = `translate3d(0,${ty.toFixed(1)}px,0)`
+        if (hero) host.style.setProperty('--v13-hero-ty', `${ty.toFixed(1)}px`)
         if (hero) for (const st of stores) st.style.transform = getComputedStyle(st).position === 'absolute' ? el.style.transform : ''
       }
     }
