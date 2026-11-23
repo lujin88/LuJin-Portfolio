@@ -386,6 +386,9 @@
 }.wa-page .speak-button:hover{
   background: white;
   transform: translateY(-2px);
+}.wa-page .speak-button[data-speaking="true"]{
+  border-color: var(--ink);
+  background: white;
 }.wa-page .speak-button i{
   font-size: 18px;
   line-height: 1;

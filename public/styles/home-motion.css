@@ -22,7 +22,7 @@
    browser's scroll restoration. Hold the pinned height until layout() has run
    once, so the page does not grow by 150vh above the viewport. Same viewport rule
    as the JS pin check. */
-@media (min-width: 1100px) and (min-height: 760px) and (prefers-reduced-motion: no-preference) {
+@media (min-width: 1100px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
   #home-showcase:not([data-pin-ready]) { min-height: 525vh; }
 }
 .home-showcase-pinned .home-showcase-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
@@ -66,6 +66,9 @@
     object-position: 22% center;
   }
 }
+/* After the drive-in clip stops, the cloud loop fades in over its last frame. */
+#bmw-my-app .advisory-office > video.bmw-cloud-loop { visibility: visible; opacity: 0; transition: opacity 0.8s ease; }
+#bmw-my-app .advisory-office.is-playing > video.bmw-cloud-loop.is-looping { opacity: 1; }
 .bmw-title-390 { display: none; }
 @media (max-width: 420px) {
   .bmw-title-1440 { display: none; }

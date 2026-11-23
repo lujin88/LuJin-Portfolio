@@ -333,11 +333,17 @@ function VocabArt({
   label,
   active,
   onActive,
+  cycleId,
+  onCycleEnd,
 }: {
   item: (typeof VOCAB)[number]
   label: string
   active: boolean
   onActive: (on: boolean) => void
+  // Non-zero while the speaker button owns one play-through of this clip (starts on the
+  // real speech start event). The cycle finishes on its own; only another word stops it.
+  cycleId: number
+  onCycleEnd: (id: number) => void
 }) {
   const { clip } = item
   const rootRef = useRef<HTMLButtonElement>(null)
@@ -347,6 +353,8 @@ function VocabArt({
   const [ready, setReady] = useState(false)
   const [failed, setFailed] = useState(false)
   const canPlay = ready && motionAllowed && !failed
+  const cycling = cycleId !== 0
+  const playing = active || cycling
 
   useEffect(() => {
     const root = rootRef.current
@@ -366,7 +374,7 @@ function VocabArt({
   useEffect(() => {
     const video = videoRef.current
     if (!video || !ready) return
-    if (active && canPlay) {
+    if (playing && canPlay) {
       video.currentTime = 0
       void video.play().catch(() => {
         // Playback can be refused after a quick leave.
@@ -375,13 +383,26 @@ function VocabArt({
     }
     video.pause()
     if (video.currentTime !== 0) video.currentTime = 0
-  }, [active, canPlay, ready])
+  }, [playing, canPlay, ready])
+
+  // Same word spoken again: restart the cycle from the first frame.
+  useEffect(() => {
+    const video = videoRef.current
+    if (!cycleId || !video || !ready || !canPlay) return
+    video.currentTime = 0
+    void video.play().catch(() => {
+      // Playback can be refused; the next speech start tries again.
+    })
+  }, [cycleId, ready, canPlay])
 
   // Stop when scrolled away or the tab is hidden, so a tapped clip does not keep running.
   useEffect(() => {
     const root = rootRef.current
-    if (!root || !active) return
-    const stop = () => onActive(false)
+    if (!root || !playing) return
+    const stop = () => {
+      onActive(false)
+      if (cycleId) onCycleEnd(cycleId)
+    }
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) stop()
     })
@@ -394,7 +415,7 @@ function VocabArt({
       observer.disconnect()
       document.removeEventListener('visibilitychange', onHidden)
     }
-  }, [active, onActive])
+  }, [playing, cycleId, onActive, onCycleEnd])
 
   const mask = clipMask(clip)
 
@@ -431,7 +452,8 @@ function VocabArt({
           // #t=0.001 makes iOS Safari paint the first frame without playing.
           src={load ? `/assets/videos/lab/weather-aquarium/${clip.file}#t=0.001` : undefined}
           muted
-          loop
+          // Hover loops; a speaker cycle plays once and settles on the first frame.
+          loop={active}
           playsInline
           preload={load ? 'auto' : 'none'}
           aria-hidden="true"
@@ -443,6 +465,9 @@ function VocabArt({
           }}
           onSeeked={(event) => {
             if (event.currentTarget.readyState >= 2) setReady(true)
+          }}
+          onEnded={() => {
+            if (cycleId) onCycleEnd(cycleId)
           }}
           onError={() => setFailed(true)}
         />
@@ -634,11 +659,30 @@ export function WeatherAquariumPage() {
   const [pose, setPose] = useState(0)
   const [activeTap, setActiveTap] = useState<number | null>(null)
   const [activeVocab, setActiveVocab] = useState<Word | null>(null)
+  // One speaker-driven clip cycle at a time. `id` is the speech request number.
+  const [cycle, setCycle] = useState<{ word: Word; id: number } | null>(null)
+  const [speakingWord, setSpeakingWord] = useState<Word | null>(null)
+  const speechSerial = useRef(0)
+  const stopSpeech = useCallback(() => {
+    speechSerial.current += 1
+    if ('speechSynthesis' in window) speechSynthesis.cancel()
+    setCycle(null)
+    setSpeakingWord(null)
+  }, [])
+  const onCycleEnd = useCallback((id: number) => setCycle((current) => (current?.id === id ? null : current)), [])
   // Stable so PoseButton's outside-tap listener isn't rebound on every render.
   const onPoseTap = useCallback(
     (index: number, on: boolean) => setActiveTap((current) => (on ? index : current === index ? null : current)),
     [],
   )
+
+  useEffect(() => {
+    const onHidden = () => {
+      if (document.hidden) stopSpeech()
+    }
+    document.addEventListener('visibilitychange', onHidden)
+    return () => document.removeEventListener('visibilitychange', onHidden)
+  }, [stopSpeech])
 
   useEffect(() => {
     if (!('speechSynthesis' in window)) return
@@ -683,6 +727,8 @@ export function WeatherAquariumPage() {
 
   const speak = (word: Word) => {
     if (!('speechSynthesis' in window)) return
+    stopSpeech()
+    const token = speechSerial.current
     const entry = DICTIONARY[language]
     const say = () => {
       const utterance = new SpeechSynthesisUtterance(entry.words[word])
@@ -690,6 +736,21 @@ export function WeatherAquariumPage() {
       utterance.rate = language === 'zh' ? 0.82 : 0.9
       const voice = voiceForLocale(entry.locale)
       if (voice) utterance.voice = voice
+      // The real speech start (not the click) starts the clip; stale callbacks are ignored.
+      utterance.onstart = () => {
+        if (token !== speechSerial.current) return
+        setSpeakingWord(word)
+        setCycle({ word, id: token })
+      }
+      utterance.onend = () => {
+        if (token !== speechSerial.current) return
+        setSpeakingWord(null)
+      }
+      utterance.onerror = () => {
+        if (token !== speechSerial.current) return
+        setSpeakingWord(null)
+        setCycle(null)
+      }
       speechSynthesis.cancel()
       speechSynthesis.speak(utterance)
     }
@@ -698,6 +759,10 @@ export function WeatherAquariumPage() {
       return
     }
     const onVoices = () => {
+      if (token !== speechSerial.current) {
+        speechSynthesis.removeEventListener('voiceschanged', onVoices)
+        return
+      }
       if (!speechSynthesis.getVoices().length) return
       speechSynthesis.removeEventListener('voiceschanged', onVoices)
       say()
@@ -800,7 +865,10 @@ export function WeatherAquariumPage() {
                       key={item.id}
                       type="button"
                       aria-pressed={language === item.id}
-                      onClick={() => setLanguage(item.id)}
+                      onClick={() => {
+                        stopSpeech()
+                        setLanguage(item.id)
+                      }}
                     >
                       {item.label}
                     </button>
@@ -818,12 +886,15 @@ export function WeatherAquariumPage() {
                         label={label}
                         active={activeVocab === item.word}
                         onActive={(on) => setActiveVocab((current) => (on ? item.word : current === item.word ? null : current))}
+                        cycleId={cycle?.word === item.word ? cycle.id : 0}
+                        onCycleEnd={onCycleEnd}
                       />
                       <div className="vocab-row">
                         <button
                           className="speak-button"
                           type="button"
                           aria-label={`Listen to ${label}`}
+                          data-speaking={speakingWord === item.word}
                           onClick={() => speak(item.word)}
                         >
                           <i className="ri-volume-up-line" aria-hidden="true" />
