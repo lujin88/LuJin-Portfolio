@@ -1,0 +1,126 @@
+{
+  "date": "2026-11-12",
+  "base_main": "f112a004a79a3b2192d81fcecaf1929cbf13740e",
+  "initial": [
+    {
+      "path": "/bmw-design-system",
+      "status": 200,
+      "bytes": 46574,
+      "sha256": "2b900f3eaab49263309a1449180363313f56aa5b7906a8a129aec4dae5964593",
+      "asset_occurrences": {
+        "ix3-landscape.webp": 0,
+        "i4-services-car.webp": 0,
+        "bmw-ix3.png": 0,
+        "i4-art.webp": 0,
+        "i4-alpine-sunset.webp": 2
+      },
+      "bmw_images": [
+        "/assets/images/bmw-system/i4-alpine-sunset.webp",
+        "/assets/images/bmw-system/i4-services-600.webp"
+      ]
+    },
+    {
+      "path": "/index",
+      "status": 200,
+      "bytes": 414394,
+      "sha256": "29ececf471800642054612ace86ac7d17c27b10efe33e1e1ee2c28040bf510a1",
+      "asset_occurrences": {
+        "ix3-landscape.webp": 0,
+        "i4-services-car.webp": 0,
+        "bmw-ix3.png": 0,
+        "i4-art.webp": 0,
+        "i4-alpine-sunset.webp": 0
+      },
+      "bmw_images": []
+    },
+    {
+      "path": "/bmw-design-system-v2",
+      "status": 200,
+      "bytes": 65653,
+      "sha256": "315ecd94097ca80c0a112cee1a3491ba8f1f953d08dcbeca01a7313bb6e62606",
+      "asset_occurrences": {
+        "ix3-landscape.webp": 2,
+        "i4-services-car.webp": 0,
+        "bmw-ix3.png": 2,
+        "i4-art.webp": 0,
+        "i4-alpine-sunset.webp": 0
+      },
+      "bmw_images": [
+        "/assets/images/bmw-system/bmw-ix3.png",
+        "/assets/images/bmw-system/engine-disclosure.png",
+        "/assets/images/bmw-system/ix3-landscape.webp"
+      ]
+    },
+    {
+      "path": "/lab/bmw-one-source/driver.html",
+      "status": 200,
+      "bytes": 30592,
+      "sha256": "9328bb1b7ef12c31f200074c3e2587960a4f77fd03d7fbed2e6a599b25342719",
+      "asset_occurrences": {
+        "ix3-landscape.webp": 1,
+        "i4-services-car.webp": 0,
+        "bmw-ix3.png": 0,
+        "i4-art.webp": 0,
+        "i4-alpine-sunset.webp": 0
+      },
+      "bmw_images": [
+        "/assets/images/bmw-system/ix3-landscape.webp"
+      ]
+    },
+    {
+      "path": "/assets/images/bmw-system/ix3-landscape.webp",
+      "status": 200,
+      "bytes": 166218,
+      "sha256": "bfce34b267a65bc69f5641b91ab4a3d5f69f48bd4d05b3bb982e8afb3903f4f5",
+      "matches_main": true
+    },
+    {
+      "path": "/assets/images/bmw-system/i4-services-car.webp",
+      "status": 200,
+      "bytes": 38248,
+      "sha256": "863b2061d5ef27a864d95e776f399d89837cda2051b2c6ff297e84da1bcb690b",
+      "matches_main": true
+    },
+    {
+      "path": "/assets/images/bmw-system/bmw-ix3.png",
+      "error": "The read operation timed out"
+    },
+    {
+      "path": "/assets/images/bmw-system/i4-art.webp",
+      "status": 200,
+      "bytes": 6960,
+      "sha256": "14791c6463c05c8c4cf17f7a3de10b5d0e0bf6151a0c0fc70a9abf6f863171de",
+      "matches_main": true
+    },
+    {
+      "path": "/assets/images/bmw-system/i4-alpine-sunset.webp",
+      "status": 200,
+      "bytes": 88840,
+      "sha256": "60af2a71506ccafc18140c534136621dc523811202b921d3f3df1cd8533167af",
+      "matches_main": true
+    }
+  ],
+  "followup": [
+    {
+      "path": "/assets/images/bmw-system/bmw-ix3.png",
+      "status": 200,
+      "bytes": 1516534,
+      "sha256": "47545070012630556f7f589f0bef57763671f3539628fe5f9e7442f8356c0956",
+      "matches_main": true
+    },
+    {
+      "path": "/assets/images/bmw-system/i4-services-600.webp",
+      "status": 200,
+      "bytes": 37180,
+      "sha256": "d76f2fc0bb5c0f74969a65b58623cea7f9769fdd26c26275c74b419455508d35",
+      "matches_main": true
+    },
+    {
+      "path": "/bmw-design-system/ideas/driver",
+      "status": 200,
+      "bytes": 18257,
+      "sha256": "21c637d9904c99654621f80f92f22d84d92cf1a1a3f125c8042396dae5a6612e",
+      "ix3-landscape_occurrences": 0
+    }
+  ]
+}

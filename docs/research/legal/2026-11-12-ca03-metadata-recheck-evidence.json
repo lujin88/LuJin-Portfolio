@@ -1,0 +1,110 @@
+{
+  "checked_at": "2026-11-12T18:34:04.268002+01:00",
+  "files": {
+    "source": {
+      "path": "/Users/lu/.buzz/OUTBOX/CA03_NOD_MOTION_1112/rerun-v3/out/original/4667c152-c692-4384-a69b-151ed91ea9dd_video_1.mp4",
+      "sha256": "ded4ca5ec7c10469b3a75c006faa6f2f3f4080b3db297fa1ef946dada7ea4399",
+      "bytes": 4213702,
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "width": null,
+          "height": null
+        },
+        {
+          "codec_type": "video",
+          "codec_name": "h264",
+          "width": 960,
+          "height": 960
+        }
+      ],
+      "duration": "5.088005",
+      "provenance_sha256": {
+        "Keys:UserComment": "b9c1c62a8415b5ad1d20204383515fa314dca01ea698371b733d054585ccdb83",
+        "Keys:LvMetaInfo": "f4fb47813bff9e6f55bae43f5b5a6d544462e878f7c1d8dd3aa98eb69d9719d7"
+      }
+    },
+    "final": {
+      "path": "/Users/lu/.buzz/OUTBOX/CA03_NOD_MOTION_1112/rerun-v3/final/ca03-B-full-web.mp4",
+      "sha256": "608bb4de22283595899f51e26d6f96865157fcc5b6c4e000c204dca573ff9452",
+      "bytes": 607011,
+      "streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "h264",
+          "width": 1400,
+          "height": 756
+        }
+      ],
+      "duration": "5.016667",
+      "provenance_sha256": {
+        "Keys:UserComment": "b9c1c62a8415b5ad1d20204383515fa314dca01ea698371b733d054585ccdb83",
+        "Keys:LvMetaInfo": "f4fb47813bff9e6f55bae43f5b5a6d544462e878f7c1d8dd3aa98eb69d9719d7"
+      }
+    },
+    "public": {
+      "path": "/Users/lu/LuJin-Portfolio-worktrees/webdev/public/assets/videos/client-advisory/ca03-B-full-web.mp4",
+      "sha256": "608bb4de22283595899f51e26d6f96865157fcc5b6c4e000c204dca573ff9452",
+      "bytes": 607011,
+      "streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "h264",
+          "width": 1400,
+          "height": 756
+        }
+      ],
+      "duration": "5.016667",
+      "provenance_sha256": {
+        "Keys:UserComment": "b9c1c62a8415b5ad1d20204383515fa314dca01ea698371b733d054585ccdb83",
+        "Keys:LvMetaInfo": "f4fb47813bff9e6f55bae43f5b5a6d544462e878f7c1d8dd3aa98eb69d9719d7"
+      }
+    },
+    "before": {
+      "path": "/Users/lu/.buzz/OUTBOX/CA03_NOD_MOTION_1112/rerun-v3/final/metadata-repair-before/ca03-B-full-web.mp4",
+      "sha256": "7539ded0cc37fece6817f3df80e1aa0bd37fa9203f0c4d37aae5ce5c9c465fcb",
+      "bytes": 606781,
+      "streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "h264",
+          "width": 1400,
+          "height": 756
+        }
+      ],
+      "duration": "5.016667",
+      "provenance_sha256": {}
+    }
+  },
+  "metadata_matches": {
+    "final": {
+      "UserComment": true,
+      "LvMetaInfo": true
+    },
+    "public": {
+      "UserComment": true,
+      "LvMetaInfo": true
+    }
+  },
+  "video_bitstream_sha256": {
+    "before": "7d9e0659b7768f1e2f38bbbfbe561ce2add4b75f1c5f32764f3d717f2d83324a",
+    "final": "7d9e0659b7768f1e2f38bbbfbe561ce2add4b75f1c5f32764f3d717f2d83324a",
+    "public": "7d9e0659b7768f1e2f38bbbfbe561ce2add4b75f1c5f32764f3d717f2d83324a"
+  },
+  "http": {
+    "url": "http://localhost:4621/assets/videos/client-advisory/ca03-B-full-web.mp4",
+    "status": 200,
+    "sha256": "608bb4de22283595899f51e26d6f96865157fcc5b6c4e000c204dca573ff9452"
+  },
+  "code_sha256": {
+    "ca/client-advisor/components/sessions/session-03-research.tsx": "09670b3522b05f3d20765874e903f7b68ae6a8b973b310fb188ac34e60eada76",
+    "ca/client-advisor/components/sessions/session-03-research.module.css": "19f52acf5829cb3d0019eb5d7c13ddd05d0153386028e96f38f058eb92c303a8",
+    "ca/client-advisor/components/sessions/session-03-advisor-media.tsx": "ea481075bad70fc6915986bc8d2cfd66c8f72f98db411823ca38c20d7d822164"
+  },
+  "code_unchanged_since_review": true,
+  "poster_sha256": "0cd7dcb0fabaf1ff94859cbab1d6bfee3205e268b80c02546d99805ffba99682",
+  "poster_unchanged_since_review": true,
+  "git_head": "450261d76604e31e57c04603e6d8a1de81a749c2",
+  "manifest_contains_new_hash": true
+}
