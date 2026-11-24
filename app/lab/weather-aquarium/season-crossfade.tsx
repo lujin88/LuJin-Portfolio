@@ -36,6 +36,10 @@ export function SeasonCrossfade() {
   const label = labels[langCode][paused ? 0 : 1]
   const [springLoaded, setSpringLoaded] = useState(false)
   const [motionAllowed, setMotionAllowed] = useState(false)
+  // 'loading': spring poster while the layered stage boots; 'live': layered stage playing; 'fallback': four flat frames (no WebGL, or stage failed).
+  const [mode, setMode] = useState<'loading' | 'live' | 'fallback'>('loading')
+  const [webgl, setWebgl] = useState(false)
+  const frame = useRef<HTMLIFrameElement>(null)
   const decoded = useRef(new Set<number>())
   const afterHero = useAfterHero()
 
@@ -49,6 +53,30 @@ export function SeasonCrossfade() {
       // Keep the current season visible if a frame cannot be decoded.
     }
   }
+
+  useEffect(() => {
+    try {
+      const canvas = document.createElement('canvas')
+      if (canvas.getContext('webgl')) { setWebgl(true); return }
+    } catch {
+      // fall through to the flat frames
+    }
+    setMode('fallback')
+  }, [])
+
+  useEffect(() => {
+    const onMessage = (event: MessageEvent) => {
+      if (event.origin !== location.origin || event.source !== frame.current?.contentWindow) return
+      if (event.data?.type === 'wa-ready') setMode('live')
+      if (event.data?.type === 'wa-fail') setMode('fallback')
+    }
+    addEventListener('message', onMessage)
+    return () => removeEventListener('message', onMessage)
+  }, [])
+
+  useEffect(() => {
+    if (mode === 'live') frame.current?.contentWindow?.postMessage({ type: 'wa-pause', value: paused }, location.origin)
+  }, [mode, paused])
 
   useEffect(() => {
     const element = stage.current
@@ -66,7 +94,7 @@ export function SeasonCrossfade() {
         setActive(0)
         decoded.current = new Set(decoded.current.has(0) ? [0] : [])
       }
-      if (!motion.matches && visible && !document.hidden && !paused) {
+      if (mode === 'fallback' && !motion.matches && visible && !document.hidden && !paused) {
         timer = setInterval(() => setActive((value) => {
           for (let offset = 1; offset < seasons.length; offset++) {
             const next = (value + offset) % seasons.length
@@ -89,12 +117,12 @@ export function SeasonCrossfade() {
       motion.removeEventListener('change', sync)
       document.removeEventListener('visibilitychange', sync)
     }
-  }, [paused])
+  }, [paused, mode])
 
   return (
     <div ref={stage} className={styles.stage} role="group" aria-label="The lake through four seasons">
       {seasons.map((season, index) => {
-        const hasSrc = (index === 0 && afterHero) || (index > 0 && springLoaded && motionAllowed)
+        const hasSrc = (index === 0 && afterHero) || (index > 0 && springLoaded && motionAllowed && mode === 'fallback')
         return (
         <img
           key={season}
@@ -111,6 +139,17 @@ export function SeasonCrossfade() {
         />
         )
       })}
+      {webgl && motionAllowed && mode !== 'fallback' && afterHero ? (
+        <iframe
+          ref={frame}
+          src="/lab/weather-aquarium/motion/stage.html"
+          title={ALT[langCode].spring}
+          className={styles.live}
+          data-live={mode === 'live'}
+          tabIndex={-1}
+          loading="lazy"
+        />
+      ) : null}
       <button className={styles.pause} onClick={() => setPaused((value) => !value)} aria-label={label} title={label} type="button">
         <i className={paused ? 'ri-play-line' : 'ri-pause-line'} aria-hidden="true" />
       </button>

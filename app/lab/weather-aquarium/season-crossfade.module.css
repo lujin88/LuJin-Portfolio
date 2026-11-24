@@ -15,6 +15,17 @@
   transition: opacity 800ms ease-in-out;
 }
 .frame[data-active='true'] { opacity: 1; }
+.live {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 710 / 420;
+  border: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+.live[data-live='true'] { opacity: 1; }
 .pause {
   position: absolute;
   right: 12px;
