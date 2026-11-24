@@ -48,7 +48,7 @@ function Story() {
       </section>
       <div className="story-content story-wrap">
         <section className="story-spec" aria-labelledby="v13-spec-title">
-          <div className="story-spec-art"><img src={`${ART}/spec-cutout.png`} alt={t('bmw.v13.spec.alt')} width={1536} height={1024} loading="lazy" decoding="async" /></div>
+          <div className="story-spec-art"><img src={`${ART}/spec-v2.webp`} alt={t('bmw.v13.spec.alt')} width={1536} height={1024} loading="lazy" decoding="async" /></div>
           <div className="story-copy">
             <h2 id="v13-spec-title">{t('bmw.v13.spec.title')}</h2>
             <ol className="story-steps">
@@ -69,8 +69,7 @@ function Story() {
           <div className="story-flow-scroll" tabIndex={0} role="img" aria-label={t('bmw.v13.flow.alt')}>
             <div className="story-flow-art">
               <div className="story-flow-source" aria-hidden="true">
-                <img src={`${ART}/flow-b-panel.webp`} width={1536} height={1024} alt="" loading="lazy" decoding="async" />
-                <img className="story-flow-retouch" src={`${ART}/logic-line-retouch.png`} width={200} height={165} alt="" loading="lazy" decoding="async" />
+                <img src={`${ART}/logic-v2.webp`} width={1536} height={1024} alt="" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>

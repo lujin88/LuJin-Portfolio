@@ -35,7 +35,6 @@ body:has(.bmw-v13){background:#192f4e}
 .story-flow-art{width:100%;aspect-ratio:1100/460;position:relative;overflow:hidden}
 .story-flow-source{position:absolute;width:139.636%;aspect-ratio:1536/1024;left:-19.091%;top:-76.087%;-webkit-mask-image:url('/assets/images/bmw-system/v13/logic-panel-mask.svg');mask-image:url('/assets/images/bmw-system/v13/logic-panel-mask.svg');-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 .story-flow-source img{width:100%;height:auto}
-.story-flow-source .story-flow-retouch{position:absolute;left:74.870%;top:27.832%;width:13.021%;height:16.113%;-webkit-mask-image:url('/assets/images/bmw-system/v13/logic-retouch-mask.svg');mask-image:url('/assets/images/bmw-system/v13/logic-retouch-mask.svg');-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 .story-docs{padding:48px 0 64px!important;display:grid;grid-template-columns:1fr 1.65fr;column-gap:48px;align-items:start}
 .story-docs header{padding-top:20px}.story-docs header p{margin-top:24px}
 .story-docs small{grid-column:2;margin-top:16px}
@@ -112,3 +111,14 @@ body:has(.bmw-v13){background:#192f4e}
 .story-spec::after,.story-flow::after,.story-docs::after,.story-key::after{content:"";position:absolute;z-index:-1;pointer-events:none;left:calc(50% - 50vw);width:100vw;top:var(--gy,10%);height:var(--gh,90%);background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(242,140,60,.22),rgba(242,140,60,.08) 60%,rgba(242,140,60,0));opacity:.3;filter:blur(40px);animation:story-breathe 7s ease-in-out infinite;animation-delay:var(--gd,0s)}
 .story-spec::after{--gy:0%}.story-flow::after{--gy:10%;--gd:-2s}.story-docs::after{--gy:5%;--gd:-4s}.story-key::after{--gy:0%;--gd:-6s}
 @keyframes story-breathe{0%,100%{opacity:.2}50%{opacity:.55}}
+/* #24454: full regenerated native-alpha artwork; no object masks. */
+.story-flow-art{overflow:visible}
+.story-flow-source{-webkit-mask-image:none;mask-image:none}
+.story-spec-art img{width:120%;left:-8%;top:0}
+@media(max-width:899px){.story-spec-art img{width:115%;left:-10%;top:-8%}}
+/* Keep native optical falloff outside the panel fully visible. */
+@media(min-width:900px){.story-flow-scroll{overflow:visible}}
+@media(max-width:899px){.story-flow-scroll{padding-top:112px;padding-bottom:112px;margin-top:-100px;margin-bottom:-112px}}
+
+/* Lu #24381 / visualqa #24549: let the 390 glow fade at the left edge (revision-24533). */
+@media(max-width:899px){.story-flow-scroll{margin-left:-20px;padding-left:40px}}
