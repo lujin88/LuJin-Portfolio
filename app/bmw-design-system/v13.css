@@ -122,3 +122,4 @@ body:has(.bmw-v13){background:#192f4e}
 
 /* Lu #24381 / visualqa #24549: let the 390 glow fade at the left edge (revision-24533). */
 @media(max-width:899px){.story-flow-scroll{margin-left:-20px;padding-left:40px}}
+@media(max-width:899px){.bmw-v13 .story-flow-scroll:focus-visible{outline:none}.bmw-v13 .story-flow-scroll:focus-visible .story-flow-art{outline:2px solid #fff;outline-offset:4px}}
