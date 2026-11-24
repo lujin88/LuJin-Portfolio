@@ -82,7 +82,7 @@ body:has(.bmw-v13){background:#192f4e}
 /* Mobile reads as a compact case study, using the existing 28/15/13px token steps. */
 @media(max-width:899px){
 .bmw-v13 h1{font-size:36px}
-.bmw-v13 h2,.bmw-v13 .story-docs h2,.bmw-v13 .story-key h2{font-size:28px;line-height:1.2}
+.bmw-v13 h2,.bmw-v13 .story-docs h2,.bmw-v13 .story-key h2{font-size:36px;line-height:1.2}
 .bmw-v13 p{font-size:15px;line-height:1.65}
 .story-intro p{font-size:17px}
 .story-spec-art{aspect-ratio:1.8}.story-spec-art img{width:175%;left:-16%;top:-6%}
