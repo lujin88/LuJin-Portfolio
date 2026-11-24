@@ -2608,3 +2608,6 @@ body::before { content: ""; position: fixed; inset: 0px; z-index: 1; pointer-eve
 
 /* The journey balloon travels in the side margin; never let it create a horizontal scrollbar (768 wide in the site shell). */
 .pp-landing .gb{overflow-x:clip}
+
+/* visualqa #24418: on phones the pinned pause button covered body text; keep it in the toolbar row instead. */
+@media(max-width:720px){.gb .journey-control.is-pinned{position:static;top:auto;right:auto}}
