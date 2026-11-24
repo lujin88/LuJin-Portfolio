@@ -109,7 +109,6 @@ body:has(.bmw-v13){background:#192f4e}
 
 /* Lu #23628 (pm #24300/#24301): each section below the hero gets a slowly breathing glow in the backdrop's own warm orange (no new yellow, Lu #24064). Decoration only; reduced motion keeps it still. */
 .story-spec,.story-flow,.story-docs,.story-key{isolation:isolate}
-.story-spec::after,.story-flow::after,.story-docs::after,.story-key::after{content:"";position:absolute;z-index:-1;pointer-events:none;left:var(--gx,20%);top:var(--gy,10%);width:var(--gw,60%);height:var(--gh,80%);border-radius:50%;background:radial-gradient(closest-side,rgba(242,140,60,.5),rgba(242,140,60,.18) 55%,rgba(242,140,60,0));opacity:.35;filter:blur(24px);animation:story-breathe 7s ease-in-out infinite;animation-delay:var(--gd,0s)}
-.story-spec::after{--gx:40%;--gy:0%}.story-flow::after{--gx:5%;--gy:15%;--gd:-2s}.story-docs::after{--gx:45%;--gy:10%;--gd:-4s}.story-key::after{--gx:0%;--gy:5%;--gd:-6s}
-@keyframes story-breathe{0%,100%{opacity:.25;transform:scale(.94)}50%{opacity:.7;transform:scale(1.08)}}
-@media(max-width:899px){.story-spec::after,.story-flow::after,.story-docs::after,.story-key::after{--gx:-10%;--gw:120%;--gh:70%}}
+.story-spec::after,.story-flow::after,.story-docs::after,.story-key::after{content:"";position:absolute;z-index:-1;pointer-events:none;left:calc(50% - 50vw);width:100vw;top:var(--gy,10%);height:var(--gh,90%);background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(242,140,60,.22),rgba(242,140,60,.08) 60%,rgba(242,140,60,0));opacity:.3;filter:blur(40px);animation:story-breathe 7s ease-in-out infinite;animation-delay:var(--gd,0s)}
+.story-spec::after{--gy:0%}.story-flow::after{--gy:10%;--gd:-2s}.story-docs::after{--gy:5%;--gd:-4s}.story-key::after{--gy:0%;--gd:-6s}
+@keyframes story-breathe{0%,100%{opacity:.2}50%{opacity:.55}}
