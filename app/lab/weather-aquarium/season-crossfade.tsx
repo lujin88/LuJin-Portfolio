@@ -33,6 +33,7 @@ export function SeasonCrossfade() {
   const stage = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
+  const [readyTick, setReadyTick] = useState(0)
   const label = labels[langCode][paused ? 0 : 1]
   const [springLoaded, setSpringLoaded] = useState(false)
   const [motionAllowed, setMotionAllowed] = useState(false)
@@ -67,7 +68,7 @@ export function SeasonCrossfade() {
   useEffect(() => {
     const onMessage = (event: MessageEvent) => {
       if (event.origin !== location.origin || event.source !== frame.current?.contentWindow) return
-      if (event.data?.type === 'wa-ready') setMode('live')
+      if (event.data?.type === 'wa-ready') { setMode('live'); setReadyTick((n) => n + 1) }
       if (event.data?.type === 'wa-fail') setMode('fallback')
     }
     addEventListener('message', onMessage)
@@ -76,7 +77,7 @@ export function SeasonCrossfade() {
 
   useEffect(() => {
     if (mode === 'live') frame.current?.contentWindow?.postMessage({ type: 'wa-pause', value: paused }, location.origin)
-  }, [mode, paused])
+  }, [mode, paused, readyTick])
 
   useEffect(() => {
     const element = stage.current
@@ -120,7 +121,7 @@ export function SeasonCrossfade() {
   }, [paused, mode])
 
   return (
-    <div ref={stage} className={styles.stage} role="group" aria-label="The lake through four seasons">
+    <div ref={stage} className={styles.stage} data-full={webgl && motionAllowed && mode !== 'fallback' && afterHero} role="group" aria-label="The lake through four seasons">
       {seasons.map((season, index) => {
         const hasSrc = (index === 0 && afterHero) || (index > 0 && springLoaded && motionAllowed && mode === 'fallback')
         return (
@@ -143,7 +144,7 @@ export function SeasonCrossfade() {
         <iframe
           ref={frame}
           src="/lab/weather-aquarium/motion/stage.html"
-          title={ALT[langCode].spring}
+          title="The lake through four seasons"
           className={styles.live}
           data-live={mode === 'live'}
           tabIndex={-1}

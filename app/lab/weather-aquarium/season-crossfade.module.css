@@ -4,6 +4,7 @@
   aspect-ratio: 1392 / 650;
   overflow: hidden;
 }
+.stage[data-full='true'] { aspect-ratio: 710 / 420; }
 .frame {
   position: absolute;
   inset: 0;
