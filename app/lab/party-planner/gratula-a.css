@@ -2611,3 +2611,11 @@ html:has(.pp-landing) body::before { content: ""; position: fixed; inset: 0px; z
 
 /* visualqa #24418: on phones the pinned pause button covered body text; keep it in the toolbar row instead. */
 @media(max-width:720px){.gb .journey-control.is-pinned{position:static;top:auto;right:auto}}
+
+/* Lu #24449: three child photos fade into each other in the invitation card (12s loop, 4s each; driven by vivid.js because the stage is data-still, which kills CSS animations). */
+.gb .gi .gi-photos{position:relative;display:block;width:100%;height:238px;border-radius:14px;overflow:hidden}
+.gb .gi .gi-photos .gi-child{position:absolute;inset:0;width:100%;height:100%;opacity:0}
+.gb .gi .gi-photos .gi-p1{opacity:1}
+@container (max-width: 480px){.gb .gi .gi-photos{height:220px}}
+@media(max-width:720px){.gb .gi .gi-photos{height:220px}}
+@media(prefers-reduced-motion:reduce){.gb .gi .gi-photos .gi-p2,.gb .gi .gi-photos .gi-p3{display:none}}
