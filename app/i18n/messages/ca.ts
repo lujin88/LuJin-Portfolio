@@ -193,8 +193,6 @@ export const ca = {
       m1Alt: '',
       m2Alt: '',
       m3Alt: '',
-      footnote:
-        'Feedback informed the next iteration.',
     },
     // Decorative background image: empty alt so screen readers skip it.
     closingAlt: '',
@@ -395,8 +393,6 @@ export const ca = {
       m1Alt: '',
       m2Alt: '',
       m3Alt: '',
-      footnote:
-        'Das Feedback floss in die nächste Iteration ein.',
     },
     // Decorative background image: empty alt so screen readers skip it.
     closingAlt: '',

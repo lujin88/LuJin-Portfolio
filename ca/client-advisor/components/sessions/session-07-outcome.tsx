@@ -91,10 +91,6 @@ function Outcomes() {
           <MetricCard key={metric.image} index={index} {...metric} />
         ))}
       </div>
-
-      <ScrollReveal className="max-w-[720px] px-1 pt-1" delay={700}>
-        <p className="text-pretty text-[14px] leading-relaxed text-[var(--ca-dim)]">{t('ca.outcome.footnote')}</p>
-      </ScrollReveal>
     </div>
   )
 }
@@ -104,6 +100,8 @@ function Outcomes() {
 const STAGGER_MS = 160
 const COUNT_DELAY_MS = 250
 const COUNT_MS = 1400
+// Hover devices: the animation plays only while the pointer is on the card, 1.6x faster, no stagger.
+const HOVER_RATE = 1.6
 
 function useReveal<T extends Element>() {
   const ref = useRef<T>(null)
@@ -122,7 +120,7 @@ function useReveal<T extends Element>() {
   return [ref, state] as const
 }
 
-function CountUp({ text, play, delay }: { text: string; play: boolean; delay: number }) {
+function CountUp({ text, play, delay, run, rate }: { text: string; play: boolean; delay: number; run: number; rate: number }) {
   const ref = useRef<HTMLSpanElement>(null)
   useEffect(() => {
     const node = ref.current
@@ -146,7 +144,7 @@ function CountUp({ text, play, delay }: { text: string; play: boolean; delay: nu
         node.textContent = text
         return
       }
-      const k = Math.min(1, Math.max(0, (now - start) / COUNT_MS))
+      const k = Math.min(1, Math.max(0, (now - start) / (COUNT_MS / rate)))
       render(1 - Math.pow(1 - k, 3))
       if (k < 1) frame = requestAnimationFrame(tick)
     }
@@ -155,7 +153,7 @@ function CountUp({ text, play, delay }: { text: string; play: boolean; delay: nu
       cancelAnimationFrame(frame)
       node.textContent = text
     }
-  }, [text, play, delay])
+  }, [text, play, delay, run, rate])
   return (
     <>
       <span className="sr-only">{text}</span>
@@ -163,6 +161,97 @@ function CountUp({ text, play, delay }: { text: string; play: boolean; delay: nu
         {text}
       </span>
     </>
+  )
+}
+
+// Card 1: the curve video plays once and holds its last frame (no loop). `run` counts plays:
+// on hover devices each hover restarts it; on touch it plays once when the card is reached.
+// Before the first play it rests on the finished still; reduced motion shows the full still.
+function CurveArt({ state, run, delay, rate, image, imageAlt }: { state: 'idle' | 'play' | 'static'; run: number; delay: number; rate: number; image: string; imageAlt: string }) {
+  const ref = useRef<HTMLVideoElement>(null)
+  // Autoplay refused (low-power mode) or the file failed to load: show the still, never an empty card.
+  const [failed, setFailed] = useState(false)
+  useEffect(() => {
+    const node = ref.current
+    if (state !== 'play' || !node) return
+    const timer = window.setTimeout(() => {
+      node.currentTime = 0
+      node.playbackRate = rate
+      node.play().catch(() => setFailed(true))
+    }, delay)
+    return () => window.clearTimeout(timer)
+  }, [state, run, delay, rate])
+  if (state === 'static' || failed) {
+    return (
+      <div className="ca-outcome-art absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]">
+        <Image src={image} alt={imageAlt} fill sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw" className="object-cover object-bottom" />
+      </div>
+    )
+  }
+  return (
+    <div className="ca-outcome-art absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]">
+    <video
+      ref={ref}
+      role="img"
+      aria-label={imageAlt}
+      className="size-full object-cover object-bottom"
+      src="/assets/videos/client-advisory/ca07-card-01-curve.mp4#t=0.001"
+      muted
+      playsInline
+      preload="auto"
+      disablePictureInPicture
+      onError={() => setFailed(true)}
+    />
+    {/* Before the first play the card shows the finished still, never a dark or empty card. */}
+    {run === 0 ? <Image src={image} alt="" aria-hidden="true" fill sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw" className="object-cover object-bottom" /> : null}
+    </div>
+  )
+}
+
+// Card 2: stacked glass plates (Lu #23649 bottom-to-top, #24225 1.5s, #24244 last 0.4s fade into the original).
+// Four layers share one 1004x1239 stage: the bottom plate stays, the middle and top plates slide up 750ms
+// each, and the original finished still fades in over 1100-1500ms so the swap back to the still cannot jump.
+// Rest and reduced motion show the original only. Plays once per `run`; a new hover restarts it.
+const STACK = '/assets/images/client-advisory/sessions/07/card-02-'
+const STACK_RISE = 'translateY(3.551%)'
+const STACK_EASE = 'cubic-bezier(0.22, 1, 0.36, 1)'
+const STACK_MS = 1500
+
+function StackArt({ state, run, delay, imageAlt }: { state: 'idle' | 'play' | 'static'; run: number; delay: number; image: string; imageAlt: string }) {
+  const baseRef = useRef<HTMLImageElement>(null)
+  const midRef = useRef<HTMLImageElement>(null)
+  const topRef = useRef<HTMLImageElement>(null)
+  const finalRef = useRef<HTMLImageElement>(null)
+  useEffect(() => {
+    const [base, mid, top, fin] = [baseRef.current, midRef.current, topRef.current, finalRef.current]
+    if (state !== 'play' || !base || !mid || !top || !fin || typeof mid.animate !== 'function') return
+    const anims: Animation[] = []
+    const rest = () => anims.forEach((a) => a.cancel())
+    const timer = window.setTimeout(() => {
+      const rise = (el: HTMLElement, at: number) =>
+        el.animate([{ opacity: 0, transform: STACK_RISE }, { opacity: 1, transform: 'translateY(0)' }], { duration: 750, delay: at, easing: STACK_EASE, fill: 'both' })
+      anims.push(
+        base.animate([{ opacity: 1 }, { opacity: 1 }], { duration: STACK_MS, fill: 'both' }),
+        rise(mid, 0),
+        rise(top, 750),
+        fin.animate([{ opacity: 0, offset: 0 }, { opacity: 0, offset: 1100 / STACK_MS }, { opacity: 1, offset: 1 }], { duration: STACK_MS, fill: 'both' }),
+      )
+      anims[3].finished.then(rest).catch(() => {})
+    }, delay)
+    const stop = () => { window.clearTimeout(timer); rest() }
+    const onHide = () => { if (document.hidden) stop() }
+    document.addEventListener('visibilitychange', onHide)
+    return () => { document.removeEventListener('visibilitychange', onHide); stop() }
+  }, [state, run, delay])
+  const layer = 'absolute inset-0 size-full select-none'
+  return (
+    <div className="ca-outcome-art absolute inset-x-0 bottom-0 aspect-[1004/1239]">
+      {/* Bottom plate, then middle and top plates; hidden until a play, and hidden again when it ends. */}
+      <img ref={baseRef} src={`${STACK}base.webp`} alt="" aria-hidden="true" draggable={false} className={`${layer} opacity-0`} />
+      <img ref={midRef} src={`${STACK}middle.webp`} alt="" aria-hidden="true" draggable={false} className={`${layer} opacity-0`} />
+      <img ref={topRef} src={`${STACK}top.webp`} alt="" aria-hidden="true" draggable={false} className={`${layer} opacity-0`} />
+      <img ref={finalRef} src={`${STACK}final.webp`} alt={imageAlt} draggable={false} className={layer} />
+    </div>
   )
 }
 
@@ -176,28 +265,70 @@ type MetricCardProps = {
 }
 
 function MetricCard({ index, value, label, eyebrow, image, imageAlt }: MetricCardProps) {
-  const [ref, state] = useReveal<HTMLDivElement>()
+  const [ref, reveal] = useReveal<HTMLDivElement>()
   const [wide, setWide] = useState(false)
-  useEffect(() => setWide(window.matchMedia('(min-width: 768px)').matches), [])
-  const delay = wide ? index * STAGGER_MS : 0
+  // null until measured. Hover devices play on hover; touch devices play once when reached.
+  const [hoverable, setHoverable] = useState<boolean | null>(null)
+  const [run, setRun] = useState(0)
+  useEffect(() => {
+    setWide(window.matchMedia('(min-width: 768px)').matches)
+    setHoverable(window.matchMedia('(hover: hover)').matches)
+  }, [])
+  useEffect(() => {
+    if (hoverable === false && reveal === 'play') setRun(1)
+  }, [hoverable, reveal])
+  // Reduced motion can be switched on while the page is open: stop at once and show the still.
+  const [reduced, setReduced] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduced(mq.matches)
+    const onChange = () => setReduced(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+  // Scroll reveal (rise-in) follows `reveal`; the animation inside follows `anim`.
+  const anim: 'idle' | 'play' | 'static' = reveal === 'static' || reduced ? 'static' : run > 0 ? 'play' : 'idle'
+  const rate = hoverable ? HOVER_RATE : 1
+  const delay = hoverable ? 0 : wide ? index * STAGGER_MS : 0
+  const revealDelay = wide ? index * STAGGER_MS : 0
   return (
     <div
       ref={ref}
-      data-outcome-state={state}
-      className={`ca-outcome-card ${state === 'idle' ? '' : 'is-visible'}`}
-      style={{ '--ca-outcome-delay': `${delay}ms` } as CSSProperties}
+      data-outcome-state={anim}
+      className={`ca-outcome-card ${reveal === 'idle' ? '' : 'is-visible'}`}
+      onMouseEnter={
+        hoverable
+          ? () => {
+              // Read the preference now, not the value from load.
+              if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) setRun((r) => r + 1)
+            }
+          : undefined
+      }
+      style={
+        {
+          '--ca-outcome-delay': `${revealDelay}ms`,
+          '--ca-trace-delay': `${delay + (hoverable ? 0 : 250)}ms`,
+          '--ca-trace-dur': `${Math.round((wide ? 1100 : 700) / rate)}ms`,
+        } as CSSProperties
+      }
     >
       <TiltCard className="relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl border border-[var(--ca-line)] bg-[var(--ca-card)] shadow-[0_0_0_1px_rgba(61,139,255,0.04),0_30px_60px_-40px_rgba(61,139,255,0.35)]">
-        <div className={index === 0 ? "ca-outcome-art absolute inset-x-0 -bottom-[6%] h-[62%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_30%,#000_58%)]" : "ca-outcome-art absolute inset-0"}>
-          <Image
-            src={image}
-            alt={imageAlt}
-            fill
-            sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw"
-            className={index === 0 ? "object-cover object-bottom" : "object-contain object-bottom"}
-          />
-          <OutcomeLine index={index} />
-        </div>
+        {index === 0 ? (
+          <CurveArt state={anim} run={run} delay={delay} rate={rate} image={image} imageAlt={imageAlt} />
+        ) : index === 1 ? (
+          <StackArt state={anim} run={run} delay={delay} image={image} imageAlt={imageAlt} />
+        ) : (
+          <div className="ca-outcome-art absolute inset-0">
+            <Image
+              src={image}
+              alt={imageAlt}
+              fill
+              sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw"
+              className="object-contain object-bottom"
+            />
+            <OutcomeLine key={run} index={index} />
+          </div>
+        )}
 
         <div
           aria-hidden="true"
@@ -212,7 +343,7 @@ function MetricCard({ index, value, label, eyebrow, image, imageAlt }: MetricCar
 
           <div className="flex flex-col gap-3">
             <p className="whitespace-nowrap text-[clamp(24px,2.2vw,32px)] font-medium leading-[1.1] tracking-[-0.015em]">
-              <CountUp text={value} play={state === 'play'} delay={delay + COUNT_DELAY_MS} />
+              <CountUp text={value} play={anim === 'play'} delay={delay + (hoverable ? 0 : COUNT_DELAY_MS)} run={run} rate={rate} />
             </p>
             <p data-type="body" className="text-pretty text-[15px] leading-[1.55] text-[var(--ca-muted)] sm:text-[16px]">{label}</p>
           </div>
