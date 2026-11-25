@@ -66,6 +66,13 @@
     object-position: 22% center;
   }
 }
+/* Narrow: the picture sits above the copy, so its blue road cut straight to black. Fade the bottom into the page (visualqa #25087). */
+@media (max-width: 1099px) {
+  #bmw-my-app .home-case-image::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 38%; pointer-events: none;
+    background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--color-bg-page) 55%, transparent) 55%, var(--color-bg-page) 100%);
+  }
+}
 /* After the drive-in clip stops, the cloud loop fades in over its last frame. */
 #bmw-my-app .advisory-office > video.bmw-cloud-loop { visibility: visible; opacity: 0; transition: opacity 0.8s ease; }
 #bmw-my-app .advisory-office.is-playing > video.bmw-cloud-loop.is-looping { opacity: 1; }
