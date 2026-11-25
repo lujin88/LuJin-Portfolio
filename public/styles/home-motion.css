@@ -74,7 +74,7 @@
   }
 }
 /* After the drive-in clip stops, the cloud loop fades in over its last frame. */
-#bmw-my-app .advisory-office > video.bmw-cloud-loop { visibility: visible; opacity: 0; transition: opacity 0.8s ease; }
+#bmw-my-app .advisory-office > video.bmw-cloud-loop { visibility: visible; opacity: 0; transition: opacity 3.2s ease-in-out; }
 #bmw-my-app .advisory-office.is-playing > video.bmw-cloud-loop.is-looping { opacity: 1; }
 .bmw-title-390 { display: none; }
 @media (max-width: 420px) {
