@@ -10,7 +10,7 @@
  var events=new AbortController();
  // Optional second clip (data-src, loop) that takes over once a play-once clip has held its last frame.
  var loop=stage.querySelector('video.bmw-cloud-loop');
- function loopUpdate(){if(!loop)return;if(finished&&visible&&!document.hidden&&shown()&&!reduce.matches&&!failed){if(!loop.getAttribute('src'))loop.src=loop.dataset.src;loop.muted=true;var q=loop.play();if(q)q.catch(function(){});}else loop.pause();}
+ function loopUpdate(){if(!loop)return;if(finished&&visible&&!document.hidden&&shown()&&!reduce.matches&&!failed){if(!loop.getAttribute('src'))loop.src=loop.dataset.src;loop.muted=true;loop.defaultPlaybackRate=loop.playbackRate=0.5;var q=loop.play();if(q)q.catch(function(){});}else loop.pause();}
  if(loop)loop.addEventListener('playing',function(){loop.classList.add('is-looping');},{signal:events.signal});
  function shown(){return parseFloat(getComputedStyle(stage).opacity)>0;}
  var queued=false;function onScroll(){if(queued)return;queued=true;requestAnimationFrame(function(){requestAnimationFrame(function(){queued=false;update();});});}
