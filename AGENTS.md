@@ -23,14 +23,14 @@ This repo is the canonical site on **port 3000**.
 先读 harness-core 的 `AGENTS.md`「合并」。本项目的 PR 合进 main 就会部署到 lujin.me。都由 QA 跑 harness-core 的 `scripts/merge-pr.sh lujin88/LuJin-Portfolio <PR 号>` 合，脚本查 Vercel preview 构建通过：
 
 - **非设计**：不改访客看到的东西的 PR：文档、清理、测试、SEO/metadata（noindex、结构化数据、llms.txt）、不影响画面的 bug 修复。QA 在 PR 上贴第一行是 `QA 通过 <sha>` 的评论就能合。
-- **设计 PR 自动合**（Lu 2026-11-10，#lu-portfolio #5843 选 B：「qa 和 visualqa 都通过就自动合，我上线后再看」）：访客看到的东西会变的：布局、样式、文案（包括 `content/ask-lu/` 里 Ask Lu 的回答内容）、图片和视频、动效，包括把 3000 同步进 main 的 PR。拿不准的一律算设计。`QA 通过 <sha>` 和视觉 QA 的 `视觉通过 <sha>` 都对上当前 HEAD 就合。项目经理在每日总结里列出当天上线的设计 PR，附图；要 Lu 先看的，加 `hold` 标签。
-- **小改动设计 PR 不用视觉 QA**（Lu 2026-11-12，#lu-portfolio #9085 选 A：「小改动的设计 PR（文案、间距、单处修复）qa 截图验了就合，visualqa 只验整页和新页面」）：QA 判断是小改动、自己截图验过，在 PR 上贴第一行是 `QA 小改动 <sha>`、的评论（截图 QA 发频道，脚本验不了真假），加上 `QA 通过 <sha>`，就合，不用 `视觉通过`。`merge-pr.sh` 只在这些都满足时放行：每个文件都是 `app/i18n/messages/` 里的文案，或 `app/` 下单个板块的 `*.module.css`（Lu #9149 选白名单：其他文件一律走视觉 QA，包括新增、删除、改名、同名换图片/视频/字体、`layout.tsx`、`public/`、`app/components/`、配置和依赖文件）、文件数和改动行数不超过脚本里的上限（`SMALL_MAX_FILES`、`SMALL_MAX_LINES`，3 个文件 / 30 行，PM 定 #9110）、评论 SHA 对上 HEAD；视觉 QA 已贴「视觉要改」的，小改动也不放行。整页改动、新页面、拿不准的仍要视觉 QA。法务关、`hold`、「执行：」PR 不受影响。`小改动` 这一行和 QA 结论行一样，脚本分不出是谁贴的，只有 QA 能贴。
+- **设计 PR 要 Lu 先看过再合**（Lu 2026-11-13，#lu-portfolio #11687：「等我全部核实完了之后，你再 push 到 .me」，替掉 11-10 #5843 的自动合）：访客看到的东西会变的：布局、样式、文案（包括 `content/ask-lu/` 里 Ask Lu 的回答内容）、图片和视频、动效，包括把 3000 同步进 main 的 PR。拿不准的一律算设计。`QA 通过 <sha>` 和视觉 QA 的 `视觉通过 <sha>`（法务关要的还有 `法务通过 <sha>`）都对上当前 HEAD 后，项目经理在 #lu-portfolio 发图，写这一个 PR 的链接和当前 HEAD；Lu 本地看完在那条下面回「合」，QA 用 `merge-pr.sh lujin88/LuJin-Portfolio <PR 号> --lu-ok <Lu 那条的消息号>` 合。不带 `--lu-ok` 脚本拒合。Lu 回「合」之后又推了的，重新发图等 Lu 再回。一条消息只放一个 PR，不把合并放进多项清单里。`hold` 标签照旧能用，但不再是唯一的门。
+- **小改动设计 PR 不用视觉 QA，但也要 Lu 回「合」**（Lu 2026-11-12，#lu-portfolio #9085 选 A；11-13 #11687 起也要 Lu 回「合」：「小改动的设计 PR（文案、间距、单处修复）qa 截图验了就合，visualqa 只验整页和新页面」）：QA 判断是小改动、自己截图验过，在 PR 上贴第一行是 `QA 小改动 <sha>`、的评论（截图 QA 发频道，脚本验不了真假），加上 `QA 通过 <sha>`，不用 `视觉通过`，再按上一条带 `--lu-ok` 合。`merge-pr.sh` 只在这些都满足时放行：每个文件都是 `app/i18n/messages/` 里的文案，或 `app/` 下单个板块的 `*.module.css`（Lu #9149 选白名单：其他文件一律走视觉 QA，包括新增、删除、改名、同名换图片/视频/字体、`layout.tsx`、`public/`、`app/components/`、配置和依赖文件）、文件数和改动行数不超过脚本里的上限（`SMALL_MAX_FILES`、`SMALL_MAX_LINES`，3 个文件 / 30 行，PM 定 #9110）、评论 SHA 对上 HEAD；视觉 QA 已贴「视觉要改」的，小改动也不放行。整页改动、新页面、拿不准的仍要视觉 QA。法务关、`hold`、「执行：」PR 不受影响。`小改动` 这一行和 QA 结论行一样，脚本分不出是谁贴的，只有 QA 能贴。
 - **法务关**（legal #3059、#5849、#5866）：改到 `ca/`、`app/i18n/messages/ca.ts`、`content/ask-lu/`、`package.json`、`pnpm-lock.yaml`，或者新增、改动、改名了字体、图片、视频、音频文件的，还要 legal 贴第一行是 `法务通过 <sha>` 的评论，对上当前 HEAD。UBS 和客户相关的文案、文件名带 ubs 的、新增 html 里的外链，QA 审的时候判断，是就 @legal。
 - **怎么判断**：看根目录 `.design-paths`。默认全算设计，只有 `!` 开头的排除清单里的路径算非设计。PR 改到清单外的任何文件就是设计 PR，脚本会加 `design` 标签并停下。一个文件里既有 metadata 又有页面（例如 `page.tsx`、`layout.tsx`），按设计算。
 - `package.json`、`pnpm-lock.yaml`、`tsconfig.json` 不在排除清单里，改它们算设计：Vercel 按 `pnpm-lock.yaml` 装依赖，改 `scripts`、升级依赖（包括只改 lockfile 的 `pnpm update`）、改 `paths` 都可能改页面。`package-lock.json` Vercel 不读，算非设计。
 - 改 `.design-paths`、所有 `AGENTS.md` 和 `CLAUDE.md`（包括 `ca/`、`eon/` 子目录里的）、`.github/workflows/`、`.claude/` 的 PR，改到 `ca/image/`（保密的 UBS 截图，清单在 harness-core `scripts/backup-exclude.txt`）的 PR，标题以「执行：」开头的 PR，只由 Lu 合。
 
-来源：Lu 2026-11-05（Buzz 事件 07543b19）；设计 PR 自动合：Lu 2026-11-10 #lu-portfolio #5843。
+来源：Lu 2026-11-05（Buzz 事件 07543b19）；设计 PR 要 Lu 回「合」：Lu 2026-11-13 #lu-portfolio #11687（替掉 11-10 #5843 的自动合）；完整规则以 harness-core `AGENTS.md`「合并」为准。
 
 # 依赖和 lockfile
 
