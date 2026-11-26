@@ -1,0 +1,24 @@
+# 设计系统 linter（行 94）：只拦这个 PR 新加的行里的写死色值、不在六级里的字号；存量不拦。
+# 不用任何 secrets，只读代码。故意写死的行，行尾加 /* lint-ok: 原因 */。
+name: design-lint
+on:
+  pull_request:
+    paths:
+      - "app/**"
+      - "global-header/**"
+      - "global-footer/**"
+      - "scripts/lint-design.mjs"
+permissions:
+  contents: read
+jobs:
+  design-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test scripts/lint-design.test.mjs
+      - run: node scripts/lint-design.mjs --diff "origin/${{ github.base_ref }}"
