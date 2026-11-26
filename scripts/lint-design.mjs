@@ -108,7 +108,7 @@ export function lintText(text, name = "<text>") {
 
 // --diff <base>：只留 git diff 里新加的行（CI 用，存量不拦）
 function addedLines(base) {
-  const diff = execFileSync("git", ["diff", "-U0", "--no-color", base + "...HEAD", "--", ...ROOTS], { encoding: "utf8", maxBuffer: 1 << 26 });
+  const diff = execFileSync("git", ["-c", "core.quotepath=false", "diff", "-U0", "--no-color", base + "...HEAD", "--", ...ROOTS], { encoding: "utf8", maxBuffer: 1 << 26 });
   const map = new Map();
   let file = null;
   for (const l of diff.split("\n")) {
