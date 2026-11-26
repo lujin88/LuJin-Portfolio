@@ -121,6 +121,10 @@ export function Session05DesignPrinciples() {
           Header text travels 68 (= cards 64 + 4, under the 8px gap) instead of 96. */}
       <LayerScrollGroup className={styles.inner}>
         <header className={styles.header}>
+          <p className="ca-eyebrow" data-move="68">
+            <span className="ca-eyebrow-index">05</span>
+            <span className="ca-eyebrow-rule" aria-hidden="true" />
+          </p>
           <h2 data-type="h2" id="s05-headline" className={`ca-h2 ${styles.headline}`} data-move="68">
             {t('ca.principles.headline')}
           </h2>
