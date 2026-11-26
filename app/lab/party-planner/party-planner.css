@@ -1418,3 +1418,5 @@ html:has(.pp-landing) #site-content {
   .pp-landing .closing { padding-bottom: 24px; }
   .pp-landing .pp-site-closing.site-closing.site-closing .contact-section { padding-top: 40px; }
 }
+
+.lint-demo{color:#123456;font-size:13px}
