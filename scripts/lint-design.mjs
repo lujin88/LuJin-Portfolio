@@ -135,7 +135,12 @@ if (isMain) {
     const added = addedLines(base);
     findings = findings.filter((x) => added.get(relative(process.cwd(), x.f))?.has(x.n));
   }
+  const gh = process.env.GITHUB_ACTIONS === "true";
   for (const x of findings) {
+    if (gh) {
+      const why = x.kind === "color" ? `写死的色值 ${x.text}：改用设计系统的颜色变量` : `字号 ${x.text} 不在 12/14/16/20/24/32：改成这六级之一`;
+      console.log(`::error file=${relative(process.cwd(), x.f)},line=${x.n},title=design-lint::${why}（确实要写死：行尾加 /* lint-ok: 原因 */）`);
+    }
     console.log(`${relative(process.cwd(), x.f)}:${x.n}  ${x.kind}  ${x.text}  | ${x.line.slice(0, 100)}`);
   }
   const c = findings.filter((x) => x.kind === "color").length;
