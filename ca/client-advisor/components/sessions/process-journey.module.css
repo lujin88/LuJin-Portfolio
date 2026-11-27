@@ -170,8 +170,16 @@
     height: 1.1rem;
   }
 
+  /* Phone: icons only (Lu #25561 via pm #25563). Labels stay for screen readers. */
   .label {
-    font-size: 0.6875rem;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   .connector {

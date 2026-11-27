@@ -125,10 +125,7 @@ export function SessionMandate() {
           </p>
 
           <div className={styles.question}>
-            <p className="ca-eyebrow ca-eyebrow-accent">
-              <span>{t('ca.mandate.questionEyebrow')}</span>
-            </p>
-            <h3 data-type="h3" className="ca-h3 mt-6 max-w-[36rem]">
+            <h3 data-type="h3" className="ca-h3 max-w-[36rem]">
               {t('ca.mandate.questionBefore')}{' '}
               <span className={styles.accent}>{t('ca.mandate.questionAi')}</span>{' '}
               {t('ca.mandate.questionMid')}{' '}
