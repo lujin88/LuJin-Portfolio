@@ -104,7 +104,7 @@
 .man-case #man-042-step-5:checked~.journey-5{display:grid}
 .man-case #man-042-step-5:checked~.journey-stops label:nth-child(5){color:var(--rose);background:#f7eef0;border-radius:8px}
 .man-case #man-042-step-5:focus-visible~.journey-stops label:nth-child(5){outline:2px solid var(--rose);outline-offset:-2px}
-@media(max-width:680px){.man-case .journey-player{margin-top:16px}.man-case .journey-stops label{flex-direction:column;gap:3px;padding:9px 0;font-size:12px}.man-case .journey-page{grid-template-columns:1fr;min-height:0}.man-case .journey-copy{padding:23px 22px 8px}.man-case .journey-folio{float:right;margin:0;font-size:28px}.man-case .journey-copy h3{font-size:34px;margin-top:10px}.man-case .journey-art{height:215px}.man-case .journey-window{top:9%;width:94%;left:14%}.man-case .journey-detail{bottom:6%;left:6%;padding:9px 14px}.man-case .journey-3 .journey-window{left:46%;width:43%}}
+@media(max-width:680px){.man-case .journey-player{margin-top:16px}.man-case .journey-stops label{flex-direction:column;gap:3px;padding:9px 0}.man-case .journey-page{grid-template-columns:1fr;min-height:0}.man-case .journey-copy{padding:23px 22px 8px}.man-case .journey-folio{float:right;margin:0;font-size:28px}.man-case .journey-copy h3{font-size:34px;margin-top:10px}.man-case .journey-art{height:215px}.man-case .journey-window{top:9%;width:94%;left:14%}.man-case .journey-detail{bottom:6%;left:6%;padding:9px 14px}.man-case .journey-3 .journey-window{left:46%;width:43%}}
 
 .man-case .mc-stat .mc-stat-link{display:block;width:min(100%,340px);text-decoration:none;background:#fffdf8;border-radius:14px;padding:16px 22px}.man-case .journey-window a{display:block}.man-case .journey-stops label span{line-height:1.25;text-align:inherit}
 
