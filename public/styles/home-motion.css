@@ -10,11 +10,11 @@
 #omni-model .home-case-image, #omni-model .advisory-office > :is(img, video) { object-position: 0% 100%; }
 .home-case-shade { position: absolute; inset: 0; background: linear-gradient(90deg, transparent 15%, var(--color-bg-page) 59%); }
 .home-case-copy { position: relative; width: 46%; margin-left: 54%; padding: 48px 48px 48px 0; color: var(--color-text-1); }
-.home-eyebrow { font-size: var(--font-size-caption); color: var(--color-theme-hover); font-weight: 600; margin: 0 0 24px; }
+.home-eyebrow { font-size: 14px; color: var(--color-theme-hover); font-weight: 600; margin: 0 0 24px; }
 .home-case-title { font-size: clamp(1.9rem, 2.8vw, 2.5rem); font-weight: 600; line-height: 1.15; margin: 0 0 28px; }
 .home-case-detail { margin: 0 0 20px; }
-.home-case-detail h3 { font-size: var(--font-size-h3); font-weight: 600; line-height: 1.4; margin-bottom: 8px; }
-.home-case-detail p { font-size: var(--font-size-body); line-height: var(--leading-relaxed); color: var(--color-text-2); }
+.home-case-detail h3 { font-size: 20px; font-weight: 600; line-height: 1.4; margin-bottom: 8px; }
+.home-case-detail p { font-size: 16px; line-height: var(--leading-relaxed); color: var(--color-text-2); }
 .home-case-detail:last-of-type { border-top: 1px solid var(--color-border-divider); padding-top: 20px; }
 .home-case-links { display: flex; align-items: center; gap: 24px; margin-top: 24px; }
 .home-showcase-pinned { height: 525vh; }
@@ -101,9 +101,9 @@ html[data-wa-season="winter"] #wa-season-video { background-image: url(/assets/i
   display: block;
   transition: transform var(--duration-interaction, 320ms) ease;
 }
-.home-project h3 { font-size: var(--font-size-h3-card); line-height: 1.2; font-weight: 600; margin: 28px 0 8px; }
-.home-project p { font-size: var(--font-size-body-lg); line-height: var(--leading-relaxed); color: var(--color-text-2); margin-bottom: 32px; }
-.home-project p.home-project-meta { margin: 0 0 12px; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); line-height: 1.3; color: var(--color-theme-hover); }
+.home-project h3 { font-size: 24px; line-height: 1.2; font-weight: 600; margin: 28px 0 8px; }
+.home-project p { font-size: 16px; line-height: var(--leading-relaxed); color: var(--color-text-2); margin-bottom: 32px; }
+.home-project p.home-project-meta { margin: 0 0 12px; font-size: 14px; font-weight: var(--font-weight-semibold); line-height: 1.3; color: var(--color-theme-hover); }
 /* Card link stays the only hit target. The pill inherits the shared 46px CTA. */
 .home-project > .pill-btn {
   align-self: flex-start;
