@@ -208,53 +208,6 @@ function CurveArt({ state, run, delay, rate, image, imageAlt }: { state: 'idle' 
   )
 }
 
-// Card 2: stacked glass plates (Lu #23649 bottom-to-top, #24225 1.5s, #24244 last 0.4s fade into the original).
-// Four layers share one 1004x1239 stage: the bottom plate stays, the middle and top plates slide up 750ms
-// each, and the original finished still fades in over 1100-1500ms so the swap back to the still cannot jump.
-// Rest and reduced motion show the original only. Plays once per `run`; a new hover restarts it.
-const STACK = '/assets/images/client-advisory/sessions/07/card-02-'
-const STACK_RISE = 'translateY(3.551%)'
-const STACK_EASE = 'cubic-bezier(0.22, 1, 0.36, 1)'
-const STACK_MS = 1500
-
-function StackArt({ state, run, delay, imageAlt }: { state: 'idle' | 'play' | 'static'; run: number; delay: number; image: string; imageAlt: string }) {
-  const baseRef = useRef<HTMLImageElement>(null)
-  const midRef = useRef<HTMLImageElement>(null)
-  const topRef = useRef<HTMLImageElement>(null)
-  const finalRef = useRef<HTMLImageElement>(null)
-  useEffect(() => {
-    const [base, mid, top, fin] = [baseRef.current, midRef.current, topRef.current, finalRef.current]
-    if (state !== 'play' || !base || !mid || !top || !fin || typeof mid.animate !== 'function') return
-    const anims: Animation[] = []
-    const rest = () => anims.forEach((a) => a.cancel())
-    const timer = window.setTimeout(() => {
-      const rise = (el: HTMLElement, at: number) =>
-        el.animate([{ opacity: 0, transform: STACK_RISE }, { opacity: 1, transform: 'translateY(0)' }], { duration: 750, delay: at, easing: STACK_EASE, fill: 'both' })
-      anims.push(
-        base.animate([{ opacity: 1 }, { opacity: 1 }], { duration: STACK_MS, fill: 'both' }),
-        rise(mid, 0),
-        rise(top, 750),
-        fin.animate([{ opacity: 0, offset: 0 }, { opacity: 0, offset: 1100 / STACK_MS }, { opacity: 1, offset: 1 }], { duration: STACK_MS, fill: 'both' }),
-      )
-      anims[3].finished.then(rest).catch(() => {})
-    }, delay)
-    const stop = () => { window.clearTimeout(timer); rest() }
-    const onHide = () => { if (document.hidden) stop() }
-    document.addEventListener('visibilitychange', onHide)
-    return () => { document.removeEventListener('visibilitychange', onHide); stop() }
-  }, [state, run, delay])
-  const layer = 'absolute inset-0 size-full select-none'
-  return (
-    <div className="ca-outcome-art absolute inset-x-0 bottom-0 aspect-[1004/1239]">
-      {/* Bottom plate, then middle and top plates; hidden until a play, and hidden again when it ends. */}
-      <img ref={baseRef} src={`${STACK}base.webp`} alt="" aria-hidden="true" draggable={false} className={`${layer} opacity-0`} />
-      <img ref={midRef} src={`${STACK}middle.webp`} alt="" aria-hidden="true" draggable={false} className={`${layer} opacity-0`} />
-      <img ref={topRef} src={`${STACK}top.webp`} alt="" aria-hidden="true" draggable={false} className={`${layer} opacity-0`} />
-      <img ref={finalRef} src={`${STACK}final.webp`} alt={imageAlt} draggable={false} className={layer} />
-    </div>
-  )
-}
-
 type MetricCardProps = {
   index: number
   value: string
@@ -315,8 +268,6 @@ function MetricCard({ index, value, label, eyebrow, image, imageAlt }: MetricCar
       <TiltCard className="relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl border border-[var(--ca-line)] bg-[var(--ca-card)] shadow-[0_0_0_1px_rgba(61,139,255,0.04),0_30px_60px_-40px_rgba(61,139,255,0.35)]">
         {index === 0 ? (
           <CurveArt state={anim} run={run} delay={delay} rate={rate} image={image} imageAlt={imageAlt} />
-        ) : index === 1 ? (
-          <StackArt state={anim} run={run} delay={delay} image={image} imageAlt={imageAlt} />
         ) : (
           <div className="ca-outcome-art absolute inset-0">
             <Image
