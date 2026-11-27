@@ -49,7 +49,11 @@
 }
 @media(min-width:851px) and (min-height:531px) {
   :where(.etf-case) .story article {min-height:clamp(610px,78svh,820px)}
-  :where(.etf-case) .story article:last-child {min-height:min(100svh,860px)}
+  /* Row 98 (visualqa #26292): the pinned phone is released when the story grid ends, so on 900px-tall
+     windows (860px cap) and below it slid up under the 64px header while chapter 3's text was still
+     mid-screen. No cap, plus 20svh of tail after the last chapter: the phone stays pinned until the
+     chapter text is about 30% from the top of the screen. */
+  :where(.etf-case) .story article:last-child {min-height:100svh;margin-bottom:20svh}
 }
 
 :where(.etf-case) .case-site{overflow-x:clip}
