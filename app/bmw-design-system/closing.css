@@ -1,2 +1,4 @@
 /* Shared dark SiteClosing styles, on BMW's own page fill instead of CA navy. */
-.site-closing-case.bm-closing{background:#101318}
+.site-closing-case.bm-closing{background:#102537}
+/* Tighten contact top pad: dark-conclusion already ends on #102537 (PM #7557 gap). */
+.site-closing-case.bm-closing .contact-section{padding-top:clamp(2.5rem,6vh,4rem)}
