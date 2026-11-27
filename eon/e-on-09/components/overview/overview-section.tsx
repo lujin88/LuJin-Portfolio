@@ -28,10 +28,7 @@ export function OverviewSection() {
             {t('eon.overview.body')}
           </p>
 
-          <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
-            {t('eon.overview.role')}
-          </p>
-          <p data-type="body" className="mt-4 text-lg font-semibold text-white">
+          <p data-type="body" className="mt-8 text-lg font-semibold text-white">
             {t('eon.overview.roleLead')}
           </p>
           <p data-type="body" className="mt-2 max-w-md text-base leading-relaxed text-white/60">

@@ -48,9 +48,6 @@ export function DesignConstraintSection() {
               <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-lavender-light">
                 <Lightbulb className="h-5 w-5 text-navy-950" strokeWidth={1.75} />
               </span>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.04em] text-blue-soft/70">
-                {t('eon.constraint.questionLabel')}
-              </p>
               <p className="text-balance text-xl font-medium leading-snug text-white md:text-2xl">
                 {t('eon.constraint.question')}
               </p>
