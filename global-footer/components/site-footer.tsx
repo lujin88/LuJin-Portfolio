@@ -22,11 +22,11 @@ export function SiteFooter() {
       <div className="relative mx-auto w-full max-w-[1040px] px-6 pt-[clamp(6rem,14vh,9rem)] pb-[clamp(4.5rem,10vh,7rem)] md:px-0">
         <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between md:gap-12">
           <div className="flex flex-col">
-            <h2 className="font-sans text-[clamp(1.6rem,2.6vw,2.4rem)] font-semibold leading-[1.12] tracking-[-0.02em]">
+            <h2 className="font-sans text-[24px] md:text-[32px] font-semibold leading-[1.12] tracking-[-0.02em]">
               Have an opportunity in mind?
             </h2>
 
-            <ul className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.9375rem] text-footer-muted">
+            <ul className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] text-footer-muted">
               {contactLinks.map((link, index) => (
                 <li key={link.label} className="flex items-center gap-x-3">
                   {index > 0 && (
@@ -49,7 +49,7 @@ export function SiteFooter() {
 
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="group inline-flex h-[46px] min-h-[46px] w-fit shrink-0 items-center gap-2 rounded-full border border-footer-line px-7 py-0 text-[0.95rem] leading-none font-normal transition-colors duration-200 hover:border-footer-muted hover:bg-footer-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current motion-reduce:transition-none"
+            className="group inline-flex h-[46px] min-h-[46px] w-fit shrink-0 items-center gap-2 rounded-full border border-footer-line px-7 py-0 text-[14px] leading-none font-normal transition-colors duration-200 hover:border-footer-muted hover:bg-footer-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-current motion-reduce:transition-none"
           >
             Let&apos;s Talk
             <span
@@ -65,7 +65,7 @@ export function SiteFooter() {
       <hr className="relative w-full border-0 border-t border-footer-line" />
 
       <div className="relative mx-auto flex w-full max-w-[1040px] flex-wrap items-center justify-start gap-x-3 gap-y-1 px-6 py-5 md:px-0 md:py-6">
-        <p className="text-xs text-footer-muted/80">
+        <p className="text-[12px] text-footer-muted/80">
           © 2026 Lu Jin. All rights reserved.
         </p>
       </div>

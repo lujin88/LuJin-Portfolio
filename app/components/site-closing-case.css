@@ -15,7 +15,7 @@
   --pill-hover-text: #0a0a0a;
   --focus-ring: #7ea2ff;
   --content-inset: max(24px, calc((100% - 1440px) / 2));
-  --font-size-contact: clamp(1.6rem, 2.6vw, 2.4rem);
+  --font-size-contact: 1.5rem; /* row 91 B scale: 24 phone, 32 from 768 (see media below) */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   color: var(--color-text-1);
@@ -80,7 +80,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.25rem 0.75rem;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 400;
   color: var(--color-text-3);
 }
@@ -109,7 +109,7 @@
   padding: 0 28px;
   height: 46px;
   min-height: 46px;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 1;
   color: var(--pill-text);
@@ -173,4 +173,8 @@
   .site-closing-case .pill-btn svg { transition: none; }
   .site-closing-case .pill-btn:hover,
   .site-closing-case .pill-btn:hover svg { transform: none; }
+}
+
+@media (min-width: 768px) {
+  .site-closing-case { --font-size-contact: 2rem; }
 }
