@@ -124,7 +124,6 @@ export function Session05DesignPrinciples() {
           <p className="ca-eyebrow" data-move="68">
             <span className="ca-eyebrow-index">05</span>
             <span className="ca-eyebrow-rule" aria-hidden="true" />
-            <span>{t('ca.principles.eyebrow')}</span>
           </p>
           <h2 data-type="h2" id="s05-headline" className={`ca-h2 ${styles.headline}`} data-move="68">
             {t('ca.principles.headline')}

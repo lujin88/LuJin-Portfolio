@@ -34,7 +34,6 @@ export const ca = {
       title: 'Finding where AI could make a difference.',
       body1:
         'As AI moved deeper into banking, we saw a chance to explore how it could make Advisor & Sales more efficient.',
-      questionEyebrow: 'The key question',
       questionBefore: 'Where could',
       questionAi: 'AI create',
       questionMid: 'the most',
@@ -91,7 +90,6 @@ export const ca = {
       actFlag: 'It proposes. Marco decides.',
     },
     principles: {
-      eyebrow: 'Design Principles',
       headline: 'Turning the model into design decisions.',
       intro:
         "One constraint: it couldn't feel like another tool. Signal → Context → Act became the model — one principle for each moment.",
@@ -234,7 +232,6 @@ export const ca = {
       title: 'Finden, wo KI einen Unterschied machen kann.',
       body1:
         'Als KI im Banking immer präsenter wurde, sahen wir die Chance zu erkunden, wie sie Advisor & Sales effizienter machen könnte.',
-      questionEyebrow: 'Die zentrale Frage',
       questionBefore: 'Wo könnte',
       questionAi: 'KI',
       questionMid: 'den größten',
@@ -291,7 +288,6 @@ export const ca = {
       actFlag: 'Es schlägt vor. Marco entscheidet.',
     },
     principles: {
-      eyebrow: 'Design Principles',
       headline: 'Das Modell in Design\u00ADentscheidungen übersetzen.',
       intro:
         'Eine Bedingung: Es durfte sich nicht wie ein weiteres Tool anfühlen. Signal → Kontext → Handeln wurde das Modell — ein Prinzip für jeden Moment.',

@@ -149,7 +149,6 @@ export function HeroSection() {
             className="pointer-events-none absolute -inset-x-8 -inset-y-8 bg-[radial-gradient(ellipse_at_center,rgba(3,8,20,0.5)_0%,rgba(3,8,20,0.22)_52%,transparent_78%)]"
           />
           <div className="relative w-full lg:w-[220px]">
-            <p className="ca-eyebrow mb-6">{t('ca.hero.glance')}</p>
             <ul className="flex flex-col gap-8">
               {glance.map((item) => (
                 <li key={item.label}>
