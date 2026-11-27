@@ -232,7 +232,7 @@
 
 [data-site-header] .header-menu-section {
   padding: 0.625rem 1.25rem 0.25rem 0.875rem;
-  font-size: 0.6875rem;
+  font-size: 0.75rem; /* ds-ok: Lu #25706 B scale 12px (row 91) */
   font-weight: 500;
   line-height: 1.2;
   color: color-mix(in oklab, var(--header-foreground) 52%, transparent);
@@ -280,7 +280,7 @@
   border-radius: 999px;
   background: var(--header-foreground);
   color: var(--header-glass);
-  font-size: var(--font-size-pill, 0.95rem); /* Pill M */
+  font-size: 0.875rem; /* ds-ok: Lu #25706 B scale 14px (row 91); shared --font-size-pill stays 15.2 for other users */
   line-height: 1;
   text-decoration: none;
   /* Visually hidden by default; keyboard :focus only */

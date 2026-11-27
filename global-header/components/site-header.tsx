@@ -529,7 +529,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                       aria-current={isActive ? 'page' : undefined}
                       onClick={dismissMenus}
                       className={cn(
-                        'inline-flex min-h-11 items-center rounded-sm px-2 text-[0.95rem] leading-none no-underline transition-colors duration-200 xl:px-3',
+                        'inline-flex min-h-11 items-center rounded-sm px-2 text-[14px] leading-none no-underline transition-colors duration-200 xl:px-3',
                         FOCUS_RING,
                         MOTION_SAFE,
                         isActive
@@ -586,7 +586,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
               }}
               onKeyDown={onTriggerKeyDown}
               className={cn(
-                'inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[0.95rem] leading-none text-header-foreground/72 transition-colors duration-200 hover:text-header-foreground focus-visible:text-header-foreground',
+                'inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[14px] leading-none text-header-foreground/72 transition-colors duration-200 hover:text-header-foreground focus-visible:text-header-foreground',
                 PLAIN_CONTROL,
                 FOCUS_RING,
                 MOTION_SAFE,
@@ -631,7 +631,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                         onClick={() => selectLanguage(lang)}
                         onKeyDown={(event) => onOptionKeyDown(event, index)}
                         className={cn(
-                          'flex w-full items-center justify-between gap-4 rounded-none px-3.5 py-3 text-left text-[0.95rem] leading-none transition-colors duration-150',
+                          'flex w-full items-center justify-between gap-4 rounded-none px-3.5 py-3 text-left text-[14px] leading-none transition-colors duration-150',
                           PLAIN_CONTROL,
                           MOTION_SAFE,
                           'hover:bg-header-menu-item focus-visible:bg-header-menu-item',
@@ -661,7 +661,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
           <a
             href="mailto:lu.jin.ixd@gmail.com"
             className={cn(
-              'site-header__cta hidden items-center border bg-transparent text-[0.95rem] font-normal leading-none no-underline transition-colors duration-200 lg:inline-flex',
+              'site-header__cta hidden items-center border bg-transparent text-[14px] font-normal leading-none no-underline transition-colors duration-200 lg:inline-flex',
               paperHeader
                 ? 'border-[#111]/25 text-[#111] hover:border-[#111] hover:bg-[#111] hover:text-white'
                 : 'border-white/70 text-[#f9fbfc] hover:border-[#f9fbfc] hover:bg-[#f9fbfc] hover:text-[#0a0a0a]',
@@ -716,7 +716,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                       aria-current={isActive ? 'page' : undefined}
                       onClick={() => setMenuOpen(false)}
                       className={cn(
-                        'inline-flex min-h-11 items-center rounded-sm text-lg no-underline transition-colors',
+                        'inline-flex min-h-11 items-center rounded-sm text-[16px] no-underline transition-colors',
                         FOCUS_RING,
                         MOTION_SAFE,
                         isActive ? 'text-header-foreground' : 'text-header-foreground/72',
@@ -742,7 +742,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                       setMobileSection((current) => (current === group.label ? null : group.label))
                     }
                     className={cn(
-                      'flex min-h-11 w-full items-center justify-between rounded-sm text-lg transition-colors',
+                      'flex min-h-11 w-full items-center justify-between rounded-sm text-[16px] transition-colors',
                       PLAIN_CONTROL,
                       FOCUS_RING,
                       MOTION_SAFE,
@@ -798,7 +798,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
             href="mailto:lu.jin.ixd@gmail.com"
             onClick={() => setMenuOpen(false)}
             className={cn(
-              'flex min-h-11 w-full items-center gap-3 rounded-sm text-lg text-header-foreground/72 no-underline transition-colors hover:text-header-foreground',
+              'flex min-h-11 w-full items-center gap-3 rounded-sm text-[16px] text-header-foreground/72 no-underline transition-colors hover:text-header-foreground',
               FOCUS_RING,
               MOTION_SAFE,
             )}
@@ -818,7 +818,7 @@ export function SiteHeader({ activeHref }: SiteHeaderProps) {
                       onClick={() => setLanguage(lang)}
                       aria-current={isSelected ? 'true' : undefined}
                       className={cn(
-                        'flex w-full min-h-11 items-center justify-between gap-4 rounded-none text-lg leading-tight transition-colors',
+                        'flex w-full min-h-11 items-center justify-between gap-4 rounded-none text-[16px] leading-tight transition-colors',
                         PLAIN_CONTROL,
                         FOCUS_RING,
                         MOTION_SAFE,
@@ -895,14 +895,14 @@ function GroupMenuItems({
       <span className="whitespace-nowrap">
         <span
           className={cn(
-            'block text-[0.9375rem] leading-tight text-header-foreground',
+            'block text-[14px] leading-tight text-header-foreground',
             childActive && 'font-semibold',
           )}
         >
           {navLabel(copy, child.label)}
         </span>
         {child.meta ? (
-          <span className="header-menu-meta mt-0.5 block text-[0.75rem] leading-snug">
+          <span className="header-menu-meta mt-0.5 block text-[12px] leading-snug">
             {menuMeta(copy, child.meta)}
           </span>
         ) : null}
@@ -1075,7 +1075,7 @@ function NavDropdown({
         }}
         onKeyDown={onButtonKeyDown}
         className={cn(
-          'inline-flex min-h-11 items-center gap-1.5 rounded-sm px-2 text-[0.95rem] leading-none transition-colors duration-200 xl:px-3',
+          'inline-flex min-h-11 items-center gap-1.5 rounded-sm px-2 text-[14px] leading-none transition-colors duration-200 xl:px-3',
           PLAIN_CONTROL,
           FOCUS_RING,
           MOTION_SAFE,
