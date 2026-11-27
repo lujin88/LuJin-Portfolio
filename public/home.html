@@ -1600,6 +1600,15 @@
     border-radius: 3px;
   }
   .exp-contact__sep { color: var(--color-text-4, rgba(255,255,255,0.25)); }
+  /* Phones: tap area >= 44px (row 97, qa #26270). Padding only; type size unchanged. */
+  @media (max-width: 640px) {
+    .exp-contact__links { row-gap: 0; }
+    .exp-contact__links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+    }
+  }
 
   /* transparent — no fill of its own, so Experience -> Contact -> footer are
      one continuous surface (the page's own bg + whatever of the .exp-field
