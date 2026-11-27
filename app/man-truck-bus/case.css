@@ -13,7 +13,7 @@
 .man-case .mc-cover-art{position:absolute;inset:0 0 0 25%;z-index:-1;mask-image:linear-gradient(90deg,transparent,#000 37%)}
 .man-case .mc-cover-art img{width:100%;height:100%;object-fit:cover;object-position:52% 55%}
 .man-case .mc-cover-inner{padding-block:clamp(48px,6vw,94px) 100px}
-.man-case .mc-kicker,.man-case .mc-over,.man-case .mc-index,.man-case .mc-plate,.man-case dt,.man-case .mc-caption,.man-case figcaption,.man-case small{font-size:13px;line-height:1.45}
+.man-case .mc-kicker,.man-case .mc-over,.man-case .mc-index,.man-case dt{font-size:14px;line-height:1.45}.man-case .mc-plate,.man-case .mc-caption,.man-case figcaption,.man-case small{font-size:13px;line-height:1.45}
 .man-case .mc-kicker{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.035em}
 .man-case .mc-mark{width:23px;height:13px;border-block:2px solid var(--rose);transform:skew(-22deg)}
 .man-case h1{font-size:clamp(64px,6.8vw,108px);margin:clamp(30px,4vw,60px) 0 22px;line-height:.99}
@@ -27,7 +27,7 @@
 .man-case .mc-plate{position:absolute;bottom:18px;right:5%;font-size:11px;color:#60574b}.man-case .mc-plate span{margin-left:10px}
 .man-case .mc-meta{display:grid;grid-template-columns:1.1fr 1.15fr 1.1fr 1fr;padding:24px 0;gap:20px}
 .man-case dt,.man-case .mc-over,.man-case .mc-index{color:var(--muted)}
-.man-case .mc-meta dd{font-size:15px;line-height:1.4;margin-top:4px;font-weight:500}
+.man-case .mc-meta dd{font-size:14px;line-height:1.4;margin-top:4px;font-weight:500}
 .man-case .mc-section{padding-block:clamp(40px,4.4vw,64px);}
 .man-case h2{font-size:clamp(42px,4.7vw,72px);margin:16px 0 24px}
 .man-case .mc-copyhead{max-width:830px}.man-case .mc-copyhead>p{max-width:590px}
@@ -63,10 +63,10 @@
 .man-case .mc-ticks{height:16px;margin-top:12px;background:repeating-linear-gradient(to right,transparent 0 calc(100% / 24 - 2px),#fffdf8 calc(100% / 24 - 2px) calc(100% / 24)),linear-gradient(to right,#58766c 0 16.666%,#e5e2da 16.666% 100%)}
 .man-case .mc-verifier{gap:22px;background:#eee9e0}.man-case .mc-verifier>a{width:48%}.man-case .mc-verifier img,.man-case .mc-rules img{border-radius:8px}.man-case .mc-offer{height:265px;background:#f6e5dd}.man-case .mc-offer a{width:215px;height:215px;align-self:flex-end}.man-case .mc-offer img{border-radius:19px;box-shadow:0 5px 24px #74432d18;border:4px solid #faf8f4}.man-case .mc-rules{padding:20px;background:#ede7e3}
 .man-case .mc-method{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:8%}.man-case .mc-method>div>p{max-width:500px}
-.man-case .mc-change{padding:clamp(20px,3vw,40px);background:#f3f1eb;border-radius:20px}.man-case .mc-change dd{margin:4px 0 15px;font-size:15px}.man-case .mc-change small{display:block;padding-top:14px;border-top:1px solid var(--rule);color:var(--muted)}
+.man-case .mc-change{padding:clamp(20px,3vw,40px);background:#f3f1eb;border-radius:20px}.man-case .mc-change dd{margin:4px 0 15px;font-size:14px}.man-case .mc-change small{display:block;padding-top:14px;border-top:1px solid var(--rule);color:var(--muted)}
 .man-case .mc-outcome{padding-block:clamp(40px,4.4vw,64px);max-width:890px}.man-case .mc-outcome>p{max-width:640px}.man-case .mc-outcome ol{padding-left:21px;margin-top:20px}.man-case .mc-outcome li{padding:4px}
 @media(max-width:900px){.man-case .mc-context{grid-template-columns:1fr 1.2fr;gap:4%}.man-case .mc-meta{grid-template-columns:1fr 1fr}.man-case .mc-ticket{left:auto;right:5%;top:65%}.man-case .mc-film{grid-template-columns:repeat(3,1fr)}.man-case .mc-feature{gap:5%}}
-@media(max-width:680px){.man-case .mc-cover{min-height:0;padding-bottom:250px}.man-case .mc-cover-inner{padding:35px 0 0}.man-case h1{font-size:clamp(47px,8.8vw,62px);margin:25px 0 16px}.man-case .mc-cover-art{inset:auto 0 0;height:260px;mask-image:linear-gradient(180deg,transparent,#000 24%)}.man-case .mc-cover-art img{object-position:center 56%}.man-case .mc-intro{max-width:390px;font-size:16px}.man-case .mc-ticket{top:auto;bottom:32px;right:6%;width:157px;padding:9px 11px}.man-case .mc-ticket strong{font-size:15px}.man-case .mc-ticket small,.man-case .mc-ticket-top{font-size:10px}.man-case .mc-plate{font-size:9px;bottom:7px}.man-case .mc-meta{gap:15px;padding:20px 0}.man-case .mc-meta dd{font-size:13px}
+@media(max-width:680px){.man-case .mc-cover{min-height:0;padding-bottom:250px}.man-case .mc-cover-inner{padding:35px 0 0}.man-case h1{font-size:clamp(47px,8.8vw,62px);margin:25px 0 16px}.man-case .mc-cover-art{inset:auto 0 0;height:260px;mask-image:linear-gradient(180deg,transparent,#000 24%)}.man-case .mc-cover-art img{object-position:center 56%}.man-case .mc-intro{max-width:390px;font-size:16px}.man-case .mc-ticket{top:auto;bottom:32px;right:6%;width:157px;padding:9px 11px}.man-case .mc-ticket strong{font-size:15px}.man-case .mc-ticket small,.man-case .mc-ticket-top{font-size:10px}.man-case .mc-plate{font-size:9px;bottom:7px}.man-case .mc-meta{gap:15px;padding:20px 0}.man-case .mc-meta dd{font-size:14px}
 .man-case .mc-three,.man-case .mc-context,.man-case .mc-method,.man-case .mc-feature,.man-case .mc-feature.mc-reverse{grid-template-columns:1fr}.man-case .mc-three{gap:17px}.man-case .mc-context{gap:22px}.man-case .mc-feature{gap:10px}.man-case .mc-reverse .mc-feature-copy{order:0}.man-case .mc-method{gap:24px}.man-case .mc-film{grid-template-columns:1fr 1fr;gap:18px 12px}.man-case .mc-record{flex-direction:column;align-items:stretch;margin-top:28px}.man-case .mc-connector{height:16px;flex:none;border-left:1px solid #ae8a79;background:none;margin-left:18px}.man-case .mc-record ul{margin-left:18px}.man-case .mc-caption{text-align:left}.man-case .mc-paper{min-height:180px;padding:16px}.man-case .mc-section{padding-block:36px}.man-case .mc-board-mat{padding:16px 12px 12px}.man-case .mc-context-copy>p{max-width:none}.man-case .mc-verifier{gap:14px}}
 @media(min-width:681px){.man-case .mc-cover-art{left:36%;mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.10) 26%,rgba(0,0,0,.75) 51%,#000 65%)}.man-case h1{font-size:clamp(60px,6.15vw,98px)}}
 @media(max-width:680px){.man-case h1{font-size:clamp(37px,10.55vw,62px)}}
@@ -74,8 +74,8 @@
 .man-case .journey-player{min-inline-size:0;position:relative;border:0;padding:0;margin:30px 0 0}
 .man-case .journey-player legend,.man-case .journey-choice{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);padding:0;margin:0}
 .man-case .journey-stops{display:flex;gap:0;align-items:stretch;margin-bottom:16px}
-.man-case .journey-stops label{cursor:pointer;position:relative;display:flex;align-items:center;gap:10px;flex:1;padding:14px 8px;color:var(--muted);font-size:15px;font-weight:500}
-.man-case .journey-stops b{font-size:11px;font-weight:550;color:#80655d}.man-case .journey-stops label:hover{color:var(--rose)}
+.man-case .journey-stops label{cursor:pointer;position:relative;display:flex;align-items:center;gap:10px;flex:1;padding:14px 8px;color:var(--muted);font-size:14px;font-weight:500}
+.man-case .journey-stops b{font-size:12px;font-weight:550;color:#80655d}.man-case .journey-stops label:hover{color:var(--rose)}
 .man-case .journey-page{display:none;position:relative;isolation:isolate;overflow:hidden;grid-template-columns:.85fr 1.45fr;background:#f5e2d5;border-radius:22px;min-height:385px}
 .man-case .journey-copy{padding:32px 14px 34px clamp(22px,3.2vw,48px);align-self:center}
 .man-case .journey-folio{font:400 40px/.95 var(--serif);letter-spacing:-.055em;margin-bottom:23px;color:#6b4335}.man-case .journey-folio span{font:12px/1.2 system-ui;letter-spacing:0;color:#715b4e}
@@ -104,7 +104,7 @@
 .man-case #man-042-step-5:checked~.journey-5{display:grid}
 .man-case #man-042-step-5:checked~.journey-stops label:nth-child(5){color:var(--rose);background:#f7eef0;border-radius:8px}
 .man-case #man-042-step-5:focus-visible~.journey-stops label:nth-child(5){outline:2px solid var(--rose);outline-offset:-2px}
-@media(max-width:680px){.man-case .journey-player{margin-top:16px}.man-case .journey-stops label{flex-direction:column;gap:3px;padding:9px 0;font-size:11px}.man-case .journey-page{grid-template-columns:1fr;min-height:0}.man-case .journey-copy{padding:23px 22px 8px}.man-case .journey-folio{float:right;margin:0;font-size:28px}.man-case .journey-copy h3{font-size:34px;margin-top:10px}.man-case .journey-art{height:215px}.man-case .journey-window{top:9%;width:94%;left:14%}.man-case .journey-detail{bottom:6%;left:6%;padding:9px 14px}.man-case .journey-3 .journey-window{left:46%;width:43%}}
+@media(max-width:680px){.man-case .journey-player{margin-top:16px}.man-case .journey-stops label{flex-direction:column;gap:3px;padding:9px 0;font-size:12px}.man-case .journey-page{grid-template-columns:1fr;min-height:0}.man-case .journey-copy{padding:23px 22px 8px}.man-case .journey-folio{float:right;margin:0;font-size:28px}.man-case .journey-copy h3{font-size:34px;margin-top:10px}.man-case .journey-art{height:215px}.man-case .journey-window{top:9%;width:94%;left:14%}.man-case .journey-detail{bottom:6%;left:6%;padding:9px 14px}.man-case .journey-3 .journey-window{left:46%;width:43%}}
 
 .man-case .mc-stat .mc-stat-link{display:block;width:min(100%,340px);text-decoration:none;background:#fffdf8;border-radius:14px;padding:16px 22px}.man-case .journey-window a{display:block}.man-case .journey-stops label span{line-height:1.25;text-align:inherit}
 
@@ -188,7 +188,7 @@
 .man-case .mc-method{align-items:start;padding-top:clamp(44px,5vw,72px);row-gap:24px}
 .man-case .mc-method h2{margin-top:0}
 .man-case .mc-outcome{padding-bottom:clamp(40px,4.4vw,64px)}
-.man-case .mc-outcome ol{list-style:decimal-leading-zero outside;padding-inline-start:2.3em;font-size:clamp(18px,1.65vw,24px);line-height:1.45}
+.man-case .mc-outcome ol{list-style:decimal-leading-zero outside;padding-inline-start:2.3em;font-size:20px;line-height:1.45}
 .man-case .mc-outcome li{padding:4px 0 4px .45em}
 .man-case .mc-outcome li::marker{color:var(--rose);font-size:.74em;font-weight:650;font-variant-numeric:tabular-nums}
 /* Shared light closing (E.ON variant) on the MAN page colour, so no band at the end. */
@@ -203,10 +203,12 @@
    Display = --font-size-display-editorial, H2 = DS section title, H3 = card title.
    Poppins has no italic face loaded, so <em> accents stay upright instead of a synthesized slant. */
 .man-case{--serif:var(--font-poppins),Poppins,ui-sans-serif,system-ui,sans-serif}
+/* Row 91 type scale (Lu #25706 B): lead 20, body 16 / line 27, card title 24. Scoped to this page; the shared root tokens stay as they are. */
+.man-case{--type-lead:20px;--type-body:16px;--type-body-line:27px;--type-h3:24px;--type-h3-line:29px}
 .man-case h1,.man-case .mc-cover h1{font-size:var(--font-size-display-editorial);font-weight:var(--font-weight-bold,700);line-height:var(--leading-editorial);letter-spacing:var(--tracking-editorial)}
 .man-case h2{font-size:clamp(var(--font-size-heading),3vw,var(--font-size-heading-lg));font-weight:var(--font-weight-semibold,600);line-height:var(--leading-heading);letter-spacing:-.025em}
 .man-case .mc-feature h3,.man-case .mc-change h3,.man-case .journey-copy h3{font-size:var(--font-size-h3-card);font-weight:var(--font-weight-semibold,600);line-height:1.15;letter-spacing:-.02em}
-.man-case .rec-figure figcaption{font-size:clamp(var(--font-size-heading),3vw,var(--font-size-heading-lg));font-weight:var(--font-weight-semibold,600);letter-spacing:-.025em}
+.man-case .rec-figure figcaption{font-size:32px;font-weight:var(--font-weight-semibold,600);letter-spacing:-.025em}
 .man-case .journey-folio,.man-case .mc-counter strong{letter-spacing:-.02em}
 .man-case :is(h1,h2,h3,figcaption) em{font-style:normal}
 
@@ -232,7 +234,7 @@
 .man-case .mc-arrival-note{--lx:28px;position:absolute;left:0;top:0;margin:0;padding:14px 22px;border-radius:14px;background:rgba(255,253,249,.92);box-shadow:0 8px 24px rgba(60,40,20,.12);color:#1f1a14;white-space:nowrap;opacity:0;transform-origin:var(--lx) 100%;pointer-events:none}
 .man-case .mc-arrival-note span{display:flex;align-items:center;gap:8px;font-size:16px;color:#3b342c}
 .man-case .mc-arrival-note span::before{content:"";width:9px;height:9px;border-radius:50%;background:#c98a14}
-.man-case .mc-arrival-note strong{display:block;margin-top:4px;font-size:22px;font-weight:600;letter-spacing:-.02em}
+.man-case .mc-arrival-note strong{display:block;margin-top:4px;font-size:20px;font-weight:600;letter-spacing:-.02em}
 .man-case .mc-arrival-note::after{content:"";position:absolute;left:var(--lx);top:100%;width:1px;height:var(--len,0px);background:#c98a14;transform-origin:top left;transform:rotate(var(--ang,0deg))}
 .man-case .mc-arrival:is([data-phase=ended],[data-phase=still]) .mc-arrival-note{opacity:1;animation:mc-note-pop .32s cubic-bezier(.2,.9,.3,1.2) .15s both}
 @keyframes mc-note-pop{from{opacity:0;transform:translateY(6px) scale(.92)}to{opacity:1;transform:none}}
@@ -246,7 +248,7 @@
   .man-case .mc-arrival-frame{width:100cqw;aspect-ratio:9/16;left:0;top:auto;bottom:0;-webkit-mask-image:linear-gradient(transparent,#000 40px);mask-image:linear-gradient(transparent,#000 40px)}
   .man-case .mc-arrival-note{--lx:56px;padding:10px 14px}
   .man-case .mc-arrival-note span{font-size:14px}
-  .man-case .mc-arrival-note strong{font-size:18px}
+  .man-case .mc-arrival-note strong{font-size:16px}
 }
 
 /* On tablets, covering the tall viewport with the landscape clip crops the
